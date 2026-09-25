@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block title %}Registrar Niño{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Registrar niño</h1>
+  <a href="{{ url_for('web.lista_ninos') }}" class="btn btn-ghost">← Volver</a>
+</div>
+
+{% if errores %}
+<div class="alert alert--error" role="alert">
+  <strong>Revise los datos ingresados</strong>
+  <ul>
+    {% for campo, msgs in errores.items() %}
+      {% for msg in msgs %}
+      <li><b>{{ campo | replace('_', ' ') | title }}</b>: {{ msg }}</li>
+      {% endfor %}
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{ url_for('web.nuevo_nino_post') }}" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() if csrf_token is defined else '' }}">
+
+  <fieldset class="form-section">
+    <legend>Identidad</legend>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="dni">DNI <span class="required">*</span></label>
+        <input type="text" id="dni" name="dni" value="{{ datos.get('dni', '') }}"
+               maxlength="8" inputmode="numeric" required
+               class="form-input {% if errores.get('dni') %}form-input--error{% endif %}">
+        {% if errores.get('dni') %}
+        <span class="field-error">{{ errores['dni'][0] }}</span>
+        {% endif %}
+        <span class="field-hint">8 dígitos</span>
+      </div>
+
+      <div class="form-group">
+        <label for="sexo">Sexo <span class="required">*</span></label>
+        <select id="sexo" name="sexo" required
+                class="form-input {% if errores.get('sexo') %}form-input--error{% endif %}">
+          <option value="">-- Seleccione --</option>
+          <option value="F" {% if datos.get('sexo') == 'F' %}selected{% endif %}>Femenino</option>
+          <option value="M" {% if datos.get('sexo') == 'M' %}selected{% endif %}>Masculino</option>
+        </select>
+        {% if errores.get('sexo') %}<span class="field-error">{{ errores['sexo'][0] }}</span>{% endif %}
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nombres">Nombres <span class="required">*</span></label>
+        <input type="text" id="nombres" name="nombres" value="{{ datos.get('nombres', '') }}"
+               maxlength="80" required
+               class="form-input {% if errores.get('nombres') %}form-input--error{% endif %}">
+        {% if errores.get('nombres') %}<span class="field-error">{{ errores['nombres'][0] }}</span>{% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="apellidos">Apellidos <span class="required">*</span></label>
+        <input type="text" id="apellidos" name="apellidos" value="{{ datos.get('apellidos', '') }}"
+               maxlength="80" required
+               class="form-input {% if errores.get('apellidos') %}form-input--error{% endif %}">
+        {% if errores.get('apellidos') %}<span class="field-error">{{ errores['apellidos'][0] }}</span>{% endif %}
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fecha_nacimiento">Fecha de nacimiento <span class="required">*</span></label>
+        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"
+               value="{{ datos.get('fecha_nacimiento', '') }}" required
+               class="form-input {% if errores.get('fecha_nacimiento') %}form-input--error{% endif %}">
+        {% if errores.get('fecha_nacimiento') %}
+        <span class="field-error">{{ errores['fecha_nacimiento'][0] }}</span>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_nacimiento">Tipo de nacimiento <span class="required">*</span></label>
+        <select id="tipo_nacimiento" name="tipo_nacimiento" required
+                class="form-input {% if errores.get('tipo_nacimiento') %}form-input--error{% endif %}">
+          <option value="">-- Seleccione --</option>
+          <option value="TERMINO" {% if datos.get('tipo_nacimiento') == 'TERMINO' %}selected{% endif %}>A término</option>
+          <option value="PREMATURO" {% if datos.get('tipo_nacimiento') == 'PREMATURO' %}selected{% endif %}>Prematuro</option>
+        </select>
+        {% if errores.get('tipo_nacimiento') %}<span class="field-error">{{ errores['tipo_nacimiento'][0] }}</span>{% endif %}
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-section">
+    <legend>Ubicación y Datos Clínicos</legend>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="peso_kg">Peso (kg) <span class="required">*</span></label>
+        <input type="number" id="peso_kg" name="peso_kg" value="{{ datos.get('peso_kg', '') }}"
+               step="0.001" min="1" max="30" required
+               class="form-input {% if errores.get('peso_kg') %}form-input--error{% endif %}">
+        {% if errores.get('peso_kg') %}<span class="field-error">{{ errores['peso_kg'][0] }}</span>{% endif %}
+        <span class="field-hint">Entre 1 y 30 kg, máx. 3 decimales</span>
+      </div>
+
+      <div class="form-group">
+        <label for="altitud_msnm">Altitud (m.s.n.m.) <span class="required">*</span></label>
+        <input type="number" id="altitud_msnm" name="altitud_msnm"
+               value="{{ datos.get('altitud_msnm', '') }}"
+               step="1" min="0" max="4999" required
+               class="form-input {% if errores.get('altitud_msnm') %}form-input--error{% endif %}">
+        {% if errores.get('altitud_msnm') %}<span class="field-error">{{ errores['altitud_msnm'][0] }}</span>{% endif %}
+        <span class="field-hint">0–4999 m</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="distrito">Distrito <span class="required">*</span></label>
+      <input type="text" id="distrito" name="distrito" value="{{ datos.get('distrito', '') }}"
+             maxlength="80" required
+             class="form-input {% if errores.get('distrito') %}form-input--error{% endif %}">
+      {% if errores.get('distrito') %}<span class="field-error">{{ errores['distrito'][0] }}</span>{% endif %}
+    </div>
+  </fieldset>
+
+  <fieldset class="form-section">
+    <legend>Cuidador</legend>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="cuidador">Nombre del cuidador <span class="required">*</span></label>
+        <input type="text" id="cuidador" name="cuidador" value="{{ datos.get('cuidador', '') }}"
+               maxlength="80" required
+               class="form-input {% if errores.get('cuidador') %}form-input--error{% endif %}">
+        {% if errores.get('cuidador') %}<span class="field-error">{{ errores['cuidador'][0] }}</span>{% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Teléfono (opcional)</label>
+        <input type="tel" id="telefono" name="telefono" value="{{ datos.get('telefono', '') }}"
+               maxlength="9" inputmode="numeric"
+               class="form-input {% if errores.get('telefono') %}form-input--error{% endif %}">
+        {% if errores.get('telefono') %}<span class="field-error">{{ errores['telefono'][0] }}</span>{% endif %}
+        <span class="field-hint">9 dígitos</span>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-section">
+    <legend>Dosaje inicial (opcional)</legend>
+    <p class="field-hint">Si ya tiene un dosaje de hemoglobina, puede registrarlo aquí.</p>
+
+    <div class="form-group">
+      <label>
+        <input type="checkbox" name="tiene_dosaje_inicial" value="1"
+               {% if datos.get('tiene_dosaje_inicial') == '1' %}checked{% endif %}>
+        Incluir dosaje inicial
+      </label>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fecha_dosaje">Fecha del dosaje</label>
+        <input type="date" id="fecha_dosaje" name="fecha_dosaje"
+               value="{{ datos.get('fecha_dosaje', '') }}"
+               class="form-input {% if errores.get('dosaje_inicial.fecha_dosaje') %}form-input--error{% endif %}">
+        {% if errores.get('dosaje_inicial.fecha_dosaje') %}
+        <span class="field-error">{{ errores['dosaje_inicial.fecha_dosaje'][0] }}</span>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="hb_observada">Hemoglobina observada (g/dL)</label>
+        <input type="number" id="hb_observada" name="hb_observada"
+               value="{{ datos.get('hb_observada', '') }}"
+               step="0.1" min="2.0" max="25.0"
+               class="form-input {% if errores.get('dosaje_inicial.hb_observada') %}form-input--error{% endif %}">
+        {% if errores.get('dosaje_inicial.hb_observada') %}
+        <span class="field-error">{{ errores['dosaje_inicial.hb_observada'][0] }}</span>
+        {% endif %}
+        <span class="field-hint">2.0–25.0 g/dL, 1 decimal</span>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Registrar niño</button>
+    <a href="{{ url_for('web.lista_ninos') }}" class="btn btn-ghost">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

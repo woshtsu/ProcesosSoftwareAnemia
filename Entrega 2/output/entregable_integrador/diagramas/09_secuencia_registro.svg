@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="740" height="690" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 690" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="740" height="690"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-690)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="740" height="690" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="3" y="615" width="134" height="55" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="44.351" y="637.43" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1274) scale(1,-1)">Personal</text>
+			<path d="M 70,615 L 70,40 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<rect x="193" y="615" width="134" height="55" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="209.781" y="637.43" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1274) scale(1,-1)">Entrada Web/API</text>
+			<path d="M 260,615 L 260,40 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<rect x="383" y="615" width="134" height="55" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="426.886" y="637.43" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1274) scale(1,-1)">Servicio</text>
+			<path d="M 450,615 L 450,40 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<rect x="583" y="615" width="134" height="55" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="595.452" y="637.43" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1274) scale(1,-1)">Repositorio SQLite</text>
+			<path d="M 650,615 L 650,40 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<path d="M 70,575 L 260,575 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="251.896 571.0853, 260 575, 251.896 578.9147" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: rgb(9%,19%,30%); fill-rule: evenodd;"/>
+			<text x="123.452" y="587.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1174) scale(1,-1)">1 Enviar datos</text>
+			<path d="M 260,524 L 450,524 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="441.896 520.0853, 450 524, 441.896 527.9147" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: rgb(9%,19%,30%); fill-rule: evenodd;"/>
+			<text x="302.98699999999997" y="536.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1072) scale(1,-1)">2 Solicitar registro</text>
+			<path d="M 450,480 L 485,480 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<path d="M 485,480 L 485,453 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<path d="M 485,453 L 450,453 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="458.104 456.9147, 450 453, 458.104 449.0853" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: rgb(9%,19%,30%); fill-rule: evenodd;"/>
+			<rect x="525.5025" y="466.0" width="128.995" height="18.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="527.5025" y="469.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,938) scale(1,-1)">3 Validar con dominio</text>
+			<rect x="18" y="58" width="705" height="360" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.1; fill: none; fill-rule: evenodd;"/>
+			<text x="30" y="395.0" style="font-family: Helvetica-Bold; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,790) scale(1,-1)">alt</text>
+			<rect x="32" y="367.0" width="107.298" height="18.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="34" y="370.0" style="font-family: Helvetica-Bold; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,740) scale(1,-1)">[datos inválidos]</text>
+			<path d="M 450,339 L 260,339 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<polygon points="268.104 342.9147, 260 339, 268.104 335.0853" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<text x="301.18" y="352.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,704) scale(1,-1)">Errores por campo</text>
+			<path d="M 260,300 L 70,300 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<polygon points="78.10402 303.9147, 70 300, 78.10402 296.0853" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<text x="90.2225" y="312.0" style="font-family: Helvetica; font-size: 11px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,624) scale(1,-1)">Formulario con errores / API 400</text>
+			<path d="M 18,271 L 723,271 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<rect x="32" y="241.0" width="174.482" height="18.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="34" y="244.0" style="font-family: Helvetica-Bold; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,488) scale(1,-1)">[datos válidos y DNI nuevo]</text>
+			<path d="M 450,212 L 650,212 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="641.896 208.0853, 650 212, 641.896 215.9147" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: rgb(9%,19%,30%); fill-rule: evenodd;"/>
+			<text x="487.132" y="224.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,448) scale(1,-1)">4 Guardar expediente</text>
+			<path d="M 650,167 L 450,167 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<polygon points="458.104 170.9147, 450 167, 458.104 163.0853" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<text x="506.294" y="179.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,358) scale(1,-1)">5 Confirmación</text>
+			<path d="M 450,131 L 260,131 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<polygon points="268.104 134.9147, 260 131, 268.104 127.0853" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<text x="320.316" y="143.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,286) scale(1,-1)">6 Resultado</text>
+			<path d="M 260,80 L 70,80 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<polygon points="78.10402 83.91469, 70 80, 78.10402 76.08531" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<text x="101.833" y="92.0" style="font-family: Helvetica; font-size: 11px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,184) scale(1,-1)">7 Confirmación UI / API 201</text>
+			<text x="120.35449999999997" y="10.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,20) scale(1,-1)">Alternativa adicional: DNI duplicado produce conflicto 409. No se crea otro expediente.</text>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="740" height="570" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 570" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="740" height="570"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-570)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="740" height="570" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="20" y="295" width="300" height="225" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(91%,94%,98%); fill-rule: evenodd;"/>
+			<text x="154.88" y="469.58" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,939) scale(1,-1)">nino</text>
+			<text x="150.88" y="450.06" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,900) scale(1,-1)">PK id</text>
+			<text x="145.992" y="430.53999999999996" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,861) scale(1,-1)">UK dni</text>
+			<text x="98.864" y="411.02" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,822) scale(1,-1)">nombres y apellidos</text>
+			<text x="85.96" y="391.5" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,783) scale(1,-1)">fecha_nacimiento, sexo</text>
+			<text x="59.736000000000004" y="371.98" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,743) scale(1,-1)">peso_kg, distrito, altitud_msnm</text>
+			<text x="113.976" y="352.46" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,704) scale(1,-1)">cuidador, activo</text>
+			<text x="73.944" y="332.94" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,665) scale(1,-1)">creado_en, actualizado_en</text>
+			<rect x="420" y="265" width="300" height="255" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(90%,95%,93%); fill-rule: evenodd;"/>
+			<text x="496.18399999999997" y="454.58" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,909) scale(1,-1)">dosaje_hemoglobina</text>
+			<text x="550.88" y="435.06" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,870) scale(1,-1)">PK id</text>
+			<text x="531.76" y="415.53999999999996" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,831) scale(1,-1)">FK nino_id</text>
+			<text x="522.4159999999999" y="396.02" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,792) scale(1,-1)">fecha_dosaje</text>
+			<text x="471.272" y="376.5" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,753) scale(1,-1)">hb_observada, hb_ajustada</text>
+			<text x="470.848" y="356.98" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,713) scale(1,-1)">altitud_msnm, ajuste_altitud</text>
+			<text x="469.528" y="337.46" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,674) scale(1,-1)">clasificacion, norma_version</text>
+			<text x="482.4" y="317.94" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,635) scale(1,-1)">advertencias, creado_en</text>
+			<path d="M 320,410 L 420,410 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<text x="334.552" y="422.0" style="font-family: Helvetica-Bold; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,844) scale(1,-1)">1</text>
+			<text x="381.992" y="422.0" style="font-family: Helvetica-Bold; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,844) scale(1,-1)">0..*</text>
+			<rect x="220" y="65" width="300" height="130" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="314.864" y="153.04000000000002" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,306) scale(1,-1)">intento_registro</text>
+			<text x="301.968" y="133.52" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,267) scale(1,-1)">PK id / ocurrido_en</text>
+			<text x="261.952" y="114.00000000000003" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,228) scale(1,-1)">tipo / resultado / codigos_error</text>
+			<text x="295.296" y="94.48000000000002" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,188) scale(1,-1)">Sin datos personales</text>
+			<text x="96.08999999999997" y="27.0" style="font-family: Helvetica; font-size: 14px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,54) scale(1,-1)">Modelo conceptual basado en la Figura 4 del avance. Restricciones pendientes de DDL.</text>
+		</g>
+	</g>
+</svg>

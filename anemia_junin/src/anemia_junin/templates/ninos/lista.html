@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Niños en Seguimiento{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Niños en seguimiento</h1>
+  <a class="btn btn-primary" href="{{ url_for('web.nuevo_nino_form') }}">+ Registrar niño</a>
+</div>
+
+{# Filtros de búsqueda #}
+<form class="search-form" method="get" action="{{ url_for('web.lista_ninos') }}">
+  <div class="search-row">
+    <div class="form-group">
+      <label for="q">Buscar</label>
+      <input type="text" id="q" name="q" value="{{ filtros.q or '' }}"
+             placeholder="DNI o nombre" class="form-input">
+    </div>
+    <div class="form-group">
+      <label for="distrito">Distrito</label>
+      <input type="text" id="distrito" name="distrito" value="{{ filtros.distrito or '' }}"
+             placeholder="Todos" class="form-input">
+    </div>
+    <div class="form-group">
+      <label for="clasificacion">Clasificación</label>
+      <select id="clasificacion" name="clasificacion" class="form-input">
+        <option value="">Todas</option>
+        {% for c in ['SEVERA','MODERADA','LEVE','SIN_ANEMIA','NO_EVALUABLE','SIN_DOSAJE'] %}
+        <option value="{{ c }}" {% if filtros.clasificacion == c %}selected{% endif %}>
+          {{ c | replace('_', ' ') | title }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group form-group--action">
+      <button type="submit" class="btn btn-secondary">Buscar</button>
+      <a href="{{ url_for('web.lista_ninos') }}" class="btn btn-ghost">Limpiar</a>
+    </div>
+  </div>
+</form>
+
+{# Resultados #}
+{% if meta.total == 0 %}
+  {% if filtros.q or filtros.distrito or filtros.clasificacion %}
+    <div class="empty-state">
+      <p>No se encontraron niños con los filtros aplicados.</p>
+      <a href="{{ url_for('web.lista_ninos') }}">Ver todos</a>
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>No hay niños registrados en seguimiento (6–59 meses).</p>
+      <a href="{{ url_for('web.nuevo_nino_form') }}" class="btn btn-primary">Registrar el primero</a>
+    </div>
+  {% endif %}
+{% else %}
+  <p class="result-count">{{ meta.total }} niño{% if meta.total != 1 %}s{% endif %} encontrado{% if meta.total != 1 %}s{% endif %}</p>
+
+  <div class="table-wrapper">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>DNI</th>
+          <th>Apellidos y Nombres</th>
+          <th>F. Nacimiento</th>
+          <th>Distrito</th>
+          <th>Clasificación</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for n in ninos %}
+        <tr>
+          <td><code>{{ n.dni }}</code></td>
+          <td>{{ n.apellidos }}, {{ n.nombres }}</td>
+          <td>{{ n.fecha_nacimiento }}</td>
+          <td>{{ n.distrito }}</td>
+          <td>
+            <span class="badge badge--{{ n.clasificacion_ultimo_dosaje.value | lower | replace('_', '-') }}">
+              {{ n.clasificacion_ultimo_dosaje.value | replace('_', ' ') }}
+            </span>
+          </td>
+          <td>
+            <a href="{{ url_for('web.expediente', dni=n.dni) }}" class="btn btn-sm">
+              Ver expediente
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {# Paginación #}
+  {% set paginas_total = ((meta.total - 1) // meta.tamano) + 1 %}
+  {% if paginas_total > 1 %}
+  <nav class="pagination" aria-label="Paginación">
+    {% if meta.pagina > 1 %}
+    <a href="?pagina={{ meta.pagina - 1 }}&tamano={{ meta.tamano }}{% if filtros.q %}&q={{ filtros.q }}{% endif %}{% if filtros.distrito %}&distrito={{ filtros.distrito }}{% endif %}{% if filtros.clasificacion %}&clasificacion={{ filtros.clasificacion }}{% endif %}"
+       class="btn btn-ghost">← Anterior</a>
+    {% endif %}
+    <span class="pagination-info">Página {{ meta.pagina }} de {{ paginas_total }}</span>
+    {% if meta.pagina < paginas_total %}
+    <a href="?pagina={{ meta.pagina + 1 }}&tamano={{ meta.tamano }}{% if filtros.q %}&q={{ filtros.q }}{% endif %}{% if filtros.distrito %}&distrito={{ filtros.distrito }}{% endif %}{% if filtros.clasificacion %}&clasificacion={{ filtros.clasificacion }}{% endif %}"
+       class="btn btn-ghost">Siguiente →</a>
+    {% endif %}
+  </nav>
+  {% endif %}
+{% endif %}
+{% endblock %}

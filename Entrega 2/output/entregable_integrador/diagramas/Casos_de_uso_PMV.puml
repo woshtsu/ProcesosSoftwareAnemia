@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+actor "Personal de salud" as Salud
+actor "Coordinador del proyecto" as Coord
+rectangle "Sistema PMV Anemia Junín" {
+ usecase "UC-01 Registrar niño" as Alta
+ usecase "UC-02 Consultar expediente" as Consulta
+ usecase "UC-03 Actualizar expediente" as Actualiza
+ usecase "UC-04 Registrar dosaje" as Dosaje
+ usecase "UC-05 Listar y filtrar seguimiento" as Lista
+ usecase "UC-06 Generar reporte del periodo" as Reporte
+ usecase "UC-07 Validar datos de entrada" as Valida
+}
+Salud -- Alta
+Salud -- Consulta
+Salud -- Actualiza
+Salud -- Dosaje
+Salud -- Lista
+Coord -- Reporte
+Alta ..> Valida : <<include>>
+Actualiza ..> Valida : <<include>>
+Dosaje ..> Valida : <<include>>
+note bottom of Reporte
+Alcance INC-1 según los documentos.
+Roles de uso; no acredita permisos implementados.
+end note
+@enduml

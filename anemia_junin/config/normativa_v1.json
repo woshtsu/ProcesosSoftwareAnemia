@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "version": "v1",
+    "fuente": "NTS N° 213-MINSA/DGIESP-2024 y RM 429-2024-MINSA",
+    "nota": "Transcripción de referencia para demostración académica. No certificada para uso clínico.",
+    "url_oficial": "https://www.gob.pe/institucion/minsa/normas-legales/5670414-429-2024-minsa"
+  },
+  "clasificacion": {
+    "grupos_edad_meses": [
+      {
+        "id": "6_23",
+        "desde_meses_inclusive": 6,
+        "hasta_meses_inclusive": 23,
+        "umbrales_hb_ajustada_gdl": {
+          "severa_hasta_exclusive": 7.0,
+          "moderada_hasta_exclusive": 9.5,
+          "leve_hasta_exclusive": 10.5,
+          "sin_anemia_desde_inclusive": 10.5
+        }
+      },
+      {
+        "id": "24_59",
+        "desde_meses_inclusive": 24,
+        "hasta_meses_inclusive": 59,
+        "umbrales_hb_ajustada_gdl": {
+          "severa_hasta_exclusive": 7.0,
+          "moderada_hasta_exclusive": 10.0,
+          "leve_hasta_exclusive": 11.0,
+          "sin_anemia_desde_inclusive": 11.0
+        }
+      }
+    ]
+  },
+  "ajuste_altitud": {
+    "descripcion": "Ajuste tabulado por altitud en g/dL. Se resta de la Hb observada.",
+    "decision_pmv": "Altitud 0–499 m adopta ajuste 0.0 como decisión explícita del PMV.",
+    "tabla": [
+      {"altitud_desde_msnm": 0,    "altitud_hasta_msnm": 499,  "ajuste_gdl": 0.0},
+      {"altitud_desde_msnm": 500,  "altitud_hasta_msnm": 999,  "ajuste_gdl": 0.4},
+      {"altitud_desde_msnm": 1000, "altitud_hasta_msnm": 1499, "ajuste_gdl": 0.8},
+      {"altitud_desde_msnm": 1500, "altitud_hasta_msnm": 1999, "ajuste_gdl": 1.1},
+      {"altitud_desde_msnm": 2000, "altitud_hasta_msnm": 2499, "ajuste_gdl": 1.4},
+      {"altitud_desde_msnm": 2500, "altitud_hasta_msnm": 2999, "ajuste_gdl": 1.8},
+      {"altitud_desde_msnm": 3000, "altitud_hasta_msnm": 3499, "ajuste_gdl": 2.1},
+      {"altitud_desde_msnm": 3500, "altitud_hasta_msnm": 3999, "ajuste_gdl": 2.5},
+      {"altitud_desde_msnm": 4000, "altitud_hasta_msnm": 4499, "ajuste_gdl": 2.9},
+      {"altitud_desde_msnm": 4500, "altitud_hasta_msnm": 4999, "ajuste_gdl": 3.3}
+    ]
+  }
+}

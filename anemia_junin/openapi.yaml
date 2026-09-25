@@ -1,0 +1,493 @@
+openapi: "3.1.0"
+info:
+  title: "Anemia Junín API"
+  version: "1.0.0"
+  description: |
+    API REST para el PMV de Registro Nominal Validado y Expediente Digital (INC-1).
+    Demostración académica con datos sintéticos. No certificada para uso clínico.
+  contact:
+    name: "PMV Anemia Junín"
+servers:
+  - url: "http://127.0.0.1:8000/api/v1"
+    description: "Servidor local de demostración"
+
+tags:
+  - name: salud
+    description: "Estado de la aplicación"
+  - name: ninos
+    description: "Gestión de niños en seguimiento"
+  - name: dosajes
+    description: "Registro de dosajes de hemoglobina"
+  - name: reportes
+    description: "Reportes de periodo y calidad"
+
+paths:
+  /salud:
+    get:
+      tags: [salud]
+      summary: "Estado de la aplicación"
+      operationId: getSalud
+      responses:
+        "200":
+          description: "Aplicación y base de datos operativas"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SaludResponse"
+
+  /ninos:
+    get:
+      tags: [ninos]
+      summary: "Lista de niños en seguimiento (6–59 meses)"
+      operationId: listNinos
+      parameters:
+        - name: q
+          in: query
+          description: "Busca por DNI o nombres"
+          schema: { type: string }
+        - name: distrito
+          in: query
+          schema: { type: string }
+        - name: clasificacion
+          in: query
+          schema:
+            type: string
+            enum: [SEVERA, MODERADA, LEVE, SIN_ANEMIA, NO_EVALUABLE, SIN_DOSAJE]
+        - name: pagina
+          in: query
+          schema: { type: integer, minimum: 1, default: 1 }
+        - name: tamano
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+      responses:
+        "200":
+          description: "Lista paginada de niños"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListaNinosResponse"
+
+    post:
+      tags: [ninos]
+      summary: "Registrar niño con dosaje inicial opcional"
+      operationId: createNino
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CrearNinoRequest"
+      responses:
+        "201":
+          description: "Niño creado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NinoResponse"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "409":
+          $ref: "#/components/responses/ConflictError"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaType"
+
+  /ninos/{dni}:
+    get:
+      tags: [ninos]
+      summary: "Expediente completo del niño"
+      operationId: getNino
+      parameters:
+        - $ref: "#/components/parameters/DniPath"
+      responses:
+        "200":
+          description: "Expediente e historial de dosajes"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExpedienteResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+    patch:
+      tags: [ninos]
+      summary: "Actualizar campos permitidos del niño"
+      operationId: patchNino
+      parameters:
+        - $ref: "#/components/parameters/DniPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ActualizarNinoRequest"
+      responses:
+        "200":
+          description: "Niño actualizado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NinoResponse"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /ninos/{dni}/dosajes:
+    post:
+      tags: [dosajes]
+      summary: "Agregar dosaje de hemoglobina"
+      operationId: addDosaje
+      parameters:
+        - $ref: "#/components/parameters/DniPath"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CrearDosajeRequest"
+      responses:
+        "201":
+          description: "Dosaje registrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DosajeResponse"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /reportes/registros:
+    get:
+      tags: [reportes]
+      summary: "Reporte de registros por periodo"
+      operationId: getReporteRegistros
+      parameters:
+        - name: desde
+          in: query
+          required: true
+          description: "Fecha inicio (YYYY-MM-DD), inclusiva"
+          schema: { type: string, format: date }
+        - name: hasta
+          in: query
+          required: true
+          description: "Fecha fin (YYYY-MM-DD), inclusiva"
+          schema: { type: string, format: date }
+      responses:
+        "200":
+          description: "Reporte del periodo"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReporteResponse"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+
+components:
+  parameters:
+    DniPath:
+      name: dni
+      in: path
+      required: true
+      description: "DNI del niño (8 dígitos)"
+      schema:
+        type: string
+        pattern: "^[0-9]{8}$"
+
+  responses:
+    ValidationError:
+      description: "Error de validación"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    ConflictError:
+      description: "Conflicto (DNI duplicado)"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotFound:
+      description: "Recurso no encontrado"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    UnsupportedMediaType:
+      description: "Content-Type no soportado"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+  schemas:
+    SaludResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            estado: { type: string, example: "ok" }
+            version: { type: string, example: "1.0.0" }
+            base_datos: { type: string, example: "conectada" }
+
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              type: string
+              example: "VALIDATION_ERROR"
+            message:
+              type: string
+              example: "Revise los datos ingresados"
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items: { type: string }
+              example:
+                dni: ["Debe contener exactamente 8 dígitos"]
+
+    CrearNinoRequest:
+      type: object
+      required: [dni, nombres, apellidos, fecha_nacimiento, sexo, tipo_nacimiento, peso_kg, distrito, altitud_msnm, cuidador]
+      additionalProperties: false
+      properties:
+        dni:
+          type: string
+          pattern: "^[0-9]{8}$"
+          example: "01234567"
+        nombres:
+          type: string
+          minLength: 2
+          maxLength: 80
+          example: "Ana María"
+        apellidos:
+          type: string
+          minLength: 2
+          maxLength: 80
+          example: "Quispe López"
+        fecha_nacimiento:
+          type: string
+          format: date
+          example: "2023-03-15"
+        sexo:
+          type: string
+          enum: [F, M]
+        tipo_nacimiento:
+          type: string
+          enum: [TERMINO, PREMATURO]
+        peso_kg:
+          type: number
+          minimum: 1.0
+          maximum: 30.0
+          example: 8.5
+        distrito:
+          type: string
+          minLength: 2
+          maxLength: 80
+          example: "Huancayo"
+        altitud_msnm:
+          type: integer
+          minimum: 0
+          maximum: 4999
+          example: 3271
+        cuidador:
+          type: string
+          minLength: 2
+          maxLength: 80
+          example: "María López"
+        telefono:
+          type: string
+          pattern: "^[0-9]{9}$"
+          nullable: true
+          example: "987654321"
+        dosaje_inicial:
+          $ref: "#/components/schemas/DosajeInicialRequest"
+
+    DosajeInicialRequest:
+      type: object
+      required: [fecha_dosaje, hb_observada]
+      additionalProperties: false
+      properties:
+        fecha_dosaje:
+          type: string
+          format: date
+          example: "2026-09-25"
+        hb_observada:
+          type: number
+          minimum: 2.0
+          maximum: 25.0
+          example: 10.5
+
+    ActualizarNinoRequest:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        peso_kg:
+          type: number
+          minimum: 1.0
+          maximum: 30.0
+        distrito:
+          type: string
+          minLength: 2
+          maxLength: 80
+        altitud_msnm:
+          type: integer
+          minimum: 0
+          maximum: 4999
+        cuidador:
+          type: string
+          minLength: 2
+          maxLength: 80
+        telefono:
+          type: string
+          pattern: "^[0-9]{9}$"
+          nullable: true
+
+    CrearDosajeRequest:
+      type: object
+      required: [fecha_dosaje, hb_observada, altitud_msnm]
+      additionalProperties: false
+      properties:
+        fecha_dosaje:
+          type: string
+          format: date
+          example: "2026-09-25"
+        hb_observada:
+          type: number
+          minimum: 2.0
+          maximum: 25.0
+          example: 10.5
+        altitud_msnm:
+          type: integer
+          minimum: 0
+          maximum: 4999
+          example: 3271
+
+    NinoResumen:
+      type: object
+      properties:
+        dni: { type: string }
+        nombres: { type: string }
+        apellidos: { type: string }
+        fecha_nacimiento: { type: string, format: date }
+        sexo: { type: string, enum: [F, M] }
+        distrito: { type: string }
+        clasificacion_ultimo_dosaje:
+          type: string
+          enum: [SEVERA, MODERADA, LEVE, SIN_ANEMIA, NO_EVALUABLE, SIN_DOSAJE]
+
+    NinoResponse:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/NinoDetalle"
+
+    NinoDetalle:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        dni: { type: string }
+        nombres: { type: string }
+        apellidos: { type: string }
+        fecha_nacimiento: { type: string, format: date }
+        sexo: { type: string }
+        tipo_nacimiento: { type: string }
+        peso_kg: { type: number }
+        distrito: { type: string }
+        altitud_msnm: { type: integer }
+        cuidador: { type: string }
+        telefono: { type: string, nullable: true }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+
+    ListaNinosResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/NinoResumen"
+        meta:
+          type: object
+          properties:
+            pagina: { type: integer }
+            tamano: { type: integer }
+            total: { type: integer }
+
+    ExpedienteResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            nino:
+              $ref: "#/components/schemas/NinoDetalle"
+            clasificacion_actual:
+              type: string
+              enum: [SEVERA, MODERADA, LEVE, SIN_ANEMIA, NO_EVALUABLE, SIN_DOSAJE]
+            historial_dosajes:
+              type: array
+              items:
+                $ref: "#/components/schemas/DosajeDetalle"
+
+    DosajeResponse:
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/DosajeDetalle"
+
+    DosajeDetalle:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        nino_id: { type: string, format: uuid }
+        fecha_dosaje: { type: string, format: date }
+        hb_observada: { type: number }
+        altitud_msnm: { type: integer }
+        ajuste_gdl: { type: number }
+        hb_ajustada: { type: number }
+        edad_meses: { type: integer }
+        clasificacion:
+          type: string
+          enum: [SEVERA, MODERADA, LEVE, SIN_ANEMIA, NO_EVALUABLE]
+        version_normativa: { type: string }
+        advertencias:
+          type: array
+          items: { type: string }
+        created_at: { type: string, format: date-time }
+
+    ReporteResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            periodo:
+              type: object
+              properties:
+                desde: { type: string, format: date }
+                hasta: { type: string, format: date }
+            ninos_registrados: { type: integer }
+            dosajes_registrados: { type: integer }
+            distribucion_clasificacion:
+              type: object
+              additionalProperties: { type: integer }
+            distribucion_distrito:
+              type: object
+              additionalProperties: { type: integer }
+            calidad_registro:
+              type: object
+              properties:
+                intentos_aceptados: { type: integer }
+                intentos_rechazados: { type: integer }
+                tasa_aceptacion_pct:
+                  type: number
+                  nullable: true

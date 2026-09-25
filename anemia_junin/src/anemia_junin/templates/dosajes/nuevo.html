@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Nuevo Dosaje — {{ nino.apellidos }}, {{ nino.nombres }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Registrar dosaje</h1>
+  <div>
+    <strong>{{ nino.apellidos }}, {{ nino.nombres }}</strong>
+    <span class="text-muted">DNI {{ nino.dni }}</span>
+  </div>
+  <a href="{{ url_for('web.expediente', dni=nino.dni) }}" class="btn btn-ghost">← Expediente</a>
+</div>
+
+{% if errores %}
+<div class="alert alert--error" role="alert">
+  <strong>Revise los datos ingresados</strong>
+  <ul>
+    {% for campo, msgs in errores.items() %}
+      {% for msg in msgs %}<li>{{ msg }}</li>{% endfor %}
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{ url_for('web.nuevo_dosaje_post', dni=nino.dni) }}" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() if csrf_token is defined else '' }}">
+
+  <fieldset class="form-section">
+    <legend>Datos del dosaje</legend>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fecha_dosaje">Fecha del dosaje <span class="required">*</span></label>
+        <input type="date" id="fecha_dosaje" name="fecha_dosaje"
+               value="{{ datos.get('fecha_dosaje', '') }}" required
+               class="form-input {% if errores.get('fecha_dosaje') %}form-input--error{% endif %}">
+        {% if errores.get('fecha_dosaje') %}
+        <span class="field-error">{{ errores['fecha_dosaje'][0] }}</span>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="hb_observada">Hemoglobina observada (g/dL) <span class="required">*</span></label>
+        <input type="number" id="hb_observada" name="hb_observada"
+               value="{{ datos.get('hb_observada', '') }}"
+               step="0.1" min="2.0" max="25.0" required
+               class="form-input {% if errores.get('hb_observada') %}form-input--error{% endif %}">
+        {% if errores.get('hb_observada') %}
+        <span class="field-error">{{ errores['hb_observada'][0] }}</span>
+        {% endif %}
+        <span class="field-hint">2.0–25.0 g/dL, 1 decimal</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="altitud_msnm">Altitud del evento (m.s.n.m.) <span class="required">*</span></label>
+      <input type="number" id="altitud_msnm" name="altitud_msnm"
+             value="{{ datos.get('altitud_msnm', '') or altitud_precargada }}"
+             step="1" min="0" max="4999" required
+             class="form-input {% if errores.get('altitud_msnm') %}form-input--error{% endif %}">
+      {% if errores.get('altitud_msnm') %}
+      <span class="field-error">{{ errores['altitud_msnm'][0] }}</span>
+      {% endif %}
+      <span class="field-hint">Precargada con la altitud del niño ({{ altitud_precargada }} m). Puede modificarla.</span>
+    </div>
+  </fieldset>
+
+  <div class="alert alert--info">
+    El ajuste por altitud y la clasificación se calcularán automáticamente.
+    No se permite ingresar valores calculados.
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Registrar dosaje</button>
+    <a href="{{ url_for('web.expediente', dni=nino.dni) }}" class="btn btn-ghost">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

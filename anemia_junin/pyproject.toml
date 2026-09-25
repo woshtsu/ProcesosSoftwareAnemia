@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anemia-junin"
+version = "0.1.0"
+description = "PMV – Registro Nominal Validado y Expediente Digital (INC-1)"
+requires-python = ">=3.12"
+dependencies = [
+    "flask==3.1.1",
+    "flask-wtf==1.2.2",
+    "waitress==3.0.1",
+    "pytz==2024.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.3.5",
+    "pytest-cov==6.1.0",
+    "pytest-xdist==3.6.1",
+    "ruff==0.9.10",
+    "playwright==1.49.1",
+    "pytest-playwright==0.6.2",
+    "locust==2.32.3",
+    "jsonschema==4.23.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["src/anemia_junin"]
+omit = ["*/tests/*", "*/__init__.py"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "PT"]
+ignore = ["B008"]

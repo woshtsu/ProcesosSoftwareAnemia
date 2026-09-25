@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}Reporte de Registros{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Reporte de registros por periodo</h1>
+</div>
+
+<form class="search-form" method="get" action="{{ url_for('web.reporte_registros') }}">
+  <div class="search-row">
+    <div class="form-group">
+      <label for="desde">Desde <span class="required">*</span></label>
+      <input type="date" id="desde" name="desde" value="{{ desde }}" required
+             class="form-input {% if errores.get('desde') %}form-input--error{% endif %}">
+      {% if errores.get('desde') %}<span class="field-error">{{ errores['desde'][0] }}</span>{% endif %}
+    </div>
+    <div class="form-group">
+      <label for="hasta">Hasta <span class="required">*</span></label>
+      <input type="date" id="hasta" name="hasta" value="{{ hasta }}" required
+             class="form-input {% if errores.get('hasta') %}form-input--error{% endif %}">
+      {% if errores.get('hasta') %}<span class="field-error">{{ errores['hasta'][0] }}</span>{% endif %}
+    </div>
+    <div class="form-group form-group--action">
+      <button type="submit" class="btn btn-primary">Generar reporte</button>
+    </div>
+  </div>
+</form>
+
+{% if reporte %}
+<section class="report-section">
+  <h2>Periodo: {{ reporte.periodo_desde }} — {{ reporte.periodo_hasta }}</h2>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-card__value">{{ reporte.ninos_registrados }}</div>
+      <div class="stat-card__label">Niños registrados</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__value">{{ reporte.dosajes_registrados }}</div>
+      <div class="stat-card__label">Dosajes registrados</div>
+    </div>
+  </div>
+
+  <div class="report-columns">
+    {# Distribución por clasificación #}
+    <div class="card">
+      <h3>Distribución por clasificación (dosajes del periodo)</h3>
+      {% if reporte.distribucion_clasificacion %}
+      <table class="data-table">
+        <thead><tr><th>Clasificación</th><th>Dosajes</th></tr></thead>
+        <tbody>
+          {% for clas, count in reporte.distribucion_clasificacion.items() | sort %}
+          <tr>
+            <td><span class="badge badge--{{ clas | lower | replace('_', '-') }}">{{ clas | replace('_', ' ') }}</span></td>
+            <td>{{ count }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p class="text-muted">Sin dosajes en el periodo.</p>
+      {% endif %}
+    </div>
+
+    {# Distribución por distrito #}
+    <div class="card">
+      <h3>Distribución por distrito (niños registrados)</h3>
+      {% if reporte.distribucion_distrito %}
+      <table class="data-table">
+        <thead><tr><th>Distrito</th><th>Niños</th></tr></thead>
+        <tbody>
+          {% for distrito, count in reporte.distribucion_distrito.items() | sort %}
+          <tr><td>{{ distrito }}</td><td>{{ count }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p class="text-muted">Sin registros en el periodo.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  {# Calidad del registro #}
+  <div class="card">
+    <h3>Calidad del registro</h3>
+    <dl class="data-grid">
+      <div><dt>Altas aceptadas</dt><dd>{{ reporte.calidad_registro.intentos_aceptados }}</dd></div>
+      <div><dt>Altas rechazadas</dt><dd>{{ reporte.calidad_registro.intentos_rechazados }}</dd></div>
+      <div>
+        <dt>Tasa de aceptación</dt>
+        <dd>
+          {% if reporte.calidad_registro.tasa_aceptacion_pct is none %}
+            <span class="text-muted">No calculable</span>
+          {% else %}
+            <strong>{{ reporte.calidad_registro.tasa_aceptacion_pct }}%</strong>
+          {% endif %}
+        </dd>
+      </div>
+    </dl>
+    <p class="formula-explicacion">
+      Fórmula: Aceptación = altas aceptadas / (altas aceptadas + altas rechazadas) × 100
+    </p>
+    <p class="field-hint">
+      Solo cuentan intentos de creación de niño (validaciones de negocio y duplicados).
+      Fallos de infraestructura no se incluyen.
+    </p>
+  </div>
+</section>
+
+{% elif desde or hasta %}
+  <div class="empty-state">
+    <p>No hay datos para el periodo seleccionado.</p>
+  </div>
+{% else %}
+  <div class="empty-state">
+    <p>Seleccione un periodo para generar el reporte.</p>
+  </div>
+{% endif %}
+{% endblock %}

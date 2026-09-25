@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Anemia Junín{% endblock %} — Registro Nominal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-logo" href="{{ url_for('web.lista_ninos') }}">
+        <strong>Anemia Junín</strong>
+        <span class="site-logo-sub">Registro Nominal</span>
+      </a>
+      <nav class="site-nav">
+        <a href="{{ url_for('web.lista_ninos') }}">Niños</a>
+        <a href="{{ url_for('web.nuevo_nino_form') }}">+ Registrar</a>
+        <a href="{{ url_for('web.reporte_registros') }}">Reportes</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="aviso-academico">
+    ⚠ Demostración académica con datos sintéticos. No usar para decisiones clínicas.
+  </div>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      PMV Anemia Junín — INC-1 · Demostración local
+    </div>
+  </footer>
+</body>
+</html>

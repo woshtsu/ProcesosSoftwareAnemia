@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="740" height="760" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 760" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="740" height="760"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-760)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="740" height="760" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="175" y="85" width="550" height="660" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.1; fill: none; fill-rule: evenodd;"/>
+			<text x="187" y="722.0" style="font-family: Helvetica-Bold; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1444) scale(1,-1)">Sistema PMV Anemia Junín</text>
+			<circle cx="66" cy="563" r="12" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 66,551 L 66,513 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<path d="M 43,537 L 89,537 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<path d="M 66,513 L 44,486 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<path d="M 66,513 L 88,486 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<text x="36.405" y="463.0" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,926) scale(1,-1)">Personal</text>
+			<text x="37.65" y="444.7" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,889) scale(1,-1)">de salud</text>
+			<circle cx="66" cy="205" r="12" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 66,193 L 66,155 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<path d="M 43,179 L 89,179 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<path d="M 66,155 L 44,128 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<path d="M 66,155 L 88,128 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<text x="24.735" y="105.0" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,210) scale(1,-1)">Coordinador</text>
+			<ellipse cx="340.0" cy="668.0" rx="135.0" ry="32.0" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,94%,98%); fill-rule: evenodd;"/>
+			<text x="269.5675" y="663.2" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1326) scale(1,-1)">UC-01 Registrar niño</text>
+			<path d="M 90,525 L 205,668 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<ellipse cx="340.0" cy="572.0" rx="135.0" ry="32.0" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,94%,98%); fill-rule: evenodd;"/>
+			<text x="284.155" y="576.2" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1152) scale(1,-1)">UC-02 Consultar</text>
+			<text x="303.31" y="557.9000000000001" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1115) scale(1,-1)">expediente</text>
+			<path d="M 90,525 L 205,572 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<ellipse cx="340.0" cy="476.0" rx="135.0" ry="32.0" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,94%,98%); fill-rule: evenodd;"/>
+			<text x="283.3225" y="480.2" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,960) scale(1,-1)">UC-03 Actualizar</text>
+			<text x="303.31" y="461.9" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,923) scale(1,-1)">expediente</text>
+			<path d="M 90,525 L 205,476 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<ellipse cx="340.0" cy="380.0" rx="135.0" ry="32.0" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,94%,98%); fill-rule: evenodd;"/>
+			<text x="261.6475" y="375.2" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,750) scale(1,-1)">UC-04 Registrar dosaje</text>
+			<path d="M 90,525 L 205,380 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<ellipse cx="340.0" cy="284.0" rx="135.0" ry="32.0" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,94%,98%); fill-rule: evenodd;"/>
+			<text x="273.325" y="288.2" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,576) scale(1,-1)">UC-05 Listar y filtrar</text>
+			<text x="299.5675" y="269.9" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,539) scale(1,-1)">seguimiento</text>
+			<path d="M 90,525 L 205,284 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<ellipse cx="340.0" cy="155.0" rx="135.0" ry="34.0" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,94%,98%); fill-rule: evenodd;"/>
+			<text x="262.8925" y="159.20000000000005" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,318) scale(1,-1)">UC-06 Generar reporte</text>
+			<text x="302.8975" y="140.90000000000003" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,281) scale(1,-1)">del periodo</text>
+			<path d="M 90,167 L 205,155 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<ellipse cx="608.0" cy="476.0" rx="98.0" ry="45.0" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(91%,94%,98%); fill-rule: evenodd;"/>
+			<text x="564.047" y="479.91999999999996" style="font-family: Helvetica; font-size: 14px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,959) scale(1,-1)">UC-07 Validar</text>
+			<text x="555.465" y="462.84" style="font-family: Helvetica; font-size: 14px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,925) scale(1,-1)">datos de entrada</text>
+			<path d="M 470,668 L 608,668 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<path d="M 608,668 L 608,521 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<polygon points="604.0853 529.104, 608 521, 611.9147 529.104" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<text x="622.18" y="590.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1180) scale(1,-1)">«include»</text>
+			<path d="M 475,476 L 510,476 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<polygon points="501.896 472.0853, 510 476, 501.896 479.9147" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<text x="469.46" y="498.0" style="font-family: Helvetica; font-size: 11px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,996) scale(1,-1)">«include»</text>
+			<path d="M 470,380 L 608,380 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<path d="M 608,380 L 608,431 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; stroke-dasharray: 5, 4;"/>
+			<polygon points="611.9147 422.896, 608 431, 604.0853 422.896" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<text x="629.18" y="394.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,788) scale(1,-1)">«include»</text>
+			<text x="128.6745" y="54.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,108) scale(1,-1)">Asociación sólida sin flecha: actor participante. Include: comportamiento obligatorio.</text>
+			<text x="135.16150000000002" y="31.0" style="font-family: Helvetica; font-size: 13px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,62) scale(1,-1)">Los actores representan roles de uso; este modelo no acredita control de acceso.</text>
+		</g>
+	</g>
+</svg>

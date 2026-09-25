@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="740" height="650" preserveAspectRatio="xMinYMin meet" viewBox="0 0 740 650" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="740" height="650"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-650)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="740" height="650" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="140.663" y="624.0" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1248) scale(1,-1)">AS-IS</text>
+			<text x="520.779" y="624.0" style="font-family: Helvetica-Bold; font-size: 22px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1248) scale(1,-1)">TO-BE</text>
+			<text x="88.289" y="596.0" style="font-family: Helvetica; font-size: 14px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1192) scale(1,-1)">Síntesis del entregable S1</text>
+			<text x="470.965" y="596.0" style="font-family: Helvetica; font-size: 14px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1192) scale(1,-1)">Propuesta por incrementos</text>
+			<rect x="25" y="497" width="290" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="83.29599999999999" y="525.76" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1051) scale(1,-1)">Familia acude a la posta</text>
+			<rect x="410" y="497" width="305" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(90%,95%,93%); fill-rule: evenodd;"/>
+			<text x="475.796" y="525.76" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,1051) scale(1,-1)">Familia acude a la posta</text>
+			<path d="M 170,497 L 170,466 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="166.0853 474.104, 170 466, 173.9147 474.104" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<path d="M 562,497 L 562,466 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="558.0853 474.104, 562 466, 565.9147 474.104" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<rect x="25" y="396" width="290" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="83.752" y="434.52" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,869) scale(1,-1)">Personal mide y registra</text>
+			<text x="91.29599999999999" y="415.0" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,830) scale(1,-1)">en soportes manuales</text>
+			<rect x="410" y="396" width="305" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(90%,95%,93%); fill-rule: evenodd;"/>
+			<text x="457.124" y="434.52" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,869) scale(1,-1)">INC-1 Personal captura datos</text>
+			<text x="477.132" y="415.0" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,830) scale(1,-1)">Sistema valida y guarda</text>
+			<path d="M 170,396 L 170,365 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="166.0853 373.104, 170 365, 173.9147 373.104" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<path d="M 562,396 L 562,365 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="558.0853 373.104, 562 365, 565.9147 373.104" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<rect x="25" y="295" width="290" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="101.088" y="333.52" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,667) scale(1,-1)">Personal transcribe</text>
+			<text x="86.416" y="314.0" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,628) scale(1,-1)">y consolida información</text>
+			<rect x="410" y="295" width="305" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="477.132" y="333.52" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,667) scale(1,-1)">INC-2 Agenda controles</text>
+			<text x="469.148" y="314.0" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,628) scale(1,-1)">INC-3 Sincroniza registros</text>
+			<path d="M 170,295 L 170,264 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="166.0853 272.104, 170 264, 173.9147 272.104" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<path d="M 562,295 L 562,264 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="558.0853 272.104, 562 264, 565.9147 272.104" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<rect x="25" y="194" width="290" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="67.29599999999999" y="232.51999999999998" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,465) scale(1,-1)">Personal programa controles</text>
+			<text x="94.416" y="212.99999999999997" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,425) scale(1,-1)">y busca inasistencias</text>
+			<rect x="410" y="194" width="305" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="454.476" y="232.51999999999998" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,465) scale(1,-1)">INC-4 Comunica recordatorios</text>
+			<text x="497.596" y="212.99999999999997" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,425) scale(1,-1)">y registra barreras</text>
+			<path d="M 170,194 L 170,163 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="166.0853 171.104, 170 163, 173.9147 171.104" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<path d="M 562,194 L 562,163 Z" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35;"/>
+			<polygon points="558.0853 171.104, 562 163, 565.9147 171.104" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.35; fill: none; fill-rule: evenodd;"/>
+			<rect x="25" y="93" width="290" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="95.304" y="131.51999999999998" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,263) scale(1,-1)">Seguimiento reactivo</text>
+			<text x="92.632" y="111.99999999999999" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,223) scale(1,-1)">y consolidación tardía</text>
+			<rect x="410" y="93" width="305" height="70" rx="6" ry="6" style="stroke: rgb(9%,19%,30%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="463.356" y="131.51999999999998" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,263) scale(1,-1)">INC-5 Prioriza con apoyo IA</text>
+			<text x="460.692" y="111.99999999999999" style="font-family: Helvetica; font-size: 16px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,223) scale(1,-1)">INC-6 Consolida indicadores</text>
+			<text x="126.13000000000002" y="35.0" style="font-family: Helvetica; font-size: 15px;fill: rgb(9%,19%,30%); stroke:none;" transform="translate(0,70) scale(1,-1)">La atención y decisión clínica permanecen a cargo del personal de salud.</text>
+		</g>
+	</g>
+</svg>

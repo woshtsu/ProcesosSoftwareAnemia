@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Expediente — {{ expediente.nino.apellidos }}, {{ expediente.nino.nombres }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <h1>{{ expediente.nino.apellidos }}, {{ expediente.nino.nombres }}</h1>
+    <p class="page-subtitle">DNI: <code>{{ expediente.nino.dni }}</code></p>
+  </div>
+  <div class="page-actions">
+    <a href="{{ url_for('web.editar_form', dni=expediente.nino.dni) }}" class="btn btn-secondary">Editar</a>
+    <a href="{{ url_for('web.nuevo_dosaje_form', dni=expediente.nino.dni) }}" class="btn btn-primary">+ Dosaje</a>
+    <a href="{{ url_for('web.lista_ninos') }}" class="btn btn-ghost">← Lista</a>
+  </div>
+</div>
+
+{# Clasificación actual #}
+<div class="clasificacion-banner clasificacion-banner--{{ expediente.clasificacion_actual.value | lower | replace('_', '-') }}">
+  <div class="clasificacion-banner__icono" aria-hidden="true">
+    {% if expediente.clasificacion_actual.value == 'SEVERA' %}🔴
+    {% elif expediente.clasificacion_actual.value == 'MODERADA' %}🟠
+    {% elif expediente.clasificacion_actual.value == 'LEVE' %}🟡
+    {% elif expediente.clasificacion_actual.value == 'SIN_ANEMIA' %}🟢
+    {% elif expediente.clasificacion_actual.value == 'NO_EVALUABLE' %}⚪
+    {% else %}⬜
+    {% endif %}
+  </div>
+  <div>
+    <div class="clasificacion-banner__label">Clasificación actual</div>
+    <div class="clasificacion-banner__valor">{{ expediente.clasificacion_actual.value | replace('_', ' ') }}</div>
+    {% if expediente.historial_dosajes %}
+    <div class="clasificacion-banner__fecha">
+      Último dosaje: {{ expediente.historial_dosajes[0].fecha_dosaje }}
+      — Hb {{ expediente.historial_dosajes[0].hb_ajustada }} g/dL (ajustada)
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{# Datos del niño #}
+<section class="card">
+  <h2>Datos del niño</h2>
+  <dl class="data-grid">
+    <div><dt>DNI</dt><dd><code>{{ expediente.nino.dni }}</code></dd></div>
+    <div><dt>Nombres</dt><dd>{{ expediente.nino.nombres }}</dd></div>
+    <div><dt>Apellidos</dt><dd>{{ expediente.nino.apellidos }}</dd></div>
+    <div><dt>F. Nacimiento</dt><dd>{{ expediente.nino.fecha_nacimiento }}</dd></div>
+    <div><dt>Sexo</dt><dd>{{ 'Femenino' if expediente.nino.sexo.value == 'F' else 'Masculino' }}</dd></div>
+    <div><dt>Tipo nacimiento</dt><dd>{{ expediente.nino.tipo_nacimiento.value | title }}</dd></div>
+    <div><dt>Peso</dt><dd>{{ expediente.nino.peso_kg }} kg</dd></div>
+    <div><dt>Distrito</dt><dd>{{ expediente.nino.distrito }}</dd></div>
+    <div><dt>Altitud</dt><dd>{{ expediente.nino.altitud_msnm }} m.s.n.m.</dd></div>
+    <div><dt>Cuidador</dt><dd>{{ expediente.nino.cuidador }}</dd></div>
+    <div><dt>Teléfono</dt><dd>{{ expediente.nino.telefono or '—' }}</dd></div>
+    <div><dt>Registrado</dt><dd>{{ expediente.nino.created_at.strftime('%Y-%m-%d %H:%M') }} UTC</dd></div>
+  </dl>
+</section>
+
+{# Historial de dosajes #}
+<section class="card">
+  <h2>Historial de dosajes</h2>
+
+  {% if not expediente.historial_dosajes %}
+    <div class="empty-state">
+      <p>No hay dosajes registrados.</p>
+      <a href="{{ url_for('web.nuevo_dosaje_form', dni=expediente.nino.dni) }}" class="btn btn-primary">
+        Registrar primer dosaje
+      </a>
+    </div>
+  {% else %}
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Edad (meses)</th>
+            <th>Hb obs. (g/dL)</th>
+            <th>Ajuste (g/dL)</th>
+            <th>Hb ajust. (g/dL)</th>
+            <th>Clasificación</th>
+            <th>Normativa</th>
+            <th>Advertencias</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in expediente.historial_dosajes %}
+          <tr>
+            <td>{{ d.fecha_dosaje }}</td>
+            <td>{{ d.edad_meses }}</td>
+            <td>{{ d.hb_observada }}</td>
+            <td>{{ d.ajuste_gdl }}</td>
+            <td>{{ d.hb_ajustada }}</td>
+            <td>
+              <span class="badge badge--{{ d.clasificacion.value | lower | replace('_', '-') }}">
+                {{ d.clasificacion.value | replace('_', ' ') }}
+              </span>
+            </td>
+            <td><small>{{ d.version_normativa }}</small></td>
+            <td>
+              {% if d.advertencias %}
+                <ul class="warning-list">
+                  {% for adv in d.advertencias %}<li>{{ adv }}</li>{% endfor %}
+                </ul>
+              {% else %}—{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

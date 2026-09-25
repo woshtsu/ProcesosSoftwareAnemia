@@ -1,0 +1,1476 @@
+PAGINA 1
+ UNIVERSIDAD  CONTINENTAL Facultad  de  Ingeniería  ·  Procesos  de  Software  (ASUC01702) 
+INFORME  TÉCNICO  —  ACTIVIDAD  5
+ 
+Ejecución  de  los  Procesos  Principales  para  el  Primer  Incremento  (PMV) 
+Sistema  Inteligente  para  Detección  Temprana  de  Anemia  Infantil
+ 
+en  Zonas  Rurales  de  Junín
+ 
+Enfoque  de  arquitectura  hexagonal  (puertos  y  adaptadores)  aplicado  al  Incremento  1 
+Integrante  Rol  en  el  proyecto  Porras  Veli,  Ricardo  Ingeniero  de  Proceso  Auqui  Huincho,  Tania  Ingeniero  de  Desarrollo  y  Prototipado  Huamani  Rodriguez,  Jean  Piero  Ingeniero  de  Calidad  y  Mejora  del  Proceso   
+Ciclo  académico  2026-20  ·  IX  ciclo  Unidad  II  —  Implementación  del  proceso  de  software  Incremento  entregado  Incremento  1:  registro  nominal  validado  y  expediente  digital  Modelo  de  proceso  Iterativo-incremental  ·  Scrum  ·  DevOps  (base  para  MLOps  en  incrementos  posteriores)  Arquitectura  Hexagonal  (puertos  y  adaptadores)  —  ver  Sección  2  Repositorio  Estructura  hexagonal  con  pruebas  automatizadas  (ver  README.md  del  código  fuente)   
+Ambiente  de  pruebas.  Todas  las  evidencias  de  este  informe  (capturas,  pruebas,  reporte)  usan  datos  SINTÉTICOS  generados  por  tools/sembrar_datos.py.  Ningún  dato  corresponde  a  una  persona  real.  La  clasificación  de  anemia  que  muestra  el  sistema  es  referencial:  no  diagnostica  ni  reemplaza  el  criterio  del  profesional  de  salud.   
+PAGINA 2
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ 
+1.  Delimitación  de  Requisitos  del  PMV  —  Matriz  1.1 
+El  alcance  del  Incremento  1  se  fijó  en  las  Guías  de  las  Semanas  1-2  y  3-4  (Matriz  de  Priorización  Ponderada,  Sección  9;  INC-1  con  
+la
+ 
+puntuación
+ 
+más
+ 
+alta:
+ 
+4.60/5)
+ 
+y
+ 
+se
+ 
+ejecuta
+ 
+aquí
+ 
+en
+ 
+código
+ 
+real.
+ 
+Las
+ 
+cinco
+ 
+historias
+ 
+cubren
+ 
+el
+ 
+ciclo
+ 
+completo
+ 
+del
+ 
+registro
+ 
+nominal:
+ 
+crear,
+ 
+consultar/actualizar,
+ 
+validar
+ 
+en
+ 
+el
+ 
+punto
+ 
+de
+ 
+captura,
+ 
+listar
+ 
+en
+ 
+seguimiento
+ 
+y
+ 
+reportar
+ 
+el
+ 
+periodo.
+ 
+ID  Historia  de  usuario  (Como…  quiero…  para…)  
+Prioridad  Criterios  de  aceptación  (Given-When-Then)  
+Producto  de  trabajo  HIST-1.1  (HU-01)  
+Como  personal  de  salud  de  la  posta,  quiero  registrar  a  un  niño  nuevo  con  sus  datos  clínicos  básicos  (DNI,  nombres,  fecha  de  nacimiento,  sexo,  peso,  distrito,  altitud,  y  opcionalmente  un  dosaje  de  hemoglobina)  para  iniciar  su  expediente  digital.  
+Alta  /  Medio  
+Dado  que  ingreso  datos  válidos,  cuando  presiono  «Guardar»,  entonces  el  expediente  se  crea,  se  calcula  la  alerta  visual  si  hay  dosaje,  y  el  DNI  queda  protegido  contra  duplicados  (409).  
+Código  fuente  +  CP-08,  CP-08b,  CP-20,  CP-22,  CP-26  
+HIST-1.2  (HU-02)  
+Como  personal  de  salud,  quiero  consultar  el  expediente  de  un  niño  por  DNI,  actualizar  sus  datos  editables  (peso,  distrito,  altitud,  cuidador)  y  registrar  nuevos  dosajes,  para  mantener  su  seguimiento  al  día  sin  perder  el  historial.  
+Alta  /  Medio  
+Dado  un  DNI  existente,  cuando  lo  consulto,  entonces  veo  sus  datos  y  todos  sus  dosajes  ordenados;  cuando  actualizo  un  campo  editable,  el  cambio  se  guarda  sin  tocar  la  identidad  del  niño  ni  los  dosajes  previos.  
+Código  fuente  +  CP-10,  CP-11,  CP-12,  CP-23,  CP-28b  
+HIST-1.3  (HU-03)  
+Como  sistema,  quiero  validar  cada  dato  ingresado  (DNI  de  8  dígitos,  nombres,  fechas  coherentes,  peso  1-30  kg,  hemoglobina  2,0-25,0  g/dL  con  un  decimal,  altitud  0-4999  msnm,  celular  de  9  dígitos)  para  que  ningún  registro  incompleto  o  imposible  entre  a  la  base  de  datos.  
+Alta  /  Alto  Dado  que  un  dato  está  fuera  de  rango  o  mal  formado,  cuando  se  procesa  el  formulario  o  la  API,  entonces  se  rechaza  (400)  con  un  código  y  mensaje  comprensible  por  campo,  y  no  se  guarda  nada.  
+Código  fuente  +  CP-01  a  CP-07,  CP-09b,  CP-13,  CP-13b,  CP-21,  CP-27  
+HIST-1.4  (HU-04)  
+Como  personal  de  salud,  quiero  ver  la  lista  de  niños  en  seguimiento  activo  (6  a  59  meses)  ordenada  por  severidad  de  su  última  clasificación,  con  filtros  por  distrito,  clasificación  y  texto,  para  priorizar  la  atención  del  día.  
+Alta  /  Medio  
+Dado  que  existen  niños  con  distintas  clasificaciones,  cuando  abro  la  lista,  entonces  los  más  severos  aparecen  primero,  con  una  alerta  visual  (semáforo)  con  texto  además  de  color.  
+Código  fuente  +  CP-14,  CP-14b,  CP-24,  CP-28  
+HIST-1.5  Como  coordinador  del  proyecto,  quiero  un  reporte  del  periodo  con  niños  y  dosajes  registrados,  distribución  por  clasificación  y  distrito,  y  el  indicador  «%  de  registros  sin  error  crítico»,  para  verificar  la  calidad  del  dato  desde  el  primer  incremento.  
+Media  /  Bajo  
+Dado  un  rango  de  fechas,  cuando  genero  el  reporte,  entonces  veo  los  conteos,  la  distribución  y  el  indicador  de  calidad  calculado  a  partir  de  la  traza  de  intentos  (sin  datos  personales).  
+Código  fuente  +  CP-15,  CP-24,  CP-28b,  CP-32  
+Las  cinco  historias  corresponden  1  a  1  con  las  HIST-1.1  a  HIST-1.5  del  WBS  definido  en  la  Guía  de  las  Semanas  3-4  (Sección  8.1)  y  con  la  fila  
+«Incremento
+ 
+1»
+ 
+de
+ 
+la
+ 
+Matriz
+ 
+de
+ 
+Actividad-Incremento
+ 
+(Sección
+ 
+7
+ 
+de
+ 
+esa
+ 
+guía):
+ 
+registro
+ 
+nominal
+ 
+validado
+ 
+->
+ 
+reduce
+ 
+duplicidad
+ 
+y
+ 
+errores
+ 
+del
+ 
+registro
+ 
+manual
+ 
+->
+ 
+indicador
+ 
+«registros
+ 
+sin
+ 
+error
+ 
+crítico
+ 
+÷
+ 
+evaluados
+ 
+×
+ 
+100».  
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  2
+ 
+PAGINA 3
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ 
+2.  Diseño  Arquitectónico  y  Estructura  de  Datos  —  Matriz  2.1 
+Componente  del  diseño  
+Descripción  técnica  del  PMV  Producto  de  trabajo  esperado  
+Criterio  de  terminación  (DoD)  Arquitectura  de  software  
+Arquitectura  hexagonal  (puertos  y  adaptadores).  El  núcleo  (domain  +  application)  no  importa  Flask  ni  SQLite;  los  adaptadores  de  entrada  (REST,  Web)  y  de  salida  (SQLite,  JSON  de  norma,  reloj)  dependen  del  núcleo,  nunca  al  revés.  
+Diagrama  de  paquetes  y  diagrama  de  despliegue  (Figuras  1  y  3)  
+Revisado  por  el  equipo  y  VERIFICADO  AUTOMÁTICAMENTE:  tests/test_arquitectura.py  recorre  el  AST  del  código  y  falla  el  build  si  domain/application  llegan  a  importar  Flask,  sqlite3  o  un  adaptador.  Modelo  de  datos  Esquema  relacional  portable  (SQLite  en  el  PMV;  sintaxis  compatible  con  PostgreSQL  para  la  migración  del  Incremento  3):  nino,  dosaje_hemoglobina  y  intento_registro  (trazabilidad  de  calidad,  sin  datos  personales).  
+Script  DDL  (db/schema.sql)  y  diagrama  entidad-relación  (Figura  4)  
+Script  ejecutado  satisfactoriamente:  CP-16  a  CP-19  y  CP-32  lo  verifican  contra  SQLite  real  (49  pruebas  en  verde,  ver  Sección  4).  Contratos  de  API  /  interfaz  
+5  endpoints  REST/JSON  bajo  /api/v1:  alta,  consulta,  actualización  parcial,  registro  de  dosaje  y  listado  con  filtros,  más  el  reporte  del  periodo.  
+Especificación  OpenAPI  3.0  (docs/openapi.yaml)  
+Contrato  validado  automáticamente:  CP-25  compara,  ruta  por  ruta,  el  YAML  contra  las  rutas  Flask  realmente  registradas.  
+2.1  Diagrama  de  paquetes  (capas  hexagonales) El  diagrama  se  genera  con  tools/diagramas.py,  que  antes  de  dibujar  recorre  el  árbol  de  sintaxis  (AST)  del  código  y  comprueba  que  
+cada
+ 
+flecha
+ 
+de
+ 
+dependencia
+ 
+mostrada
+ 
+exista
+ 
+de
+ 
+verdad
+ 
+como
+ 
+import,
+ 
+y
+ 
+que
+ 
+ninguna
+ 
+de
+ 
+las
+ 
+dependencias
+ 
+prohibidas
+ 
+por
+ 
+la
+ 
+regla
+ 
+hexagonal
+ 
+aparezca
+ 
+(por
+ 
+ejemplo,
+ 
+que
+ 
+domain
+ 
+nunca
+ 
+importe
+ 
+adapters).
+ 
+Si
+ 
+el
+ 
+código
+ 
+cambiara
+ 
+y
+ 
+el
+ 
+dibujo
+ 
+quedara
+ 
+desactualizado,
+ 
+la
+ 
+generación
+ 
+del
+ 
+diagrama
+ 
+fallaría
+ 
+en
+ 
+vez
+ 
+de
+ 
+mostrar
+ 
+información
+ 
+incorrecta.
+ 
+ 
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  3
+ 
+
+PAGINA 4
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ Figura  1.  Diagrama  de  paquetes:  domain  (núcleo)  <-  application  (casos  de  uso  y  puertos)  <-  adapters.inbound  /  adapters.outbound,  ensamblados  por  
+bootstrap.
+ 
+2.2  Vista  conceptual:  puertos  y  adaptadores 
+ Figura  2.  El  núcleo  (hexágono)  define  los  puertos  GestionExpedientes  (entrada)  y  NinoRepositorio  /  ProveedorNormativa  /  Reloj  (salida)  como  interfaces  
+Python
+ 
+(typing.Protocol);
+ 
+los
+ 
+adaptadores
+ 
+los
+ 
+implementan
+ 
+sin
+ 
+que
+ 
+el
+ 
+núcleo
+ 
+los
+ 
+conozca.
+ 
+2.3  Diagrama  de  despliegue El  ambiente  de  pruebas  es  un  único  proceso  Python  (Flask/Werkzeug)  que  sirve  la  API  REST  y  la  interfaz  web,  y  persiste  en  un  
+archivo
+ 
+SQLite.
+ 
+El
+ 
+diagrama
+ 
+marca
+ 
+en
+ 
+línea
+ 
+discontinua
+ 
+los
+ 
+puntos
+ 
+de
+ 
+extensión
+ 
+ya
+ 
+previstos
+ 
+por
+ 
+el
+ 
+diseño
+ 
+hexagonal
+ 
+para
+ 
+incrementos
+ 
+futuros
+ 
+(PostgreSQL
+ 
+central
+ 
+en
+ 
+el
+ 
+Incremento
+ 
+3,
+ 
+WhatsApp
+ 
+Business
+ 
+API
+ 
+en
+ 
+el
+ 
+Incremento
+ 
+4):
+ 
+se
+ 
+conectarían
+ 
+como
+ 
+nuevos
+ 
+adaptadores,
+ 
+sin
+ 
+tocar
+ 
+el
+ 
+núcleo.
+ 
+ Figura  3.  Diagrama  de  despliegue  del  ambiente  de  pruebas  del  PMV.
+ 
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  4
+ 
+
+PAGINA 5
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ 2.4  Modelo  de  datos  (entidad-relación) 
+ Figura  4.  Modelo  entidad-relación  de  db/schema.sql,  con  las  restricciones  CHECK  que  protegen  la  integridad  del  dato  incluso  si  el  dominio  tuviera  un  
+defecto
+ 
+(verificado
+ 
+por
+ 
+CP-18).
+ 
+Nota  de  trazabilidad  normativa.  La  tabla  de  ajuste  de  hemoglobina  por  altitud  y  los  cortes  de  clasificación  por  grupo  etario  no  
+están
+ 
+escritos
+ 
+en
+ 
+el
+ 
+código:
+ 
+viven
+ 
+en
+ 
+config/norma_nts213_2024.json,
+ 
+versionados
+ 
+con
+ 
+la
+ 
+fuente
+ 
+oficial
+ 
+(RM
+ 
+251-2024/MINSA,
+ 
+que
+ 
+aprueba
+ 
+la
+ 
+NTS
+ 
+N.°
+ 
+213-MINSA/DGIESP-2024
+ 
+y
+ 
+deroga
+ 
+la
+ 
+NTS
+ 
+134-2017
+ 
+citada
+ 
+en
+ 
+la
+ 
+guía
+ 
+de
+ 
+la
+ 
+asignatura;
+ 
+modificada
+ 
+por
+ 
+RM
+ 
+429-2024/MINSA).
+ 
+Las
+ 
+dos
+ 
+bandas
+ 
+de
+ 
+altitud
+ 
+por
+ 
+encima
+ 
+de
+ 
+4000
+ 
+msnm
+ 
+quedan
+ 
+marcadas
+ 
+como
+ 
+«no
+ 
+verificadas»
+ 
+en
+ 
+el
+ 
+archivo,
+ 
+y
+ 
+el
+ 
+sistema
+ 
+muestra
+ 
+una
+ 
+advertencia
+ 
+explícita
+ 
+cada
+ 
+vez
+ 
+que
+ 
+se
+ 
+usan
+ 
+(ver
+ 
+Figura
+ 
+6),
+ 
+en
+ 
+vez
+ 
+de
+ 
+asumir
+ 
+silenciosamente
+ 
+que
+ 
+el
+ 
+valor
+ 
+es
+ 
+correcto.
+ 
+Anexo  A.  Construcción  e  Implementación  del  Código  —  Matriz  3.1 
+El  código  fuente  completo  se  entrega  en  el  repositorio  del  PMV  (ver  estructura  y  README.md  del  entregable  de  código).  Esta  
+matriz
+ 
+resume,
+ 
+por
+ 
+componente,
+ 
+la
+ 
+tecnología,
+ 
+la
+ 
+convención
+ 
+de
+ 
+ramas
+ 
+Git
+ 
+prevista
+ 
+para
+ 
+el
+ 
+flujo
+ 
+Scrum/DevOps
+ 
+del
+ 
+proyecto
+ 
+(Guía
+ 
+de
+ 
+las
+ 
+Semanas
+ 
+3-4,
+ 
+Sección
+ 
+11.2)
+ 
+y
+ 
+el
+ 
+criterio
+ 
+de
+ 
+terminación
+ 
+verificado
+ 
+en
+ 
+este
+ 
+incremento.
+ 
+Módulo  /  componente  
+Lenguaje  /  framework  
+Estrategia  de  ramificación  (Git)  
+Producto  de  trabajo  Criterio  de  terminación  (DoD)  Núcleo  (domain  +  application)  
+Python  3.12  ·  biblioteca  estándar  (sin  frameworks)  
+feature/hu01-registro-nino,  feature/hu02-consulta-expediente,  feature/hu03-validaciones  
+Módulos  domain/  y  application/  
+0  issues  de  análisis  estático  propio  (tools/lint.py)  y  0  dependencias  de  Flask/SQLite  verificado  por  AST  (CP-30).  Adaptadores  de  entrada  (API  +  Web)  
+Flask  3  (Blueprints)  +  Jinja2  
+feature/hu01-api-registro,  feature/hu04-listado-web  
+pmv_anemia/adapters/inbound/  +  plantillas  HTML  
+Contrato  OpenAPI  validado  contra  las  rutas  reales  (CP-25);  UI  responsiva  probada  en  420  px  (Figura  9).  Persistencia  (Base  de  Datos)  
+SQLite  3  (esquema  portable  a  PostgreSQL)  
+feature/hu01-esquema-sqlite  
+db/schema.sql  +  pmv_anemia/adapters/outbound/sqlite_repo.py  
+Script  ejecutado  y  poblado  con  24  registros  sintéticos  (tools/sembrar_datos.py);  restricciones  CHECK  verificadas  incluso  sin  pasar  por  el  dominio  (CP-18).  Calidad  y  automatización  
+unittest  (stdlib)  ·  linter  y  medidor  de  cobertura  propios  (stdlib)  
+—  tools/lint.py,  tools/cobertura.py,  tests/  
+49  pruebas  en  verde,  95.8%  de  cobertura  de  líneas,  0  hallazgos  del  análisis  estático  (Sección  3).  En  este  PMV,  ejecutado  en  un  ambiente  sin  conexión  a  paquetes  externos,  la  suite  de  pruebas  corre  con  unittest  de  la  biblioteca  estándar  en  lugar  
+de
+ 
+Pytest,
+ 
+y
+ 
+el
+ 
+análisis
+ 
+estático
+ 
+y
+ 
+la
+ 
+cobertura
+ 
+se
+ 
+implementaron
+ 
+también
+ 
+sin
+ 
+dependencias
+ 
+externas
+ 
+(tools/lint.py,
+ 
+tools/cobertura.py).
+ 
+El
+ 
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  5
+ 
+
+PAGINA 6
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ README.md  documenta  cómo  ejecutar  la  suite  equivalente  con  Pytest,  pytest-cov  y  Ruff  (declarados  en  requirements-dev.txt)  cuando  el  entorno  de  
+CI
+ 
+(GitHub
+ 
+Actions,
+ 
+.github/workflows/ci.yml)
+ 
+sí
+ 
+tiene
+ 
+acceso
+ 
+a
+ 
+PyPI. 
+3.  Evidencia  de  Pruebas  e  Integración  del  PMV  —  Matriz  4.1 
+49  casos  de  prueba  automatizados,  en  verde  
+95.8%  de  cobertura  de  líneas  (1038/1083)  
+0  hallazgos  del  análisis  estático  25.8  ms  de  latencia  máxima  observada  (umbral:  2000  ms)   
+La  suite  cubre  las  cinco  capas  del  sistema:  dominio  (reglas  de  negocio  puras),  casos  de  uso  (con  dos  repositorios  intercambiables:  
+memoria
+ 
+y
+ 
+SQLite,
+ 
+para
+ 
+probar
+ 
+que
+ 
+ambos
+ 
+cumplen
+ 
+el
+ 
+mismo
+ 
+puerto),
+ 
+integración
+ 
+SQLite
+ 
+real,
+ 
+API
+ 
+REST
+ 
+y
+ 
+UI
+ 
+web,
+ 
+más
+ 
+una
+ 
+prueba
+ 
+de
+ 
+rendimiento
+ 
+y
+ 
+una
+ 
+prueba
+ 
+arquitectónica
+ 
+que
+ 
+falla
+ 
+si
+ 
+se
+ 
+viola
+ 
+la
+ 
+regla
+ 
+de
+ 
+dependencia
+ 
+hexagonal.
+ 
+ID  caso(s)  Escenario  de  prueba  evaluado  Tipo  de  prueba  Resultado  esperado  vs.  real  
+Criterio  de  terminación  (DoD)  CP-01  a  CP-07  Validación  de  dominio:  DNI,  fechas  y  edad,  rango/formato  de  hemoglobina,  ajuste  por  altitud,  clasificación  por  grupo  etario,  actualización  de  solo  los  campos  editables.  
+Unitaria  7/7  exitosos  100  %  de  las  pruebas  de  dominio  ejecutadas  y  en  verde.  
+CP-08  a  CP-15  Casos  de  uso  completos  (registrar,  duplicado,  consultar,  actualizar,  nuevo  dosaje,  menor  no  evaluable,  banda  no  verificada,  listado  con  filtros,  reporte)  —  ejecutados  dos  veces,  contra  repositorio  en  memoria  y  contra  SQLite  real.  
+Integración  16/16  exitosos  (8  historias  ×  2  repositorios)  
+Mismo  comportamiento  con  ambos  adaptadores  de  salida  (cumplimiento  real  del  puerto  NinoRepositorio).  CP-16  a  CP-19,  CP-32  
+DDL  idempotente,  persistencia  entre  reinicios,  restricciones  CHECK  de  la  BD,  adaptadores  conformes  a  los  puertos  (Protocol),  traza  sin  datos  personales.  
+Integración  (SQLite  real)  
+5/5  exitosos  El  esquema  protege  la  integridad  incluso  si  el  dominio  tuviera  un  defecto.  CP-20  a  CP-25  API  REST:  alta  (201),  validación  (400),  duplicado  (409),  consulta/actualización,  listado  y  reporte,  y  el  contrato  OpenAPI  contra  las  rutas  Flask  reales.  
+Integración  (HTTP,  cliente  de  prueba)  
+6/6  exitosos  El  YAML  publicado  coincide  exactamente  con  lo  implementado.  CP-26  a  CP-29  UI  web:  formulario  válido  con  alerta  visual,  formulario  con  errores  que  conserva  los  datos,  semáforo  con  texto  (no  solo  color),  rendimiento  registrando  y  consultando  60  niños.  
+Sistema  /  UI  4/4  exitosos,  todas  las  operaciones  <  2  s  
+Cero  defectos  bloqueantes;  notificación  visual  inmediata.  
+CP-30,  CP-31  Regla  de  dependencia  hexagonal:  domain/application  no  importan  Flask  ni  sqlite3;  adaptadores  de  entrada  no  conocen  los  de  salida.  
+Arquitectónica  (análisis  estático  vía  AST)  
+2/2  exitosos  La  arquitectura  declarada  es  la  arquitectura  real,  verificado  automáticamente  en  cada  build.  Ejecución  completa:  python  -W  error  -m  unittest  discover  -s  tests  -t  .  -v  ->  «Ran  49  tests  …  OK»  (0  fallos,  0  errores,  advertencias  tratadas  como  
+error).
+ 
+Cobertura
+ 
+de
+ 
+líneas
+ 
+medida
+ 
+con
+ 
+tools/cobertura.py:
+ 
+95.8%
+ 
+(1038
+ 
+de
+ 
+1083
+ 
+líneas
+ 
+ejecutables),
+ 
+por
+ 
+encima
+ 
+del
+ 
+80%
+ 
+definido
+ 
+como
+ 
+meta
+ 
+en
+ 
+la
+ 
+Guía
+ 
+de
+ 
+las
+ 
+Semanas
+ 
+3-4. 
+3.1  Capturas  de  la  ejecución  (evidencia  visual) 
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  6
+ 
+PAGINA 7
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ 
+ Figura  5.  Lista  de  niños  en  seguimiento  activo  (HIST-1.4):  ordenada  por  severidad,  con  alerta  visual  con  texto  además  de  color  y  filtros  por  
+distrito/clasificación/texto.
+ 
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  7
+ 
+
+PAGINA 8
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ 
+ Figura  6.  Formulario  de  registro  (HIST-1.1/1.3)  rechazando  datos  inválidos:  DNI  de  7  dígitos,  celular  sin  el  formato  esperado  y  hemoglobina  fuera  de  
+rango,
+ 
+cada
+ 
+uno
+ 
+con
+ 
+su
+ 
+mensaje
+ 
+y
+ 
+código
+ 
+de
+ 
+error;
+ 
+los
+ 
+datos
+ 
+válidos
+ 
+se
+ 
+conservan.
+ 
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  8
+ 
+
+PAGINA 9
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ 
+ Figura  7.  Expediente  de  un  niño  en  Junín  (4107  msnm,  HIST-1.2):  muestra  la  advertencia  de  banda  de  altitud  no  verificada  descrita  en  la  Sección  2.4.
+ 
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  9
+ 
+
+PAGINA 10
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ 
+ Figura  8.  Reporte  del  periodo  (HIST-1.5):  indicador  «%  de  registros  sin  error  crítico»  calculado  a  partir  de  la  traza  de  intentos,  sin  exponer  datos  
+personales.
+ 
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  10
+ 
+
+PAGINA 11
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ 
+ Figura  9.  El  mismo  formulario  de  registro  en  un  ancho  de  420  px,  verificando  que  la  interfaz  es  utilizable  desde  un  celular  en  la  posta  piloto.
+ 
+4.  Demostración  del  Despliegue  y  Entrega  de  Valor  —  Matriz  5.1 
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  11
+ 
+
+PAGINA 12
+Sistema  de  Detección  Temprana  de  Anemia  Infantil  —  JunínActividad  5  ·  Incremento  1  (PMV)
+ 
+Incremento  liberado  
+Funcionalidad  operativa  entregada  
+Resultado  directo  para  el  usuario  Indicador  de  valor  /  operativo  asociado  Incremento  1  (PMV)  Registro  nominal  validado,  consulta  y  actualización  de  expediente,  listado  de  seguimiento  con  semáforo  referencial,  y  reporte  del  periodo  con  indicador  de  calidad  del  dato.  
+El  personal  de  la  posta  registra  a  cada  niño  una  sola  vez,  con  validación  automática  de  errores  críticos,  consultable  desde  el  mismo  dispositivo  —  elimina  el  triple  registro  manual  (historia  clínica  +  tarjeta  de  control  +  digitación  HIS)  descrito  en  la  Guía  de  la  Semana  1.  
+Registros  sin  error  crítico  ÷  evaluados  ×  100.  En  la  demostración  con  datos  sintéticos:  24  aceptados  de  28  evaluados  =  85,7  %  (Figura  8).  
+El  despliegue  se  demuestra  en  un  ambiente  de  pruebas  real  (no  una  simulación):  un  servidor  Flask  ejecutando  el  código  del  
+repositorio,
+ 
+con
+ 
+una
+ 
+base
+ 
+de
+ 
+datos
+ 
+SQLite
+ 
+poblada
+ 
+por
+ 
+tools/sembrar_datos.py
+ 
+(24
+ 
+niños
+ 
+sintéticos
+ 
+con
+ 
+distintas
+ 
+clasificaciones
+ 
+y
+ 
+distritos,
+ 
+más
+ 
+3
+ 
+intentos
+ 
+inválidos
+ 
+para
+ 
+poblar
+ 
+el
+ 
+indicador
+ 
+de
+ 
+calidad),
+ 
+y
+ 
+verificado
+ 
+con
+ 
+un
+ 
+smoke
+ 
+test
+ 
+HTTP
+ 
+que
+ 
+ejercita
+ 
+cada
+ 
+endpoint
+ 
+contra
+ 
+el
+ 
+servidor
+ 
+levantado.
+ 
+Verificación  de  despliegue  Acción  ejecutada  Resultado  esperado  Estado  Arranque  del  servidor  python  run.py  (con  datos  sembrados)  
+Responde  en  /api/v1/salud  Cumple  
+Registro  válido  (HU-01)  POST  /api/v1/ninos  con  datos  correctos  
+201  Created  +  alerta  visual  Cumple  
+Rechazo  de  duplicado  POST  /api/v1/ninos  con  DNI  existente  
+409  Conflict  Cumple  
+Rechazo  de  datos  inválidos  (HU-03)  
+POST  /api/v1/ninos  con  DNI  y  Hb  inválidos  
+400  con  errores  por  campo  Cumple  
+Consulta  y  actualización  (HU-02)  
+GET  y  PATCH  /api/v1/ninos/<dni>  200  con  los  datos  actualizados  Cumple  
+Listado  y  filtros  (HU-04)  GET  /api/v1/ninos  y  ?clasificacion=SEVERA  
+200  con  el  listado  esperado  Cumple  
+Reporte  del  periodo  (HU-05)  
+GET  /api/v1/reportes/registros  200  con  el  indicador  de  calidad  Cumple  
+Interfaz  web  GET  /,  /ninos/nuevo,  /ninos/<dni>  200,  contenido  esperado  presente  Cumple  Smoke  test  completo:  python  tools/smoke_test.py  ->  13  verificaciones,  0  fallos,  latencia  máxima  25.8  ms  (umbral  definido:  2000  ms)  ->  
+RESULTADO:
+ 
+APROBADO.
+ 
+El
+ 
+script
+ 
+es
+ 
+reutilizable
+ 
+contra
+ 
+cualquier
+ 
+URL
+ 
+(incluida
+ 
+una
+ 
+futura
+ 
+posta
+ 
+piloto)
+ 
+y
+ 
+no
+ 
+depende
+ 
+de
+ 
+datos
+ 
+hardcodeados
+ 
+más
+ 
+allá
+ 
+del
+ 
+DNI
+ 
+de
+ 
+prueba
+ 
+«90099999»,
+ 
+que
+ 
+crea
+ 
+si
+ 
+no
+ 
+existe. 
+4.1  Reproducibilidad  de  la  demostración Todo  lo  mostrado  en  este  informe  (Secciones  3  y  4)  se  regenera  con  un  único  comando:  python  tools/generar_evidencias.py.  El  
+script
+ 
+ejecuta
+ 
+el
+ 
+linter,
+ 
+corre
+ 
+la
+ 
+suite
+ 
+de
+ 
+pruebas
+ 
+en
+ 
+modo
+ 
+detallado,
+ 
+mide
+ 
+la
+ 
+cobertura,
+ 
+siembra
+ 
+una
+ 
+base
+ 
+de
+ 
+datos
+ 
+temporal,
+ 
+levanta
+ 
+un
+ 
+servidor
+ 
+real,
+ 
+toma
+ 
+las
+ 
+capturas
+ 
+de
+ 
+pantalla
+ 
+y
+ 
+corre
+ 
+el
+ 
+smoke
+ 
+test
+ 
+contra
+ 
+ese
+ 
+servidor
+ 
+—
+ 
+nada
+ 
+en
+ 
+este
+ 
+informe
+ 
+fue
+ 
+redactado
+ 
+a
+ 
+mano
+ 
+ni
+ 
+copiado
+ 
+de
+ 
+una
+ 
+ejecución
+ 
+anterior.
+ 
+5.  Conclusiones  y  siguiente  incremento 
+El  Incremento  1  (registro  nominal  validado  y  expediente  digital)  queda  completo  y  desplegable:  arquitectura  hexagonal  
+implementada
+ 
+y
+ 
+verificada
+ 
+automáticamente
+ 
+(no
+ 
+solo
+ 
+documentada),
+ 
+cinco
+ 
+historias
+ 
+de
+ 
+usuario
+ 
+con
+ 
+sus
+ 
+criterios
+ 
+de
+ 
+aceptación
+ 
+cumplidos,
+ 
+esquema
+ 
+de
+ 
+datos
+ 
+ejecutado
+ 
+con
+ 
+restricciones
+ 
+reales,
+ 
+contrato
+ 
+de
+ 
+API
+ 
+validado
+ 
+contra
+ 
+el
+ 
+código,
+ 
+y
+ 
+una
+ 
+demostración
+ 
+de
+ 
+despliegue
+ 
+reproducible
+ 
+con
+ 
+un
+ 
+solo
+ 
+comando.
+ Siguiendo  el  plan  de  la  Guía  de  las  Semanas  3-4  (Sección  11.1),  HIST-1.5  (reporte  del  periodo)  se  había  planificado  para  el  Sprint  2;  
+en
+ 
+esta
+ 
+actividad
+ 
+se
+ 
+adelantó
+ 
+e
+ 
+implementó
+ 
+junto
+ 
+con
+ 
+el
+ 
+resto
+ 
+del
+ 
+incremento,
+ 
+por
+ 
+lo
+ 
+que
+ 
+el
+ 
+Sprint
+ 
+2
+ 
+puede
+ 
+concentrarse
+ 
+íntegramente
+ 
+en
+ 
+los
+ 
+ajustes
+ 
+que
+ 
+surjan
+ 
+de
+ 
+la
+ 
+revisión
+ 
+con
+ 
+personal
+ 
+de
+ 
+salud.
+ 
+El
+ 
+siguiente
+ 
+incremento
+ 
+(INC-2:
+ 
+agenda
+ 
+automática
+ 
+según
+ 
+NTS
+ 
+134/213
+ 
+y
+ 
+alertas
+ 
+internas)
+ 
+puede
+ 
+apoyarse
+ 
+directamente
+ 
+en
+ 
+el
+ 
+puerto
+ 
+NinoRepositorio
+ 
+y
+ 
+en
+ 
+el
+ 
+esquema
+ 
+de
+ 
+datos
+ 
+ya
+ 
+construidos,
+ 
+sin
+ 
+modificar
+ 
+el
+ 
+núcleo
+ 
+del
+ 
+Incremento
+ 
+1.
+ 
+Limitación  declarada.  Dos  bandas  de  altitud  (4000-4499  y  4500-4999  msnm)  de  la  tabla  de  ajuste  de  hemoglobina  están  marcadas  como  «no  verificadas»  en  config/norma_nts213_2024.json  y  generan  una  advertencia  visible  en  el  sistema  (Figura  7)  en  vez  de  presentarse  como  un  hecho  confirmado.  Se  recomienda  contrastarlas  con  la  Tabla  1  modificada  por  la  RM  429-2024/MINSA  antes  de  un  uso  clínico  real,  tal  como  señala  la  Sección  12  de  la  Guía  de  las  Semanas  3-4  sobre  la  validación  de  criterios  clínicos  con  la  microred.   
+Procesos  de  Software  (ASUC01702)  ·  2026-20Página  12
+ 
