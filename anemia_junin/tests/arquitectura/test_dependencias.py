@@ -79,10 +79,37 @@ class TestDependenciasProhibidas:
                 errores.append(archivo.name)
         assert errores == [], "Casos de uso importan sqlite3 directamente:\n" + "\n".join(errores)
 
+    def test_aplicacion_no_importa_adaptadores(self):
+        errores = [
+            archivo.name
+            for archivo in _archivos_python(_APPLICATION)
+            if "anemia_junin.adapters" in archivo.read_text(encoding="utf-8")
+        ]
+        assert errores == [], f"La aplicación importa adaptadores: {errores}"
+
+    def test_adaptadores_de_entrada_no_conocen_los_de_salida(self):
+        """Las rutas web/API solo hablan con casos de uso, nunca con SQLite ni la normativa."""
+        errores = []
+        for archivo in _archivos_python(_SRC / "adapters" / "inbound"):
+            contenido = archivo.read_text(encoding="utf-8")
+            if "anemia_junin.adapters.outbound" in contenido:
+                errores.append(archivo.name)
+        assert errores == [], f"Adaptadores de entrada importan los de salida: {errores}"
+
+    def test_adaptadores_de_entrada_no_importan_sqlite(self):
+        errores = [
+            archivo.name
+            for archivo in _archivos_python(_SRC / "adapters" / "inbound")
+            if "sqlite3" in _obtener_imports(archivo)
+        ]
+        assert errores == [], f"Adaptadores de entrada importan sqlite3: {errores}"
+
     def test_bootstrap_es_unico_punto_de_cableado(self):
         """Solo bootstrap.py debería importar tanto dominio como adaptadores."""
         bootstrap = _SRC / "bootstrap.py"
         contenido = bootstrap.read_text(encoding="utf-8")
-        assert "ProveedorNormativoJSON" in contenido, "bootstrap debe importar el proveedor normativo"
+        assert "ProveedorNormativoJSON" in contenido, (
+            "bootstrap debe importar el proveedor normativo"
+        )
         assert "UnidadDeTrabajo" in contenido, "bootstrap debe importar la unidad de trabajo"
         assert "ClasificadorHemoglobina" in contenido, "bootstrap debe importar el clasificador"

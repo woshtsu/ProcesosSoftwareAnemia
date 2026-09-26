@@ -1,7 +1,8 @@
 """
 Clasificador de hemoglobina — PMV Anemia Junín.
 
-Implementa reglas versionadas basadas en NTS 213 y RM 429-2024-MINSA.
+Implementa reglas versionadas basadas en la NTS 213-MINSA/DGIESP-2024 (aprobada por
+RM 251-2024-MINSA, modificada por RM 429-2024-MINSA). Datos en config/normativa_v1.json.
 Sin dependencias externas.
 
 Fuente de referencia (no certifica uso clínico):
@@ -67,8 +68,13 @@ class ClasificadorHemoglobina:
             )
 
         # Ajuste tabulado
-        ajuste_ddl = self._ajuste_para_altitud(altitud_msnm)
+        ajuste_ddl, verificada = self._ajuste_para_altitud(altitud_msnm)
         hb_ajustada_ddl = hb_observada_ddl - ajuste_ddl
+        if not verificada:
+            advertencias.append(
+                f"Ajuste por altitud ({altitud_msnm} msnm) de una banda no verificada contra "
+                "la fuente oficial: la clasificación es solo referencial"
+            )
 
         # Hb ajustada negativa
         if hb_ajustada_ddl < 0:
@@ -107,15 +113,16 @@ class ClasificadorHemoglobina:
 
     # ─── Internos ─────────────────────────────────────────────────────────────
 
-    def _cargar_tabla_ajuste(self) -> list[tuple[int, int, int]]:
-        """Devuelve lista de (altitud_desde, altitud_hasta, ajuste_ddl)."""
+    def _cargar_tabla_ajuste(self) -> list[tuple[int, int, int, bool]]:
+        """Devuelve lista de (altitud_desde, altitud_hasta, ajuste_ddl, verificada)."""
         tabla = []
         for fila in self._proveedor.tabla_ajuste():
             desde = int(fila["altitud_desde_msnm"])
             hasta = int(fila["altitud_hasta_msnm"])
             # Convertir g/dL a décimas
             ajuste_ddl = round(float(fila["ajuste_gdl"]) * 10)
-            tabla.append((desde, hasta, ajuste_ddl))
+            verificada = bool(fila.get("verificada", True))
+            tabla.append((desde, hasta, ajuste_ddl, verificada))
         return tabla
 
     def _cargar_grupos_edad(self) -> list[dict]:
@@ -123,21 +130,25 @@ class ClasificadorHemoglobina:
         grupos = []
         for g in self._proveedor.grupos_edad():
             umbrales = g["umbrales_hb_ajustada_gdl"]
+            def _ddl(clave: str, u: dict = umbrales) -> int:
+                return round(float(u[clave]) * 10)
+
             grupos.append({
                 "desde": int(g["desde_meses_inclusive"]),
                 "hasta": int(g["hasta_meses_inclusive"]),
-                "severa_hasta_exclusive_ddl": round(float(umbrales["severa_hasta_exclusive"]) * 10),
-                "moderada_hasta_exclusive_ddl": round(float(umbrales["moderada_hasta_exclusive"]) * 10),
-                "leve_hasta_exclusive_ddl": round(float(umbrales["leve_hasta_exclusive"]) * 10),
+                "severa_hasta_exclusive_ddl": _ddl("severa_hasta_exclusive"),
+                "moderada_hasta_exclusive_ddl": _ddl("moderada_hasta_exclusive"),
+                "leve_hasta_exclusive_ddl": _ddl("leve_hasta_exclusive"),
             })
         return grupos
 
-    def _ajuste_para_altitud(self, altitud_msnm: int) -> int:
-        for desde, hasta, ajuste in self._tabla_ajuste:
+    def _ajuste_para_altitud(self, altitud_msnm: int) -> tuple[int, bool]:
+        """Devuelve (ajuste_ddl, banda_verificada)."""
+        for desde, hasta, ajuste, verificada in self._tabla_ajuste:
             if desde <= altitud_msnm <= hasta:
-                return ajuste
+                return ajuste, verificada
         # Fuera de rango — no debería ocurrir si el validador funciona
-        return 0
+        return 0, True
 
     def _grupo_para_edad(self, edad_meses: int) -> dict | None:
         for grupo in self._grupos_edad:

@@ -1,0 +1,35 @@
+' =============================================================================
+' Título: C4 nivel 1 — Contexto del PMV Anemia Junín (INC-1)
+' Solicitud: T-007 (migración de la Figura 3 del informe integrador S6)
+' Fuentes de verdad: entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md §2.1 y §3.2;
+'   anemia_junin/docs/adr/002_decisiones_pmv.md; anemia_junin/src/anemia_junin/bootstrap.py
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' =============================================================================
+@startuml 03_c4_contexto
+!include <C4/C4_Context>
+!include _tema.puml
+
+LAYOUT_TOP_DOWN()
+AddElementTag("fuera", $bgColor="#FFFFFF", $fontColor="#4A5A6A", $borderColor="#6B7785", $borderStyle=DashedLine(), $legendText="Fuera del alcance de INC-1")
+AddRelTag("fuera", $textColor="#4A5A6A", $lineColor="#6B7785", $lineStyle=DashedLine(), $legendText="Relación futura (no implementada)")
+title C4 · Nivel 1 — Diagrama de contexto del PMV (primer incremento, INC-1)
+
+Person(personal, "Personal de salud", "Enfermería / técnico de la posta. Registra niños y dosajes de hemoglobina, consulta y actualiza el expediente y revisa el listado de seguimiento.")
+Person(coordinador, "Coordinador del proyecto", "Revisa la calidad de la captura mediante el reporte de registros del periodo (HIST-1.5).")
+Person_Ext(cuidador, "Familia o cuidador", "Acompaña al niño o niña (< 5 años) a la posta. No opera el sistema.")
+
+System(pmv, "PMV Anemia Junín", "Registro nominal validado y expediente digital: alta de niños, dosajes de Hb con clasificación referencial versionada (NTS 213 / RM 429-2024-MINSA), listado de seguimiento y reporte del periodo. Demostración académica local con datos sintéticos.")
+
+System_Ext(his, "HIS-MINSA", "Sistema de información institucional. Sin integración en INC-1.", $tags="fuera")
+System_Ext(whatsapp, "Mensajería WhatsApp", "Recordatorios y reporte de barreras. Previsto para INC-4.", $tags="fuera")
+
+Rel(cuidador, personal, "Proporciona datos del niño y del cuidador durante la atención")
+Rel(personal, pmv, "Registra, consulta, actualiza, registra dosajes y filtra el seguimiento", "Navegador · HTTP")
+Rel(coordinador, pmv, "Consulta el reporte de registros e intentos del periodo", "Navegador · HTTP")
+Rel_R(pmv, his, "Integración futura (no implementada)", $tags="fuera")
+Rel_L(pmv, whatsapp, "Integración futura: INC-4", $tags="fuera")
+
+
+SHOW_LEGEND(false)
+footer El niño o niña es beneficiario del proceso, no usuario de la interfaz. Los actores representan roles de uso: INC-1 no implementa cuentas ni permisos diferenciados (ADR-002).
+@enduml

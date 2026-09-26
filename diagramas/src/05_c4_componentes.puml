@@ -1,0 +1,70 @@
+' =============================================================================
+' Título: C4 nivel 3 — Componentes de la aplicación web y API REST (arquitectura hexagonal)
+' Solicitud: T-007 (migración de la Figura 5 del informe integrador S6)
+' Fuentes de verdad: anemia_junin/src/anemia_junin/ (bootstrap.py; adapters/inbound/{web_ui,rest_api};
+'   application/casos_de_uso/*.py; domain/{entities,ports,validators,clasificador}.py;
+'   adapters/outbound/{sqlite,normativa}), docs/adr/001_arquitectura_hexagonal.md
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' =============================================================================
+@startuml 05_c4_componentes
+!include <C4/C4_Component>
+!include _tema.puml
+
+LAYOUT_TOP_DOWN()
+AddRelTag("inyecta", $textColor="#4A5A6A", $lineColor="#6B7785", $lineStyle=DashedLine(), $legendText="Ensamblaje / inyección de dependencias (bootstrap)")
+title C4 · Nivel 3 — Componentes del contenedor «Aplicación web y API REST»
+
+Person(personal, "Personal de salud / coordinador", "Navegador web")
+System_Ext(cliente, "Cliente REST", "pytest u otras aplicaciones")
+
+Boundary(app, "Aplicación web y API REST", "Contenedor · Python · Flask") {
+  Component(boot, "Bootstrap", "bootstrap.py · crear_app()", "Raíz de composición: carga la normativa, ejecuta migraciones, crea los casos de uso y registra los blueprints.")
+
+  Boundary(entrada, "Adaptadores de entrada", "adapters/inbound") {
+    Component(web, "Interfaz web", "Blueprint web_bp · Jinja2 · Flask-WTF", "/ninos, /ninos/nuevo, /ninos/{dni}, /ninos/{dni}/editar, /ninos/{dni}/dosajes/nuevo, /reportes/registros")
+    Component(api, "API REST", "Blueprint api_bp · JSON · /api/v1", "GET /salud · POST, GET /ninos · GET, PATCH /ninos/{dni} · POST /ninos/{dni}/dosajes · GET /reportes/registros")
+  }
+
+  Boundary(aplic, "Aplicación", "application") {
+    Component(cu, "Casos de uso", "casos_de_uso/*.py · DTO y conversores", "RegistrarNino · ConsultarExpediente · ActualizarNino · AgregarDosaje · ListarNinos · ConsultarReporte")
+  }
+
+  Boundary(dominio, "Dominio (Python puro, sin E/S)", "domain") {
+    Component(val, "Validadores", "validators.py", "DNI, nombres, fechas, sexo, peso, distrito, altitud, teléfono y Hb; ErrorValidacion por campo.")
+    Component(ent, "Entidades y puertos", "entities.py · ports.py (Protocol)", "Nino, Dosaje, IntentoRegistro · UnidadDeTrabajo, Repositorio*, ProveedorNormativo, Reloj")
+    Component(clas, "Clasificador de hemoglobina", "clasificador.py", "Ajuste por altitud y umbrales por edad; SEVERA, MODERADA, LEVE, SIN_ANEMIA o NO_EVALUABLE.")
+  }
+
+  Boundary(salida, "Adaptadores de salida", "adapters/outbound") {
+    Component(prov, "Proveedor normativo JSON", "normativa/proveedor.py", "ProveedorNormativoJSON: valida el JSON; si es inválido impide el arranque.")
+    Component(uow, "Unidad de trabajo SQLite", "sqlite/unidad_de_trabajo.py · repositorios.py", "Transacción por operación; RepositorioNinosSQLite, RepositorioDosajesSQLite, RepositorioIntentosSQLite.")
+    Component(reloj, "Reloj real", "bootstrap.RelojReal", "ahora_utc() y hoy(); sustituible en pruebas.")
+    Component(mig, "Migraciones", "sqlite/migraciones.py", "Aplica migrations/*.sql y registra schema_version.")
+  }
+}
+
+ContainerDb(db, "Base de datos del PMV", "SQLite · instance/anemia.db")
+ContainerDb(norma, "Configuración normativa", "JSON · config/normativa_v1.json")
+
+Rel(personal, web, "Formularios y listados", "HTTP · HTML")
+Rel(cliente, api, "Solicitudes JSON", "HTTP · JSON")
+Rel(web, cu, "Invoca")
+Rel(api, cu, "Invoca")
+Rel(cu, val, "Valida entradas")
+Rel(cu, clas, "Clasifica Hb del dosaje")
+Rel(cu, ent, "Crea entidades y usa puertos")
+Rel(cu, uow, "Persiste / consulta", "puerto UnidadDeTrabajo")
+Rel(cu, reloj, "Obtiene fecha y hora", "puerto Reloj")
+Rel(clas, prov, "Lee umbrales y ajustes", "puerto ProveedorNormativo")
+Rel(uow, db, "SQL parametrizado", "sqlite3")
+Rel(mig, db, "Crea / actualiza esquema", "sqlite3")
+Rel(prov, norma, "Lee al iniciar", "json")
+Rel(boot, cu, "Construye e inyecta dependencias", $tags="inyecta")
+Rel(boot, mig, "migrar(db_path)", $tags="inyecta")
+
+SHOW_LEGEND(false)
+footer
+Flechas continuas: llamadas en ejecución, a través de los puertos (Protocol) de domain/ports.py, que implementan los adaptadores de salida.
+Las dependencias de código apuntan hacia el dominio: el núcleo no importa Flask ni sqlite3 (tests/arquitectura/test_dependencias.py).
+end footer
+@enduml

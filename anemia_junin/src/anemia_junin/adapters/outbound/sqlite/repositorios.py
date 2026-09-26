@@ -97,9 +97,9 @@ class RepositorioNinosSQLite:
         ).fetchone()
         return _nino_desde_fila(fila) if fila else None
 
-    def obtener_por_id(self, id: uuid.UUID) -> Nino | None:
+    def obtener_por_id(self, nino_id: uuid.UUID) -> Nino | None:
         fila = self._conn.execute(
-            "SELECT * FROM ninos WHERE id = ?", (str(id),)
+            "SELECT * FROM ninos WHERE id = ?", (str(nino_id),)
         ).fetchone()
         return _nino_desde_fila(fila) if fila else None
 
@@ -123,7 +123,9 @@ class RepositorioNinosSQLite:
         Lista niños de 6–59 meses con el último dosaje.
         Orden: clasificación (severa→sin_anemia), luego apellidos, nombres, DNI.
         """
-        hoy = date.today().isoformat()
+        if filtro.fecha_referencia is None:
+            raise ValueError("FiltroNinos.fecha_referencia es obligatoria (usar el puerto Reloj)")
+        hoy = filtro.fecha_referencia.isoformat()
         params: list = []
 
         # Subconsulta: último dosaje por niño (por fecha clínica, desempate created_at, id)
@@ -147,9 +149,12 @@ class RepositorioNinosSQLite:
             """
             (
                 (
-                    (CAST(strftime('%Y', ?) AS INTEGER) - CAST(strftime('%Y', fecha_nacimiento) AS INTEGER)) * 12
-                    + (CAST(strftime('%m', ?) AS INTEGER) - CAST(strftime('%m', fecha_nacimiento) AS INTEGER))
-                    - CASE WHEN strftime('%d', ?) < strftime('%d', fecha_nacimiento) THEN 1 ELSE 0 END
+                    (CAST(strftime('%Y', ?) AS INTEGER)
+                        - CAST(strftime('%Y', fecha_nacimiento) AS INTEGER)) * 12
+                    + (CAST(strftime('%m', ?) AS INTEGER)
+                        - CAST(strftime('%m', fecha_nacimiento) AS INTEGER))
+                    - CASE WHEN strftime('%d', ?) < strftime('%d', fecha_nacimiento)
+                           THEN 1 ELSE 0 END
                 ) BETWEEN 6 AND 59
             )
             """

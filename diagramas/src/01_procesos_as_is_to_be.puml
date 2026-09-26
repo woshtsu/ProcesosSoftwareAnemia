@@ -1,0 +1,67 @@
+' =============================================================================
+' Título: Síntesis AS-IS / TO-BE con brechas e incrementos
+' Solicitud: T-007 (migración de la Figura 1 del informe integrador S6)
+' Fuentes de verdad: entregables/semana-01/Entregable_Semana1_Anemia_Junin.md §3-§5 (flujo AS-IS en 9 pasos,
+'   brechas, cambios TO-BE); Informe_Integrador_Anemia_Junin.md §2.1 (brechas B1-B6 e incrementos INC-1..6)
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' Nota: las vistas detalladas por carriles están en 10_s1_proceso_as_is y 11_s1_proceso_to_be.
+' =============================================================================
+@startuml 01_procesos_as_is_to_be
+!include _tema.puml
+skinparam rectangle {
+  FontSize 12
+}
+skinparam ArrowFontSize 11
+skinparam nodesep 30
+skinparam ranksep 38
+hide stereotype
+title Síntesis del proceso AS-IS y TO-BE: brechas que atiende cada incremento
+
+rectangle "**TO-BE** · proceso propuesto por incrementos (S1 §5, S2 §7)" as tobe {
+  rectangle "**INC-1** · Registro nominal único y validado;\nexpediente y dosajes consultables\n<size:10>(implementado en el PMV)</size>" as T1 <<sistema>>
+  rectangle "**INC-2** · Agenda de controles según\nesquema normativo y alertas de vencimiento" as T2 <<futuro>>
+  rectangle "**INC-3** · Captura sin conexión (ACS y posta)\ny sincronización diferida" as T3 <<futuro>>
+  rectangle "**INC-4** · Recordatorios por WhatsApp;\nla familia confirma o reporta barreras" as T4 <<futuro>>
+  rectangle "**INC-5** · Priorización asistida por riesgo\nde abandono (explicable y supervisada)" as T5 <<futuro>>
+  rectangle "**INC-6** · Tablero territorial e\nindicadores actualizados" as T6 <<futuro>>
+}
+
+rectangle "**AS-IS** · proceso actual (S1 §3)" as asis <<actual>> {
+  rectangle "**Familia** acude a la posta\n(control, campaña o iniciativa propia)" as A1 <<actual>>
+  rectangle "**Personal** registra y verifica antecedentes;\ndecide control y tamizaje de Hb" as A2 <<actual>>
+  rectangle "**Personal** anota en historia clínica,\ntarjeta y luego digita en HIS (triple registro)" as A3 <<actual>>
+  rectangle "**Personal** calcula a mano\nla próxima cita; sin recordatorios" as A4 <<actual>>
+  rectangle "**Familia** administra el suplemento;\n**ACS** visita semanal en papel" as A5 <<actual>>
+  rectangle "**Personal** detecta inasistencia o abandono\ncuando ya ocurrió; reevalúa o refiere" as A6 <<actual>>
+  rectangle "**Gestión territorial** consolida con demora\ny reporta al MINSA" as A7 <<actual>>
+}
+
+A1 --> A2
+A2 --> A3
+A3 --> A4
+A4 --> A5
+A5 --> A6
+A6 --> A7
+
+T1 -[hidden]-> T2
+T2 -[hidden]-> T3
+T3 -[hidden]-> T4
+T4 -[hidden]-> T5
+T5 -[hidden]-> T6
+
+T1 <-[#9E3A30,dashed]left- A3 : <color:#9E3A30>**B1**</color> registro\nfragmentado
+T2 <-[#9E3A30,dashed]left- A4 : <color:#9E3A30>**B2**</color> agenda\nmanual
+T3 <-[#9E3A30,dashed]left- A5 : <color:#9E3A30>**B4**</color> visitas en papel
+T4 <-[#9E3A30,dashed]left- A5 : <color:#9E3A30>**B3**</color> barreras ocultas
+T5 <-[#9E3A30,dashed]left- A6 : <color:#9E3A30>**B5**</color> priorización\nreactiva
+T6 <-[#9E3A30,dashed]left- A7 : <color:#9E3A30>**B6**</color> conectividad y\nconsolidación tardía
+
+legend bottom
+  |= Símbolo |= Significado |
+  | <back:#F1F3F5>   gris   </back> | Actividad del proceso actual (AS-IS) |
+  | <back:#E4F1EA>   verde   </back> | Mejora implementada en el PMV (INC-1, demostración local) |
+  | borde discontinuo | Mejora planificada en incrementos posteriores (no implementada) |
+  | <color:#9E3A30>- - -></color> Bn | Brecha de S1 que la mejora atiende |
+  La medición de Hb, el diagnóstico, la prescripción y la referencia permanecen bajo responsabilidad del personal de salud.
+endlegend
+@enduml

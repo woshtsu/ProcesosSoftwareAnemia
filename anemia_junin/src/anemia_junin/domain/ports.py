@@ -26,7 +26,11 @@ class FiltroNinos:
         clasificacion: str | None = None,
         pagina: int = 1,
         tamano: int = 20,
+        fecha_referencia: date | None = None,
     ) -> None:
+        # fecha_referencia = "hoy" según el puerto Reloj (ADR-001: tiempo testeable);
+        # define la ventana de seguimiento activo de 6 a 59 meses.
+        self.fecha_referencia = fecha_referencia
         self.q = q
         self.distrito = distrito
         self.clasificacion = clasificacion
@@ -54,9 +58,17 @@ class PaginaNinos:
 class RepositorioNinos(Protocol):
     def guardar(self, nino: Nino) -> None: ...
     def obtener_por_dni(self, dni: str) -> Nino | None: ...
-    def obtener_por_id(self, id: UUID) -> Nino | None: ...
+    def obtener_por_id(self, nino_id: UUID) -> Nino | None: ...
     def actualizar(self, nino: Nino) -> None: ...
     def listar(self, filtro: FiltroNinos) -> PaginaNinos: ...
+    def consultar_reporte(
+        self,
+        *,
+        desde_utc: datetime,
+        hasta_utc: datetime,
+        desde_iso: str,
+        hasta_iso: str,
+    ) -> dict: ...
 
 
 @runtime_checkable

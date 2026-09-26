@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 from anemia_junin.application.dto import FiltroListaDTO, NinoResumenDTO, PaginaDTO
-from anemia_junin.domain.ports import FiltroNinos
+from anemia_junin.domain.ports import FiltroNinos, Reloj
 
 
 class ListarNinos:
-    def __init__(self, uow_factory) -> None:
+    def __init__(self, uow_factory, reloj: Reloj) -> None:
         self._uow_factory = uow_factory
+        self._reloj = reloj
 
     def ejecutar(self, dto: FiltroListaDTO) -> PaginaDTO:
         filtro = FiltroNinos(
@@ -17,6 +18,7 @@ class ListarNinos:
             clasificacion=dto.clasificacion,
             pagina=dto.pagina,
             tamano=dto.tamano,
+            fecha_referencia=self._reloj.hoy(),
         )
 
         with self._uow_factory() as uow:

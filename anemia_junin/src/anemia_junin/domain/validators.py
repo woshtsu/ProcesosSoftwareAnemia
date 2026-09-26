@@ -32,7 +32,7 @@ _DISTRITO_MAX = 80
 
 # ─── Errores ──────────────────────────────────────────────────────────────────
 
-class ErrorValidacion(Exception):
+class ErrorValidacion(Exception):  # noqa: N818 — nombre público usado en todas las capas
     """Error de validación con mapa de campos → lista de mensajes."""
 
     def __init__(self, errores: dict[str, list[str]]) -> None:
@@ -139,9 +139,16 @@ def normalizar_distrito(valor: str) -> str:
 
 
 def validar_altitud(altitud: object) -> list[str]:
+    # bool es subclase de int: se rechaza explícitamente
+    if isinstance(altitud, bool) or altitud is None:
+        return ["Debe ser un número entero"]
+    if isinstance(altitud, float):
+        if not altitud.is_integer():
+            return ["Debe ser un número entero"]
+        altitud = int(altitud)
     if not isinstance(altitud, int):
         try:
-            altitud = int(altitud)  # type: ignore[arg-type]
+            altitud = int(str(altitud).strip())
         except (TypeError, ValueError):
             return ["Debe ser un número entero"]
     if altitud < _ALT_MIN or altitud > _ALT_MAX:

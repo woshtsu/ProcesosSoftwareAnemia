@@ -1,0 +1,20 @@
+Smoke test contra http://127.0.0.1:8000
+
+  [OK  ] Salud del servicio                         GET   200      7.2 ms
+  [OK  ] Alta válida (HIST-1.1)                     POST  409     53.7 ms
+  [OK  ] Rechazo de duplicado                       POST  409     45.6 ms
+  [OK  ] Rechazo de datos inválidos (HIST-1.3)      POST  400     26.0 ms
+  [OK  ] Consulta de expediente (HIST-1.2)          GET   200     27.1 ms
+  [OK  ] Actualización parcial (HIST-1.2)           PATCH 200     15.5 ms
+  [OK  ] Nuevo dosaje (HIST-1.2)                    POST  201     39.7 ms
+  [OK  ] Listado (HIST-1.4)                         GET   200     27.9 ms
+  [OK  ] Listado filtrado SEVERA                    GET   200     27.5 ms
+  [OK  ] Reporte del periodo (HIST-1.5)             GET   200     28.6 ms
+  [OK  ] Web: raíz redirige                         GET   303      3.1 ms
+  [OK  ] Web: lista                                 GET   200     35.5 ms
+  [OK  ] Web: formulario de alta                    GET   200     82.4 ms
+  [OK  ] Web: expediente                            GET   200      9.8 ms
+  [OK  ] Web: reporte                               GET   200     56.9 ms
+
+15 verificaciones, 0 fallos, latencia máxima 82.4 ms (umbral 2000 ms) -> RESULTADO: APROBADO
+POST /ninos/nuevo sin token CSRF -> 400

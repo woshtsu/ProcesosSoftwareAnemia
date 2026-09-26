@@ -1,0 +1,43 @@
+' =============================================================================
+' Título: UML despliegue — entorno de demostración local del PMV (INC-1)
+' Solicitud: T-007 (migración de la Figura 9 del informe integrador S6)
+' Fuentes de verdad: anemia_junin/docs/adr/002_decisiones_pmv.md (Waitress 127.0.0.1:8000, sin CORS/CDN);
+'   anemia_junin/pyproject.toml; anemia_junin/src/anemia_junin/bootstrap.py (rutas instance/anemia.db,
+'   config/normativa_v1.json); anemia_junin/migrations/001_initial.sql; scripts/cargar_datos_sinteticos.py
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' =============================================================================
+@startuml 07_despliegue
+!include _tema.puml
+left to right direction
+title UML · Despliegue del PMV en el entorno de demostración local (INC-1)
+
+node "Equipo de demostración\n<<dispositivo: PC o laptop>>" as equipo {
+  node "Navegador web\n<<entorno de ejecución>>" as nav {
+    artifact "Páginas HTML (Jinja2)\ncon formularios CSRF" as html
+  }
+  node "Python 3.12+ · entorno virtual\n<<entorno de ejecución>>" as py {
+    node "Servidor WSGI\nWaitress 3.0.1 (demostración)\nFlask dev server (desarrollo)\n<<entorno de ejecución>>" as wsgi {
+      artifact "anemia_junin 0.1.0\n(bootstrap.crear_app)\nFlask 3.1 · Flask-WTF" as app
+    }
+    artifact "scripts/\ncargar_datos_sinteticos.py" as seed
+  }
+  folder "Sistema de archivos del proyecto" as fs {
+    database "instance/anemia.db\n<<archivo SQLite, WAL>>" as db
+    artifact "config/normativa_v1.json\n<<configuración normativa>>" as norma
+    artifact "migrations/001_initial.sql\n<<esquema>>" as sql
+  }
+}
+
+html --> app : HTTP · 127.0.0.1:8000\n(HTML y JSON)
+app --> db : sqlite3 (en proceso)
+app --> norma : lee y valida al iniciar
+app --> sql : aplica migraciones\nal iniciar
+seed --> db : datos sintéticos\n(BD vacía)
+
+note bottom of equipo
+  Demostración académica local con datos sintéticos (ADR-002): sin CORS, sin CDN externo,
+  sin autenticación ni cifrado. El servidor escucha solo en 127.0.0.1.
+  El repositorio no incluye aún un script de arranque con Waitress (ver T-008).
+  Un despliegue en posta requiere su propia evidencia (INC-3: captura sin conexión y sincronización).
+end note
+@enduml

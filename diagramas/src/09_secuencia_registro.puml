@@ -1,0 +1,80 @@
+' =============================================================================
+' Título: UML secuencia — Registrar niño por la API (UC-01 / HIST-1.1)
+' Solicitud: T-007 (migración de la Figura 8 del informe integrador S6)
+' Fuentes de verdad: anemia_junin/src/anemia_junin/adapters/inbound/rest_api/blueprints.py (crear_nino);
+'   application/casos_de_uso/registrar_nino.py (RegistrarNino.ejecutar); domain/validators.py;
+'   domain/clasificador.py; adapters/outbound/sqlite/{unidad_de_trabajo,repositorios}.py
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' =============================================================================
+@startuml 09_secuencia_registro
+!include _tema.puml
+autonumber "<b>0."
+title UML · Secuencia de registro de un niño — POST /api/v1/ninos (UC-01)
+
+actor "Personal de salud\n(cliente HTTP)" as P
+box "Aplicación Flask (un proceso)" #FAFBFC
+  participant "api_bp\ncrear_nino()" as API
+  participant "RegistrarNino" as CU
+  participant "validators\n(dominio)" as VAL
+  participant "Clasificador\nHemoglobina" as CLA
+  participant "UnidadDeTrabajo\n(SQLite)" as UOW
+end box
+database "anemia.db" as DB
+
+P -> API : POST /api/v1/ninos\n{dni, nombres, …, dosaje_inicial?}
+activate API
+alt Content-Type no es JSON / campos no permitidos
+  API --> P : 415 UNSUPPORTED_MEDIA_TYPE / 400 VALIDATION_ERROR
+end
+API -> API : convierte peso kg→g y Hb g/dL→décimas;\ncrea CrearNinoDTO
+API -> CU : ejecutar(dto)
+activate CU
+CU -> VAL : validar_dni, validar_nombre, validar_fecha_nacimiento,\nvalidar_altitud, validar_telefono, validar_fecha_dosaje…
+VAL --> CU : errores por campo
+
+alt hay errores de validación
+  CU -> UOW : with uow: intentos.guardar(RECHAZADO, códigos)
+  UOW -> DB : INSERT intentos_registro; COMMIT
+  CU --> API : lanza ErrorValidacion(errores)
+  API --> P : 400 VALIDATION_ERROR {fields}
+else datos válidos
+  CU -> CU : normaliza nombres y distrito;\nNino.nuevo(…)
+  opt viene dosaje_inicial
+    CU -> CLA : clasificar(hb_observada_ddl, altitud_msnm, edad_meses)
+    CLA --> CU : ResultadoClasificacion\n(ajuste, hb_ajustada, clasificación, versión, advertencias)
+    CU -> CU : Dosaje.nuevo(…)
+  end
+  CU -> UOW : with uow_factory() as uow
+  activate UOW
+  UOW -> DB : BEGIN
+  CU -> UOW : ninos.guardar(nino)
+  UOW -> DB : INSERT ninos
+  opt hay dosaje
+    CU -> UOW : dosajes.guardar(dosaje)
+    UOW -> DB : INSERT dosajes
+  end
+  CU -> UOW : intentos.guardar(ACEPTADO)
+  UOW -> DB : INSERT intentos_registro
+  alt DNI duplicado (UNIQUE dni → IntegrityError)
+    UOW -> DB : ROLLBACK
+    deactivate UOW
+    CU -> UOW : nueva transacción: intentos.guardar(RECHAZADO, [dni])
+    UOW -> DB : INSERT intentos_registro; COMMIT
+    CU --> API : lanza DniDuplicadoError
+    API --> P : 409 CONFLICT
+  else sin conflicto
+    activate UOW
+    UOW -> DB : COMMIT (niño + dosaje + intento, atómico)
+    deactivate UOW
+    CU --> API : (NinoSalidaDTO, DosajeSalidaDTO | None)
+    deactivate CU
+    API --> P : 201 Created {data: niño [+ dosaje_inicial]}
+  end
+end
+deactivate API
+
+note over P, DB
+  El intento RECHAZADO se registra en una transacción aparte, después del rollback (ADR-002): no guarda datos personales.
+  Errores inesperados se registran en el log y devuelven 500 INTERNAL_ERROR. La interfaz web (/ninos/nuevo) invoca el mismo caso de uso.
+end note
+@enduml

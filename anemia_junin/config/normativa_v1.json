@@ -1,7 +1,9 @@
 {
   "_meta": {
     "version": "v1",
-    "fuente": "NTS N° 213-MINSA/DGIESP-2024 y RM 429-2024-MINSA",
+    "fuente": "NTS N° 213-MINSA/DGIESP-2024, aprobada por RM 251-2024-MINSA y modificada por RM 429-2024-MINSA",
+    "aprobada_por": "RM 251-2024-MINSA (deroga la NTS 134-MINSA/2017/DGIESP)",
+    "modificada_por": "RM 429-2024-MINSA",
     "nota": "Transcripción de referencia para demostración académica. No certificada para uso clínico.",
     "url_oficial": "https://www.gob.pe/institucion/minsa/normas-legales/5670414-429-2024-minsa"
   },
@@ -34,6 +36,7 @@
   "ajuste_altitud": {
     "descripcion": "Ajuste tabulado por altitud en g/dL. Se resta de la Hb observada.",
     "decision_pmv": "Altitud 0–499 m adopta ajuste 0.0 como decisión explícita del PMV.",
+    "nota_verificacion": "Las filas con \"verificada\": false (>= 4000 msnm) no se han contrastado con la tabla oficial modificada por la RM 429-2024-MINSA; el sistema emite una advertencia visible cada vez que se usan.",
     "tabla": [
       {"altitud_desde_msnm": 0,    "altitud_hasta_msnm": 499,  "ajuste_gdl": 0.0},
       {"altitud_desde_msnm": 500,  "altitud_hasta_msnm": 999,  "ajuste_gdl": 0.4},
@@ -43,8 +46,8 @@
       {"altitud_desde_msnm": 2500, "altitud_hasta_msnm": 2999, "ajuste_gdl": 1.8},
       {"altitud_desde_msnm": 3000, "altitud_hasta_msnm": 3499, "ajuste_gdl": 2.1},
       {"altitud_desde_msnm": 3500, "altitud_hasta_msnm": 3999, "ajuste_gdl": 2.5},
-      {"altitud_desde_msnm": 4000, "altitud_hasta_msnm": 4499, "ajuste_gdl": 2.9},
-      {"altitud_desde_msnm": 4500, "altitud_hasta_msnm": 4999, "ajuste_gdl": 3.3}
+      {"altitud_desde_msnm": 4000, "altitud_hasta_msnm": 4499, "ajuste_gdl": 2.9, "verificada": false},
+      {"altitud_desde_msnm": 4500, "altitud_hasta_msnm": 4999, "ajuste_gdl": 3.3, "verificada": false}
     ]
   }
 }

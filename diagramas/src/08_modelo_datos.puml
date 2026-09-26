@@ -1,0 +1,93 @@
+' =============================================================================
+' Título: Modelo de datos físico del PMV (SQLite)
+' Solicitud: T-007 (migración de la Figura 7 del informe integrador S6)
+' Fuentes de verdad: anemia_junin/migrations/001_initial.sql; anemia_junin/src/anemia_junin/domain/entities.py;
+'   anemia_junin/src/anemia_junin/adapters/outbound/sqlite/repositorios.py
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' =============================================================================
+@startuml 08_modelo_datos
+!include _tema.puml
+hide circle
+hide methods
+skinparam linetype ortho
+title Modelo de datos del PMV — esquema SQLite (migración 001)
+
+entity "ninos" as ninos {
+  **id** : TEXT <<PK>> (UUID)
+  --
+  dni : TEXT <<UK>> NOT NULL
+  nombres : TEXT NOT NULL
+  apellidos : TEXT NOT NULL
+  fecha_nacimiento : TEXT NOT NULL (AAAA-MM-DD)
+  sexo : TEXT NOT NULL CHECK ('F','M')
+  tipo_nacimiento : TEXT NOT NULL CHECK ('TERMINO','PREMATURO')
+  peso_g : INTEGER NOT NULL (gramos)
+  distrito : TEXT NOT NULL
+  altitud_msnm : INTEGER NOT NULL
+  cuidador : TEXT NOT NULL
+  telefono : TEXT NULL (9 dígitos)
+  created_at : TEXT NOT NULL (UTC ISO 8601)
+  updated_at : TEXT NOT NULL (UTC ISO 8601)
+  ..
+  idx_ninos_dni (dni) · idx_ninos_distrito (distrito)
+}
+
+entity "dosajes" as dosajes {
+  **id** : TEXT <<PK>> (UUID)
+  --
+  nino_id : TEXT <<FK>> NOT NULL → ninos.id
+  fecha_dosaje : TEXT NOT NULL (AAAA-MM-DD)
+  hb_observada_ddl : INTEGER NOT NULL (décimas de g/dL)
+  altitud_msnm : INTEGER NOT NULL
+  ajuste_ddl : INTEGER NOT NULL (décimas de g/dL)
+  hb_ajustada_ddl : INTEGER NOT NULL
+  edad_meses : INTEGER NOT NULL
+  clasificacion : TEXT NOT NULL
+  version_normativa : TEXT NOT NULL
+  advertencias_json : TEXT NOT NULL DEFAULT '[]'
+  created_at : TEXT NOT NULL (UTC)
+  ..
+  idx_dosajes_nino_fecha (nino_id, fecha_dosaje, created_at)
+}
+
+entity "intentos_registro" as intentos {
+  **id** : TEXT <<PK>> (UUID)
+  --
+  momento : TEXT NOT NULL (UTC)
+  operacion : TEXT NOT NULL ('CREAR_NINO')
+  resultado : TEXT NOT NULL CHECK ('ACEPTADO','RECHAZADO')
+  codigos_error : TEXT NOT NULL DEFAULT '[]'
+  ..
+  idx_intentos_momento (momento)
+}
+
+entity "schema_version" as sv {
+  **version** : INTEGER <<PK>>
+  --
+  aplicada_en : TEXT NOT NULL (UTC)
+  descripcion : TEXT NOT NULL
+}
+
+ninos ||--o{ dosajes : "tiene 0..*\n(historial inmutable)"
+intentos -[hidden]right- sv
+dosajes -[hidden]down- intentos
+
+note right of dosajes
+  **clasificacion**: SEVERA · MODERADA · LEVE ·
+  SIN_ANEMIA · NO_EVALUABLE (enum Clasificacion).
+  hb_ajustada = hb_observada − ajuste por altitud.
+  SIN_DOSAJE se deriva en consultas: no se almacena.
+end note
+
+note left of intentos
+  Auditoría de altas: sin datos personales
+  y **sin FK** a ninos (un intento rechazado
+  no crea expediente). codigos_error guarda
+  solo los nombres de campo con error.
+end note
+
+legend bottom
+  Notación crow's foot: ||  exactamente uno · o{  cero o más.  PK clave primaria · UK única · FK foránea.
+  Conexión: PRAGMA foreign_keys = ON, journal_mode = WAL, busy_timeout = 5000 (unidad_de_trabajo.py).
+endlegend
+@enduml

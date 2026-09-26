@@ -1,0 +1,77 @@
+' =============================================================================
+' Título: Modelo de proceso adaptado (ciclo del incremento con los 10 elementos de S2) — versión integrador
+' Solicitud: T-007 (migración de la Figura 2 del informe integrador S6)
+' Fuentes de verdad: Informe_Integrador_Anemia_Junin.md §2.2 (modelo aplicado) y §2.3 (actividades A1-A8,
+'   DoD, matriz RAE: P = Porras, T = Auqui, J = Huamani); entregables/semana-02 §6-§7
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' Nota: la versión detallada para S2 (particiones Scrum/DevOps/MLOps) es 15_s2_modelo_proceso_aplicado.
+' =============================================================================
+@startuml 02_modelo_proceso
+!include _tema.puml
+skinparam activity {
+  FontSize 12
+}
+title Modelo de proceso adaptado al proyecto: iterativo-incremental · Scrum · DevOps (MLOps desde INC-5)
+
+|#F1F3F5|Usuarios (personal de salud)|
+start
+:**1 Entrada**
+TO-BE de S1 y necesidades
+de la posta;
+|#FFFFFF|Proceso · Scrum (P)|
+:Product Backlog priorizado
+(INC-1…INC-6, HIST-n.m);
+repeat
+:**2 Planificación** · A1
+Sprint de 2 semanas: historias con criterios,
+tareas y estimación;
+  |#E6EEF7|Desarrollo · DevOps (T)|
+  repeat
+  :**3 Desarrollo** · A2-A3
+  Diseño (C4, ADR, esquema) y código;
+    :**4 Integración** · A5
+    Revisión de código (PR), build
+    y análisis estático;
+    |#E4F1EA|Calidad (J)|
+    :**5 Pruebas** · A4
+    Unitarias, persistencia, API y arquitectura ·
+    cobertura ≥ 80 %;
+  repeat while (¿Cumple la Definición de Hecho?) is (no: corregir) not (sí)
+  |Usuarios (personal de salud)|
+  :**6 Retroalimentación** · A7
+  Revisión del incremento con
+  el usuario; acta de observaciones;
+  if (¿Incremento aceptado?) then (no)
+    |Proceso · Scrum (P)|
+    :Hallazgos al backlog;
+  else (sí)
+    |Desarrollo · DevOps (T)|
+    :**7 Entrega** · A6
+    Versión demostrable (INC-1: local)
+    o piloto en posta;
+    |Proceso · Scrum (P)|
+    :**8 Medición** · A8
+    Indicadores de proceso, producto,
+    resultado y valor (S1);
+  endif
+  :**9 Mejora**
+  Retrospectiva: ajustes del
+  proceso y del backlog;
+repeat while (**10 Repetición** · ¿quedan incrementos?) is (sí: INC-(n+1))
+->no;
+stop
+
+floating note right
+  **Adaptaciones por incremento**
+  INC-1: demostración local con datos sintéticos.
+  INC-3: pruebas de captura sin conexión,
+  reconciliación y pérdida de red.
+  INC-5: subciclo MLOps (datos, entrenamiento,
+  evaluación, monitoreo y reentrenamiento).
+end note
+
+legend bottom
+  RAE (§2.3): P = Porras (Proceso), T = Auqui (Desarrollo), J = Huamani (Calidad). A1-A8: actividades del informe integrador.
+  La entrega exige cumplir el DoD; el cierre de tareas por sí solo no demuestra aceptación del usuario.
+endlegend
+@enduml

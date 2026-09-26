@@ -37,6 +37,19 @@
   </div>
 </div>
 
+{# Advertencias del último dosaje (p. ej. banda de altitud ≥ 4000 msnm no verificada) #}
+{% if expediente.historial_dosajes and expediente.historial_dosajes[0].advertencias %}
+<div class="alert alert--warning" role="status">
+  <strong>Advertencia sobre la clasificación actual (solo referencial)</strong>
+  <ul>
+    {% for adv in expediente.historial_dosajes[0].advertencias %}<li>{{ adv }}</li>{% endfor %}
+  </ul>
+</div>
+{% endif %}
+<p class="field-hint">
+  La clasificación es referencial (NTS 213-MINSA/DGIESP-2024) y no constituye diagnóstico clínico.
+</p>
+
 {# Datos del niño #}
 <section class="card">
   <h2>Datos del niño</h2>

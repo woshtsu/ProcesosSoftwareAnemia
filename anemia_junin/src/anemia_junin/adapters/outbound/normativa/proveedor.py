@@ -65,7 +65,8 @@ class ProveedorNormativoJSON:
         if not grupos:
             errores.append("Falta 'clasificacion.grupos_edad_meses' o está vacío")
         for i, g in enumerate(grupos):
-            for campo in ("desde_meses_inclusive", "hasta_meses_inclusive", "umbrales_hb_ajustada_gdl"):
+            campos = ("desde_meses_inclusive", "hasta_meses_inclusive", "umbrales_hb_ajustada_gdl")
+            for campo in campos:
                 if campo not in g:
                     errores.append(f"Grupo {i}: falta '{campo}'")
 

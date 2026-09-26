@@ -8,6 +8,7 @@ Commit en __exit__ si no hubo excepción; rollback si hubo.
 from __future__ import annotations
 
 import sqlite3
+from pathlib import Path
 from types import TracebackType
 
 from anemia_junin.adapters.outbound.sqlite.repositorios import (
@@ -26,6 +27,23 @@ def _abrir_conexion(db_path: str) -> sqlite3.Connection:
     return conn
 
 
+def verificar_conexion(db_path: str) -> bool:
+    """Comprueba que la base de datos responde (usado por GET /api/v1/salud)."""
+    # mode=rw: no crea un archivo vacío si la BD no existe
+    uri = Path(db_path).resolve().as_uri() + "?mode=rw"
+    try:
+        conn = sqlite3.connect(uri, uri=True, timeout=2.0)
+    except sqlite3.Error:
+        return False
+    try:
+        conn.execute("SELECT 1 FROM schema_version LIMIT 1")
+        return True
+    except sqlite3.Error:
+        return False
+    finally:
+        conn.close()
+
+
 class UnidadDeTrabajo:
     """
     Gestiona una conexión y transacción SQLite.
@@ -37,8 +55,19 @@ class UnidadDeTrabajo:
         # commit automático al salir sin excepción
     """
 
-    def __init__(self, db_path: str) -> None:
+    def __init__(self, db_path: str, inmediata: bool = False) -> None:
+        """
+        Args:
+            db_path: ruta de la BD SQLite.
+            inmediata: si True abre la transacción con ``BEGIN IMMEDIATE`` (reserva el
+                bloqueo de escritura desde el inicio). Se usa en los casos de uso que
+                leen y luego escriben: con ``BEGIN`` diferido, dos transacciones
+                concurrentes que intentan pasar de lectura a escritura provocan
+                ``database is locked`` inmediato en modo WAL (detectado en la prueba
+                de carga con Locust).
+        """
         self._db_path = db_path
+        self._inmediata = inmediata
         self._conn: sqlite3.Connection | None = None
         self._ninos: RepositorioNinosSQLite | None = None
         self._dosajes: RepositorioDosajesSQLite | None = None
@@ -46,7 +75,7 @@ class UnidadDeTrabajo:
 
     def __enter__(self) -> UnidadDeTrabajo:
         self._conn = _abrir_conexion(self._db_path)
-        self._conn.execute("BEGIN")
+        self._conn.execute("BEGIN IMMEDIATE" if self._inmediata else "BEGIN")
         self._ninos = RepositorioNinosSQLite(self._conn)
         self._dosajes = RepositorioDosajesSQLite(self._conn)
         self._intentos = RepositorioIntentosSQLite(self._conn)

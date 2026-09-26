@@ -29,7 +29,8 @@ class ActualizarNino:
 
     def ejecutar(self, dni: str, dto: ActualizarNinoDTO) -> NinoSalidaDTO:
         # Verificar que haya al menos un campo
-        if all(v is None for v in [dto.peso_g, dto.distrito, dto.altitud_msnm, dto.cuidador, dto.telefono]):
+        campos = [dto.peso_g, dto.distrito, dto.altitud_msnm, dto.cuidador, dto.telefono]
+        if all(v is None for v in campos):
             raise ActualizacionVaciaError("Se requiere al menos un campo para actualizar")
 
         errores: dict[str, list[str]] = {}
@@ -64,7 +65,7 @@ class ActualizarNino:
             if dto.distrito is not None:
                 nino.distrito = normalizar_distrito(dto.distrito)
             if dto.altitud_msnm is not None:
-                nino.altitud_msnm = dto.altitud_msnm
+                nino.altitud_msnm = int(dto.altitud_msnm)
             if dto.cuidador is not None:
                 nino.cuidador = normalizar_nombre(dto.cuidador)
             if dto.telefono is not None:

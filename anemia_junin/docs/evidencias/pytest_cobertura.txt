@@ -1,0 +1,39 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- D:\Workspace\Nueva carpeta\ProcesosSoftwareAnemia\anemia_junin\.venv\Scripts\python.exe
+rootdir: D:\Workspace\Nueva carpeta\ProcesosSoftwareAnemia\anemia_junin
+configfile: pyproject.toml
+testpaths: tests
+plugins: locust-2.46.6, base-url-2.1.0, cov-7.1.0, playwright-0.9.0, xdist-3.8.0
+collecting ... collected 242 items
+
+
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.14.6-final-0 _______________
+
+Name                                                                Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------------------
+src\anemia_junin\__main__.py                                           25      0   100%
+src\anemia_junin\adapters\inbound\rest_api\blueprints.py              199      7    96%   228-230, 309, 342-343, 357
+src\anemia_junin\adapters\inbound\web_ui\blueprints.py                164      9    95%   120, 182-183, 202-203, 210-211, 266-267
+src\anemia_junin\adapters\outbound\normativa\proveedor.py              45      9    80%   30, 35-36, 62, 66, 71, 75, 79, 82
+src\anemia_junin\adapters\outbound\sqlite\migraciones.py               33      0   100%
+src\anemia_junin\adapters\outbound\sqlite\repositorios.py              86      2    98%   101-104
+src\anemia_junin\adapters\outbound\sqlite\unidad_de_trabajo.py         61      1    98%   91
+src\anemia_junin\application\casos_de_uso\actualizar_nino.py           47      1    98%   70
+src\anemia_junin\application\casos_de_uso\agregar_dosaje.py            31      1    97%   47
+src\anemia_junin\application\casos_de_uso\consultar_expediente.py      20      0   100%
+src\anemia_junin\application\casos_de_uso\consultar_reporte.py         41      2    95%   34, 36
+src\anemia_junin\application\casos_de_uso\listar_ninos.py              13      0   100%
+src\anemia_junin\application\casos_de_uso\registrar_nino.py            83      3    96%   182, 200-201
+src\anemia_junin\application\conversores.py                             7      0   100%
+src\anemia_junin\application\dto.py                                   110      0   100%
+src\anemia_junin\bootstrap.py                                          70      0   100%
+src\anemia_junin\domain\clasificador.py                                69      4    94%   95-96, 151, 157
+src\anemia_junin\domain\entities.py                                    64      0   100%
+src\anemia_junin\domain\ports.py                                       34      0   100%
+src\anemia_junin\domain\validators.py                                 146      6    96%   62, 128, 133, 148, 163, 201
+-------------------------------------------------------------------------------------------------
+TOTAL                                                                1348     45    97%
+Coverage HTML written to dir docs/evidencias/htmlcov
+Required test coverage of 80.0% reached. Total coverage: 96.66%
+============================ 242 passed in 22.05s =============================
