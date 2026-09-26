@@ -1,0 +1,43 @@
+' T-007; fuente: solicitudes DIAG y entregables vigentes; 2026-09-26
+@startgantt 33_s34_cronograma_sprints_hitos
+!include _tema.puml
+title Cronograma propuesto de sprints e hitos
+Project starts 2026-09-01
+printscale weekly
+language es
+[Sprint 1 (S3-S4) INC-1 parte 1: habilitadores, validación y clasificación, registro] as [S1] starts 2026-09-01
+[S1] ends 2026-09-14
+[S1] is colored in LightBlue
+[H0] happens 2026-09-05
+[Sprint 2 (S5-S6) INC-1 parte 2: expediente, listado, reporte] as [S2] starts 2026-09-15
+[S2] ends 2026-09-28
+[S2] is colored in LightBlue
+[H1] happens 2026-09-28
+[Sprint 3 (S7-S8) INC-2 agenda y alertas + BT-01/02/03/08/09 (CI, SonarCloud, E2E/carga)] as [S3] starts 2026-09-29
+[S3] ends 2026-10-12
+[S3] is colored in LightGray
+[H2] happens 2026-10-12
+[Sprint 4 (S9-S10) INC-3 sin conexión, sincronización, despliegue en posta piloto] as [S4] starts 2026-10-13
+[S4] ends 2026-10-26
+[S4] is colored in LightGray
+[H3] happens 2026-10-26
+[Sprint 5 (S11-S12) INC-4 WhatsApp y barreras] as [S5] starts 2026-10-27
+[S5] ends 2026-11-09
+[S5] is colored in LightGray
+[H4] happens 2026-11-09
+[Sprint 6 (S13-S14) INC-5 datos del HIS, experimentación, entrenamiento] as [S6] starts 2026-11-10
+[S6] ends 2026-11-23
+[S6] is colored in LightGray
+[H5] happens 2026-11-23
+[Sprint 7 (S15-S16) INC-5 integración + inicio INC-6] as [S7] starts 2026-11-24
+[S7] ends 2026-12-07
+[S7] is colored in LightGray
+[H6] happens 2026-12-07
+[Sprint 8 (S17-S18) INC-6 tablero territorial; producto operativo] as [S8] starts 2026-12-08
+[S8] ends 2026-12-21
+[S8] is colored in LightGray
+[H7] happens 2026-12-21
+legend bottom
+Plan académico; los hitos no prueban aceptación del usuario.
+endlegend
+@endgantt

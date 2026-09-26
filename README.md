@@ -13,6 +13,7 @@ El problema organizacional: en las zonas rurales de Junín el tamizaje de hemogl
 ```
 .
 ├── README.md                    este archivo
+├── AGENTS.md                    instrucciones de continuidad para agentes
 ├── .claude/agents/              definiciones de los subagentes (Claude Code)
 ├── coordinacion/                canal de comunicación entre agentes
 │   ├── TABLERO.md               tareas, estado y responsable
@@ -40,11 +41,11 @@ El detalle de cada ruta está en [`coordinacion/RUTAS.md`](coordinacion/RUTAS.md
 
 | Semana | Tema (según guía) | Guía | Entregable vigente | Estado |
 | --- | --- | --- | --- | --- |
-| S1 | Enfoque de procesos de la organización: problema, actores, AS-IS, brechas, TO-BE, aporte del software, cadena de valor, indicadores | [`guias/S1_…`](guias/S1_Guia_trabajo_semana_1.md) | [`Entregable_Semana1`](entregables/semana-01/Entregable_Semana1_Anemia_Junin.md) | Borrador v5 — pendiente revisión (T-002) |
-| S2 | Selección y justificación del modelo de proceso de software, representación, incrementos, riesgos, herramientas | [`guias/S2_…`](guias/S2_Guia_trabajo_semana_2.md) | [`Entregable_Semana2`](entregables/semana-02/Entregable_Semana2_Anemia_Junin.md) | Borrador v2 — pendiente revisión (T-003) |
-| S3-4 | Actividades, organización, responsabilidades, productos, WBS, priorización, estimación y plan del proyecto | [`guias/S3-4_…`](guias/S3-4_Guia_trabajo_semanas_3_y_4.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | Borrador v1 — pendiente revisión y diagramas (T-004, T-007) |
-| S5 | Ejecución del Incremento 1 (PMV): categorización y sastrería, arquitectura, pruebas, despliegue (consigna S6 §3.1-3.4) | consigna S6 §3.1-3.4 | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` — **por crear**; base: [PDF Actividad 5](entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf), [extracción](entregables/semana-05/_extraccion_Informe_Actividad5.md) | Por crear (T-005) |
-| S6 | Informe integrador de las Unidades I y II | [consigna PDF](guias/S6_Consigna_e_instrumento_evaluacion_integrador.pdf), [extracción](guias/S6_Consigna_integrador_extraccion.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) | Propuesta de revisión — por actualizar (T-006) |
+| S1 | Enfoque de procesos de la organización: problema, actores, AS-IS, brechas, TO-BE, aporte del software, cadena de valor, indicadores | [`guias/S1_…`](guias/S1.Gu%C3%ADa%20de%20trabajo%20semana%201.md) | [`Entregable_Semana1`](entregables/semana-01/Entregable_Semana1_Anemia_Junin.md) | Revisado; faltan figuras (T-002) |
+| S2 | Selección y justificación del modelo de proceso de software, representación, incrementos, riesgos, herramientas | [`guias/S2_…`](guias/S2.Gu%C3%ADa%20de%20trabajo%20semana%202.md) | [`Entregable_Semana2`](entregables/semana-02/Entregable_Semana2_Anemia_Junin.md) | Revisado; falta figura (T-003) |
+| S3-4 | Actividades, organización, responsabilidades, productos, WBS, priorización, estimación y plan del proyecto | [`guias/S3-4_…`](guias/S3.GU%C3%8DA%20DE%20TRABAJO%20SEMANA%203%20Y%204.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | Revisado; pendientes diagramas y conciliación técnica (T-004, T-007) |
+| S5 | Ejecución de procesos principales del PMV: requisitos, diseño, construcción, pruebas y despliegue | [Guía S5](guias/S5-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%205.md) | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` — **por crear**; base: [PDF Actividad 5](entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf), [extracción](entregables/semana-05/_extraccion_Informe_Actividad5.md) | Por crear (T-005) |
+| S6 | Informe integrador de las Unidades I y II | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) | Propuesta de revisión — por actualizar (T-006) |
 
 Las versiones anteriores están en `archivo/versiones-anteriores/`. El historial completo se conserva en git (`git log --follow <ruta>`).
 
@@ -94,21 +95,25 @@ El agente `conversor-entregas` automatiza ambos caminos y guarda los resultados 
 
 ## Cómo ejecutar el software
 
-> *Sección provisional: el agente `desarrollador` la completará tras verificar la ejecución (tarea T-008).*
+Desde la raíz del repositorio, en PowerShell:
 
-Referencia rápida (sin verificar aún):
-
-```bash
+```powershell
 cd anemia_junin
-python -m venv .venv
-.venv\Scripts\activate          # Windows  (Linux/macOS: source .venv/bin/activate)
-pip install -e ".[dev]"
-pytest                           # pruebas
+python -m venv .venv                 # solo si aún no existe
+.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m pytest --cov --cov-report=term-missing
+.\.venv\Scripts\python.exe -m anemia_junin
 ```
 
-Detalle de ejecución, datos sintéticos y arquitectura: `anemia_junin/README.md` (por crear).
+Abrir `http://127.0.0.1:8000/`. Instrucciones completas y carga de datos sintéticos: [README del PMV](anemia_junin/README.md).
 
-## Herramientas disponibles en el equipo de trabajo (verificado 2026-09-25)
+Revisión local T-010 (2026-09-25, Python 3.13.7): **242 pruebas aprobadas, cobertura 96,66 %, Ruff sin hallazgos**. Se detectó además un defecto de entrada numérica fuera de la suite (DEV-101). La evidencia de carga conservada corresponde a la ejecución anterior de Claude; no se volvió a ejecutar en esta revisión.
+
+Informe y pendientes priorizados: [revisión del avance](coordinacion/informes/2026-09-25_orquestador_T-010.md). Los porcentajes de los checklists anteriores no certifican que el proyecto esté listo para entregar.
+
+## Herramientas registradas en el equipo anterior (2026-09-25)
+
+Inventario histórico de Claude; no representa necesariamente este equipo. La revisión T-010 utilizó Python 3.13.7.
 
 | Herramienta | Estado |
 | --- | --- |

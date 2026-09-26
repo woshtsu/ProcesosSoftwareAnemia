@@ -1,0 +1,46 @@
+' T-007; fuente: solicitudes DIAG y entregables vigentes; 2026-09-26
+@startwbs 31_s34_wbs_proyecto
+!include _tema.puml
+title WBS del proyecto y tareas del Incremento 1
+* Proyecto Anemia Junín
+** Entregable E1 Documentación S1 a S6
+** Entregable E3 Evidencias de calidad y valor
+** Entregable E2 Producto de software
+*** Incremento INC-1 Registro nominal y expediente (PMV)
+**** Épica EP-1.T Habilitadores
+***** Arquitectura y persistencia
+****** T01 ADR-001/002
+****** T02 Esquema y migración 001
+***** Entorno de calidad
+****** T03 pytest, cobertura >=80%, ruff, arquitectura
+***** Demostración
+****** T16 Datos sintéticos y Waitress
+**** Épica EP-1.B Validación
+***** Historia HIST-1.3 Validar y clasificar
+****** T04 Normativa y proveedor JSON
+****** T05 Validadores
+****** T06 Clasificador
+****** T07 Pruebas de frontera
+**** Épica EP-1.A Registro y expediente
+***** Historia HIST-1.1 Registrar niño
+****** T08 Caso de uso, repositorios y transacción
+****** T09 API POST y OpenAPI
+****** T10 Formulario web
+****** T11 Pruebas de persistencia y API
+***** Historia HIST-1.2 Expediente y dosajes
+****** T12 Consultar, actualizar y agregar dosaje
+**** Épica EP-1.C Seguimiento y reporte
+***** Historia HIST-1.4 Listado
+****** T13 Lista 6-59 meses, filtros y severidad
+***** Historia HIST-1.5 Reporte
+****** T14 Reporte e indicador
+***** Pruebas de Sprint 2
+****** T15 Integración API y persistencia
+*** INC-2 Agenda y alertas: HIST-2.1 a HIST-2.4
+*** INC-3 Offline y sincronización: HIST-3.1 a HIST-3.4
+*** INC-4 WhatsApp y barreras: HIST-4.1 a HIST-4.4
+*** INC-5 Modelo predictivo: HIST-5.1 a HIST-5.4
+*** INC-6 Tablero territorial: HIST-6.1 a HIST-6.4
+*** Backlog técnico: CI, SonarCloud, PostgreSQL, roles, posta y validación normativa
+
+@endwbs

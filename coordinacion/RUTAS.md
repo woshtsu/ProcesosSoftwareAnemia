@@ -10,17 +10,17 @@ Si un agente necesita crear una ruta nueva, lo pide al `orquestador` mediante un
 3. Los entregables se escriben siempre en **Markdown** (`.md`, UTF-8). Los PDF/DOCX son derivados y viven en `exportados/`.
 4. Las imágenes se enlazan con **rutas relativas**; nunca se incrustan en base64.
 5. Los diagramas se incrustan en los `.md` en **SVG** (`../../diagramas/svg/<nombre>.svg` desde `entregables/semana-XX/`). El PNG es para vista previa y para la conversión a DOCX.
-6. Nombres de archivo: sin espacios ni tildes; `snake_case` o `Palabras_Con_Guion_Bajo`; prefijo numérico `NN_` en diagramas.
+6. Las guías descargadas por el usuario conservan su nombre original, incluidos espacios y tildes; son una excepción a la convención siguiente. Nombres de archivo: sin espacios ni tildes; `snake_case` o `Palabras_Con_Guion_Bajo`; prefijo numérico `NN_` en diagramas.
 
 ## Guías del docente (solo lectura)
 
 | Semana | Ruta |
 | --- | --- |
-| S1 | `guias/S1_Guia_trabajo_semana_1.md` |
-| S2 | `guias/S2_Guia_trabajo_semana_2.md` |
-| S3-4 | `guias/S3-4_Guia_trabajo_semanas_3_y_4.md` |
-| S5 | *No hay guía en el repositorio.* Requisitos de S5 = consigna S6, secciones 3.1 a 3.4 + `entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf` |
-| S6 (integrador) | `guias/S6_Consigna_e_instrumento_evaluacion_integrador.pdf` (original) y `guias/S6_Consigna_integrador_extraccion.md` (texto extraído) |
+| S1 | `guias/S1.Guía de trabajo semana 1.md` |
+| S2 | `guias/S2.Guía de trabajo semana 2.md` |
+| S3-4 | `guias/S3.GUÍA DE TRABAJO SEMANA 3 Y 4.md` |
+| S5 | `guias/S5-PSW-GUÍA DE TRABAJO SEMANA 5.md` (fuente primaria); complementar con consigna S6. El PDF de Actividad 5 es antecedente, no guía. |
+| S6 (integrador) | `guias/S6.CONSIGNA DE TRABAJO E INSTRUMENTO DE EVALUACIÓN INTEGRADOR.md` (copia Markdown aportada por el usuario) |
 
 ## Entregables vigentes
 
@@ -53,7 +53,7 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Código fuente | `anemia_junin/src/anemia_junin/` |
 | Pruebas | `anemia_junin/tests/` |
 | ADR | `anemia_junin/docs/adr/` |
-| README de ejecución | `anemia_junin/README.md` (**POR CREAR** por el desarrollador) |
+| README de ejecución | `anemia_junin/README.md` (existente; verificación local en T-010) |
 
 ## Exportaciones para el aula virtual
 
@@ -82,3 +82,19 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Verificaciones antiguas | `archivo/verificaciones/` |
 | Paquetes ZIP entregados | `archivo/zip/` |
 | Material de trabajo de la revisión anterior (capturas QA, textos extraídos, PDF de diagramas) | `archivo/tmp-revision/` |
+
+## Instrucciones de continuidad
+
+- `AGENTS.md`: entrada para agentes de programación; remite a este mapa, al protocolo y al tablero. Alta registrada en `coordinacion/solicitudes/ORQ-001.md`.
+- Los informes históricos mantienen las rutas que existían al emitirlos; para trabajar se consultan las rutas actuales de este mapa.
+
+## Rutas de cierre autorizadas mediante ORQ-002
+
+- `entregables/semana-06-integrador/Presentacion_Integrador_Anemia_Junin.md`: contenido y guion de siete diapositivas.
+- `exportados/semana-06-integrador/Presentacion_Integrador_Anemia_Junin.pptx` y `.pdf`: presentación.
+- `herramientas/conversion/`: generadores reproducibles de documentos y presentación.
+- `diagramas/_build/cierre/`: borradores y verificaciones visuales regenerables.
+- `anemia_junin/docs/evidencias/cierre/`: capturas y mediciones de la sesión actual.
+- `anemia_junin/scripts/verificar_navegador.py`: prueba de aceptación técnica en Chromium con capturas.
+- `archivo/versiones-anteriores/semana-06-integrador/`: integrador anterior a la conciliación del cierre.
+- `exportados/LEEME_ENTREGA.md`: índice del paquete y campos pendientes del equipo.

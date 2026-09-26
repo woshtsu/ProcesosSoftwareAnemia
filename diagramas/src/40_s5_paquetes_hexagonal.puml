@@ -1,0 +1,20 @@
+' T-007; fuente: solicitudes DIAG y entregables vigentes; 2026-09-26
+@startuml 40_s5_paquetes_hexagonal
+!include _tema.puml
+title Paquetes del PMV y dependencias de código
+package "adapters.inbound\nREST / Web UI" as inbound
+package "application\nCasos de uso y DTO" as app
+package "domain\nEntidades, validadores, clasificador y puertos" as domain
+package "adapters.outbound\nSQLite y proveedor JSON" as outbound
+package "bootstrap\nRaíz de composición" as boot
+inbound --> app
+app --> domain
+outbound --> domain
+boot ..> inbound : ensambla
+boot ..> app : construye
+boot ..> outbound : inyecta
+note bottom of domain
+El núcleo no importa Flask ni sqlite3.
+Verificado por pruebas AST de arquitectura.
+end note
+@enduml

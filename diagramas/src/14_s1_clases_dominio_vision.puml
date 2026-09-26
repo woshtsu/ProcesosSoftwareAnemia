@@ -1,0 +1,65 @@
+' T-007; fuente: solicitudes DIAG y entregables vigentes; 2026-09-26
+@startuml 14_s1_clases_dominio_vision
+!include _tema.puml
+title Modelo conceptual TO-BE (no es el esquema SQLite)
+hide circle
+class Nino {
+  +DNI: String
+  +nombres: String
+  +fechaNacimiento: Date
+  +tipoNacimiento: String
+  +altitudResidencia: Float
+  +calcularEdadMeses()
+}
+class Expediente {
+  +numeroHistoria: String
+  +fechaApertura: Date
+  +dniMadre: String
+  +abrirExpediente()
+}
+class Dosaje {
+  +fecha: Date
+  +resultadoHb: Float
+  +hemoglobinaAjustada: Float
+  +tipoDosaje: String
+  +evaluarAnemia()
+}
+class Tratamiento {
+  +fechaInicio: Date
+  +tipoSuplemento: String
+  +duracionMeses: Int
+  +porcentajeAdherencia: Float
+  +actualizarAdherencia()
+}
+class ControlProgramado {
+  +fechaProgramada: Date
+  +estado: String
+  +tipo: String
+  +generarAlerta()
+}
+class VisitaDomiciliaria {
+  +fechaVisita: Date
+  +hallazgos: String
+  +barrerasIdentificadas: String
+  +registrarVisitaOffline()
+}
+class ModeloPredictivoIA {
+  +scoreRiesgo: Float
+  +variablesClave: String
+  +calcularScore()
+}
+class NotificacionWhatsApp {
+  +numeroCelular: String
+  +mensaje: String
+  +estadoRespuesta: String
+  +enviarMensaje()
+  +procesarRespuesta()
+}
+Nino "1" -- "1" Expediente : posee
+Expediente "1" -- "*" Dosaje : registra
+Expediente "1" -- "*" Tratamiento : contiene
+Tratamiento "1" -- "*" ControlProgramado : genera
+Nino "1" -- "*" VisitaDomiciliaria : recibe
+ControlProgramado "1" -- "1" NotificacionWhatsApp : dispara
+Nino "1" -- "1" ModeloPredictivoIA : evaluadoPor
+@enduml

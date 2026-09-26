@@ -1,0 +1,50 @@
+' T-007; fuente: solicitudes DIAG y entregables vigentes; 2026-09-26
+@startuml 30_s34_flujo_actividades_proceso
+!include _tema.puml
+title Actividades del proceso de software y productos de trabajo
+|Equipo Scrum|
+start
+:Backlog priorizado (TO-BE S1 e incrementos S2);
+repeat
+:Sprint Planning\nProducto: Sprint Backlog;
+|Personal de salud / PO|
+repeat
+:Refinar requisitos\nProducto: historias Ready con Given-When-Then;
+repeat while (¿Criterios no verificables?) is (Sí)
+|Equipo Scrum|
+:Análisis y diseño\nProducto: ADR, esquema y OpenAPI;
+repeat
+:Implementación\nProducto: código y pull request;
+|Automatización|
+:pytest y cobertura\nProducto: resultados reproducibles;
+repeat while (¿Pruebas fallan o cobertura < 80 %?) is (Sí)
+|Equipo Scrum|
+:Revisión y ruff\nProducto: revisión de código;
+|Automatización|
+:Integración y verificación\nProducto: versión integrada;
+|Equipo Scrum|
+:Despliegue local del INC-1\nEntrega: PMV ejecutable;
+|Personal de salud / PO|
+:Revisión funcional\nProducto: acta de aceptación (pendiente real);
+if (¿Incremento aceptado?) then (No)
+|Equipo Scrum|
+:Retroalimentación al backlog;
+else (Sí)
+:Medir indicadores\nProducto: tablero de indicadores;
+endif
+:Retrospectiva\nProducto: plan de mejora;
+repeat while (¿Quedan incrementos?) is (Sí)
+:Operación con Kanban;
+stop
+legend right
+**MLOps desde INC-5 (plan)**
+HIS > limpieza / versionado MLflow > experimentación
+RF vs. GB > entrenamiento > evaluación clínica
+Publicación del artefacto hacia integración
+Medición > monitoreo por zona
+Desempeño bajo umbral: reentrenamiento
+
+Equipo: Porras, Auqui y Huamani.
+Automatización local actual; CI remoto en BT-01.
+endlegend
+@enduml

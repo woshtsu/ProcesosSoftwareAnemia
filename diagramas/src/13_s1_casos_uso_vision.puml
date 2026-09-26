@@ -1,0 +1,44 @@
+' T-007; fuente: solicitudes DIAG y entregables vigentes; 2026-09-26
+@startuml 13_s1_casos_uso_vision
+!include _tema.puml
+left to right direction
+title Casos de uso de la visión TO-BE (INC-1 a INC-6)
+actor "Personal de salud" as P
+actor "Agente comunitario" as A
+actor "Familia / cuidador" as F
+actor "Gestión territorial" as G
+actor "Servicios externos\nIA / WhatsApp" as S
+rectangle "Sistema de seguimiento de anemia infantil" {
+usecase "CU01 Registrar expediente\nINC-1" as U1
+usecase "CU02 Consultar expediente\nINC-1" as U2
+usecase "CU03 Registrar dosaje\nINC-1" as U3
+usecase "CU04 Generar agenda\nINC-2" as U4
+usecase "CU05 Estimar riesgo\nINC-5" as U5
+usecase "CU06 Enviar WhatsApp\nINC-4" as U6
+usecase "CU07 Confirmar cita\no reportar barrera\nINC-4" as U7
+usecase "CU08 Registrar visita\nINC-3" as U8
+usecase "CU09 Gestionar referencia\nINC-6" as U9
+usecase "CU10 Consultar indicadores\nINC-6" as U10
+usecase "CU11 Sincronizar offline\nINC-3" as U11
+}
+P -- U1
+P -- U2
+P -- U3
+P -- U9
+A -- U8
+A -- U11
+F -- U7
+G -- U10
+S -- U4
+S -- U5
+S -- U6
+U4 .> U5 : <<include>>
+U4 .> U6 : <<include>>
+U11 .> U1 : <<extend>>\nsin conectividad
+U11 .> U3 : <<extend>>
+U11 .> U8 : <<extend>>
+legend bottom
+Visión conceptual heredada: no representa funciones ya implementadas.
+Las extensiones offline requieren captura local y sincronización posterior.
+endlegend
+@enduml

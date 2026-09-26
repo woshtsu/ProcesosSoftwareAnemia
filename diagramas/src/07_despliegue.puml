@@ -32,12 +32,12 @@ html --> app : HTTP · 127.0.0.1:8000\n(HTML y JSON)
 app --> db : sqlite3 (en proceso)
 app --> norma : lee y valida al iniciar
 app --> sql : aplica migraciones\nal iniciar
-seed --> db : datos sintéticos\n(BD vacía)
+seed --> app : API mediante cliente de prueba\n(BD vacía)
 
 note bottom of equipo
   Demostración académica local con datos sintéticos (ADR-002): sin CORS, sin CDN externo,
   sin autenticación ni cifrado. El servidor escucha solo en 127.0.0.1.
-  El repositorio no incluye aún un script de arranque con Waitress (ver T-008).
+  Arranque reproducible: python -m anemia_junin (Waitress, __main__.py).
   Un despliegue en posta requiere su propia evidencia (INC-3: captura sin conexión y sincronización).
 end note
 @enduml

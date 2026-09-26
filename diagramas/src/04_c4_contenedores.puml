@@ -31,7 +31,7 @@ Rel(coordinador, app, "Consulta /reportes/registros", "HTTP · HTML")
 Rel(cliente, app, "Invoca operaciones /api/v1/…", "HTTP · JSON")
 Rel(app, db, "Lee y escribe en transacciones (Unidad de Trabajo)", "sqlite3 · SQL en proceso")
 Rel(app, norma, "Lee y valida al iniciar", "E/S de archivo")
-Rel(seed, db, "Inserta datos de demostración", "crear_app() + sqlite3")
+Rel(seed, app, "Invoca API con cliente de prueba Flask", "crear_app().test_client()")
 
 Lay_D(app, seed)
 SHOW_LEGEND(false)

@@ -1,0 +1,103 @@
+' T-007; fuente: solicitudes DIAG y entregables vigentes; 2026-09-26
+@startgantt 32_s34_gantt_incremento1
+!include _tema.puml
+title Plan del Incremento 1 (no acredita ejecución ni aceptación)
+Project starts 2026-09-01
+printscale daily
+language es
+[A01 Sprint Planning S1 (Porras V.)] as [A01] starts 2026-09-01
+[A01] ends 2026-09-01
+[A01] is colored in Salmon
+[A02 Arquitectura hexagonal y ADR (Auqui H.)] as [A02] starts 2026-09-02
+[A02] ends 2026-09-03
+[A02] is colored in Salmon
+[A01] -> [A02]
+[A03 Esquema de datos y migración 001 (Auqui H.)] as [A03] starts 2026-09-04
+[A03] ends 2026-09-05
+[A03] is colored in LightBlue
+[A02] -> [A03]
+[A04 Entorno de calidad (pytest, cobertura, ruff) (Huamani R.)] as [A04] starts 2026-09-02
+[A04] ends 2026-09-03
+[A04] is colored in LightBlue
+[A01] -> [A04]
+[A05 Normativa JSON y proveedor (Auqui H.)] as [A05] starts 2026-09-02
+[A05] ends 2026-09-03
+[A05] is colored in LightBlue
+[A01] -> [A05]
+[A06 Validadores de dominio (HIST-1.3) (Auqui H.)] as [A06] starts 2026-09-04
+[A06] ends 2026-09-07
+[A06] is colored in Salmon
+[A02] -> [A06]
+[A07 Clasificador de Hb (HIST-1.3) (Auqui H.)] as [A07] starts 2026-09-08
+[A07] ends 2026-09-09
+[A07] is colored in Salmon
+[A05] -> [A07]
+[A06] -> [A07]
+[A08 Pruebas de valores límite (Huamani R.)] as [A08] starts 2026-09-10
+[A08] ends 2026-09-11
+[A08] is colored in LightBlue
+[A04] -> [A08]
+[A07] -> [A08]
+[A09 Registro: caso de uso y repositorios (HIST-1.1) (Auqui H.)] as [A09] starts 2026-09-10
+[A09] ends 2026-09-11
+[A09] is colored in Salmon
+[A03] -> [A09]
+[A07] -> [A09]
+[A10 API POST/GET /ninos + OpenAPI (Auqui H.)] as [A10] starts 2026-09-12
+[A10] ends 2026-09-12
+[A10] is colored in Salmon
+[A09] -> [A10]
+[A11 Formulario web de registro (Auqui H.)] as [A11] starts 2026-09-12
+[A11] ends 2026-09-12
+[A11] is colored in Salmon
+[A09] -> [A11]
+[A12 Pruebas persistencia/API y revisión de código (Huamani R.)] as [A12] starts 2026-09-13
+[A12] ends 2026-09-13
+[A12] is colored in Salmon
+[A08] -> [A12]
+[A10] -> [A12]
+[A11] -> [A12]
+[A13 Revisión y retrospectiva S1 (Porras V.)] as [A13] starts 2026-09-14
+[A13] ends 2026-09-14
+[A13] is colored in Salmon
+[A12] -> [A13]
+[A14 Sprint Planning S2 (Porras V.)] as [A14] starts 2026-09-15
+[A14] ends 2026-09-15
+[A14] is colored in Salmon
+[A13] -> [A14]
+[A15 Expediente y dosajes (HIST-1.2) (Auqui H.)] as [A15] starts 2026-09-16
+[A15] ends 2026-09-19
+[A15] is colored in Salmon
+[A14] -> [A15]
+[A16 Listado en seguimiento (HIST-1.4) (Auqui H.)] as [A16] starts 2026-09-20
+[A16] ends 2026-09-21
+[A16] is colored in LightBlue
+[A15] -> [A16]
+[A17 Reporte del periodo (HIST-1.5) (Auqui H.)] as [A17] starts 2026-09-20
+[A17] ends 2026-09-22
+[A17] is colored in Salmon
+[A15] -> [A17]
+[A18 Pruebas de integración, cobertura y ruff S2 (Huamani R.)] as [A18] starts 2026-09-23
+[A18] ends 2026-09-24
+[A18] is colored in Salmon
+[A16] -> [A18]
+[A17] -> [A18]
+[A19 Datos sintéticos y demostración local (Auqui H.)] as [A19] starts 2026-09-25
+[A19] ends 2026-09-25
+[A19] is colored in Salmon
+[A18] -> [A19]
+[A20 Revisión de aceptación con personal de salud (Porras V.)] as [A20] starts 2026-09-26
+[A20] ends 2026-09-27
+[A20] is colored in Salmon
+[A19] -> [A20]
+[A21 Retrospectiva y actualización del plan (Porras V.)] as [A21] starts 2026-09-28
+[A21] ends 2026-09-28
+[A21] is colored in Salmon
+[A20] -> [A21]
+[H0 Arquitectura base] happens 2026-09-05
+[H1 Aceptación prevista] happens 2026-09-28
+legend bottom
+Rojo: ruta crítica. Azul: holgura. Días calendario.
+S1: 01-14 sep. S2: 15-28 sep. Hitos planificados.
+endlegend
+@endgantt

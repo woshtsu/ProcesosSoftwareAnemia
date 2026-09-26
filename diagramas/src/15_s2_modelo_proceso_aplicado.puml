@@ -1,0 +1,44 @@
+' T-007; fuente: solicitudes DIAG y entregables vigentes; 2026-09-26
+@startuml 15_s2_modelo_proceso_aplicado
+!include _tema.puml
+title Modelo iterativo incremental aplicado a Anemia Junín
+|Usuarios|
+start
+:1 Entrada / requerimientos\nPersonal de salud, agente comunitario y microred\nTO-BE y backlog INC-1 a INC-6;
+|Scrum|
+repeat
+:2 Planificación\nSprint de dos semanas e historias priorizadas;
+|DevOps|
+repeat
+:3 Desarrollo\nINC-1 Flask + SQLite, núcleo hexagonal;
+:4 Integración\nRevisión de cambios y análisis ruff;
+:5 Pruebas\npytest, persistencia, API, arquitectura y E2E;
+repeat while (¿DoD incumplida?) is (Sí)
+|Usuarios|
+:6 Retroalimentación\nSprint Review y observaciones del usuario;
+if (¿Incremento aceptado?) then (Sí)
+|DevOps|
+:7 Entrega\nINC-1 local; posta piloto desde INC-3;
+else (No)
+|Scrum|
+:Registrar observaciones en backlog;
+endif
+|Scrum|
+:8 Medición\nCalidad de registros, pruebas e indicadores por incremento;
+:9 Mejora\nRetrospectiva y ajuste del backlog;
+:10 Repetición / siguiente incremento\nINC-(n+1);
+repeat while (¿Queda alcance?) is (Sí)
+stop
+legend right
+**MLOps desde INC-5 (plan)**
+Datos HIS, dosajes, adherencia y visitas
+Validar / limpiar > variables > entrenar RF vs. GB
+Evaluar con profesional > publicar artefacto en 7
+Monitorear desempeño y sesgo desde 8
+Degradación: reentrenar y reevaluar
+
+INC-1 Registro | INC-2 Agenda | INC-3 Offline
+INC-4 WhatsApp | INC-5 Modelo | INC-6 Tablero
+CI remoto y aceptación humana no se presumen ejecutados.
+endlegend
+@enduml
