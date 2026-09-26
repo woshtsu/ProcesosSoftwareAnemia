@@ -1,0 +1,149 @@
+' =============================================================================
+' Título: Proceso AS-IS por carriles — Semana 1
+' Solicitud: DIAG-001 (T-002)
+' Fuentes de verdad: entregables/semana-01/Entregable_Semana1_Anemia_Junin.md §3 (flujo en 9 pasos y problemas);
+'   entregables/semana-01/anexos/Entrevista.md; archivo/versiones-anteriores/semana-01/..._v4.md §3
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' Regla de la guía S1 §5: el AS-IS no incorpora ninguna solución ni carril de software.
+' =============================================================================
+@startuml 10_s1_proceso_as_is
+!include _tema.puml
+!pragma useVerticalIf on
+skinparam activity {
+  FontSize 12
+}
+skinparam note {
+  BackgroundColor #F7E3E1
+  BorderColor #9E3A30
+  FontSize 11
+}
+title Proceso AS-IS — Seguimiento de la anemia infantil en establecimientos rurales de Junín
+
+|#F1F3F5|Familia / cuidador|
+|#FFFFFF|Personal de salud\n(enfermera, médico, técnico)|
+|#F1F3F5|Agente comunitario\n(actor social)|
+|#FFFFFF|Gestión territorial\n(red / microred)|
+|#F1F3F5|MINSA|
+
+|Familia / cuidador|
+start
+:Acude al establecimiento con el niño
+(control, campaña, padrón
+o iniciativa propia);
+|Personal de salud\n(enfermera, médico, técnico)|
+:Registra datos del niño;
+:Verifica antecedentes y controles
+pendientes (tarjeta / historia clínica);
+if (D1 ¿Corresponde control\nsegún edad?) then (No)
+  :Deriva según motivo de atención;
+  stop
+else (Sí)
+  :Realiza control según edad;
+endif
+if (D2 ¿Corresponde tamizaje?) then (Sí)
+  :Realiza tamizaje de hemoglobina;
+  :Interpreta resultado con
+  ajuste por altitud;
+  :Registra resultado;
+  if (D3 ¿Presenta anemia?) then (Sí)
+    :Diagnostica anemia e inicia tratamiento
+    (sulfato ferroso o hierro polimaltosado,
+    mínimo 6 meses);
+    note right
+      **PROBLEMA P2**
+      Débil trazabilidad
+      de la adherencia
+    end note
+    :Registra tratamiento y fecha de inicio
+    en historia clínica, tarjeta de control
+    y HIS (triple registro);
+    note right
+      **PROBLEMA P3**
+      Errores de digitación,
+      duplicidad y demora
+    end note
+    :Brinda orientación a la familia;
+    repeat
+      |Familia / cuidador|
+      :Administra el suplemento en casa;
+      note right
+        **PROBLEMA P4**
+        Barreras ocultas;
+        abandono silencioso
+      end note
+      |Agente comunitario\n(actor social)|
+      :Realiza visita domiciliaria semanal;
+      note right
+        **PROBLEMA P5**
+        Capacidad limitada: carga
+        manual en papel y sin conexión
+      end note
+      :Verifica consumo del suplemento;
+      :Registra en papel y reporta
+      barreras de forma verbal;
+      |Personal de salud\n(enfermera, médico, técnico)|
+      :Realiza seguimiento periódico
+      (controles y tamizajes de control);
+      note right
+        **PROBLEMA P6**
+        Controles atrasados y
+        pérdida de pacientes
+      end note
+    backward :Reevalúa, refuerza tratamiento
+    y refiere;
+    note right
+      **PROBLEMA P8**
+      Circuito de referencia
+      no trazable
+    end note
+    repeat while (D4 ¿Paciente recuperado?) is (No) not (Sí)
+    :Registra recuperación y cierra el caso;
+    note right
+      **PROBLEMA P7**
+      Cierre no siempre
+      documentado en el HIS
+    end note
+    |Gestión territorial\n(red / microred)|
+    :Consolida información de los
+    establecimientos (con demora);
+    :Visualiza indicadores con retraso;
+    note right
+      **PROBLEMA P9**
+      Indicadores incompletos
+      y tardíos
+    end note
+    :Coordina circuito de referencia
+    cuando corresponde;
+    :Genera reporte para el MINSA;
+    |MINSA|
+    :Recibe información consolidada;
+    :Supervisa el cumplimiento
+    del seguimiento;
+    :Analiza estadísticas e
+    indicadores de cobertura;
+    :Evalúa desempeño del proceso;
+    stop
+  else (No)
+  endif
+  |Personal de salud\n(enfermera, médico, técnico)|
+  :Indica suplementación preventiva
+  y próximo control
+  (cita calculada a mano);
+  note right
+    **PROBLEMA P1**
+    Agendamiento manual,
+    sin recordatorios
+  end note
+else (No)
+  |Personal de salud\n(enfermera, médico, técnico)|
+  :Control regular y próxima cita;
+endif
+|Familia / cuidador|
+:Recibe indicaciones y cita;
+stop
+
+legend bottom
+  Notas rojas: problemas observados en el AS-IS (P1-P9). Rombos D1-D4: decisiones del personal de salud.
+  El AS-IS no incorpora todavía ninguna solución tecnológica (guía S1, Actividad 2).
+endlegend
+@enduml

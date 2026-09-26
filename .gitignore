@@ -14,3 +14,7 @@ diagramas/_build/
 *.tmp
 .DS_Store
 Thumbs.db
+
+# Herramientas binarias descargables (ver herramientas/README.md)
+herramientas/plantuml/*.jar
+herramientas/.venv/

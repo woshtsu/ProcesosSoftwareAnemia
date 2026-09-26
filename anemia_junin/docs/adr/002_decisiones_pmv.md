@@ -41,3 +41,13 @@ No implementa: agenda, alertas, sincronización móvil, WhatsApp, integración H
 - Sin React, Node ni CDN externo
 - Formularios HTML con CSRF (Flask-WTF); API JSON sin CORS
 - Aviso visible: "Demostración académica con datos sintéticos"
+
+## Actualización 2026-09-25 (T-008, verificación del PMV)
+
+- **Punto de entrada:** `python -m anemia_junin` (Waitress por defecto; `--dev` para Flask). Configuración por variables `ANEMIA_*`.
+- **CSRF efectivo:** `CSRFProtect` se inicializa en `bootstrap.py` (antes solo existía el campo oculto en las plantillas). La API JSON queda exenta: no usa cookies ni CORS.
+- **Transacciones de escritura con `BEGIN IMMEDIATE`:** la prueba de carga con Locust (20 usuarios) reveló `500 database is locked` en `POST /dosajes` cuando dos transacciones pasaban de lectura a escritura. Los casos de uso de escritura usan ahora una unidad de trabajo inmediata; los de lectura mantienen `BEGIN` diferido.
+- **Sin valores por defecto silenciosos:** los adaptadores de entrada ya no sustituyen fecha, sexo, tipo de nacimiento o altitud mal formados por valores por defecto; pasan los errores de conversión al caso de uso (`errores_entrada`), que rechaza y registra el intento.
+- **Tiempo testeable:** el listado de 6–59 meses usa el puerto `Reloj` (`FiltroNinos.fecha_referencia`), no `date.today()`.
+- **Bandas de altitud no verificadas:** filas ≥ 4000 msnm con `"verificada": false`; el clasificador añade una advertencia y la UI la muestra en el expediente.
+- **Salud de la BD:** `GET /api/v1/salud` usa `verificar_conexion` del adaptador SQLite inyectada por `bootstrap` (el adaptador de entrada ya no importa `sqlite3`).

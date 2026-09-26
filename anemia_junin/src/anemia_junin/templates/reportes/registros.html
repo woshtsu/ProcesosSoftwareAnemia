@@ -87,7 +87,7 @@
       <div><dt>Altas aceptadas</dt><dd>{{ reporte.calidad_registro.intentos_aceptados }}</dd></div>
       <div><dt>Altas rechazadas</dt><dd>{{ reporte.calidad_registro.intentos_rechazados }}</dd></div>
       <div>
-        <dt>Tasa de aceptación</dt>
+        <dt>Tasa de aceptación (% de registros sin error crítico)</dt>
         <dd>
           {% if reporte.calidad_registro.tasa_aceptacion_pct is none %}
             <span class="text-muted">No calculable</span>

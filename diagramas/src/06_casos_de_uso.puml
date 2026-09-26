@@ -1,0 +1,60 @@
+' =============================================================================
+' Título: UML casos de uso del PMV (INC-1)
+' Solicitud: T-007 (migración de la Figura 6 del informe integrador S6; sustituye a src/Casos_de_uso_PMV.puml)
+' Fuentes de verdad: Informe_Integrador_Anemia_Junin.md §3.2 (UC-01..UC-07, HIST-1.1..1.5);
+'   anemia_junin/src/anemia_junin/application/casos_de_uso/*.py; adapters/inbound/*/blueprints.py
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' =============================================================================
+@startuml 06_casos_de_uso
+!include _tema.puml
+left to right direction
+skinparam usecase {
+  FontSize 12
+}
+skinparam packageStyle rectangle
+title UML · Casos de uso del PMV Anemia Junín (INC-1)
+
+actor "Personal\nde salud" as Salud #FFFFFF;line:34506B
+actor "Coordinador\ndel proyecto" as Coord #FFFFFF;line:34506B
+
+rectangle "Sistema PMV Anemia Junín" {
+  usecase "**UC-01 Registrar niño**\n<size:10>HIST-1.1 · POST /api/v1/ninos · /ninos/nuevo</size>" as UC01
+  usecase "**UC-02 Consultar expediente**\n<size:10>HIST-1.2 · GET /api/v1/ninos/{dni}</size>" as UC02
+  usecase "**UC-03 Actualizar expediente**\n<size:10>HIST-1.2 · PATCH /api/v1/ninos/{dni}</size>" as UC03
+  usecase "**UC-04 Registrar dosaje**\n<size:10>HIST-1.2 · POST /api/v1/ninos/{dni}/dosajes</size>" as UC04
+  usecase "**UC-05 Listar y filtrar seguimiento**\n<size:10>HIST-1.4 · GET /api/v1/ninos</size>" as UC05
+  usecase "**UC-06 Generar reporte del periodo**\n<size:10>HIST-1.5 · GET /api/v1/reportes/registros</size>" as UC06
+  usecase "**UC-07 Validar datos de entrada**\n<size:10>HIST-1.3 · domain/validators.py</size>" as UC07
+}
+
+Salud -- UC01
+Salud -- UC02
+Salud -- UC03
+Salud -- UC04
+Salud -- UC05
+Coord -- UC06
+
+UC01 ..> UC07 : <<include>>
+UC03 ..> UC07 : <<include>>
+UC04 ..> UC07 : <<include>>
+UC04 .[norank].> UC01 : <<extend>>\n[dosaje inicial opcional]
+
+note right of UC04
+  Aplica la clasificación referencial
+  versionada (NTS 213 / RM 429-2024):
+  ajuste por altitud y umbrales por edad.
+  No es un diagnóstico ni un modelo predictivo.
+end note
+
+note right of UC06
+  Conteos del periodo y tasa de aceptación
+  de intentos de registro (intentos_registro).
+end note
+
+legend bottom
+  Asociación sin flecha: el actor participa en el caso de uso.
+  «include»: comportamiento obligatorio incluido. «extend»: comportamiento opcional.
+  Los actores son roles de uso: INC-1 no implementa cuentas ni permisos (ADR-002).
+  Fuera de alcance: agenda (INC-2), sincronización (INC-3), mensajería (INC-4), riesgo de abandono (INC-5).
+endlegend
+@enduml

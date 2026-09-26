@@ -135,7 +135,7 @@ class TestAjusteAltitud:
 
 # ─── Clasificación grupo 6–23 meses (altitud 0, sin ajuste) ──────────────────
 
-class TestClasificacion6_23Meses:
+class TestClasificacion6a23Meses:
     """
     Umbrales (sin ajuste, altitud 0):
       < 7.0   → SEVERA       (< 70 ddl)
@@ -179,7 +179,7 @@ class TestClasificacion6_23Meses:
 
 # ─── Clasificación grupo 24–59 meses (altitud 0, sin ajuste) ─────────────────
 
-class TestClasificacion24_59Meses:
+class TestClasificacion24a59Meses:
     """
     Umbrales (sin ajuste):
       < 7.0    → SEVERA      (< 70 ddl)
@@ -262,3 +262,37 @@ class TestLimitesGrupoEdad:
         # La distinción clave: en grupo 24-59, LEVE arranca en 10.0 (100 ddl), no 9.5 (95 ddl)
         r = clasificador.clasificar(hb_observada_ddl=94, altitud_msnm=0, edad_meses=24)
         assert r.clasificacion == Clasificacion.MODERADA
+
+
+# ─── Bandas de altitud no verificadas (advertencia visible) ──────────────────
+
+class ProveedorConBandaNoVerificada(ProveedorNormativoFake):
+    def tabla_ajuste(self) -> list[dict]:
+        tabla = [dict(f) for f in super().tabla_ajuste()]
+        for fila in tabla:
+            if fila["altitud_desde_msnm"] >= 4000:
+                fila["verificada"] = False
+        return tabla
+
+
+class TestBandaNoVerificada:
+    def test_banda_no_verificada_emite_advertencia(self):
+        clasificador = ClasificadorHemoglobina(ProveedorConBandaNoVerificada())
+        r = clasificador.clasificar(hb_observada_ddl=140, altitud_msnm=4107, edad_meses=30)
+        assert r.clasificacion == Clasificacion.SIN_ANEMIA
+        assert any("no verificada" in a for a in r.advertencias)
+
+    def test_banda_verificada_sin_advertencia(self):
+        clasificador = ClasificadorHemoglobina(ProveedorConBandaNoVerificada())
+        r = clasificador.clasificar(hb_observada_ddl=140, altitud_msnm=3271, edad_meses=30)
+        assert r.advertencias == []
+
+    def test_normativa_real_marca_bandas_sobre_4000(self):
+        from pathlib import Path
+
+        from anemia_junin.adapters.outbound.normativa.proveedor import ProveedorNormativoJSON
+
+        ruta = Path(__file__).parents[2] / "config" / "normativa_v1.json"
+        tabla = ProveedorNormativoJSON(ruta).tabla_ajuste()
+        no_verificadas = [f["altitud_desde_msnm"] for f in tabla if f.get("verificada") is False]
+        assert no_verificadas == [4000, 4500]

@@ -1,0 +1,235 @@
+' =============================================================================
+' Tema común de diagramas — Proyecto Anemia Junín (Procesos de Software)
+' Responsable: agente diagramador (T-007) · 2026-09-25
+' Uso: !include _tema.puml   (en C4: incluir DESPUÉS de la librería C4)
+' Paleta sobria y accesible (contraste AA sobre fondo blanco), sin sombras.
+' La resolución PNG (dpi) la fija herramientas/diagramas/generar_diagramas.py.
+' =============================================================================
+' Motor de disposición: Graphviz (dot) si el generador lo detecta (-DDIAG_LAYOUT=dot);
+' en otro caso, smetana (motor interno, no requiere Graphviz).
+!if %get_variable_value("DIAG_LAYOUT") != "dot"
+!pragma layout smetana
+!endif
+
+' ---- Paleta -----------------------------------------------------------------
+!$TINTA      = "#1F2D3D"
+!$TINTA_SUAVE = "#4A5A6A"
+!$BORDE      = "#34506B"
+!$AZUL       = "#E6EEF7"
+!$AZUL_MEDIO = "#C9DAEC"
+!$AZUL_FUERTE = "#2F5D8A"
+!$VERDE      = "#E4F1EA"
+!$VERDE_FUERTE = "#2E6B4E"
+!$GRIS       = "#F1F3F5"
+!$GRIS_MEDIO = "#D5DBE1"
+!$ARENA      = "#FBF3DF"
+!$ARENA_BORDE = "#B08A2E"
+!$ROJO       = "#F7E3E1"
+!$ROJO_FUERTE = "#9E3A30"
+!$FUENTE     = "Arial"
+
+' ---- Global -------------------------------------------------------------------
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName $FUENTE
+skinparam defaultFontSize 13
+skinparam defaultFontColor $TINTA
+skinparam ArrowColor $BORDE
+skinparam ArrowFontColor $TINTA
+skinparam ArrowFontSize 12
+skinparam ArrowThickness 1.1
+skinparam roundCorner 8
+skinparam wrapWidth 260
+skinparam maxMessageSize 260
+skinparam nodesep 40
+skinparam ranksep 50
+skinparam minClassWidth 90
+
+skinparam title {
+  FontName $FUENTE
+  FontSize 17
+  FontStyle bold
+  FontColor $TINTA
+  BackgroundColor #FFFFFF
+}
+skinparam caption {
+  FontSize 12
+  FontColor $TINTA_SUAVE
+}
+skinparam legend {
+  BackgroundColor $GRIS
+  BorderColor $GRIS_MEDIO
+  FontSize 11
+  FontColor $TINTA
+}
+skinparam note {
+  BackgroundColor $ARENA
+  BorderColor $ARENA_BORDE
+  FontSize 11
+  FontColor $TINTA
+}
+skinparam footer {
+  FontSize 10
+  FontColor $TINTA_SUAVE
+}
+
+' ---- Elementos estructurales ----------------------------------------------
+skinparam rectangle {
+  BackgroundColor $AZUL
+  BorderColor $BORDE
+  FontColor $TINTA
+  StereotypeFontColor $TINTA_SUAVE
+  StereotypeFontSize 11
+}
+skinparam package {
+  BackgroundColor #FFFFFF
+  BorderColor $BORDE
+  FontColor $TINTA
+  FontStyle bold
+}
+skinparam frame {
+  BackgroundColor #FFFFFF
+  BorderColor $BORDE
+  FontColor $TINTA
+}
+skinparam node {
+  BackgroundColor $GRIS
+  BorderColor $BORDE
+  FontColor $TINTA
+}
+skinparam artifact {
+  BackgroundColor $ARENA
+  BorderColor $ARENA_BORDE
+}
+skinparam database {
+  BackgroundColor $AZUL_MEDIO
+  BorderColor $BORDE
+}
+skinparam component {
+  BackgroundColor $AZUL
+  BorderColor $BORDE
+  FontColor $TINTA
+}
+skinparam interface {
+  BackgroundColor #FFFFFF
+  BorderColor $BORDE
+}
+
+' ---- Casos de uso -------------------------------------------------------------
+skinparam actor {
+  BackgroundColor #FFFFFF
+  BorderColor $BORDE
+  FontColor $TINTA
+}
+skinparam actorBorderColor $BORDE
+skinparam actorBackgroundColor #FFFFFF
+skinparam actorStyle default
+skinparam usecase {
+  BackgroundColor $AZUL
+  BorderColor $BORDE
+  FontColor $TINTA
+  ArrowColor $BORDE
+}
+
+' ---- Clases / ER ---------------------------------------------------------------
+skinparam class {
+  BackgroundColor #FFFFFF
+  HeaderBackgroundColor $AZUL
+  BorderColor $BORDE
+  FontColor $TINTA
+  FontStyle bold
+  AttributeFontColor $TINTA
+  AttributeFontSize 12
+  StereotypeFontColor $TINTA_SUAVE
+}
+skinparam entity {
+  BackgroundColor #FFFFFF
+  BorderColor $BORDE
+}
+
+' ---- Secuencia -----------------------------------------------------------------
+skinparam sequence {
+  ParticipantBackgroundColor $AZUL
+  ParticipantBorderColor $BORDE
+  ParticipantFontColor $TINTA
+  ActorBackgroundColor #FFFFFF
+  ActorBorderColor $BORDE
+  LifeLineBorderColor $GRIS_MEDIO
+  LifeLineBackgroundColor $AZUL_MEDIO
+  GroupBackgroundColor $GRIS
+  GroupBorderColor $BORDE
+  GroupHeaderFontColor $TINTA
+  DividerBackgroundColor $GRIS
+  DividerBorderColor $BORDE
+  BoxBackgroundColor #FAFBFC
+  BoxBorderColor $GRIS_MEDIO
+  ReferenceBackgroundColor $GRIS
+  MessageAlign center
+}
+skinparam responseMessageBelowArrow true
+
+' ---- Actividad / flujo ----------------------------------------------------------
+skinparam activity {
+  BackgroundColor $AZUL
+  BorderColor $BORDE
+  FontColor $TINTA
+  DiamondBackgroundColor $ARENA
+  DiamondBorderColor $ARENA_BORDE
+  StartColor $TINTA
+  EndColor $TINTA
+  BarColor $TINTA
+}
+skinparam swimlane {
+  BorderColor $GRIS_MEDIO
+  BorderThickness 1.2
+  TitleFontColor $TINTA
+  TitleFontSize 14
+  TitleFontStyle bold
+}
+skinparam partition {
+  BorderColor $BORDE
+  BackgroundColor #FFFFFF
+}
+
+' ---- Estados ---------------------------------------------------------------------
+skinparam state {
+  BackgroundColor $AZUL
+  BorderColor $BORDE
+  FontColor $TINTA
+}
+
+' ---- Estilos auxiliares por estereotipo --------------------------------------
+skinparam rectangle<<sistema>> {
+  BackgroundColor $VERDE
+  BorderColor $VERDE_FUERTE
+}
+skinparam rectangle<<actual>> {
+  BackgroundColor $GRIS
+  BorderColor $TINTA_SUAVE
+}
+skinparam rectangle<<futuro>> {
+  BackgroundColor #FFFFFF
+  BorderColor $TINTA_SUAVE
+  BorderStyle dashed
+}
+skinparam rectangle<<problema>> {
+  BackgroundColor $ROJO
+  BorderColor $ROJO_FUERTE
+}
+
+' ---- Ajustes C4 (solo si se incluyó la librería C4 antes de este tema) -------
+!if %function_exists("UpdateElementStyle")
+!$LEGEND_TITLE_TEXT = "Leyenda"
+HIDE_STEREOTYPE()
+UpdateElementStyle("person", $bgColor="#1F3A5F", $fontColor="#FFFFFF", $borderColor="#15293F", $legendText="Persona")
+UpdateElementStyle("external_person", $bgColor="#6B7785", $fontColor="#FFFFFF", $borderColor="#4A5561", $legendText="Persona externa")
+UpdateElementStyle("system", $bgColor="#2F5D8A", $fontColor="#FFFFFF", $borderColor="#1F4266", $legendText="Sistema de software")
+UpdateElementStyle("external_system", $bgColor="#8A96A3", $fontColor="#FFFFFF", $borderColor="#66727F", $legendText="Sistema externo")
+UpdateElementStyle("container", $bgColor="#3E7CB1", $fontColor="#FFFFFF", $borderColor="#2B5F8C", $legendText="Contenedor")
+UpdateElementStyle("external_container", $bgColor="#9AA6B2", $fontColor="#FFFFFF", $borderColor="#76828E", $legendText="Contenedor externo")
+UpdateElementStyle("component", $bgColor="#DCE8F4", $fontColor="#1F2D3D", $borderColor="#34506B", $legendText="Componente")
+UpdateElementStyle("external_component", $bgColor="#F1F3F5", $fontColor="#1F2D3D", $borderColor="#6B7785", $legendText="Componente externo")
+UpdateBoundaryStyle($bgColor="#FFFFFF", $fontColor="#1F2D3D", $borderColor="#34506B", $legendText="Límite")
+UpdateBoundaryStyle($elementName="system", $bgColor="#FFFFFF", $fontColor="#1F2D3D", $borderColor="#34506B", $legendText="Límite del sistema")
+UpdateBoundaryStyle($elementName="container", $bgColor="#FFFFFF", $fontColor="#1F2D3D", $borderColor="#34506B", $legendText="Límite del contenedor")
+!endif

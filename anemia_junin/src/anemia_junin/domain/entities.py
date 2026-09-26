@@ -12,21 +12,21 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass, field
-from datetime import date, datetime
-from enum import Enum
+from datetime import UTC, date, datetime
+from enum import StrEnum
 
 
-class Sexo(str, Enum):
+class Sexo(StrEnum):
     F = "F"
     M = "M"
 
 
-class TipoNacimiento(str, Enum):
+class TipoNacimiento(StrEnum):
     TERMINO = "TERMINO"
     PREMATURO = "PREMATURO"
 
 
-class Clasificacion(str, Enum):
+class Clasificacion(StrEnum):
     SEVERA = "SEVERA"
     MODERADA = "MODERADA"
     LEVE = "LEVE"
@@ -104,7 +104,7 @@ class Dosaje:
     clasificacion: Clasificacion
     version_normativa: str
     advertencias: list[str] = field(default_factory=list)
-    created_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = field(default_factory=lambda: datetime.now(UTC).replace(tzinfo=None))
 
     @classmethod
     def nuevo(

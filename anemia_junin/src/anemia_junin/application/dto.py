@@ -23,15 +23,23 @@ class DosajeInicialDTO:
 
 @dataclass
 class CrearNinoDTO:
+    """
+    Datos de alta tal como llegan del adaptador de entrada.
+
+    Los campos admiten ``None`` (o valores crudos) cuando el adaptador no pudo
+    convertirlos: el caso de uso los valida y rechaza en lugar de sustituirlos
+    por valores por defecto.
+    """
+
     dni: str
     nombres: str
     apellidos: str
-    fecha_nacimiento: date
-    sexo: Sexo
-    tipo_nacimiento: TipoNacimiento
-    peso_g: int
+    fecha_nacimiento: date | None
+    sexo: Sexo | str | None
+    tipo_nacimiento: TipoNacimiento | str | None
+    peso_g: int | None
     distrito: str
-    altitud_msnm: int
+    altitud_msnm: int | str | None
     cuidador: str
     telefono: str | None
     dosaje_inicial: DosajeInicialDTO | None = None

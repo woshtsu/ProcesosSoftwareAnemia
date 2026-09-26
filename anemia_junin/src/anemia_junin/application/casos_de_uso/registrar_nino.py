@@ -9,6 +9,8 @@ from anemia_junin.domain.entities import (
     Dosaje,
     IntentoRegistro,
     Nino,
+    Sexo,
+    TipoNacimiento,
 )
 from anemia_junin.domain.ports import Reloj
 from anemia_junin.domain.validators import (
@@ -32,6 +34,11 @@ class DniDuplicadoError(Exception):
     """DNI ya existe en el sistema."""
 
 
+def _valor_enum(valor: object) -> object:
+    """Devuelve el valor crudo de un Enum (o el objeto tal cual si no lo es)."""
+    return getattr(valor, "value", valor)
+
+
 class RegistrarNino:
     def __init__(
         self,
@@ -43,9 +50,23 @@ class RegistrarNino:
         self._clasificador = clasificador
         self._reloj = reloj
 
-    def ejecutar(self, dto: CrearNinoDTO) -> tuple[NinoSalidaDTO, DosajeSalidaDTO | None]:
+    def ejecutar(
+        self,
+        dto: CrearNinoDTO,
+        errores_entrada: dict[str, list[str]] | None = None,
+    ) -> tuple[NinoSalidaDTO, DosajeSalidaDTO | None]:
+        """
+        Registra un niño (y opcionalmente su dosaje inicial) de forma atómica.
+
+        ``errores_entrada`` son los errores de conversión detectados por el adaptador
+        de entrada (p. ej. una fecha mal formada o un peso no numérico). Se combinan
+        con las validaciones de dominio para que el intento rechazado quede siempre
+        registrado en la traza de calidad (HIST-1.5) y nunca se guarde un registro
+        con valores sustituidos por defecto.
+        """
         ahora = self._reloj.ahora_utc()
         hoy = self._reloj.hoy()
+        entrada = {k: v for k, v in (errores_entrada or {}).items() if v}
 
         # ── Validar datos del niño ──
         errores: dict[str, list[str]] = {}
@@ -53,26 +74,32 @@ class RegistrarNino:
         errores["nombres"] = validar_nombre(dto.nombres)
         errores["apellidos"] = validar_nombre(dto.apellidos)
         errores["fecha_nacimiento"] = validar_fecha_nacimiento(dto.fecha_nacimiento, hoy)
-        errores["sexo"] = validar_sexo(dto.sexo if isinstance(dto.sexo, str) else dto.sexo.value)
-        errores["tipo_nacimiento"] = validar_tipo_nacimiento(
-            dto.tipo_nacimiento if isinstance(dto.tipo_nacimiento, str) else dto.tipo_nacimiento.value
-        )
+        errores["sexo"] = validar_sexo(_valor_enum(dto.sexo))
+        errores["tipo_nacimiento"] = validar_tipo_nacimiento(_valor_enum(dto.tipo_nacimiento))
         errores["distrito"] = validar_distrito(dto.distrito)
         errores["altitud_msnm"] = validar_altitud(dto.altitud_msnm)
         errores["cuidador"] = validar_nombre(dto.cuidador)
         errores["telefono"] = validar_telefono(dto.telefono)
 
-        err_peso, peso_g = validar_peso_kg(dto.peso_g / 1000)  # dto ya tiene gramos
-        errores["peso_kg"] = err_peso
+        if dto.peso_g is None:
+            errores["peso_kg"] = ["Debe ser un número válido"]
+        else:
+            err_peso, _ = validar_peso_kg(dto.peso_g / 1000)  # dto ya tiene gramos
+            errores["peso_kg"] = err_peso
+
+        # Los errores de conversión del adaptador prevalecen (son más específicos)
+        for campo, mensajes in entrada.items():
+            errores[campo] = mensajes
 
         # Validar dosaje inicial si viene
         dosaje_err: dict[str, list[str]] = {}
-        hb_ddl = 0
         edad_meses_dosaje = 0
         if dto.dosaje_inicial is not None:
             d = dto.dosaje_inicial
-            # La fecha de nacimiento puede ser inválida; validamos fechas solo si fecha_nacimiento ok
-            if not errores.get("fecha_nacimiento"):
+            # Solo se valida la fecha del dosaje si la fecha de nacimiento es válida
+            if not errores.get("fecha_nacimiento") and not entrada.get(
+                "dosaje_inicial.fecha_dosaje"
+            ):
                 err_fecha_d, edad_meses_dosaje = validar_fecha_dosaje(
                     d.fecha_dosaje, dto.fecha_nacimiento, hoy
                 )
@@ -83,6 +110,8 @@ class RegistrarNino:
                 dosaje_err["dosaje_inicial.hb_observada"] = ["Fuera de rango permitido"]
 
         todos_errores = {**errores, **dosaje_err}
+        for campo, mensajes in entrada.items():
+            todos_errores[campo] = mensajes
         hay_errores = any(v for v in todos_errores.values())
 
         if hay_errores:
@@ -100,11 +129,11 @@ class RegistrarNino:
             nombres=nombres,
             apellidos=apellidos,
             fecha_nacimiento=dto.fecha_nacimiento,
-            sexo=dto.sexo,
-            tipo_nacimiento=dto.tipo_nacimiento,
+            sexo=Sexo(_valor_enum(dto.sexo)),
+            tipo_nacimiento=TipoNacimiento(_valor_enum(dto.tipo_nacimiento)),
             peso_g=dto.peso_g,
             distrito=distrito,
-            altitud_msnm=dto.altitud_msnm,
+            altitud_msnm=int(dto.altitud_msnm),
             cuidador=normalizar_nombre(dto.cuidador),
             telefono=dto.telefono if dto.telefono else None,
             ahora=ahora,
@@ -114,14 +143,14 @@ class RegistrarNino:
         if dto.dosaje_inicial is not None:
             resultado_clas = self._clasificador.clasificar(
                 hb_observada_ddl=dto.dosaje_inicial.hb_observada_ddl,
-                altitud_msnm=dto.altitud_msnm,
+                altitud_msnm=int(dto.altitud_msnm),
                 edad_meses=edad_meses_dosaje,
             )
             dosaje = Dosaje.nuevo(
                 nino_id=nino.id,
                 fecha_dosaje=dto.dosaje_inicial.fecha_dosaje,
                 hb_observada_ddl=dto.dosaje_inicial.hb_observada_ddl,
-                altitud_msnm=dto.altitud_msnm,
+                altitud_msnm=int(dto.altitud_msnm),
                 ajuste_ddl=resultado_clas.ajuste_ddl,
                 hb_ajustada_ddl=resultado_clas.hb_ajustada_ddl,
                 edad_meses=edad_meses_dosaje,

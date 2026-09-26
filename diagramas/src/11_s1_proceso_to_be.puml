@@ -1,0 +1,116 @@
+' =============================================================================
+' Título: Proceso TO-BE por carriles con intervención del software — Semana 1
+' Solicitud: DIAG-002 (T-002)
+' Fuentes de verdad: entregables/semana-01/Entregable_Semana1_Anemia_Junin.md §4 (brechas B1-B6),
+'   §5 (cambios respecto del AS-IS), §6 (aporte del software); archivo/versiones-anteriores/semana-01/..._v4.md §5
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' =============================================================================
+@startuml 11_s1_proceso_to_be
+!include _tema.puml
+skinparam activity {
+  FontSize 12
+}
+skinparam note {
+  FontSize 11
+}
+title Proceso TO-BE — Seguimiento de la anemia infantil con apoyo del sistema
+
+|#F1F3F5|Familia / cuidador|
+|#FFFFFF|Personal de salud|
+|#EEF6F1|Sistema\n(App/Web + motor de reglas NTS\n+ modelo predictivo + WhatsApp)|
+|#F1F3F5|Agente comunitario|
+|#FFFFFF|Gestión territorial|
+|#F1F3F5|MINSA|
+
+|Familia / cuidador|
+start
+:**1 ENTRADA DE INFORMACIÓN**
+Acude al establecimiento o es contactada.
+Datos del niño, dosaje, respuestas
+de la familia y visitas; <<#FBF3DF>>
+|Personal de salud|
+:Registra al niño en App/Web;
+|Sistema\n(App/Web + motor de reglas NTS\n+ modelo predictivo + WhatsApp)|
+:**M1** (B1) Valida y deduplica
+el registro nominal; <<#E4F1EA>>
+:**M2** (B2) Evalúa reglas normativas
+y propone controles pendientes; <<#E4F1EA>>
+|Personal de salud|
+if (¿Corresponde tamizaje?) then (Sí)
+  :Realiza dosaje de Hb;
+  |Sistema\n(App/Web + motor de reglas NTS\n+ modelo predictivo + WhatsApp)|
+  :**M6** (B6) Registra online/offline
+  y calcula Hb ajustada por altitud; <<#E4F1EA>>
+  |Personal de salud|
+  if (¿Presenta anemia?\n(decisión clínica)) then (Sí)
+    :Diagnostica e indica tratamiento;
+  else (No)
+    :Indica suplementación preventiva;
+  endif
+else (No)
+  :Control regular;
+endif
+|Sistema\n(App/Web + motor de reglas NTS\n+ modelo predictivo + WhatsApp)|
+:**M2** (B2) Genera plan de tratamiento
+y agenda de controles; <<#E4F1EA>>
+:**M5** (B5) Estima riesgo de abandono
+(score 0-100, explicable) y prioriza la agenda; <<#E4F1EA>>
+note right
+  El modelo **no diagnostica**
+  **ni prescribe**: apoya la
+  priorización del personal.
+end note
+:**M3** (B3) Envía recordatorio
+por WhatsApp; <<#E4F1EA>>
+|Familia / cuidador|
+:Confirma asistencia
+o reporta barrera;
+|Sistema\n(App/Web + motor de reglas NTS\n+ modelo predictivo + WhatsApp)|
+:Registra la barrera y alerta
+al agente comunitario; <<#E4F1EA>>
+|Personal de salud|
+if (¿Requiere visita prioritaria?) then (Sí)
+  |Agente comunitario|
+  :**M4** (B4) Registra la visita en la app
+  (sin conexión) y gestiona la barrera; <<#E4F1EA>>
+  |Sistema\n(App/Web + motor de reglas NTS\n+ modelo predictivo + WhatsApp)|
+  :**M6** (B6) Sincroniza
+  al recuperar señal; <<#E4F1EA>>
+else (No)
+endif
+|Personal de salud|
+:Realiza control agendado
+y seguimiento;
+if (¿Recuperado según protocolo?) then (Sí)
+  :Cierre documentado del caso;
+else (No)
+  :Referencia trazable (estados,
+  responsable, alertas de atraso);
+endif
+|Sistema\n(App/Web + motor de reglas NTS\n+ modelo predictivo + WhatsApp)|
+:Actualiza indicadores
+en tiempo real; <<#E4F1EA>>
+|Gestión territorial|
+:Consulta tablero y prioriza
+supervisión y recursos;
+|MINSA|
+:Supervisa cumplimiento
+y evalúa desempeño;
+:**5 RESULTADO**
+Seguimiento continuo y recuperación
+documentada del niño; <<#FBF3DF>>
+:**6 VALOR**
+Menor pérdida de seguimiento,
+atención oportuna y mejor uso
+del personal disponible; <<#FBF3DF>>
+stop
+
+legend bottom
+  |= Color |= Elemento de la guía S1 (Actividad 4) |
+  | <back:#FBF3DF> ámbar </back> | 1 Entrada de información · 5 Resultado · 6 Valor |
+  | <back:#E6EEF7> azul </back> | 2 Actividades mejoradas realizadas por personas (3 Decisiones: rombos) |
+  | <back:#E4F1EA> verde </back> | 4 Intervención del software: mejora **Mn** que resuelve la brecha **(Bn)** de S1 §4 |
+  M1 registro nominal · M2 agenda normativa · M3 recordatorios WhatsApp · M4 visitas priorizadas · M5 riesgo de abandono · M6 sin conexión y sincronización.
+  Las decisiones clínicas permanecen en el personal de salud.
+endlegend
+@enduml

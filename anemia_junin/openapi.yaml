@@ -131,6 +131,8 @@ paths:
           $ref: "#/components/responses/ValidationError"
         "404":
           $ref: "#/components/responses/NotFound"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaType"
 
   /ninos/{dni}/dosajes:
     post:
@@ -156,6 +158,8 @@ paths:
           $ref: "#/components/responses/ValidationError"
         "404":
           $ref: "#/components/responses/NotFound"
+        "415":
+          $ref: "#/components/responses/UnsupportedMediaType"
 
   /reportes/registros:
     get:
@@ -303,9 +307,8 @@ components:
           maxLength: 80
           example: "María López"
         telefono:
-          type: string
+          type: [string, "null"]
           pattern: "^[0-9]{9}$"
-          nullable: true
           example: "987654321"
         dosaje_inicial:
           $ref: "#/components/schemas/DosajeInicialRequest"
@@ -347,9 +350,8 @@ components:
           minLength: 2
           maxLength: 80
         telefono:
-          type: string
+          type: [string, "null"]
           pattern: "^[0-9]{9}$"
-          nullable: true
 
     CrearDosajeRequest:
       type: object
@@ -404,7 +406,7 @@ components:
         distrito: { type: string }
         altitud_msnm: { type: integer }
         cuidador: { type: string }
-        telefono: { type: string, nullable: true }
+        telefono: { type: [string, "null"] }
         created_at: { type: string, format: date-time }
         updated_at: { type: string, format: date-time }
 
@@ -489,5 +491,5 @@ components:
                 intentos_aceptados: { type: integer }
                 intentos_rechazados: { type: integer }
                 tasa_aceptacion_pct:
-                  type: number
-                  nullable: true
+                  type: [number, "null"]
+                  description: "% de registros sin error crítico = aceptados ÷ evaluados × 100"

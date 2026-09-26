@@ -1,0 +1,39 @@
+' =============================================================================
+' Título: C4 nivel 2 — Contenedores del PMV Anemia Junín (INC-1)
+' Solicitud: T-007 (migración de la Figura 4 del informe integrador S6)
+' Fuentes de verdad: anemia_junin/src/anemia_junin/bootstrap.py (crear_app, blueprints),
+'   anemia_junin/pyproject.toml (Flask 3.1.1, Flask-WTF 1.2.2, Waitress 3.0.1),
+'   anemia_junin/migrations/001_initial.sql, anemia_junin/config/normativa_v1.json,
+'   anemia_junin/scripts/cargar_datos_sinteticos.py, docs/adr/001 y 002
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' =============================================================================
+@startuml 04_c4_contenedores
+!include <C4/C4_Container>
+!include _tema.puml
+
+LAYOUT_LEFT_RIGHT()
+AddElementTag("script", $bgColor="#F1F3F5", $fontColor="#1F2D3D", $borderColor="#6B7785", $legendText="Herramienta de soporte (no forma parte del flujo de usuario)")
+title C4 · Nivel 2 — Diagrama de contenedores del PMV (INC-1)
+
+Person(personal, "Personal de salud", "Registra y consulta expedientes y dosajes.")
+Person(coordinador, "Coordinador del proyecto", "Consulta el reporte del periodo.")
+System_Ext(cliente, "Cliente REST", "Pruebas automatizadas (pytest) u otras aplicaciones futuras que consumen JSON.")
+
+Boundary(pmv, "PMV Anemia Junín", "Sistema de software") {
+  Container(app, "Aplicación web y API REST", "Python 3.12+ · Flask 3.1 · Jinja2 · Flask-WTF", "Proceso único creado por bootstrap.crear_app(). Blueprint web_bp: formularios HTML con CSRF. Blueprint api_bp: JSON en /api/v1. Ejecuta los casos de uso y aplica la normativa.")
+  ContainerDb(db, "Base de datos del PMV", "SQLite 3 · archivo instance/anemia.db (WAL)", "Tablas ninos, dosajes, intentos_registro y schema_version. Esquema aplicado por migraciones al arrancar.")
+  Container(seed, "Carga de datos sintéticos", "Script Python · scripts/cargar_datos_sinteticos.py", "Siembra niños y dosajes de demostración sobre una base vacía.", $tags="script")
+  ContainerDb(norma, "Configuración normativa", "Archivo JSON versionado · config/normativa_v1.json", "Umbrales de Hb por grupo de edad (6-23 y 24-59 meses) y tabla de ajuste por altitud (NTS 213 / RM 429-2024-MINSA).")
+}
+
+Rel(personal, app, "Usa formularios y listados", "HTTP · HTML")
+Rel(coordinador, app, "Consulta /reportes/registros", "HTTP · HTML")
+Rel(cliente, app, "Invoca operaciones /api/v1/…", "HTTP · JSON")
+Rel(app, db, "Lee y escribe en transacciones (Unidad de Trabajo)", "sqlite3 · SQL en proceso")
+Rel(app, norma, "Lee y valida al iniciar", "E/S de archivo")
+Rel(seed, db, "Inserta datos de demostración", "crear_app() + sqlite3")
+
+Lay_D(app, seed)
+SHOW_LEGEND(false)
+footer SQLite es una biblioteca embebida: no hay servidor de base de datos ni comunicación por red. Web y API comparten el mismo proceso (ADR-01). Sin CORS ni CDN externos (ADR-002).
+@enduml

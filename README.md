@@ -55,7 +55,7 @@ Las versiones anteriores están en `archivo/versiones-anteriores/`. El historial
 | `orquestador` | opus | Estructura, rutas, README, tablero, archivo, commits |
 | `revisor-documental` | opus | Cumplimiento estricto al 100 % de cada guía, redacción, checklist de cumplimiento |
 | `diagramador` | opus | Diagramas con PlantUML/Python → PNG + SVG, fuentes en `diagramas/src` |
-| `desarrollador` | fable | PMV `anemia_junin/`: código, pruebas, evidencias, README de ejecución |
+| `desarrollador` | opus (Fable 5.1 sin créditos de uso; se usa Opus 5.5) | PMV `anemia_junin/`: código, pruebas, evidencias, README de ejecución |
 | `investigador` | haiku | Investigación y resúmenes con fuentes (solo lectura) |
 | `conversor-entregas` | opus | Conversión .md → PDF/DOCX en `exportados/` |
 

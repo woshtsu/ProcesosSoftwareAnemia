@@ -56,6 +56,12 @@ def _error(code: str, message: str, fields: dict | None = None, status: int = 40
     return jsonify(body), status
 
 
+def _error_media_type():
+    return _error(
+        "UNSUPPORTED_MEDIA_TYPE", "Content-Type debe ser application/json", status=415
+    )
+
+
 def _parse_fecha(valor: object, campo: str) -> tuple[date | None, list[str]]:
     if not isinstance(valor, str):
         return None, [f"'{campo}' debe ser texto en formato YYYY-MM-DD"]
@@ -112,15 +118,10 @@ def _serializar_dosaje(dto) -> dict:
 
 @api_bp.get("/salud")
 def get_salud():
-    import sqlite3
-    db_path = current_app.config["DB_PATH"]
-    try:
-        conn = sqlite3.connect(db_path)
-        conn.execute("SELECT 1")
-        conn.close()
-        bd_estado = "conectada"
-    except Exception:
-        bd_estado = "error"
+    # La verificación la inyecta bootstrap (adaptador de salida SQLite):
+    # el adaptador de entrada no conoce la tecnología de persistencia.
+    verificar_bd = current_app.config["VERIFICAR_BD"]
+    bd_estado = "conectada" if verificar_bd() else "error"
 
     return jsonify({
         "data": {
@@ -136,11 +137,11 @@ def get_salud():
 @api_bp.post("/ninos")
 def crear_nino():
     if not request.is_json:
-        return _error("UNSUPPORTED_MEDIA_TYPE", "Content-Type debe ser application/json", status=415)
+        return _error_media_type()
 
     data = request.get_json(silent=True)
-    if data is None:
-        return _error("INVALID_JSON", "El cuerpo de la solicitud no es JSON válido")
+    if not isinstance(data, dict):
+        return _error("INVALID_JSON", "El cuerpo debe ser un objeto JSON válido")
 
     # Rechazar campos desconocidos
     campos_extra = set(data.keys()) - _CAMPOS_NINO_PERMITIDOS
@@ -159,18 +160,17 @@ def crear_nino():
     err_peso, peso_g = validar_peso_kg(data.get("peso_kg"))
     errores["peso_kg"] = err_peso
 
-    # Parsear sexo
+    # Parsear sexo y tipo de nacimiento (sin valores por defecto silenciosos)
     sexo_raw = data.get("sexo")
     try:
-        sexo = Sexo(sexo_raw) if sexo_raw else None
+        sexo = Sexo(sexo_raw)
     except ValueError:
         sexo = None
         errores["sexo"] = ["Debe ser 'F' o 'M'"]
 
-    # Parsear tipo_nacimiento
     tipo_raw = data.get("tipo_nacimiento")
     try:
-        tipo_nac = TipoNacimiento(tipo_raw) if tipo_raw else None
+        tipo_nac = TipoNacimiento(tipo_raw)
     except ValueError:
         tipo_nac = None
         errores["tipo_nacimiento"] = ["Debe ser 'TERMINO' o 'PREMATURO'"]
@@ -180,53 +180,49 @@ def crear_nino():
     dosaje_data = data.get("dosaje_inicial")
     if dosaje_data is not None:
         if not isinstance(dosaje_data, dict):
-            errores["dosaje_inicial"] = ["Debe ser un objeto"]
-        else:
-            campos_extra_d = set(dosaje_data.keys()) - {"fecha_dosaje", "hb_observada"}
-            if campos_extra_d:
-                errores["dosaje_inicial"] = [f"Campos no permitidos en dosaje_inicial: {', '.join(sorted(campos_extra_d))}"]
-            else:
-                fecha_d, err_fd = _parse_fecha(dosaje_data.get("fecha_dosaje"), "dosaje_inicial.fecha_dosaje")
-                errores["dosaje_inicial.fecha_dosaje"] = err_fd
-                hb_ddl, err_hb = _parse_hb(dosaje_data.get("hb_observada"))
-                errores["dosaje_inicial.hb_observada"] = err_hb
-                if not err_fd and not err_hb:
-                    dosaje_inicial = DosajeInicialDTO(
-                        fecha_dosaje=fecha_d,
-                        hb_observada_ddl=hb_ddl,
-                    )
-
-    # Construir DTO de entrada si no hay errores críticos
-    if errores.get("fecha_nacimiento") or not sexo or not tipo_nac or errores.get("peso_kg"):
-        # Aún con errores parciales, el caso de uso validará todo
-        pass
+            return _error("VALIDATION_ERROR", "Revise los datos ingresados",
+                          {"dosaje_inicial": ["Debe ser un objeto"]})
+        campos_extra_d = set(dosaje_data.keys()) - {"fecha_dosaje", "hb_observada"}
+        if campos_extra_d:
+            # Error estructural: se rechaza sin llegar al caso de uso
+            return _error("VALIDATION_ERROR", "Revise los datos ingresados", {
+                "dosaje_inicial": [
+                    "Campos no permitidos en dosaje_inicial: "
+                    + ", ".join(sorted(campos_extra_d))
+                ]
+            })
+        fecha_d, err_fd = _parse_fecha(
+            dosaje_data.get("fecha_dosaje"), "dosaje_inicial.fecha_dosaje"
+        )
+        errores["dosaje_inicial.fecha_dosaje"] = err_fd
+        hb_ddl, err_hb = _parse_hb(dosaje_data.get("hb_observada"))
+        errores["dosaje_inicial.hb_observada"] = err_hb
+        dosaje_inicial = DosajeInicialDTO(
+            fecha_dosaje=fecha_d,
+            hb_observada_ddl=hb_ddl if not err_hb else 0,
+        )
 
     dto = CrearNinoDTO(
         dni=data.get("dni", ""),
         nombres=data.get("nombres", ""),
         apellidos=data.get("apellidos", ""),
-        fecha_nacimiento=fecha_nac or date.today(),
-        sexo=sexo or Sexo.F,
-        tipo_nacimiento=tipo_nac or TipoNacimiento.TERMINO,
-        peso_g=peso_g,
+        fecha_nacimiento=fecha_nac,
+        sexo=sexo,
+        tipo_nacimiento=tipo_nac,
+        peso_g=peso_g if not err_peso else None,
         distrito=data.get("distrito", ""),
-        altitud_msnm=data.get("altitud_msnm", 0),
+        altitud_msnm=data.get("altitud_msnm"),
         cuidador=data.get("cuidador", ""),
         telefono=data.get("telefono") or None,
         dosaje_inicial=dosaje_inicial,
     )
 
-    # Solo bloquear en errores estructurales (campos desconocidos en dosaje_inicial)
-    if errores.get("dosaje_inicial"):
-        return _error("VALIDATION_ERROR", "Revise los datos ingresados",
-                      {"dosaje_inicial": errores["dosaje_inicial"]})
-
     try:
-        nino_dto, dosaje_dto = _cu("registrar_nino").ejecutar(dto)
+        # Los errores de conversión se pasan al caso de uso, que decide y registra
+        # el intento rechazado (traza de calidad HIST-1.5).
+        nino_dto, dosaje_dto = _cu("registrar_nino").ejecutar(dto, errores_entrada=errores)
     except ErrorValidacion as exc:
-        # Fusionar errores del blueprint con los del caso de uso
-        todos = {**{k: v for k, v in errores.items() if v and k != "dosaje_inicial"}, **exc.errores}
-        return _error("VALIDATION_ERROR", "Revise los datos ingresados", todos)
+        return _error("VALIDATION_ERROR", "Revise los datos ingresados", exc.errores)
     except DniDuplicadoError:
         return _error("CONFLICT", "El DNI ya está registrado en el sistema", status=409)
     except Exception:
@@ -306,11 +302,11 @@ def get_expediente(dni: str):
 @api_bp.patch("/ninos/<string:dni>")
 def actualizar_nino(dni: str):
     if not request.is_json:
-        return _error("UNSUPPORTED_MEDIA_TYPE", "Content-Type debe ser application/json", status=415)
+        return _error_media_type()
 
     data = request.get_json(silent=True)
-    if data is None:
-        return _error("INVALID_JSON", "El cuerpo de la solicitud no es JSON válido")
+    if not isinstance(data, dict):
+        return _error("INVALID_JSON", "El cuerpo debe ser un objeto JSON válido")
 
     campos_extra = set(data.keys()) - _CAMPOS_ACTUALIZACION_PERMITIDOS
     if campos_extra:
@@ -354,11 +350,11 @@ def actualizar_nino(dni: str):
 @api_bp.post("/ninos/<string:dni>/dosajes")
 def agregar_dosaje(dni: str):
     if not request.is_json:
-        return _error("UNSUPPORTED_MEDIA_TYPE", "Content-Type debe ser application/json", status=415)
+        return _error_media_type()
 
     data = request.get_json(silent=True)
-    if data is None:
-        return _error("INVALID_JSON", "El cuerpo de la solicitud no es JSON válido")
+    if not isinstance(data, dict):
+        return _error("INVALID_JSON", "El cuerpo debe ser un objeto JSON válido")
 
     campos_extra = set(data.keys()) - _CAMPOS_DOSAJE_PERMITIDOS
     if campos_extra:

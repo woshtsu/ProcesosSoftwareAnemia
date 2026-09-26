@@ -7,23 +7,27 @@ name = "anemia-junin"
 version = "0.1.0"
 description = "PMV – Registro Nominal Validado y Expediente Digital (INC-1)"
 requires-python = ">=3.12"
+# Versiones mínimas (no fijas): las fijas originales (p. ej. locust==2.32.3 → gevent/greenlet
+# antiguos) no publican wheels para CPython 3.14 en Windows y exigían compilar con MSVC.
+# Las versiones realmente instaladas y verificadas se registran en docs/evidencias/.
 dependencies = [
-    "flask==3.1.1",
-    "flask-wtf==1.2.2",
-    "waitress==3.0.1",
-    "pytz==2024.2",
+    "flask>=3.1.1,<4",
+    "flask-wtf>=1.2.2,<2",
+    "waitress>=3.0.1,<4",
+    "pytz>=2024.2",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest==8.3.5",
-    "pytest-cov==6.1.0",
-    "pytest-xdist==3.6.1",
-    "ruff==0.9.10",
-    "playwright==1.49.1",
-    "pytest-playwright==0.6.2",
-    "locust==2.32.3",
-    "jsonschema==4.23.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.0",
+    "pytest-xdist>=3.6.1",
+    "ruff>=0.9.10",
+    "playwright>=1.49.1",
+    "pytest-playwright>=0.6.2",
+    "locust>=2.37",
+    "jsonschema>=4.23.0",
+    "pyyaml>=6.0",
 ]
 
 [tool.setuptools.packages.find]
@@ -35,6 +39,9 @@ python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
 addopts = "-v --tb=short"
+markers = [
+    "e2e: flujo extremo a extremo contra un servidor HTTP real (sin navegador)",
+]
 
 [tool.coverage.run]
 source = ["src/anemia_junin"]

@@ -29,7 +29,6 @@ from anemia_junin.application.dto import (
     FiltroListaDTO,
     PeriodoReporteDTO,
 )
-from anemia_junin.domain.entities import Sexo, TipoNacimiento
 from anemia_junin.domain.validators import (
     ErrorValidacion,
     validar_hb_gdl,
@@ -83,68 +82,68 @@ def nuevo_nino_form():
     return render_template("ninos/nuevo.html", errores={}, datos={})
 
 
+def _fecha_o_none(valor: str | None) -> date | None:
+    try:
+        return date.fromisoformat(valor or "")
+    except ValueError:
+        return None
+
+
+def _entero_o_none(valor: str | None) -> int | None:
+    try:
+        return int((valor or "").strip())
+    except ValueError:
+        return None
+
+
 @web_bp.post("/ninos/nuevo")
 def nuevo_nino_post():
     f = request.form
+    errores_entrada: dict[str, list[str]] = {}
 
-    # Parsear peso
+    # Peso (kg → gramos)
     err_peso, peso_g = validar_peso_kg(f.get("peso_kg", ""))
-    # Parsear dosaje inicial
+    errores_entrada["peso_kg"] = err_peso
+
+    # Fecha de nacimiento: nunca se sustituye por "hoy" si viene mal formada
+    fecha_nac = _fecha_o_none(f.get("fecha_nacimiento"))
+    if fecha_nac is None:
+        errores_entrada["fecha_nacimiento"] = ["Ingrese una fecha válida (AAAA-MM-DD)"]
+
+    # Dosaje inicial opcional
     dosaje_inicial = None
-    errores_dosaje: dict[str, list[str]] = {}
     if f.get("tiene_dosaje_inicial") == "1":
-        err_hb, hb_ddl = validar_hb_gdl(f.get("hb_observada", "")), 0
-        if isinstance(err_hb, list):
-            errores_dosaje["hb_observada"] = err_hb
-        else:
-            hb_ddl = err_hb
-        try:
-            fecha_d = date.fromisoformat(f.get("fecha_dosaje", ""))
-        except ValueError:
-            errores_dosaje["fecha_dosaje"] = ["Fecha inválida"]
-            fecha_d = date.today()
-        if not errores_dosaje:
-            dosaje_inicial = DosajeInicialDTO(
-                fecha_dosaje=fecha_d,
-                hb_observada_ddl=hb_ddl,
-            )
+        err_hb, hb_ddl = validar_hb_gdl(f.get("hb_observada", ""))
+        errores_entrada["dosaje_inicial.hb_observada"] = err_hb
+        fecha_d = _fecha_o_none(f.get("fecha_dosaje"))
+        if fecha_d is None:
+            errores_entrada["dosaje_inicial.fecha_dosaje"] = ["Ingrese una fecha válida"]
+        dosaje_inicial = DosajeInicialDTO(
+            fecha_dosaje=fecha_d,
+            hb_observada_ddl=hb_ddl if not err_hb else 0,
+        )
 
-    try:
-        sexo = Sexo(f.get("sexo", ""))
-    except ValueError:
-        sexo = Sexo.F
-
-    try:
-        tipo_nac = TipoNacimiento(f.get("tipo_nacimiento", ""))
-    except ValueError:
-        tipo_nac = TipoNacimiento.TERMINO
-
-    try:
-        fecha_nac = date.fromisoformat(f.get("fecha_nacimiento", ""))
-    except ValueError:
-        fecha_nac = date.today()
-
+    altitud_raw = f.get("altitud_msnm", "")
     dto = CrearNinoDTO(
-        dni=f.get("dni", ""),
+        dni=f.get("dni", "").strip(),
         nombres=f.get("nombres", ""),
         apellidos=f.get("apellidos", ""),
         fecha_nacimiento=fecha_nac,
-        sexo=sexo,
-        tipo_nacimiento=tipo_nac,
-        peso_g=peso_g,
+        sexo=f.get("sexo") or None,
+        tipo_nacimiento=f.get("tipo_nacimiento") or None,
+        peso_g=peso_g if not err_peso else None,
         distrito=f.get("distrito", ""),
-        altitud_msnm=int(f.get("altitud_msnm", 0) or 0),
+        altitud_msnm=altitud_raw if altitud_raw != "" else None,
         cuidador=f.get("cuidador", ""),
-        telefono=f.get("telefono") or None,
+        telefono=(f.get("telefono") or "").strip() or None,
         dosaje_inicial=dosaje_inicial,
     )
 
     try:
-        nino_dto, _ = _cu("registrar_nino").ejecutar(dto)
+        nino_dto, _ = _cu("registrar_nino").ejecutar(dto, errores_entrada=errores_entrada)
         return redirect(url_for("web.expediente", dni=nino_dto.dni), 303)
     except ErrorValidacion as exc:
-        errores = {**exc.errores, **errores_dosaje}
-        return render_template("ninos/nuevo.html", errores=errores, datos=f), 422
+        return render_template("ninos/nuevo.html", errores=exc.errores, datos=f), 422
     except DniDuplicadoError:
         errores = {"dni": ["Este DNI ya está registrado"]}
         return render_template("ninos/nuevo.html", errores=errores, datos=f), 409
@@ -177,11 +176,19 @@ def editar_post(dni: str):
     f = request.form
 
     err_peso, peso_g = validar_peso_kg(f.get("peso_kg", "")) if f.get("peso_kg") else ([], None)
+    if err_peso:
+        try:
+            exp = _cu("consultar_expediente").ejecutar(dni)
+        except NinoNoEncontradoError:
+            return render_template("errors/404.html", dni=dni), 404
+        return render_template(
+            "ninos/editar.html", nino=exp.nino, errores={"peso_kg": err_peso}, datos=f
+        ), 422
 
     dto = ActualizarNinoDTO(
         peso_g=peso_g if f.get("peso_kg") else None,
         distrito=f.get("distrito") or None,
-        altitud_msnm=int(f.get("altitud_msnm")) if f.get("altitud_msnm") else None,
+        altitud_msnm=f.get("altitud_msnm") or None,
         cuidador=f.get("cuidador") or None,
         telefono=f.get("telefono") or None,
     )
@@ -194,7 +201,9 @@ def editar_post(dni: str):
             exp = _cu("consultar_expediente").ejecutar(dni)
         except NinoNoEncontradoError:
             return render_template("errors/404.html", dni=dni), 404
-        return render_template("ninos/editar.html", nino=exp.nino, errores=exc.errores, datos=f), 422
+        return render_template(
+            "ninos/editar.html", nino=exp.nino, errores=exc.errores, datos=f
+        ), 422
     except ActualizacionVaciaError:
         try:
             exp = _cu("consultar_expediente").ejecutar(dni)
@@ -227,25 +236,25 @@ def nuevo_dosaje_post(dni: str):
     f = request.form
 
     err_hb, hb_ddl = validar_hb_gdl(f.get("hb_observada", ""))
+    fecha_d = _fecha_o_none(f.get("fecha_dosaje"))
+    altitud = _entero_o_none(f.get("altitud_msnm"))
+
+    errores_entrada: dict[str, list[str]] = {}
+    if err_hb:
+        errores_entrada["hb_observada"] = err_hb
+    if fecha_d is None:
+        errores_entrada["fecha_dosaje"] = ["Ingrese una fecha válida"]
+    if altitud is None:
+        errores_entrada["altitud_msnm"] = ["Debe ser un número entero"]
 
     try:
-        fecha_d = date.fromisoformat(f.get("fecha_dosaje", ""))
-    except ValueError:
-        fecha_d = date.today()
-
-    dto = CrearDosajeDTO(
-        fecha_dosaje=fecha_d,
-        hb_observada_ddl=hb_ddl,
-        altitud_msnm=int(f.get("altitud_msnm", 0) or 0),
-    )
-
-    try:
+        if errores_entrada:
+            raise ErrorValidacion(errores_entrada)
+        dto = CrearDosajeDTO(fecha_dosaje=fecha_d, hb_observada_ddl=hb_ddl, altitud_msnm=altitud)
         _cu("agregar_dosaje").ejecutar(dni, dto)
         return redirect(url_for("web.expediente", dni=dni), 303)
     except ErrorValidacion as exc:
         errores = exc.errores
-        if err_hb:
-            errores["hb_observada"] = err_hb
         try:
             exp = _cu("consultar_expediente").ejecutar(dni)
         except NinoNoEncontradoError:
@@ -272,12 +281,12 @@ def reporte_registros():
             desde = date.fromisoformat(desde_str)
         except ValueError:
             errores["desde"] = ["Fecha inválida"]
-            desde = date.today()
+            desde = None
         try:
             hasta = date.fromisoformat(hasta_str)
         except ValueError:
             errores["hasta"] = ["Fecha inválida"]
-            hasta = date.today()
+            hasta = None
 
         if not errores:
             try:

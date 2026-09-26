@@ -9,7 +9,7 @@ Los agentes **no se hablan directamente**: se comunican mediante archivos en `co
 | `orquestador` | opus | `ORQ` | Estructura, rutas, README general, tablero |
 | `revisor-documental` | opus | `DOC` | Cumplimiento 100 % de cada entregable frente a su guía |
 | `diagramador` | opus | `DIAG` | Diagramas PlantUML/Python → PNG + SVG |
-| `desarrollador` | fable | `DEV` | PMV `anemia_junin/`, pruebas, README de ejecución |
+| `desarrollador` | opus (Fable 5.1 sin créditos de uso; se usa Opus 5.5) | `DEV` | PMV `anemia_junin/`, pruebas, README de ejecución |
 | `investigador` | haiku | `INV` | Investigación y resúmenes (solo lectura) |
 | `conversor-entregas` | opus | `CONV` | Conversión .md → PDF/DOCX para el aula virtual |
 

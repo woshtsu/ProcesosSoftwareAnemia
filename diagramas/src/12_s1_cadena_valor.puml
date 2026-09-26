@@ -1,0 +1,76 @@
+' =============================================================================
+' Título: Cadena de valor del proceso TO-BE — Semana 1
+' Solicitud: DIAG-003 (T-002)
+' Fuentes de verdad: entregables/semana-01/Entregable_Semana1_Anemia_Junin.md §7 (cadena de valor) y §8
+'   (indicadores); archivo/versiones-anteriores/semana-01/..._v4.md §7
+' Fecha: 2026-09-25 · Autor: agente diagramador
+' =============================================================================
+@startuml 12_s1_cadena_valor
+!include _tema.puml
+left to right direction
+hide stereotype
+skinparam rectangle {
+  FontSize 12
+  roundCorner 10
+}
+skinparam hexagon {
+  BackgroundColor #FBF3DF
+  BorderColor #B08A2E
+  FontSize 12
+}
+skinparam note {
+  BackgroundColor #F1F3F5
+  BorderColor #D5DBE1
+  FontSize 10
+}
+skinparam ranksep 45
+skinparam nodesep 25
+title Cadena de valor del proceso TO-BE: Entrada → Actividad → Resultado → Decisión → Acción → Valor
+
+rectangle "<b>ENTRADA</b>\n----\nDatos del niño registrados\nen la posta o en la visita\ndomiciliaria (con o sin conexión)" as E
+rectangle "<b>ACTIVIDAD</b>  <size:10>(apoyo del software)</size>\n----\nMotor de reglas identifica controles\npendientes y el modelo predictivo\nestima el riesgo de abandono" as A <<sistema>>
+rectangle "<b>RESULTADO</b>\n----\nAgenda priorizada y alertas\ncon nivel de riesgo para el\npersonal y el agente comunitario" as R
+hexagon "<b>DECISIÓN</b>\n¿El caso requiere\nintervención domiciliaria?\n<size:10>(decisión del profesional)</size>" as D
+rectangle "<b>ACCIÓN</b>\n----\nVisita domiciliaria y\ngestión de la barrera" as AC1
+rectangle "<b>ACCIÓN</b>\n----\nAtención y tamizaje estándar\nsegún esquema normativo" as AC2
+rectangle "Registro de seguimiento\ninterconectado" as REG
+rectangle "<b>VALOR</b>\n----\nAtención continua y oportuna;\nrecuperación confirmada del niño\ndentro del plazo clínico esperado" as V <<sistema>>
+
+E --> A
+A --> R
+R --> D
+D --> AC1 : Riesgo alto
+D --> AC2 : Rutinario
+AC1 --> REG
+AC2 --> REG
+REG --> V
+
+note bottom of E
+  <b>Indicador</b>: registros que
+  superan validaciones
+end note
+note bottom of A
+  <b>Indicador</b>: precisión del modelo
+end note
+note bottom of R
+  <b>Indicador</b>: cumplimiento de
+  visitas priorizadas
+end note
+note top of AC1
+  Aviso previo a la familia
+  por WhatsApp
+end note
+note bottom of AC2
+  Aviso previo a la familia por WhatsApp
+  <b>Indicador</b>: cobertura oportuna de controles
+end note
+note bottom of V
+  <b>Indicador</b>: pérdida de seguimiento /
+  recuperación documentada al año
+end note
+
+legend bottom
+  Verde: apoyo del software y valor organizacional. Rombo hexagonal: decisión del profesional de salud.
+  Notas grises: indicador asociado a cada etapa (S1 §8).
+endlegend
+@enduml

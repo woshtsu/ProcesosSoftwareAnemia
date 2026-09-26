@@ -32,7 +32,7 @@ Si un agente necesita crear una ruta nueva, lo pide al `orquestador` mediante un
 | S5 | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` (**POR CREAR**) | `entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf`, `entregables/semana-05/_extraccion_Informe_Actividad5.md` |
 | S6 | `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md` | `entregables/semana-06-integrador/anexos/Revision_Cumplimiento_y_Trazabilidad.md`, `entregables/semana-06-integrador/anexos/Prompts_y_guion_de_defensa.md` |
 
-Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_cumplimiento.md`.
+Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIMIENTO_S<n>.md` (p. ej. `semana-01/CHECKLIST_CUMPLIMIENTO_S1.md`).
 
 ## Diagramas
 
