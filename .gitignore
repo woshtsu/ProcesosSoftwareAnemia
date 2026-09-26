@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Artefactos intermedios de generacion de diagramas/documentos (regenerables)
+diagramas/_build/
+
+# Temporales de editores / SO
+~$*
+*.tmp
+.DS_Store
+Thumbs.db
