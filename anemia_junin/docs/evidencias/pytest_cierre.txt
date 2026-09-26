@@ -1,0 +1,53 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-8.3.5, pluggy-1.6.0
+rootdir: C:\Practicas\202620\ProcesosSoftware\anemia_junin
+configfile: pyproject.toml
+testpaths: tests
+plugins: base-url-2.1.0, cov-6.1.0, playwright-0.6.2, xdist-3.6.1
+collected 266 items
+
+tests\api\test_contrato_openapi.py ...                                   [  1%]
+tests\api\test_endpoints.py ...........................                  [ 11%]
+tests\api\test_validacion_entrada.py ................................... [ 24%]
+.                                                                        [ 24%]
+tests\arquitectura\test_dependencias.py ........                         [ 27%]
+tests\domain\test_clasificador.py ...................................... [ 42%]
+.                                                                        [ 42%]
+tests\domain\test_validators.py ........................................ [ 57%]
+.........................................                                [ 72%]
+tests\e2e\test_flujo_http.py ..                                          [ 73%]
+tests\persistencia\test_concurrencia.py ..                               [ 74%]
+tests\persistencia\test_listado_reloj.py .....                           [ 76%]
+tests\persistencia\test_repositorios.py .................                [ 82%]
+tests\test_entrypoint_y_scripts.py .......                               [ 85%]
+tests\web\test_web_ui.py .......................................         [100%]
+
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Name                                                                Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------------------------
+src\anemia_junin\__main__.py                                           25      0   100%
+src\anemia_junin\adapters\inbound\rest_api\blueprints.py              199      7    96%   228-230, 309, 342-343, 357
+src\anemia_junin\adapters\inbound\web_ui\blueprints.py                164      9    95%   120, 182-183, 202-203, 210-211, 266-267
+src\anemia_junin\adapters\outbound\normativa\proveedor.py              45      9    80%   30, 35-36, 62, 66, 71, 75, 79, 82
+src\anemia_junin\adapters\outbound\sqlite\migraciones.py               33      0   100%
+src\anemia_junin\adapters\outbound\sqlite\repositorios.py              86      2    98%   101-104
+src\anemia_junin\adapters\outbound\sqlite\unidad_de_trabajo.py         61      1    98%   91
+src\anemia_junin\application\casos_de_uso\actualizar_nino.py           47      1    98%   70
+src\anemia_junin\application\casos_de_uso\agregar_dosaje.py            31      1    97%   47
+src\anemia_junin\application\casos_de_uso\consultar_expediente.py      20      0   100%
+src\anemia_junin\application\casos_de_uso\consultar_reporte.py         41      2    95%   34, 36
+src\anemia_junin\application\casos_de_uso\listar_ninos.py              13      0   100%
+src\anemia_junin\application\casos_de_uso\registrar_nino.py            83      3    96%   182, 200-201
+src\anemia_junin\application\conversores.py                             7      0   100%
+src\anemia_junin\application\dto.py                                   110      0   100%
+src\anemia_junin\bootstrap.py                                          70      0   100%
+src\anemia_junin\domain\clasificador.py                                69      4    94%   95-96, 151, 157
+src\anemia_junin\domain\entities.py                                    64      0   100%
+src\anemia_junin\domain\ports.py                                       34      0   100%
+src\anemia_junin\domain\validators.py                                 158      6    96%   62, 134, 139, 154, 169, 213
+-------------------------------------------------------------------------------------------------
+TOTAL                                                                1360     45    97%
+Required test coverage of 80.0% reached. Total coverage: 96.69%
+============================ 266 passed in 10.00s =============================

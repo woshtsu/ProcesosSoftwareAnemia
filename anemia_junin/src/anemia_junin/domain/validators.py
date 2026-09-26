@@ -111,7 +111,13 @@ def validar_peso_kg(peso_raw: object) -> tuple[list[str], int]:
         return ["Debe ser un número válido"], 0
 
     # Verificar precisión excesiva
-    if peso != peso.quantize(Decimal("0.001")):
+    if not peso.is_finite():
+        return ["Debe ser un número finito"], 0
+    try:
+        cuantizado = peso.quantize(Decimal("0.001"))
+    except InvalidOperation:
+        return ["Número fuera de rango o precisión permitida"], 0
+    if peso != cuantizado:
         return ["Máximo 3 decimales permitidos"], 0
 
     if peso < _PESO_MIN_KG:
@@ -177,7 +183,13 @@ def validar_hb_gdl(hb_raw: object) -> tuple[list[str], int]:
         return ["Debe ser un número válido"], 0
 
     # Verificar precisión excesiva (máximo 1 decimal)
-    if hb != hb.quantize(Decimal("0.1")):
+    if not hb.is_finite():
+        return ["Debe ser un número finito"], 0
+    try:
+        cuantizado = hb.quantize(Decimal("0.1"))
+    except InvalidOperation:
+        return ["Número fuera de rango o precisión permitida"], 0
+    if hb != cuantizado:
         return ["Máximo 1 decimal permitido"], 0
 
     if hb < _HB_MIN_GDL:

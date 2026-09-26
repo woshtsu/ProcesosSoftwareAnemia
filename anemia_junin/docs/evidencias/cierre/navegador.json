@@ -1,0 +1,48 @@
+{
+  "fecha": "2026-09-25",
+  "python": "3.13.7",
+  "navegador": "149.0.7827.55",
+  "resultado": "APROBADO",
+  "flujos": [
+    "listado",
+    "alta con CSRF",
+    "consulta",
+    "edición persistida",
+    "dosaje",
+    "rechazo de formulario",
+    "reporte",
+    "vista móvil"
+  ],
+  "segundos_alta_automatizada": 0.232,
+  "nota": "Tiempo automatizado, no prueba de usabilidad humana ni aceptación clínica",
+  "reporte": {
+    "data": {
+      "calidad_registro": {
+        "intentos_aceptados": 31,
+        "intentos_rechazados": 4,
+        "tasa_aceptacion_pct": 88.6
+      },
+      "distribucion_clasificacion": {
+        "MODERADA": 1
+      },
+      "distribucion_distrito": {
+        "Chilca": 3,
+        "Chupaca": 3,
+        "Concepción": 3,
+        "El Tambo": 4,
+        "Huancayo": 3,
+        "Junín": 3,
+        "Mazamari": 3,
+        "Pampas": 3,
+        "Satipo": 3,
+        "Tarma": 3
+      },
+      "dosajes_registrados": 1,
+      "ninos_registrados": 31,
+      "periodo": {
+        "desde": "2026-09-25",
+        "hasta": "2026-09-25"
+      }
+    }
+  }
+}

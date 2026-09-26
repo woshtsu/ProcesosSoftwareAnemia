@@ -185,3 +185,20 @@ def test_verificar_conexion_bd_sin_esquema(tmp_path):
     with closing(sqlite3.connect(ruta)) as conn:
         conn.execute("CREATE TABLE x (a)")
     assert verificar_conexion(str(ruta)) is False
+
+
+@pytest.mark.parametrize("valor", ["Infinity", "sNaN", "1e100"])
+@pytest.mark.parametrize("campo", ["peso_kg", "hb_observada"])
+def test_numeros_especiales_devuelven_400_y_registran_rechazo(client, campo, valor):
+    datos = dict(_BASE)
+    if campo == "peso_kg":
+        datos[campo] = valor
+    else:
+        datos["dosaje_inicial"] = {"fecha_dosaje": _hoy(), "hb_observada": valor}
+    respuesta = client.post("/api/v1/ninos", json=datos)
+    assert respuesta.status_code == 400
+    assert respuesta.get_json()["error"]["fields"]
+    assert client.get("/api/v1/ninos/20000001").status_code == 404
+    calidad = _reporte(client)["data"]["calidad_registro"]
+    assert calidad["intentos_rechazados"] == 1
+    assert calidad["intentos_aceptados"] == 0

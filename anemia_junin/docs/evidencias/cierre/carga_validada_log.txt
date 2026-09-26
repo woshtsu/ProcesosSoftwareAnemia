@@ -1,0 +1,33 @@
+[2026-09-25 22:52:16,692] DESKTOP-0GQGM40/INFO/locust.main: Starting Locust 2.46.6
+[2026-09-25 22:52:16,694] DESKTOP-0GQGM40/INFO/locust.main: Run time limit set to 60 seconds
+[2026-09-25 22:52:16,695] DESKTOP-0GQGM40/INFO/locust.runners: Ramping to 20 users at a rate of 5.00 per second
+[2026-09-25 22:52:19,707] DESKTOP-0GQGM40/INFO/locust.runners: All users spawned: {"Coordinador": 4, "PersonalDeSalud": 16} (20 total users)
+[2026-09-25 22:53:16,113] DESKTOP-0GQGM40/INFO/locust.main: --run-time limit reached, shutting down
+[2026-09-25 22:53:16,281] DESKTOP-0GQGM40/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /api/v1/ninos                                                                     16     0(0.00%) |     20      10      34     21 |    0.27        0.00
+GET      /api/v1/ninos/{dni}                                                              196     0(0.00%) |      5       3      26      5 |    3.30        0.00
+GET      /api/v1/ninos?clasificacion                                                      150     0(0.00%) |      6       4      20      6 |    2.53        0.00
+GET      /api/v1/reportes/registros                                                        71     0(0.00%) |      6       3      31      5 |    1.20        0.00
+GET      /ninos [web]                                                                     266     0(0.00%) |      8       5      46      6 |    4.48        0.00
+GET      /ninos/{dni} [web]                                                               196     0(0.00%) |      5       3      45      4 |    3.30        0.00
+POST     POST /api/v1/ninos                                                               101     0(0.00%) |      9       5      23      8 |    1.70        0.00
+POST     POST /api/v1/ninos/{dni}/dosajes                                                  42     0(0.00%) |      8       6      24      7 |    0.71        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      1038     0(0.00%) |      7       3      46      6 |   17.48        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /api/v1/ninos                                                                          21     22     24     24     34     34     34     34     34     34     34     16
+GET      /api/v1/ninos/{dni}                                                                     5      5      5      5      9     12     18     19     27     27     27    196
+GET      /api/v1/ninos?clasificacion                                                             6      6      7      7     11     17     19     19     20     20     20    150
+GET      /api/v1/reportes/registros                                                              5      5      6      7     12     18     25     31     31     31     31     71
+GET      /ninos [web]                                                                            6      7      8      8     12     19     20     30     47     47     47    266
+GET      /ninos/{dni} [web]                                                                      4      5      5      5      7     10     17     25     45     45     45    196
+POST     POST /api/v1/ninos                                                                      8      8      9     10     15     20     21     21     24     24     24    101
+POST     POST /api/v1/ninos/{dni}/dosajes                                                        7      8      8      8      9     20     25     25     25     25     25     42
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                              6      7      7      8     12     18     21     25     45     47     47   1038
+

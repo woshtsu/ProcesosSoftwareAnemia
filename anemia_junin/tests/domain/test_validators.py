@@ -343,3 +343,11 @@ class TestErrorValidacion:
         with pytest.raises(ErrorValidacion) as exc_info:
             ErrorValidacion.si_hay_errores(errores)
         assert len(exc_info.value.errores) == 3
+
+
+@pytest.mark.parametrize("valor", ["Infinity", "-Infinity", "NaN", "sNaN", "1e100", "-1e100"])
+@pytest.mark.parametrize("validar", [validar_peso_kg, validar_hb_gdl])
+def test_numeros_especiales_se_rechazan_sin_excepcion(validar, valor):
+    errores, convertido = validar(valor)
+    assert errores
+    assert convertido == 0

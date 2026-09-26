@@ -282,3 +282,14 @@ class TestAdvertenciaAltitud:
                    fecha_dosaje=_HOY.isoformat(), hb_observada="13.0")
         html = client.get("/ninos/70000001").get_data(as_text=True)
         assert "Advertencia sobre la clasificación actual" not in html
+
+
+@pytest.mark.parametrize("valor", ["Infinity", "sNaN", "1e100"])
+@pytest.mark.parametrize("campo", ["peso_kg", "hb_observada"])
+def test_formulario_rechaza_numeros_especiales(client, campo, valor):
+    extra = {campo: valor}
+    if campo == "hb_observada":
+        extra.update(tiene_dosaje_inicial="1", fecha_dosaje=_HOY.isoformat())
+    respuesta = _registrar(client, **extra)
+    assert respuesta.status_code == 422
+    assert client.get("/api/v1/ninos/70000001").status_code == 404
