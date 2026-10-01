@@ -1,0 +1,1179 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Sistema de Detección Temprana de Anemia Infantil — Junín",
+    "description": "API del Incremento 1 (PMV): registro nominal, expediente digital, validación clínica, seguimiento y reporte del periodo.",
+    "version": "1.0.0-pmv"
+  },
+  "paths": {
+    "/api/salud": {
+      "get": {
+        "tags": [
+          "Operación"
+        ],
+        "summary": "Salud",
+        "operationId": "salud_api_salud_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/validaciones/evaluacion": {
+      "post": {
+        "tags": [
+          "HU-03 Validación"
+        ],
+        "summary": "Vista Previa",
+        "description": "Calcula la Hb ajustada por altitud y la clasificación antes de guardar.",
+        "operationId": "vista_previa_api_validaciones_evaluacion_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VistaPreviaEntrada"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluacionSalida"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ninos": {
+      "post": {
+        "tags": [
+          "HU-01 Registro"
+        ],
+        "summary": "Registrar",
+        "operationId": "registrar_api_ninos_post",
+        "parameters": [
+          {
+            "name": "X-Usuario",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Usuario"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistroNinoEntrada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpedienteSalida"
+                }
+              }
+            }
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "HU-04 Seguimiento"
+        ],
+        "summary": "Listar",
+        "operationId": "listar_api_ninos_get",
+        "parameters": [
+          {
+            "name": "estado",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "ACTIVO",
+              "title": "Estado"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            }
+          },
+          {
+            "name": "clasificacion",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Clasificacion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FilaSeguimiento"
+                  },
+                  "title": "Response Listar Api Ninos Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ninos/dni/{dni}": {
+      "get": {
+        "tags": [
+          "HU-02 Expediente"
+        ],
+        "summary": "Por Dni",
+        "operationId": "por_dni_api_ninos_dni__dni__get",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Dni"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpedienteSalida"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ninos/{nino_id}": {
+      "get": {
+        "tags": [
+          "HU-02 Expediente"
+        ],
+        "summary": "Expediente",
+        "operationId": "expediente_api_ninos__nino_id__get",
+        "parameters": [
+          {
+            "name": "nino_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Nino Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpedienteSalida"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "HU-02 Expediente"
+        ],
+        "summary": "Actualizar",
+        "operationId": "actualizar_api_ninos__nino_id__patch",
+        "parameters": [
+          {
+            "name": "nino_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Nino Id"
+            }
+          },
+          {
+            "name": "X-Usuario",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Usuario"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizacionNino"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpedienteSalida"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ninos/{nino_id}/evaluaciones": {
+      "post": {
+        "tags": [
+          "HU-02 Expediente"
+        ],
+        "summary": "Nueva Evaluacion",
+        "operationId": "nueva_evaluacion_api_ninos__nino_id__evaluaciones_post",
+        "parameters": [
+          {
+            "name": "nino_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Nino Id"
+            }
+          },
+          {
+            "name": "X-Usuario",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Usuario"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluacionEntrada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpedienteSalida"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reportes/periodo": {
+      "get": {
+        "tags": [
+          "HU-05 Reporte"
+        ],
+        "summary": "Reporte",
+        "operationId": "reporte_api_reportes_periodo_get",
+        "parameters": [
+          {
+            "name": "desde",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "Desde"
+            }
+          },
+          {
+            "name": "hasta",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "title": "Hasta"
+            }
+          },
+          {
+            "name": "formato",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "json",
+              "title": "Formato"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportePeriodo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActualizacionNino": {
+        "properties": {
+          "establecimiento": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Establecimiento"
+          },
+          "distrito": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distrito"
+          },
+          "comunidad": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comunidad"
+          },
+          "altitud_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Altitud M"
+          },
+          "tutor_nombre": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tutor Nombre"
+          },
+          "tutor_celular": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tutor Celular"
+          },
+          "estado": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Estado"
+          }
+        },
+        "type": "object",
+        "title": "ActualizacionNino"
+      },
+      "ErrorDetalle": {
+        "properties": {
+          "campo": {
+            "type": "string",
+            "title": "Campo"
+          },
+          "mensaje": {
+            "type": "string",
+            "title": "Mensaje"
+          }
+        },
+        "type": "object",
+        "required": [
+          "campo",
+          "mensaje"
+        ],
+        "title": "ErrorDetalle"
+      },
+      "EvaluacionEntrada": {
+        "properties": {
+          "fecha": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha",
+            "description": "Fecha del control (AAAA-MM-DD)"
+          },
+          "hemoglobina_observada": {
+            "type": "number",
+            "title": "Hemoglobina Observada",
+            "description": "Hemoglobina medida con hemoglobinómetro (g/dL)"
+          },
+          "peso_kg": {
+            "type": "number",
+            "title": "Peso Kg"
+          },
+          "talla_cm": {
+            "type": "number",
+            "title": "Talla Cm"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fecha",
+          "hemoglobina_observada",
+          "peso_kg",
+          "talla_cm"
+        ],
+        "title": "EvaluacionEntrada"
+      },
+      "EvaluacionSalida": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha"
+          },
+          "edad_meses": {
+            "type": "integer",
+            "title": "Edad Meses"
+          },
+          "hemoglobina_observada": {
+            "type": "number",
+            "title": "Hemoglobina Observada"
+          },
+          "altitud_m": {
+            "type": "number",
+            "title": "Altitud M"
+          },
+          "hemoglobina_ajustada": {
+            "type": "number",
+            "title": "Hemoglobina Ajustada"
+          },
+          "clasificacion": {
+            "type": "string",
+            "title": "Clasificacion"
+          },
+          "peso_kg": {
+            "type": "number",
+            "title": "Peso Kg"
+          },
+          "talla_cm": {
+            "type": "number",
+            "title": "Talla Cm"
+          },
+          "registrado_por": {
+            "type": "string",
+            "title": "Registrado Por"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "fecha",
+          "edad_meses",
+          "hemoglobina_observada",
+          "altitud_m",
+          "hemoglobina_ajustada",
+          "clasificacion",
+          "peso_kg",
+          "talla_cm",
+          "registrado_por"
+        ],
+        "title": "EvaluacionSalida"
+      },
+      "ExpedienteSalida": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "dni": {
+            "type": "string",
+            "title": "Dni"
+          },
+          "nombres": {
+            "type": "string",
+            "title": "Nombres"
+          },
+          "apellidos": {
+            "type": "string",
+            "title": "Apellidos"
+          },
+          "sexo": {
+            "type": "string",
+            "title": "Sexo"
+          },
+          "fecha_nacimiento": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Nacimiento"
+          },
+          "edad_meses": {
+            "type": "integer",
+            "title": "Edad Meses"
+          },
+          "establecimiento": {
+            "type": "string",
+            "title": "Establecimiento"
+          },
+          "distrito": {
+            "type": "string",
+            "title": "Distrito"
+          },
+          "comunidad": {
+            "type": "string",
+            "title": "Comunidad"
+          },
+          "altitud_m": {
+            "type": "number",
+            "title": "Altitud M"
+          },
+          "tutor_nombre": {
+            "type": "string",
+            "title": "Tutor Nombre"
+          },
+          "tutor_celular": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tutor Celular"
+          },
+          "estado": {
+            "type": "string",
+            "title": "Estado"
+          },
+          "registrado_por": {
+            "type": "string",
+            "title": "Registrado Por"
+          },
+          "creado_en": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Creado En"
+          },
+          "actualizado_en": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Actualizado En"
+          },
+          "evaluaciones": {
+            "items": {
+              "$ref": "#/components/schemas/EvaluacionSalida"
+            },
+            "type": "array",
+            "title": "Evaluaciones"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "dni",
+          "nombres",
+          "apellidos",
+          "sexo",
+          "fecha_nacimiento",
+          "edad_meses",
+          "establecimiento",
+          "distrito",
+          "comunidad",
+          "altitud_m",
+          "tutor_nombre",
+          "tutor_celular",
+          "estado",
+          "registrado_por",
+          "creado_en",
+          "actualizado_en",
+          "evaluaciones"
+        ],
+        "title": "ExpedienteSalida"
+      },
+      "FilaSeguimiento": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "dni": {
+            "type": "string",
+            "title": "Dni"
+          },
+          "nombre_completo": {
+            "type": "string",
+            "title": "Nombre Completo"
+          },
+          "edad_meses": {
+            "type": "integer",
+            "title": "Edad Meses"
+          },
+          "comunidad": {
+            "type": "string",
+            "title": "Comunidad"
+          },
+          "estado": {
+            "type": "string",
+            "title": "Estado"
+          },
+          "ultima_fecha_control": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ultima Fecha Control"
+          },
+          "ultima_hb_ajustada": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ultima Hb Ajustada"
+          },
+          "ultima_clasificacion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ultima Clasificacion"
+          },
+          "dias_desde_ultimo_control": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dias Desde Ultimo Control"
+          },
+          "control_atrasado": {
+            "type": "boolean",
+            "title": "Control Atrasado"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "dni",
+          "nombre_completo",
+          "edad_meses",
+          "comunidad",
+          "estado",
+          "ultima_fecha_control",
+          "ultima_hb_ajustada",
+          "ultima_clasificacion",
+          "dias_desde_ultimo_control",
+          "control_atrasado"
+        ],
+        "title": "FilaSeguimiento"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "NinoEntrada": {
+        "properties": {
+          "dni": {
+            "type": "string",
+            "title": "Dni",
+            "examples": [
+              "71234567"
+            ]
+          },
+          "nombres": {
+            "type": "string",
+            "title": "Nombres"
+          },
+          "apellidos": {
+            "type": "string",
+            "title": "Apellidos"
+          },
+          "sexo": {
+            "type": "string",
+            "title": "Sexo",
+            "description": "F o M"
+          },
+          "fecha_nacimiento": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Nacimiento"
+          },
+          "establecimiento": {
+            "type": "string",
+            "title": "Establecimiento"
+          },
+          "distrito": {
+            "type": "string",
+            "title": "Distrito"
+          },
+          "comunidad": {
+            "type": "string",
+            "title": "Comunidad"
+          },
+          "altitud_m": {
+            "type": "number",
+            "title": "Altitud M"
+          },
+          "tutor_nombre": {
+            "type": "string",
+            "title": "Tutor Nombre"
+          },
+          "tutor_celular": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tutor Celular"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dni",
+          "nombres",
+          "apellidos",
+          "sexo",
+          "fecha_nacimiento",
+          "establecimiento",
+          "distrito",
+          "comunidad",
+          "altitud_m",
+          "tutor_nombre"
+        ],
+        "title": "NinoEntrada"
+      },
+      "RegistroNinoEntrada": {
+        "properties": {
+          "nino": {
+            "$ref": "#/components/schemas/NinoEntrada"
+          },
+          "evaluacion_inicial": {
+            "$ref": "#/components/schemas/EvaluacionEntrada"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nino",
+          "evaluacion_inicial"
+        ],
+        "title": "RegistroNinoEntrada"
+      },
+      "ReporteComunidad": {
+        "properties": {
+          "comunidad": {
+            "type": "string",
+            "title": "Comunidad"
+          },
+          "evaluaciones": {
+            "type": "integer",
+            "title": "Evaluaciones"
+          },
+          "con_anemia": {
+            "type": "integer",
+            "title": "Con Anemia"
+          }
+        },
+        "type": "object",
+        "required": [
+          "comunidad",
+          "evaluaciones",
+          "con_anemia"
+        ],
+        "title": "ReporteComunidad"
+      },
+      "ReportePeriodo": {
+        "properties": {
+          "desde": {
+            "type": "string",
+            "format": "date",
+            "title": "Desde"
+          },
+          "hasta": {
+            "type": "string",
+            "format": "date",
+            "title": "Hasta"
+          },
+          "ninos_registrados": {
+            "type": "integer",
+            "title": "Ninos Registrados"
+          },
+          "evaluaciones_realizadas": {
+            "type": "integer",
+            "title": "Evaluaciones Realizadas"
+          },
+          "ninos_evaluados": {
+            "type": "integer",
+            "title": "Ninos Evaluados"
+          },
+          "ninos_con_anemia": {
+            "type": "integer",
+            "title": "Ninos Con Anemia"
+          },
+          "por_clasificacion": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Por Clasificacion"
+          },
+          "por_comunidad": {
+            "items": {
+              "$ref": "#/components/schemas/ReporteComunidad"
+            },
+            "type": "array",
+            "title": "Por Comunidad"
+          }
+        },
+        "type": "object",
+        "required": [
+          "desde",
+          "hasta",
+          "ninos_registrados",
+          "evaluaciones_realizadas",
+          "ninos_evaluados",
+          "ninos_con_anemia",
+          "por_clasificacion",
+          "por_comunidad"
+        ],
+        "title": "ReportePeriodo"
+      },
+      "RespuestaError": {
+        "properties": {
+          "mensaje": {
+            "type": "string",
+            "title": "Mensaje"
+          },
+          "errores": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetalle"
+            },
+            "type": "array",
+            "title": "Errores",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "mensaje"
+        ],
+        "title": "RespuestaError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VistaPreviaEntrada": {
+        "properties": {
+          "fecha_nacimiento": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Nacimiento"
+          },
+          "altitud_m": {
+            "type": "number",
+            "title": "Altitud M"
+          },
+          "evaluacion": {
+            "$ref": "#/components/schemas/EvaluacionEntrada"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fecha_nacimiento",
+          "altitud_m",
+          "evaluacion"
+        ],
+        "title": "VistaPreviaEntrada"
+      }
+    }
+  }
+}

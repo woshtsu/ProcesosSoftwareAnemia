@@ -1,0 +1,40 @@
+digraph V2 {
+  graph [rankdir=LR, fontname="DejaVu Sans", nodesep=0.22, ranksep=0.3, dpi=170, newrank=true,
+         label="Red de Dependencias y Cadena de Dependencias Críticas Potenciales", labelloc=t, fontsize=26, fontcolor="#14355C"];
+  node [fontname="DejaVu Sans", fontsize=16, shape=box, style="rounded,filled", penwidth=1.4, margin="0.14,0.08"];
+  edge [color="#6B7B8C", arrowsize=0.8, penwidth=1.3];
+
+  INI [label="Inicio", shape=circle, fillcolor="#1B2B3A", fontcolor="white", width=0.9, fixedsize=true];
+  FIN [label="Fin", shape=doublecircle, fillcolor="#1B2B3A", fontcolor="white", width=0.85, fixedsize=true];
+  node [fillcolor="#DCEBFB", color="#2E5C8A"];
+  I1 [label="INC-1\nRegistro nominal y\nexpediente digital"];
+  I2 [label="INC-2\nAgenda automática\nNTS 134"];
+  I3 [label="INC-3\nModo offline y\nsincronización"];
+  I4 [label="INC-4\nNotificaciones\ny barreras"];
+  I5 [label="INC-5\nModelo predictivo\ny priorización"];
+  I6 [label="INC-6\nTablero territorial"];
+  MVP [label="MVP operativo", fillcolor="#1F4E79", fontcolor="white", color="#1F4E79"];
+  INT [label="Integración\nmodelo-agenda"];
+  node [fillcolor="#FFF2C9", color="#B8860B"];
+  D1 [label="Datos HIS\ndisponibles"]; D2 [label="Validación\ny limpieza"]; D3 [label="Dataset\nversionado"];
+  D4 [label="Experimentación"]; D5 [label="Entrenamiento"]; D6 [label="Evaluación"]; D7 [label="Modelo\naprobado"];
+  node [shape=note, style=filled, fillcolor="#F4F4F4", color="#8C99A6", fontsize=14];
+  E1 [label="Acceso a datos HIS"]; E2 [label="Aprobación / disponibilidad\nWhatsApp Business API"];
+  E3 [label="Dispositivo Android\nde prueba"]; E4 [label="Disponibilidad del personal\nde salud para Sprint Review"];
+
+  edge [color="#B0222B", penwidth=2.6];
+  INI -> I1; I1 -> I3 [label=" esquema de datos", fontsize=12, fontcolor="#B0222B"]; I3 -> I5; I5 -> INT; INT -> MVP; MVP -> FIN;
+  D1 -> D2 -> D3 -> D4 -> D5;
+  D5 -> D6 -> D7 -> I5;
+  edge [color="#6B7B8C", penwidth=1.3];
+  I1 -> I2; I2 -> I4; I2 -> INT; I1 -> I5; I1 -> I6; I2 -> I6; I5 -> I6; I6 -> MVP; I4 -> MVP;
+  edge [style=dashed, color="#8C99A6"];
+  E1 -> D1; E2 -> I4; E3 -> I3; E4 -> I1 [label="afecta cada revisión", fontsize=12, fontcolor="#5E6E7E"];
+
+  node [shape=box, style="rounded,filled", fillcolor="#FFFFFF", color="#B0222B", fontsize=14];
+  NOTA [label="Un retraso en los datos HIS puede posponer INC-5\nsin impedir que INC-1 a INC-4 entreguen valor.\nWhatsApp afecta solo a INC-4, no al modelo."];
+  {rank=same; D1; E1; INI;} {rank=same; I1; D2;} {rank=same; I5; NOTA;}
+  NOTA -> I5 [style=invis];
+  LEG [shape=plaintext, style="", label=<<table border="0" cellspacing="4" point-size="14"><tr><td bgcolor="#DCEBFB" width="18"> </td><td align="left">Incremento de software</td></tr><tr><td bgcolor="#FFF2C9" width="18"> </td><td align="left">Actividad MLOps</td></tr><tr><td bgcolor="#F4F4F4" width="18"> </td><td align="left">Dependencia externa</td></tr><tr><td><font color="#B0222B"><b>━━</b></font></td><td align="left">Cadena crítica potencial</td></tr></table>>];
+  {rank=same; E4; LEG;}
+}

@@ -1,0 +1,96 @@
+@startuml
+!include estilo.iuml
+skinparam dpi 150
+skinparam classAttributeIconSize 0
+hide methods
+hide circle
+title Diagrama de Clases UML — Modelo de dominio
+left to right direction
+
+class TutorFamilia {
+  idTutor : String
+  nombre : String
+  telefono : String
+}
+class PersonalSalud {
+  idPersonal : String
+  nombre : String
+  rol : String
+}
+class PostaRural {
+  idPosta : String
+  nombre : String
+  distrito : String
+}
+class MicroredSalud {
+  idMicrored : String
+  nombre : String
+}
+class "Niño" as Nino #DCE9F7 {
+  idNiño : String
+  nombres : String
+  apellidos : String
+  fechaNacimiento : Date
+  dni : String
+  zona : String
+  altitud : Integer
+}
+class EvaluacionNutricional {
+  idEvaluacion : String
+  fecha : Date
+  hemoglobina : Decimal
+  peso : Decimal
+  talla : Decimal
+  clasificacion : String
+  registradoOffline : Boolean
+  sincronizado : Boolean
+}
+class ControlProgramado {
+  idControl : String
+  fechaProgramada : Date
+  fechaRealizada : Date [0..1]
+  estado : String
+}
+class BarreraAcceso {
+  idBarrera : String
+  tipo : String
+  descripcion : String
+  fechaReporte : Date
+}
+class Notificacion {
+  idNotificacion : String
+  fechaEnvio : DateTime
+  estadoEntrega : String
+}
+class PrediccionRiesgo {
+  idPrediccion : String
+  score : Decimal
+  nivel : String
+  fecha : DateTime
+  versionModelo : String
+}
+class ModeloPredictivo {
+  version : String
+  algoritmo : String
+  fechaEntrenamiento : DateTime
+  estado : String
+}
+class ReglaNTS134 {
+  idRegla : String
+  rangoEdad : String
+  frecuenciaControl : Integer
+}
+
+MicroredSalud "1" -- "1..*" PostaRural : agrupa >
+PostaRural "1" -- "0..*" PersonalSalud : tiene >
+TutorFamilia "1" -- "1..*" Nino : responsable de >
+PersonalSalud "1" -- "0..*" EvaluacionNutricional : registra >
+Nino "1" -- "0..*" EvaluacionNutricional : tiene >
+Nino "1" -- "0..*" ControlProgramado : tiene >
+Nino "1" -- "0..*" BarreraAcceso : presenta >
+Nino "1" -- "0..*" PrediccionRiesgo : recibe >
+ControlProgramado "0..*" -- "1" ReglaNTS134 : se genera según >
+ControlProgramado "1" -- "0..*" Notificacion : genera >
+ModeloPredictivo "1" -- "0..*" PrediccionRiesgo : produce >
+ModeloPredictivo ..> EvaluacionNutricional : datos históricos\npara entrenamiento
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+!include <C4/C4_Context>
+skinparam dpi 150
+LAYOUT_LEFT_RIGHT()
+title C4 · Nivel 1 — Diagrama de Contexto del sistema
+Person(enf, "Personal de salud de la posta", "Enfermera / técnica: registra niños, dosajes y controles")
+Person(acs, "Agente comunitario de salud", "Visita hogares, reporta barreras (INC-3/INC-4)")
+Person(mic, "Gestión territorial (microred)", "Supervisa cobertura y resultados")
+System(sis, "Sistema de Detección Temprana de Anemia Infantil", "Registro nominal, validación clínica, seguimiento y reportes. PMV = Incremento 1")
+System_Ext(his, "HIS / MINSA", "Sistema oficial de registro de atenciones")
+System_Ext(wa, "WhatsApp Business API", "Recordatorios a familias (INC-4)")
+Person_Ext(fam, "Familia / tutor", "Recibe recordatorios y confirma asistencia")
+Rel(enf, sis, "Registra y consulta expedientes", "HTTPS")
+Rel(acs, sis, "Registra visitas (offline en INC-3)", "HTTPS")
+Rel(mic, sis, "Consulta reportes e indicadores", "HTTPS")
+Rel(sis, his, "Exporta/consulta datos autorizados (incremento futuro)", "Archivo / API")
+Rel(sis, wa, "Envía recordatorios (INC-4)", "HTTPS/REST")
+Rel(wa, fam, "Mensajes", "WhatsApp")
+
+@enduml

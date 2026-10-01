@@ -1,0 +1,55 @@
+@startuml
+!include estilo.iuml
+skinparam dpi 150
+skinparam SwimlaneBorderColor #7A8FA6
+skinparam SwimlaneTitleFontColor #14355C
+skinparam SwimlaneTitleFontSize 14
+title Seguimiento y control de desviaciones del proyecto
+|#EAF2FB|Equipo de Desarrollo|
+start
+:Ejecutar Sprint Backlog;
+repeat :Registrar avance diario;
+  |#FBEFD9|Ingeniería de Proceso|
+  :Recopilar avance planificado y real;
+  |#E6F5EA|Ingeniería de Calidad|
+  :Medir indicadores:
+  historias completadas, story points,
+  horas utilizadas, pruebas ejecutadas,
+  defectos, cumplimiento de hitos;
+  |Ingeniería de Proceso|
+  :Comparar planificado vs. real;
+  if (¿Existe desviación?) then (sí)
+    :Registrar causa;
+    :Evaluar impacto;
+    if (¿Puede absorberse\ndentro del Sprint?) then (sí)
+      |Equipo de Desarrollo|
+      :Ajustar tareas internas;
+      :Mantener objetivo del Sprint;
+    else (no)
+      |Ingeniería de Proceso|
+      :Evaluar impacto en dependencias e hitos;
+      :Repriorizar Product Backlog;
+      :Mover alcance no completado
+      al siguiente Sprint;
+      :Actualizar cronograma;
+      :Actualizar matriz de riesgos;
+      note right: No se extiende la duración\ndel Sprint (cadencia fija).
+    endif
+  else (no)
+    :Continuar ejecución;
+  endif
+  |Equipo de Desarrollo|
+repeat while (¿Quedan días del Sprint?) is (sí) not (no)
+:Sprint Review;
+|Ingeniería de Proceso|
+:Retrospectiva;
+:Registrar lecciones aprendidas;
+:Actualizar estimaciones y plan;
+if (¿Existe siguiente Sprint?) then (sí)
+  :Sprint Planning del siguiente Sprint;
+  detach
+else (no)
+  :Cierre del proyecto;
+  stop
+endif
+@enduml

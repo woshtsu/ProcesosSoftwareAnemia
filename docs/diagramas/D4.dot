@@ -1,0 +1,48 @@
+digraph D4 {
+  graph [rankdir=TB, compound=true, fontname="DejaVu Sans", nodesep=0.25, ranksep=0.55, dpi=170, newrank=true,
+         label="Diagrama de Despliegue UML — Arquitectura híbrida offline/cloud", labelloc=t, fontsize=20, fontcolor="#14355C"];
+  node [fontname="DejaVu Sans", fontsize=10.5, shape=note, style=filled, fillcolor="#FFFFFF", color="#2E5C8A", margin="0.12,0.06"];
+  edge [fontname="DejaVu Sans", fontsize=10, color="#3C4F63", arrowsize=0.8, penwidth=1.3];
+
+  subgraph cluster_mov { label="«device»\nDispositivo móvil de posta"; fontsize=12; style="filled"; fillcolor="#F2F7FC"; color="#2E5C8A"; penwidth=1.6;
+    APP [label="«artifact»\nApp Móvil (PWA)"]; SYNM [label="«artifact»\nMódulo de sincronización\noffline"];
+    SQLITE [label="SQLite Local", shape=cylinder, fillcolor="#E6F5EA", color="#1F7A3D"];
+    NOTA [label="El dispositivo continúa operando sin conexión.\nLos registros pendientes se sincronizan\ncuando se recupera conectividad.", fillcolor="#FFF7D6", color="#B8860B", fontsize=9.5];
+  }
+  subgraph cluster_mic { label="«device»\nEquipo de microred"; fontsize=12; style="filled"; fillcolor="#F2F7FC"; color="#2E5C8A"; penwidth=1.6;
+    NAV [label="«artifact»\nNavegador web"]; DASH [label="«artifact»\nDashboard territorial"];
+  }
+  subgraph cluster_srv { label="«server»\nServidor backend cloud"; fontsize=12; style="filled"; fillcolor="#EAF2FB"; color="#2E5C8A"; penwidth=1.8;
+    subgraph cluster_env { label="«executionEnvironment»\nEntorno de ejecución Python"; fontsize=10.5; style="filled,dashed"; fillcolor="#F7FAFD"; color="#7A8FA6";
+      API [label="«artifact»\nAPI Backend"]; AUTH [label="«artifact»\nServicio de autenticación"]; AGE [label="«artifact»\nServicio de agenda y controles"];
+      SSY [label="«artifact»\nServicio de sincronización"]; PRI [label="«artifact»\nServicio de priorización"]; MOD [label="«artifact»\nModelo predictivo desplegado"];
+    }
+    PG [label="PostgreSQL", shape=cylinder, fillcolor="#E6F5EA", color="#1F7A3D"];
+  }
+  subgraph cluster_ci { label="«executionEnvironment»\nPlataforma CI/CD"; fontsize=12; style="filled"; fillcolor="#F4F2FA"; color="#5C2E6E"; penwidth=1.6;
+    GH [label="«artifact»\nGitHub"]; GHA [label="«artifact»\nGitHub Actions\nBuild → Test → Package → Deploy"];
+  }
+  subgraph cluster_ml { label="«executionEnvironment»\nPlataforma MLOps"; fontsize=12; style="filled"; fillcolor="#FEFAEC"; color="#B8860B"; penwidth=1.6;
+    EXP [label="«artifact»\nEntorno de experimentación"]; MLF [label="«artifact»\nMLflow Tracking"]; DS [label="«artifact»\nDataset versionado"]; REG [label="«artifact»\nModel Registry\n(modelo registrado)"];
+  }
+  WA [label="«external system»\nWhatsApp Business API", shape=box3d, fillcolor="#FFFFFF", color="#6B6B6B"];
+  HIS [label="«external system»\nSistema HIS / MINSA", shape=box3d, fillcolor="#FFFFFF", color="#6B6B6B"];
+
+  edge [style=invis];
+  {rank=same; APP; SYNM; NAV; DASH; GH; GHA;}
+  {rank=same; SQLITE; NOTA;}
+  {rank=same; API; AUTH; AGE;}
+  {rank=same; SSY; PRI; MOD;}
+  {rank=same; EXP; MLF; WA;}
+  {rank=same; DS; REG; HIS;}
+  APP -> SQLITE; SQLITE -> API; API -> SSY; SSY -> PG; PG -> EXP; EXP -> DS; APP -> SYNM; SQLITE -> NOTA;
+  edge [style=solid, dir=both, arrowhead=none, arrowtail=none];
+  SQLITE -> API [ltail=cluster_mov, lhead=cluster_srv, label="HTTPS / REST\n(conectividad intermitente)"];
+  DASH -> AUTH [ltail=cluster_mic, lhead=cluster_srv, label="HTTPS"];
+  edge [dir=forward, arrowhead=vee];
+  GHA -> AGE [ltail=cluster_ci, lhead=cluster_srv, label="Despliegue\nautomatizado"];
+  PG -> EXP [ltail=cluster_srv, lhead=cluster_ml, label="Publicación de\nmodelo versionado", dir=back, arrowtail=vee, arrowhead=none];
+  MOD -> WA [ltail=cluster_srv, label="HTTPS / REST\n+ Webhooks", dir=forward, arrowhead=vee];
+  HIS -> DS [lhead=cluster_ml, label="Datos autorizados /\nexportación periódica", dir=forward, arrowhead=vee];
+  DS -> HIS [style=invis];
+}
