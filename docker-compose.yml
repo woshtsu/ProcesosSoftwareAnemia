@@ -1,0 +1,26 @@
+# Entorno de staging del PMV: API + PWA y base de datos PostgreSQL.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: anemia
+      POSTGRES_USER: anemia
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cambiar_en_staging}
+    volumes:
+      - datos_pg:/var/lib/postgresql/data
+      - ./db/01_esquema_postgresql.sql:/docker-entrypoint-initdb.d/01_esquema_postgresql.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U anemia -d anemia"]
+      interval: 5s
+      retries: 10
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg2://anemia:${POSTGRES_PASSWORD:-cambiar_en_staging}@db:5432/anemia
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  datos_pg:
