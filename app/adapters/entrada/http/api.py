@@ -226,7 +226,7 @@ def reporte(desde: date, hasta: date, formato: str = "json", svc: ServicioExpedi
             ]
         )
         for e in datos["evaluaciones"]:
-            n = svc.repo.obtener(e.nino_id)
+            n = datos["ninos"][e.nino_id]
             w.writerow(
                 [
                     e.fecha,
@@ -249,4 +249,4 @@ def reporte(desde: date, hasta: date, formato: str = "json", svc: ServicioExpedi
             media_type="text/csv",
             headers={"Content-Disposition": f'attachment; filename="{nombre}"'},
         )
-    return s.ReportePeriodo(**{k: v for k, v in datos.items() if k != "evaluaciones"})
+    return s.ReportePeriodo(**{k: v for k, v in datos.items() if k not in ("evaluaciones", "ninos")})

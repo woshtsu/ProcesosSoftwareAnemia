@@ -160,13 +160,14 @@ class ServicioExpediente:
         if desde > hasta:
             raise ErrorValidacion([ErrorCampo("desde", "La fecha inicial debe ser anterior o igual a la final.")])
         evaluaciones = self.repo.evaluaciones_en_periodo(desde, hasta)
-        nuevos = self.repo.ninos_registrados_en_periodo(desde, hasta)
+        nuevos = self.repo.contar_registrados_en_periodo(desde, hasta)
         por_clasificacion = Counter(e.clasificacion.value for e in evaluaciones)
         ninos_evaluados = {e.nino_id for e in evaluaciones}
         con_anemia = {e.nino_id for e in evaluaciones if e.tiene_anemia}
+        ninos = self.repo.obtener_varios({e.nino_id for e in evaluaciones})
         por_comunidad: dict[str, dict] = {}
         for e in evaluaciones:
-            nino = self.repo.obtener(e.nino_id)
+            nino = ninos[e.nino_id]
             fila = por_comunidad.setdefault(
                 nino.comunidad, {"comunidad": nino.comunidad, "evaluaciones": 0, "con_anemia": 0}
             )
@@ -175,13 +176,14 @@ class ServicioExpediente:
         return {
             "desde": desde,
             "hasta": hasta,
-            "ninos_registrados": len(nuevos),
+            "ninos_registrados": nuevos,
             "evaluaciones_realizadas": len(evaluaciones),
             "ninos_evaluados": len(ninos_evaluados),
             "ninos_con_anemia": len(con_anemia),
             "por_clasificacion": {c.value: por_clasificacion.get(c.value, 0) for c in rc.Clasificacion},
             "por_comunidad": sorted(por_comunidad.values(), key=lambda f: f["comunidad"]),
             "evaluaciones": evaluaciones,
+            "ninos": ninos,
         }
 
     # ---------------------------------------------------------------------
