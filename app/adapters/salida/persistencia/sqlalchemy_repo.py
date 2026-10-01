@@ -11,6 +11,7 @@ from sqlalchemy import (
     Integer,
     String,
     create_engine,
+    func,
     or_,
     select,
 )
@@ -80,6 +81,27 @@ def _a_evaluacion(o: EvaluacionORM) -> Evaluacion:
         talla_cm=o.talla_cm,
         registrado_por=o.registrado_por,
         creado_en=_utc(o.creado_en),
+    )
+
+
+def _a_nino_sin_evaluaciones(o: NinoORM) -> Nino:
+    return Nino(
+        id=o.id,
+        dni=o.dni,
+        nombres=o.nombres,
+        apellidos=o.apellidos,
+        sexo=o.sexo,
+        fecha_nacimiento=o.fecha_nacimiento,
+        establecimiento=o.establecimiento,
+        distrito=o.distrito,
+        comunidad=o.comunidad,
+        altitud_m=o.altitud_m,
+        tutor_nombre=o.tutor_nombre,
+        tutor_celular=o.tutor_celular,
+        estado=o.estado,
+        registrado_por=o.registrado_por,
+        creado_en=_utc(o.creado_en),
+        actualizado_en=_utc(o.actualizado_en),
     )
 
 
@@ -202,9 +224,17 @@ class RepositorioSQLAlchemy:
         with self.Sesion() as s:
             return [_a_evaluacion(o) for o in s.scalars(q)]
 
-    def ninos_registrados_en_periodo(self, desde: date, hasta: date) -> list[Nino]:
+    def contar_registrados_en_periodo(self, desde: date, hasta: date) -> int:
         inicio = datetime.combine(desde, time.min, tzinfo=UTC)
         fin = datetime.combine(hasta, time.max, tzinfo=UTC)
-        q = self._consulta().where(NinoORM.creado_en.between(inicio, fin))
+        q = select(func.count(NinoORM.id)).where(NinoORM.creado_en.between(inicio, fin))
         with self.Sesion() as s:
-            return [_a_nino(o) for o in s.scalars(q)]
+            return s.scalar(q)
+
+    def obtener_varios(self, ids: set[str]) -> dict[str, Nino]:
+        # Una sola consulta sin cargar evaluaciones: evita el patrón N+1 del reporte (DEF-01).
+        if not ids:
+            return {}
+        with self.Sesion() as s:
+            filas = s.scalars(select(NinoORM).where(NinoORM.id.in_(ids)))
+            return {o.id: _a_nino_sin_evaluaciones(o) for o in filas}

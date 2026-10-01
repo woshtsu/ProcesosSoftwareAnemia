@@ -49,5 +49,8 @@ class RepositorioEnMemoria:
     def evaluaciones_en_periodo(self, desde: date, hasta: date) -> list[Evaluacion]:
         return [copy.deepcopy(e) for n in self._ninos.values() for e in n.evaluaciones if desde <= e.fecha <= hasta]
 
-    def ninos_registrados_en_periodo(self, desde: date, hasta: date) -> list[Nino]:
-        return [copy.deepcopy(n) for n in self._ninos.values() if desde <= n.creado_en.date() <= hasta]
+    def contar_registrados_en_periodo(self, desde: date, hasta: date) -> int:
+        return sum(1 for n in self._ninos.values() if desde <= n.creado_en.date() <= hasta)
+
+    def obtener_varios(self, ids: set[str]) -> dict[str, Nino]:
+        return {i: copy.deepcopy(self._ninos[i]) for i in ids if i in self._ninos}
