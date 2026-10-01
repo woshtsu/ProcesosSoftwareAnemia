@@ -3,7 +3,7 @@
 import copy
 from datetime import date
 
-from app.domain.entidades import Evaluacion, Nino
+from app.domain.entidades import Evaluacion, Nino, fecha_local
 
 
 class RepositorioEnMemoria:
@@ -50,7 +50,7 @@ class RepositorioEnMemoria:
         return [copy.deepcopy(e) for n in self._ninos.values() for e in n.evaluaciones if desde <= e.fecha <= hasta]
 
     def contar_registrados_en_periodo(self, desde: date, hasta: date) -> int:
-        return sum(1 for n in self._ninos.values() if desde <= n.creado_en.date() <= hasta)
+        return sum(1 for n in self._ninos.values() if desde <= fecha_local(n.creado_en) <= hasta)
 
     def obtener_varios(self, ids: set[str]) -> dict[str, Nino]:
         return {i: copy.deepcopy(self._ninos[i]) for i in ids if i in self._ninos}

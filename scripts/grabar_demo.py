@@ -48,6 +48,7 @@ def main() -> None:
         ctx = nav.new_context(
             viewport={"width": 1280, "height": 720},
             locale="es-PE",
+            timezone_id="America/Lima",
             record_video_dir=str(tmp_video),
             record_video_size={"width": 1280, "height": 720},
         )
@@ -144,13 +145,15 @@ def main() -> None:
         leyenda("Contrato de la API REST documentado con OpenAPI (Swagger UI)", 3500)
         foto("08_openapi_swagger")
 
-        pg.set_content(PORTADA.format(texto="PMV entregado · tag v1.0-PMV · 73 pruebas automatizadas · cobertura 99 %"))
+        pg.set_content(PORTADA.format(texto="PMV entregado · tag v1.0-PMV · 77 pruebas automatizadas · cobertura 99 %"))
         pg.wait_for_timeout(4000)
         video = pg.video.path()
         ctx.close()
 
         # Captura en vista móvil (sin video)
-        movil = nav.new_page(viewport={"width": 390, "height": 844}, locale="es-PE", device_scale_factor=2)
+        movil = nav.new_page(
+            viewport={"width": 390, "height": 844}, locale="es-PE", timezone_id="America/Lima", device_scale_factor=2
+        )
         movil.goto(args.url)
         movil.get_by_test_id("tab-seguimiento").click()
         movil.wait_for_timeout(800)

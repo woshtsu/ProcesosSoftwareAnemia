@@ -3,7 +3,7 @@
 import re
 import uuid
 from dataclasses import dataclass, field
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, time, timedelta, timezone
 
 from app.domain import reglas_clinicas as rc
 from app.domain.errores import ErrorCampo, ErrorValidacion
@@ -19,8 +19,26 @@ def edad_en_meses(fecha_nacimiento: date, fecha_referencia: date) -> int:
     return meses
 
 
+# Perú usa UTC-5 todo el año (sin horario de verano); se fija el desfase para no depender de tzdata.
+ZONA_PERU = timezone(timedelta(hours=-5), "America/Lima")
+
+
 def ahora() -> datetime:
     return datetime.now(UTC)
+
+
+def fecha_local(momento: datetime) -> date:
+    """Fecha calendario en Perú de un instante guardado en UTC (DEF-02)."""
+    if momento.tzinfo is None:
+        momento = momento.replace(tzinfo=UTC)
+    return momento.astimezone(ZONA_PERU).date()
+
+
+def limites_utc(desde: date, hasta: date) -> tuple[datetime, datetime]:
+    """Inicio y fin, en UTC, de los días locales [desde, hasta] (DEF-02)."""
+    inicio = datetime.combine(desde, time.min, tzinfo=ZONA_PERU).astimezone(UTC)
+    fin = datetime.combine(hasta, time.max, tzinfo=ZONA_PERU).astimezone(UTC)
+    return inicio, fin
 
 
 @dataclass

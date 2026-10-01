@@ -89,3 +89,16 @@ def test_evaluacion_calcula_ajuste_y_clasificacion():
 
 def test_error_validacion_se_representa_como_texto():
     assert str(ErrorValidacion([ErrorCampo("dni", "mal")])) == "dni: mal"
+
+
+def test_fecha_local_usa_hora_de_peru():
+    # DEF-02: 01:30 UTC del 29-sep son las 20:30 del 28-sep en Perú.
+    from datetime import UTC, datetime
+
+    from app.domain.entidades import fecha_local, limites_utc
+
+    assert fecha_local(datetime(2026, 9, 29, 1, 30, tzinfo=UTC)) == date(2026, 9, 28)
+    assert fecha_local(datetime(2026, 9, 29, 1, 30)) == date(2026, 9, 28)  # sin zona: se asume UTC
+    inicio, fin = limites_utc(date(2026, 9, 28), date(2026, 9, 28))
+    assert inicio == datetime(2026, 9, 28, 5, 0, tzinfo=UTC)
+    assert fin.date() == date(2026, 9, 29) and fin.hour == 4
