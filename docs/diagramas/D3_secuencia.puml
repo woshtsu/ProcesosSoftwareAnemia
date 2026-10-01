@@ -1,0 +1,77 @@
+@startuml
+!include estilo.iuml
+skinparam dpi 150
+skinparam maxMessageSize 230
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autoactivate off
+hide footbox
+title Diagrama de Secuencia — Registro y sincronización de una evaluación
+actor "Enfermera" as ENF
+boundary "App Móvil" as APP
+control "Servicio de\nValidación" as VAL
+entity "SQLite Local" as SQL
+control "Sincronizador\nOffline" as SYN
+control "API Backend" as API
+entity "PostgreSQL" as PG
+
+ENF -> APP : registrarEvaluacion(datos del niño,\nhemoglobina, peso, talla, fecha)
+activate APP
+APP -> VAL : validarDatos(datos)
+activate VAL
+alt datos inválidos
+  VAL --> APP : erroresValidacion
+  APP --> ENF : mostrarErrores()
+else datos válidos
+  VAL --> APP : validacionCorrecta
+  deactivate VAL
+  alt sin conectividad
+    APP -> SQL : guardarRegistroPendiente()
+    activate SQL
+    SQL --> APP : confirmacionLocal
+    deactivate SQL
+    APP --> ENF : registroGuardadoPendienteDeSincronizacion()
+  else con conectividad
+    APP -> API : enviarEvaluacion()
+    activate API
+    API -> PG : guardarEvaluacion()
+    activate PG
+    PG --> API : idRegistro
+    deactivate PG
+    API --> APP : confirmacionRegistro()
+    deactivate API
+    APP --> ENF : registroCompletado()
+  end
+end
+deactivate APP
+
+== Recuperación de conectividad ==
+
+APP -> SYN : iniciarSincronizacion()
+activate APP
+activate SYN
+loop hasta procesar todos los registros pendientes
+  SYN -> SQL : obtenerRegistroPendiente()
+  activate SQL
+  SQL --> SYN : registroPendiente
+  deactivate SQL
+  SYN -> API : enviarRegistroPendiente()
+  activate API
+  API -> PG : verificarDuplicadoOConflicto()
+  activate PG
+  alt sin conflicto
+    PG -> PG : guardarRegistro()
+  else conflicto detectado
+    PG -> PG : aplicar estrategia de\nresolución de conflicto
+  end
+  PG --> API : confirmacionPersistencia
+  deactivate PG
+  API --> SYN : registroSincronizado()
+  deactivate API
+  SYN -> SQL : marcarComoSincronizado()
+end
+SYN --> APP : sincronizacionFinalizada()
+deactivate SYN
+APP --> ENF : mostrarEstadoSincronizacion()
+deactivate APP
+@enduml

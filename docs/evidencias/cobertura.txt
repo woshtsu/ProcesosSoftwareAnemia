@@ -1,0 +1,14 @@
+Name                                                  Stmts   Miss Branch BrPart  Cover   Missing
+-------------------------------------------------------------------------------------------------
+app/adapters/entrada/http/api.py                         81      0      6      0   100%
+app/adapters/entrada/http/esquemas.py                    96      0      0      0   100%
+app/adapters/salida/persistencia/memoria.py              42      0     12      0   100%
+app/adapters/salida/persistencia/sqlalchemy_repo.py     108      1     10      3    97%   152->154, 207->209, 237
+app/application/casos_uso.py                            101      0     22      0   100%
+app/application/puertos.py                                5      0      0      0   100%
+app/domain/entidades.py                                 123      1     36      1    99%   101
+app/domain/errores.py                                    12      0      0      0   100%
+app/domain/reglas_clinicas.py                            43      0     12      0   100%
+app/main.py                                              30      0      0      0   100%
+-------------------------------------------------------------------------------------------------
+TOTAL                                                   641      2     98      4    99%

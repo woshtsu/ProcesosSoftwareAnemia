@@ -1,0 +1,23 @@
+@startuml
+!include <C4/C4_Component>
+skinparam dpi 150
+title C4 · Nivel 3 — Componentes de la API REST (arquitectura hexagonal)
+Container(pwa, "Cliente PWA", "JavaScript", "Interfaz de la posta")
+ContainerDb(db, "PostgreSQL 16", "Base de datos central")
+Container_Boundary(api, "API REST (FastAPI)") {
+  Component(router, "Adaptador HTTP", "FastAPI APIRouter", "Endpoints /api/ninos, /evaluaciones, /validaciones, /reportes; errores 422/409/404 en español")
+  Component(dto, "Esquemas DTO", "Pydantic", "Contrato de entrada/salida (OpenAPI)")
+  Component(svc, "ServicioExpediente", "Casos de uso", "Registrar, consultar, actualizar, listar seguimiento, reporte del periodo")
+  Component(dom, "Dominio", "Entidades y reglas clínicas", "Validación de datos, ajuste por altitud y clasificación de anemia")
+  Component(port, "Puerto RepositorioNinos", "Interfaz (Protocol)", "Contrato de persistencia que usa el núcleo")
+  Component(repo, "Adaptador SQLAlchemy", "SQLAlchemy 2.1", "Implementa el puerto; consultas por lotes (ADR-006)")
+}
+Rel(pwa, router, "JSON", "HTTPS")
+Rel(router, dto, "Valida formato")
+Rel(router, svc, "Invoca casos de uso")
+Rel(svc, dom, "Aplica reglas")
+Rel(svc, port, "Depende de")
+Rel_U(repo, port, "Implementa")
+Rel(repo, db, "SQL")
+
+@enduml

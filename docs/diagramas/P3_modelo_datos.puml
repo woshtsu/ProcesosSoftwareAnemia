@@ -1,0 +1,47 @@
+@startuml
+!include estilo.iuml
+skinparam dpi 170
+hide circle
+skinparam linetype ortho
+title Modelo de datos del PMV (PostgreSQL) — esquema db/01_esquema_postgresql.sql
+entity "nino" as nino {
+  * id : VARCHAR(36) <<PK>>
+  --
+  * dni : VARCHAR(8) <<UNIQUE>> CHECK ^[0-9]{8}$
+  * nombres : VARCHAR(80)
+  * apellidos : VARCHAR(80)
+  * sexo : VARCHAR(1) CHECK F/M
+  * fecha_nacimiento : DATE
+  * establecimiento : VARCHAR(120)
+  * distrito : VARCHAR(80)
+  * comunidad : VARCHAR(80) <<INDEX>>
+  * altitud_m : DOUBLE CHECK 0..5000
+  * tutor_nombre : VARCHAR(120)
+    tutor_celular : VARCHAR(9) CHECK ^9[0-9]{8}$
+  * estado : VARCHAR(10) CHECK ACTIVO/ALTA
+  * registrado_por : VARCHAR(60)
+  * creado_en : TIMESTAMPTZ
+  * actualizado_en : TIMESTAMPTZ
+}
+entity "evaluacion_hemoglobina" as ev {
+  * id : VARCHAR(36) <<PK>>
+  --
+  * nino_id : VARCHAR(36) <<FK>> <<INDEX>>
+  * fecha : DATE <<INDEX>>
+  * edad_meses : INTEGER CHECK 0..59
+  * hemoglobina_observada : DOUBLE CHECK 3..20
+  * altitud_m : DOUBLE
+  * hemoglobina_ajustada : DOUBLE
+  * clasificacion : VARCHAR(12) CHECK SIN_ANEMIA/LEVE/MODERADA/SEVERA/NO_APLICA
+  * peso_kg : DOUBLE CHECK 1.5..30
+  * talla_cm : DOUBLE CHECK 40..125
+  * registrado_por : VARCHAR(60)
+  * creado_en : TIMESTAMPTZ
+}
+nino ||--o{ ev : "tiene (ON DELETE CASCADE)"
+note bottom of ev
+  Vista v_ultimo_control: último control por niño (apoya HU-04).
+  altitud_m se copia en cada evaluación para conservar
+  el valor usado en el ajuste de hemoglobina (trazabilidad).
+end note
+@enduml
