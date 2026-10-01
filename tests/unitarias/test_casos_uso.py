@@ -99,3 +99,24 @@ def test_reporte_del_periodo(servicio):
     assert [c["comunidad"] for c in r["por_comunidad"]] == ["Llacuas", "Palmayoc"]
     with pytest.raises(ErrorValidacion):
         servicio.reporte_periodo(date(2026, 9, 30), date(2026, 9, 1))
+
+
+def test_reporte_cuenta_registros_nocturnos_en_el_dia_local(servicio):
+    # DEF-02: un niño registrado a las 20:30 en Perú pertenece a ese día, aunque en UTC ya sea el siguiente.
+    from datetime import UTC, datetime
+
+    nino = servicio.registrar_nino(datos_nino(dni="70000009"), datos_eval(), "a")
+    nino.creado_en = datetime(2026, 9, 29, 1, 30, tzinfo=UTC)
+    servicio.repo.actualizar(nino)
+    assert servicio.reporte_periodo(date(2026, 9, 28), date(2026, 9, 28))["ninos_registrados"] == 1
+    assert servicio.reporte_periodo(date(2026, 9, 29), date(2026, 9, 29))["ninos_registrados"] == 0
+
+
+def test_reloj_del_sistema_usa_la_fecha_de_peru():
+    # DEF-02: un servidor en UTC (p. ej. un contenedor Docker) no debe adelantar el día después de las 19:00.
+    from datetime import datetime
+
+    from app.application.casos_uso import RelojSistema
+    from app.domain.entidades import ZONA_PERU
+
+    assert RelojSistema().hoy() == datetime.now(ZONA_PERU).date()

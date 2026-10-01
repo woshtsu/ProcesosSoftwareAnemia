@@ -49,7 +49,7 @@ def url_base(tmp_path_factory):
 def pagina(url_base):
     with playwright.sync_playwright() as p:
         navegador = p.chromium.launch()
-        pg = navegador.new_page(viewport={"width": 1280, "height": 900}, locale="es-PE")
+        pg = navegador.new_page(viewport={"width": 1280, "height": 900}, locale="es-PE", timezone_id="America/Lima")
         pg.goto(url_base)
         yield pg
         navegador.close()

@@ -1,6 +1,6 @@
 """Adaptador de persistencia relacional (PostgreSQL en staging/producción, SQLite en desarrollo)."""
 
-from datetime import UTC, date, datetime, time
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 from sqlalchemy import (
@@ -17,7 +17,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, selectinload, sessionmaker
 
-from app.domain.entidades import Evaluacion, Nino
+from app.domain.entidades import Evaluacion, Nino, limites_utc
 from app.domain.reglas_clinicas import Clasificacion
 
 
@@ -225,8 +225,8 @@ class RepositorioSQLAlchemy:
             return [_a_evaluacion(o) for o in s.scalars(q)]
 
     def contar_registrados_en_periodo(self, desde: date, hasta: date) -> int:
-        inicio = datetime.combine(desde, time.min, tzinfo=UTC)
-        fin = datetime.combine(hasta, time.max, tzinfo=UTC)
+        # Los días del periodo son días calendario de Perú, no de UTC (DEF-02).
+        inicio, fin = limites_utc(desde, hasta)
         q = select(func.count(NinoORM.id)).where(NinoORM.creado_en.between(inicio, fin))
         with self.Sesion() as s:
             return s.scalar(q)

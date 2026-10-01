@@ -9,11 +9,12 @@ HU-05 Reporte del periodo
 
 from collections import Counter
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 
 from app.application.puertos import Reloj, RepositorioNinos
 from app.domain import reglas_clinicas as rc
 from app.domain.entidades import (
+    ZONA_PERU,
     Evaluacion,
     Nino,
     ahora,
@@ -204,5 +205,7 @@ class ServicioExpediente:
 
 @dataclass
 class RelojSistema:
+    """Fecha de hoy en Perú, independiente de la zona horaria del servidor (DEF-02)."""
+
     def hoy(self) -> date:
-        return date.today()
+        return datetime.now(ZONA_PERU).date()
