@@ -1,0 +1,68 @@
+digraph D5 {
+  graph [rankdir=TB, fontname="DejaVu Sans", nodesep=0.45, ranksep=0.55, dpi=170, newrank=true,
+         label="Diagrama de Componentes UML — Arquitectura lógica del sistema", labelloc=t, fontsize=20, fontcolor="#14355C"];
+  node [fontname="DejaVu Sans", fontsize=11, shape=plain];
+  edge [color="#3C4F63", arrowsize=0.8, fontname="DejaVu Sans", fontsize=9.5, style=dashed, penwidth=1.2, dir=back, arrowtail=vee, arrowhead=none];
+
+  REG [label=<<table border="1.5" cellborder="0" cellspacing="0" cellpadding="4" bgcolor="#EAF2FB" color="#2E5C8A" style="rounded">
+    <tr><td align="right"><font point-size="9" color="#5E6E7E">«component» ⧉</font></td></tr>
+    <tr><td><b>Registro Nominal y<br/>Expediente Digital</b></td></tr>
+    <tr><td align="left"><font point-size="9.5" color="#1F4E79">○ IRegistroEvaluacion<br align="left"/>○ IExpedienteDigital<br align="left"/></font></td></tr></table>>];
+  AGE [label=<<table border="1.5" cellborder="0" cellspacing="0" cellpadding="4" bgcolor="#EAF2FB" color="#2E5C8A" style="rounded">
+    <tr><td align="right"><font point-size="9" color="#5E6E7E">«component» ⧉</font></td></tr>
+    <tr><td><b>Agenda Automática<br/>NTS 134</b></td></tr>
+    <tr><td align="left"><font point-size="9.5" color="#1F4E79">○ IAgendaControles<br align="left"/>○ IControlesVencidos<br align="left"/></font></td></tr></table>>];
+  SYNC [label=<<table border="1.5" cellborder="0" cellspacing="0" cellpadding="4" bgcolor="#EAF2FB" color="#2E5C8A" style="rounded">
+    <tr><td align="right"><font point-size="9" color="#5E6E7E">«component» ⧉</font></td></tr>
+    <tr><td><b>Sincronización Offline</b></td></tr>
+    <tr><td><font point-size="8.5" color="#5E6E7E">almacenar pendientes · sincronizar<br/>detectar conflictos · confirmar</font></td></tr>
+    <tr><td align="left"><font point-size="9.5" color="#1F4E79">○ ISincronizacion<br align="left"/></font></td></tr></table>>];
+  NOT [label=<<table border="1.5" cellborder="0" cellspacing="0" cellpadding="4" bgcolor="#EAF2FB" color="#2E5C8A" style="rounded">
+    <tr><td align="right"><font point-size="9" color="#5E6E7E">«component» ⧉</font></td></tr>
+    <tr><td><b>Notificador de Familias</b></td></tr>
+    <tr><td align="left"><font point-size="9.5" color="#1F4E79">○ INotificacion<br align="left"/></font></td></tr></table>>];
+  PIPE [label=<<table border="1.5" cellborder="0" cellspacing="0" cellpadding="4" bgcolor="#FEFAEC" color="#B8860B" style="rounded">
+    <tr><td align="right"><font point-size="9" color="#5E6E7E">«component» ⧉</font></td></tr>
+    <tr><td><b>Pipeline de Datos</b></td></tr>
+    <tr><td align="left"><font point-size="9.5" color="#1F4E79">○ IDatasetValidado<br align="left"/></font></td></tr></table>>];
+  MOD [label=<<table border="1.5" cellborder="0" cellspacing="0" cellpadding="4" bgcolor="#FEFAEC" color="#B8860B" style="rounded">
+    <tr><td align="right"><font point-size="9" color="#5E6E7E">«component» ⧉</font></td></tr>
+    <tr><td><b>Modelo Predictivo</b></td></tr>
+    <tr><td align="left"><font point-size="9.5" color="#1F4E79">○ IPredecirRiesgo<br align="left"/></font></td></tr></table>>];
+  PRI [label=<<table border="1.5" cellborder="0" cellspacing="0" cellpadding="4" bgcolor="#EAF2FB" color="#2E5C8A" style="rounded">
+    <tr><td align="right"><font point-size="9" color="#5E6E7E">«component» ⧉</font></td></tr>
+    <tr><td><b>Priorización de Agenda</b></td></tr>
+    <tr><td align="left"><font point-size="9.5" color="#1F4E79">○ IAgendaPriorizada<br align="left"/></font></td></tr></table>>];
+  TAB [label=<<table border="1.5" cellborder="0" cellspacing="0" cellpadding="4" bgcolor="#F1E6F7" color="#5C2E6E" style="rounded">
+    <tr><td align="right"><font point-size="9" color="#5E6E7E">«component» ⧉</font></td></tr>
+    <tr><td><b>Tablero Territorial</b></td></tr>
+    <tr><td align="left"><font point-size="9.5" color="#1F4E79">○ IDashboardMicrored<br align="left"/>○ IReporteIndicadores<br align="left"/></font></td></tr></table>>];
+
+  node [shape=box3d, style=filled, fillcolor="#FFFFFF", color="#6B6B6B", margin="0.12,0.06"];
+  HIS [label="«external»\nSistema HIS / MINSA\n○ IConectorHIS"]; WA [label="«external»\nWhatsApp Business API\n○ IWhatsApp"];
+  node [shape=cylinder, fillcolor="#E6F5EA", color="#1F7A3D"];
+  PG [label="PostgreSQL"]; SQLITE [label="SQLite Local"];
+
+  HIS -> PIPE [label="IConectorHIS"];
+  PIPE -> MOD [label="IDatasetValidado"];
+  MOD -> PRI [label="IPredecirRiesgo"];
+  PRI -> TAB [label="IAgendaPriorizada"];
+  REG -> AGE [label="IExpedienteDigital"];
+  AGE -> PRI [label="IAgendaControles"];
+  REG -> PIPE [label="IRegistroEvaluacion"];
+  REG -> TAB [label="IRegistroEvaluacion", constraint=false];
+  AGE -> TAB [label="IAgendaControles"];
+  REG -> SYNC [label="IRegistroEvaluacion", dir=back, arrowtail=vee];
+  AGE -> NOT [label="IAgendaControles"];
+  WA -> NOT [label="IWhatsApp"];
+  SQLITE -> SYNC [label="usa"];
+  PG -> REG [label="persiste"]; PG -> AGE [label="persiste"];
+
+  node [shape=note, style=filled, fillcolor="#FFF7D6", color="#B8860B", fontsize=9.5];
+  N1 [label="El Modelo Predictivo NO depende de WhatsApp."];
+  N2 [label="La priorización combina\nagenda existente + predicción de riesgo."];
+  edge [label="", style=dotted, arrowtail=none, color="#B8860B"]; MOD -> N1 [dir=none]; PRI -> N2 [dir=none];
+
+  {rank=same; PRI; N2;}
+  {rank=same; MOD; N1;}
+}

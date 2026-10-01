@@ -1,0 +1,22 @@
+@startuml
+!include <C4/C4_Container>
+skinparam dpi 150
+LAYOUT_LEFT_RIGHT()
+title C4 · Nivel 2 — Contenedores del Incremento 1 (PMV)
+Person(enf, "Personal de salud", "Navegador en PC o teléfono Android")
+Person(mic, "Gestión territorial", "Navegador web")
+System_Boundary(b, "Sistema de Detección Temprana de Anemia Infantil") {
+  Container(pwa, "Cliente PWA", "HTML, CSS, JavaScript, Service Worker", "Registro, seguimiento, expediente y reporte; borrador local y caché de interfaz")
+  ContainerDb(local, "Almacenamiento del navegador", "localStorage / Cache Storage", "Borrador del formulario e interfaz en caché")
+  Container(api, "API REST", "Python 3.11, FastAPI, Uvicorn", "Casos de uso HU-01..HU-05 en arquitectura hexagonal; contrato OpenAPI 3.1")
+  ContainerDb(db, "Base de datos central", "PostgreSQL 16", "Niños y evaluaciones de hemoglobina con restricciones de integridad")
+}
+System_Ext(ci, "GitHub + GitHub Actions", "Integración y entrega continua")
+Rel(enf, pwa, "Usa", "HTTPS")
+Rel(mic, pwa, "Consulta reporte", "HTTPS")
+Rel(pwa, local, "Guarda borrador / caché")
+Rel(pwa, api, "Llamadas JSON", "HTTPS / REST")
+Rel(api, db, "Lee y escribe", "SQL (SQLAlchemy / psycopg2)")
+Rel(ci, api, "Construye, prueba y despliega", "Pipeline CI/CD")
+
+@enduml

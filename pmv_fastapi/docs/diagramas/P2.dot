@@ -1,0 +1,21 @@
+digraph P2 {
+  graph [rankdir=LR, compound=true, fontname="DejaVu Sans", nodesep=0.3, ranksep=0.9, dpi=170,
+         label="Despliegue del PMV en el entorno de staging (Incremento 1)", labelloc=t, fontsize=20, fontcolor="#14355C"];
+  node [fontname="DejaVu Sans", fontsize=11, shape=note, style=filled, fillcolor="#FFFFFF", color="#2E5C8A", margin="0.14,0.07"];
+  edge [fontname="DejaVu Sans", fontsize=10, color="#3C4F63", penwidth=1.3, arrowsize=0.8];
+  subgraph cluster_cli { label="«device»\nPC o teléfono Android de la posta"; style=filled; fillcolor="#F2F7FC"; color="#2E5C8A"; fontsize=12; penwidth=1.6;
+    subgraph cluster_nav { label="«executionEnvironment» Navegador (Chrome)"; style="filled,dashed"; fillcolor="#FFFFFF"; color="#7A8FA6"; fontsize=10;
+      PWA [label="«artifact»\nPWA: index.html, app.js,\nestilos.css, sw.js"]; LS [label="localStorage /\nCache Storage", shape=cylinder, fillcolor="#E6F5EA", color="#1F7A3D"]; } }
+  subgraph cluster_srv { label="«server»\nServidor de staging (Linux)"; style=filled; fillcolor="#EAF2FB"; color="#2E5C8A"; fontsize=12; penwidth=1.8;
+    subgraph cluster_ct { label="«container Docker» api  (python:3.11-slim)"; style="filled,dashed"; fillcolor="#FFFFFF"; color="#7A8FA6"; fontsize=10;
+      UV [label="«artifact»\nUvicorn + FastAPI\napp.main:crear_app"]; SW [label="«artifact»\nSwagger UI local (/docs)"]; }
+    subgraph cluster_db { label="«container Docker» db  (postgres:16)"; style="filled,dashed"; fillcolor="#FFFFFF"; color="#7A8FA6"; fontsize=10;
+      PG [label="PostgreSQL 16\nesquema 01_esquema_postgresql.sql", shape=cylinder, fillcolor="#E6F5EA", color="#1F7A3D"]; } }
+  subgraph cluster_gh { label="«executionEnvironment»\nGitHub"; style=filled; fillcolor="#F4F2FA"; color="#5C2E6E"; fontsize=12; penwidth=1.6;
+    REPO [label="«artifact»\nRepositorio + tag v1.0-PMV"]; ACT [label="«artifact»\nGitHub Actions: lint → pruebas →\nPostgreSQL → E2E → imagen Docker"]; }
+  PWA -> LS [label="borrador", arrowhead=vee, style=dashed];
+  PWA -> UV [ltail=cluster_cli, lhead=cluster_ct, label="HTTPS · REST/JSON\npuerto 8000", dir=both, arrowtail=none, arrowhead=vee];
+  UV -> PG [label="TCP 5432\nSQLAlchemy/psycopg2", arrowhead=vee];
+  REPO -> ACT [style=invis]; SW -> UV [style=invis];
+  ACT -> UV [ltail=cluster_gh, lhead=cluster_srv, label="docker compose up --build", style=dashed, arrowhead=vee, constraint=false];
+}

@@ -1,0 +1,33 @@
+[project]
+name = "anemia-junin-pmv"
+version = "1.0.0"
+description = "PMV — Sistema de Detección Temprana de Anemia Infantil en Zonas Rurales de Junín"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["datos", "docs"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "C90"]
+ignore = ["S101", "B008"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 12
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S", "E501"]
+"scripts/**" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unitarias", "tests/integracion"]
+markers = ["e2e: pruebas de interfaz con Playwright (requieren el servidor en ejecución)"]
+
+[tool.coverage.run]
+source = ["app"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true

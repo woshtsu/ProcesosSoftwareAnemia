@@ -1,0 +1,53 @@
+@startuml
+!include estilo.iuml
+skinparam dpi 170
+skinparam packageStyle frame
+title Diagrama de Paquetes — Arquitectura hexagonal del PMV (Incremento 1)
+top to bottom direction
+
+package "adaptadores.entrada.http" as IN #F1E6F7 {
+  class "api (routers FastAPI)" as API
+  class "esquemas (DTO / contrato OpenAPI)" as DTO
+}
+package "web (PWA)" as WEB #F1E6F7 {
+  class "index.html · app.js · sw.js" as UI
+}
+package "núcleo" as CORE #EAF2FB {
+  package "application" as APPL #DCE9F7 {
+    class "ServicioExpediente\n(casos de uso HU-01..HU-05)" as SVC
+    interface "RepositorioNinos\n«puerto de salida»" as PORT
+    interface "Reloj\n«puerto»" as RELOJ
+  }
+  package "domain" as DOM #DCE9F7 {
+    class "entidades (Nino, Evaluacion)" as ENT
+    class "reglas_clinicas" as RC
+    class "errores" as ERR
+  }
+}
+package "adaptadores.salida.persistencia" as OUT #E6F5EA {
+  class "RepositorioSQLAlchemy\n(PostgreSQL / SQLite)" as SQLA
+  class "RepositorioEnMemoria\n(pruebas unitarias)" as MEM
+}
+class "main (raíz de composición)" as MAIN #FFF7D6
+
+hide members
+UI ..> API : HTTP/JSON
+API ..> SVC : usa
+API ..> DTO
+SVC ..> PORT : depende de la abstracción
+SVC ..> RELOJ
+SVC ..> ENT
+ENT ..> RC
+SVC ..> ERR
+SQLA ..|> PORT : implementa
+MEM ..|> PORT : implementa
+MAIN ..> API
+MAIN ..> SQLA
+MAIN ..> SVC
+
+note as N1
+  El núcleo no importa FastAPI ni SQLAlchemy:
+  las dependencias apuntan hacia adentro
+  (principio de inversión de dependencias).
+end note
+@enduml

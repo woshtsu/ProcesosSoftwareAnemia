@@ -1,0 +1,54 @@
+digraph D1 {
+  graph [rankdir=LR, fontname="DejaVu Sans", nodesep=0.18, ranksep=0.9, newrank=true, splines=true, dpi=170,
+         label="Diagrama de Casos de Uso UML", labelloc=t, fontsize=22, fontcolor="#14355C"];
+  node [fontname="DejaVu Sans", fontsize=11];
+  edge [color="#3C4F63", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9.5];
+
+  node [shape=none, image="actor.png", imagepos=tc, imagescale=false, labelloc=b, height=1.3, width=1.9, fixedsize=true, fontsize=11];
+  ENF [label="Enfermera /\nTécnica de Posta"];
+  ACS [label="Agente Comunitario\nde Salud (ACS)"];
+  FAM [label="Familia / Tutor"];
+  MIC [label="Microred de Salud"];
+  MINSA [label="MINSA"];
+  HIS [label="«sistema externo»\nSistema HIS"];
+  WA  [label="«sistema externo»\nWhatsApp Business API"];
+
+  node [shape=ellipse, image="", style=filled, fillcolor="#EAF2FB", color="#2E5C8A", height=0.55, width=2.3, fixedsize=true, labelloc=c];
+  subgraph cluster_sys {
+    label="Sistema de Detección Temprana de Anemia Infantil"; fontsize=14; fontcolor="#14355C"; style="rounded"; color="#2E5C8A"; penwidth=1.6; bgcolor="#FBFDFF";
+    subgraph cluster_reg { label="Registro nominal"; fontsize=11; style="rounded,dashed"; color="#7A8FA6"; bgcolor="#F4F8FC";
+      UC1 [label="Registrar niño y\nevaluación nutricional"]; UC3 [label="Consultar expediente\ndigital"]; UC4 [label="Actualizar expediente"]; UC2 [label="Validar datos clínicos\nrequeridos"]; }
+    subgraph cluster_age { label="Agenda NTS 134"; fontsize=11; style="rounded,dashed"; color="#7A8FA6"; bgcolor="#F4F8FC";
+      UC5 [label="Programar controles\nsegún NTS 134"]; UC6 [label="Consultar controles\nvencidos"]; }
+    subgraph cluster_off { label="Operación offline"; fontsize=11; style="rounded,dashed"; color="#7A8FA6"; bgcolor="#F4F8FC";
+      UC7 [label="Registrar datos\nsin conexión"]; UC8 [label="Sincronizar registros\npendientes"]; UC9 [label="Resolver conflicto\nde sincronización"]; node [shape=note, style=filled, fillcolor="#FFF7D6", color="#B8860B", fixedsize=false, width=0, height=0, fontsize=9.5]; N1 [label="La captura offline permite continuar\nel registro cuando no existe conectividad."]; }
+    subgraph cluster_pri { label="Priorización por riesgo"; fontsize=11; style="rounded,dashed"; color="#7A8FA6"; bgcolor="#F4F8FC";
+      UC13 [label="Consultar agenda\npriorizada por riesgo"]; UC14 [label="Consultar factores\nde riesgo"]; UC15 [label="Ejecutar predicción\nde riesgo"]; UC18 [label="Reentrenar modelo\npredictivo"]; node [shape=note, style=filled, fillcolor="#FFF7D6", color="#B8860B", fixedsize=false, width=0, height=0, fontsize=9.5]; N2 [label="La predicción apoya la priorización\ny no sustituye el criterio clínico."]; }
+    subgraph cluster_fam { label="Comunicación con familias"; fontsize=11; style="rounded,dashed"; color="#7A8FA6"; bgcolor="#F4F8FC";
+      UC12 [label="Registrar barrera\nde acceso"]; UC10 [label="Enviar recordatorio\nde control"]; UC11 [label="Registrar confirmación\nde asistencia"]; }
+    subgraph cluster_ges { label="Gestión territorial"; fontsize=11; style="rounded,dashed"; color="#7A8FA6"; bgcolor="#F4F8FC";
+      UC16 [label="Consultar tablero\nterritorial"]; UC17 [label="Exportar reporte\nde indicadores"]; }
+  }
+  {rank=same; ENF; ACS; FAM; MIC; MINSA;}
+  {rank=same; UC1; UC3; UC4; UC7; UC8; UC5; UC6; UC13; UC14; UC18; UC12; UC10; UC11; UC16; UC17;}
+  {rank=same; UC2; UC9; UC15; N1; N2;}
+  {rank=same; HIS; WA;}
+
+  edge [dir=none];
+  ENF [ordering=out]; ENF -> {UC13 UC14 UC1 UC3 UC4 UC5 UC6 UC8 UC7};
+  ACS -> {UC7 UC8 UC12};
+  FAM -> {UC12 UC10 UC11};
+  MIC -> {UC16 UC17};
+  MINSA -> {UC16 UC17};
+  UC10 -> WA; UC11 -> WA; UC18 -> HIS;
+
+  edge [dir=forward, style=dashed, arrowhead=vee];
+  UC1 -> UC2 [label="«include»"];
+  UC8 -> UC9 [label="«include»"];
+  UC13 -> UC15 [label="«include»"];
+  UC14 -> UC15 [label="«include»"];
+  UC7 -> UC1 [label="«extend»\n[sin conectividad]", constraint=false];
+  edge [dir=none, style=dotted, arrowhead=none, color="#B8860B"];
+  UC7 -> N1; UC15 -> N2;
+  edge [style=invis]; UC2 -> HIS; UC9 -> HIS; UC15 -> WA; N2 -> WA;
+}
