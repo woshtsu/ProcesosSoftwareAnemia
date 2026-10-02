@@ -34,11 +34,12 @@ style: |
 
 # 1 · Del triple registro al expediente único
 
-![h:500](../../../diagramas/png/50_s6_as_is_vs_to_be.png)
+![h:560 lat](../../../diagramas/png/50_s6_as_is_vs_to_be_16x9.png)
 
-Brechas **B1–B6** · Datos ➔ Software ➔ Decisión ➔ Impacto
+Brechas **B1–B6**
+Datos ➔ Software ➔ Decisión ➔ Impacto
 Valor: **3 registros → 1** por evaluación (sintético)
-Anemia Junín · Procesos de Software 2026-20 · Porras · Auqui · Huamani
+Anemia Junín · Porras · Auqui · Huamani
 
 <!--
 [Expone: Porras V. (Ingeniero de Proceso). Tiempo: 1:05. Acumulado 1:05]
@@ -47,7 +48,7 @@ PITCH (1,5 min de la consigna, reducido a 1:05):
 - 0:25 Propuesta. Pasamos de un proceso reactivo a uno preventivo. La cadena de valor es Datos, Software, Decisión e Impacto: el software no decide, ordena el dato para que el profesional decida a tiempo.
 - 0:45 Indicador. El Incremento 1 ataca B1: el indicador de valor medible hoy es pasar de 3 registros manuales por evaluación a 1 expediente digital único. Es un resultado de diseño con datos sintéticos; no inventamos tiempos de respuesta que no medimos.
 - 1:00 Transición: "¿Qué proceso usamos para construirlo? Ricardo/Tania, siguiente".
-Cifras: DATOS_PMV §1 y Informe §2.1 (Tabla 4 y Tabla 6).
+Cifras: Informe §2.1 (Tabla 4 y Tabla 6).
 -->
 
 ---
@@ -74,27 +75,27 @@ Cifras: Informe §2.2 (Tablas 7 a 9) y §3.1 (Tabla 20).
 
 # 3 · Arquitectura: monolito hexagonal + API REST
 
-![h:340](../../../diagramas/png/53_s6_c4_contenedores_fastapi.png) ![h:280](../../../diagramas/png/66_s6_adr_nfr.png)
+![h:480](../../../diagramas/png/53_s6_c4_contenedores_fastapi_16x9.png)
 
 REST/JSON + OpenAPI 3.1 (ADR-005): sin WebSockets ni gRPC
 Sin microservicios, gateway ni caché de servidor (ADR-001)
 **ADR-003** integridad · **ADR-006** latencia · **ADR-002** disponibilidad
 
 <!--
-[Expone: Auqui H. (Ingeniero de Desarrollo y Prototipado; arquitectura). Tiempo: 1:05. Acumulado 3:15]
+[Expone: Auqui H. (Ingeniera de Desarrollo y Prototipado; arquitectura). Tiempo: 1:05. Acumulado 3:15]
 PITCH (cómo la arquitectura soporta los requerimientos no funcionales):
 - 0:00 C4 nivel 2. Tres contenedores: cliente PWA (HTML/CSS/JS, manifest y service worker), API FastAPI con núcleo hexagonal (dominio, aplicación, adaptadores) y base de datos PostgreSQL 16 (SQLite en desarrollo y pruebas).
 - 0:20 Por qué no hay lo que la consigna menciona: no hay API gateway, microservicios ni caché de servidor. ADR-001 descarta microservicios: con 3 personas y un solo incremento, distribuir sería prematuro; el hexágono deja puertos para evolucionar. La única caché es la de interfaz de la PWA (service worker).
 - 0:35 ADR y NFR: ADR-003 PostgreSQL con UNIQUE(dni), FK y CHECK da integridad y concurrencia (un DNI duplicado, incluso en altas simultáneas, lo rechaza la propia base de datos y la API responde 409). ADR-006 consultas por lotes corrigió el N+1: latencia p95 del reporte de 2 200 a 74 ms. ADR-002 PWA con borrador local da disponibilidad de interfaz con red intermitente; el registro definitivo exige conexión y la cola sin conexión llega en INC-3.
 - 0:55 Protocolo: REST/JSON con OpenAPI 3.1 y errores por campo en español (ADR-005). WebSockets y gRPC se descartan: el INC-1 no necesita tiempo real. Limitación declarada: sin autenticación (solo X-Usuario).
-Cifras: DATOS_PMV §3, §4, §13; Informe §3.2.
+Cifras: Informe §3.2.
 -->
 
 ---
 
 # 4 · Pruebas: evidencia objetiva de calidad
 
-![h:240](../../../diagramas/png/59_s6_piramide_pruebas.png) ![h:240](../../../diagramas/png/60_s6_cobertura.png) ![h:240](../../../diagramas/png/61_s6_carga_p95.png)
+![h:420](../../../diagramas/png/59_s6_piramide_pruebas_media.png) ![h:420](../../../diagramas/png/61_s6_carga_p95_media.png)
 
 **62+11+4 = 77** declaradas, **73** reproducidas el 01/10
 Carga: verificación aparte, no cuenta como prueba
@@ -108,18 +109,19 @@ PITCH (evidencia objetiva de calidad y estabilidad del código):
 - 0:20 Cobertura (pytest-cov, equivalente a Jacoco/Istanbul): 99 % con ramas, 641 sentencias y solo 2 sin cubrir; el umbral de la DoD es 80 %.
 - 0:35 Carga con Locust (equivalente a k6/JMeter), 50 usuarios, 60 s: antes de DEF-01 el p95 agregado era 310 ms; después, 58 ms, con 39,6 req/s y 0 fallos. El reporte pasó de 2 200 a 74 ms.
 - 0:50 DoD: cobertura >= 80 %, Ruff 0 hallazgos, suite en verde. HONESTIDAD: el 01/10 reprodujimos 73 pruebas (62 + 11) pasando, 99,07 % y Ruff 0. Las 4 E2E (falta el navegador de Playwright), la integración en PostgreSQL y la carga no se re-ejecutaron: sus resultados son los declarados en el tag. SonarCloud está preparado pero sin análisis ejecutado.
-Cifras: DATOS_PMV §6 a §9 y §17; Informe §3.3.
+Cifras: Informe §3.3.
 -->
 
 ---
 
 # 5 · Demo: HU-01 a HU-05 operativas
 
-![h:430](../../../diagramas/png/65_s6_collage_demo.png) ![h:240](../../../diagramas/png/58_s6_despliegue_docker_ci.png)
+![h:560 lat](../../../diagramas/png/65_s6_collage_demo.png)
 
-HU-01 · HU-02 · HU-03 · HU-04 · HU-05: **entregadas** · video `demo_pmv.mp4`
-Staging: Docker Compose (API + PostgreSQL 16) + CI
-Aceptación del usuario: pendiente de acta (ver anexo)
+HU-01 a HU-05: **entregadas**
+Video `demo_pmv.mp4`
+Staging: Docker Compose + CI
+Aceptación del usuario: pendiente de acta (ver Anexo A del informe)
 
 <!--
 [Expone: Auqui H. (demo) con apoyo de Huamani R. Tiempo: 1:25. Acumulado 5:45]
@@ -150,20 +152,19 @@ PITCH (datos cuantitativos del éxito de la iteración):
 - 0:00 Proceso: planificado vs. completado. El INC-1 planificó 21 puntos de historia en dos sprints (13 + 8) y entregó las 5 historias (21/21). El gráfico compara lo planificado con lo completado (21/21 SP); no es una serie diaria, porque todos los commits del tag son del 30/09. El burndown de S3-4 es un escenario simulado y se rotula así. Desviación: el hito H1 era el 28/09 y la entrega fue el 30/09 (+2 días), registrada en la retrospectiva.
 - 0:15 Producto: 2 defectos mayores (DEF-01 N+1 y DEF-02 zona horaria), ambos cerrados: 2 defectos / 1,02 KLOC = 2,0 por KLOC; cobertura 99 %; Ruff 0.
 - 0:28 Valor: lo único medido es el 3 → 1 registros por evaluación, por diseño y con datos sintéticos. No atribuimos reducción de pérdida de seguimiento: exige despliegue en una posta, línea base y seguimiento (INC-2 en adelante).
-Cifras: DATOS_PMV §8; Informe §2.3 (Tablas 14 y 18, Figuras 12 a 14).
-Nota (C-10): los SP por HU del tablero del PMV (5,3,3,2,3,5) difieren del desglose de S3-4; usar los de S3-4 (13 + 8).
+Cifras: Informe §2.3 (Tablas 14 y 18, Figuras 12 a 14).
 -->
 
 ---
 
 # 7 · Trazabilidad integral y cierre
 
-![h:420](../../../diagramas/png/64_s6_flujo_trazabilidad.png) ![h:420](../../../diagramas/png/68_s6_roadmap_incrementos.png)
+![h:560 lat](../../../diagramas/png/64_s6_flujo_trazabilidad_16x9.png)
 
-1. Híbrido: 5 HU con ADR, prueba y artefacto
-2. Carga y E2E revelaron DEF-01 y DEF-02 (cerrados)
-3. Valor técnico demostrado; impacto por medir
-Siguiente: **INC-2**, agenda y alertas (Unidad III)
+Híbrido: 5 HU con ADR, prueba y artefacto
+Carga y E2E revelaron DEF-01 y DEF-02 (cerrados)
+Valor técnico demostrado; impacto por medir
+Siguiente: **INC-2** (Unidad III)
 
 <!--
 [Expone: Porras V. (cierre; los tres pueden sumarse para la defensa). Tiempo: 0:35. Acumulado 7:00]

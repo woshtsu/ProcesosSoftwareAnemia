@@ -1,6 +1,6 @@
 # Pasos manuales S6: lo que solo una persona puede hacer
 
-- **Elaborado por:** inspector-guia (S6-06), 2026-10-01. Actualizar tras cada nueva inspección.
+- **Elaborado por:** inspector-guia (S6-06), 2026-10-01. **Versión 2** (reinspección sobre el commit `fdc50c5`): el trabajo ya está confirmado en git; los PDF y el DOCX existen de forma provisional; la ilegibilidad de las figuras en las diapositivas (N-01 de `INSPECCION_S6.md`) la corrigen los agentes, no las personas. Actualizar tras cada nueva inspección.
 - **Raíz del repositorio (variable usada en los comandos):** `D:\Workspace\IngenieriaWeb\Grupal\semana6\ProcesosSoftwareAnemia`.
 - **Shell:** los comandos están en PowerShell (Windows 11). Abre PowerShell y ejecuta primero:
 
@@ -10,7 +10,7 @@ Set-Location $R
 git branch --show-current          # debe imprimir: feature/s6-integrador-final
 ```
 
-- **Convención:** `[COMPLETAR…]` es el marcador que hay que reemplazar. Para ubicarlo: `Select-String -Path "$R\entregables\semana-06-integrador\Informe_Integrador_Anemia_Junin.md" -Pattern "COMPLETAR"` (17 líneas hoy).
+- **Convención:** `[COMPLETAR…]` es el marcador que hay que reemplazar. Para ubicarlo: `Select-String -Path "$R\entregables\semana-06-integrador\Informe_Integrador_Anemia_Junin.md" -Pattern "COMPLETAR"` (17 líneas hoy; la misma cantidad aparece en el PDF y el DOCX provisionales).
 - **Orden recomendado:** 1 → 2 → 5 → 6 (datos) en un solo rato; 3 (push) antes de 7; 8 → 9 → 11 (Docker y E2E); 10; después las correcciones automáticas de `INSPECCION_S6.md` §4; luego 12 y 13; 14 a 16 al final; 17 y 18 antes de la exposición.
 - **Regla:** no se inventa ningún dato. Si un dato no existe, se declara su ausencia (cada paso indica cómo).
 
@@ -69,7 +69,7 @@ Select-String -Path "$R\entregables\semana-06-integrador\Informe_Integrador_Anem
 
 ## 3. Commit, push y captura de GitHub Actions en verde
 
-- **Por qué:** `.github/workflows/ci.yml` (raíz) y los entregables S6 aún no están confirmados en git; hasta que corra en GitHub no hay evidencia de CI en verde (DATOS C-02).
+- **Por qué:** el commit local `fdc50c5` ya incluye `.github/workflows/ci.yml` (raíz) y los entregables S6, pero la rama no está empujada; hasta que corra en GitHub no hay evidencia de CI en verde (DATOS C-02). **Estado v2:** el commit está hecho; falta el push (sub-pasos 5 a 9).
 - **Pasos:**
   1. Revisa lo que se va a confirmar:
 
@@ -77,9 +77,9 @@ Select-String -Path "$R\entregables\semana-06-integrador\Informe_Integrador_Anem
 git -C $R status --short
 ```
 
-  2. Confirma que `.github/workflows/ci.yml` aparece como `??` (sin seguimiento).
-  3. Espera a que los agentes terminen las correcciones de `INSPECCION_S6.md` §4 (opcional: puedes empujar antes solo para obtener el CI en verde, y de nuevo después).
-  4. Crea el commit (lo hace el `sincronizador` si está disponible; si lo haces tú):
+  2. En v2 el árbol debe estar limpio (`git status --short` sin salida). Solo habrá cambios si los agentes o ustedes editaron algo después de `fdc50c5`.
+  3. Espera a que los agentes terminen las correcciones N-01 a N-06 y N-09 de `INSPECCION_S6.md` §3 (opcional: puedes empujar antes solo para obtener el CI en verde, y de nuevo después).
+  4. Si hay cambios posteriores a `fdc50c5`, crea un commit nuevo (lo hace el `sincronizador` si está disponible; si lo haces tú):
 
 ```powershell
 git -C $R add .github coordinacion entregables exportados diagramas pmv_fastapi README.md
@@ -98,7 +98,7 @@ git -C $R push -u origin feature/s6-integrador-final
   9. Copia el enlace de la ejecución (barra de direcciones).
 - **Dónde pegar el resultado:**
   - Informe l.277 (Tabla 12, fila Integración): reemplaza `[COMPLETAR: captura o enlace de una ejecución en verde en GitHub Actions]` por el enlace.
-  - Informe l.582: reemplaza el `[COMPLETAR: tras el push, adjuntar la captura o el enlace…]` por el enlace y, si quieres, una figura `![Figura 34. Ejecución en verde de GitHub Actions](../../pmv_fastapi/docs/evidencias/capturas/09_ci_github_actions_verde.png)` (renumera las figuras siguientes o ponla como «Figura 33b»).
+  - Informe l.583: reemplaza el `[COMPLETAR: captura o enlace de la ejecución en verde en Actions tras el push…]` por el enlace y, si quieres, una figura `![Figura 34. Ejecución en verde de GitHub Actions](../../pmv_fastapi/docs/evidencias/capturas/09_ci_github_actions_verde.png)` (renumera las figuras siguientes o ponla como «Figura 33b»).
   - Informe Tabla 18 (l.382), fila del pipeline: cambia «falta evidencia de una ejecución en verde» por «verificado: ejecución en verde del DD/MM/2026».
 - **Verificación:** la página de Actions muestra un círculo verde; `git -C $R ls-remote --heads origin feature/s6-integrador-final` devuelve un hash.
 
@@ -113,16 +113,16 @@ git -C $R push -u origin feature/s6-integrador-final
 
 ## 5. Acta de aceptación del usuario final y Product Owner
 
-- **Dónde afecta:** informe l.242 (acta de revisión), l.263 (nombre y cargo del Product Owner), l.280 (Tabla 12, revisión del sprint), l.616 (aceptación del usuario) y la diapositiva 5 (`Presentacion_Integrador.md` l.121 y notas l.125 y l.132).
+- **Dónde afecta:** informe l.242 (acta de revisión), l.263 (nombre y cargo del Product Owner), l.280 (Tabla 12, revisión del sprint), l.617 (aceptación del usuario) y la diapositiva 5 (`Presentacion_Integrador.md` l.122 con el texto visible «pendiente de acta (ver anexo)», y las notas l.126 y l.133). En v2 el texto visible ya no tiene `[COMPLETAR]`, pero remite a un anexo que no existe: si no hay acta, el agente lo cambia (N-03); si la hay, se guarda en `anexos\`.
 - **Opción A (hay aceptación):**
   1. Haz una demostración corta del PMV (puede ser con el video o en vivo) a una persona designada: enfermera o técnica de una posta, la microred o un Product Owner del curso.
   2. Pídele que verifique los criterios Dado-Cuando-Entonces de HU-01 a HU-05 (están en `pmv_fastapi\README.md`).
   3. Redacta el acta de una página: fecha, nombre, cargo, historias revisadas, observaciones y firma o correo de conformidad. Guarda el PDF en `entregables\semana-06-integrador\anexos\Acta_aceptacion_INC1.pdf` (nombre sugerido).
-  4. En el informe: reemplaza los cuatro `[COMPLETAR]` por el nombre, cargo y fecha, y cita el anexo. En la diapositiva 5 reemplaza `Aceptación del usuario final: [COMPLETAR] (sin acta)` por `Aceptación: <nombre>, <fecha> (acta en anexo)`.
+  4. En el informe: reemplaza los cuatro `[COMPLETAR]` por el nombre, cargo y fecha, y cita el anexo. En la diapositiva 5 reemplaza `Aceptación del usuario: pendiente de acta (ver anexo)` por `Aceptación: <nombre>, <fecha> (acta en anexo)`.
 - **Opción B (no hay aceptación; es lo más probable):**
-  1. Reemplaza l.616 por: «Aceptación del usuario final: pendiente. El incremento se declara verificado técnicamente (pruebas automatizadas, cobertura y demostración con datos sintéticos).»
+  1. Reemplaza l.617 por: «Aceptación del usuario final: pendiente. El incremento se declara verificado técnicamente (pruebas automatizadas, cobertura y demostración con datos sintéticos).»
   2. Reemplaza l.242 y l.280 por «Revisión de sprint con el equipo; la aceptación externa queda pendiente» y l.263 por «Product Owner: rol previsto, sin designar en el Incremento 1».
-  3. En la diapositiva 5 reemplaza el texto visible por `Aceptación del usuario final: pendiente (verificado técnicamente)`.
+  3. En la diapositiva 5 el texto visible debe decir `Aceptación del usuario: pendiente (verificado técnicamente)` (pedírselo a `disenador-diapositivas`, N-03).
 - **Verificación:** `Select-String -Path "$R\entregables\semana-06-integrador\*.md","$R\entregables\semana-06-integrador\presentacion\*.md" -Pattern "COMPLETAR"` no muestra las líneas de acta ni del PO.
 
 ## 6. Confirmar la justificación del cambio de Flask a FastAPI
@@ -136,7 +136,7 @@ git -C $R push -u origin feature/s6-integrador-final
 
 ## 7. Activar SonarCloud (o decidir no usarlo)
 
-- **Archivos:** `pmv_fastapi\sonar-project.properties` l.2 (`sonar.organization=REEMPLAZAR_ORGANIZACION`), `.github\workflows\ci.yml` (paso «Análisis SonarCloud») e informe l.550.
+- **Archivos:** `pmv_fastapi\sonar-project.properties` l.2 (`sonar.organization=REEMPLAZAR_ORGANIZACION`), `.github\workflows\ci.yml` (paso «Análisis SonarCloud») e informe l.551.
 - **Opción A: activarlo.**
   1. Entra a `https://sonarcloud.io` e inicia sesión con tu cuenta de GitHub (acción de la persona; no se delega).
   2. Crea o elige una organización (por ejemplo, tu usuario de GitHub) e **importa** el repositorio `woshtsu/ProcesosSoftwareAnemia`.
@@ -148,8 +148,8 @@ git -C $R push -u origin feature/s6-integrador-final
   6. Edita `pmv_fastapi\sonar-project.properties` l.2: `sonar.organization=<clave de la organización>` (el mismo valor).
   7. Haz commit y push (paso 3). En Actions, el paso «Análisis SonarCloud» ya no se omite.
   8. Cuando termine, en SonarCloud abre el proyecto `anemia-junin-pmv` y captura el *Quality Gate* y las métricas. Guárdala como `pmv_fastapi\docs\evidencias\capturas\10_sonarcloud_quality_gate.png`.
-  9. En el informe l.550 reemplaza el `[COMPLETAR: crear o seleccionar la organización …]` por el resultado (estado del Quality Gate, bugs, vulnerabilidades, cobertura) con la captura, y ajusta Tabla 18 (l.383) a «Cerrado».
-- **Opción B: no usarlo.** Elimina el `[COMPLETAR…]` de l.550 y deja «SonarCloud queda preparado y no se activa en el Incremento 1; el análisis estático obligatorio es Ruff (0 hallazgos)». Retira el paso de SonarCloud de la lista de entregables del discurso (la diapositiva 4 ya dice «Ruff 0»).
+  9. En el informe l.551 reemplaza el `[COMPLETAR: crear o seleccionar la organización …]` por el resultado (estado del Quality Gate, bugs, vulnerabilidades, cobertura) con la captura, y ajusta Tabla 18 (l.383) a «Cerrado».
+- **Opción B: no usarlo.** Elimina el `[COMPLETAR…]` de l.551 y deja «SonarCloud queda preparado y no se activa en el Incremento 1; el análisis estático obligatorio es Ruff (0 hallazgos)». Retira el paso de SonarCloud de la lista de entregables del discurso (la diapositiva 4 ya dice «Ruff 0»).
 - **Verificación:** captura del Quality Gate o declaración B; `Select-String … -Pattern "REEMPLAZAR_ORGANIZACION"` solo debe aparecer si se eligió B.
 
 ## 8. Instalar Docker Desktop y levantar el staging
@@ -192,8 +192,8 @@ docker compose exec api python -m scripts.cargar_datos_prueba
   1. Con el staging arriba (paso 8), abre `http://localhost:8000/api/salud` en el navegador; debe mostrar `{"estado":"ok"}`.
   2. Captura la pantalla incluyendo la URL y guarda como `pmv_fastapi\docs\evidencias\capturas\11_staging_api_salud.png`.
   3. Captura también `docker compose ps` en la terminal como `12_staging_compose_ps.png`.
-- **Dónde pegar:** informe l.582: reemplaza `[COMPLETAR: ejecutar docker compose up -d --build …]` por una frase «Staging verificado el DD/MM/2026: `GET /api/salud` responde 200» y agrega las dos figuras. Diapositiva 5: la línea «Staging: Docker Compose (API + PostgreSQL 16) + CI» ya es correcta; cambia en las notas l.125 «Preferible en vivo» por el estado real.
-- **Verificación:** los dos PNG existen y el `[COMPLETAR]` de l.582 desapareció.
+- **Dónde pegar:** informe l.583: reemplaza `[COMPLETAR: staging con docker compose up -d --build y captura de GET /api/salud…]` por una frase «Staging verificado el DD/MM/2026: `GET /api/salud` responde 200» y agrega las dos figuras. Diapositiva 5: la línea «Staging: Docker Compose (API + PostgreSQL 16) + CI» ya es correcta; cambia en las notas «Preferible en vivo» por el estado real.
+- **Verificación:** los dos PNG existen y el `[COMPLETAR]` de l.583 desapareció.
 
 ## 10. Duración y enlace del video de demostración
 
@@ -208,7 +208,7 @@ $f = Get-Item "$R\pmv_fastapi\docs\evidencias\demo_pmv.mp4"; $f.Length
 
   2. Si dura más de 2 minutos, recórtalo o regrábalo: `Set-Location "$R\pmv_fastapi"; .\.venv\Scripts\python -m scripts.grabar_demo` (requiere la app levantada y Chromium de Playwright; ver pasos 8 y 11).
   3. Si el aula virtual exige un enlace, sube el archivo a una carpeta compartida (Drive o OneDrive) con permiso «cualquiera con el enlace puede ver» y copia el enlace.
-  4. Reemplaza en el informe l.614 `[COMPLETAR: duración del video …]` por «Duración: mm:ss. Enlace: <URL>» y en la diapositiva 5 (notas l.125 y guion l.50) `[COMPLETAR]` por la duración.
+  4. Reemplaza en el informe l.615 `[COMPLETAR: duración del video …]` por «Duración: mm:ss. Enlace: <URL>» y en la diapositiva 5 (notas l.125 y guion l.50) `[COMPLETAR]` por la duración.
   5. Comprueba que el video muestra HU-01 a HU-03 como mínimo y el reporte (HU-05).
 - **Verificación:** `Select-String … -Pattern "duración del video"` sin resultados; el video abre en otro equipo.
 
@@ -230,6 +230,8 @@ Set-Location "$R\pmv_fastapi"
 
 ## 12. Generar el PDF de las diapositivas
 
+- **Estado v2:** el PDF ya existe (`exportados\semana-06\Presentacion_Integrador_Anemia_Junin.pdf`, 7 páginas, exportado con PowerPoint). Es provisional: debe regenerarse cuando los agentes corrijan la legibilidad de las figuras (N-01) y los textos (N-03, N-04, N-09). Hacerlo una sola vez, al final.
+
 - **Archivo origen:** `exportados\semana-06\Presentacion_Integrador_Anemia_Junin.pptx` (7 diapositivas). Hazlo **después** de que `disenador-diapositivas` regenere el PPTX con las figuras corregidas.
 - **Pasos (opción PowerPoint, la más simple):**
   1. Abre el PPTX en PowerPoint.
@@ -241,6 +243,8 @@ Set-Location "$R\pmv_fastapi"
 
 ## 13. Exportar el informe a PDF y verificar marcadores
 
+- **Estado v2:** `exportados\semana-06\Informe_Integrador_Anemia_Junin.pdf` (50 páginas) y `.docx` ya existen de forma provisional (S6-05 sin informe). Contienen 18 `COMPLETAR`, formato Letter, el título de metadatos `_temp` (N-12) y la captura 07 duplicada en las págs. 43-44 (N-14). Las 35 figuras sí están embebidas (verificado). Hay que **reexportarlos** una vez resueltos los pasos 1 a 7, 9 y 10; este paso pasa a ser «reexportar y verificar».
+
 - **Cuándo:** solo después de los pasos 1 a 7, 9 y 10 y de las correcciones automáticas (`INSPECCION_S6.md` §4).
 - **Pasos:**
   1. Verifica que no quedan marcadores:
@@ -251,7 +255,7 @@ Select-String -Path "$R\entregables\semana-06-integrador\Informe_Integrador_Anem
 ```
 
   2. Pide a `conversor-entregas` la tarea S6-05 (PDF y DOCX en `exportados\semana-06\`).
-  3. Abre el PDF y revisa: portada completa (fecha, docente, códigos), 35 figuras visibles (ninguna en blanco), tablas sin cortes, índice y tablas numeradas.
+  3. Abre el PDF y revisa: portada completa (fecha, docente, códigos), 35 figuras visibles (ninguna en blanco; la captura 07 no debe repetirse), tablas sin cortes, índice y tablas numeradas.
 - **Verificación:** existen `exportados\semana-06\Informe_Integrador_Anemia_Junin.pdf` y `.docx`; el PDF no contiene la cadena `COMPLETAR`.
 
 ## 14. Decidir si el tag `v1.0-PMV` se mueve a `main`

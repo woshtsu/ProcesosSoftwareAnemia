@@ -38,7 +38,7 @@ for i, (f, n, s, c) in enumerate(filas):
     ax.text(0.235, y - h/2, n, fontsize=11, va="center", fontweight="bold")
     ax.text(0.29, y - h/2, s, fontsize=10, va="center", color="#222", linespacing=1.3)
     ax.text(0.71, y - h/2, c, fontsize=10, va="center", color="#1F3A5F", wrap=True)
-fig.text(0.5, 0.012, "Fuente: Informe integrador, Tabla 7; entregables/semana-02 (S2 §1 y §2). Ocho factores de S2, todos de importancia alta, agrupados en cinco.",
+fig.text(0.5, 0.012, "Fuente: elaboración propia (Tabla 7). Ocho factores de S2, todos de importancia alta, agrupados en cinco.",
          ha="center", fontsize=9, color="#4A5A6A")
 fig.subplots_adjust(top=0.92, bottom=0.05, left=0.01, right=0.99)
 fig.savefig(RAIZ / "diagramas/png/67_s6_matriz_factores.png", dpi=200, facecolor="white")

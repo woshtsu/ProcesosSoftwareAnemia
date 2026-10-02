@@ -2,7 +2,7 @@
 
 Protocolo: `coordinacion/PROTOCOLO.md` · Rutas: `coordinacion/RUTAS.md` · Plantillas: `coordinacion/plantillas/`
 
-> **Cierre S6 en curso (desde 2026-10-01):** el detalle vive en [`coordinacion/s6/TABLERO_S6.md`](s6/TABLERO_S6.md), con su protocolo en [`coordinacion/s6/PROTOCOLO_S6.md`](s6/PROTOCOLO_S6.md). **PMV oficial: `pmv_fastapi/`** (FastAPI + PostgreSQL, tag `v1.0-PMV`). `anemia_junin/` (Flask) es el antecedente. Las tareas T-005 a T-009 se reformulan en S6-03 a S6-11. Estado al 2026-10-01 (S6-20): informe, 7 diapositivas (PPTX), figuras 50–68 y CI en la raíz HECHOS; pendientes la conversión PDF/DOCX (S6-05), la reinspección (S6-06), el merge (S6-07) y los pasos manuales (S6-12).
+> **Cierre S6 en curso (desde 2026-10-01):** el detalle vive en [`coordinacion/s6/TABLERO_S6.md`](s6/TABLERO_S6.md), con su protocolo en [`coordinacion/s6/PROTOCOLO_S6.md`](s6/PROTOCOLO_S6.md). **PMV oficial: `pmv_fastapi/`** (FastAPI + PostgreSQL, tag `v1.0-PMV`). `anemia_junin/` (Flask) es el antecedente. Las tareas T-005 a T-009 se reformulan en S6-03 a S6-11. Estado al 2026-10-02 (S6-25): informe, 7 diapositivas (PPTX y PDF), figuras 50–68 (con variantes 16:9), CI en la raíz, correcciones N-01 a N-12 y N-14 de la inspección v2 y exportación A4 del informe (PDF de 51 pp. y DOCX) HECHOS. Solo quedan los pasos manuales (S6-12), la reexportación final tras cerrar los `[COMPLETAR]` (S6-24) y el merge (S6-07).
 
 Estados: `PENDIENTE` · `EN CURSO` · `BLOQUEADA` · `EN REVISIÓN` · `HECHO`
 

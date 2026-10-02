@@ -30,7 +30,7 @@ Si un agente necesita crear una ruta nueva, se la pide al `sincronizador` (antes
 | S2 | `entregables/semana-02/Entregable_Semana2_Anemia_Junin.md` (ex v2 `.docx.md`) | `entregables/semana-02/img/image1.png` |
 | S3-4 | `entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md` (ex v1) | — |
 | S5 | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` (existe; describe el antecedente Flask; ver S6-11) | `entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf`, `entregables/semana-05/_extraccion_Informe_Actividad5.md` |
-| S6 | `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md` | `entregables/semana-06-integrador/anexos/` (`Revision_Cumplimiento_y_Trazabilidad.md`, `Prompts_y_guion_de_defensa.md`); checklist: `entregables/semana-06-integrador/CHECKLIST_CUMPLIMIENTO_S6_INFORME.md`; presentación: `entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md` (fuente Marp, 7 diapositivas), guion `presentacion/GUION_EXPOSICION.md` y generador `presentacion/generar_presentacion.py` (python-pptx, ejecutar con `herramientas/.venv`) |
+| S6 | `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md` | `archivo/versiones-anteriores/semana-06-integrador/` (`Revision_Cumplimiento_y_Trazabilidad.md`, `Prompts_y_guion_de_defensa.md`, archivados el 02/10/2026; el acta de aceptación es el Anexo A del informe); checklist: `entregables/semana-06-integrador/CHECKLIST_CUMPLIMIENTO_S6_INFORME.md`; presentación: `entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md` (fuente Marp, 7 diapositivas), guion `presentacion/GUION_EXPOSICION.md` y generador `presentacion/generar_presentacion.py` (python-pptx, ejecutar con `herramientas/.venv`) |
 
 Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIMIENTO_S<n>.md` (p. ej. `semana-01/CHECKLIST_CUMPLIMIENTO_S1.md`).
 
@@ -39,6 +39,7 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Contenido | Ruta |
 | --- | --- |
 | Fuentes PlantUML (`.puml`) | `diagramas/src/*.puml` (rango `50–69_s6_*` reservado para las figuras S6) |
+| Variantes para diapositivas (S6) | `diagramas/{src,png,svg}/NN_s6_*_16x9.*` (50, 53, 58, 64, 68) y `NN_s6_*_media.*` (59, 61); utilidades compartidas `diagramas/src/_fig.py` y `_fig58.py` |
 | Generadores Python | `diagramas/src/*.py` y `diagramas/src/integrador/` (generador ReportLab del informe integrador: `diagramas.py`, `contenido.py`, `generar.py`) |
 | PNG (visualización / DOCX) | `diagramas/png/NN_nombre.png` |
 | SVG (incrustar en .md) | `diagramas/svg/NN_nombre.svg` |
@@ -75,10 +76,10 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Contenido | Ruta |
 | --- | --- |
 | PDF / DOCX finales | `exportados/semana-XX/<NombreEntregable>.pdf|.docx` |
-| S6 (integrador) | `exportados/semana-06/Informe_Integrador_Anemia_Junin.pdf` y `.docx`; `exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx` y `.pdf` |
-| Scripts de conversión (plantilla DOCX, CSS, scripts) | `herramientas/conversion/` (lo crea el conversor cuando lo necesita); el script de la presentación es `entregables/semana-06-integrador/presentacion/generar_presentacion.py` (disenador-diapositivas) |
+| S6 (integrador) | `exportados/semana-06/Informe_Integrador_Anemia_Junin.pdf` (A4, 51 pp.) y `.docx`; `exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx` y `.pdf` (7 diapositivas). Son los 3 archivos que se suben al aula (PDF del informe, PPTX y PDF de la presentación; el DOCX es de respaldo) |
+| Scripts de conversión | `herramientas/conversion/`: `exportar_s6.py` (informe MD → DOCX y PDF A4 con pandoc + Edge; CSS inyectado), `exportar_s6.ps1` (variante PowerShell), `pptx_a_pdf.ps1` (presentación PPTX → PDF con PowerPoint COM) y `README.md`. El PPTX lo genera `entregables/semana-06-integrador/presentacion/generar_presentacion.py` (disenador-diapositivas) |
 | PlantUML local (no versionado) | `herramientas/plantuml/plantuml.jar` (solo desde Maven Central; ver `herramientas/README.md`) |
-| Entorno Python de herramientas (no versionado) | `herramientas/.venv` (matplotlib, pillow, python-pptx); genera las figuras `59–67_s6` y el PPTX |
+| Entorno Python de herramientas (no versionado) | `herramientas/.venv` (matplotlib, pillow, python-pptx, pypandoc_binary, pypdf, pypdfium2); genera las figuras `59–67_s6`, el PPTX y los exportados del informe |
 
 ## Coordinación entre agentes
 
@@ -102,7 +103,7 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Protocolo S6 | `coordinacion/s6/PROTOCOLO_S6.md` | sincronizador |
 | Tablero S6 | `coordinacion/s6/TABLERO_S6.md` | sincronizador (filas); cada agente edita el estado de su fila |
 | Solicitudes de recursos visuales | `coordinacion/s6/solicitudes/VIS-###.md` | solicitante; *Respuesta*: recursos-visuales |
-| Inspección de cumplimiento (existe; primera pasada) | `coordinacion/s6/INSPECCION_S6.md` | inspector-guia |
+| Inspección de cumplimiento (existe; v2 del 01/10, correcciones N-01 a N-14 aplicadas salvo N-13 = reexportación final) | `coordinacion/s6/INSPECCION_S6.md` | inspector-guia |
 | Pasos manuales (existe; 18 pasos) | `coordinacion/s6/PASOS_MANUALES.md` | inspector-guia |
 | Verificación previa al merge (por crear, S6-07) | `coordinacion/s6/CHECK_MERGE.md` | guardian-merge |
 | Informes de trabajo S6 | `coordinacion/s6/informes/AAAA-MM-DD_<agente>[_<tarea>].md` | cada agente |

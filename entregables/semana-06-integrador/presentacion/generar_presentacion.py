@@ -68,7 +68,7 @@ def leer_diapositivas() -> list[dict]:
             continue
         notas = [n.strip() for n in RE_NOTA.findall(bloque)]
         limpio = RE_NOTA.sub("", bloque)
-        titulo, imagenes, lineas = "", [], []
+        titulo, imagenes, lineas, modo = "", [], [], "franja"
         for linea in limpio.splitlines():
             s = linea.strip()
             if not s:
@@ -80,10 +80,12 @@ def leer_diapositivas() -> list[dict]:
                     alt, ruta = img.groups()
                     h = re.search(r"h:(\d+)", alt)
                     imagenes.append((ruta, int(h.group(1)) if h else 400))
+                    if "lat" in alt.split():
+                        modo = "lateral"
             else:
                 lineas.append(s)
         diapos.append({"titulo": titulo, "imagenes": imagenes, "lineas": lineas,
-                       "notas": "\n\n".join(notas)})
+                       "notas": "\n\n".join(notas), "modo": modo})
     return diapos
 
 
@@ -115,16 +117,15 @@ def poner_imagenes(slide, imagenes, region) -> list[str]:
     for ruta, h in imagenes:
         p = resolver(ruta)
         if p.exists():
-            with Image.open(p) as im:
-                asp = im.width / im.height
+            _, asp = recortada(p)
         else:
             asp = 16 / 9
         datos.append((ruta, p, h * PX, asp))
-    hueco = 0.12
+    hueco = 0.1
     anchos = [h * a for _, _, h, a in datos]
     fila = sum(anchos) + hueco * (len(datos) - 1)
     mayor = max(h for _, _, h, _ in datos)
-    esc = min(ancho / fila, alto / mayor, 1.2)
+    esc = min(ancho / fila, alto / mayor, 3.0)
     fila *= esc
     x = x0 + (ancho - fila) / 2
     pendientes = []
@@ -132,7 +133,7 @@ def poner_imagenes(slide, imagenes, region) -> list[str]:
         hh, ww = h * esc, h * asp * esc
         y = y0 + (alto - hh) / 2
         if p.exists():
-            slide.shapes.add_picture(str(p), Inches(x), Inches(y), Inches(ww), Inches(hh))
+            slide.shapes.add_picture(recortada(p)[0], Inches(x), Inches(y), Inches(ww), Inches(hh))
         else:
             rel = p.relative_to(RAIZ).as_posix() if RAIZ in p.parents else ruta
             caja = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(x), Inches(y),
@@ -153,6 +154,35 @@ def poner_imagenes(slide, imagenes, region) -> list[str]:
             pendientes.append(rel)
         x += ww + hueco * esc
     return pendientes
+
+
+def recortada(p: Path):
+    """Devuelve (flujo PNG, aspecto) con los márgenes blancos recortados (conserva 12 px)."""
+    import io
+    from PIL import ImageChops
+    with Image.open(p) as im:
+        rgb = im.convert("RGB")
+        fondo = Image.new("RGB", rgb.size, (255, 255, 255))
+        caja = ImageChops.difference(rgb, fondo).point(lambda v: 255 if v > 8 else 0).getbbox()
+        if caja:
+            m = 12
+            caja = (max(caja[0] - m, 0), max(caja[1] - m, 0),
+                    min(caja[2] + m, rgb.width), min(caja[3] + m, rgb.height))
+            rgb = rgb.crop(caja)
+        buf = io.BytesIO()
+        rgb.save(buf, "PNG")
+        buf.seek(0)
+        return buf, rgb.width / rgb.height
+
+
+def poner_imagen_fija(slide, ruta, x, y, ancho) -> list[str]:
+    p = resolver(ruta)
+    if p.exists():
+        with Image.open(p) as im:
+            asp = im.width / im.height
+        slide.shapes.add_picture(str(p), Inches(x), Inches(y), Inches(ancho), Inches(ancho / asp))
+        return []
+    return [ruta]
 
 
 def construir() -> tuple[Presentation, list[str]]:
@@ -183,24 +213,37 @@ def construir() -> tuple[Presentation, list[str]]:
         r.font.bold = True
         r.font.name = "Calibri"
         r.font.color.rgb = BLANCO
-        # Franja de texto inferior (≥ 20 pt)
         n = len(d["lineas"])
-        alto_txt = 0.2 + 0.45 * n
-        y_txt = ALTO_IN - alto_txt - 0.15
-        if n:
-            cuadro = s.shapes.add_textbox(Inches(0.4), Inches(y_txt), Inches(ANCHO_IN - 0.8),
-                                          Inches(alto_txt))
+        if d["modo"] == "lateral":
+            # Figura dominante a la izquierda (10,7 in = 80 % del ancho) y texto lateral
+            if d["imagenes"]:
+                ruta = d["imagenes"][0][0]
+                pendientes += poner_imagen_fija(s, ruta, 0.15, 1.2, 10.7)
+            cuadro = s.shapes.add_textbox(Inches(10.95), Inches(1.4), Inches(2.25), Inches(5.0))
             t = cuadro.text_frame
             t.word_wrap = True
-            t.vertical_anchor = MSO_ANCHOR.MIDDLE
+            t.vertical_anchor = MSO_ANCHOR.TOP
             for k, linea in enumerate(d["lineas"]):
                 par = t.paragraphs[0] if k == 0 else t.add_paragraph()
-                par.alignment = PP_ALIGN.CENTER
-                agregar_runs(par, linea, 20)
-        # Imágenes
-        if d["imagenes"]:
-            region = (0.4, 1.2, ANCHO_IN - 0.8, y_txt - 1.2 - 0.1)
-            pendientes += poner_imagenes(s, d["imagenes"], region)
+                par.alignment = PP_ALIGN.LEFT
+                par.space_after = Pt(10)
+                agregar_runs(par, linea, 16)
+        else:
+            alto_txt = 0.2 + 0.45 * n
+            y_txt = ALTO_IN - alto_txt - 0.15
+            if n:
+                cuadro = s.shapes.add_textbox(Inches(0.4), Inches(y_txt),
+                                              Inches(ANCHO_IN - 0.8), Inches(alto_txt))
+                t = cuadro.text_frame
+                t.word_wrap = True
+                t.vertical_anchor = MSO_ANCHOR.MIDDLE
+                for k, linea in enumerate(d["lineas"]):
+                    par = t.paragraphs[0] if k == 0 else t.add_paragraph()
+                    par.alignment = PP_ALIGN.CENTER
+                    agregar_runs(par, linea, 20)
+            if d["imagenes"]:
+                region = (0.2, 1.15, ANCHO_IN - 0.4, y_txt - 1.15 - 0.05)
+                pendientes += poner_imagenes(s, d["imagenes"], region)
         # Número de diapositiva
         num = s.shapes.add_textbox(Inches(ANCHO_IN - 0.9), Inches(ALTO_IN - 0.4), Inches(0.7),
                                    Inches(0.35))

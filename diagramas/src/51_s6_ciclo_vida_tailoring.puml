@@ -1,5 +1,5 @@
 @startuml 51_s6_ciclo_vida_tailoring
-' Fuentes: Informe integrador Tablas 8 y 9 (S2 Tablas 3 y 6), Tabla 16 (sprints), ci.yml
+' Fuentes: Informe integrador Tablas 8 y 9 (S2 Tablas 3 y 6), Tabla 16 (sprints); canal de CI = .github/workflows/ci.yml
 !pragma layout smetana
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontName "Arial"
@@ -18,7 +18,7 @@ package "Incrementos (Tabla 16)" #E3F2FD {
   INC2 --> INC3
 }
 
-package "Carril DevOps continuo (ci.yml)" #FFF9C4 {
+package "Carril DevOps continuo (integración continua)" #FFF9C4 {
   rectangle "Rama feature, PR y CI" as DF1
   rectangle "Ruff (lint y formato)" as DF3
   rectangle "pytest + cobertura (SQLite)" as DF4
@@ -62,7 +62,7 @@ INC3 -[hidden]down-> NO1
 DF7 -[hidden]down-> DEC1
 
 note bottom
-  Fuente: Informe integrador, Tablas 8 y 9 (S2, Tablas 3 y 6); pmv_fastapi/.github/workflows/ci.yml
+  Fuente: elaboración propia (Tablas 8 y 9 del informe).
 end note
 
 @enduml

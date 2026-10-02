@@ -28,7 +28,7 @@ ax.text(0.0, 0.72, "HU-01 y HU-03: registro, vista previa\ny rechazo comprensibl
         "HU-02: expediente con evolución\nde dosajes.\n\nHU-04: seguimiento con estado de\ncontrol.\n\n"
         "HU-05: reporte del periodo (JSON y CSV).\n\nTodos los datos son sintéticos.",
         fontsize=11, va="top", linespacing=1.3)
-fig.text(0.5, 0.01, "Fuente: pmv_fastapi/docs/evidencias/capturas/ (01, 02, 04, 05 y 06). Datos sintéticos de scripts/cargar_datos_prueba.py.",
+fig.text(0.5, 0.01, "Fuente: elaboración propia (Tabla 29). Datos sintéticos.",
          ha="center", fontsize=9.5, color="#4A5A6A")
 fig.subplots_adjust(top=0.90, bottom=0.04, left=0.02, right=0.98, hspace=0.12, wspace=0.08)
 fig.savefig(RAIZ / "diagramas/png/65_s6_collage_demo.png", dpi=150, facecolor="white")

@@ -85,7 +85,7 @@ python -m playwright install chromium && pytest tests/e2e -m e2e --no-cov
 locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 --headless -u 50 -r 10 -t 60s
 ```
 
-## Entregables por semana (estado real al 2026-10-01)
+## Entregables por semana (estado real al 2026-10-02)
 
 | Semana | Tema | Guía | Entregable vigente | Estado |
 | --- | --- | --- | --- | --- |
@@ -93,9 +93,21 @@ locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 --headles
 | S2 | Selección y justificación del modelo de proceso | [Guía S2](guias/S2.Gu%C3%ADa%20de%20trabajo%20semana%202.md) | [`Entregable_Semana2`](entregables/semana-02/Entregable_Semana2_Anemia_Junin.md) | En revisión. La figura 15 existe (DIAG-006 resuelta); quedan `[PENDIENTE]` de datos del equipo |
 | S3-4 | Actividades, RAE, DoD, WBS, priorización, estimación, plan y seguimiento | [Guía S3-4](guias/S3.GU%C3%8DA%20DE%20TRABAJO%20SEMANA%203%20Y%204.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | En revisión. Las figuras 30–35 existen (DIAG-100..105 resueltas); el burndown es simulado |
 | S5 | Ejecución de los procesos principales del Incremento 1 | [Guía S5](guias/S5-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%205.md) | [`Entregable_Semana5`](entregables/semana-05/Entregable_Semana5_Anemia_Junin.md) | Existe, pero **describe el antecedente Flask** y tiene `CARGA_CIERRE` y `[PENDIENTE]`. Pendiente de la decisión del usuario (S6-11) |
-| S6 | Integrador de las Unidades I y II: informe, 7 diapositivas y repositorio con tag | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) ([checklist](entregables/semana-06-integrador/CHECKLIST_CUMPLIMIENTO_S6_INFORME.md)); [`Presentacion_Integrador.md`](entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md) (Marp, 7 diapositivas) y [`GUION_EXPOSICION.md`](entregables/semana-06-integrador/presentacion/GUION_EXPOSICION.md); PPTX en [`exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx`](exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx) | **En revisión** en la rama `feature/s6-integrador-final`. Informe reescrito sobre el PMV FastAPI (S6-03, S6-18), con marcadores `[COMPLETAR]` de datos del equipo. PPTX de 7 diapositivas generado con `presentacion/generar_presentacion.py` (S6-04, S6-19). Figuras 50–68_s6 en `diagramas/`. Pendientes: PDF de las diapositivas, PDF/DOCX del informe (S6-05), reinspección (S6-06), merge (S6-07) y los pasos de [`PASOS_MANUALES.md`](coordinacion/s6/PASOS_MANUALES.md). Inspección: [`INSPECCION_S6.md`](coordinacion/s6/INSPECCION_S6.md) |
+| S6 | Integrador de las Unidades I y II: informe, 7 diapositivas y repositorio con tag | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) ([checklist](entregables/semana-06-integrador/CHECKLIST_CUMPLIMIENTO_S6_INFORME.md)); [`Presentacion_Integrador.md`](entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md) (Marp, 7 diapositivas) y [`GUION_EXPOSICION.md`](entregables/semana-06-integrador/presentacion/GUION_EXPOSICION.md); exportados en [`exportados/semana-06/`](exportados/semana-06/) | **Listo por parte de los agentes** en la rama `feature/s6-integrador-final`: informe sobre el PMV FastAPI, 7 diapositivas (PPTX y PDF), figuras 50–68_s6 con variantes 16:9, correcciones N-01 a N-14 de la [inspección v2](coordinacion/s6/INSPECCION_S6.md) (salvo N-13, la reexportación final) e informe exportado en A4 (PDF de 51 pp. y DOCX). **Pendientes:** (1) los pasos de [`PASOS_MANUALES.md`](coordinacion/s6/PASOS_MANUALES.md), entre ellos los 25 `[COMPLETAR]` de datos del equipo; (2) la reexportación final del informe tras completarlos; (3) el merge a `main` (S6-07) |
 
 El seguimiento del cierre S6 está en [`coordinacion/s6/TABLERO_S6.md`](coordinacion/s6/TABLERO_S6.md) y los requisitos de la consigna en [`coordinacion/s6/REQUISITOS_S6.md`](coordinacion/s6/REQUISITOS_S6.md) (91 requisitos, R-01 a R-91).
+
+## Entrega S6: qué subir al aula virtual
+
+Suban estos 3 archivos de [`exportados/semana-06/`](exportados/semana-06/), **después** de completar los `[COMPLETAR]` y reexportar (`herramientas\.venv\Scripts\python.exe herramientas\conversion\exportar_s6.py`; ver [`herramientas/conversion/README.md`](herramientas/conversion/README.md)):
+
+| Archivo | Contenido |
+| --- | --- |
+| [`Informe_Integrador_Anemia_Junin.pdf`](exportados/semana-06/Informe_Integrador_Anemia_Junin.pdf) | Informe académico integrador (A4). El `.docx` de la misma carpeta es la versión editable de respaldo |
+| [`Presentacion_Integrador_Anemia_Junin.pptx`](exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx) | 7 diapositivas para la exposición de 7 minutos |
+| [`Presentacion_Integrador_Anemia_Junin.pdf`](exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pdf) | Las mismas 7 diapositivas en PDF (`herramientas/conversion/pptx_a_pdf.ps1`) |
+
+Enlaces del repositorio para el aula: <https://github.com/woshtsu/ProcesosSoftwareAnemia> y el tag del PMV <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.0-PMV> (la decisión de mover el tag es el paso manual 14).
 
 ## Estructura del repositorio
 
@@ -138,7 +150,7 @@ Cada ruta se detalla en [`coordinacion/RUTAS.md`](coordinacion/RUTAS.md).
 
 Los agentes se comunican **solo mediante archivos**: tareas en los tableros, solicitudes `<PREFIJO>-###` e informes. Las reglas están en [`coordinacion/PROTOCOLO.md`](coordinacion/PROTOCOLO.md) y, para S6, en [`coordinacion/s6/PROTOCOLO_S6.md`](coordinacion/s6/PROTOCOLO_S6.md).
 
-## Herramientas locales (2026-10-01)
+## Herramientas locales (2026-10-02)
 
 | Herramienta | Estado |
 | --- | --- |
@@ -146,5 +158,6 @@ Los agentes se comunican **solo mediante archivos**: tareas en los tableros, sol
 | Java 17 (OpenJDK 17.0.19) | Disponible |
 | Node v24.19.0 | Disponible (marp-cli necesita descargarse con permiso del usuario) |
 | PlantUML (`herramientas/plantuml/plantuml.jar`) | Descargado de Maven Central (v1.2026.8), local y **no versionado** (ver [`herramientas/README.md`](herramientas/README.md)) |
-| `herramientas/.venv` (Python 3.14: matplotlib, pillow, python-pptx) | Local y no versionado; genera las figuras 59–67 y el PPTX |
-| Pandoc | No instalado |
+| `herramientas/.venv` (Python 3.14: matplotlib, pillow, python-pptx, pypandoc_binary, pypdf, pypdfium2) | Local y no versionado; genera las figuras 59–67, el PPTX y los exportados del informe |
+| Pandoc | Vía `pypandoc_binary` en `herramientas/.venv` (exporta el informe con [`herramientas/conversion/exportar_s6.py`](herramientas/conversion/exportar_s6.py)) |
+| Microsoft PowerPoint / Edge | Usados localmente para el PDF de las diapositivas (`pptx_a_pdf.ps1`) y el PDF del informe (Edge headless) |

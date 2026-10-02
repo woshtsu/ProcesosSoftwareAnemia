@@ -119,5 +119,5 @@ El pipeline está en la **raíz del repositorio**, `.github/workflows/ci.yml` (t
 | Integrante | Rol |
 |---|---|
 | Porras Veli Ricardo | Ingeniero de Proceso |
-| Auqui Huincho Tania | Ingeniero de Desarrollo y Prototipado |
+| Auqui Huincho Tania | Ingeniera de Desarrollo y Prototipado |
 | Huamani Rodriguez Jean Piero | Ingeniero de Calidad y Mejora del Proceso |

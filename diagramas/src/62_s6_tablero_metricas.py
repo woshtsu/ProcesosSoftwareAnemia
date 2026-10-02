@@ -50,8 +50,8 @@ ax8.text(0.04, 0.82,
          "- 99 % de cobertura\n- 0 defectos abiertos\n- 5 HU entregadas\n- Arquitectura hexagonal\n- PostgreSQL y Docker",
          fontsize=9, va="top", linespacing=1.3)
 
-fig.text(0.5, 0.012, "Fuente: Informe integrador Tabla 14 (S3-4 Tablas 19-20); coordinacion/s6/DATOS_PMV_FASTAPI.md §6-§9 y §17. "
-         "Datos sintéticos (scripts/cargar_datos_prueba.py).", ha="center", fontsize=9, color="#4A5A6A")
+fig.text(0.5, 0.012, "Fuente: elaboración propia (Tablas 14, 23, 24 y 26). "
+         "Datos sintéticos.", ha="center", fontsize=9, color="#4A5A6A")
 fig.savefig(RAIZ / "diagramas/png/62_s6_tablero_metricas.png", dpi=200, facecolor="white")
 fig.savefig(RAIZ / "diagramas/svg/62_s6_tablero_metricas.svg", format="svg", facecolor="white")
 print("62 OK")

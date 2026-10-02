@@ -40,10 +40,12 @@ ax.axvline(x=80, color='red', linestyle='--', linewidth=2, label='Umbral DoD (80
 
 # Etiquetas y valores
 ax.set_yticks(y_pos)
-ax.set_yticklabels(modulos, fontsize=10)
+sent = [81, 28, 42, 108, 101, 5, 105, 10, 38, 30]  # sentencias reproducidas el 01/10 (suman 548)
+assert sum(sent) == 548
+ax.set_yticklabels([f'{m} ({n})' for m, n in zip(modulos, sent)], fontsize=10)
 ax.set_xlabel('Cobertura (%)', fontsize=11, fontweight='bold')
-ax.set_title('Cobertura de Código por Módulo — PMV FastAPI\n'
-             'Total: 99 % · 548 sentencias reproducidas el 01/10/2026 (641 declaradas en el tag) · 98 ramas',
+ax.set_title('Cobertura de código por módulo, reproducida el 01/10/2026 — PMV FastAPI\n'
+             'Total: 99,07 % · 548 sentencias (2 sin cubrir) · 98 ramas (4 parciales)',
              fontsize=13, fontweight='bold', pad=34)
 ax.set_xlim(0, 105)
 
@@ -60,8 +62,9 @@ ax.grid(axis='x', alpha=0.3, linestyle=':')
 
 # Nota al pie
 footer = (
-    'Fuente: pmv_fastapi/docs/evidencias/cobertura.txt (tag) y verificacion_s6_2026-10-01.md (reproducción: 99,07 %)\n'
-    'Medición con pytest-cov; umbral configurado en pyproject.toml: fail_under=80'
+    'Fuente: elaboración propia (Tabla 25), reproducción del 01/10/2026 con pytest-cov. '
+    'El tag v1.0-PMV declara 641 sentencias con el mismo 99 %.\n'
+    'Umbral de cobertura: 80 % (fail_under=80). Entre paréntesis: sentencias por módulo.'
 )
 fig.text(0.5, 0.01, footer, ha='center', fontsize=8,
          bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.5))

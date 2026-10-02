@@ -52,8 +52,7 @@ for t, v, n in filas:
     y -= 0.19
 
 fig.suptitle("Prueba de carga: efecto de DEF-01 (consultas por lotes, ADR-006)", fontsize=14, fontweight="bold")
-fig.text(0.5, 0.01, "Fuente: pmv_fastapi/docs/evidencias/carga/linea_base_antes_DEF-01_stats.csv y despues_DEF-01_stats.csv; "
-         "coordinacion/s6/DATOS_PMV_FASTAPI.md §9. Datos sintéticos.", ha="center", fontsize=9, color="#4A5A6A")
+fig.text(0.5, 0.01, "Fuente: elaboración propia (Tabla 26). Datos sintéticos.", ha="center", fontsize=9, color="#4A5A6A")
 fig.subplots_adjust(top=0.88, bottom=0.14, left=0.06, right=0.98, wspace=0.12)
 fig.savefig(RAIZ / "diagramas/png/61_s6_carga_p95.png", dpi=200, facecolor="white")
 fig.savefig(RAIZ / "diagramas/svg/61_s6_carga_p95.svg", format="svg", facecolor="white")

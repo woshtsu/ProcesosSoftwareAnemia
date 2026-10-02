@@ -1,7 +1,7 @@
 # Guion de exposición grupal: 7 minutos y 7 diapositivas
 
 - **Fuente de las diapositivas:** `Presentacion_Integrador.md` (Marp). Las notas del orador de cada diapositiva contienen el detalle del pitch.
-- **Contradicción C-06 / R-90:** los pitches de la consigna suman 10 min (1,5 + 1,5 + 1,5 + 1,5 + 2,0 + 1,0 + 1,0) y la exposición dura 7 min. Se reduce al 70 %: **1:05 · 1:05 · 1:05 · 1:05 · 1:25 · 0:40 · 0:35 = 7:00**.
+- **Duración:** los pitches de la consigna suman 10 min (1,5 + 1,5 + 1,5 + 1,5 + 2,0 + 1,0 + 1,0) y la exposición dura 7 min. Se reduce al 70 %: **1:05 · 1:05 · 1:05 · 1:05 · 1:25 · 0:40 · 0:35 = 7:00**.
 - **Expositores:** la asignación por rol es una **propuesta**; el equipo decide ([COMPLETAR: confirmar quién expone cada diapositiva]). Los tres integrantes deben dominar todo el material, porque la defensa individual (C8) pregunta a cada uno por el repositorio, la arquitectura y las pruebas.
 
 ## 1. Cronograma de la exposición
@@ -10,9 +10,9 @@
 | --- | --- | --- | --- | --- | --- |
 | 1 | Problema AS-IS vs. TO-BE, cadena de valor e indicador 3 → 1 | 1:05 | 1:05 | Porras Veli, Ricardo | Ingeniero de Proceso |
 | 2 | Tailoring: matriz de factores, ciclo adaptado, rechazo de Cascada | 1:05 | 2:10 | Porras Veli, Ricardo | Ingeniero de Proceso |
-| 3 | Arquitectura: C4 nivel 2, ADR ➔ NFR, protocolos | 1:05 | 3:15 | Auqui Huincho, Tania | Ingeniero de Desarrollo y Prototipado |
+| 3 | Arquitectura: C4 nivel 2, ADR ➔ NFR, protocolos | 1:05 | 3:15 | Auqui Huincho, Tania | Ingeniera de Desarrollo y Prototipado |
 | 4 | Pruebas: pirámide, cobertura, carga, DoD | 1:05 | 4:20 | Huamani Rodriguez, Jean Piero | Ingeniero de Calidad y Mejora |
-| 5 | Demo operativa (en vivo en staging; respaldo: video) | 1:25 | 5:45 | Auqui Huincho, Tania (apoyo: Huamani R.) | Ingeniero de Desarrollo y Prototipado |
+| 5 | Demo operativa (en vivo en staging; respaldo: video) | 1:25 | 5:45 | Auqui Huincho, Tania (apoyo: Huamani R.) | Ingeniera de Desarrollo y Prototipado |
 | 6 | Tablero de métricas: proceso, producto, valor | 0:40 | 6:25 | Huamani Rodriguez, Jean Piero | Ingeniero de Calidad y Mejora |
 | 7 | Trazabilidad, conclusiones e INC-2 | 0:35 | 7:00 | Porras Veli, Ricardo | Ingeniero de Proceso |
 
@@ -51,7 +51,7 @@ Plan B: si la demo en vivo falla, reproducir el video (duración [COMPLETAR]) y 
 
 ### Diapositiva 6 (5:45 a 6:25), Huamani R.
 
-"En proceso: el incremento 1 planificó 21 puntos en dos sprints y entregó las cinco historias, 21 de 21; el hito H1 se cumplió con dos días de retraso, registrado en la retrospectiva. En producto: dos defectos mayores, ambos cerrados, dan 2,0 defectos por KLOC con cero abiertos, y la cobertura es del 99 %. En valor, lo único medido es el paso de 3 a 1 registros por evaluación, con datos sintéticos; la reducción de pérdida de seguimiento exige una posta, una línea base y los incrementos siguientes."
+"En proceso: el incremento 1 planificó 21 puntos en dos sprints y entregó las cinco historias, 21 de 21; la entrega fue el 30/09, dos días después del hito H1 del 28/09, desviación registrada en la retrospectiva. En producto: dos defectos mayores, ambos cerrados, dan 2,0 defectos por KLOC con cero abiertos, y la cobertura es del 99 %. En valor, lo único medido es el paso de 3 a 1 registros por evaluación, con datos sintéticos; la reducción de pérdida de seguimiento exige una posta, una línea base y los incrementos siguientes."
 
 ### Diapositiva 7 (6:25 a 7:00), Porras V.
 

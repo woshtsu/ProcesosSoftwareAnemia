@@ -76,8 +76,7 @@ note bottom of vUltimo
 end note
 
 note bottom
-  Fuente: pmv_fastapi/db/01_esquema_postgresql.sql
-  coordinacion/s6/DATOS_PMV_FASTAPI.md §5
+  Fuente: elaboración propia (Tabla 22 y §3.2 del informe)
 end note
 
 @enduml

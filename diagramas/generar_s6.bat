@@ -9,7 +9,7 @@ set SVGDIR=diagramas\svg
 
 echo Generando diagramas PlantUML...
 
-REM Lista de archivos a generar (rango 50-68 para S6)
+REM Fuentes PlantUML (50-57, 64 y 68 de matplotlib: ver README; 58, 64 y variantes _16x9 son .py)
 for %%F in (
   50_s6_as_is_vs_to_be.puml
   51_s6_ciclo_vida_tailoring.puml
@@ -19,8 +19,6 @@ for %%F in (
   55_s6_modelo_datos_postgresql.puml
   56_s6_paquetes_hexagonal_fastapi.puml
   57_s6_secuencia_registro_hu01.puml
-  58_s6_despliegue_docker_ci.puml
-  64_s6_flujo_trazabilidad.puml
   68_s6_roadmap_incrementos.puml
 ) do (
   echo Procesando %%F...

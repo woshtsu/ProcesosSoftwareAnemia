@@ -30,7 +30,7 @@ ax.set_title("Avance acumulado del Incremento 1: planificado vs. completado por 
 ax.legend(fontsize=10, loc="upper left", bbox_to_anchor=(0.0, 0.80))
 ax.grid(axis="y", alpha=0.3, linestyle=":"); ax.set_axisbelow(True)
 fig.text(0.5, 0.012, "Entrega registrada el 30/09/2026 frente al hito H1 del 28/09/2026 (+2 días). "
-         "Fuente: Informe integrador Tablas 14 y 16; git log del tag v1.0-PMV.", ha="center", fontsize=9, color="#4A5A6A")
+         "Fuente: elaboración propia (Tablas 14 y 16).", ha="center", fontsize=9, color="#4A5A6A")
 fig.subplots_adjust(bottom=0.15, top=0.92)
 fig.savefig(RAIZ / "diagramas/png/63_s6_burnup_inc1.png", dpi=200, facecolor="white")
 fig.savefig(RAIZ / "diagramas/svg/63_s6_burnup_inc1.svg", format="svg", facecolor="white")

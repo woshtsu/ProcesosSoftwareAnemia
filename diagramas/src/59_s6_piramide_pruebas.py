@@ -43,8 +43,7 @@ ax.text(10.9, 1.2, "Verificación aparte (no cuenta en el total)", ha="center", 
 ax.text(10.9, 0.78, "Escenario de carga con Locust:\n50 usuarios, 60 s; p95 agregado 58 ms", ha="center", va="center", fontsize=9.5, color="#1F2D3D")
 
 fig.text(0.5, 0.012,
-         "Fuente: coordinacion/s6/DATOS_PMV_FASTAPI.md §6 y §17; pmv_fastapi/docs/evidencias/verificacion_s6_2026-10-01.md. "
-         "Cobertura reproducida: 99,07 %.", ha="center", fontsize=9, color="#4A5A6A")
+         "Fuente: elaboración propia (§3.3, Tablas 23 y 24). Cobertura reproducida: 99,07 %.", ha="center", fontsize=9, color="#4A5A6A")
 fig.subplots_adjust(top=0.92, bottom=0.05, left=0.02, right=0.98)
 fig.savefig(RAIZ / "diagramas/png/59_s6_piramide_pruebas.png", dpi=200, facecolor="white")
 fig.savefig(RAIZ / "diagramas/svg/59_s6_piramide_pruebas.svg", format="svg", facecolor="white")

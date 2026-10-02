@@ -33,7 +33,7 @@ for i, (a, d, n, e) in enumerate(adrs):
     ax.text(cols[1], ym, d, fontsize=11, va="center", linespacing=1.3)
     ax.text(cols[2], ym, n, fontsize=11, va="center", color="#1F5FA0", fontweight="bold")
     ax.text(cols[3], ym, e, fontsize=10.5, va="center", color="#333", linespacing=1.3)
-fig.text(0.5, 0.012, "Fuente: pmv_fastapi/docs/adr/ADR-001 a ADR-006; coordinacion/s6/DATOS_PMV_FASTAPI.md §9 y §13.",
+fig.text(0.5, 0.012, "Fuente: elaboración propia (Tabla 21).",
          ha="center", fontsize=9, color="#4A5A6A")
 fig.subplots_adjust(top=0.92, bottom=0.04, left=0.01, right=0.99)
 fig.savefig(RAIZ / "diagramas/png/66_s6_adr_nfr.png", dpi=200, facecolor="white")

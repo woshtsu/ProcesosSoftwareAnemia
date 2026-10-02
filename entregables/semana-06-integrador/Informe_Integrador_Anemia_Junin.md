@@ -379,7 +379,7 @@ INC-1 lidera por combinar el mayor valor, la mayor dependencia (INC-2, INC-3 e I
 | DEF-01: N+1 en `GET /api/reportes/periodo`, p95 de 2 200 ms con 50 usuarios | Consulta del expediente completo por cada evaluación | Consultas por lotes en la rama `fix/def-01-reporte-n-mas-1` (ADR-006) | Cerrado; p95 del reporte de 74 ms |
 | DEF-02: el reporte perdía los registros posteriores a las 19:00 (hora de Perú) | El conteo por día se hacía en UTC | Corrección en `fix/def-02-zona-horaria` y prueba CP-16 en tres niveles | Cerrado |
 | Entrega del incremento después de la fecha del hito H1 | El hito H1 se planificó para el 28/09/2026 y las fusiones a `develop` y el tag son del 30/09/2026 (historial git de la rama del tag) | Registrar la desviación de 2 días en la retrospectiva | Registrada |
-| Pipeline de CI en una subcarpeta que GitHub no ejecuta | El archivo residía en `pmv_fastapi/.github/workflows/` | Pipeline en `.github/workflows/ci.yml` en la raíz (tarea S6-08) | Corregido; falta evidencia de una ejecución en verde |
+| Pipeline de CI en una subcarpeta que GitHub no ejecuta | El archivo residía en `pmv_fastapi/.github/workflows/` | Pipeline en `.github/workflows/ci.yml` en la raíz | Corregido; falta evidencia de una ejecución en verde |
 | SonarCloud sin organización configurada | `sonar.organization` conserva un valor de reemplazo | Ruff como análisis estático obligatorio; Sonar queda preparado | Abierta (paso manual) |
 | Horas reales no registradas | No hubo registro sistemático | Indicadores de esfuerzo no calculables | Abierta |
 
@@ -507,7 +507,7 @@ La estrategia concentra las validaciones en el dominio (base de la pirámide, si
 
 | Nivel | Casos | Resultado | Evidencia |
 | --- | --- | --- | --- |
-| Unitarias | 62 | Reproducido el 01/10/2026: 62 pasan | README y mensaje del tag `v1.0-PMV` («77 pruebas, cobertura 99 %») |
+| Unitarias | 62 | Reproducido el 01/10/2026: 62 pasan | `pmv_fastapi/docs/evidencias/verificacion_s6_2026-10-01.md` |
 | Integración y API (SQLite) | 11 | Reproducido el 01/10/2026: 11 pasan | `pmv_fastapi/docs/evidencias/verificacion_s6_2026-10-01.md` |
 | Integración en PostgreSQL 16 | (las mismas 11) | En verde según el tag; no reproducido el 01/10/2026 | README, tag y `docs/evidencias/cobertura.txt` |
 | E2E (Playwright) | 4 | En verde según el tag; no reproducido el 01/10/2026 | README y tag |
@@ -674,7 +674,23 @@ El siguiente incremento es INC-2, **agenda automática y alertas internas** (HIS
 | Capturas y video | `pmv_fastapi/docs/evidencias/capturas/01` a `08` y `demo_pmv.mp4`; guion de grabación en `pmv_fastapi/scripts/grabar_demo.py` |
 | Pipeline CI | `.github/workflows/ci.yml` |
 | Entregables previos | `entregables/semana-01/`, `semana-02/` y `semana-03-04/` |
+| Acta de aceptación del Incremento 1 | Anexo A de este informe |
 
 **Nota sobre el tag `v1.0-PMV`.** El tag existe en el repositorio remoto y apunta al commit `9ce90c3`, que pertenece a la rama `entrega-s5-s7`. En ese commit el PMV está en la raíz del repositorio, y su contenido es idéntico al de `pmv_fastapi/` en la rama `main` (carpetas `app`, `tests`, `db`, `docs` y `scripts`, y los archivos `Dockerfile`, `docker-compose.yml`, `README.md` y `.github`). El commit `9ce90c3` no forma parte de la historia de `main`, porque `main` incorporó el PMV con una fusión por *squash*. Quien abra el tag verá el código del PMV, pero no los entregables del curso, que están en `main`.
 
 **Fuentes.** Guías y entregables S1, S2 y S3-4; consigna integradora S6; código, ADR, pruebas y evidencias de `pmv_fastapi/`. Las referencias normativas (NTS N.° 213-MINSA/DGIESP-2024 y parámetros OMS 2024) describen la procedencia declarada de las reglas; este informe no sustituye su validación clínica.
+
+### Anexo A. Acta de aceptación del Incremento 1
+
+Plantilla para registrar la aceptación del Incremento 1 por el Product Owner. Los campos pendientes los completa el equipo tras la reunión de aceptación; hasta entonces, la aceptación del usuario figura como pendiente y el incremento está verificado técnicamente.
+
+| Campo | Contenido |
+| --- | --- |
+| Incremento | INC-1: registro único, expediente, listado en seguimiento y reporte (HU-01 a HU-05); tag `v1.0-PMV` |
+| Fecha de la reunión | [COMPLETAR: fecha de la reunión de aceptación — ver PASOS_MANUALES paso 5] |
+| Participantes (nombre y rol) | [COMPLETAR: participantes, incluido el Product Owner — ver PASOS_MANUALES paso 5] |
+| Historias de usuario aceptadas | [COMPLETAR: marcar cuáles de HU-01 a HU-05 se aceptan — ver PASOS_MANUALES paso 5] |
+| Observaciones y cambios solicitados | [COMPLETAR: observaciones del Product Owner — ver PASOS_MANUALES paso 5] |
+| Decisión | [COMPLETAR: aceptado / aceptado con observaciones / no aceptado — ver PASOS_MANUALES paso 5] |
+| Firma del Product Owner | [COMPLETAR: firma — ver PASOS_MANUALES paso 5] |
+| Firma del equipo | [COMPLETAR: firmas de los tres integrantes — ver PASOS_MANUALES paso 5] |

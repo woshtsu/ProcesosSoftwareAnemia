@@ -61,8 +61,7 @@ ci --> api : "Construye, prueba\ny despliega"
 
 note bottom of boundary
   Monolito modular sin gateway, microservicios ni caché de datos.
-  Fuente: pmv_fastapi/docs/diagramas/C4_contenedores.puml
-  coordinacion/s6/DATOS_PMV_FASTAPI.md §3–§4
+  Fuente: elaboración propia (§3.2 del informe)
 end note
 
 @enduml

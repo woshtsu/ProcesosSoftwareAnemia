@@ -63,8 +63,7 @@ repo --> db : "SQL"
 note bottom of apiboundary
   Arquitectura hexagonal: el dominio y los casos de uso
   no dependen de frameworks ni bases de datos.
-  Fuente: pmv_fastapi/docs/diagramas/C4_componentes.puml
-  pmv_fastapi/app/ (estructura del código)
+  Fuente: elaboración propia (§3.2 del informe).
 end note
 
 @enduml

@@ -40,7 +40,7 @@
 | R-31 | Registro de ejecución y cobertura | CUMPLE | §3.3, Tablas 24 y 25 | 99,07 %; 77 declaradas (62+11+4) y 73 reproducidas; E2E, PostgreSQL y carga «según el tag; no reproducido el 01/10/2026»; la carga no cuenta como prueba. Pasar a «Reproducido» tras PASOS_MANUALES paso 11 |
 | R-32 | Análisis estático y gestión de defectos | PARCIAL | §3.3, Tabla 27 | Ruff y defectos completos; SonarCloud preparado pero sin análisis ejecutado (C-04) |
 | R-33 | Arquitectura del entorno de despliegue | PARCIAL | §3.4, Tabla 28, Figura 25 | Staging local con Docker Compose; sin nube y sin evidencia de ejecución en vivo ni de CI en verde |
-| R-34 | Evidencia del incremento funcional | CUMPLE | §3.4, Tabla 29, Figuras 26 a 33 | Ocho capturas y `demo_pmv.mp4`; falta el acta de aceptación |
+| R-34 | Evidencia del incremento funcional | CUMPLE | §3.4, Tabla 29, Figuras 26 a 33 | Ocho capturas y `demo_pmv.mp4`; plantilla del acta en el Anexo A (campos `[COMPLETAR]`: PASOS_MANUALES paso 5) |
 | R-35 | Matriz de trazabilidad de 8 columnas | CUMPLE | §4, Tabla 30, Figura 34 | Ocho filas; las filas 6 a 8 son INC-n |
 | R-36 | Tres conclusiones técnicas | CUMPLE | §5 | Exactamente tres |
 | R-37 | Tres lecciones aprendidas | CUMPLE | §5 | Exactamente tres |
