@@ -1,0 +1,68 @@
+@startuml 51_s6_ciclo_vida_tailoring
+' Fuentes: Informe integrador Tablas 8 y 9 (S2 Tablas 3 y 6), Tabla 16 (sprints), ci.yml
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 12
+skinparam wrapWidth 240
+skinparam nodesep 25
+skinparam ranksep 30
+
+title Ciclo de vida adaptado: iterativo-incremental + Scrum + DevOps + MLOps
+
+package "Incrementos (Tabla 16)" #E3F2FD {
+  rectangle "INC-1\nSprints 1 y 2 (01-28/09/2026)\nEntregado: v1.0-PMV" as INC1 #A5D6A7
+  rectangle "INC-2 y backlog técnico\nSprint 3 (29/09-12/10)" as INC2 #BBDEFB
+  rectangle "INC-3 a INC-6\nSprints 4 a 8 (hasta 21/12/2026)" as INC3 #BBDEFB
+  INC1 --> INC2
+  INC2 --> INC3
+}
+
+package "Carril DevOps continuo (ci.yml)" #FFF9C4 {
+  rectangle "Rama feature, PR y CI" as DF1
+  rectangle "Ruff (lint y formato)" as DF3
+  rectangle "pytest + cobertura (SQLite)" as DF4
+  rectangle "Integración en PostgreSQL 16" as DF5
+  rectangle "E2E (Playwright)" as DF6
+  rectangle "Imagen Docker de staging" as DF7
+  DF1 --> DF3
+  DF3 --> DF4
+  DF4 --> DF5
+  DF5 --> DF6
+  DF6 --> DF7
+}
+
+package "Subciclo MLOps (desde INC-5)" #F3E5F5 {
+  rectangle "Datos y entrenamiento" as MLO1
+  rectangle "Evaluación clínica" as MLO2
+  rectangle "Publicación" as MLO3
+  rectangle "Monitoreo" as MLO4
+  MLO1 ..> MLO2
+  MLO2 ..> MLO3
+  MLO3 ..> MLO4
+}
+
+package "Descartados como modelo único (Tabla 8, puntaje sobre 30)" #FFCDD2 {
+  rectangle "Cascada pura: 8/30\nCongela los requisitos" as NO1
+  rectangle "Scrum por sí solo: 27/30\nNo define cómo automatizar\nla entrega" as NO2
+}
+
+package "Decisión ponderada (Tabla 9)" #C8E6C9 {
+  rectangle "Alt. 1 (elegida): 4,75\nIterativo-incremental + Scrum\n+ DevOps + MLOps" as DEC1 #90EE90
+  rectangle "Alt. 2: 3,85\nFlujo continuo con Kanban\n+ DevOps + DataOps" as DEC2
+  rectangle "Alt. 3: 2,95\nIncremental + Espiral\nsin automatización" as DEC3
+}
+
+INC1 -[hidden]right-> DF1
+DF1 -[hidden]right-> MLO1
+NO1 -[hidden]right-> NO2
+DEC1 -[hidden]right-> DEC2
+DEC2 -[hidden]right-> DEC3
+INC3 -[hidden]down-> NO1
+DF7 -[hidden]down-> DEC1
+
+note bottom
+  Fuente: Informe integrador, Tablas 8 y 9 (S2, Tablas 3 y 6); pmv_fastapi/.github/workflows/ci.yml
+end note
+
+@enduml

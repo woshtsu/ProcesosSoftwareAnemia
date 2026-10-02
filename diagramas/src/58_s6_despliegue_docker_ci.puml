@@ -1,0 +1,39 @@
+@startuml 58_s6_despliegue_docker_ci
+' Fuente: pmv_fastapi/Dockerfile, docker-compose.yml, .github/workflows/ci.yml (versión compacta 16:9)
+!pragma layout smetana
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 15
+skinparam wrapWidth 330
+skinparam nodesep 30
+skinparam ranksep 36
+
+title Despliegue en staging con Docker Compose y canal de integración continua
+
+actor "Usuario\n(PC o Android)" as user
+
+package "Host de staging: Docker Compose" #F1F3F5 {
+  rectangle "Contenedor api\npython:3.11-slim, Uvicorn :8000\nUsuario sin privilegios\nHEALTHCHECK /api/salud" as api #E6EEF7
+  rectangle "Contenedor db\npostgres:16-alpine, base anemia\nVolumen datos_pg\nCarga 01_esquema_postgresql.sql\nHEALTHCHECK pg_isready" as db #C9DAEC
+}
+
+package "GitHub Actions: ci.yml en la raíz" #FBF3DF {
+  rectangle "Disparador\npush o PR a main, develop, feature/**" as trg #FFFFFF
+  rectangle "Job calidad-y-pruebas (ubuntu-latest)\n1. ruff: lint y formato\n2. pytest + cobertura (SQLite)\n3. Integración en PostgreSQL 16\n4. E2E con Playwright\n5. Artefactos y SonarCloud\n(SonarCloud solo si hay SONAR_TOKEN)" as job1 #E4F1EA
+  rectangle "Job imagen-staging\ndocker build anemia-junin-pmv:sha\nsolo en main, tras el job anterior" as job2 #E4F1EA
+}
+
+user --> api : HTTP :8000
+api -down-> db : SQL (depends_on: service_healthy)
+trg --> job1
+job1 -down-> job2 : si pasa
+
+
+note as N
+  Fuente: pmv_fastapi/Dockerfile, docker-compose.yml y .github/workflows/ci.yml;
+  coordinacion/s6/DATOS_PMV_FASTAPI.md §10 y §11
+end note
+db -[hidden]down-> N
+
+@enduml

@@ -1,0 +1,70 @@
+@startuml 57_s6_secuencia_registro_hu01
+' Fuente: pmv_fastapi/docs/diagramas/D3_secuencia.puml adaptado
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 10
+
+title Secuencia de Registro (HU-01) y Validación (HU-03) — PMV FastAPI
+
+actor "PWA (Usuario)" as pwa
+participant "API HTTP\n(/api)" as api
+participant "ServicioExpediente\n(casos_uso.py)" as svc
+participant "Dominio\n(reglas_clinicas)" as dom
+participant "RepositorioNinos\n(puerto)" as port
+database "PostgreSQL 16" as db
+
+pwa -> api : POST /api/validaciones/evaluacion\n(HU-03: vista previa)\n{datos de evaluación}
+activate api
+api -> svc : validar_evaluacion(datos)
+activate svc
+svc -> dom : ajustar_por_altitud(hb, altitud)\nclasificar_anemia(hb_ajustada, edad)
+activate dom
+dom --> svc : hb_ajustada, clasificación
+deactivate dom
+svc --> api : 200 OK: evaluación validada
+deactivate svc
+api --> pwa : {hemoglobina_ajustada, clasificacion}
+deactivate api
+
+pwa -> api : POST /api/ninos\n(HU-01: registro definitivo)\n{datos niño + evaluación}
+activate api
+api -> api : validar con Pydantic
+alt Validación fallida
+  api --> pwa : 422 Unprocessable Entity\n{campo, mensaje} en español
+else DNI duplicado
+  api --> pwa : 409 Conflict\n{mensaje: DNI ya existe}
+else Éxito
+  api -> svc : registrar_nino(datos)
+  activate svc
+  svc -> dom : aplicar reglas nuevamente
+  activate dom
+  dom --> svc : datos validados
+  deactivate dom
+  svc -> port : guardar_nino(nino)
+  activate port
+  port -> db : INSERT INTO nino + INSERT INTO evaluacion_hemoglobina
+  activate db
+  db --> port : id generado, transacción OK
+  deactivate db
+  port --> svc : nino guardado
+  deactivate port
+  svc --> api : ServicioExpediente devuelve nino_id
+  deactivate svc
+  api --> pwa : 201 Created\n{nino_id, expediente}
+end
+
+note right of dom
+  Reglas clínicas (ADR-004):
+  • Ajuste por altitud (OMS 2024)
+  • Clasificación: SIN_ANEMIA / LEVE / MODERADA / SEVERA / NO_APLICA
+  • Edad < 6 meses: NO_APLICA
+end note
+
+footer
+  Fuente: pmv_fastapi/docs/diagramas/D3_secuencia.puml
+  pmv_fastapi/app/adapters/entrada/http/api.py l.115–139
+  pmv_fastapi/docs/adr/ADR-005-api-rest-openapi.md
+end footer
+
+@enduml

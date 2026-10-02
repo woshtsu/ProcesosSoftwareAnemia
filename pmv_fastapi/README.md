@@ -44,14 +44,27 @@ uvicorn app.main:crear_app --factory --reload --port 8000
 
 Sin `DATABASE_URL` se usa SQLite en `./datos/anemia.db`.
 
+Comandos exactos en Windows (PowerShell), desde `pmv_fastapi/`:
+
+```powershell
+py -m venv .venv
+.venv\Scripts\python -m pip install -r requirements-dev.txt
+.venv\Scripts\python -m scripts.cargar_datos_prueba
+.venv\Scripts\python -m uvicorn app.main:crear_app --factory --port 8000
+```
+
+Verificación rápida: `GET http://127.0.0.1:8000/api/salud` devuelve `{"estado":"ok"}`. Probado con Python 3.14.6 (el CI usa 3.11).
+
 ## Entorno de staging (PostgreSQL)
 
-Con Docker:
+Con Docker Compose (desde `pmv_fastapi/`; levanta PostgreSQL 16 y la API):
 
 ```bash
-POSTGRES_PASSWORD=una_clave_segura docker compose up -d --build
+POSTGRES_PASSWORD=una_clave_segura docker compose up -d --build      # PowerShell: $env:POSTGRES_PASSWORD="una_clave_segura"; docker compose up -d --build
 docker compose exec api python -m scripts.cargar_datos_prueba
 ```
+
+La aplicación queda en <http://localhost:8000> (API en `/docs`). Para detenerla: `docker compose down` (`-v` borra el volumen de datos).
 
 Sin Docker (PostgreSQL instalado):
 
@@ -65,6 +78,8 @@ uvicorn app.main:crear_app --factory --host 0.0.0.0 --port 8000
 
 ## Pruebas y calidad
 
+`pytest` sin argumentos ejecuta `tests/unitarias` (62) y `tests/integracion` (11) sobre SQLite, sin Docker. Las E2E (4) y la integración en PostgreSQL son opcionales y se piden de forma explícita (comandos abajo).
+
 ```bash
 ruff check . && ruff format --check .            # análisis estático
 pytest --cov=app                                  # unitarias + integración (SQLite) con cobertura
@@ -76,7 +91,16 @@ locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 \
 
 Resultados de la versión `v1.0-PMV`: **77 pruebas automatizadas** (62 unitarias, 11 de integración, 4 E2E), **cobertura 99 %**, 0 hallazgos de ruff, carga de 50 usuarios con **p95 = 58 ms y 0 % de errores**. Defectos detectados y cerrados antes de liberar: **DEF-01** (consultas N+1 en el reporte, ver `docs/adr/ADR-006-consultas-por-lotes.md`) y **DEF-02** (el reporte usaba días UTC y omitía registros hechos después de las 19:00 en Perú). Detalle en `docs/evidencias/registro_defectos.md`.
 
-El pipeline `.github/workflows/ci.yml` ejecuta lint, pruebas con cobertura, integración contra PostgreSQL, E2E y (si existe el secreto `SONAR_TOKEN`) el análisis de SonarCloud.
+Reproducción del 2026-10-01 (Python 3.14.6, SQLite, sin Docker): **73 pruebas pasadas** (62 + 11; las 4 E2E no se ejecutaron por falta del navegador de Playwright), **cobertura 99,07 %**, ruff sin hallazgos. Salida literal en `docs/evidencias/verificacion_s6_2026-10-01.md`.
+
+### CI (GitHub Actions)
+
+El pipeline está en la **raíz del repositorio**, `.github/workflows/ci.yml` (todos los pasos usan `working-directory: pmv_fastapi`). Ejecuta lint, pruebas con cobertura, integración contra PostgreSQL, E2E y, solo si está configurado, SonarCloud. La copia `pmv_fastapi/.github/workflows/ci.yml` es una referencia histórica y GitHub no la ejecuta.
+
+**Activar SonarCloud (opcional).** El paso se omite sin error mientras falte alguno de estos dos valores:
+
+1. Secreto `SONAR_TOKEN`: Settings > Secrets and variables > Actions > *Secrets*.
+2. Variable `SONAR_ORGANIZATION` con la clave de la organización real en SonarCloud: *Variables*. El workflow la pasa como `-Dsonar.organization`, por lo que no hace falta editar `sonar-project.properties` (que conserva el marcador `REEMPLAZAR_ORGANIZACION`).
 
 ## Flujo de ramas
 

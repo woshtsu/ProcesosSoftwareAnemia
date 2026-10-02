@@ -1,0 +1,69 @@
+@startuml 64_s6_flujo_trazabilidad
+' Flujo de trazabilidad unificada para VIS-012
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 11
+
+title Flujo de Trazabilidad: Problema, Proceso, Arquitectura, Pruebas y Valor
+
+' === FILA PRINCIPAL: INCREMENTO 1 ===
+card "PROBLEMA\nB1: Triple registro\n(historia+tarjeta+HIS)\nRetrasos,\nerror humano" as P1 #FFE6E6
+
+card "PROCESO\nM1: Registro nominal único\nIterativo-incremental\n+ Scrum + DevOps" as PR1 #E6F2FF
+
+card "ARQUITECTURA\nADR-001 hexagonal\nADR-003 PostgreSQL\nUNIQUE(dni)\nADR-005 REST/OpenAPI" as AR1 #FFF9E6
+
+card "PRUEBAS\nCP-01, CP-06, CP-16\n77 declaradas (62+11+4);\n73 reproducidas el 01/10/2026\n99 % de cobertura\n0 defectos abiertos" as PR2 #E6F2FF
+
+card "VALOR\nExpediente digital único\n3 → 1 registros\nHU-01…HU-05\nentregadas" as V1 #E6FFE6
+
+P1 --> PR1
+PR1 --> AR1
+AR1 --> PR2
+PR2 --> V1
+
+' === FILA SECUNDARIA: FUTUROS (INC-2…INC-6) ===
+card "B2–B6\nAgenda\nAlertas\nIntegración\nOtros" as P2_FUTURE #FFE6E6/FFCCCC
+card "M2–M6\nRecordatorios\nSeguimiento\nHIS/WhatsApp\nIRC/IA" as PR1_FUTURE #E6F2FF/CCDDFF
+card "ADR-002 PWA con borrador local\nADR-004 Reglas\nADR-006 Rendimiento" as AR1_FUTURE #FFF9E6/FFFFCC
+card "INC-2…INC-6\nPruebas expansión\nAutomatización\nCobertura mínima 80 %" as PR2_FUTURE #E6F2FF/CCDDFF
+card "Reducción\ntiempos\nMejoría clínica\nOtros INC" as V1_FUTURE #E6FFE6/CCFFCC
+
+P2_FUTURE --> PR1_FUTURE
+PR1_FUTURE --> AR1_FUTURE
+AR1_FUTURE --> PR2_FUTURE
+PR2_FUTURE --> V1_FUTURE
+
+' === ETIQUETAS DE LA MATRIZ (8 COLUMNAS) ===
+note top of P1
+  Problema Org.
+end note
+
+note top of PR1
+  Proceso TO-BE
+end note
+
+note top of AR1
+  Modelo Adaptado /
+  Decisión Arquitectura
+end note
+
+note top of PR2
+  Categoría / Actividad /
+  Caso Prueba
+end note
+
+note top of V1
+  PMV Entregado /
+  Indicador Valor
+end note
+
+note bottom
+  Unidad III (INC-1 entregada)
+  Fuente: coordinacion/s6/DATOS_PMV_FASTAPI.md
+  coordinacion/s6/CONTEXTO_PROCESOS_S1_S5.md
+  entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md §16
+end note
+
+@enduml

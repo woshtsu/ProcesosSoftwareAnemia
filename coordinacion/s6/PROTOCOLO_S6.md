@@ -22,7 +22,7 @@ Cada ruta tiene **un solo agente escritor**. Los demás solo la leen.
 | --- | --- | --- | --- |
 | `sincronizador` | opus | `coordinacion/RUTAS.md`, `coordinacion/TABLERO.md`, `coordinacion/PROTOCOLO.md`, `coordinacion/plantillas/`, `coordinacion/s6/{REQUISITOS_S6,DATOS_PMV_FASTAPI,CONTEXTO_PROCESOS_S1_S5,PROTOCOLO_S6,TABLERO_S6}.md`, `README.md` raíz, `AGENTS.md`, `.gitignore`, `.claude/agents/`, movimientos a `archivo/` | `ORQ-###` y tareas S6 |
 | `redactor-informe-integrador` | sonnet | `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md`, `entregables/semana-06-integrador/anexos/` | S6-03 |
-| `disenador-diapositivas` | sonnet | `entregables/semana-06-integrador/presentacion/` (Marp, CSS, guion), `herramientas/conversion/generar_presentacion.*`, `exportados/semana-06/Presentacion_Integrador.{pptx,pdf}` | S6-04 |
+| `disenador-diapositivas` | sonnet | `entregables/semana-06-integrador/presentacion/` (Marp, CSS, guion), `herramientas/conversion/generar_presentacion.*`, `exportados/semana-06/Presentacion_Integrador_Anemia_Junin.{pptx,pdf}` | S6-04 |
 | `recursos-visuales` | haiku | `diagramas/src/`, `diagramas/png/`, `diagramas/svg/`, `diagramas/README.md`, `diagramas/_build/`, sección *Respuesta* de `coordinacion/s6/solicitudes/VIS-###.md` | `VIS-###` (y `DIAG-###` heredadas) |
 | `conversor-entregas` | haiku | `exportados/semana-06/Informe_Integrador_Anemia_Junin.{pdf,docx}`, `exportados/semana-XX/`, `herramientas/conversion/` (salvo los scripts de la presentación) | `CONV-###`, S6-05 |
 | `inspector-guia` | sonnet | `coordinacion/s6/INSPECCION_S6.md`, `coordinacion/s6/PASOS_MANUALES.md` | S6-06 |

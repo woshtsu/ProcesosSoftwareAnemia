@@ -35,7 +35,7 @@ Proyecto de la asignatura **Procesos de Software** (ASUC01702, Universidad Conti
 | Pruebas | **77 automatizadas** (62 unitarias, 11 de integración/API, 4 E2E con Playwright) y carga con Locust |
 | Calidad | Cobertura del **99 %** (umbral del DoD: 80 %), **0 hallazgos de Ruff**, 2 defectos detectados y cerrados (2,0/KLOC) |
 | Carga | 50 usuarios durante 60 s: **p95 = 58 ms**, 39,6 req/s, 0 % de errores (antes de DEF-01 el p95 era de 310 ms) |
-| Despliegue | Docker Compose (API + `postgres:16-alpine`) como entorno de staging. Pipeline de GitHub Actions en `pmv_fastapi/.github/workflows/ci.yml` (ver nota) |
+| Despliegue | Docker Compose (API + `postgres:16-alpine`) como entorno de staging. Pipeline de GitHub Actions en `.github/workflows/ci.yml` (raíz del repositorio, `working-directory: pmv_fastapi`; ver nota) |
 | Evidencias | [`pmv_fastapi/docs/evidencias/`](pmv_fastapi/docs/evidencias/): cobertura, ruff, CSV de carga, registro de defectos, capturas 01–08 y `demo_pmv.mp4` |
 
 **Tag `v1.0-PMV`.**
@@ -44,7 +44,7 @@ Proyecto de la asignatura **Procesos de Software** (ASUC01702, Universidad Conti
 - `main` contiene el **mismo código** dentro de `pmv_fastapi/` (integrado con el commit `0c9e302`).
 - El tag no es alcanzable desde `main`. Moverlo o crear un tag nuevo es una decisión del equipo.
 
-**CI.** GitHub solo ejecuta los flujos que están en `.github/workflows/` en la raíz del repositorio. Copiar el pipeline a esa ubicación es la tarea S6-08.
+**CI.** GitHub solo ejecuta los flujos que están en `.github/workflows/` en la raíz del repositorio. Por eso el pipeline está en `.github/workflows/ci.yml` (raíz; tarea S6-08 hecha): Ruff, pruebas con cobertura (umbral 80 %), integración contra PostgreSQL 16, E2E con Playwright, SonarCloud condicional a `SONAR_TOKEN` y construcción de la imagen Docker. La copia `pmv_fastapi/.github/workflows/ci.yml` queda como referencia. Aún no hay evidencia de una ejecución en verde en GitHub: requiere el push del equipo (paso manual 3). Reproducción local del 01/10/2026: 73 pruebas pasadas, 99,07 % de cobertura y 0 hallazgos de Ruff ([`verificacion_s6_2026-10-01.md`](pmv_fastapi/docs/evidencias/verificacion_s6_2026-10-01.md)).
 
 **Antecedente: `anemia_junin/`.** Es el prototipo Flask + SQLite del Incremento 1 que describían los entregables anteriores (266 pruebas y 96,69 % de cobertura en su ejecución de cierre). Se conserva como antecedente técnico y **no es el PMV que se entrega**.
 
@@ -93,7 +93,7 @@ locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 --headles
 | S2 | Selección y justificación del modelo de proceso | [Guía S2](guias/S2.Gu%C3%ADa%20de%20trabajo%20semana%202.md) | [`Entregable_Semana2`](entregables/semana-02/Entregable_Semana2_Anemia_Junin.md) | En revisión. La figura 15 existe (DIAG-006 resuelta); quedan `[PENDIENTE]` de datos del equipo |
 | S3-4 | Actividades, RAE, DoD, WBS, priorización, estimación, plan y seguimiento | [Guía S3-4](guias/S3.GU%C3%8DA%20DE%20TRABAJO%20SEMANA%203%20Y%204.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | En revisión. Las figuras 30–35 existen (DIAG-100..105 resueltas); el burndown es simulado |
 | S5 | Ejecución de los procesos principales del Incremento 1 | [Guía S5](guias/S5-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%205.md) | [`Entregable_Semana5`](entregables/semana-05/Entregable_Semana5_Anemia_Junin.md) | Existe, pero **describe el antecedente Flask** y tiene `CARGA_CIERRE` y `[PENDIENTE]`. Pendiente de la decisión del usuario (S6-11) |
-| S6 | Integrador de las Unidades I y II: informe, 7 diapositivas y repositorio con tag | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md); presentación en `entregables/semana-06-integrador/presentacion/` (por crear) | **En curso** en la rama `feature/s6-integrador-final`. El informe actual describe Flask y se va a reescribir (S6-03). La presentación de 7 diapositivas aún no existe (S6-04). `exportados/` está vacío (S6-05) |
+| S6 | Integrador de las Unidades I y II: informe, 7 diapositivas y repositorio con tag | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) ([checklist](entregables/semana-06-integrador/CHECKLIST_CUMPLIMIENTO_S6_INFORME.md)); [`Presentacion_Integrador.md`](entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md) (Marp, 7 diapositivas) y [`GUION_EXPOSICION.md`](entregables/semana-06-integrador/presentacion/GUION_EXPOSICION.md); PPTX en [`exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx`](exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx) | **En revisión** en la rama `feature/s6-integrador-final`. Informe reescrito sobre el PMV FastAPI (S6-03, S6-18), con marcadores `[COMPLETAR]` de datos del equipo. PPTX de 7 diapositivas generado con `presentacion/generar_presentacion.py` (S6-04, S6-19). Figuras 50–68_s6 en `diagramas/`. Pendientes: PDF de las diapositivas, PDF/DOCX del informe (S6-05), reinspección (S6-06), merge (S6-07) y los pasos de [`PASOS_MANUALES.md`](coordinacion/s6/PASOS_MANUALES.md). Inspección: [`INSPECCION_S6.md`](coordinacion/s6/INSPECCION_S6.md) |
 
 El seguimiento del cierre S6 está en [`coordinacion/s6/TABLERO_S6.md`](coordinacion/s6/TABLERO_S6.md) y los requisitos de la consigna en [`coordinacion/s6/REQUISITOS_S6.md`](coordinacion/s6/REQUISITOS_S6.md) (91 requisitos, R-01 a R-91).
 
@@ -107,7 +107,8 @@ El seguimiento del cierre S6 está en [`coordinacion/s6/TABLERO_S6.md`](coordina
 ├── coordinacion/                canal de comunicación entre agentes
 │   ├── TABLERO.md · RUTAS.md · PROTOCOLO.md · plantillas/ · solicitudes/ · informes/
 │   └── s6/                      cierre S6: REQUISITOS_S6, DATOS_PMV_FASTAPI, CONTEXTO_PROCESOS_S1_S5,
-│                                PROTOCOLO_S6, TABLERO_S6, solicitudes/VIS-###.md
+│                                PROTOCOLO_S6, TABLERO_S6, INSPECCION_S6, PASOS_MANUALES,
+│                                solicitudes/VIS-###.md, informes/
 ├── guias/                       guías y consigna del docente (solo lectura)
 ├── entregables/                 versión VIGENTE de cada entregable (.md)
 ├── diagramas/                   src/ (puml, py) · png/ · svg/ · README.md (catálogo)
@@ -144,5 +145,6 @@ Los agentes se comunican **solo mediante archivos**: tareas en los tableros, sol
 | Python 3.14.6 | Disponible, sin las dependencias del PMV instaladas. El PMV apunta a Python 3.11 |
 | Java 17 (OpenJDK 17.0.19) | Disponible |
 | Node v24.19.0 | Disponible (marp-cli necesita descargarse con permiso del usuario) |
-| PlantUML (`herramientas/plantuml/plantuml.jar`) | No descargado: obtenerlo de Maven Central (ver [`herramientas/README.md`](herramientas/README.md)) |
+| PlantUML (`herramientas/plantuml/plantuml.jar`) | Descargado de Maven Central (v1.2026.8), local y **no versionado** (ver [`herramientas/README.md`](herramientas/README.md)) |
+| `herramientas/.venv` (Python 3.14: matplotlib, pillow, python-pptx) | Local y no versionado; genera las figuras 59–67 y el PPTX |
 | Pandoc | No instalado |

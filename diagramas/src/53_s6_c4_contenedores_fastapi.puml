@@ -1,0 +1,68 @@
+@startuml 53_s6_c4_contenedores_fastapi
+' Fuente original: pmv_fastapi/docs/diagramas/C4_contenedores.puml
+' Adaptada a diagramas/src/ sin includes remotos
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 11
+
+title C4 · Nivel 2 — Contenedores del Incremento 1 (PMV FastAPI)
+
+actor "Personal de salud" as enf #DCE9F7
+note right of enf
+  Navegador en PC
+  o teléfono Android
+end note
+
+actor "Gestión territorial" as mic #DCE9F7
+
+rectangle "Sistema de Detección Temprana de Anemia Infantil" as boundary {
+  rectangle "Cliente PWA" as pwa #EAF2FB
+  note right of pwa
+    HTML, CSS, JavaScript
+    Service Worker
+    Registro, seguimiento, expediente,
+    reporte; borrador local y caché
+  end note
+
+  rectangle "Almacenamiento del navegador" as local #E6F5EA
+  note right of local
+    localStorage / Cache Storage
+    Borrador del formulario e interfaz
+  end note
+
+  rectangle "API REST" as api #EAF2FB
+  note right of api
+    Python 3.11, FastAPI, Uvicorn
+    HU-01…HU-05 en arquitectura hexagonal
+    Contrato OpenAPI 3.1
+  end note
+
+  rectangle "Base de datos central" as db #E6F5EA
+  note right of db
+    PostgreSQL 16 (staging)
+    SQLite (desarrollo)
+    Niños y evaluaciones con restricciones
+  end note
+}
+
+rectangle "GitHub + GitHub Actions" as ci #F0F0F0
+note right of ci
+  Integración y entrega continua
+  CI en .github/workflows/ (raíz)
+end note
+
+enf --> pwa : "Usa (HTTPS)"
+mic --> pwa : "Consulta reporte (HTTPS)"
+pwa --> local : "Guarda borrador / caché"
+pwa --> api : "Llamadas JSON (HTTPS/REST)"
+api --> db : "Lee y escribe (SQL)"
+ci --> api : "Construye, prueba\ny despliega"
+
+note bottom of boundary
+  Monolito modular sin gateway, microservicios ni caché de datos.
+  Fuente: pmv_fastapi/docs/diagramas/C4_contenedores.puml
+  coordinacion/s6/DATOS_PMV_FASTAPI.md §3–§4
+end note
+
+@enduml

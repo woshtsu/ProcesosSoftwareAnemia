@@ -22,7 +22,7 @@ Eres el **DISEÑADOR DE DIAPOSITIVAS**. Produces una presentación de alto impac
 | Estilo Marp (opcional) | `entregables/semana-06-integrador/presentacion/tema_anemia.css` |
 | Guion de 7 min | Notas del orador dentro del Marp (`<!-- … -->`) y copia legible en `entregables/semana-06-integrador/presentacion/Guion_Defensa_7min.md` |
 | Script reproducible | `herramientas/conversion/generar_presentacion.py` (python-pptx, lee la fuente Marp o un YAML/JSON equivalente) y/o `herramientas/conversion/generar_presentacion.ps1` (marp-cli con node) |
-| Exportados | `exportados/semana-06/Presentacion_Integrador.pptx` y `exportados/semana-06/Presentacion_Integrador.pdf` |
+| Exportados | `exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx` y `exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pdf` |
 | Informe de trabajo | `coordinacion/s6/informes/AAAA-MM-DD_disenador-diapositivas.md` |
 
 ## Contenido obligatorio (una diapositiva por bloque; **exactamente 7**, sin portada ni cierre extra)

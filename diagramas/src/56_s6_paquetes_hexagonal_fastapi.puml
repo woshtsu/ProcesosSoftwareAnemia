@@ -1,0 +1,60 @@
+@startuml 56_s6_paquetes_hexagonal_fastapi
+' Fuente: pmv_fastapi/docs/diagramas/P1_paquetes.puml adaptado
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 11
+
+title Arquitectura Hexagonal del PMV FastAPI
+
+package "app.domain" as domain #E6F5EA {
+  component "entidades.py" as ent
+  component "reglas_clinicas.py" as rc
+  component "errores.py" as err
+  note right of domain
+    Núcleo: sin dependencias
+    de frameworks ni BD.
+  end note
+}
+
+package "app.application" as app {
+  component "casos_uso.py\n(ServicioExpediente)" as cu
+  component "puertos.py\n(RepositorioNinos, Reloj)" as ports
+}
+
+package "app.adapters.entrada.http" as entrada {
+  component "api.py\n(FastAPI APIRouter)" as api
+  component "esquemas.py\n(Pydantic DTO)" as schemas
+}
+
+package "app.adapters.salida.persistencia" as salida {
+  component "sqlalchemy_repo.py\n(PostgreSQL/SQLite)" as repo
+  component "memoria.py\n(en-memoria para pruebas)" as mem
+}
+
+package "app.web" as web {
+  component "PWA\n(HTML/CSS/JS/SW)" as pwa
+}
+
+package "app.main" as main {
+  component "crear_app\n(factory FastAPI)" as factory
+}
+
+entrada --> app : "invoca"
+app --> domain : "depende"
+salida --> ports : "implementa"
+salida --> domain : "usa"
+api --> schemas : "valida"
+api --> cu : "invoca"
+web --> api : "HTTP"
+main --> entrada : "configura"
+main --> salida : "inyecta"
+
+note bottom
+  Flechas apuntan solo hacia el núcleo (domain ← application ← adapters).
+  Los adaptadores de salida implementan los puertos (inversión de dependencias).
+  Fuente: pmv_fastapi/docs/diagramas/P1_paquetes.puml
+  pmv_fastapi/app/ (estructura del código)
+end note
+
+@enduml

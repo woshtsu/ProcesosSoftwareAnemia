@@ -1,0 +1,70 @@
+@startuml 54_s6_c4_componentes_fastapi
+' Fuente original: pmv_fastapi/docs/diagramas/C4_componentes.puml
+' Adaptada a diagramas/src/ sin includes remotos
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 10
+
+title C4 · Nivel 3 — Componentes de la API REST (arquitectura hexagonal)
+
+rectangle "Cliente PWA" as pwa #EAF2FB
+rectangle "PostgreSQL 16 / SQLite" as db #E6F5EA
+
+rectangle "API REST (FastAPI)" as apiboundary {
+  rectangle "Adaptador HTTP\n(FastAPI APIRouter)" as router #EAF2FB
+  note right of router
+    Endpoints /api/ninos, /evaluaciones,
+    /validaciones, /reportes
+    Errores 422/409/404 en español
+  end note
+
+  rectangle "Esquemas DTO\n(Pydantic)" as dto #EAF2FB
+  note right of dto
+    Contrato de entrada/salida
+    OpenAPI 3.1
+  end note
+
+  rectangle "ServicioExpediente\n(Casos de uso)" as svc #EAF2FB
+  note right of svc
+    Registrar, consultar, actualizar,
+    listar seguimiento, reporte del periodo
+  end note
+
+  rectangle "Dominio" as dom #E6F5EA
+  note right of dom
+    Entidades y reglas clínicas
+    Validación de datos, ajuste por altitud,
+    clasificación de anemia (OMS 2024)
+  end note
+
+  rectangle "Puerto RepositorioNinos" as port #F0F0F0
+  note right of port
+    Interfaz (Protocol)
+    Contrato de persistencia
+  end note
+
+  rectangle "Adaptador SQLAlchemy" as repo #EAF2FB
+  note right of repo
+    SQLAlchemy 2.1
+    Implementa el puerto
+    Consultas por lotes (ADR-006)
+  end note
+}
+
+pwa --> router : "JSON (HTTPS)"
+router --> dto : "Valida formato"
+router --> svc : "Invoca casos de uso"
+svc --> dom : "Aplica reglas"
+svc --> port : "Depende de"
+repo --> port : "Implementa"
+repo --> db : "SQL"
+
+note bottom of apiboundary
+  Arquitectura hexagonal: el dominio y los casos de uso
+  no dependen de frameworks ni bases de datos.
+  Fuente: pmv_fastapi/docs/diagramas/C4_componentes.puml
+  pmv_fastapi/app/ (estructura del código)
+end note
+
+@enduml

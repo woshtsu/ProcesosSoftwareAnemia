@@ -2,7 +2,7 @@
 
 Protocolo: `coordinacion/PROTOCOLO.md` · Rutas: `coordinacion/RUTAS.md` · Plantillas: `coordinacion/plantillas/`
 
-> **Cierre S6 en curso (desde 2026-10-01):** el detalle vive en [`coordinacion/s6/TABLERO_S6.md`](s6/TABLERO_S6.md), con su protocolo en [`coordinacion/s6/PROTOCOLO_S6.md`](s6/PROTOCOLO_S6.md). **PMV oficial: `pmv_fastapi/`** (FastAPI + PostgreSQL, tag `v1.0-PMV`). `anemia_junin/` (Flask) es el antecedente. Las tareas T-005 a T-009 se reformulan en S6-03 a S6-11.
+> **Cierre S6 en curso (desde 2026-10-01):** el detalle vive en [`coordinacion/s6/TABLERO_S6.md`](s6/TABLERO_S6.md), con su protocolo en [`coordinacion/s6/PROTOCOLO_S6.md`](s6/PROTOCOLO_S6.md). **PMV oficial: `pmv_fastapi/`** (FastAPI + PostgreSQL, tag `v1.0-PMV`). `anemia_junin/` (Flask) es el antecedente. Las tareas T-005 a T-009 se reformulan en S6-03 a S6-11. Estado al 2026-10-01 (S6-20): informe, 7 diapositivas (PPTX), figuras 50–68 y CI en la raíz HECHOS; pendientes la conversión PDF/DOCX (S6-05), la reinspección (S6-06), el merge (S6-07) y los pasos manuales (S6-12).
 
 Estados: `PENDIENTE` · `EN CURSO` · `BLOQUEADA` · `EN REVISIÓN` · `HECHO`
 
@@ -43,7 +43,7 @@ Estados: `PENDIENTE` · `EN CURSO` · `BLOQUEADA` · `EN REVISIÓN` · `HECHO`
 | DEV-101 | orquestador → desarrollador | Entradas numéricas no finitas/desbordadas producen HTTP 500 | ABIERTA | `coordinacion/solicitudes/DEV-101.md` |
 | ORQ-001 | orquestador → orquestador | Registrar AGENTS.md y adoptar las guías descargadas | RESUELTA | `coordinacion/solicitudes/ORQ-001.md` |
 | ORQ-002 | — | Rutas de cierre (presentación/exportados) | SUSTITUIDA (2026-10-01) por las rutas S6 de `coordinacion/RUTAS.md` | `coordinacion/solicitudes/ORQ-002.md` |
-| VIS-001..016 | sincronizador → recursos-visuales | Recursos visuales del informe y de las 7 diapositivas S6 | ABIERTAS | `coordinacion/s6/solicitudes/` (detalle en `coordinacion/s6/TABLERO_S6.md`) |
+| VIS-001..016 | sincronizador → recursos-visuales | Recursos visuales del informe y de las 7 diapositivas S6 | RESUELTAS (2026-10-01; figuras 50–68_s6) | `coordinacion/s6/solicitudes/` (detalle en `coordinacion/s6/TABLERO_S6.md`) |
 
 ## Historial
 

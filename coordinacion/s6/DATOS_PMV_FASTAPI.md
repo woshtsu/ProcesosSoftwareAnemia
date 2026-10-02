@@ -227,3 +227,17 @@ En total hay **9 operaciones REST**. Fuera del esquema están `/`, `/docs` (Swag
 - Evidencias: `anemia_junin/docs/evidencias/`.
 - Carga: Locust con 20 usuarios durante 60 s.
 - Uso en el informe: como **espiga técnica (spike) / prototipo del Incremento 1**. Mostró la viabilidad de la arquitectura hexagonal y detectó DEV-101 (números no finitos → HTTP 500). Se sustituyó por FastAPI + PostgreSQL para cumplir los NFR de integridad (PostgreSQL), contrato OpenAPI nativo y despliegue en contenedores/CI. Esta justificación del cambio es una **propuesta de redacción**: debe confirmarla el equipo (PASO MANUAL).
+
+## 17. Nota de reproducción del 2026-10-01 (S6-08, `desarrollador`)
+
+Reproducido en Windows 11, Python 3.14.6, SQLite, sin Docker. Salida literal en `pmv_fastapi/docs/evidencias/verificacion_s6_2026-10-01.md`.
+
+| Dato | Declarado (v1.0-PMV) | Reproducido | Observación |
+| --- | --- | --- | --- |
+| Pruebas `pytest` por defecto | 73 (62 + 11) | **73 pasadas, 0 fallidas, 0 saltadas** | Coincide. `testpaths` excluye las E2E |
+| Pruebas E2E | 4 | **no ejecutadas** (4 errores de entorno: falta `chromium_headless_shell-1194` de Playwright) | La cifra "77 = 62 + 11 + 4" sigue siendo la declarada en el tag; en esta sesión solo se reprodujeron 73 |
+| Integración PostgreSQL | 11 | no ejecutada (sin Docker ni PostgreSQL local) | Las 11 de integración pasan en SQLite |
+| Cobertura | 99 % (641 sentencias, 2 sin cubrir) | **99,07 %** (548 sentencias, 2 sin cubrir; 98 ramas, 4 parciales) | El porcentaje coincide; el conteo de sentencias difiere porque coverage con Python 3.14 cuenta distinto las sentencias multilínea (`esquemas.py` 28 vs 96; `entidades.py` 105 vs 123) |
+| ruff | 0 hallazgos | **0 hallazgos**, 33 archivos formateados | Coincide |
+
+Las marcas **[D]** de pruebas, cobertura y ruff pasan a **[V]** para la suite por defecto (73 pruebas). Siguen **[D]** las 4 E2E, la integración en PostgreSQL y la carga. La CI de la raíz es `.github/workflows/ci.yml` (la de `pmv_fastapi/.github/` queda como referencia, ver §10).

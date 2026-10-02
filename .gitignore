@@ -18,3 +18,12 @@ Thumbs.db
 # Herramientas binarias descargables (ver herramientas/README.md)
 herramientas/plantuml/*.jar
 herramientas/.venv/
+
+# Resultados locales de pruebas, cobertura y bases de datos de prueba (S6-20)
+*.log
+htmlcov/
+.coverage
+.coverage.*
+*.db
+*.sqlite
+*.sqlite3

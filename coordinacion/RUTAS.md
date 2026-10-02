@@ -30,7 +30,7 @@ Si un agente necesita crear una ruta nueva, se la pide al `sincronizador` (antes
 | S2 | `entregables/semana-02/Entregable_Semana2_Anemia_Junin.md` (ex v2 `.docx.md`) | `entregables/semana-02/img/image1.png` |
 | S3-4 | `entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md` (ex v1) | — |
 | S5 | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` (existe; describe el antecedente Flask; ver S6-11) | `entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf`, `entregables/semana-05/_extraccion_Informe_Actividad5.md` |
-| S6 | `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md` | `entregables/semana-06-integrador/anexos/` (`Revision_Cumplimiento_y_Trazabilidad.md`, `Prompts_y_guion_de_defensa.md`); presentación: `entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md` (fuente Marp, 7 diapositivas), `presentacion/Guion_Defensa_7min.md`, `presentacion/tema_anemia.css` |
+| S6 | `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md` | `entregables/semana-06-integrador/anexos/` (`Revision_Cumplimiento_y_Trazabilidad.md`, `Prompts_y_guion_de_defensa.md`); checklist: `entregables/semana-06-integrador/CHECKLIST_CUMPLIMIENTO_S6_INFORME.md`; presentación: `entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md` (fuente Marp, 7 diapositivas), guion `presentacion/GUION_EXPOSICION.md` y generador `presentacion/generar_presentacion.py` (python-pptx, ejecutar con `herramientas/.venv`) |
 
 Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIMIENTO_S<n>.md` (p. ej. `semana-01/CHECKLIST_CUMPLIMIENTO_S1.md`).
 
@@ -59,8 +59,9 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Evidencias | `pmv_fastapi/docs/evidencias/` (`cobertura.txt`, `ruff.txt`, `registro_defectos.md`, `carga/*.csv`, `capturas/01…08.png`, `demo_pmv.mp4`) |
 | Diagramas propios (PNG y fuentes) | `pmv_fastapi/docs/diagramas/` (solo lectura para recursos-visuales, que los adapta a `diagramas/`) |
 | Despliegue | `pmv_fastapi/Dockerfile`, `pmv_fastapi/docker-compose.yml`, `pmv_fastapi/sonar-project.properties` |
-| CI (referencia; GitHub no lo ejecuta desde aquí) | `pmv_fastapi/.github/workflows/ci.yml` |
-| CI efectivo (tarea S6-08) | `.github/workflows/ci.yml` en la raíz del repositorio |
+| CI efectivo (S6-08 hecha) | `.github/workflows/ci.yml` en la raíz del repositorio (`working-directory: pmv_fastapi`) |
+| CI (copia de referencia; GitHub no lo ejecuta desde aquí) | `pmv_fastapi/.github/workflows/ci.yml` |
+| Verificación local S6 | `pmv_fastapi/docs/evidencias/verificacion_s6_2026-10-01.md` |
 | README de ejecución y despliegue | `pmv_fastapi/README.md` |
 
 ### Antecedente: `anemia_junin/` (prototipo Flask del Incremento 1, solo lectura)
@@ -74,9 +75,10 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Contenido | Ruta |
 | --- | --- |
 | PDF / DOCX finales | `exportados/semana-XX/<NombreEntregable>.pdf|.docx` |
-| S6 (integrador) | `exportados/semana-06/Informe_Integrador_Anemia_Junin.pdf` y `.docx`; `exportados/semana-06/Presentacion_Integrador.pptx` y `.pdf` |
-| Scripts de conversión (plantilla DOCX, CSS, scripts) | `herramientas/conversion/` (lo crea el conversor cuando lo necesita); el script de la presentación es `herramientas/conversion/generar_presentacion.(py|ps1)` (disenador-diapositivas) |
+| S6 (integrador) | `exportados/semana-06/Informe_Integrador_Anemia_Junin.pdf` y `.docx`; `exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx` y `.pdf` |
+| Scripts de conversión (plantilla DOCX, CSS, scripts) | `herramientas/conversion/` (lo crea el conversor cuando lo necesita); el script de la presentación es `entregables/semana-06-integrador/presentacion/generar_presentacion.py` (disenador-diapositivas) |
 | PlantUML local (no versionado) | `herramientas/plantuml/plantuml.jar` (solo desde Maven Central; ver `herramientas/README.md`) |
+| Entorno Python de herramientas (no versionado) | `herramientas/.venv` (matplotlib, pillow, python-pptx); genera las figuras `59–67_s6` y el PPTX |
 
 ## Coordinación entre agentes
 
@@ -100,9 +102,9 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Protocolo S6 | `coordinacion/s6/PROTOCOLO_S6.md` | sincronizador |
 | Tablero S6 | `coordinacion/s6/TABLERO_S6.md` | sincronizador (filas); cada agente edita el estado de su fila |
 | Solicitudes de recursos visuales | `coordinacion/s6/solicitudes/VIS-###.md` | solicitante; *Respuesta*: recursos-visuales |
-| Inspección de cumplimiento | `coordinacion/s6/INSPECCION_S6.md` | inspector-guia |
-| Pasos manuales | `coordinacion/s6/PASOS_MANUALES.md` | inspector-guia |
-| Verificación previa al merge | `coordinacion/s6/CHECK_MERGE.md` | guardian-merge |
+| Inspección de cumplimiento (existe; primera pasada) | `coordinacion/s6/INSPECCION_S6.md` | inspector-guia |
+| Pasos manuales (existe; 18 pasos) | `coordinacion/s6/PASOS_MANUALES.md` | inspector-guia |
+| Verificación previa al merge (por crear, S6-07) | `coordinacion/s6/CHECK_MERGE.md` | guardian-merge |
 | Informes de trabajo S6 | `coordinacion/s6/informes/AAAA-MM-DD_<agente>[_<tarea>].md` | cada agente |
 
 ## Archivo (histórico, solo lectura)
@@ -123,7 +125,7 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 
 ## Rutas de cierre autorizadas mediante ORQ-002 (SUSTITUIDAS el 2026-10-01)
 
-> El 2026-10-01 el usuario fijó otras rutas para S6, que prevalecen: `entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md`, `exportados/semana-06/` y `coordinacion/s6/`. Las rutas de presentación y de exportados que aparecen abajo son históricas y **no deben crearse**. Las rutas `anemia_junin/...` corresponden al antecedente Flask. Siguen vigentes `herramientas/conversion/`, `diagramas/_build/` y `archivo/versiones-anteriores/semana-06-integrador/`.
+> El 2026-10-01 el usuario fijó otras rutas para S6, que prevalecen: `entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md` (fuente), `presentacion/GUION_EXPOSICION.md` (guion), `presentacion/generar_presentacion.py` (generador), `exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx` (exportado) y `coordinacion/s6/`. Las rutas de presentación y de exportados que aparecen abajo son históricas y **no deben crearse**. Las rutas `anemia_junin/...` corresponden al antecedente Flask. Siguen vigentes `herramientas/conversion/`, `diagramas/_build/` y `archivo/versiones-anteriores/semana-06-integrador/`.
 
 - `entregables/semana-06-integrador/Presentacion_Integrador_Anemia_Junin.md`: contenido y guion de siete diapositivas.
 - `exportados/semana-06-integrador/Presentacion_Integrador_Anemia_Junin.pptx` y `.pdf`: presentación.

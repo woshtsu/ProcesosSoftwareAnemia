@@ -1,0 +1,83 @@
+@startuml 55_s6_modelo_datos_postgresql
+' Fuente: pmv_fastapi/db/01_esquema_postgresql.sql
+' Adaptada de pmv_fastapi/docs/diagramas/P3_modelo_datos.puml
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 10
+
+title Modelo de Datos — PostgreSQL 16 del PMV FastAPI
+
+entity "nino" as nino {
+  **id: VARCHAR(36) [PK]**
+  --
+  dni: VARCHAR(8) [UNIQUE, CHECK 8 dígitos]
+  nombres: VARCHAR(80)
+  apellidos: VARCHAR(80)
+  sexo: VARCHAR(1) [CHECK F/M]
+  fecha_nacimiento: DATE
+  establecimiento: VARCHAR(120)
+  distrito: VARCHAR(80)
+  comunidad: VARCHAR(80) [ix_nino_comunidad]
+  altitud_m: DOUBLE [CHECK 0–5000]
+  tutor_nombre: VARCHAR(120)
+  tutor_celular: VARCHAR(9) [CHECK 9xxxxxxxx]
+  estado: VARCHAR(10) [CHECK ACTIVO/ALTA] [ix_nino_estado]
+  registrado_por: VARCHAR(60)
+  creado_en: TIMESTAMPTZ
+  actualizado_en: TIMESTAMPTZ
+}
+
+entity "evaluacion_hemoglobina" as eval {
+  **id: VARCHAR(36) [PK]**
+  --
+  nino_id: VARCHAR(36) [FK → nino.id, ON DELETE CASCADE] [ix_eval_nino]
+  fecha: DATE [ix_eval_fecha]
+  edad_meses: INTEGER [CHECK 0–59]
+  hemoglobina_observada: DOUBLE [CHECK 3–20]
+  altitud_m: DOUBLE
+  hemoglobina_ajustada: DOUBLE
+  clasificacion: VARCHAR(12) [CHECK SIN_ANEMIA/LEVE/MODERADA/SEVERA/NO_APLICA]
+  peso_kg: DOUBLE [CHECK 1,5–30]
+  talla_cm: DOUBLE [CHECK 40–125]
+  registrado_por: VARCHAR(60)
+  creado_en: TIMESTAMPTZ
+}
+
+entity "v_ultimo_control" as vUltimo {
+  nino_id: VARCHAR(36)
+  --
+  fecha: DATE
+  hemoglobina_ajustada: DOUBLE
+  clasificacion: VARCHAR(12)
+  (vista simple, no materializada;
+DISTINCT ON; apoyo de HU-04)
+}
+
+nino ||--o{ eval : "1 : 0..N"
+eval --> vUltimo : "se proyecta en"
+
+note bottom of nino
+  Almacena niños en seguimiento.
+  Cardinalidad: 1 niño : 0..N evaluaciones.
+  Índices: comunidad (cobertura) y estado (filtros).
+end note
+
+note bottom of eval
+  Almacena evaluaciones de hemoglobina.
+  Cada evaluación referencia exactamente 1 niño.
+  Integridad: FK con ON DELETE CASCADE, CHECK de reglas clínicas.
+  Índices: nino_id (búsqueda) y fecha (seguimiento temporal).
+end note
+
+note bottom of vUltimo
+  Vista para apoyo de HU-04 (Seguimiento).
+  Obtiene el último control (DISTINCT ON por nino_id).
+end note
+
+note bottom
+  Fuente: pmv_fastapi/db/01_esquema_postgresql.sql
+  coordinacion/s6/DATOS_PMV_FASTAPI.md §5
+end note
+
+@enduml
