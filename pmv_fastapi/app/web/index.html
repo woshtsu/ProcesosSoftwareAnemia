@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1F4E79">
+  <title>Anemia Junín · Registro nominal</title>
+  <link rel="manifest" href="/static/manifest.json">
+  <link rel="icon" href="/static/icono.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="marca">
+      <img src="/static/icono.svg" alt="" width="32" height="32">
+      <div>
+        <strong>Anemia Junín</strong>
+        <span>Registro nominal · Incremento 1</span>
+      </div>
+    </div>
+    <div class="usuario">
+      <label for="usuario">Usuario</label>
+      <select id="usuario" data-testid="usuario">
+        <option value="enf.rosa.quispe">Enf. Rosa Quispe</option>
+        <option value="tec.juan.huaman">Téc. Juan Huamán</option>
+      </select>
+      <span id="red" class="red" title="Estado de conexión">●</span>
+    </div>
+  </header>
+
+  <nav class="pestanas" role="tablist">
+    <button class="pestana activa" data-vista="registro" data-testid="tab-registro">Registrar niño</button>
+    <button class="pestana" data-vista="seguimiento" data-testid="tab-seguimiento">Seguimiento</button>
+    <button class="pestana" data-vista="expediente" data-testid="tab-expediente">Expediente</button>
+    <button class="pestana" data-vista="reporte" data-testid="tab-reporte">Reporte</button>
+  </nav>
+
+  <main>
+    <!-- HU-01 / HU-03 -->
+    <section id="vista-registro" class="vista activa">
+      <div class="titulo">
+        <h1>Registrar niño y evaluación inicial</h1>
+        <span id="borrador" class="chip gris" hidden data-testid="borrador">Borrador guardado en este dispositivo</span>
+      </div>
+      <form id="form-registro" novalidate autocomplete="off">
+        <div class="grid">
+          <fieldset class="tarjeta">
+            <legend>Datos del niño</legend>
+            <div class="campo"><label for="dni">DNI</label><input id="dni" name="dni" inputmode="numeric" maxlength="8" placeholder="8 dígitos"><small class="error"></small></div>
+            <div class="campo"><label for="nombres">Nombres</label><input id="nombres" name="nombres"><small class="error"></small></div>
+            <div class="campo"><label for="apellidos">Apellidos</label><input id="apellidos" name="apellidos"><small class="error"></small></div>
+            <div class="fila2">
+              <div class="campo"><label for="sexo">Sexo</label><select id="sexo" name="sexo"><option value="">—</option><option value="F">F</option><option value="M">M</option></select><small class="error"></small></div>
+              <div class="campo"><label for="fecha_nacimiento">Fecha de nacimiento</label><input id="fecha_nacimiento" name="fecha_nacimiento" type="date"><small class="error"></small></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="tarjeta">
+            <legend>Ubicación y tutor</legend>
+            <div class="campo"><label for="establecimiento">Establecimiento</label><input id="establecimiento" name="establecimiento" value="P. S. Chongos Alto"><small class="error"></small></div>
+            <div class="fila2">
+              <div class="campo"><label for="distrito">Distrito</label><input id="distrito" name="distrito" value="Chongos Alto"><small class="error"></small></div>
+              <div class="campo"><label for="comunidad">Comunidad</label><input id="comunidad" name="comunidad"><small class="error"></small></div>
+            </div>
+            <div class="campo"><label for="altitud_m">Altitud de residencia (m s. n. m.)</label><input id="altitud_m" name="altitud_m" type="number" inputmode="numeric" value="3550"><small class="error"></small></div>
+            <div class="fila2">
+              <div class="campo"><label for="tutor_nombre">Madre / tutor</label><input id="tutor_nombre" name="tutor_nombre"><small class="error"></small></div>
+              <div class="campo"><label for="tutor_celular">Celular (opcional)</label><input id="tutor_celular" name="tutor_celular" inputmode="numeric" maxlength="9"><small class="error"></small></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="tarjeta">
+            <legend>Evaluación inicial</legend>
+            <div class="campo"><label for="fecha">Fecha del control</label><input id="fecha" name="fecha" type="date"><small class="error"></small></div>
+            <div class="campo"><label for="hemoglobina_observada">Hemoglobina observada (g/dL)</label><input id="hemoglobina_observada" name="hemoglobina_observada" type="number" step="0.1" inputmode="decimal"><small class="error"></small></div>
+            <div class="fila2">
+              <div class="campo"><label for="peso_kg">Peso (kg)</label><input id="peso_kg" name="peso_kg" type="number" step="0.1" inputmode="decimal"><small class="error"></small></div>
+              <div class="campo"><label for="talla_cm">Talla (cm)</label><input id="talla_cm" name="talla_cm" type="number" step="0.1" inputmode="decimal"><small class="error"></small></div>
+            </div>
+            <div id="vista-previa" class="previa" data-testid="vista-previa">
+              <span class="previa-vacia">Complete fecha de nacimiento, altitud y hemoglobina para ver la clasificación.</span>
+            </div>
+          </fieldset>
+        </div>
+        <div id="alerta-registro" class="alerta" hidden></div>
+        <div class="acciones">
+          <button type="button" id="limpiar" class="secundario">Limpiar</button>
+          <button type="submit" class="primario" data-testid="guardar">Guardar registro</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- HU-04 -->
+    <section id="vista-seguimiento" class="vista">
+      <div class="titulo"><h1>Niños en seguimiento</h1><span id="total-seguimiento" class="chip"></span></div>
+      <div class="filtros tarjeta">
+        <input id="buscar" type="search" placeholder="Buscar por nombre, DNI o comunidad" data-testid="buscar">
+        <select id="filtro-clasificacion" data-testid="filtro-clasificacion">
+          <option value="">Todas las clasificaciones</option>
+          <option value="SEVERA">Anemia severa</option>
+          <option value="MODERADA">Anemia moderada</option>
+          <option value="LEVE">Anemia leve</option>
+          <option value="SIN_ANEMIA">Sin anemia</option>
+        </select>
+        <select id="filtro-estado">
+          <option value="ACTIVO">Seguimiento activo</option>
+          <option value="ALTA">Con alta</option>
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <div class="tabla-envoltura tarjeta">
+        <table class="tabla" data-testid="tabla-seguimiento">
+          <thead><tr><th>Niño</th><th>DNI</th><th>Edad</th><th>Comunidad</th><th>Último control</th><th>Hb ajustada</th><th>Clasificación</th></tr></thead>
+          <tbody id="cuerpo-seguimiento"></tbody>
+        </table>
+        <p id="sin-resultados" class="vacio" hidden>No hay niños que coincidan con el filtro.</p>
+      </div>
+    </section>
+
+    <!-- HU-02 -->
+    <section id="vista-expediente" class="vista">
+      <div class="titulo"><h1>Expediente digital</h1></div>
+      <div class="filtros tarjeta">
+        <input id="buscar-dni" inputmode="numeric" maxlength="8" placeholder="Buscar expediente por DNI" data-testid="buscar-dni">
+        <button id="btn-buscar-dni" class="primario">Abrir</button>
+      </div>
+      <div id="expediente" data-testid="expediente"><p class="vacio">Seleccione un niño desde Seguimiento o busque por DNI.</p></div>
+    </section>
+
+    <!-- HU-05 -->
+    <section id="vista-reporte" class="vista">
+      <div class="titulo"><h1>Reporte del periodo</h1></div>
+      <div class="filtros tarjeta">
+        <label>Desde <input id="desde" type="date"></label>
+        <label>Hasta <input id="hasta" type="date"></label>
+        <button id="btn-reporte" class="primario" data-testid="generar-reporte">Generar</button>
+        <a id="btn-csv" class="boton secundario" href="#" data-testid="descargar-csv">Descargar CSV</a>
+      </div>
+      <div id="reporte" data-testid="reporte"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

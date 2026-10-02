@@ -1,0 +1,71 @@
+name: CI — PMV Anemia Junín
+
+on:
+  push:
+    branches: [main, develop, "feature/**"]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  calidad-y-pruebas:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: anemia
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Instalar dependencias
+        run: pip install -r requirements-dev.txt
+      - name: Análisis estático (ruff)
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: Pruebas unitarias e integración + cobertura (SQLite)
+        run: pytest --cov=app --cov-report=xml --cov-report=term-missing --junitxml=reporte-pruebas.xml
+      - name: Pruebas de integración contra PostgreSQL
+        env:
+          PGPASSWORD: postgres
+          TEST_DATABASE_URL: postgresql+psycopg2://postgres:postgres@localhost:5432/anemia
+        run: |
+          psql -h localhost -U postgres -d anemia -v ON_ERROR_STOP=1 -f db/01_esquema_postgresql.sql
+          pytest tests/integracion -q --no-cov
+      - name: Pruebas E2E (Playwright)
+        run: |
+          python -m playwright install --with-deps chromium
+          pytest tests/e2e -m e2e -q --no-cov
+      - name: Publicar reportes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-calidad
+          path: |
+            coverage.xml
+            reporte-pruebas.xml
+      - name: Análisis SonarCloud
+        if: ${{ env.SONAR_TOKEN != '' }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: SonarSource/sonarqube-scan-action@v5
+
+  imagen-staging:
+    needs: calidad-y-pruebas
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construir imagen Docker del PMV
+        run: docker build -t anemia-junin-pmv:${{ github.sha }} .

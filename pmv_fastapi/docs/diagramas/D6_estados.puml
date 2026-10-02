@@ -1,0 +1,43 @@
+@startuml
+!include estilo.iuml
+skinparam dpi 170
+title Diagrama de Estados UML — Ciclo de vida del modelo predictivo
+hide empty description
+state "Pendiente de datos" as PD
+state "Preparación de datos" as PREP
+state "Experimentación" as EXP
+state "Entrenamiento" as ENT
+state "Evaluación" as EVA
+state "Registrado" as REG
+state "En producción" as PROD
+state "Bajo monitoreo" as MON
+state "Alerta de degradación" as ALE #FFE9CC
+state "Reentrenamiento" as REE
+state "Deprecado" as DEP #EEEEEE
+
+[*] --> PD
+PD --> PD : [datos insuficientes]
+PD --> PREP : [criterio mínimo de datos aprobado]
+PREP --> EXP : [dataset validado y versionado]
+EXP --> ENT : algoritmo candidato seleccionado
+ENT --> EVA : entrenamiento completado
+EVA --> REG : [criterios técnicos y\nclínicos aprobados]
+EVA -up-> EXP : [criterios no alcanzados]
+REG --> PROD : publicación autorizada
+PROD --> MON : modelo activo
+MON -up-> PROD : [desempeño aceptable]
+MON --> ALE : [degradación o sesgo detectado]
+ALE --> REE : reentrenamiento aprobado
+REE -up-> EVA : nueva versión generada
+ALE --> DEP : [modelo retirado por\ndecisión del equipo]
+DEP --> [*]
+
+note right of PROD
+  El modelo apoya la priorización de casos.
+  No sustituye el criterio clínico
+  del personal de salud.
+end note
+legend bottom left
+  Texto sin corchetes = evento   ·   [texto] = guardia
+endlegend
+@enduml
