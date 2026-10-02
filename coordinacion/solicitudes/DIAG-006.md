@@ -1,6 +1,6 @@
 # DIAG-006 — Modelo de proceso aplicado al proyecto (Semana 2)
 
-- **Estado:** EN CURSO
+- **Estado:** RESUELTA
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-003
@@ -65,8 +65,8 @@ Título: "Aplicación del modelo al proyecto — base iterativa-incremental · S
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/15_s2_modelo_proceso_aplicado.puml`, `diagramas/png/15_s2_modelo_proceso_aplicado.png` y `diagramas/svg/15_s2_modelo_proceso_aplicado.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 1. Aplicación del modelo de proceso al proyecto: ciclo principal con los diez elementos de la guía y subciclo MLOps desde INC-5 (elaboración propia).](../../diagramas/svg/15_s2_modelo_proceso_aplicado.svg)`
 - **Notas:**

@@ -1,125 +1,163 @@
-# Sistema de detección temprana y seguimiento de anemia infantil — Junín, Perú
+# Sistema de detección temprana y seguimiento de anemia infantil (Junín, Perú)
 
 Proyecto de la asignatura **Procesos de Software** (ASUC01702, Universidad Continental, ciclo 2026-20).
 
-El problema organizacional: en las zonas rurales de Junín el tamizaje de hemoglobina, el tratamiento con hierro y el seguimiento de niños con anemia se pierden por falta de trazabilidad, baja adherencia, poca proactividad y conectividad limitada. El proyecto diseña el proceso TO-BE, selecciona y adapta un modelo de proceso de software (iterativo-incremental con Scrum y prácticas DevOps) y construye un **PMV** (Incremento 1: registro nominal validado y expediente digital) con arquitectura hexagonal en Python/Flask.
+**Problema.** En las zonas rurales de Junín se pierde el seguimiento del tamizaje de hemoglobina, del tratamiento con hierro y de los controles de los niños con anemia. Las causas son:
 
-**Equipo:** Porras Veli, Ricardo (Ingeniero de Proceso) · Auqui Huincho, Tania (Ingeniero de Desarrollo y Prototipado) · Huamani Rodriguez, Jean Piero (Ingeniero de Calidad y Mejora del Proceso).
+- el *triple registro* manual (historia clínica, tarjeta de control y HIS);
+- la agenda manual;
+- las barreras familiares que no se ven;
+- la conectividad limitada.
 
-> Todos los datos del software son **sintéticos**. La clasificación de anemia que muestra el sistema es referencial y no reemplaza el criterio del profesional de salud.
+**Qué hace el proyecto.**
+
+- Diseña el proceso TO-BE.
+- Adapta (*tailoring*) un modelo iterativo-incremental gestionado con Scrum y apoyado en prácticas DevOps (y MLOps a partir del INC-5).
+- Construye el **PMV del Incremento 1**: registro nominal validado y expediente digital único.
+
+**Equipo.**
+
+| Integrante | Rol |
+| --- | --- |
+| Porras Veli, Ricardo | Ingeniero de Proceso |
+| Auqui Huincho, Tania | Ingeniera de Desarrollo y Prototipado |
+| Huamani Rodriguez, Jean Piero | Ingeniero de Calidad y Mejora del Proceso |
+
+> Todos los datos del software son **sintéticos**. La clasificación de anemia es referencial y no sustituye el criterio del profesional de salud.
+
+## PMV oficial: `pmv_fastapi/` (tag `v1.0-PMV`)
+
+| Aspecto | Valor (fuente: [`coordinacion/s6/DATOS_PMV_FASTAPI.md`](coordinacion/s6/DATOS_PMV_FASTAPI.md)) |
+| --- | --- |
+| Stack | Python 3.11, FastAPI, SQLAlchemy, **PostgreSQL 16** (staging/CI) y SQLite (desarrollo), cliente PWA |
+| Arquitectura | Hexagonal (puertos y adaptadores) en un monolito modular. ADR-001 a ADR-006 en [`pmv_fastapi/docs/adr/`](pmv_fastapi/docs/adr/) |
+| Alcance | HU-01 a HU-05 completas: registro, expediente, validación clínica, seguimiento y reporte JSON/CSV |
+| Pruebas | **77 automatizadas** (62 unitarias, 11 de integración/API, 4 E2E con Playwright) y carga con Locust |
+| Calidad | Cobertura del **99 %** (umbral del DoD: 80 %), **0 hallazgos de Ruff**, 2 defectos detectados y cerrados (2,0/KLOC) |
+| Carga | 50 usuarios durante 60 s: **p95 = 58 ms**, 39,6 req/s, 0 % de errores (antes de DEF-01 el p95 era de 310 ms) |
+| Despliegue | Docker Compose (API + `postgres:16-alpine`) como entorno de staging. Pipeline de GitHub Actions en `.github/workflows/ci.yml` (raíz del repositorio, `working-directory: pmv_fastapi`; ver nota) |
+| Evidencias | [`pmv_fastapi/docs/evidencias/`](pmv_fastapi/docs/evidencias/): cobertura, ruff, CSV de carga, registro de defectos, capturas 01–08 y `demo_pmv.mp4` |
+
+**Tag `v1.0-PMV`.**
+
+- Apunta al commit `9ce90c3` de la rama `entrega-s5-s7`, que contiene el PMV en la raíz con su historial de ramas `feature/*` y `fix/*`.
+- `main` contiene el **mismo código** dentro de `pmv_fastapi/` (integrado con el commit `0c9e302`).
+- El tag no es alcanzable desde `main`. Moverlo o crear un tag nuevo es una decisión del equipo.
+
+**CI.** GitHub solo ejecuta los flujos que están en `.github/workflows/` en la raíz del repositorio. Por eso el pipeline está en `.github/workflows/ci.yml` (raíz; tarea S6-08 hecha): Ruff, pruebas con cobertura (umbral 80 %), integración contra PostgreSQL 16, E2E con Playwright, SonarCloud condicional a `SONAR_TOKEN` y construcción de la imagen Docker. La copia `pmv_fastapi/.github/workflows/ci.yml` queda como referencia. Aún no hay evidencia de una ejecución en verde en GitHub: requiere el push del equipo (paso manual 3). Reproducción local del 01/10/2026: 73 pruebas pasadas, 99,07 % de cobertura y 0 hallazgos de Ruff ([`verificacion_s6_2026-10-01.md`](pmv_fastapi/docs/evidencias/verificacion_s6_2026-10-01.md)).
+
+**Antecedente: `anemia_junin/`.** Es el prototipo Flask + SQLite del Incremento 1 que describían los entregables anteriores (266 pruebas y 96,69 % de cobertura en su ejecución de cierre). Se conserva como antecedente técnico y **no es el PMV que se entrega**.
+
+## Cómo ejecutar el PMV
+
+Desde `pmv_fastapi/`. El detalle completo está en [`pmv_fastapi/README.md`](pmv_fastapi/README.md).
+
+**Desarrollo local.** Requiere Python 3.11 o superior. En PowerShell:
+
+```powershell
+cd pmv_fastapi
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m scripts.cargar_datos_prueba          # datos SINTÉTICOS
+.\.venv\Scripts\python.exe -m uvicorn app.main:crear_app --factory --reload --port 8000
+```
+
+Abre http://127.0.0.1:8000 para la aplicación y http://127.0.0.1:8000/docs para la documentación OpenAPI.
+
+**Staging con Docker (PostgreSQL 16).** En Bash:
+
+```bash
+cd pmv_fastapi
+POSTGRES_PASSWORD=una_clave_segura docker compose up -d --build
+docker compose exec api python -m scripts.cargar_datos_prueba
+```
+
+El esquema de base de datos está en `pmv_fastapi/db/01_esquema_postgresql.sql` y se aplica automáticamente al iniciar el contenedor `db`.
+
+**Pruebas y calidad.**
+
+```bash
+cd pmv_fastapi
+ruff check . && ruff format --check .
+pytest --cov=app                                                     # unitarias + integración (SQLite)
+TEST_DATABASE_URL=postgresql+psycopg2://... pytest tests/integracion --no-cov
+python -m playwright install chromium && pytest tests/e2e -m e2e --no-cov
+locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 --headless -u 50 -r 10 -t 60s
+```
+
+## Entregables por semana (estado real al 2026-10-02)
+
+| Semana | Tema | Guía | Entregable vigente | Estado |
+| --- | --- | --- | --- | --- |
+| S1 | Enfoque de procesos: problema, actores, AS-IS, brechas, TO-BE, cadena de valor e indicadores | [Guía S1](guias/S1.Gu%C3%ADa%20de%20trabajo%20semana%201.md) | [`Entregable_Semana1`](entregables/semana-01/Entregable_Semana1_Anemia_Junin.md) | En revisión. Las figuras 10–14 ya existen en SVG/PNG (DIAG-001..005 resueltas); queda retirar los marcadores `<!-- DIAG pendiente -->` |
+| S2 | Selección y justificación del modelo de proceso | [Guía S2](guias/S2.Gu%C3%ADa%20de%20trabajo%20semana%202.md) | [`Entregable_Semana2`](entregables/semana-02/Entregable_Semana2_Anemia_Junin.md) | En revisión. La figura 15 existe (DIAG-006 resuelta); quedan `[PENDIENTE]` de datos del equipo |
+| S3-4 | Actividades, RAE, DoD, WBS, priorización, estimación, plan y seguimiento | [Guía S3-4](guias/S3.GU%C3%8DA%20DE%20TRABAJO%20SEMANA%203%20Y%204.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | En revisión. Las figuras 30–35 existen (DIAG-100..105 resueltas); el burndown es simulado |
+| S5 | Ejecución de los procesos principales del Incremento 1 | [Guía S5](guias/S5-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%205.md) | [`Entregable_Semana5`](entregables/semana-05/Entregable_Semana5_Anemia_Junin.md) | Existe, pero **describe el antecedente Flask** y tiene `CARGA_CIERRE` y `[PENDIENTE]`. Pendiente de la decisión del usuario (S6-11) |
+| S6 | Integrador de las Unidades I y II: informe, 7 diapositivas y repositorio con tag | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) ([checklist](entregables/semana-06-integrador/CHECKLIST_CUMPLIMIENTO_S6_INFORME.md)); [`Presentacion_Integrador.md`](entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md) (Marp, 7 diapositivas) y [`GUION_EXPOSICION.md`](entregables/semana-06-integrador/presentacion/GUION_EXPOSICION.md); exportados en [`exportados/semana-06/`](exportados/semana-06/) | **Listo por parte de los agentes** en la rama `feature/s6-integrador-final`: informe sobre el PMV FastAPI, 7 diapositivas (PPTX y PDF), figuras 50–68_s6 con variantes 16:9, correcciones N-01 a N-14 de la [inspección v2](coordinacion/s6/INSPECCION_S6.md) (salvo N-13, la reexportación final) e informe exportado en A4 (PDF de 51 pp. y DOCX). **Pendientes:** (1) los pasos de [`PASOS_MANUALES.md`](coordinacion/s6/PASOS_MANUALES.md), entre ellos los 25 `[COMPLETAR]` de datos del equipo; (2) la reexportación final del informe tras completarlos; (3) el merge a `main` (S6-07) |
+
+El seguimiento del cierre S6 está en [`coordinacion/s6/TABLERO_S6.md`](coordinacion/s6/TABLERO_S6.md) y los requisitos de la consigna en [`coordinacion/s6/REQUISITOS_S6.md`](coordinacion/s6/REQUISITOS_S6.md) (91 requisitos, R-01 a R-91).
+
+## Entrega S6: qué subir al aula virtual
+
+Suban estos 3 archivos de [`exportados/semana-06/`](exportados/semana-06/), **después** de completar los `[COMPLETAR]` y reexportar (`herramientas\.venv\Scripts\python.exe herramientas\conversion\exportar_s6.py`; ver [`herramientas/conversion/README.md`](herramientas/conversion/README.md)):
+
+| Archivo | Contenido |
+| --- | --- |
+| [`Informe_Integrador_Anemia_Junin.pdf`](exportados/semana-06/Informe_Integrador_Anemia_Junin.pdf) | Informe académico integrador (A4). El `.docx` de la misma carpeta es la versión editable de respaldo |
+| [`Presentacion_Integrador_Anemia_Junin.pptx`](exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx) | 7 diapositivas para la exposición de 7 minutos |
+| [`Presentacion_Integrador_Anemia_Junin.pdf`](exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pdf) | Las mismas 7 diapositivas en PDF (`herramientas/conversion/pptx_a_pdf.ps1`) |
+
+Enlaces del repositorio para el aula: <https://github.com/woshtsu/ProcesosSoftwareAnemia> y el tag del PMV <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.0-PMV> (la decisión de mover el tag es el paso manual 14).
 
 ## Estructura del repositorio
 
-```
+```text
 .
 ├── README.md                    este archivo
 ├── AGENTS.md                    instrucciones de continuidad para agentes
-├── .claude/agents/              definiciones de los subagentes (Claude Code)
+├── .claude/agents/              definiciones de los subagentes
 ├── coordinacion/                canal de comunicación entre agentes
-│   ├── TABLERO.md               tareas, estado y responsable
-│   ├── RUTAS.md                 mapa canónico de rutas (fuente de verdad)
-│   ├── PROTOCOLO.md             reglas de comunicación
-│   ├── plantillas/              SOLICITUD, SOLICITUD_DIAGRAMA, INFORME, CHECKLIST_CUMPLIMIENTO
-│   ├── solicitudes/             <PREFIJO>-###.md (DIAG, DOC, DEV, INV, CONV, ORQ)
-│   └── informes/                informes de salida de cada agente
+│   ├── TABLERO.md · RUTAS.md · PROTOCOLO.md · plantillas/ · solicitudes/ · informes/
+│   └── s6/                      cierre S6: REQUISITOS_S6, DATOS_PMV_FASTAPI, CONTEXTO_PROCESOS_S1_S5,
+│                                PROTOCOLO_S6, TABLERO_S6, INSPECCION_S6, PASOS_MANUALES,
+│                                solicitudes/VIS-###.md, informes/
 ├── guias/                       guías y consigna del docente (solo lectura)
 ├── entregables/                 versión VIGENTE de cada entregable (.md)
-│   ├── semana-01/               + img/, anexos/Entrevista.md
-│   ├── semana-02/               + img/
-│   ├── semana-03-04/
-│   ├── semana-05/               PDF Actividad 5 + extracción de texto (entregable .md por crear)
-│   └── semana-06-integrador/    + anexos/
 ├── diagramas/                   src/ (puml, py) · png/ · svg/ · README.md (catálogo)
-├── anemia_junin/                software PMV (Python/Flask, arquitectura hexagonal)
-├── exportados/                  PDF/DOCX generados para el aula virtual
-└── archivo/                     histórico: versiones anteriores, PDFs generados, zip, material de revisión
+├── pmv_fastapi/                 PMV OFICIAL (FastAPI + PostgreSQL, Docker, CI, pruebas, evidencias)
+├── anemia_junin/                antecedente: prototipo Flask del Incremento 1 (solo lectura)
+├── herramientas/                generador de diagramas (PlantUML local) y conversión
+├── exportados/                  PDF/DOCX/PPTX derivados para el aula virtual (exportados/semana-06/)
+└── archivo/                     histórico: versiones anteriores, agentes anteriores, PDF, zip
 ```
 
-El detalle de cada ruta está en [`coordinacion/RUTAS.md`](coordinacion/RUTAS.md).
+Cada ruta se detalla en [`coordinacion/RUTAS.md`](coordinacion/RUTAS.md).
 
-## Entregables por semana
-
-| Semana | Tema (según guía) | Guía | Entregable vigente | Estado |
-| --- | --- | --- | --- | --- |
-| S1 | Enfoque de procesos de la organización: problema, actores, AS-IS, brechas, TO-BE, aporte del software, cadena de valor, indicadores | [`guias/S1_…`](guias/S1.Gu%C3%ADa%20de%20trabajo%20semana%201.md) | [`Entregable_Semana1`](entregables/semana-01/Entregable_Semana1_Anemia_Junin.md) | Revisado; faltan figuras (T-002) |
-| S2 | Selección y justificación del modelo de proceso de software, representación, incrementos, riesgos, herramientas | [`guias/S2_…`](guias/S2.Gu%C3%ADa%20de%20trabajo%20semana%202.md) | [`Entregable_Semana2`](entregables/semana-02/Entregable_Semana2_Anemia_Junin.md) | Revisado; falta figura (T-003) |
-| S3-4 | Actividades, organización, responsabilidades, productos, WBS, priorización, estimación y plan del proyecto | [`guias/S3-4_…`](guias/S3.GU%C3%8DA%20DE%20TRABAJO%20SEMANA%203%20Y%204.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | Revisado; pendientes diagramas y conciliación técnica (T-004, T-007) |
-| S5 | Ejecución de procesos principales del PMV: requisitos, diseño, construcción, pruebas y despliegue | [Guía S5](guias/S5-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%205.md) | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` — **por crear**; base: [PDF Actividad 5](entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf), [extracción](entregables/semana-05/_extraccion_Informe_Actividad5.md) | Por crear (T-005) |
-| S6 | Informe integrador de las Unidades I y II | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) | Propuesta de revisión — por actualizar (T-006) |
-
-Las versiones anteriores están en `archivo/versiones-anteriores/`. El historial completo se conserva en git (`git log --follow <ruta>`).
-
-## Agentes y comunicación
+## Agentes y coordinación
 
 | Agente | Modelo | Rol |
 | --- | --- | --- |
-| `orquestador` | opus | Estructura, rutas, README, tablero, archivo, commits |
-| `revisor-documental` | opus | Cumplimiento estricto al 100 % de cada guía, redacción, checklist de cumplimiento |
-| `diagramador` | opus | Diagramas con PlantUML/Python → PNG + SVG, fuentes en `diagramas/src` |
-| `desarrollador` | opus (Fable 5.1 sin créditos de uso; se usa Opus 5.5) | PMV `anemia_junin/`: código, pruebas, evidencias, README de ejecución |
-| `investigador` | haiku | Investigación y resúmenes con fuentes (solo lectura) |
-| `conversor-entregas` | opus | Conversión .md → PDF/DOCX en `exportados/` |
+| `sincronizador` | opus | Coordinación, fuentes de verdad, rutas, tableros, README y commits |
+| `redactor-informe-integrador` | sonnet | Informe Integrador S6 |
+| `disenador-diapositivas` | sonnet | 7 diapositivas (Marp), guion de 7 min y PPTX/PDF |
+| `recursos-visuales` | haiku | Diagramas y gráficos (PlantUML local y matplotlib), solicitudes `VIS-###` |
+| `inspector-guia` | sonnet | Verificación al 100 % frente a la consigna y pasos manuales |
+| `guardian-merge` | haiku | Comprobaciones previas al merge (sin push) |
+| `conversor-entregas` | haiku | Conversión de .md a PDF/DOCX |
+| `desarrollador` | opus | PMV `pmv_fastapi/`, CI y evidencias |
+| `revisor-documental` | opus | Entregables S1–S5 |
+| `investigador` | haiku | Investigación con fuentes (solo lectura) |
 
-Definiciones: `.claude/agents/<agente>.md`. Los agentes se comunican **solo por archivos** en `coordinacion/`:
+Los agentes se comunican **solo mediante archivos**: tareas en los tableros, solicitudes `<PREFIJO>-###` e informes. Las reglas están en [`coordinacion/PROTOCOLO.md`](coordinacion/PROTOCOLO.md) y, para S6, en [`coordinacion/s6/PROTOCOLO_S6.md`](coordinacion/s6/PROTOCOLO_S6.md).
 
-1. Las tareas (`T-###`) se registran en [`coordinacion/TABLERO.md`](coordinacion/TABLERO.md).
-2. Un agente que necesita algo de otro crea `coordinacion/solicitudes/<PREFIJO>-###.md` desde la plantilla (p. ej. el revisor pide un diagrama con `DIAG-001.md`). El prefijo indica quién atiende: `ORQ`, `DOC`, `DIAG`, `DEV`, `INV`, `CONV`.
-3. El agente destino responde en la misma solicitud (rutas producidas) y la marca `RESUELTA`.
-4. Al terminar, cada agente deja su informe en `coordinacion/informes/AAAA-MM-DD_<agente>_<tarea>.md` y actualiza el tablero.
-
-Reglas completas: [`coordinacion/PROTOCOLO.md`](coordinacion/PROTOCOLO.md).
-
-## Convertir Markdown a PDF / DOCX
-
-Ejecutar desde la carpeta del entregable para que se resuelvan las imágenes relativas.
-
-**Con pandoc** (instalar en Windows: `winget install --id JohnMacFarlane.Pandoc`; para PDF se necesita además un motor, p. ej. MiKTeX para `xelatex`):
-
-```bash
-cd entregables/semana-01
-pandoc Entregable_Semana1_Anemia_Junin.md -o ../../exportados/semana-01/Entregable_Semana1_Anemia_Junin.docx --toc
-pandoc Entregable_Semana1_Anemia_Junin.md -o ../../exportados/semana-01/Entregable_Semana1_Anemia_Junin.pdf \
-  --pdf-engine=xelatex -V lang=es -V mainfont="Arial" -V geometry:margin=2.5cm --toc
-```
-
-Para DOCX conviene usar las versiones PNG de los diagramas (`diagramas/png/`), ya que Word no siempre renderiza SVG.
-
-**Alternativa sin pandoc (Python):**
-
-```bash
-pip install markdown python-docx xhtml2pdf
-# Markdown → HTML (markdown) → PDF (xhtml2pdf); DOCX con python-docx
-```
-
-El agente `conversor-entregas` automatiza ambos caminos y guarda los resultados en `exportados/semana-XX/`.
-
-## Cómo ejecutar el software
-
-Desde la raíz del repositorio, en PowerShell:
-
-```powershell
-cd anemia_junin
-python -m venv .venv                 # solo si aún no existe
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
-.\.venv\Scripts\python.exe -m pytest --cov --cov-report=term-missing
-.\.venv\Scripts\python.exe -m anemia_junin
-```
-
-Abrir `http://127.0.0.1:8000/`. Instrucciones completas y carga de datos sintéticos: [README del PMV](anemia_junin/README.md).
-
-Revisión local T-010 (2026-09-25, Python 3.13.7): **242 pruebas aprobadas, cobertura 96,66 %, Ruff sin hallazgos**. Se detectó además un defecto de entrada numérica fuera de la suite (DEV-101). La evidencia de carga conservada corresponde a la ejecución anterior de Claude; no se volvió a ejecutar en esta revisión.
-
-Informe y pendientes priorizados: [revisión del avance](coordinacion/informes/2026-09-25_orquestador_T-010.md). Los porcentajes de los checklists anteriores no certifican que el proyecto esté listo para entregar.
-
-## Herramientas registradas en el equipo anterior (2026-09-25)
-
-Inventario histórico de Claude; no representa necesariamente este equipo. La revisión T-010 utilizó Python 3.13.7.
+## Herramientas locales (2026-10-02)
 
 | Herramienta | Estado |
 | --- | --- |
-| Python 3.14.6 + pip 26.1 | Disponible (pypdf instalado) |
-| Java (OpenJDK 17.0.19, Temurin) | Disponible |
-| Git 2.54 | Disponible |
-| PlantUML (`plantuml.jar`) | No instalado |
-| Graphviz (`dot`) | No instalado |
-| Pandoc | No instalado |
+| Python 3.14.6 | Disponible, sin las dependencias del PMV instaladas. El PMV apunta a Python 3.11 |
+| Java 17 (OpenJDK 17.0.19) | Disponible |
+| Node v24.19.0 | Disponible (marp-cli necesita descargarse con permiso del usuario) |
+| PlantUML (`herramientas/plantuml/plantuml.jar`) | Descargado de Maven Central (v1.2026.8), local y **no versionado** (ver [`herramientas/README.md`](herramientas/README.md)) |
+| `herramientas/.venv` (Python 3.14: matplotlib, pillow, python-pptx, pypandoc_binary, pypdf, pypdfium2) | Local y no versionado; genera las figuras 59–67, el PPTX y los exportados del informe |
+| Pandoc | Vía `pypandoc_binary` en `herramientas/.venv` (exporta el informe con [`herramientas/conversion/exportar_s6.py`](herramientas/conversion/exportar_s6.py)) |
+| Microsoft PowerPoint / Edge | Usados localmente para el PDF de las diapositivas (`pptx_a_pdf.ps1`) y el PDF del informe (Edge headless) |

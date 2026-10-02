@@ -1,6 +1,6 @@
 # DIAG-102 — Diagrama de Gantt del Incremento 1 (Semanas 3-4)
 
-- **Estado:** EN CURSO  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
+- **Estado:** RESUELTA  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-004
@@ -68,8 +68,8 @@ Nota: A10 y A11 son paralelas y ambas críticas (misma fecha, holgura 0).
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/32_s34_gantt_incremento1.puml`, `diagramas/png/32_s34_gantt_incremento1.png` y `diagramas/svg/32_s34_gantt_incremento1.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 3. Diagrama de Gantt del Incremento 1 (actividades A01 a A21, del 01 al 28 de septiembre de 2026) con la ruta crítica resaltada (elaboración propia).](../../diagramas/svg/32_s34_gantt_incremento1.svg)`
 - **Notas:**

@@ -1,6 +1,6 @@
 # DIAG-100 — Diagrama de actividades del proceso de software (Semanas 3-4)
 
-- **Estado:** EN CURSO  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
+- **Estado:** RESUELTA  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-004
@@ -75,8 +75,8 @@ Nodos, en este orden (texto exacto; entre corchetes, el producto de trabajo como
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/30_s34_flujo_actividades_proceso.puml`, `diagramas/png/30_s34_flujo_actividades_proceso.png` y `diagramas/svg/30_s34_flujo_actividades_proceso.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 1. Diagrama de actividades del proceso de software del proyecto (ciclo por sprint y subciclo MLOps), con carriles para el equipo, el personal de salud y la automatización (elaboración propia).](../../diagramas/svg/30_s34_flujo_actividades_proceso.svg)`
 - **Notas:**

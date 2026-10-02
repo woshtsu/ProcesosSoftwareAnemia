@@ -1,6 +1,6 @@
 # DIAG-002 — Proceso TO-BE por carriles con intervención del software (Semana 1)
 
-- **Estado:** EN CURSO
+- **Estado:** RESUELTA
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-002
@@ -72,8 +72,8 @@ Título: "Proceso TO-BE — Seguimiento de la anemia infantil con apoyo del sist
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/11_s1_proceso_to_be.puml`, `diagramas/png/11_s1_proceso_to_be.png` y `diagramas/svg/11_s1_proceso_to_be.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 7. Proceso TO-BE por carriles de actor, con el carril Sistema y las mejoras M1-M6 (elaboración propia).](../../diagramas/svg/11_s1_proceso_to_be.svg)`
 - **Notas:**

@@ -1,6 +1,6 @@
 # DIAG-101 — WBS del proyecto (Semanas 3-4)
 
-- **Estado:** EN CURSO  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
+- **Estado:** RESUELTA  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-004
@@ -75,8 +75,8 @@ Si el árbol resulta muy ancho para A4, se admite orientación horizontal (izqui
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/31_s34_wbs_proyecto.puml`, `diagramas/png/31_s34_wbs_proyecto.png` y `diagramas/svg/31_s34_wbs_proyecto.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 2. Estructura de descomposición del trabajo (WBS) del proyecto: entregables, incrementos, épicas, historias y tareas del Incremento 1 (elaboración propia).](../../diagramas/svg/31_s34_wbs_proyecto.svg)`
 - **Notas:**

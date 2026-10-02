@@ -1,6 +1,6 @@
 # DIAG-103 — Cronograma de los ocho sprints con hitos (Semanas 3-4)
 
-- **Estado:** EN CURSO  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
+- **Estado:** RESUELTA  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-004
@@ -51,8 +51,8 @@ Barras auxiliares (opcionales, en gris claro, debajo): «Validación de datos de
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/33_s34_cronograma_sprints_hitos.puml`, `diagramas/png/33_s34_cronograma_sprints_hitos.png` y `diagramas/svg/33_s34_cronograma_sprints_hitos.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 4. Cronograma de los ocho sprints del proyecto con incrementos e hitos H0 a H7 (elaboración propia).](../../diagramas/svg/33_s34_cronograma_sprints_hitos.svg)`
 - **Notas:**

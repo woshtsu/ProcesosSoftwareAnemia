@@ -1,0 +1,49 @@
+@startuml 68_s6_roadmap_incrementos
+' Hoja de ruta de incrementos (VIS-016)
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 11
+
+title Hoja de ruta planificada: Sprints 1 a 8 (01/09 a 21/12/2026)
+
+rectangle "Sprint 1\n(01-14/09/2026)\nH0" as S1 #C8E6C9
+rectangle "Sprint 2\n(15-28/09/2026)\nH1" as S2 #C8E6C9
+rectangle "INC-1: ENTREGADO\nv1.0-PMV (commit 9ce90c3)\nHU-01 a HU-05" as INC1 #81C784
+S1 --> S2
+S2 --> INC1
+
+rectangle "Sprint 3\n(29/09-12/10)\nH2" as S3 #FFF59D
+rectangle "INC-2: Agenda automática\ny alertas\n(más backlog técnico: CI y E2E)" as INC2 #FFB74D
+S2 -.-> S3
+S3 --> INC2
+
+rectangle "Sprint 4\n(13-26/10)\nH3" as S4
+rectangle "INC-3: Sin conexión\ny sincronización" as INC3
+rectangle "Sprint 5\n(27/10-09/11)\nH4" as S5
+rectangle "INC-4: Mensajería\ny barreras" as INC4
+S3 --> S4
+S4 --> INC3
+S4 --> S5
+S5 --> INC4
+
+rectangle "Sprint 6\n(10-23/11)\nH5" as S6
+rectangle "INC-5: Datos, experimentación\ny entrenamiento del modelo" as INC5a
+rectangle "Sprint 7\n(24/11-07/12)\nH6" as S7
+rectangle "INC-5: integración modelo-agenda\ne INC-6: inicio del tablero" as INC5b
+S5 --> S6
+S6 --> INC5a
+S6 --> S7
+S7 --> INC5b
+
+rectangle "Sprint 8\n(08-21/12)\nH7" as S8
+rectangle "INC-6: Tablero territorial\ncompleto" as INC6
+S7 --> S8
+S8 --> INC6
+
+note bottom
+  Fuente: Informe integrador, Tablas 15 y 16 (S3-4, Tablas 17 y 23).
+  Calendario planificado; solo INC-1 está entregado.
+end note
+
+@enduml

@@ -1,6 +1,6 @@
 # DIAG-003 — Cadena de valor del proceso TO-BE (Semana 1)
 
-- **Estado:** EN CURSO
+- **Estado:** RESUELTA
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-002
@@ -57,8 +57,8 @@ Título: "Cadena de valor del proceso TO-BE: Entrada → Actividad → Resultado
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/12_s1_cadena_valor.puml`, `diagramas/png/12_s1_cadena_valor.png` y `diagramas/svg/12_s1_cadena_valor.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 8. Cadena de valor del proceso TO-BE (elaboración propia).](../../diagramas/svg/12_s1_cadena_valor.svg)`
 - **Notas:**
