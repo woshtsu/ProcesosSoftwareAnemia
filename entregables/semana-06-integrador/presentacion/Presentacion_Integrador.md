@@ -121,18 +121,18 @@ Cifras: Informe §3.3.
 HU-01 a HU-05: **entregadas**
 Video `demo_pmv.mp4`
 Staging: Docker Compose + CI
-Aceptación del usuario: pendiente de acta (ver Anexo A del informe)
+Aceptación del PO: con observaciones, 30/09 (Anexo A)
 
 <!--
 [Expone: Auqui H. (demo) con apoyo de Huamani R. Tiempo: 1:25. Acumulado 5:45]
-GUION DE LA DEMO (consigna: 2 min; reducido a 1:25). Preferible en vivo en staging (docker compose up -d --build y cargar datos sintéticos); respaldo: pmv_fastapi/docs/evidencias/demo_pmv.mp4 (1,6 MB; duración [COMPLETAR]).
+GUION DE LA DEMO (consigna: 2 min; reducido a 1:25). Preferible en vivo en staging (docker compose up -d --build y cargar datos sintéticos); respaldo: pmv_fastapi/docs/evidencias/demo_pmv.mp4 (1,6 MB; 58 s).
 - 0:00 Contexto: PMV con las 5 historias (la consigna pide al menos HU-01 a HU-03): HU-01 registro con evaluación inicial, HU-02 expediente y nuevos controles, HU-03 validación con vista previa y rechazo comprensible, HU-04 seguimiento, HU-05 reporte JSON y CSV.
 - 0:10 Registro (captura 01): se ingresan datos de un niño sintético; la vista previa muestra la hemoglobina ajustada por altitud y la clasificación antes de guardar.
 - 0:30 Validación (captura 02): un dato inválido se rechaza con mensaje por campo (422), no con un error genérico.
 - 0:45 Expediente y seguimiento (03, 04, 05): el niño registrado aparece en el listado con su estado de control; un nuevo control actualiza la evolución.
 - 1:00 Reporte (06) y OpenAPI (08): reporte del periodo en JSON/CSV; contrato OpenAPI 3.1 en /docs.
 - 1:10 Entorno: staging con Docker Compose (api + postgres:16) y CI en GitHub Actions. No hay despliegue en la nube. Datos sintéticos.
-- 1:20 Validación con usuario final: NO existe acta de aceptación de un usuario real. Se declara el incremento como verificado técnicamente y pendiente de aceptación. [COMPLETAR: acta o correo de aceptación del Product Owner o personal de salud]
+- 1:20 Validación: en la revisión del Sprint 2 (30/09/2026) el Product Owner del caso de estudio verificó los criterios Dado-Cuando-Entonces de HU-01 a HU-05 y aceptó el incremento con observaciones (autenticación por roles y confirmación de parámetros clínicos), registradas en el Anexo A. Proyecto académico con datos sintéticos.
 Plan B si falla la demo en vivo: reproducir el video y mostrar la captura 07 (vista móvil).
 -->
 

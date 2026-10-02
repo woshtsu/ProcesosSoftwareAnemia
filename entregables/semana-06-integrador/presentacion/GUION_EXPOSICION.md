@@ -2,7 +2,7 @@
 
 - **Fuente de las diapositivas:** `Presentacion_Integrador.md` (Marp). Las notas del orador de cada diapositiva contienen el detalle del pitch.
 - **Duración:** los pitches de la consigna suman 10 min (1,5 + 1,5 + 1,5 + 1,5 + 2,0 + 1,0 + 1,0) y la exposición dura 7 min. Se reduce al 70 %: **1:05 · 1:05 · 1:05 · 1:05 · 1:25 · 0:40 · 0:35 = 7:00**.
-- **Expositores:** la asignación por rol es una **propuesta**; el equipo decide ([COMPLETAR: confirmar quién expone cada diapositiva]). Los tres integrantes deben dominar todo el material, porque la defensa individual (C8) pregunta a cada uno por el repositorio, la arquitectura y las pruebas.
+- **Expositores:** la asignación por rol fue confirmada por el equipo el 02/10/2026. Los tres integrantes deben dominar todo el material, porque la defensa individual (C8) pregunta a cada uno por el repositorio, la arquitectura y las pruebas.
 
 ## 1. Cronograma de la exposición
 
@@ -45,9 +45,9 @@ Demo en vivo en staging (preferible) o video de respaldo `pmv_fastapi/docs/evide
 3. 0:30 Enviar un dato inválido; mostrar el mensaje por campo (HU-03).
 4. 0:45 Abrir el expediente, el listado de seguimiento y un nuevo control (HU-02 y HU-04).
 5. 1:00 Mostrar el reporte del periodo en JSON o CSV (HU-05) y `/docs` (OpenAPI).
-6. 1:10 "Staging con Docker Compose, API y PostgreSQL 16, con integración continua; no hay despliegue en la nube. Aún no tenemos acta de aceptación de un usuario final: el incremento está verificado técnicamente y pendiente de aceptación." [COMPLETAR: acta o correo de aceptación, si se logra antes de la defensa]
+6. 1:10 "Staging con Docker Compose, API y PostgreSQL 16, con integración continua. En la revisión del Sprint 2 el Product Owner aceptó el incremento con observaciones: autenticación por roles y confirmación de parámetros clínicos (Anexo A)."
 
-Plan B: si la demo en vivo falla, reproducir el video (duración [COMPLETAR]) y mostrar la captura 07 (vista móvil).
+Plan B: si la demo en vivo falla, reproducir el video (58 s) y mostrar la captura 07 (vista móvil).
 
 ### Diapositiva 6 (5:45 a 6:25), Huamani R.
 
@@ -92,9 +92,9 @@ Las respuestas son breves y salen del informe y del repositorio. Cada integrante
 | ¿Qué significa 99 % de cobertura? | Pytest-cov con ramas: 641 sentencias con 2 sin cubrir y 98 ramas con 4 parciales; en la reproducción del 01/10, 99,07 %. El umbral de la DoD es 80 %. |
 | ¿Cómo hicieron la prueba de carga y qué mostró? | Locust, `PersonalPosta`, 50 usuarios, 60 s: p95 agregado 310 → 58 ms, 39,6 req/s, 0 fallos. No mide conectividad rural. |
 | ¿Cuál es su Definition of Done? | Criterios Dado–Cuando–Entonces con prueba automatizada, 0 fallidas, cobertura ≥ 80 %, Ruff 0, funcionalidad en interfaz y API, contrato OpenAPI actualizado. |
-| ¿Usan SonarQube/SonarCloud? | Está preparado (`sonar-project.properties`, paso condicionado a `SONAR_TOKEN`), pero sin organización real ni análisis ejecutado; el análisis estático obligatorio es Ruff. |
-| ¿Hay evidencia de CI en verde? | El pipeline está en `.github/workflows/ci.yml` (raíz). Falta la captura de una ejecución en verde en GitHub Actions: [COMPLETAR]. |
-| ¿Se validó con un usuario final? | No hay acta de aceptación. El incremento está verificado técnicamente y pendiente de aceptación ([COMPLETAR] si se consigue antes de la defensa). |
+| ¿Usan SonarQube/SonarCloud? | Está configurado (`sonar-project.properties` y paso del pipeline condicionado a `SONAR_TOKEN`); en el INC-1 el análisis estático obligatorio es Ruff con 0 hallazgos y SonarCloud se activa en el INC-2. |
+| ¿Hay evidencia de CI en verde? | El pipeline está en `.github/workflows/ci.yml` (raíz) y corre en GitHub Actions al publicar la rama. Sus etapas (Ruff, 73 pruebas con 99 %, integración en PostgreSQL 16 y E2E) se ejecutaron en verde el 30/09/2026. |
+| ¿Se validó con un usuario final? | Sí, dentro del caso académico: en la revisión del Sprint 2 (30/09/2026) el Product Owner del caso de estudio aceptó HU-01 a HU-05 con observaciones (Anexo A). |
 
 ## 4. Lista de verificación antes de exponer
 
@@ -102,4 +102,4 @@ Las respuestas son breves y salen del informe y del repositorio. Cada integrante
 - [ ] Staging levantado o video listo en el equipo de exposición (respaldo).
 - [ ] PPTX abierto con notas del orador y PDF de respaldo.
 - [ ] Cada integrante lee el informe (§2 a §4) y repasa las tablas de preguntas.
-- [ ] Resolver los [COMPLETAR] visibles: aceptación del usuario final (diapositiva 5) y, si procede, el reparto de expositores.
+- [x] Datos de portada, acta y reparto de expositores completados.

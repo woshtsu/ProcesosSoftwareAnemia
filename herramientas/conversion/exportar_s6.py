@@ -221,14 +221,16 @@ nav[role="doc-toc"] {
         print("  CSS inyectado correctamente")
 
         # Buscar Edge
+        # NAVEGADOR_PDF permite usar Chrome/Chromium (por ejemplo, en Linux)
         edge_paths = [
+            os.environ.get("NAVEGADOR_PDF", ""),
             r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
             r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
         ]
 
         edge_path = None
         for path in edge_paths:
-            if os.path.exists(path):
+            if path and os.path.exists(path):
                 edge_path = path
                 break
 
@@ -247,6 +249,7 @@ nav[role="doc-toc"] {
                 edge_path,
                 '--headless',
                 '--disable-gpu',
+                *(['--no-sandbox'] if os.name != 'nt' else []),
                 f'--print-to-pdf={output_pdf}',
                 '--no-pdf-header-footer',
                 str(temp_html)

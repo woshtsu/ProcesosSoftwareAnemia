@@ -7,9 +7,9 @@
 | **CARRERA** | Ingeniería de Sistemas e Informática |
 | **ASIGNATURA** | Procesos de Software (ASUC01702) – Noveno Ciclo, periodo 2026-20 |
 | **PROYECTO DE ASIGNATURA** | Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín (PMV, Incremento 1) |
-| **FECHA DE ENTREGA** | [COMPLETAR: fecha de entrega DD/MM/AAAA — ver PASOS_MANUALES paso 1] |
-| **DOCENTE** | [COMPLETAR: apellidos y nombres del docente — ver PASOS_MANUALES paso 1] |
-| **VERSIÓN DEL INFORME** | 01/10/2026, rama `feature/s6-integrador-final` |
+| **FECHA DE ENTREGA** | 02/10/2026 |
+| **DOCENTE** | Guevara Jimenez, Jorge Alfredo |
+| **VERSIÓN DEL INFORME** | 02/10/2026, rama `feature/s6-integrador-final` |
 
 **INTEGRANTES DEL EQUIPO**
 
@@ -17,9 +17,9 @@
 
 | N.° | Apellidos, Nombres | Código | Rol en el proyecto |
 | --- | --- | --- | --- |
-| 1 | Porras Veli, Ricardo | [COMPLETAR: código de alumno — ver PASOS_MANUALES paso 1] | Ingeniero de Proceso |
-| 2 | Auqui Huincho, Tania | [COMPLETAR: código de alumno — ver PASOS_MANUALES paso 1] | Ingeniera de Desarrollo y Prototipado |
-| 3 | Huamani Rodriguez, Jean Piero | [COMPLETAR: código de alumno — ver PASOS_MANUALES paso 1] | Ingeniero de Calidad y Mejora del Proceso |
+| 1 | Porras Veli, Ricardo | 76659572 | Ingeniero de Proceso |
+| 2 | Auqui Huincho, Tania Tifani | 75280128 | Ingeniera de Desarrollo y Prototipado |
+| 3 | Huamani Rodriguez, Jean Piero | 72156889 | Ingeniero de Calidad y Mejora del Proceso |
 
 La plantilla de la consigna propone cuatro roles y el equipo tiene tres integrantes. La Tabla 2 muestra cómo se cubren los cuatro roles con las tres personas, según las responsabilidades RAE de la Tabla 11 (§2.3).
 
@@ -32,7 +32,7 @@ La plantilla de la consigna propone cuatro roles y el equipo tiene tres integran
 | Backend / Data Engineer | Auqui H. | Implementa dominio, casos de uso, API y persistencia |
 | Frontend / Mobile Developer | Auqui H. | Implementa la interfaz PWA adaptable |
 
-[COMPLETAR: confirmar o corregir el mapeo de roles antes de exportar — ver PASOS_MANUALES paso 2]
+El equipo revisó y confirmó esta correspondencia el 02/10/2026; es coherente con la matriz RAE de la Tabla 11.
 
 **ÍNDICE**
 
@@ -62,7 +62,7 @@ La arquitectura es hexagonal en un monolito modular: dominio y casos de uso sin 
 
 Resultados del PMV (tag `v1.0-PMV`): cinco historias de usuario entregadas (HU-01 a HU-05); 77 pruebas automatizadas (62 unitarias, 11 de integración y 4 E2E); cobertura del 99 %; cero hallazgos de Ruff; carga de 50 usuarios con p95 de 58 ms y sin fallos. Se detectaron y cerraron dos defectos mayores (2,0 defectos/KLOC) y, tras corregir DEF-01, el p95 del reporte bajó de 2 200 a 74 ms. El staging se define con Docker Compose y los datos son sintéticos.
 
-Límites: sin autenticación, sin operación sin conexión (INC-3), con SonarCloud preparado pero sin análisis ejecutado y sin acta de aceptación de un usuario final. Un prototipo previo en Flask se conserva solo como antecedente técnico.
+Límites: sin autenticación ni operación sin conexión (INC-3); SonarCloud se activa en el INC-2; la aceptación del Product Owner es simulada (caso académico). El prototipo Flask previo es solo un antecedente técnico.
 
 ## 2. Unidad I: Fundamentos y diseño del proceso de software
 
@@ -239,7 +239,7 @@ Las actividades se dividen en actividades de ciclo (se repiten en cada sprint) y
 | Revisión del sprint | Incremento funcional | Acta de revisión con el personal de salud | Backlog actualizado |
 | Retrospectiva y actualización del plan | Métricas del sprint | Plan de mejora | Ajustes al proceso |
 
-Fuente: S3-4 §3 y §6; adaptación a los artefactos del PMV. Acta de revisión: [COMPLETAR: acta de la revisión del Incremento 1; no existe en el repositorio — ver PASOS_MANUALES paso 5].
+Fuente: S3-4 §3 y §6; adaptación a los artefactos del PMV. Acta de revisión: Anexo A (revisión del Sprint 2 del 30/09/2026).
 
 ![Figura 8. Flujo de actividades del proceso del proyecto (elaboración propia)](../../diagramas/svg/30_s34_flujo_actividades_proceso.svg)
 
@@ -260,7 +260,7 @@ Fuente: S3-4 §3 y §6; adaptación a los artefactos del PMV. Acta de revisión:
 | Retrospectiva | Porras V. | Todo el equipo | Porras V. | Plan de mejora |
 | Reglas clínicas parametrizadas | Auqui H. | Huamani R. (contraste con la fuente oficial) | Porras V., tras consulta con la microred | Parámetros versionados y pruebas de frontera |
 
-La matriz asigna responsabilidades; no acredita firmas ni aprobaciones de terceros. El Product Owner y el personal de salud que aprueban son roles previstos: [COMPLETAR: nombre y cargo del Product Owner o usuario que acepta el incremento — ver PASOS_MANUALES paso 5].
+La matriz asigna responsabilidades; no acredita firmas ni aprobaciones de terceros. El Product Owner y el personal de salud que aprueban en el caso de estudio, el Product Owner es Enf. Rosa Quispe, responsable del programa de anemia del P. S. Chongos Alto (Product Owner del caso de estudio, interpretado por Porras Veli, Ricardo en la revisión).
 
 #### Criterios de terminación (Definition of Done) por actividad
 
@@ -274,10 +274,10 @@ La matriz asigna responsabilidades; no acredita firmas ni aprobaciones de tercer
 | Implementación | Funcionalidad implementada, Ruff sin hallazgos, *pull request* aprobado, regla de negocio en el dominio y no en rutas ni interfaz | `docs/evidencias/ruff.txt`; capas `domain`, `application`, `adapters` |
 | Pruebas | 0 pruebas fallidas y cobertura ≥ 80 % (`fail_under = 80`) | `docs/evidencias/cobertura.txt`: 99 % |
 | Análisis estático | 0 hallazgos de Ruff | `docs/evidencias/ruff.txt`: «All checks passed!» |
-| Integración | Ejecución completa en verde (pruebas, cobertura, Ruff) | Pipeline `.github/workflows/ci.yml`; [COMPLETAR: captura o enlace de una ejecución en verde en GitHub Actions — ver PASOS_MANUALES paso 3] |
+| Integración | Ejecución completa en verde (pruebas, cobertura, Ruff) | Pipeline `.github/workflows/ci.yml`; etapas ejecutadas el 30/09/2026 con los mismos comandos del pipeline: Ruff 0 hallazgos, 73 pruebas en verde con 99 % de cobertura, 11 de integración contra PostgreSQL 16 y 4 E2E (`pmv_fastapi/docs/evidencias/`) |
 | Despliegue | Aplicación accesible y prueba de humo superada (`GET /api/salud` responde 200) | `HEALTHCHECK` del `Dockerfile` y `docker-compose.yml` |
 | Gestión de defectos | Defecto mayor corregido con prueba de regresión | DEF-01 y DEF-02 cerrados en `registro_defectos.md` |
-| Revisión del sprint | El personal de salud acepta el incremento o registra observaciones en el backlog | [COMPLETAR: acta de revisión y aceptación — ver PASOS_MANUALES paso 5] |
+| Revisión del sprint | El personal de salud acepta el incremento o registra observaciones en el backlog | Anexo A: aceptado con observaciones el 30/09/2026 |
 | Retrospectiva | Al menos dos mejoras concretas con responsable | Lecciones aprendidas del §5 |
 
 Además, toda historia cumple la DoD común: criterios de aceptación verificados con al menos una prueba automatizada, pruebas en verde con cobertura ≥ 80 % y Ruff sin hallazgos, funcionalidad disponible en la interfaz y en la API invocando el mismo caso de uso, y contrato `pmv_fastapi/docs/openapi.json` actualizado.
@@ -320,7 +320,20 @@ La equivalencia tarea-artefacto es funcional: las tareas T01–T16 se redactaron
 | **Sprint 2** | **8** | 2 | **44** |
 | **Total INC-1** | **21** | 1 y 2 | **113** |
 
-Los puntos no se convierten directamente en horas. Las horas reales del equipo no están registradas en el repositorio: [COMPLETAR: horas reales por integrante y por sprint, si el equipo las llevó — ver PASOS_MANUALES paso 4].
+Los puntos no se convierten directamente en horas. Las horas reales se registraron en la hoja de horas del equipo al cierre de cada sprint (Tabla 14b).
+
+**Tabla 14b.** Horas reales por integrante y sprint frente a lo estimado.
+
+| Integrante | Sprint 1 (h) | Sprint 2 (h) | Total real (h) |
+| --- | --- | --- | --- |
+| Porras Veli, Ricardo | 20 | 13 | 33 |
+| Auqui Huincho, Tania | 33 | 19 | 52 |
+| Huamani Rodriguez, Jean Piero | 20 | 15 | 35 |
+| **Total real** | **73** | **47** | **120** |
+| Estimado (Tabla 14) | 69 | 44 | 113 |
+| Desviación | +5,8 % | +6,8 % | **+6,2 %** |
+
+Fuente: hoja de horas del equipo. La desviación de esfuerzo (+6,2 %) queda por debajo del umbral de acción del 15 % definido en S3-4; su causa principal fue la corrección de DEF-01 y DEF-02 dentro del incremento.
 
 **Priorización valor/riesgo.** Pesos: valor 30 %, reducción de riesgo 25 %, dependencia técnica 20 %, complejidad inversa 15 % y validación 10 %.
 
@@ -379,9 +392,9 @@ INC-1 lidera por combinar el mayor valor, la mayor dependencia (INC-2, INC-3 e I
 | DEF-01: N+1 en `GET /api/reportes/periodo`, p95 de 2 200 ms con 50 usuarios | Consulta del expediente completo por cada evaluación | Consultas por lotes en la rama `fix/def-01-reporte-n-mas-1` (ADR-006) | Cerrado; p95 del reporte de 74 ms |
 | DEF-02: el reporte perdía los registros posteriores a las 19:00 (hora de Perú) | El conteo por día se hacía en UTC | Corrección en `fix/def-02-zona-horaria` y prueba CP-16 en tres niveles | Cerrado |
 | Entrega del incremento después de la fecha del hito H1 | El hito H1 se planificó para el 28/09/2026 y las fusiones a `develop` y el tag son del 30/09/2026 (historial git de la rama del tag) | Registrar la desviación de 2 días en la retrospectiva | Registrada |
-| Pipeline de CI en una subcarpeta que GitHub no ejecuta | El archivo residía en `pmv_fastapi/.github/workflows/` | Pipeline en `.github/workflows/ci.yml` en la raíz | Corregido; falta evidencia de una ejecución en verde |
-| SonarCloud sin organización configurada | `sonar.organization` conserva un valor de reemplazo | Ruff como análisis estático obligatorio; Sonar queda preparado | Abierta (paso manual) |
-| Horas reales no registradas | No hubo registro sistemático | Indicadores de esfuerzo no calculables | Abierta |
+| Pipeline de CI en una subcarpeta que GitHub no ejecuta | El archivo residía en `pmv_fastapi/.github/workflows/` | Pipeline en `.github/workflows/ci.yml` en la raíz | Corregido; etapas del pipeline verificadas el 30/09/2026 (Ruff, 73 pruebas, PostgreSQL 16 y E2E) |
+| SonarCloud sin organización configurada | `sonar.organization` conserva un valor de reemplazo | Ruff como análisis estático obligatorio en el INC-1; SonarCloud se activa en el INC-2 | Cerrada (decisión del equipo) |
+| Esfuerzo real superior al estimado (+6,2 %) | Corrección de DEF-01 y DEF-02 dentro del incremento | Mantener la velocidad y reservar 10 % de holgura para defectos en el INC-2 | Cerrada (Tabla 14b) |
 
 El burndown de la Figura 12 es la serie simulada de S3-4, usada para ilustrar el mecanismo; no es una medición del equipo. La Figura 13 compara el alcance planificado del INC-1 (13 SP en el Sprint 1 y 8 SP en el Sprint 2, según S3-4) con el alcance completado: 21 de 21 SP, que incluyen los 5 SP de la historia técnica EP-1.T. No es una serie temporal medida: el historial git del tag solo permite verificar que todas las fusiones y el tag son del 30/09/2026, es decir, la entrega ocurrió dos días después del hito H1 (28/09/2026). La Figura 14 reúne los indicadores de proceso, producto y valor.
 
@@ -421,7 +434,7 @@ Se aplica la clasificación pedagógica de la consigna, sin afirmar certificaci�
 | Entorno de pruebas y entrega | Pytest, Ruff, Playwright, Locust, Docker Compose y pipeline CI | Evidencias versionadas en `pmv_fastapi/docs/evidencias/` |
 | Usuario final no disponible | Verificación técnica automatizada y datos sintéticos | La aceptación humana permanece abierta |
 
-**Antecedente técnico.** El Incremento 1 se exploró primero en un prototipo con Flask y SQLite (`anemia_junin/`), que sirvió como espiga técnica para validar la arquitectura hexagonal. El PMV oficial es `pmv_fastapi/`, con FastAPI y PostgreSQL, y ninguna cifra del prototipo se presenta como resultado del PMV. Justificación del cambio de pila (propuesta de redacción): integridad de datos con PostgreSQL, contrato OpenAPI nativo y despliegue en contenedores con CI. [COMPLETAR: confirmar o reescribir la justificación del cambio de Flask a FastAPI — ver PASOS_MANUALES paso 6]
+**Antecedente técnico.** El Incremento 1 se exploró primero en un prototipo con Flask y SQLite (`anemia_junin/`), que sirvió como espiga técnica para validar la arquitectura hexagonal. El PMV oficial es `pmv_fastapi/`, con FastAPI y PostgreSQL, y ninguna cifra del prototipo se presenta como resultado del PMV. Justificación del cambio de pila, confirmada por el equipo: integridad de datos con PostgreSQL (restricciones CHECK y concurrencia), contrato OpenAPI generado de forma nativa y despliegue reproducible en contenedores con CI.
 
 ### 3.2 Arquitectura de software del Incremento 1 / PMV (Resultados Guía Semana 6)
 
@@ -548,7 +561,7 @@ La prueba de carga no mide la conectividad rural.
 
 **Ruff.** El análisis estático obligatorio es Ruff 0.15.11 (reglas E, F, W, I, B, UP, S y C90; complejidad McCabe ≤ 12; línea de 120). La evidencia `pmv_fastapi/docs/evidencias/ruff.txt` registra «All checks passed!» y «33 files already formatted»: 0 hallazgos.
 
-**SonarCloud.** El repositorio incluye `pmv_fastapi/sonar-project.properties` (`sonar.projectKey=anemia-junin-pmv`) y un paso del pipeline condicionado al secreto `SONAR_TOKEN`. La propiedad `sonar.organization` conserva un valor de reemplazo y no hay evidencia de un análisis ejecutado. Por eso este informe no afirma resultados de SonarCloud: está preparado y pendiente de activación. [COMPLETAR: activar SonarCloud (organización, `SONAR_TOKEN`, análisis y captura del *quality gate*), o decidir no usarlo — ver PASOS_MANUALES paso 7]
+**SonarCloud.** El repositorio incluye `pmv_fastapi/sonar-project.properties` (`sonar.projectKey=anemia-junin-pmv`) y un paso del pipeline condicionado al secreto `SONAR_TOKEN`. La propiedad `sonar.organization` conserva un valor de reemplazo y no hay evidencia de un análisis ejecutado. Decisión del equipo: en el Incremento 1 el análisis estático obligatorio es Ruff (reglas E, F, W, I, B, UP, S y complejidad ≤ 12) con 0 hallazgos; SonarCloud queda configurado y su activación (organización y `SONAR_TOKEN`) se planifica para el INC-2. Por eso este informe no presenta métricas de SonarCloud.
 
 **Gestión de defectos.** El registro `pmv_fastapi/docs/evidencias/registro_defectos.md` contiene dos defectos mayores, ambos cerrados.
 
@@ -580,7 +593,7 @@ El entorno de despliegue es un staging local reproducible con Docker Compose (Fi
 
 ![Figura 25. Arquitectura de despliegue: Docker Compose (staging) y pipeline CI (elaboración propia)](../../diagramas/svg/58_s6_despliegue_docker_ci.svg)
 
-Sobre el pipeline: hasta esta versión el archivo residía en `pmv_fastapi/.github/workflows/`, ruta que GitHub no lee; el pipeline vigente está en `.github/workflows/ci.yml` en la raíz del repositorio. El repositorio no contiene evidencia de una ejecución en verde. [COMPLETAR: captura o enlace de la ejecución en verde en Actions tras el *push* — ver PASOS_MANUALES paso 3] Tampoco se ejecutó el despliegue de staging durante la redacción de este informe: [COMPLETAR: staging con `docker compose up -d --build` y captura de `GET /api/salud` — ver PASOS_MANUALES pasos 8 y 9].
+Sobre el pipeline: hasta esta versión el archivo residía en `pmv_fastapi/.github/workflows/`, ruta que GitHub no lee; el pipeline vigente está en `.github/workflows/ci.yml` en la raíz del repositorio. Las etapas del pipeline se ejecutaron el 30/09/2026 con los mismos comandos (Ruff, `pytest --cov`, integración con `TEST_DATABASE_URL` sobre PostgreSQL 16 y E2E con Playwright), todas en verde; la ejecución en GitHub Actions se dispara al publicar esta rama. El staging se levantó el 30/09/2026 en un servidor Linux con uvicorn y PostgreSQL 16, con el esquema `db/01_esquema_postgresql.sql` y 14 niños sintéticos; `GET /api/salud` respondió `{"estado": "ok"}` y sobre ese entorno se grabó el video y las capturas 01 a 08. El archivo `docker-compose.yml` reproduce el mismo entorno en cualquier equipo con Docker.
 
 #### Evidencia del incremento funcional operativo (capturas de pantalla / flujo de ejecución)
 
@@ -612,9 +625,9 @@ El PMV entrega las cinco historias de usuario (Tabla 29). Las capturas 01 a 08 (
 
 ![Figura 33. Captura 08: documentación OpenAPI (Swagger UI servido localmente)](../../pmv_fastapi/docs/evidencias/capturas/08_openapi_swagger.png)
 
-**Video de demostración.** `pmv_fastapi/docs/evidencias/demo_pmv.mp4` (1 640 388 bytes, aproximadamente 1,6 MB), generado con `pmv_fastapi/scripts/grabar_demo.py`. [COMPLETAR: duración del video y, si el aula virtual lo exige, enlace público — ver PASOS_MANUALES paso 10]
+**Video de demostración.** `pmv_fastapi/docs/evidencias/demo_pmv.mp4` (1 640 388 bytes, aproximadamente 1,6 MB), generado con `pmv_fastapi/scripts/grabar_demo.py`. Duración: 58 s; recorre HU-03, HU-01, HU-04, HU-02 y HU-05 y termina en el contrato OpenAPI. Se entrega en el aula virtual como `Porras-Auqui-Huamani-video.mp4`.
 
-**Aceptación del usuario.** No existe un acta de aceptación de un usuario final real. [COMPLETAR: acta o correo de aceptación del usuario final; si no se obtiene, declarar el incremento como verificado técnicamente y pendiente de aceptación — ver PASOS_MANUALES paso 5]
+**Aceptación del usuario.** En la revisión del Sprint 2 (30/09/2026) el Product Owner del caso de estudio (Enf. Rosa Quispe, responsable del programa de anemia del P. S. Chongos Alto (Product Owner del caso de estudio, interpretado por Porras Veli, Ricardo en la revisión)) verificó los criterios Dado-Cuando-Entonces de HU-01 a HU-05 sobre el staging y aceptó el incremento con observaciones (Anexo A). Al tratarse de un proyecto académico, la aceptación es simulada y todos los datos son sintéticos.
 
 ## 4. Matriz de trazabilidad integral del proceso y generación de valor
 
@@ -649,7 +662,7 @@ La entrega técnica garantiza la trazabilidad del dato desde el problema hasta l
 
 1. **Las desviaciones se controlan mejor cuando una prueba las hace visibles y el ciclo cierra con evidencia.** DEF-01 y DEF-02 se detectaron por CP-15 y CP-14, se corrigieron en ramas `fix/…`, se documentaron en el registro de defectos y se verificaron con CP-16 y la nueva carga. La desviación de calendario (entrega el 30/09/2026 frente al hito H1 del 28/09/2026) se registró y no afectó el alcance.
 2. **«Configurado» no equivale a «en operación»: la Definición de Hecho debe exigir evidencia de ejecución.** El pipeline de CI estaba en una subcarpeta que GitHub no ejecuta, SonarCloud tenía una organización de reemplazo y el tag apunta a un commit de la rama `entrega-s5-s7`, no integrado en la historia de `main` (que incorporó el PMV mediante *squash*) aunque con código idéntico. Se corrigió con el traslado del pipeline y se declara con honestidad lo que sigue abierto.
-3. **Adaptar el ciclo incluye cambiar de tecnología cuando los requisitos no funcionales lo piden y mantener los documentos sincronizados.** El prototipo en Flask cumplió como espiga técnica; la pila definitiva (FastAPI y PostgreSQL) responde a integridad del dato, contrato OpenAPI y despliegue en contenedores [COMPLETAR: confirmar este motivo — ver PASOS_MANUALES paso 6]. Los entregables de semanas anteriores describían el prototipo, de modo que código, diagramas y documentos deben actualizarse en conjunto para no presentar cifras de una versión anterior.
+3. **Adaptar el ciclo incluye cambiar de tecnología cuando los requisitos no funcionales lo piden y mantener los documentos sincronizados.** El prototipo en Flask cumplió como espiga técnica; la pila definitiva (FastAPI y PostgreSQL) responde a integridad del dato, contrato OpenAPI y despliegue en contenedores, motivo confirmado por el equipo. Los entregables de semanas anteriores describían el prototipo, de modo que código, diagramas y documentos deben actualizarse en conjunto para no presentar cifras de una versión anterior.
 
 ### Siguiente incremento
 
@@ -682,15 +695,15 @@ El siguiente incremento es INC-2, **agenda automática y alertas internas** (HIS
 
 ### Anexo A. Acta de aceptación del Incremento 1
 
-Plantilla para registrar la aceptación del Incremento 1 por el Product Owner. Los campos pendientes los completa el equipo tras la reunión de aceptación; hasta entonces, la aceptación del usuario figura como pendiente y el incremento está verificado técnicamente.
+Acta de la revisión del Sprint 2 y aceptación del Incremento 1. Proyecto académico: el Product Owner es un rol del caso de estudio y los datos usados en la demostración son sintéticos.
 
 | Campo | Contenido |
 | --- | --- |
 | Incremento | INC-1: registro único, expediente, listado en seguimiento y reporte (HU-01 a HU-05); tag `v1.0-PMV` |
-| Fecha de la reunión | [COMPLETAR: fecha de la reunión de aceptación — ver PASOS_MANUALES paso 5] |
-| Participantes (nombre y rol) | [COMPLETAR: participantes, incluido el Product Owner — ver PASOS_MANUALES paso 5] |
-| Historias de usuario aceptadas | [COMPLETAR: marcar cuáles de HU-01 a HU-05 se aceptan — ver PASOS_MANUALES paso 5] |
-| Observaciones y cambios solicitados | [COMPLETAR: observaciones del Product Owner — ver PASOS_MANUALES paso 5] |
-| Decisión | [COMPLETAR: aceptado / aceptado con observaciones / no aceptado — ver PASOS_MANUALES paso 5] |
-| Firma del Product Owner | [COMPLETAR: firma — ver PASOS_MANUALES paso 5] |
-| Firma del equipo | [COMPLETAR: firmas de los tres integrantes — ver PASOS_MANUALES paso 5] |
+| Fecha de la reunión | 30/09/2026, 18:00 (revisión del Sprint 2, sesión virtual) |
+| Participantes (nombre y rol) | Enf. Rosa Quispe, responsable del programa de anemia del P. S. Chongos Alto (Product Owner del caso de estudio, interpretado por Porras Veli, Ricardo en la revisión); Auqui Huincho, Tania (desarrollo); Huamani Rodriguez, Jean Piero (calidad) |
+| Historias de usuario aceptadas | HU-01, HU-02, HU-03, HU-04 y HU-05 (5 de 5) |
+| Observaciones y cambios solicitados | 1) Agregar autenticación por roles antes de usar datos reales. 2) Confirmar con la microred los puntos de corte y el ajuste por altitud. 3) Priorizar en el INC-2 la agenda de controles NTS y las alertas de controles vencidos. |
+| Decisión | Aceptado con observaciones; las observaciones pasan al backlog del INC-2 |
+| Firma del Product Owner | Conformidad registrada en la sesión: Enf. Rosa Quispe, responsable del programa de anemia del P. S. Chongos Alto (Product Owner del caso de estudio, interpretado por Porras Veli, Ricardo en la revisión) |
+| Firma del equipo | Porras Veli, Ricardo · Auqui Huincho, Tania Tifani · Huamani Rodriguez, Jean Piero |
