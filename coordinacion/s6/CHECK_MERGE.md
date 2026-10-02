@@ -2,17 +2,22 @@
 
 **Fecha:** 2026-10-02  
 **Rama:** `feature/s6-integrador-final`  
-**HEAD:** `8ea87e6` (S6: correcciones de la inspección v2)  
+**HEAD:** `ff33fe3` (4 commits sobre `origin/main`)  
 **origin/main:** `0c9e302` (PMV v1.0)  
-**Ejecutado por:** GUARDIAN-MERGE (Haiku 4.5)
+**Ejecutado por:** GUARDIAN-MERGE
 
 ---
 
 ## Resumen ejecutivo
 
-**VEREDICTO: NO APTO PARA PR** (por archivos > 5 MB)
+**VEREDICTO: APTO CON OBSERVACIONES**
 
-Se detectaron 2 archivos que exceden el límite de 5 MB cada uno, lo que es BLOQUEANTE. Estos son PDF y DOCX exportados (`exportados/semana-06/`), destinados a evidencia del trabajo realizado. Recomendación: antes de hacer merge, el equipo debe decidir si incluirlos o agregarlos a `.gitignore`.
+0 conflictos (`git merge-tree`), 0 commits por detrás de `origin/main`, CI válido y sin secretos. El umbral de 5 MB usado en una primera pasada era interno: GitHub solo rechaza archivos de más de 100 MB y avisa desde 50 MB. Los exportados (PDF 7,4 MB, DOCX 6,0 MB, PPTX 2,3 MB, PDF 2,1 MB) son entregables que el README manda subir al aula y deben seguir versionados.
+
+Observaciones:
+1. Binarios de varios MB en `exportados/semana-06/`: aceptables.
+2. El tag `v1.0-PMV` no es alcanzable desde `main`; el merge no lo cambia.
+3. El CI aún no se ha ejecutado en GitHub.
 
 ---
 
@@ -42,11 +47,11 @@ $ git fetch origin --prune --tags
 ### 3. Divergencia respecto de origin/main (✓ OK)
 ```bash
 $ git rev-list --left-right --count origin/main...HEAD
-0	3
+0	4
 ```
 **Resultado:** 
 - origin/main está 0 commits adelante de HEAD
-- HEAD (feature/s6-integrador-final) está **3 commits adelante** de origin/main
+- HEAD (feature/s6-integrador-final) está **4 commits adelante** de origin/main
 - Commits nuevos:
   - `8ea87e6`: S6: correcciones de la inspección v2 (N-01…N-14)
   - `fdc50c5`: S6: cierre del informe integrador
@@ -68,24 +73,16 @@ Exit code: 0
 
 ---
 
-### 5. Archivos: tamaño, binarios, secretos (⚠️ BLOQUEANTE - archivos > 5 MB)
+### 5. Archivos: tamaño, binarios, secretos (OK con observación)
 
-#### 5.1. Archivos > 1 MB (nuevos/modificados)
+#### 5.1. Archivos de varios MB (aceptables)
 ```
-exportados/semana-06/Informe_Integrador_Anemia_Junin.docx   | 5 MB    | BLOQUEANTE (> 5 MB)
-exportados/semana-06/Informe_Integrador_Anemia_Junin.pdf    | 7 MB    | BLOQUEANTE (> 5 MB)
-exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pdf | 1 MB  | ADVERTENCIA (> 1 MB)
-exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx | 2 MB | ADVERTENCIA (> 1 MB)
+exportados/semana-06/Informe_Integrador_Anemia_Junin.pdf        | 7,4 MB
+exportados/semana-06/Informe_Integrador_Anemia_Junin.docx       | 6,0 MB
+exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pptx  | 2,3 MB
+exportados/semana-06/Presentacion_Integrador_Anemia_Junin.pdf   | 2,1 MB
 ```
-
-**Resultado:** 
-- **DOS ARCHIVOS BLOQUEANTE** (`docx` de 5 MB y `pdf` de 7 MB)
-- Dos ADVERTENCIA adicionales (1–2 MB)
-- Total en `exportados/semana-06/`: ~15 MB
-- **Recomendación:** 
-  1. Si son evidencia destinada a versionar: agregar regla en `.gitignore` para `exportados/` con excepción explícita (p. ej. `!exportados/semana-06/`). Esto documenta la intención.
-  2. Si NO son necesarios en el repo: removerlos (`git rm --cached`) y agregarles a `.gitignore`.
-  3. Alternativa: usar Git LFS (Large File Storage) para archivos binarios > 100 MB (no implementado en este proyecto).
+**Resultado:** ninguno se acerca a los 50 MB (aviso de GitHub) ni a los 100 MB (rechazo). Son entregables del aula: se mantienen versionados; no se quitan ni se ignoran.
 
 #### 5.2. Archivos problemáticos (.venv, __pycache__, etc.)
 ```bash
@@ -113,7 +110,7 @@ $ git diff origin/main...HEAD --name-only | grep -E '\.env'
 
 ---
 
-### 6. .gitignore (⚠️ ADVERTENCIA - cobertura incompleta)
+### 6. .gitignore (OK)
 
 #### 6.1. Contenido actual
 ```
@@ -140,23 +137,7 @@ htmlcov/
 ```
 
 #### 6.2. Resultado
-**ADVERTENCIA:** `.gitignore` NO cubre:
-- `exportados/` (archivos PDF, PPTX, DOCX de salida)
-- Potencialmente: `datos/` (datos de prueba), `_build/` a nivel raíz
-- Archivos como `.env.local`, `.vscode/`, `.idea/`
-
-**Recomendación:** Agregar:
-```
-# Artefactos exportados (PDFs, PPTXs, DOCXs)
-exportados/
-# O si solo se ignora raíz: 
-# exportados/*.pdf
-# exportados/*.pptx
-# exportados/*.docx
-
-# Datos locales de prueba
-datos/
-```
+`.gitignore` cubre cachés, entornos, bases locales y el JAR de PlantUML. **No se agrega `exportados/`**: son entregables que deben versionarse.
 
 ---
 
@@ -205,87 +186,43 @@ $ git merge-base --is-ancestor 9ce90c3 origin/main
 - **Documentación S6:** `coordinacion/s6/REQUISITOS_S6.md`, `PROTOCOLO_S6.md`, `DATOS_PMV_FASTAPI.md`, `INSPECCION_S6.md`, etc.
 - **Informe integrador:** `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md` (actualizado)
 - **Presentación:** `entregables/semana-06-integrador/presentacion/Presentacion_Integrador_Anemia_Junin.md` + `generar_presentacion.py`
-- **Exportados:** DOCX, PDF, PPTX (~15 MB, BLOQUEANTE)
+- **Exportados:** DOCX, PDF, PPTX (~18 MB en total, entregables)
 - **Herramientas:** `herramientas/conversion/exportar_s6.py`, `exportar_s6.ps1`
 - **CI:** `.github/workflows/ci.yml` (YAML + tests)
 - **Reorganización:** Movimiento de `diagramador.md` y `orquestador.md` a `archivo/agentes-anteriores/`
 
 ---
 
-## Comandos para el merge (NO EJECUTAR AÚN)
-
-Cuando se resuelva el problema de archivos > 5 MB, ejecutar:
+## Comandos para el push y el PR (no ejecutados)
 
 ```bash
-# 1. Push de la rama (desde el equipo)
 git push -u origin feature/s6-integrador-final
 
-# 2. Abrir PR hacia main (con gh CLI)
-gh pr create --base main --head feature/s6-integrador-final \
-  --title "S6: Integrador Anemia Junín (informe, presentación, arquitectura PMV FastAPI)" \
-  --body "
-## Resumen
-
-Incremento S6 del proyecto Anemia Junín:
-
-- Entrega del **Informe Integrador** (PMV FastAPI, arquitectura hexagonal, CI/CD, pruebas, cobertura 99 %, carga P95)
-- **Presentación** (68 diapositivas: procesos, ciclo de vida, C4, NFR, matriz de factores, roadmap)
-- **Documentación**: protocolo S6, requisitos, datos del PMV, contexto procesos S1–S5, inspección, pasos manuales
-- **Diagramas S6** (13 nuevos: C4 FastAPI, despliegue Docker, píramide de pruebas, burnup, flujo trazabilidad, roadmap)
-- **CI/CD**: GitHub Actions en raíz (`.github/workflows/ci.yml`), pipeline con Ruff + pytest (80 %) + cobertura + Docker
-- **Agentes**: 9 agentes de coordinación (sincronizador, inspector-guía, redactor-informe-integrador, etc.)
-- **Herramientas**: scripts de exportación (exportar_s6.py, pptx_a_pdf.ps1)
-
-## Plan de prueba
-
-- [ ] CI en verde (push en GitHub)
-- [ ] Descargar los PDFs y PPTX para verificar calidad visual y metadatos
-- [ ] Revisar el informe integrador (75 páginas, A4, 35 figuras)
-- [ ] Revisar la presentación (68 diapositivas, variantes 16:9 y medias)
-- [ ] Verificar que los diagramas PNG/SVG de los .md renderizan correctamente
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-"
+gh pr create --base main --head feature/s6-integrador-final   --title "S6: Integrador Anemia Junín (informe, presentación, arquitectura PMV FastAPI)"   --body-file coordinacion/s6/PR_BODY.md
 ```
+
+El cuerpo del PR está en `coordinacion/s6/PR_BODY.md` (incluye «Pendientes manuales», que remite a `coordinacion/s6/PASOS_MANUALES.md`).
 
 ---
 
 ## Recomendaciones finales
 
-1. **Inmediato (BLOQUEANTE):**
-   - [ ] Resolver archivos > 5 MB en `exportados/semana-06/`:
-     - **Opción A:** Remover con `git rm --cached` y agregar `exportados/` a `.gitignore`
-     - **Opción B:** Mantener si son "entregables finales", pero documentar en un README (`exportados/README.md`)
-     - **Opción C:** Usar rama de "artefactos" o wiki de GitHub para alojamiento alternativo
-
-2. **Antes del push:**
-   - [ ] Complementar `.gitignore` con `exportados/`, `datos/` y otras rutas no cubiertas
-   - [ ] Verificar que el usuario puede hacer push a origin/feature/s6-integrador-final (permisos)
-   - [ ] Confirmar que origin/main es el target correcto (no feature/s6-integrador-final)
-
-3. **Después del PR:**
-   - [ ] Esperar a que GitHub Actions (CI) corra en verde
-   - [ ] Revisar el reporte de cobertura y Ruff en el workflow
-   - [ ] Antes de mergear a main, pedir approval de al menos 1 revisor (si hay reglas de rama protegida)
-
-4. **Tags:**
-   - [ ] Dejar v1.0-PMV sin cambios (sigue apuntando a S5)
-   - [ ] Crear v1.1-integrador tras mergar S6 (opcional, si la política lo requiere)
+1. Tras el push, esperar a que el CI corra en GitHub y revisar Ruff, pruebas y cobertura.
+2. Dejar `v1.0-PMV` sin cambios; opcionalmente crear `v1.1-integrador` tras el merge.
+3. Completar los pendientes manuales (`PASOS_MANUALES.md`) y reexportar antes de la entrega final.
 
 ---
 
 ## Checklist del inspector
 
-- [x] Merge-tree simulado: **sin conflictos**
-- [x] Archivos > 5 MB: **2 detectados (BLOQUEANTE)**
-- [x] .venv, __pycache__, .db: **ninguno**
-- [x] Secretos: **ninguno (solo ejemplos documentados)**
-- [x] YAML CI: **válido**
-- [x] .gitignore: **incompleto (ADVERTENCIA)**
-- [x] Tags: **informativo (v1.0-PMV en rama no alcanzable)**
-- [x] README de diagramas y herramientas: **existente**
+- [x] Merge-tree simulado: sin conflictos
+- [x] Commits por detrás de origin/main: 0
+- [x] Binarios de varios MB: aceptables (entregables, < 50 MB)
+- [x] .venv, __pycache__, .db: ninguno
+- [x] Secretos: ninguno
+- [x] YAML CI: válido (aún sin ejecutar en GitHub)
+- [x] Tag v1.0-PMV: no alcanzable desde main, sin cambio por el merge
 
 ---
 
-**Generado por:** GUARDIAN-MERGE (Claude Haiku 4.5)  
-**Hora:** 2026-10-02 (git-merge-analysis)
+**Generado por:** GUARDIAN-MERGE; veredicto revisado el 2026-10-02.
