@@ -1,6 +1,6 @@
 # DIAG-105 — Burndown del Sprint 1 (Semanas 3-4)
 
-- **Estado:** EN CURSO  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
+- **Estado:** RESUELTA  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-004
@@ -59,8 +59,8 @@ Subtítulo o nota al pie obligatoria: «Serie real = escenario simulado de la Ac
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/35_s34_burndown_sprint1.py`, `diagramas/png/35_s34_burndown_sprint1.png` y `diagramas/svg/35_s34_burndown_sprint1.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 6. Burndown del Sprint 1: línea ideal y avance del escenario simulado de seguimiento (elaboración propia).](../../diagramas/svg/35_s34_burndown_sprint1.svg)`
 - **Notas:**

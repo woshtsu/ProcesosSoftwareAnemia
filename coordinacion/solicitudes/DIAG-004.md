@@ -1,6 +1,6 @@
 # DIAG-004 — Casos de uso de la visión TO-BE (Semana 1, anexo)
 
-- **Estado:** EN CURSO
+- **Estado:** RESUELTA
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-002
@@ -68,8 +68,8 @@ Opcional: rotular cada caso de uso con su incremento (INC-n) en texto pequeño.
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/13_s1_casos_uso_vision.puml`, `diagramas/png/13_s1_casos_uso_vision.png` y `diagramas/svg/13_s1_casos_uso_vision.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 10. Casos de uso de la visión TO-BE: 5 actores y 11 casos de uso (elaboración propia).](../../diagramas/svg/13_s1_casos_uso_vision.svg)`
 - **Notas:**

@@ -1,6 +1,6 @@
 # DIAG-005 — Clases del dominio de la visión TO-BE (Semana 1, anexo)
 
-- **Estado:** EN CURSO
+- **Estado:** RESUELTA
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-002
@@ -59,8 +59,8 @@ Asociaciones (con rol y multiplicidad):
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/14_s1_clases_dominio_vision.puml`, `diagramas/png/14_s1_clases_dominio_vision.png` y `diagramas/svg/14_s1_clases_dominio_vision.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 11. Diagrama de clases del dominio de la visión TO-BE (elaboración propia).](../../diagramas/svg/14_s1_clases_dominio_vision.svg)`
 - **Notas:**

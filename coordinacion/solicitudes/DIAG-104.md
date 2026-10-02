@@ -1,6 +1,6 @@
 # DIAG-104 — Red de actividades y ruta crítica del Incremento 1 (Semanas 3-4)
 
-- **Estado:** EN CURSO  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
+- **Estado:** RESUELTA  <!-- ABIERTA | EN CURSO | RESUELTA | RECHAZADA -->
 - **Solicitante:** revisor-documental
 - **Destino:** diagramador
 - **Tarea relacionada:** T-004
@@ -74,8 +74,8 @@ Flechas = dependencias fin→inicio. **Ruta crítica en rojo y trazo grueso**; r
 
 ## Respuesta (la rellena el diagramador)
 
-- **Fecha de cierre:** AAAA-MM-DD
-- **Resultado:** RESUELTA | RECHAZADA
+- **Fecha de cierre:** 2026-10-01
+- **Resultado:** RESUELTA (cierre administrativo del sincronizador, 2026-10-01: existen fuente `diagramas/src/34_s34_red_ruta_critica_inc1.puml`, `diagramas/png/34_s34_red_ruta_critica_inc1.png` y `diagramas/svg/34_s34_red_ruta_critica_inc1.svg`; la verificación del contenido frente al entregable corresponde a revisor-documental / inspector-guia)
 - **Rutas producidas:**
 - **Snippet para incrustar en el .md:** `![Figura 5. Red de actividades del Incremento 1 con la ruta crítica y las holguras (elaboración propia).](../../diagramas/svg/34_s34_red_ruta_critica_inc1.svg)`
 - **Notas:**

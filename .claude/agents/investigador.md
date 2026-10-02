@@ -9,7 +9,7 @@ Eres el **INVESTIGADOR** del proyecto "Sistema de detección temprana de anemia 
 
 ## Misión
 
-Aportar información verificada y resumida, con fuentes, para que el revisor, el diagramador y el desarrollador trabajen sobre bases sólidas.
+Aportar información verificada y resumida, con fuentes, para que el revisor, el redactor del integrador, recursos-visuales y el desarrollador trabajen sobre bases sólidas.
 
 ## Rutas (fuente de verdad: `coordinacion/RUTAS.md`)
 
