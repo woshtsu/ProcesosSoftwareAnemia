@@ -1,0 +1,7514 @@
+{
+ "hoy": "2026-10-16",
+ "semilla": 20261016,
+ "n": 150,
+ "n_fronteras": 55,
+ "ninos": [
+  {
+   "dni": "60000001",
+   "nombres": "Erick",
+   "apellidos": "Lazo Chuquillanqui",
+   "sexo": "F",
+   "nacimiento": "2026-03-16",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Brayan Ayala",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_hoy_N6",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-07",
+     "hb_obs": 14.7,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000002",
+   "nombres": "Sayuri",
+   "apellidos": "Quispe Mayta",
+   "sexo": "M",
+   "nacimiento": "2026-03-15",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Camila Pari",
+   "celular": "965007084",
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_ayer_N6",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-06",
+     "hb_obs": 13.2,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000003",
+   "nombres": "Wilmer",
+   "apellidos": "Samaniego Ccente",
+   "sexo": "F",
+   "nacimiento": "2026-03-14",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Rosa Rojas",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_anteayer_N6",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-05",
+     "hb_obs": 14.6,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000004",
+   "nombres": "Mayra",
+   "apellidos": "Taipe Inga",
+   "sexo": "F",
+   "nacimiento": "2025-09-16",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Yeny Orihuela",
+   "celular": "969916691",
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_hoy_N12",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-07",
+     "hb_obs": 14.2,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000005",
+   "nombres": "Brayan",
+   "apellidos": "Rivera Lazo",
+   "sexo": "M",
+   "nacimiento": "2025-09-15",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Wilmer Ccanto",
+   "celular": "972391854",
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_ayer_N12",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-06",
+     "hb_obs": 13.2,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000006",
+   "nombres": "Yeny",
+   "apellidos": "Ccente Condori",
+   "sexo": "F",
+   "nacimiento": "2025-09-14",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Milagros Ayala",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_anteayer_N12",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-05",
+     "hb_obs": 14.0,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000007",
+   "nombres": "Ángel",
+   "apellidos": "Lazo Rojas",
+   "sexo": "F",
+   "nacimiento": "2024-09-16",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Thiago Poma",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_hoy_N24",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-07",
+     "hb_obs": 15.9,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    }
+   ]
+  },
+  {
+   "dni": "60000008",
+   "nombres": "Ñusta",
+   "apellidos": "Poma Pomalaza",
+   "sexo": "M",
+   "nacimiento": "2024-09-15",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Wilmer Quispe",
+   "celular": "970462641",
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_ayer_N24",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-06",
+     "hb_obs": 14.1,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    }
+   ]
+  },
+  {
+   "dni": "60000009",
+   "nombres": "Jhon",
+   "apellidos": "Yauri Yauri",
+   "sexo": "M",
+   "nacimiento": "2024-09-14",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Wilmer Samaniego",
+   "celular": "921309469",
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_anteayer_N24",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-05",
+     "hb_obs": 13.5,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    }
+   ]
+  },
+  {
+   "dni": "60000010",
+   "nombres": "Nayeli",
+   "apellidos": "Quispe Suárez",
+   "sexo": "F",
+   "nacimiento": "2023-09-16",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Camila Ccente",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_hoy_N36",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-07",
+     "hb_obs": 14.7,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    }
+   ]
+  },
+  {
+   "dni": "60000011",
+   "nombres": "Rosa",
+   "apellidos": "Ayala Suárez",
+   "sexo": "F",
+   "nacimiento": "2023-09-15",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Ñusta Pari",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_ayer_N36",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-06",
+     "hb_obs": 13.9,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    }
+   ]
+  },
+  {
+   "dni": "60000012",
+   "nombres": "Joel",
+   "apellidos": "Condori Ñahui",
+   "sexo": "F",
+   "nacimiento": "2023-09-14",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Brayan Quispe",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_limite_anteayer_N36",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-05",
+     "hb_obs": 15.3,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    }
+   ]
+  },
+  {
+   "dni": "60000013",
+   "nombres": "Mayra",
+   "apellidos": "Mayta Poma",
+   "sexo": "M",
+   "nacimiento": "2025-11-27",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Nayeli Meza",
+   "celular": "923952083",
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N9_d-16",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 16.1,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2026-08-11",
+     "hb_obs": 15.8,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    }
+   ]
+  },
+  {
+   "dni": "60000014",
+   "nombres": "Sayuri",
+   "apellidos": "Huamán Yauri",
+   "sexo": "F",
+   "nacimiento": "2025-11-27",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Wilmer Taipe",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N9_d-15",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 15.1,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2026-08-12",
+     "hb_obs": 15.8,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    }
+   ]
+  },
+  {
+   "dni": "60000015",
+   "nombres": "Fabiola",
+   "apellidos": "Ñahui Pari",
+   "sexo": "M",
+   "nacimiento": "2025-11-27",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Erick Suárez",
+   "celular": "951678442",
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N9_d+29",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 14.2,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2026-09-25",
+     "hb_obs": 15.6,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    }
+   ]
+  },
+  {
+   "dni": "60000016",
+   "nombres": "Anthony",
+   "apellidos": "Mayta Taipe",
+   "sexo": "F",
+   "nacimiento": "2025-11-27",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Milagros Meza",
+   "celular": "991873036",
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N9_d+30",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 14.2,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2026-09-26",
+     "hb_obs": 15.1,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    }
+   ]
+  },
+  {
+   "dni": "60000017",
+   "nombres": "Rosa",
+   "apellidos": "Cerrón Samaniego",
+   "sexo": "F",
+   "nacimiento": "2025-11-27",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Alexa Rojas",
+   "celular": "950230143",
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N9_d+31",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 14.3,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2026-09-27",
+     "hb_obs": 15.5,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000018",
+   "nombres": "Brayan",
+   "apellidos": "Quispe Rojas",
+   "sexo": "F",
+   "nacimiento": "2025-02-27",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Yeny Quispe",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N18_d-16",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 12.5,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-08-11",
+     "hb_obs": 15.0,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    }
+   ]
+  },
+  {
+   "dni": "60000019",
+   "nombres": "Brayan",
+   "apellidos": "Suárez Ccanto",
+   "sexo": "M",
+   "nacimiento": "2025-02-27",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Kiara Pomalaza",
+   "celular": "956743643",
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N18_d-15",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 14.1,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-08-12",
+     "hb_obs": 15.0,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    }
+   ]
+  },
+  {
+   "dni": "60000020",
+   "nombres": "Camila",
+   "apellidos": "Condori Meza",
+   "sexo": "M",
+   "nacimiento": "2025-02-27",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Ñusta Orihuela",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N18_d+29",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 14.3,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-09-25",
+     "hb_obs": 15.8,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    }
+   ]
+  },
+  {
+   "dni": "60000021",
+   "nombres": "Alexa",
+   "apellidos": "Rojas Huamán",
+   "sexo": "M",
+   "nacimiento": "2025-02-27",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Luz Mery Samaniego",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N18_d+30",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 13.4,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-09-26",
+     "hb_obs": 15.7,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    }
+   ]
+  },
+  {
+   "dni": "60000022",
+   "nombres": "Kiara",
+   "apellidos": "Cerrón Taipe",
+   "sexo": "M",
+   "nacimiento": "2025-02-27",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Mayra Ñahui",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N18_d+31",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 15.2,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-09-27",
+     "hb_obs": 14.5,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    }
+   ]
+  },
+  {
+   "dni": "60000023",
+   "nombres": "Kiara",
+   "apellidos": "Rivera Ñahui",
+   "sexo": "F",
+   "nacimiento": "2024-02-27",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Rosa Poma",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N30_d-16",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 14.8,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2026-08-11",
+     "hb_obs": 14.1,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    }
+   ]
+  },
+  {
+   "dni": "60000024",
+   "nombres": "Milagros",
+   "apellidos": "Rojas Orihuela",
+   "sexo": "F",
+   "nacimiento": "2024-02-27",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Rosa Mayta",
+   "celular": "949175447",
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N30_d-15",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 14.4,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2026-08-12",
+     "hb_obs": 13.5,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    }
+   ]
+  },
+  {
+   "dni": "60000025",
+   "nombres": "Yeny",
+   "apellidos": "Ccente Rivera",
+   "sexo": "F",
+   "nacimiento": "2024-02-27",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Yuri Poma",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N30_d+29",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 14.4,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2026-09-25",
+     "hb_obs": 14.5,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    }
+   ]
+  },
+  {
+   "dni": "60000026",
+   "nombres": "Jhon",
+   "apellidos": "Rojas Quispe",
+   "sexo": "M",
+   "nacimiento": "2024-02-27",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Mayra Ccanto",
+   "celular": "961954860",
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N30_d+30",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 15.3,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2026-09-26",
+     "hb_obs": 14.1,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    }
+   ]
+  },
+  {
+   "dni": "60000027",
+   "nombres": "Erick",
+   "apellidos": "Rivera Yauri",
+   "sexo": "M",
+   "nacimiento": "2024-02-27",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Kiara Rivera",
+   "celular": "938552387",
+   "estado": "ACTIVO",
+   "escenario": "frontera_ventana_N30_d+31",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 13.0,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2026-09-27",
+     "hb_obs": 15.1,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    }
+   ]
+  },
+  {
+   "dni": "60000028",
+   "nombres": "Fabiola",
+   "apellidos": "Suárez Quispe",
+   "sexo": "M",
+   "nacimiento": "2026-01-29",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Anthony Huamán",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "fin_de_mes_29_N6",
+   "evaluaciones": [
+    {
+     "fecha": "2026-05-30",
+     "hb_obs": 14.3,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000029",
+   "nombres": "Fabiola",
+   "apellidos": "Lazo Rivera",
+   "sexo": "F",
+   "nacimiento": "2025-08-29",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Anthony Poma",
+   "celular": "969860954",
+   "estado": "ACTIVO",
+   "escenario": "fin_de_mes_29_N12",
+   "evaluaciones": [
+    {
+     "fecha": "2026-06-30",
+     "hb_obs": 15.7,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000030",
+   "nombres": "Dilan",
+   "apellidos": "Pomalaza Ñahui",
+   "sexo": "M",
+   "nacimiento": "2024-08-29",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Yuri Chuquillanqui",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "fin_de_mes_29_N24",
+   "evaluaciones": [
+    {
+     "fecha": "2026-06-30",
+     "hb_obs": 14.8,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    }
+   ]
+  },
+  {
+   "dni": "60000031",
+   "nombres": "Rosa",
+   "apellidos": "Lazo Rojas",
+   "sexo": "F",
+   "nacimiento": "2026-01-30",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Jhon Rivera",
+   "celular": "946702425",
+   "estado": "ACTIVO",
+   "escenario": "fin_de_mes_30_N6",
+   "evaluaciones": [
+    {
+     "fecha": "2026-05-31",
+     "hb_obs": 14.5,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000032",
+   "nombres": "Joel",
+   "apellidos": "Pari Samaniego",
+   "sexo": "M",
+   "nacimiento": "2025-08-30",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Alexa Suárez",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "fin_de_mes_30_N12",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-01",
+     "hb_obs": 13.2,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000033",
+   "nombres": "Brayan",
+   "apellidos": "Mayta Pari",
+   "sexo": "M",
+   "nacimiento": "2024-08-30",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Dilan Huamán",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "fin_de_mes_30_N24",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-01",
+     "hb_obs": 15.3,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    }
+   ]
+  },
+  {
+   "dni": "60000034",
+   "nombres": "Fabiola",
+   "apellidos": "Ayala Meza",
+   "sexo": "M",
+   "nacimiento": "2026-01-31",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Kiara Ñahui",
+   "celular": "936321346",
+   "estado": "ACTIVO",
+   "escenario": "fin_de_mes_31_N6",
+   "evaluaciones": [
+    {
+     "fecha": "2026-06-01",
+     "hb_obs": 13.1,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000035",
+   "nombres": "Anthony",
+   "apellidos": "Meza Quispe",
+   "sexo": "F",
+   "nacimiento": "2025-08-31",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Camila Rojas",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "fin_de_mes_31_N12",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-02",
+     "hb_obs": 14.8,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000036",
+   "nombres": "Alexa",
+   "apellidos": "Lazo Samaniego",
+   "sexo": "F",
+   "nacimiento": "2024-08-31",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Wilmer Lazo",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "fin_de_mes_31_N24",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-02",
+     "hb_obs": 13.2,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    }
+   ]
+  },
+  {
+   "dni": "60000037",
+   "nombres": "Camila",
+   "apellidos": "Inga Rojas",
+   "sexo": "M",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Thiago Ccente",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "trat_c1m_limite_hoy",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-16",
+     "hb_obs": 11.8,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    }
+   ]
+  },
+  {
+   "dni": "60000038",
+   "nombres": "Jhon",
+   "apellidos": "Condori Rojas",
+   "sexo": "M",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Nayeli Rojas",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "trat_c1m_vence_ayer",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-15",
+     "hb_obs": 11.7,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    }
+   ]
+  },
+  {
+   "dni": "60000039",
+   "nombres": "Luz Mery",
+   "apellidos": "Pari Suárez",
+   "sexo": "M",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Kiara Samaniego",
+   "celular": "986484188",
+   "estado": "ACTIVO",
+   "escenario": "trat_c1m_vencido_hace_20",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-27",
+     "hb_obs": 9.8,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    }
+   ]
+  },
+  {
+   "dni": "60000040",
+   "nombres": "Jhon",
+   "apellidos": "Poma Lazo",
+   "sexo": "F",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Ñusta Samaniego",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "trat_recupera_dia20",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 12.1,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-07-28",
+     "hb_obs": 14.1,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    }
+   ]
+  },
+  {
+   "dni": "60000041",
+   "nombres": "Camila",
+   "apellidos": "Ccanto Cerrón",
+   "sexo": "F",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Dilan Mayta",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "trat_recupera_dia50",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 12.9,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-08-27",
+     "hb_obs": 13.1,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    }
+   ]
+  },
+  {
+   "dni": "60000042",
+   "nombres": "Yeny",
+   "apellidos": "Taipe Pari",
+   "sexo": "M",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Erick Quispe",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "trat_recupera_dia75",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 11.8,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-09-21",
+     "hb_obs": 14.4,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    }
+   ]
+  },
+  {
+   "dni": "60000043",
+   "nombres": "Sayuri",
+   "apellidos": "Suárez Pari",
+   "sexo": "F",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Kiara Lazo",
+   "celular": "917717790",
+   "estado": "ACTIVO",
+   "escenario": "trat_sostenida",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 12.2,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-08-10",
+     "hb_obs": 11.7,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2026-09-08",
+     "hb_obs": 12.8,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    }
+   ]
+  },
+  {
+   "dni": "60000044",
+   "nombres": "Joel",
+   "apellidos": "Chuquillanqui Lazo",
+   "sexo": "M",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Erick Samaniego",
+   "celular": "969726230",
+   "estado": "ACTIVO",
+   "escenario": "trat_nuevo_episodio",
+   "evaluaciones": [
+    {
+     "fecha": "2026-05-09",
+     "hb_obs": 13.0,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-06-08",
+     "hb_obs": 15.6,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 11.5,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    }
+   ]
+  },
+  {
+   "dni": "60000045",
+   "nombres": "Fabiola",
+   "apellidos": "Samaniego Baquerizo",
+   "sexo": "M",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Brayan Ccente",
+   "celular": "951467433",
+   "estado": "ACTIVO",
+   "escenario": "trat_cumplido_c1m_en_borde",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 12.3,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-09-07",
+     "hb_obs": 11.8,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    }
+   ]
+  },
+  {
+   "dni": "60000046",
+   "nombres": "Sayuri",
+   "apellidos": "Inga Samaniego",
+   "sexo": "M",
+   "nacimiento": "2025-01-06",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Rosa Orihuela",
+   "celular": "999312604",
+   "estado": "ACTIVO",
+   "escenario": "trat_cumplido_c1m_fuera_borde",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 12.4,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-09-08",
+     "hb_obs": 12.5,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    }
+   ]
+  },
+  {
+   "dni": "60000047",
+   "nombres": "Brayan",
+   "apellidos": "Taipe Suárez",
+   "sexo": "M",
+   "nacimiento": "2026-10-16",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Yeny Mayta",
+   "celular": "956853766",
+   "estado": "ACTIVO",
+   "escenario": "recien_nacido_0d",
+   "evaluaciones": [
+    {
+     "fecha": "2026-10-16",
+     "hb_obs": 12.5,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    }
+   ]
+  },
+  {
+   "dni": "60000048",
+   "nombres": "Erick",
+   "apellidos": "Ccente Suárez",
+   "sexo": "F",
+   "nacimiento": "2026-10-01",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Erick Huamán",
+   "celular": "939137673",
+   "estado": "ACTIVO",
+   "escenario": "recien_nacido_15d",
+   "evaluaciones": [
+    {
+     "fecha": "2026-10-01",
+     "hb_obs": 14.0,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    }
+   ]
+  },
+  {
+   "dni": "60000049",
+   "nombres": "Camila",
+   "apellidos": "Pari Samaniego",
+   "sexo": "M",
+   "nacimiento": "2026-07-08",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Ñusta Samaniego",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "recien_nacido_100d",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 12.7,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    }
+   ]
+  },
+  {
+   "dni": "60000050",
+   "nombres": "Mayra",
+   "apellidos": "Huamán Lazo",
+   "sexo": "F",
+   "nacimiento": "2026-04-29",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Rosa Ñahui",
+   "celular": "963675019",
+   "estado": "ACTIVO",
+   "escenario": "recien_nacido_170d",
+   "evaluaciones": [
+    {
+     "fecha": "2026-04-29",
+     "hb_obs": 13.2,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    }
+   ]
+  },
+  {
+   "dni": "60000051",
+   "nombres": "Dilan",
+   "apellidos": "Huamán Lazo",
+   "sexo": "F",
+   "nacimiento": "2021-11-16",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Alexa Rivera",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cerca_60m_0",
+   "evaluaciones": [
+    {
+     "fecha": "2026-03-30",
+     "hb_obs": 13.9,
+     "peso_kg": 14.8,
+     "talla_cm": 107.2
+    },
+    {
+     "fecha": "2026-08-17",
+     "hb_obs": 13.7,
+     "peso_kg": 15.9,
+     "talla_cm": 112.7
+    }
+   ]
+  },
+  {
+   "dni": "60000052",
+   "nombres": "Nayeli",
+   "apellidos": "Meza Meza",
+   "sexo": "F",
+   "nacimiento": "2021-11-01",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Wilmer Pari",
+   "celular": "985552237",
+   "estado": "ACTIVO",
+   "escenario": "cerca_60m_15",
+   "evaluaciones": [
+    {
+     "fecha": "2026-03-15",
+     "hb_obs": 12.9,
+     "peso_kg": 14.8,
+     "talla_cm": 107.2
+    },
+    {
+     "fecha": "2026-08-02",
+     "hb_obs": 12.8,
+     "peso_kg": 15.9,
+     "talla_cm": 112.7
+    }
+   ]
+  },
+  {
+   "dni": "60000053",
+   "nombres": "Luz Mery",
+   "apellidos": "Ñahui Rivera",
+   "sexo": "F",
+   "nacimiento": "2021-10-19",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Rosa Rojas",
+   "celular": "916892047",
+   "estado": "ACTIVO",
+   "escenario": "cerca_60m_28",
+   "evaluaciones": [
+    {
+     "fecha": "2026-03-02",
+     "hb_obs": 13.1,
+     "peso_kg": 14.8,
+     "talla_cm": 107.2
+    },
+    {
+     "fecha": "2026-07-20",
+     "hb_obs": 14.0,
+     "peso_kg": 15.9,
+     "talla_cm": 112.7
+    }
+   ]
+  },
+  {
+   "dni": "60000054",
+   "nombres": "Nayeli",
+   "apellidos": "Pari Pari",
+   "sexo": "F",
+   "nacimiento": "2021-12-11",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Alexa Cerrón",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cerca_60m_tratamiento",
+   "evaluaciones": [
+    {
+     "fecha": "2026-06-18",
+     "hb_obs": 11.0,
+     "peso_kg": 15.3,
+     "talla_cm": 109.4
+    }
+   ]
+  },
+  {
+   "dni": "60000055",
+   "nombres": "Anthony",
+   "apellidos": "Orihuela Huamán",
+   "sexo": "M",
+   "nacimiento": "2025-06-03",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Fabiola Cerrón",
+   "celular": null,
+   "estado": "ALTA",
+   "escenario": "alta_con_vencidos",
+   "evaluaciones": [
+    {
+     "fecha": "2025-09-11",
+     "hb_obs": 14.5,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    }
+   ]
+  },
+  {
+   "dni": "60000056",
+   "nombres": "Ángel",
+   "apellidos": "Pomalaza Pomalaza",
+   "sexo": "M",
+   "nacimiento": "2025-09-07",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Wilmer Pari",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2026-01-04",
+     "hb_obs": 11.2,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2026-04-02",
+     "hb_obs": 12.5,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2026-04-30",
+     "hb_obs": 14.4,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2026-08-11",
+     "hb_obs": 13.9,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    }
+   ]
+  },
+  {
+   "dni": "60000057",
+   "nombres": "Yuri",
+   "apellidos": "Condori Suárez",
+   "sexo": "F",
+   "nacimiento": "2023-12-13",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Jhon Rojas",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2024-03-01",
+     "hb_obs": 11.3,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2024-04-05",
+     "hb_obs": 12.7,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2024-07-10",
+     "hb_obs": 13.3,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2024-10-21",
+     "hb_obs": 13.8,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2024-12-02",
+     "hb_obs": 14.5,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2025-02-17",
+     "hb_obs": 14.4,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2025-10-10",
+     "hb_obs": 13.7,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2026-02-17",
+     "hb_obs": 12.9,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2026-06-19",
+     "hb_obs": 14.3,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2026-10-03",
+     "hb_obs": 10.8,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    }
+   ]
+  },
+  {
+   "dni": "60000058",
+   "nombres": "Luz Mery",
+   "apellidos": "Pomalaza Quispe",
+   "sexo": "F",
+   "nacimiento": "2026-09-29",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Dilan Baquerizo",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2026-10-13",
+     "hb_obs": 14.3,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    }
+   ]
+  },
+  {
+   "dni": "60000059",
+   "nombres": "Ñusta",
+   "apellidos": "Condori Pari",
+   "sexo": "M",
+   "nacimiento": "2026-05-14",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Erick Pomalaza",
+   "celular": "991391382",
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-17",
+     "hb_obs": 12.7,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    }
+   ]
+  },
+  {
+   "dni": "60000060",
+   "nombres": "Fabiola",
+   "apellidos": "Meza Lazo",
+   "sexo": "F",
+   "nacimiento": "2024-09-28",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Erick Pari",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2025-04-12",
+     "hb_obs": 14.4,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2025-05-17",
+     "hb_obs": 14.2,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2025-06-27",
+     "hb_obs": 13.3,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2025-09-25",
+     "hb_obs": 15.4,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2026-04-18",
+     "hb_obs": 11.1,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    }
+   ]
+  },
+  {
+   "dni": "60000061",
+   "nombres": "Sayuri",
+   "apellidos": "Taipe Ccanto",
+   "sexo": "M",
+   "nacimiento": "2024-07-22",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Thiago Huamán",
+   "celular": "956389368",
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2025-01-24",
+     "hb_obs": 14.1,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2025-02-25",
+     "hb_obs": 15.3,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2025-04-26",
+     "hb_obs": 13.6,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2025-09-29",
+     "hb_obs": 14.8,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2025-12-29",
+     "hb_obs": 9.7,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2026-08-30",
+     "hb_obs": 12.9,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    }
+   ]
+  },
+  {
+   "dni": "60000062",
+   "nombres": "Ñusta",
+   "apellidos": "Orihuela Mayta",
+   "sexo": "F",
+   "nacimiento": "2021-12-29",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Yeny Poma",
+   "celular": null,
+   "estado": "ALTA",
+   "escenario": "alta",
+   "evaluaciones": [
+    {
+     "fecha": "2022-07-07",
+     "hb_obs": 14.9,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2022-08-13",
+     "hb_obs": 14.9,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2023-04-09",
+     "hb_obs": 15.3,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2023-09-04",
+     "hb_obs": 14.4,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2023-12-22",
+     "hb_obs": 15.8,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2024-06-08",
+     "hb_obs": 14.3,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2024-10-02",
+     "hb_obs": 15.7,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2024-12-27",
+     "hb_obs": 13.7,
+     "peso_kg": 11.1,
+     "talla_cm": 88.5
+    },
+    {
+     "fecha": "2025-08-19",
+     "hb_obs": 9.2,
+     "peso_kg": 12.9,
+     "talla_cm": 97.3
+    },
+    {
+     "fecha": "2025-09-20",
+     "hb_obs": 9.0,
+     "peso_kg": 13.1,
+     "talla_cm": 98.4
+    },
+    {
+     "fecha": "2025-12-09",
+     "hb_obs": 15.3,
+     "peso_kg": 13.7,
+     "talla_cm": 101.7
+    },
+    {
+     "fecha": "2026-01-08",
+     "hb_obs": 14.4,
+     "peso_kg": 14.0,
+     "talla_cm": 102.8
+    },
+    {
+     "fecha": "2026-05-27",
+     "hb_obs": 10.1,
+     "peso_kg": 14.8,
+     "talla_cm": 107.2
+    }
+   ]
+  },
+  {
+   "dni": "60000063",
+   "nombres": "Yuri",
+   "apellidos": "Ñahui Inga",
+   "sexo": "M",
+   "nacimiento": "2022-04-19",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Rosa Ccente",
+   "celular": "958608752",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2022-09-14",
+     "hb_obs": 13.9,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2022-12-26",
+     "hb_obs": 9.3,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2023-02-25",
+     "hb_obs": 11.6,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2023-07-01",
+     "hb_obs": 14.1,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2023-09-07",
+     "hb_obs": 13.1,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2023-12-24",
+     "hb_obs": 14.3,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2024-03-29",
+     "hb_obs": 13.0,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2024-06-01",
+     "hb_obs": 14.2,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2024-07-13",
+     "hb_obs": 14.2,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2024-08-19",
+     "hb_obs": 15.0,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2024-12-06",
+     "hb_obs": 13.4,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2025-03-06",
+     "hb_obs": 13.7,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    },
+    {
+     "fecha": "2025-04-20",
+     "hb_obs": 12.6,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2025-08-04",
+     "hb_obs": 14.6,
+     "peso_kg": 12.0,
+     "talla_cm": 92.9
+    },
+    {
+     "fecha": "2025-09-06",
+     "hb_obs": 12.6,
+     "peso_kg": 12.2,
+     "talla_cm": 94.0
+    },
+    {
+     "fecha": "2025-10-15",
+     "hb_obs": 11.8,
+     "peso_kg": 12.4,
+     "talla_cm": 95.1
+    },
+    {
+     "fecha": "2026-01-27",
+     "hb_obs": 10.4,
+     "peso_kg": 13.3,
+     "talla_cm": 99.5
+    },
+    {
+     "fecha": "2026-05-17",
+     "hb_obs": 13.1,
+     "peso_kg": 14.0,
+     "talla_cm": 102.8
+    },
+    {
+     "fecha": "2026-06-20",
+     "hb_obs": 14.4,
+     "peso_kg": 14.4,
+     "talla_cm": 105.0
+    },
+    {
+     "fecha": "2026-07-31",
+     "hb_obs": 15.1,
+     "peso_kg": 14.6,
+     "talla_cm": 106.1
+    }
+   ]
+  },
+  {
+   "dni": "60000064",
+   "nombres": "Ángel",
+   "apellidos": "Meza Chuquillanqui",
+   "sexo": "F",
+   "nacimiento": "2022-02-18",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Brayan Huamán",
+   "celular": "933564538",
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2022-06-29",
+     "hb_obs": 13.7,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2022-10-24",
+     "hb_obs": 12.1,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2023-01-18",
+     "hb_obs": 10.4,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2023-04-07",
+     "hb_obs": 16.1,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2023-07-02",
+     "hb_obs": 16.4,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2023-11-09",
+     "hb_obs": 9.2,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2023-12-07",
+     "hb_obs": 16.3,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2024-01-07",
+     "hb_obs": 12.7,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2024-04-13",
+     "hb_obs": 15.0,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2024-05-14",
+     "hb_obs": 15.0,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2024-08-26",
+     "hb_obs": 13.2,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2024-10-01",
+     "hb_obs": 13.7,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2024-11-13",
+     "hb_obs": 14.6,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2025-02-02",
+     "hb_obs": 11.6,
+     "peso_kg": 11.1,
+     "talla_cm": 88.5
+    },
+    {
+     "fecha": "2025-09-23",
+     "hb_obs": 8.6,
+     "peso_kg": 12.9,
+     "talla_cm": 97.3
+    },
+    {
+     "fecha": "2025-10-27",
+     "hb_obs": 14.4,
+     "peso_kg": 13.1,
+     "talla_cm": 98.4
+    },
+    {
+     "fecha": "2026-01-10",
+     "hb_obs": 15.5,
+     "peso_kg": 13.5,
+     "talla_cm": 100.6
+    },
+    {
+     "fecha": "2026-05-18",
+     "hb_obs": 13.5,
+     "peso_kg": 14.6,
+     "talla_cm": 106.1
+    }
+   ]
+  },
+  {
+   "dni": "60000065",
+   "nombres": "Dilan",
+   "apellidos": "Samaniego Chuquillanqui",
+   "sexo": "F",
+   "nacimiento": "2026-09-25",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Yeny Poma",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2026-09-29",
+     "hb_obs": 13.2,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    }
+   ]
+  },
+  {
+   "dni": "60000066",
+   "nombres": "Ángel",
+   "apellidos": "Pomalaza Orihuela",
+   "sexo": "M",
+   "nacimiento": "2025-10-16",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Yuri Rojas",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2025-10-29",
+     "hb_obs": 15.2,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2026-01-03",
+     "hb_obs": 9.6,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2026-05-04",
+     "hb_obs": 11.4,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2026-07-30",
+     "hb_obs": 14.5,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    }
+   ]
+  },
+  {
+   "dni": "60000067",
+   "nombres": "Thiago",
+   "apellidos": "Cerrón Poma",
+   "sexo": "M",
+   "nacimiento": "2026-04-23",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Thiago Baquerizo",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2026-04-29",
+     "hb_obs": 12.4,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2026-05-30",
+     "hb_obs": 12.6,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2026-07-07",
+     "hb_obs": 13.5,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2026-09-20",
+     "hb_obs": 11.2,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000068",
+   "nombres": "Anthony",
+   "apellidos": "Ayala Huamán",
+   "sexo": "M",
+   "nacimiento": "2024-07-16",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Luz Mery Suárez",
+   "celular": "975566633",
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2024-11-13",
+     "hb_obs": 14.4,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2025-01-21",
+     "hb_obs": 15.7,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2025-03-06",
+     "hb_obs": 15.5,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2025-06-02",
+     "hb_obs": 12.8,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2025-10-04",
+     "hb_obs": 12.5,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2026-05-15",
+     "hb_obs": 12.4,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2026-07-19",
+     "hb_obs": 13.0,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    }
+   ]
+  },
+  {
+   "dni": "60000069",
+   "nombres": "Camila",
+   "apellidos": "Lazo Taipe",
+   "sexo": "M",
+   "nacimiento": "2023-11-20",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Milagros Chuquillanqui",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2023-11-26",
+     "hb_obs": 14.8,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2024-02-23",
+     "hb_obs": 15.3,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2024-03-26",
+     "hb_obs": 12.8,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2024-08-25",
+     "hb_obs": 12.7,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2024-10-28",
+     "hb_obs": 11.4,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2024-12-05",
+     "hb_obs": 13.8,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2025-01-19",
+     "hb_obs": 14.3,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2025-04-03",
+     "hb_obs": 13.4,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2025-06-20",
+     "hb_obs": 14.3,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2026-01-12",
+     "hb_obs": 12.8,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2026-02-12",
+     "hb_obs": 13.6,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2026-03-13",
+     "hb_obs": 7.4,
+     "peso_kg": 9.3,
+     "talla_cm": 79.7
+    },
+    {
+     "fecha": "2026-04-11",
+     "hb_obs": 14.7,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2026-07-03",
+     "hb_obs": 13.7,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2026-09-26",
+     "hb_obs": 10.5,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    }
+   ]
+  },
+  {
+   "dni": "60000070",
+   "nombres": "Yuri",
+   "apellidos": "Samaniego Ccente",
+   "sexo": "F",
+   "nacimiento": "2026-05-01",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Nayeli Inga",
+   "celular": "975584667",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2026-06-15",
+     "hb_obs": 8.1,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    }
+   ]
+  },
+  {
+   "dni": "60000071",
+   "nombres": "Yeny",
+   "apellidos": "Quispe Taipe",
+   "sexo": "F",
+   "nacimiento": "2022-01-01",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Wilmer Baquerizo",
+   "celular": "972107527",
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2022-06-24",
+     "hb_obs": 15.6,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2022-09-17",
+     "hb_obs": 15.8,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2022-12-25",
+     "hb_obs": 15.8,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2023-03-27",
+     "hb_obs": 15.5,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2023-04-24",
+     "hb_obs": 14.3,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2023-08-01",
+     "hb_obs": 14.8,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2023-10-10",
+     "hb_obs": 13.8,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2023-11-16",
+     "hb_obs": 15.2,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2024-02-28",
+     "hb_obs": 15.3,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2024-05-08",
+     "hb_obs": 9.8,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2024-06-06",
+     "hb_obs": 13.1,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2024-09-11",
+     "hb_obs": 12.7,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2024-10-09",
+     "hb_obs": 11.2,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2025-01-10",
+     "hb_obs": 10.8,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2025-04-11",
+     "hb_obs": 14.6,
+     "peso_kg": 12.0,
+     "talla_cm": 92.9
+    },
+    {
+     "fecha": "2025-07-22",
+     "hb_obs": 14.0,
+     "peso_kg": 12.6,
+     "talla_cm": 96.2
+    },
+    {
+     "fecha": "2025-10-18",
+     "hb_obs": 13.8,
+     "peso_kg": 13.3,
+     "talla_cm": 99.5
+    },
+    {
+     "fecha": "2025-11-30",
+     "hb_obs": 15.0,
+     "peso_kg": 13.5,
+     "talla_cm": 100.6
+    },
+    {
+     "fecha": "2026-02-26",
+     "hb_obs": 15.7,
+     "peso_kg": 14.2,
+     "talla_cm": 103.9
+    },
+    {
+     "fecha": "2026-06-25",
+     "hb_obs": 15.7,
+     "peso_kg": 15.1,
+     "talla_cm": 108.3
+    },
+    {
+     "fecha": "2026-09-01",
+     "hb_obs": 14.6,
+     "peso_kg": 15.7,
+     "talla_cm": 111.6
+    },
+    {
+     "fecha": "2026-10-14",
+     "hb_obs": 12.5,
+     "peso_kg": 15.9,
+     "talla_cm": 112.7
+    }
+   ]
+  },
+  {
+   "dni": "60000072",
+   "nombres": "Wilmer",
+   "apellidos": "Suárez Huamán",
+   "sexo": "F",
+   "nacimiento": "2023-10-24",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Yeny Yauri",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2024-03-04",
+     "hb_obs": 13.3,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2024-06-22",
+     "hb_obs": 11.5,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2024-09-12",
+     "hb_obs": 13.6,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2025-01-07",
+     "hb_obs": 14.0,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2025-05-06",
+     "hb_obs": 14.6,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2025-08-08",
+     "hb_obs": 13.9,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2025-09-22",
+     "hb_obs": 13.5,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2026-01-18",
+     "hb_obs": 13.8,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2026-03-31",
+     "hb_obs": 10.4,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    }
+   ]
+  },
+  {
+   "dni": "60000073",
+   "nombres": "Luz Mery",
+   "apellidos": "Quispe Ayala",
+   "sexo": "F",
+   "nacimiento": "2022-09-19",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Kiara Mayta",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "unico_reciente",
+   "evaluaciones": [
+    {
+     "fecha": "2026-09-11",
+     "hb_obs": 15.4,
+     "peso_kg": 13.7,
+     "talla_cm": 101.7
+    }
+   ]
+  },
+  {
+   "dni": "60000074",
+   "nombres": "Camila",
+   "apellidos": "Quispe Baquerizo",
+   "sexo": "F",
+   "nacimiento": "2025-08-23",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Kiara Mayta",
+   "celular": "920314741",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2025-09-14",
+     "hb_obs": 8.4,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2025-12-23",
+     "hb_obs": 14.8,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2026-03-31",
+     "hb_obs": 12.5,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2026-06-26",
+     "hb_obs": 12.6,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2026-10-05",
+     "hb_obs": 13.1,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    }
+   ]
+  },
+  {
+   "dni": "60000075",
+   "nombres": "Alexa",
+   "apellidos": "Cerrón Rivera",
+   "sexo": "F",
+   "nacimiento": "2022-11-24",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Yeny Samaniego",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2023-03-09",
+     "hb_obs": 14.2,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2023-06-03",
+     "hb_obs": 13.4,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2023-09-03",
+     "hb_obs": 13.0,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2023-10-11",
+     "hb_obs": 14.3,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2024-01-30",
+     "hb_obs": 10.9,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2024-05-12",
+     "hb_obs": 12.4,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2024-08-15",
+     "hb_obs": 10.0,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2024-09-20",
+     "hb_obs": 12.7,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2025-01-08",
+     "hb_obs": 14.0,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2025-02-08",
+     "hb_obs": 16.0,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2025-05-01",
+     "hb_obs": 12.8,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2025-07-30",
+     "hb_obs": 13.3,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2025-09-12",
+     "hb_obs": 16.0,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2025-12-02",
+     "hb_obs": 11.1,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2026-01-01",
+     "hb_obs": 14.8,
+     "peso_kg": 11.5,
+     "talla_cm": 90.7
+    }
+   ]
+  },
+  {
+   "dni": "60000076",
+   "nombres": "Nayeli",
+   "apellidos": "Yauri Ñahui",
+   "sexo": "M",
+   "nacimiento": "2024-06-07",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Alexa Pari",
+   "celular": "970837995",
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2024-09-02",
+     "hb_obs": 10.0,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2024-12-15",
+     "hb_obs": 9.3,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2025-04-23",
+     "hb_obs": 10.8,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2025-05-21",
+     "hb_obs": 12.9,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2025-07-04",
+     "hb_obs": 10.8,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2025-11-06",
+     "hb_obs": 11.7,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-02-15",
+     "hb_obs": 11.8,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    }
+   ]
+  },
+  {
+   "dni": "60000077",
+   "nombres": "Ángel",
+   "apellidos": "Inga Yauri",
+   "sexo": "F",
+   "nacimiento": "2022-09-27",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Alexa Meza",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2022-12-14",
+     "hb_obs": 14.1,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2023-03-23",
+     "hb_obs": 16.0,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2023-07-29",
+     "hb_obs": 15.9,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2023-09-28",
+     "hb_obs": 9.3,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2023-12-13",
+     "hb_obs": 12.8,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2024-06-30",
+     "hb_obs": 15.6,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2024-08-31",
+     "hb_obs": 12.9,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2025-05-01",
+     "hb_obs": 13.1,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2025-06-08",
+     "hb_obs": 15.0,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2025-08-16",
+     "hb_obs": 15.8,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    },
+    {
+     "fecha": "2025-11-09",
+     "hb_obs": 14.0,
+     "peso_kg": 11.5,
+     "talla_cm": 90.7
+    },
+    {
+     "fecha": "2026-02-13",
+     "hb_obs": 8.2,
+     "peso_kg": 12.2,
+     "talla_cm": 94.0
+    },
+    {
+     "fecha": "2026-05-24",
+     "hb_obs": 10.0,
+     "peso_kg": 12.9,
+     "talla_cm": 97.3
+    },
+    {
+     "fecha": "2026-06-27",
+     "hb_obs": 14.8,
+     "peso_kg": 13.3,
+     "talla_cm": 99.5
+    },
+    {
+     "fecha": "2026-09-03",
+     "hb_obs": 11.3,
+     "peso_kg": 13.7,
+     "talla_cm": 101.7
+    }
+   ]
+  },
+  {
+   "dni": "60000078",
+   "nombres": "Fabiola",
+   "apellidos": "Poma Lazo",
+   "sexo": "F",
+   "nacimiento": "2025-10-08",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Camila Pomalaza",
+   "celular": "958154101",
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-20",
+     "hb_obs": 10.8,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2026-09-23",
+     "hb_obs": 12.2,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    }
+   ]
+  },
+  {
+   "dni": "60000079",
+   "nombres": "Kiara",
+   "apellidos": "Quispe Chuquillanqui",
+   "sexo": "M",
+   "nacimiento": "2024-06-24",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Ñusta Huamán",
+   "celular": "949114916",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2024-09-02",
+     "hb_obs": 11.6,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2024-12-08",
+     "hb_obs": 14.7,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2025-01-12",
+     "hb_obs": 15.6,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2025-08-28",
+     "hb_obs": 15.0,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2025-11-02",
+     "hb_obs": 14.1,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-01-25",
+     "hb_obs": 13.3,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2026-04-29",
+     "hb_obs": 16.0,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2026-09-03",
+     "hb_obs": 8.9,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    }
+   ]
+  },
+  {
+   "dni": "60000080",
+   "nombres": "Yeny",
+   "apellidos": "Pari Quispe",
+   "sexo": "M",
+   "nacimiento": "2022-03-01",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Wilmer Huamán",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2022-06-26",
+     "hb_obs": 10.6,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2022-08-01",
+     "hb_obs": 12.3,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2022-11-24",
+     "hb_obs": 12.5,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2023-01-06",
+     "hb_obs": 14.2,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2023-03-24",
+     "hb_obs": 15.1,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2023-06-24",
+     "hb_obs": 11.4,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2023-09-18",
+     "hb_obs": 15.1,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2023-11-01",
+     "hb_obs": 10.9,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2024-01-07",
+     "hb_obs": 14.4,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2024-02-08",
+     "hb_obs": 8.6,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2024-03-21",
+     "hb_obs": 15.7,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2024-04-22",
+     "hb_obs": 15.7,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2024-07-20",
+     "hb_obs": 13.1,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2024-10-21",
+     "hb_obs": 14.4,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2025-01-06",
+     "hb_obs": 15.4,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    },
+    {
+     "fecha": "2025-04-14",
+     "hb_obs": 10.4,
+     "peso_kg": 11.5,
+     "talla_cm": 90.7
+    },
+    {
+     "fecha": "2025-07-12",
+     "hb_obs": 13.3,
+     "peso_kg": 12.2,
+     "talla_cm": 94.0
+    },
+    {
+     "fecha": "2025-08-12",
+     "hb_obs": 15.0,
+     "peso_kg": 12.4,
+     "talla_cm": 95.1
+    },
+    {
+     "fecha": "2025-11-12",
+     "hb_obs": 7.8,
+     "peso_kg": 13.1,
+     "talla_cm": 98.4
+    },
+    {
+     "fecha": "2025-12-15",
+     "hb_obs": 14.2,
+     "peso_kg": 13.3,
+     "talla_cm": 99.5
+    },
+    {
+     "fecha": "2026-01-19",
+     "hb_obs": 15.4,
+     "peso_kg": 13.5,
+     "talla_cm": 100.6
+    },
+    {
+     "fecha": "2026-04-01",
+     "hb_obs": 11.6,
+     "peso_kg": 14.2,
+     "talla_cm": 103.9
+    },
+    {
+     "fecha": "2026-06-26",
+     "hb_obs": 10.6,
+     "peso_kg": 14.6,
+     "talla_cm": 106.1
+    },
+    {
+     "fecha": "2026-09-24",
+     "hb_obs": 14.1,
+     "peso_kg": 15.3,
+     "talla_cm": 109.4
+    }
+   ]
+  },
+  {
+   "dni": "60000081",
+   "nombres": "Alexa",
+   "apellidos": "Huamán Pari",
+   "sexo": "M",
+   "nacimiento": "2025-12-07",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Luz Mery Cerrón",
+   "celular": "938629995",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2026-02-11",
+     "hb_obs": 7.5,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2026-06-14",
+     "hb_obs": 14.5,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2026-08-17",
+     "hb_obs": 14.0,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2026-10-16",
+     "hb_obs": 13.1,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000082",
+   "nombres": "Brayan",
+   "apellidos": "Taipe Inga",
+   "sexo": "F",
+   "nacimiento": "2024-08-19",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Thiago Pomalaza",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2024-12-18",
+     "hb_obs": 11.8,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2025-07-21",
+     "hb_obs": 13.8,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2025-10-30",
+     "hb_obs": 12.0,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2026-02-12",
+     "hb_obs": 10.6,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2026-06-15",
+     "hb_obs": 11.3,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2026-09-13",
+     "hb_obs": 15.1,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    }
+   ]
+  },
+  {
+   "dni": "60000083",
+   "nombres": "Wilmer",
+   "apellidos": "Inga Rivera",
+   "sexo": "F",
+   "nacimiento": "2024-05-15",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Rosa Huamán",
+   "celular": "999655272",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2024-11-19",
+     "hb_obs": 14.3,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2025-03-09",
+     "hb_obs": 16.0,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2025-04-11",
+     "hb_obs": 12.6,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2025-07-10",
+     "hb_obs": 12.6,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2025-11-04",
+     "hb_obs": 12.9,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2026-02-20",
+     "hb_obs": 14.8,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2026-06-04",
+     "hb_obs": 15.2,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2026-07-10",
+     "hb_obs": 14.3,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2026-08-15",
+     "hb_obs": 11.7,
+     "peso_kg": 9.3,
+     "talla_cm": 79.7
+    }
+   ]
+  },
+  {
+   "dni": "60000084",
+   "nombres": "Camila",
+   "apellidos": "Condori Huamán",
+   "sexo": "M",
+   "nacimiento": "2023-01-23",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Ángel Rivera",
+   "celular": "929236453",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2023-04-27",
+     "hb_obs": 13.1,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2023-09-01",
+     "hb_obs": 12.8,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2023-11-25",
+     "hb_obs": 10.3,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2024-01-01",
+     "hb_obs": 13.4,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2024-02-12",
+     "hb_obs": 15.5,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2024-03-16",
+     "hb_obs": 13.8,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2024-05-17",
+     "hb_obs": 14.2,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2024-06-18",
+     "hb_obs": 15.2,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2024-09-12",
+     "hb_obs": 12.3,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2024-12-07",
+     "hb_obs": 13.2,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2025-01-21",
+     "hb_obs": 12.6,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2025-02-18",
+     "hb_obs": 14.5,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2025-06-16",
+     "hb_obs": 14.8,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2025-07-27",
+     "hb_obs": 15.9,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2025-09-05",
+     "hb_obs": 14.2,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2025-11-04",
+     "hb_obs": 13.6,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2026-01-17",
+     "hb_obs": 13.4,
+     "peso_kg": 11.1,
+     "talla_cm": 88.5
+    },
+    {
+     "fecha": "2026-04-14",
+     "hb_obs": 15.1,
+     "peso_kg": 11.8,
+     "talla_cm": 91.8
+    },
+    {
+     "fecha": "2026-05-29",
+     "hb_obs": 13.2,
+     "peso_kg": 12.2,
+     "talla_cm": 94.0
+    },
+    {
+     "fecha": "2026-07-13",
+     "hb_obs": 10.8,
+     "peso_kg": 12.4,
+     "talla_cm": 95.1
+    }
+   ]
+  },
+  {
+   "dni": "60000085",
+   "nombres": "Yeny",
+   "apellidos": "Meza Taipe",
+   "sexo": "F",
+   "nacimiento": "2024-05-25",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Sayuri Condori",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2024-06-03",
+     "hb_obs": 14.4,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2024-12-27",
+     "hb_obs": 13.7,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2025-03-29",
+     "hb_obs": 12.0,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2025-07-02",
+     "hb_obs": 13.3,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2025-11-03",
+     "hb_obs": 11.8,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2026-03-11",
+     "hb_obs": 13.9,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2026-05-26",
+     "hb_obs": 10.9,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2026-07-06",
+     "hb_obs": 14.3,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2026-10-09",
+     "hb_obs": 13.7,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    }
+   ]
+  },
+  {
+   "dni": "60000086",
+   "nombres": "Fabiola",
+   "apellidos": "Samaniego Ccente",
+   "sexo": "F",
+   "nacimiento": "2024-07-05",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Alexa Pomalaza",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2024-12-23",
+     "hb_obs": 15.4,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2025-04-05",
+     "hb_obs": 15.6,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2025-06-16",
+     "hb_obs": 12.8,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2025-10-14",
+     "hb_obs": 12.7,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2026-01-30",
+     "hb_obs": 10.7,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    }
+   ]
+  },
+  {
+   "dni": "60000087",
+   "nombres": "Thiago",
+   "apellidos": "Orihuela Ccente",
+   "sexo": "F",
+   "nacimiento": "2022-06-14",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Ángel Rojas",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2022-06-24",
+     "hb_obs": 11.6,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2022-10-19",
+     "hb_obs": 15.1,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2023-02-07",
+     "hb_obs": 15.4,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2023-09-11",
+     "hb_obs": 13.1,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2023-12-15",
+     "hb_obs": 15.4,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2024-01-24",
+     "hb_obs": 14.0,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2024-04-29",
+     "hb_obs": 13.2,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2024-09-20",
+     "hb_obs": 14.2,
+     "peso_kg": 9.3,
+     "talla_cm": 79.7
+    },
+    {
+     "fecha": "2024-10-31",
+     "hb_obs": 10.6,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2024-11-28",
+     "hb_obs": 14.0,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2025-03-26",
+     "hb_obs": 14.4,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2025-07-02",
+     "hb_obs": 11.6,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2025-10-31",
+     "hb_obs": 10.3,
+     "peso_kg": 12.2,
+     "talla_cm": 94.0
+    },
+    {
+     "fecha": "2026-06-30",
+     "hb_obs": 13.8,
+     "peso_kg": 14.0,
+     "talla_cm": 102.8
+    }
+   ]
+  },
+  {
+   "dni": "60000088",
+   "nombres": "Kiara",
+   "apellidos": "Ñahui Quispe",
+   "sexo": "M",
+   "nacimiento": "2022-09-21",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Erick Rojas",
+   "celular": "971863083",
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2022-11-19",
+     "hb_obs": 9.1,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2023-02-20",
+     "hb_obs": 12.8,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2023-07-04",
+     "hb_obs": 11.0,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2023-11-10",
+     "hb_obs": 14.6,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2024-02-14",
+     "hb_obs": 11.8,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2024-03-30",
+     "hb_obs": 12.1,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2024-05-13",
+     "hb_obs": 13.2,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2024-09-10",
+     "hb_obs": 13.8,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2024-12-04",
+     "hb_obs": 12.6,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2025-04-12",
+     "hb_obs": 15.8,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2025-07-19",
+     "hb_obs": 13.9,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2025-10-04",
+     "hb_obs": 14.8,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2026-04-14",
+     "hb_obs": 15.0,
+     "peso_kg": 12.6,
+     "talla_cm": 96.2
+    },
+    {
+     "fecha": "2026-05-28",
+     "hb_obs": 14.3,
+     "peso_kg": 13.1,
+     "talla_cm": 98.4
+    },
+    {
+     "fecha": "2026-06-26",
+     "hb_obs": 11.4,
+     "peso_kg": 13.3,
+     "talla_cm": 99.5
+    }
+   ]
+  },
+  {
+   "dni": "60000089",
+   "nombres": "Anthony",
+   "apellidos": "Mayta Chuquillanqui",
+   "sexo": "M",
+   "nacimiento": "2025-07-29",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Ángel Poma",
+   "celular": "991700880",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2025-10-04",
+     "hb_obs": 13.1,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2026-03-30",
+     "hb_obs": 12.7,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2026-04-30",
+     "hb_obs": 14.2,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2026-05-28",
+     "hb_obs": 14.1,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2026-07-03",
+     "hb_obs": 14.7,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2026-10-06",
+     "hb_obs": 11.6,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    }
+   ]
+  },
+  {
+   "dni": "60000090",
+   "nombres": "Ñusta",
+   "apellidos": "Meza Ccanto",
+   "sexo": "F",
+   "nacimiento": "2023-06-30",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Yeny Ccente",
+   "celular": "983555708",
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2023-10-29",
+     "hb_obs": 11.5,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2023-12-13",
+     "hb_obs": 11.8,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2024-03-11",
+     "hb_obs": 11.0,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2024-05-19",
+     "hb_obs": 12.7,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2024-06-23",
+     "hb_obs": 14.0,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2024-09-25",
+     "hb_obs": 12.8,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2025-04-10",
+     "hb_obs": 13.7,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2025-06-18",
+     "hb_obs": 12.2,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2025-08-17",
+     "hb_obs": 15.9,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2025-09-21",
+     "hb_obs": 14.2,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2025-12-09",
+     "hb_obs": 14.5,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2026-02-16",
+     "hb_obs": 11.1,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2026-04-29",
+     "hb_obs": 14.4,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    }
+   ]
+  },
+  {
+   "dni": "60000091",
+   "nombres": "Erick",
+   "apellidos": "Poma Meza",
+   "sexo": "F",
+   "nacimiento": "2021-11-03",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Anthony Ccanto",
+   "celular": "927306615",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2022-03-17",
+     "hb_obs": 15.4,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2022-07-23",
+     "hb_obs": 15.7,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2022-08-27",
+     "hb_obs": 10.7,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2022-11-25",
+     "hb_obs": 11.8,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2023-01-29",
+     "hb_obs": 14.9,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2023-04-01",
+     "hb_obs": 15.3,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2023-05-08",
+     "hb_obs": 15.4,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2023-08-10",
+     "hb_obs": 14.6,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2023-10-09",
+     "hb_obs": 12.7,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2024-01-24",
+     "hb_obs": 9.2,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2024-04-03",
+     "hb_obs": 12.9,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2024-05-15",
+     "hb_obs": 14.4,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2024-06-13",
+     "hb_obs": 11.6,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2024-11-21",
+     "hb_obs": 10.9,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2024-12-31",
+     "hb_obs": 15.9,
+     "peso_kg": 11.5,
+     "talla_cm": 90.7
+    },
+    {
+     "fecha": "2025-04-04",
+     "hb_obs": 14.2,
+     "peso_kg": 12.4,
+     "talla_cm": 95.1
+    },
+    {
+     "fecha": "2025-05-05",
+     "hb_obs": 15.8,
+     "peso_kg": 12.6,
+     "talla_cm": 96.2
+    },
+    {
+     "fecha": "2025-06-04",
+     "hb_obs": 13.2,
+     "peso_kg": 12.9,
+     "talla_cm": 97.3
+    },
+    {
+     "fecha": "2025-09-24",
+     "hb_obs": 14.0,
+     "peso_kg": 13.5,
+     "talla_cm": 100.6
+    },
+    {
+     "fecha": "2026-01-26",
+     "hb_obs": 13.0,
+     "peso_kg": 14.4,
+     "talla_cm": 105.0
+    },
+    {
+     "fecha": "2026-04-15",
+     "hb_obs": 13.0,
+     "peso_kg": 15.1,
+     "talla_cm": 108.3
+    },
+    {
+     "fecha": "2026-05-26",
+     "hb_obs": 16.1,
+     "peso_kg": 15.3,
+     "talla_cm": 109.4
+    },
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 15.9,
+     "peso_kg": 15.7,
+     "talla_cm": 111.6
+    },
+    {
+     "fecha": "2026-08-08",
+     "hb_obs": 8.8,
+     "peso_kg": 15.9,
+     "talla_cm": 112.7
+    },
+    {
+     "fecha": "2026-09-12",
+     "hb_obs": 15.2,
+     "peso_kg": 16.2,
+     "talla_cm": 113.8
+    }
+   ]
+  },
+  {
+   "dni": "60000092",
+   "nombres": "Thiago",
+   "apellidos": "Inga Meza",
+   "sexo": "F",
+   "nacimiento": "2025-11-05",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Sayuri Pari",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2025-11-27",
+     "hb_obs": 15.1,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2026-02-21",
+     "hb_obs": 10.5,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2026-03-25",
+     "hb_obs": 13.6,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2026-05-07",
+     "hb_obs": 10.9,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    }
+   ]
+  },
+  {
+   "dni": "60000093",
+   "nombres": "Anthony",
+   "apellidos": "Pomalaza Taipe",
+   "sexo": "M",
+   "nacimiento": "2026-02-21",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Rosa Yauri",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-21",
+     "hb_obs": 13.5,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2026-09-28",
+     "hb_obs": 15.5,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    }
+   ]
+  },
+  {
+   "dni": "60000094",
+   "nombres": "Camila",
+   "apellidos": "Pari Quispe",
+   "sexo": "F",
+   "nacimiento": "2021-11-16",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Jhon Baquerizo",
+   "celular": "931987935",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2022-01-26",
+     "hb_obs": 9.3,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2022-05-31",
+     "hb_obs": 14.9,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2022-09-20",
+     "hb_obs": 7.4,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2023-01-13",
+     "hb_obs": 14.0,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2023-08-30",
+     "hb_obs": 11.8,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2023-12-07",
+     "hb_obs": 12.6,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2024-03-28",
+     "hb_obs": 8.5,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2024-09-13",
+     "hb_obs": 12.5,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2024-11-22",
+     "hb_obs": 9.5,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2024-12-26",
+     "hb_obs": 14.9,
+     "peso_kg": 11.5,
+     "talla_cm": 90.7
+    },
+    {
+     "fecha": "2025-06-13",
+     "hb_obs": 10.1,
+     "peso_kg": 12.6,
+     "talla_cm": 96.2
+    },
+    {
+     "fecha": "2026-02-18",
+     "hb_obs": 14.2,
+     "peso_kg": 14.6,
+     "talla_cm": 106.1
+    },
+    {
+     "fecha": "2026-05-27",
+     "hb_obs": 8.6,
+     "peso_kg": 15.3,
+     "talla_cm": 109.4
+    },
+    {
+     "fecha": "2026-06-25",
+     "hb_obs": 12.6,
+     "peso_kg": 15.5,
+     "talla_cm": 110.5
+    },
+    {
+     "fecha": "2026-08-08",
+     "hb_obs": 14.3,
+     "peso_kg": 15.7,
+     "talla_cm": 111.6
+    }
+   ]
+  },
+  {
+   "dni": "60000095",
+   "nombres": "Jhon",
+   "apellidos": "Cerrón Quispe",
+   "sexo": "F",
+   "nacimiento": "2025-04-20",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Wilmer Orihuela",
+   "celular": "990587871",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2025-04-25",
+     "hb_obs": 13.8,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2025-06-24",
+     "hb_obs": 14.4,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2025-09-22",
+     "hb_obs": 14.9,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2026-01-08",
+     "hb_obs": 12.1,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2026-02-15",
+     "hb_obs": 15.2,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2026-05-25",
+     "hb_obs": 14.4,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2026-09-09",
+     "hb_obs": 13.6,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    }
+   ]
+  },
+  {
+   "dni": "60000096",
+   "nombres": "Anthony",
+   "apellidos": "Suárez Yauri",
+   "sexo": "M",
+   "nacimiento": "2022-03-16",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Erick Mayta",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2022-05-27",
+     "hb_obs": 13.4,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2022-09-26",
+     "hb_obs": 15.5,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2023-01-29",
+     "hb_obs": 14.4,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2023-04-24",
+     "hb_obs": 10.8,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2023-06-23",
+     "hb_obs": 10.8,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2023-07-24",
+     "hb_obs": 14.3,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2023-10-22",
+     "hb_obs": 13.6,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2024-02-09",
+     "hb_obs": 12.9,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2024-05-08",
+     "hb_obs": 13.3,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2024-08-07",
+     "hb_obs": 15.4,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2024-11-22",
+     "hb_obs": 12.7,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2025-01-06",
+     "hb_obs": 14.6,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2025-04-06",
+     "hb_obs": 10.0,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2025-05-14",
+     "hb_obs": 14.4,
+     "peso_kg": 11.5,
+     "talla_cm": 90.7
+    },
+    {
+     "fecha": "2025-09-03",
+     "hb_obs": 10.5,
+     "peso_kg": 12.4,
+     "talla_cm": 95.1
+    },
+    {
+     "fecha": "2025-10-15",
+     "hb_obs": 15.7,
+     "peso_kg": 12.6,
+     "talla_cm": 96.2
+    },
+    {
+     "fecha": "2025-11-29",
+     "hb_obs": 15.1,
+     "peso_kg": 13.1,
+     "talla_cm": 98.4
+    },
+    {
+     "fecha": "2026-03-18",
+     "hb_obs": 12.7,
+     "peso_kg": 14.0,
+     "talla_cm": 102.8
+    },
+    {
+     "fecha": "2026-04-16",
+     "hb_obs": 13.1,
+     "peso_kg": 14.2,
+     "talla_cm": 103.9
+    },
+    {
+     "fecha": "2026-07-04",
+     "hb_obs": 13.9,
+     "peso_kg": 14.6,
+     "talla_cm": 106.1
+    }
+   ]
+  },
+  {
+   "dni": "60000097",
+   "nombres": "Yuri",
+   "apellidos": "Baquerizo Chuquillanqui",
+   "sexo": "F",
+   "nacimiento": "2025-08-31",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Yuri Cerrón",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2025-11-18",
+     "hb_obs": 10.1,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2026-03-03",
+     "hb_obs": 12.9,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2026-06-14",
+     "hb_obs": 14.1,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2026-07-19",
+     "hb_obs": 15.9,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000098",
+   "nombres": "Ñusta",
+   "apellidos": "Taipe Mayta",
+   "sexo": "M",
+   "nacimiento": "2023-12-19",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Milagros Lazo",
+   "celular": "929038794",
+   "estado": "ALTA",
+   "escenario": "alta",
+   "evaluaciones": [
+    {
+     "fecha": "2024-02-15",
+     "hb_obs": 15.0,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2024-08-14",
+     "hb_obs": 13.9,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2024-11-21",
+     "hb_obs": 9.3,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2025-03-21",
+     "hb_obs": 14.3,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2025-07-02",
+     "hb_obs": 13.5,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2025-12-06",
+     "hb_obs": 9.7,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2026-03-10",
+     "hb_obs": 14.0,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2026-07-24",
+     "hb_obs": 12.2,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    }
+   ]
+  },
+  {
+   "dni": "60000099",
+   "nombres": "Camila",
+   "apellidos": "Rivera Meza",
+   "sexo": "M",
+   "nacimiento": "2021-12-07",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Milagros Cerrón",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2021-12-26",
+     "hb_obs": 11.1,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2022-01-29",
+     "hb_obs": 10.0,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2022-06-05",
+     "hb_obs": 13.5,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2022-07-19",
+     "hb_obs": 13.1,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2022-10-13",
+     "hb_obs": 11.6,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2023-01-11",
+     "hb_obs": 13.1,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2023-07-16",
+     "hb_obs": 10.5,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2023-08-29",
+     "hb_obs": 12.4,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2023-11-29",
+     "hb_obs": 12.9,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2023-12-29",
+     "hb_obs": 12.9,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2024-02-27",
+     "hb_obs": 6.3,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2024-03-31",
+     "hb_obs": 8.8,
+     "peso_kg": 9.3,
+     "talla_cm": 79.7
+    },
+    {
+     "fecha": "2024-06-24",
+     "hb_obs": 11.7,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2025-03-05",
+     "hb_obs": 13.3,
+     "peso_kg": 11.8,
+     "talla_cm": 91.8
+    },
+    {
+     "fecha": "2025-05-25",
+     "hb_obs": 11.6,
+     "peso_kg": 12.4,
+     "talla_cm": 95.1
+    },
+    {
+     "fecha": "2025-09-29",
+     "hb_obs": 14.2,
+     "peso_kg": 13.3,
+     "talla_cm": 99.5
+    },
+    {
+     "fecha": "2025-10-28",
+     "hb_obs": 12.8,
+     "peso_kg": 13.5,
+     "talla_cm": 100.6
+    },
+    {
+     "fecha": "2025-12-28",
+     "hb_obs": 13.6,
+     "peso_kg": 14.0,
+     "talla_cm": 102.8
+    }
+   ]
+  },
+  {
+   "dni": "60000100",
+   "nombres": "Mayra",
+   "apellidos": "Taipe Mayta",
+   "sexo": "F",
+   "nacimiento": "2022-02-15",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Yuri Ccanto",
+   "celular": "930196623",
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2025-12-21",
+     "hb_obs": 13.9,
+     "peso_kg": 13.5,
+     "talla_cm": 100.6
+    },
+    {
+     "fecha": "2026-03-01",
+     "hb_obs": 15.5,
+     "peso_kg": 14.0,
+     "talla_cm": 102.8
+    }
+   ]
+  },
+  {
+   "dni": "60000101",
+   "nombres": "Rosa",
+   "apellidos": "Condori Samaniego",
+   "sexo": "F",
+   "nacimiento": "2023-11-23",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Yuri Meza",
+   "celular": "956194537",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2024-03-15",
+     "hb_obs": 9.4,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2024-05-14",
+     "hb_obs": 12.0,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2024-06-22",
+     "hb_obs": 14.4,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2024-10-29",
+     "hb_obs": 12.4,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2025-07-03",
+     "hb_obs": 12.9,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2025-10-09",
+     "hb_obs": 10.7,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2025-11-11",
+     "hb_obs": 10.7,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2026-02-08",
+     "hb_obs": 10.2,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2026-10-01",
+     "hb_obs": 12.9,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    }
+   ]
+  },
+  {
+   "dni": "60000102",
+   "nombres": "Joel",
+   "apellidos": "Huamán Yauri",
+   "sexo": "M",
+   "nacimiento": "2023-01-07",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Luz Mery Condori",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2026-04-10",
+     "hb_obs": 14.4,
+     "peso_kg": 12.0,
+     "talla_cm": 92.9
+    }
+   ]
+  },
+  {
+   "dni": "60000103",
+   "nombres": "Nayeli",
+   "apellidos": "Ñahui Yauri",
+   "sexo": "F",
+   "nacimiento": "2024-12-25",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Rosa Samaniego",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2025-09-15",
+     "hb_obs": 12.3,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2025-11-04",
+     "hb_obs": 13.1,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    }
+   ]
+  },
+  {
+   "dni": "60000104",
+   "nombres": "Luz Mery",
+   "apellidos": "Yauri Pomalaza",
+   "sexo": "M",
+   "nacimiento": "2025-04-01",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Camila Suárez",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2026-04-28",
+     "hb_obs": 14.4,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    }
+   ]
+  },
+  {
+   "dni": "60000105",
+   "nombres": "Dilan",
+   "apellidos": "Rivera Rojas",
+   "sexo": "M",
+   "nacimiento": "2021-11-26",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Mayra Baquerizo",
+   "celular": "992532760",
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2022-04-14",
+     "hb_obs": 15.6,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2022-07-19",
+     "hb_obs": 15.8,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2022-08-16",
+     "hb_obs": 13.6,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2022-12-21",
+     "hb_obs": 15.7,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2023-02-27",
+     "hb_obs": 12.5,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2023-04-28",
+     "hb_obs": 15.2,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2023-08-31",
+     "hb_obs": 12.6,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2023-10-01",
+     "hb_obs": 12.3,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2023-11-08",
+     "hb_obs": 12.4,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2024-01-16",
+     "hb_obs": 14.0,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2024-05-12",
+     "hb_obs": 16.1,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2024-08-18",
+     "hb_obs": 13.1,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2024-11-11",
+     "hb_obs": 13.4,
+     "peso_kg": 11.1,
+     "talla_cm": 88.5
+    },
+    {
+     "fecha": "2024-12-17",
+     "hb_obs": 13.0,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2025-01-17",
+     "hb_obs": 15.9,
+     "peso_kg": 11.5,
+     "talla_cm": 90.7
+    },
+    {
+     "fecha": "2025-04-15",
+     "hb_obs": 12.0,
+     "peso_kg": 12.2,
+     "talla_cm": 94.0
+    },
+    {
+     "fecha": "2025-05-29",
+     "hb_obs": 10.1,
+     "peso_kg": 12.6,
+     "talla_cm": 96.2
+    },
+    {
+     "fecha": "2025-08-27",
+     "hb_obs": 15.9,
+     "peso_kg": 13.3,
+     "talla_cm": 99.5
+    },
+    {
+     "fecha": "2025-09-27",
+     "hb_obs": 16.0,
+     "peso_kg": 13.5,
+     "talla_cm": 100.6
+    },
+    {
+     "fecha": "2025-11-05",
+     "hb_obs": 14.4,
+     "peso_kg": 13.7,
+     "talla_cm": 101.7
+    }
+   ]
+  },
+  {
+   "dni": "60000106",
+   "nombres": "Sayuri",
+   "apellidos": "Quispe Quispe",
+   "sexo": "M",
+   "nacimiento": "2025-11-02",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Dilan Cerrón",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2025-11-20",
+     "hb_obs": 11.1,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2026-01-23",
+     "hb_obs": 12.7,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2026-05-15",
+     "hb_obs": 12.9,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2026-08-13",
+     "hb_obs": 12.9,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    }
+   ]
+  },
+  {
+   "dni": "60000107",
+   "nombres": "Ñusta",
+   "apellidos": "Ccente Mayta",
+   "sexo": "M",
+   "nacimiento": "2026-01-19",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Sayuri Huamán",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2026-02-10",
+     "hb_obs": 12.7,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2026-09-29",
+     "hb_obs": 15.8,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    }
+   ]
+  },
+  {
+   "dni": "60000108",
+   "nombres": "Ángel",
+   "apellidos": "Orihuela Huamán",
+   "sexo": "F",
+   "nacimiento": "2022-03-20",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Wilmer Ccente",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "unico_reciente",
+   "evaluaciones": [
+    {
+     "fecha": "2026-10-15",
+     "hb_obs": 15.2,
+     "peso_kg": 15.3,
+     "talla_cm": 109.4
+    }
+   ]
+  },
+  {
+   "dni": "60000109",
+   "nombres": "Joel",
+   "apellidos": "Orihuela Chuquillanqui",
+   "sexo": "M",
+   "nacimiento": "2024-07-25",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Fabiola Meza",
+   "celular": "916282100",
+   "estado": "ALTA",
+   "escenario": "alta",
+   "evaluaciones": [
+    {
+     "fecha": "2024-08-10",
+     "hb_obs": 12.9,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2024-12-03",
+     "hb_obs": 14.4,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2025-08-16",
+     "hb_obs": 15.7,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2026-03-11",
+     "hb_obs": 13.3,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2026-04-09",
+     "hb_obs": 16.1,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2026-07-28",
+     "hb_obs": 16.2,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    }
+   ]
+  },
+  {
+   "dni": "60000110",
+   "nombres": "Camila",
+   "apellidos": "Ayala Meza",
+   "sexo": "M",
+   "nacimiento": "2022-01-24",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Brayan Taipe",
+   "celular": "930988964",
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-28",
+     "hb_obs": 14.5,
+     "peso_kg": 15.5,
+     "talla_cm": 110.5
+    }
+   ]
+  },
+  {
+   "dni": "60000111",
+   "nombres": "Kiara",
+   "apellidos": "Pari Ayala",
+   "sexo": "F",
+   "nacimiento": "2023-02-07",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Erick Lazo",
+   "celular": "991157512",
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-08",
+     "hb_obs": 15.1,
+     "peso_kg": 12.6,
+     "talla_cm": 96.2
+    },
+    {
+     "fecha": "2026-10-04",
+     "hb_obs": 14.0,
+     "peso_kg": 12.9,
+     "talla_cm": 97.3
+    }
+   ]
+  },
+  {
+   "dni": "60000112",
+   "nombres": "Yeny",
+   "apellidos": "Orihuela Pari",
+   "sexo": "F",
+   "nacimiento": "2025-07-22",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Dilan Ayala",
+   "celular": "968764802",
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2025-11-03",
+     "hb_obs": 14.9,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2025-12-18",
+     "hb_obs": 11.5,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2026-03-11",
+     "hb_obs": 15.1,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2026-07-08",
+     "hb_obs": 15.0,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2026-08-17",
+     "hb_obs": 10.8,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    }
+   ]
+  },
+  {
+   "dni": "60000113",
+   "nombres": "Camila",
+   "apellidos": "Mayta Rivera",
+   "sexo": "M",
+   "nacimiento": "2023-04-27",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Kiara Chuquillanqui",
+   "celular": "994072270",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2023-10-28",
+     "hb_obs": 13.9,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2024-05-05",
+     "hb_obs": 14.6,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2024-06-11",
+     "hb_obs": 13.9,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2024-08-17",
+     "hb_obs": 15.0,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2025-01-03",
+     "hb_obs": 15.9,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2025-09-02",
+     "hb_obs": 13.6,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2025-10-10",
+     "hb_obs": 13.8,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2025-12-23",
+     "hb_obs": 14.6,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2026-04-04",
+     "hb_obs": 10.0,
+     "peso_kg": 11.1,
+     "talla_cm": 88.5
+    },
+    {
+     "fecha": "2026-07-11",
+     "hb_obs": 13.4,
+     "peso_kg": 11.8,
+     "talla_cm": 91.8
+    },
+    {
+     "fecha": "2026-08-11",
+     "hb_obs": 15.5,
+     "peso_kg": 12.0,
+     "talla_cm": 92.9
+    }
+   ]
+  },
+  {
+   "dni": "60000114",
+   "nombres": "Yeny",
+   "apellidos": "Suárez Samaniego",
+   "sexo": "F",
+   "nacimiento": "2023-10-24",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Jhon Condori",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2026-04-14",
+     "hb_obs": 14.9,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2026-09-17",
+     "hb_obs": 14.7,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    }
+   ]
+  },
+  {
+   "dni": "60000115",
+   "nombres": "Luz Mery",
+   "apellidos": "Taipe Huamán",
+   "sexo": "M",
+   "nacimiento": "2026-06-15",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Camila Inga",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-02",
+     "hb_obs": 14.1,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    }
+   ]
+  },
+  {
+   "dni": "60000116",
+   "nombres": "Ñusta",
+   "apellidos": "Rojas Poma",
+   "sexo": "M",
+   "nacimiento": "2023-10-18",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Milagros Ccanto",
+   "celular": "929259230",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2024-01-08",
+     "hb_obs": 14.1,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2024-09-14",
+     "hb_obs": 8.3,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2025-01-10",
+     "hb_obs": 13.0,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2025-09-22",
+     "hb_obs": 13.9,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2026-01-30",
+     "hb_obs": 16.2,
+     "peso_kg": 9.3,
+     "talla_cm": 79.7
+    },
+    {
+     "fecha": "2026-03-01",
+     "hb_obs": 13.6,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2026-04-06",
+     "hb_obs": 13.4,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2026-05-05",
+     "hb_obs": 12.2,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2026-08-19",
+     "hb_obs": 13.8,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    }
+   ]
+  },
+  {
+   "dni": "60000117",
+   "nombres": "Mayra",
+   "apellidos": "Rivera Chuquillanqui",
+   "sexo": "F",
+   "nacimiento": "2024-05-26",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Yeny Orihuela",
+   "celular": "958054744",
+   "estado": "ALTA",
+   "escenario": "alta",
+   "evaluaciones": [
+    {
+     "fecha": "2024-07-21",
+     "hb_obs": 15.7,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2024-10-09",
+     "hb_obs": 9.9,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2025-02-06",
+     "hb_obs": 14.2,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2025-05-02",
+     "hb_obs": 10.8,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2025-06-01",
+     "hb_obs": 13.2,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2025-10-09",
+     "hb_obs": 10.5,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2025-12-11",
+     "hb_obs": 14.2,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-08-20",
+     "hb_obs": 13.9,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    }
+   ]
+  },
+  {
+   "dni": "60000118",
+   "nombres": "Yeny",
+   "apellidos": "Taipe Poma",
+   "sexo": "M",
+   "nacimiento": "2025-11-02",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Yuri Rivera",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2026-03-03",
+     "hb_obs": 14.0,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2026-04-03",
+     "hb_obs": 12.2,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2026-05-18",
+     "hb_obs": 12.8,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2026-07-27",
+     "hb_obs": 12.3,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    }
+   ]
+  },
+  {
+   "dni": "60000119",
+   "nombres": "Alexa",
+   "apellidos": "Cerrón Samaniego",
+   "sexo": "M",
+   "nacimiento": "2025-01-28",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Kiara Rivera",
+   "celular": "911515635",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2025-02-10",
+     "hb_obs": 15.1,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2025-03-23",
+     "hb_obs": 12.4,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2025-06-20",
+     "hb_obs": 13.0,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2025-10-13",
+     "hb_obs": 12.8,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2025-11-21",
+     "hb_obs": 13.2,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2026-02-20",
+     "hb_obs": 15.7,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2026-03-31",
+     "hb_obs": 13.4,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2026-06-09",
+     "hb_obs": 12.9,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-10-04",
+     "hb_obs": 14.0,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    }
+   ]
+  },
+  {
+   "dni": "60000120",
+   "nombres": "Kiara",
+   "apellidos": "Rivera Yauri",
+   "sexo": "M",
+   "nacimiento": "2026-08-09",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Erick Chuquillanqui",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2026-09-23",
+     "hb_obs": 11.9,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    }
+   ]
+  },
+  {
+   "dni": "60000121",
+   "nombres": "Joel",
+   "apellidos": "Ccente Poma",
+   "sexo": "M",
+   "nacimiento": "2025-11-11",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Jhon Quispe",
+   "celular": "963899375",
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2026-02-05",
+     "hb_obs": 12.1,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2026-03-19",
+     "hb_obs": 8.6,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2026-07-25",
+     "hb_obs": 13.5,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    }
+   ]
+  },
+  {
+   "dni": "60000122",
+   "nombres": "Ñusta",
+   "apellidos": "Chuquillanqui Samaniego",
+   "sexo": "M",
+   "nacimiento": "2023-10-15",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Luz Mery Cerrón",
+   "celular": "965902842",
+   "estado": "ACTIVO",
+   "escenario": "abandono",
+   "evaluaciones": [
+    {
+     "fecha": "2024-02-16",
+     "hb_obs": 13.4,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2024-04-17",
+     "hb_obs": 13.7,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2024-05-15",
+     "hb_obs": 10.7,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2024-08-21",
+     "hb_obs": 15.5,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2024-11-20",
+     "hb_obs": 12.2,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2024-12-31",
+     "hb_obs": 12.8,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2025-03-29",
+     "hb_obs": 12.1,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2025-06-26",
+     "hb_obs": 13.4,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2025-11-02",
+     "hb_obs": 13.2,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2025-12-11",
+     "hb_obs": 14.3,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    }
+   ]
+  },
+  {
+   "dni": "60000123",
+   "nombres": "Kiara",
+   "apellidos": "Pomalaza Meza",
+   "sexo": "M",
+   "nacimiento": "2024-01-07",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Thiago Orihuela",
+   "celular": "955058379",
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-05",
+     "hb_obs": 16.4,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2026-10-16",
+     "hb_obs": 16.3,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    }
+   ]
+  },
+  {
+   "dni": "60000124",
+   "nombres": "Nayeli",
+   "apellidos": "Rojas Yauri",
+   "sexo": "F",
+   "nacimiento": "2022-06-15",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Nayeli Inga",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2022-11-14",
+     "hb_obs": 14.2,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2023-05-10",
+     "hb_obs": 15.3,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2023-10-09",
+     "hb_obs": 13.7,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2024-01-08",
+     "hb_obs": 13.4,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2024-08-08",
+     "hb_obs": 11.1,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2024-10-19",
+     "hb_obs": 12.9,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2024-12-03",
+     "hb_obs": 12.9,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2025-03-08",
+     "hb_obs": 14.4,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2025-06-29",
+     "hb_obs": 14.0,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2025-08-01",
+     "hb_obs": 14.3,
+     "peso_kg": 11.5,
+     "talla_cm": 90.7
+    },
+    {
+     "fecha": "2025-10-25",
+     "hb_obs": 15.4,
+     "peso_kg": 12.2,
+     "talla_cm": 94.0
+    },
+    {
+     "fecha": "2026-06-11",
+     "hb_obs": 10.9,
+     "peso_kg": 13.7,
+     "talla_cm": 101.7
+    },
+    {
+     "fecha": "2026-09-05",
+     "hb_obs": 7.7,
+     "peso_kg": 14.4,
+     "talla_cm": 105.0
+    }
+   ]
+  },
+  {
+   "dni": "60000125",
+   "nombres": "Milagros",
+   "apellidos": "Ayala Rojas",
+   "sexo": "F",
+   "nacimiento": "2024-07-09",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Camila Yauri",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2025-01-14",
+     "hb_obs": 12.1,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2025-05-09",
+     "hb_obs": 15.8,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2025-12-01",
+     "hb_obs": 14.0,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-03-04",
+     "hb_obs": 8.8,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2026-06-13",
+     "hb_obs": 7.9,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2026-09-18",
+     "hb_obs": 14.6,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    }
+   ]
+  },
+  {
+   "dni": "60000126",
+   "nombres": "Yeny",
+   "apellidos": "Samaniego Ñahui",
+   "sexo": "F",
+   "nacimiento": "2023-10-14",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Camila Rivera",
+   "celular": null,
+   "estado": "ALTA",
+   "escenario": "alta",
+   "evaluaciones": [
+    {
+     "fecha": "2023-11-10",
+     "hb_obs": 12.9,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2023-12-18",
+     "hb_obs": 12.6,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2024-03-26",
+     "hb_obs": 12.4,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2024-07-24",
+     "hb_obs": 13.3,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2024-10-18",
+     "hb_obs": 13.9,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2024-11-22",
+     "hb_obs": 13.7,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2025-07-27",
+     "hb_obs": 13.6,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2025-10-20",
+     "hb_obs": 9.3,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2026-03-25",
+     "hb_obs": 13.1,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2026-06-30",
+     "hb_obs": 16.0,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2026-07-30",
+     "hb_obs": 14.6,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2026-09-05",
+     "hb_obs": 14.3,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    },
+    {
+     "fecha": "2026-10-10",
+     "hb_obs": 13.5,
+     "peso_kg": 11.1,
+     "talla_cm": 88.5
+    }
+   ]
+  },
+  {
+   "dni": "60000127",
+   "nombres": "Ñusta",
+   "apellidos": "Condori Pari",
+   "sexo": "F",
+   "nacimiento": "2025-05-05",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Alexa Lazo",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2025-06-07",
+     "hb_obs": 14.5,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2025-09-11",
+     "hb_obs": 13.7,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2025-10-15",
+     "hb_obs": 11.5,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2025-11-16",
+     "hb_obs": 11.1,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2026-03-13",
+     "hb_obs": 13.7,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2026-04-15",
+     "hb_obs": 13.9,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2026-06-23",
+     "hb_obs": 12.8,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2026-10-15",
+     "hb_obs": 15.4,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    }
+   ]
+  },
+  {
+   "dni": "60000128",
+   "nombres": "Wilmer",
+   "apellidos": "Orihuela Pari",
+   "sexo": "M",
+   "nacimiento": "2025-02-14",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Ñusta Inga",
+   "celular": "974765558",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2025-06-11",
+     "hb_obs": 12.5,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2025-11-23",
+     "hb_obs": 14.5,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2026-02-17",
+     "hb_obs": 13.9,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2026-05-13",
+     "hb_obs": 15.5,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    }
+   ]
+  },
+  {
+   "dni": "60000129",
+   "nombres": "Wilmer",
+   "apellidos": "Suárez Taipe",
+   "sexo": "M",
+   "nacimiento": "2024-06-28",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Yuri Inga",
+   "celular": "917141470",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2024-07-22",
+     "hb_obs": 15.1,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2024-09-23",
+     "hb_obs": 13.2,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2025-01-29",
+     "hb_obs": 15.6,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2025-09-11",
+     "hb_obs": 10.7,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2026-01-19",
+     "hb_obs": 13.2,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-04-11",
+     "hb_obs": 12.7,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2026-07-16",
+     "hb_obs": 8.2,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    }
+   ]
+  },
+  {
+   "dni": "60000130",
+   "nombres": "Wilmer",
+   "apellidos": "Ccanto Orihuela",
+   "sexo": "M",
+   "nacimiento": "2024-05-13",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Mayra Yauri",
+   "celular": "960983581",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2024-07-01",
+     "hb_obs": 12.5,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2024-08-08",
+     "hb_obs": 7.4,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2024-11-22",
+     "hb_obs": 13.8,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2025-03-02",
+     "hb_obs": 12.7,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2025-06-07",
+     "hb_obs": 12.0,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2025-07-08",
+     "hb_obs": 12.8,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2025-10-08",
+     "hb_obs": 13.7,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2025-12-14",
+     "hb_obs": 9.8,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2026-02-13",
+     "hb_obs": 12.9,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2026-03-25",
+     "hb_obs": 10.0,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2026-06-08",
+     "hb_obs": 14.1,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2026-07-20",
+     "hb_obs": 12.4,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    }
+   ]
+  },
+  {
+   "dni": "60000131",
+   "nombres": "Rosa",
+   "apellidos": "Lazo Huamán",
+   "sexo": "F",
+   "nacimiento": "2026-06-27",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Nayeli Taipe",
+   "celular": "988411852",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-21",
+     "hb_obs": 11.5,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    }
+   ]
+  },
+  {
+   "dni": "60000132",
+   "nombres": "Sayuri",
+   "apellidos": "Mayta Rivera",
+   "sexo": "M",
+   "nacimiento": "2026-02-16",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Joel Pari",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2026-02-16",
+     "hb_obs": 6.0,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2026-05-04",
+     "hb_obs": 10.9,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2026-08-19",
+     "hb_obs": 8.4,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    }
+   ]
+  },
+  {
+   "dni": "60000133",
+   "nombres": "Yuri",
+   "apellidos": "Lazo Inga",
+   "sexo": "F",
+   "nacimiento": "2024-09-05",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Camila Meza",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2024-09-19",
+     "hb_obs": 10.5,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2024-11-02",
+     "hb_obs": 14.9,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2025-02-06",
+     "hb_obs": 15.1,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2025-03-14",
+     "hb_obs": 12.0,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2025-07-03",
+     "hb_obs": 15.6,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2025-08-05",
+     "hb_obs": 16.2,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2025-09-04",
+     "hb_obs": 11.5,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2025-10-04",
+     "hb_obs": 16.3,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2025-11-05",
+     "hb_obs": 15.6,
+     "peso_kg": 6.5,
+     "talla_cm": 65.4
+    },
+    {
+     "fecha": "2026-01-10",
+     "hb_obs": 11.9,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-03-28",
+     "hb_obs": 12.0,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-05-12",
+     "hb_obs": 14.8,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2026-06-11",
+     "hb_obs": 16.2,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2026-09-22",
+     "hb_obs": 10.4,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    }
+   ]
+  },
+  {
+   "dni": "60000134",
+   "nombres": "Wilmer",
+   "apellidos": "Pari Ñahui",
+   "sexo": "M",
+   "nacimiento": "2022-02-15",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3550,
+   "tutor": "Ángel Condori",
+   "celular": "940555779",
+   "estado": "ALTA",
+   "escenario": "alta",
+   "evaluaciones": [
+    {
+     "fecha": "2022-03-12",
+     "hb_obs": 10.3,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2022-08-16",
+     "hb_obs": 14.7,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2022-12-07",
+     "hb_obs": 13.2,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2023-02-27",
+     "hb_obs": 15.4,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2023-05-21",
+     "hb_obs": 14.1,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2023-08-11",
+     "hb_obs": 10.4,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2023-09-14",
+     "hb_obs": 14.9,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2024-01-02",
+     "hb_obs": 10.5,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2024-04-18",
+     "hb_obs": 15.6,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2024-09-05",
+     "hb_obs": 13.2,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2024-10-16",
+     "hb_obs": 10.8,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2025-01-06",
+     "hb_obs": 15.5,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    },
+    {
+     "fecha": "2025-04-05",
+     "hb_obs": 14.7,
+     "peso_kg": 11.5,
+     "talla_cm": 90.7
+    },
+    {
+     "fecha": "2025-05-15",
+     "hb_obs": 13.9,
+     "peso_kg": 12.0,
+     "talla_cm": 92.9
+    },
+    {
+     "fecha": "2025-11-19",
+     "hb_obs": 14.5,
+     "peso_kg": 13.3,
+     "talla_cm": 99.5
+    },
+    {
+     "fecha": "2026-02-19",
+     "hb_obs": 14.4,
+     "peso_kg": 14.0,
+     "talla_cm": 102.8
+    },
+    {
+     "fecha": "2026-03-23",
+     "hb_obs": 8.3,
+     "peso_kg": 14.2,
+     "talla_cm": 103.9
+    }
+   ]
+  },
+  {
+   "dni": "60000135",
+   "nombres": "Luz Mery",
+   "apellidos": "Pomalaza Rivera",
+   "sexo": "F",
+   "nacimiento": "2022-11-06",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Joel Ayala",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2023-01-09",
+     "hb_obs": 12.4,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2023-02-10",
+     "hb_obs": 14.6,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2023-03-25",
+     "hb_obs": 7.9,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2023-07-29",
+     "hb_obs": 13.7,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2023-09-04",
+     "hb_obs": 14.4,
+     "peso_kg": 5.4,
+     "talla_cm": 59.9
+    },
+    {
+     "fecha": "2023-12-12",
+     "hb_obs": 8.7,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2024-03-09",
+     "hb_obs": 15.1,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2024-04-19",
+     "hb_obs": 9.1,
+     "peso_kg": 7.1,
+     "talla_cm": 68.7
+    },
+    {
+     "fecha": "2024-07-14",
+     "hb_obs": 12.8,
+     "peso_kg": 7.8,
+     "talla_cm": 72.0
+    },
+    {
+     "fecha": "2024-10-22",
+     "hb_obs": 11.0,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2025-02-08",
+     "hb_obs": 10.8,
+     "peso_kg": 9.3,
+     "talla_cm": 79.7
+    },
+    {
+     "fecha": "2025-03-15",
+     "hb_obs": 15.1,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2025-07-03",
+     "hb_obs": 16.1,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2025-08-01",
+     "hb_obs": 13.1,
+     "peso_kg": 10.4,
+     "talla_cm": 85.2
+    },
+    {
+     "fecha": "2025-11-11",
+     "hb_obs": 10.0,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2026-03-04",
+     "hb_obs": 13.5,
+     "peso_kg": 12.0,
+     "talla_cm": 92.9
+    },
+    {
+     "fecha": "2026-07-03",
+     "hb_obs": 15.3,
+     "peso_kg": 12.9,
+     "talla_cm": 97.3
+    }
+   ]
+  },
+  {
+   "dni": "60000136",
+   "nombres": "Thiago",
+   "apellidos": "Ñahui Quispe",
+   "sexo": "M",
+   "nacimiento": "2021-10-30",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Fabiola Rivera",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2021-12-27",
+     "hb_obs": 15.4,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2022-03-05",
+     "hb_obs": 14.0,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2022-06-27",
+     "hb_obs": 12.3,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2022-11-02",
+     "hb_obs": 11.1,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2023-02-04",
+     "hb_obs": 13.0,
+     "peso_kg": 6.7,
+     "talla_cm": 66.5
+    },
+    {
+     "fecha": "2023-05-09",
+     "hb_obs": 15.7,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2023-08-02",
+     "hb_obs": 12.4,
+     "peso_kg": 8.0,
+     "talla_cm": 73.1
+    },
+    {
+     "fecha": "2023-10-24",
+     "hb_obs": 12.8,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2023-11-25",
+     "hb_obs": 14.7,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2024-01-04",
+     "hb_obs": 8.4,
+     "peso_kg": 9.1,
+     "talla_cm": 78.6
+    },
+    {
+     "fecha": "2024-03-31",
+     "hb_obs": 14.7,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2024-05-08",
+     "hb_obs": 11.3,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2024-06-19",
+     "hb_obs": 13.4,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2024-08-01",
+     "hb_obs": 14.6,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2025-04-03",
+     "hb_obs": 15.2,
+     "peso_kg": 12.4,
+     "talla_cm": 95.1
+    },
+    {
+     "fecha": "2025-07-12",
+     "hb_obs": 11.2,
+     "peso_kg": 13.1,
+     "talla_cm": 98.4
+    },
+    {
+     "fecha": "2025-11-15",
+     "hb_obs": 13.4,
+     "peso_kg": 14.0,
+     "talla_cm": 102.8
+    },
+    {
+     "fecha": "2026-03-05",
+     "hb_obs": 15.6,
+     "peso_kg": 14.8,
+     "talla_cm": 107.2
+    },
+    {
+     "fecha": "2026-06-01",
+     "hb_obs": 14.8,
+     "peso_kg": 15.5,
+     "talla_cm": 110.5
+    },
+    {
+     "fecha": "2026-09-20",
+     "hb_obs": 12.8,
+     "peso_kg": 16.2,
+     "talla_cm": 113.8
+    }
+   ]
+  },
+  {
+   "dni": "60000137",
+   "nombres": "Sayuri",
+   "apellidos": "Baquerizo Huamán",
+   "sexo": "M",
+   "nacimiento": "2022-09-17",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Camila Ayala",
+   "celular": "964344653",
+   "estado": "ACTIVO",
+   "escenario": "anemia",
+   "evaluaciones": [
+    {
+     "fecha": "2023-03-18",
+     "hb_obs": 12.6,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    },
+    {
+     "fecha": "2023-07-21",
+     "hb_obs": 9.5,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2023-10-23",
+     "hb_obs": 11.7,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2024-02-08",
+     "hb_obs": 10.0,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2024-03-20",
+     "hb_obs": 12.1,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2024-05-02",
+     "hb_obs": 11.4,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2024-07-26",
+     "hb_obs": 14.8,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2024-09-06",
+     "hb_obs": 13.9,
+     "peso_kg": 8.5,
+     "talla_cm": 75.3
+    },
+    {
+     "fecha": "2024-10-10",
+     "hb_obs": 7.5,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2025-01-19",
+     "hb_obs": 11.1,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    },
+    {
+     "fecha": "2025-02-28",
+     "hb_obs": 10.8,
+     "peso_kg": 9.8,
+     "talla_cm": 81.9
+    },
+    {
+     "fecha": "2025-04-09",
+     "hb_obs": 12.2,
+     "peso_kg": 10.0,
+     "talla_cm": 83.0
+    },
+    {
+     "fecha": "2025-06-19",
+     "hb_obs": 15.2,
+     "peso_kg": 10.7,
+     "talla_cm": 86.3
+    },
+    {
+     "fecha": "2025-09-18",
+     "hb_obs": 13.1,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    },
+    {
+     "fecha": "2025-12-03",
+     "hb_obs": 14.3,
+     "peso_kg": 11.8,
+     "talla_cm": 91.8
+    },
+    {
+     "fecha": "2026-02-21",
+     "hb_obs": 14.1,
+     "peso_kg": 12.4,
+     "talla_cm": 95.1
+    },
+    {
+     "fecha": "2026-06-02",
+     "hb_obs": 10.9,
+     "peso_kg": 13.1,
+     "talla_cm": 98.4
+    },
+    {
+     "fecha": "2026-08-09",
+     "hb_obs": 13.0,
+     "peso_kg": 13.5,
+     "talla_cm": 100.6
+    },
+    {
+     "fecha": "2026-09-13",
+     "hb_obs": 14.8,
+     "peso_kg": 13.7,
+     "talla_cm": 101.7
+    }
+   ]
+  },
+  {
+   "dni": "60000138",
+   "nombres": "Yeny",
+   "apellidos": "Yauri Condori",
+   "sexo": "F",
+   "nacimiento": "2023-09-26",
+   "comunidad": "Palmayoc",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 2800,
+   "tutor": "Jhon Condori",
+   "celular": "934698714",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2023-11-06",
+     "hb_obs": 12.0,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2024-02-27",
+     "hb_obs": 9.6,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2024-05-14",
+     "hb_obs": 11.7,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2024-07-30",
+     "hb_obs": 13.4,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2024-08-27",
+     "hb_obs": 12.8,
+     "peso_kg": 5.8,
+     "talla_cm": 62.1
+    },
+    {
+     "fecha": "2024-10-10",
+     "hb_obs": 12.1,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2024-11-13",
+     "hb_obs": 13.6,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2025-02-11",
+     "hb_obs": 13.5,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2025-03-28",
+     "hb_obs": 12.1,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2025-08-02",
+     "hb_obs": 14.5,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2025-11-07",
+     "hb_obs": 12.9,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2026-01-25",
+     "hb_obs": 12.3,
+     "peso_kg": 9.3,
+     "talla_cm": 79.7
+    },
+    {
+     "fecha": "2026-04-27",
+     "hb_obs": 13.1,
+     "peso_kg": 10.2,
+     "talla_cm": 84.1
+    },
+    {
+     "fecha": "2026-08-02",
+     "hb_obs": 9.2,
+     "peso_kg": 10.9,
+     "talla_cm": 87.4
+    },
+    {
+     "fecha": "2026-10-07",
+     "hb_obs": 14.5,
+     "peso_kg": 11.3,
+     "talla_cm": 89.6
+    }
+   ]
+  },
+  {
+   "dni": "60000139",
+   "nombres": "Erick",
+   "apellidos": "Pomalaza Baquerizo",
+   "sexo": "M",
+   "nacimiento": "2026-01-02",
+   "comunidad": "Yanacancha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Luz Mery Meza",
+   "celular": "998683940",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2026-05-28",
+     "hb_obs": 11.4,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000140",
+   "nombres": "Luz Mery",
+   "apellidos": "Samaniego Meza",
+   "sexo": "F",
+   "nacimiento": "2026-07-04",
+   "comunidad": "Chicche",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Erick Inga",
+   "celular": "993632838",
+   "estado": "ACTIVO",
+   "escenario": "tardio",
+   "evaluaciones": [
+    {
+     "fecha": "2026-07-04",
+     "hb_obs": 11.0,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    }
+   ]
+  },
+  {
+   "dni": "60000141",
+   "nombres": "Ángel",
+   "apellidos": "Pomalaza Huamán",
+   "sexo": "F",
+   "nacimiento": "2026-01-26",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Mayra Quispe",
+   "celular": "950595838",
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2026-03-13",
+     "hb_obs": 13.6,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    }
+   ]
+  },
+  {
+   "dni": "60000142",
+   "nombres": "Dilan",
+   "apellidos": "Baquerizo Rivera",
+   "sexo": "F",
+   "nacimiento": "2026-04-11",
+   "comunidad": "Llacuas",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3720,
+   "tutor": "Rosa Rivera",
+   "celular": "981333392",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2026-04-23",
+     "hb_obs": 14.8,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2026-08-16",
+     "hb_obs": 12.5,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000143",
+   "nombres": "Wilmer",
+   "apellidos": "Condori Orihuela",
+   "sexo": "M",
+   "nacimiento": "2026-04-27",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Brayan Rojas",
+   "celular": "972481238",
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2026-05-31",
+     "hb_obs": 12.3,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2026-09-17",
+     "hb_obs": 12.6,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    }
+   ]
+  },
+  {
+   "dni": "60000144",
+   "nombres": "Luz Mery",
+   "apellidos": "Pari Huamán",
+   "sexo": "M",
+   "nacimiento": "2026-10-11",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3890,
+   "tutor": "Joel Pari",
+   "celular": "960963297",
+   "estado": "ALTA",
+   "escenario": "alta",
+   "evaluaciones": [
+    {
+     "fecha": "2026-10-11",
+     "hb_obs": 14.2,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    }
+   ]
+  },
+  {
+   "dni": "60000145",
+   "nombres": "Yeny",
+   "apellidos": "Condori Chuquillanqui",
+   "sexo": "F",
+   "nacimiento": "2026-06-15",
+   "comunidad": "Huaycha",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Ángel Ccanto",
+   "celular": "922909103",
+   "estado": "ALTA",
+   "escenario": "alta",
+   "evaluaciones": [
+    {
+     "fecha": "2026-10-02",
+     "hb_obs": 12.8,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    }
+   ]
+  },
+  {
+   "dni": "60000146",
+   "nombres": "Jhon",
+   "apellidos": "Ñahui Chuquillanqui",
+   "sexo": "F",
+   "nacimiento": "2026-01-06",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3950,
+   "tutor": "Fabiola Suárez",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2026-04-25",
+     "hb_obs": 14.8,
+     "peso_kg": 4.1,
+     "talla_cm": 53.3
+    },
+    {
+     "fecha": "2026-06-25",
+     "hb_obs": 12.6,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2026-09-07",
+     "hb_obs": 14.9,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    }
+   ]
+  },
+  {
+   "dni": "60000147",
+   "nombres": "Ñusta",
+   "apellidos": "Rojas Huamán",
+   "sexo": "M",
+   "nacimiento": "2024-05-28",
+   "comunidad": "Ahuac",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 4300,
+   "tutor": "Yuri Ccente",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "omisiones",
+   "evaluaciones": [
+    {
+     "fecha": "2024-06-16",
+     "hb_obs": 14.7,
+     "peso_kg": 3.4,
+     "talla_cm": 50.0
+    },
+    {
+     "fecha": "2024-10-09",
+     "hb_obs": 14.0,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2025-01-14",
+     "hb_obs": 16.1,
+     "peso_kg": 4.9,
+     "talla_cm": 57.7
+    },
+    {
+     "fecha": "2025-04-26",
+     "hb_obs": 14.1,
+     "peso_kg": 5.6,
+     "talla_cm": 61.0
+    },
+    {
+     "fecha": "2025-05-29",
+     "hb_obs": 14.4,
+     "peso_kg": 6.0,
+     "talla_cm": 63.2
+    },
+    {
+     "fecha": "2025-07-13",
+     "hb_obs": 12.7,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2025-10-10",
+     "hb_obs": 13.2,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2026-01-07",
+     "hb_obs": 13.1,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2026-06-01",
+     "hb_obs": 15.2,
+     "peso_kg": 8.7,
+     "talla_cm": 76.4
+    },
+    {
+     "fecha": "2026-07-11",
+     "hb_obs": 11.0,
+     "peso_kg": 8.9,
+     "talla_cm": 77.5
+    },
+    {
+     "fecha": "2026-09-29",
+     "hb_obs": 14.3,
+     "peso_kg": 9.6,
+     "talla_cm": 80.8
+    }
+   ]
+  },
+  {
+   "dni": "60000148",
+   "nombres": "Erick",
+   "apellidos": "Rivera Chuquillanqui",
+   "sexo": "F",
+   "nacimiento": "2024-06-24",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Yeny Orihuela",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "cumplidor",
+   "evaluaciones": [
+    {
+     "fecha": "2024-08-16",
+     "hb_obs": 14.2,
+     "peso_kg": 3.6,
+     "talla_cm": 51.1
+    },
+    {
+     "fecha": "2024-09-17",
+     "hb_obs": 11.2,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2024-10-30",
+     "hb_obs": 11.1,
+     "peso_kg": 4.3,
+     "talla_cm": 54.4
+    },
+    {
+     "fecha": "2025-03-06",
+     "hb_obs": 9.4,
+     "peso_kg": 5.2,
+     "talla_cm": 58.8
+    },
+    {
+     "fecha": "2025-08-15",
+     "hb_obs": 13.3,
+     "peso_kg": 6.3,
+     "talla_cm": 64.3
+    },
+    {
+     "fecha": "2025-11-17",
+     "hb_obs": 13.0,
+     "peso_kg": 6.9,
+     "talla_cm": 67.6
+    },
+    {
+     "fecha": "2025-12-28",
+     "hb_obs": 11.8,
+     "peso_kg": 7.4,
+     "talla_cm": 69.8
+    },
+    {
+     "fecha": "2026-02-07",
+     "hb_obs": 11.2,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    },
+    {
+     "fecha": "2026-05-20",
+     "hb_obs": 11.2,
+     "peso_kg": 8.2,
+     "talla_cm": 74.2
+    },
+    {
+     "fecha": "2026-09-25",
+     "hb_obs": 13.3,
+     "peso_kg": 9.3,
+     "talla_cm": 79.7
+    }
+   ]
+  },
+  {
+   "dni": "60000149",
+   "nombres": "Dilan",
+   "apellidos": "Inga Yauri",
+   "sexo": "M",
+   "nacimiento": "2025-12-10",
+   "comunidad": "Chongos Alto",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 1500,
+   "tutor": "Ñusta Samaniego",
+   "celular": null,
+   "estado": "ALTA",
+   "escenario": "alta",
+   "evaluaciones": [
+    {
+     "fecha": "2026-03-01",
+     "hb_obs": 9.0,
+     "peso_kg": 3.8,
+     "talla_cm": 52.2
+    },
+    {
+     "fecha": "2026-05-14",
+     "hb_obs": 12.3,
+     "peso_kg": 4.5,
+     "talla_cm": 55.5
+    },
+    {
+     "fecha": "2026-06-26",
+     "hb_obs": 14.0,
+     "peso_kg": 4.7,
+     "talla_cm": 56.6
+    }
+   ]
+  },
+  {
+   "dni": "60000150",
+   "nombres": "Brayan",
+   "apellidos": "Huamán Meza",
+   "sexo": "M",
+   "nacimiento": "2025-01-14",
+   "comunidad": "Ñahuimpuquio",
+   "distrito": "Chongos Alto",
+   "establecimiento": "P. S. Chongos Alto",
+   "altitud": 3200,
+   "tutor": "Camila Pomalaza",
+   "celular": null,
+   "estado": "ACTIVO",
+   "escenario": "unico_reciente",
+   "evaluaciones": [
+    {
+     "fecha": "2026-08-20",
+     "hb_obs": 10.4,
+     "peso_kg": 7.6,
+     "talla_cm": 70.9
+    }
+   ]
+  }
+ ]
+}

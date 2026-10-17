@@ -1,4 +1,4 @@
-/* Cliente web del PMV (PWA). Consume la API REST del Incremento 1. */
+/* Cliente web (PWA). Consume la API REST: Incremento 1 (PMV) y avance del Incremento 2 (agenda y alertas). */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const ETIQUETA = { SIN_ANEMIA: "Sin anemia", LEVE: "Anemia leve", MODERADA: "Anemia moderada", SEVERA: "Anemia severa", NO_APLICA: "No aplica (< 6 m)" };
@@ -35,6 +35,8 @@ function mostrar(vista) {
   $$(".pestana").forEach((b) => b.classList.toggle("activa", b.dataset.vista === vista));
   $$(".vista").forEach((v) => v.classList.toggle("activa", v.id === "vista-" + vista));
   if (vista === "seguimiento") cargarSeguimiento();
+  if (vista === "alertas") cargarAlertas();
+  actualizarInsignia();
 }
 $$(".pestana").forEach((b) => b.addEventListener("click", () => mostrar(b.dataset.vista)));
 
@@ -146,7 +148,7 @@ async function cargarSeguimiento() {
   $("#cuerpo-seguimiento").innerHTML = filas.map((f) => `
     <tr class="click" data-id="${f.id}">
       <td><strong>${esc(f.nombre_completo)}</strong></td><td>${f.dni}</td><td>${edad(f.edad_meses)}</td><td>${esc(f.comunidad)}</td>
-      <td class="${f.control_atrasado ? "atrasado" : ""}">${fecha(f.ultima_fecha_control)}${f.dias_desde_ultimo_control !== null ? ` · ${f.dias_desde_ultimo_control} d` : ""}</td>
+      <td class="${f.control_atrasado ? "atrasado" : ""}">${fecha(f.ultima_fecha_control)}${f.dias_desde_ultimo_control !== null ? ` · ${f.dias_desde_ultimo_control} d` : ""}${f.controles_vencidos ? ` <span class="ctrl ctrl-VENCIDO" data-testid="vencidos-fila">${f.controles_vencidos} vencido(s)</span>` : ""}</td>
       <td>${f.ultima_hb_ajustada !== null ? f.ultima_hb_ajustada.toFixed(1) : "—"}</td><td>${badge(f.ultima_clasificacion)}</td>
     </tr>`).join("");
   $$("#cuerpo-seguimiento tr").forEach((tr) => tr.addEventListener("click", () => abrirExpediente(tr.dataset.id)));
@@ -221,7 +223,12 @@ async function abrirExpediente(id) {
           <div class="acciones"><button class="primario" data-testid="guardar-control">Guardar control</button></div>
         </form>
       </div>
+    </div>
+    <div class="tarjeta" style="margin-top:14px" data-testid="agenda-seccion">
+      <h2>Agenda de controles</h2>
+      <div id="agenda-contenido"><p class="vacio" style="padding:0">Calculando agenda…</p></div>
     </div>`;
+  cargarAgenda(id);
   $("#btn-editar").addEventListener("click", () => ($("#form-editar").hidden = !$("#form-editar").hidden));
   $("#form-editar").addEventListener("submit", async (ev) => {
     ev.preventDefault();
@@ -240,6 +247,90 @@ async function abrirExpediente(id) {
     catch (e) { pintarErrores(e.errores || [], f); }
   });
 }
+/* ---------- HIST-2.1: agenda de controles ---------- */
+const ESTADO_CTRL = { CUMPLIDO: "Cumplido", PENDIENTE: "Pendiente", PROXIMO: "Próximo a vencer", VENCIDO: "Vencido", CERRADO_RECUPERADO: "Cerrado por recuperación" };
+const estadoVisual = (c) => (c.estado === "PENDIENTE" && c.proximo ? "PROXIMO" : c.estado);
+const chipControl = (c) => {
+  const v = estadoVisual(c);
+  const extra = c.estado === "VENCIDO" ? ` · ${c.dias_vencido} d` : "";
+  return `<span class="ctrl ctrl-${v}" data-testid="estado-control" data-estado="${v}">${ESTADO_CTRL[v]}${extra}</span>`;
+};
+
+async function cargarAgenda(id) {
+  actualizarInsignia(); // un control nuevo o un cambio de estado modifica el total de vencidos de la cabecera
+  const caja = $("#agenda-contenido");
+  try {
+    const a = await api(`/api/ninos/${id}/agenda`);
+    if (!a.aplica) { caja.innerHTML = `<p class="vacio" style="padding:0" data-testid="agenda-sin-agenda">${esc(a.motivo)}</p>`; return; }
+    const r = a.resumen;
+    caja.innerHTML = `
+      <div class="resumen-agenda" data-testid="agenda-resumen">
+        <span class="chip" data-testid="agenda-total">${r.total} controles</span>
+        <span class="ctrl ctrl-CUMPLIDO" data-testid="agenda-cumplidos">${r.cumplidos} cumplidos</span>
+        <span class="ctrl ctrl-PENDIENTE" data-testid="agenda-pendientes">${r.pendientes} pendientes</span>
+        <span class="ctrl ctrl-PROXIMO" data-testid="agenda-proximos">${r.proximos} por vencer</span>
+        <span class="ctrl ctrl-VENCIDO" data-testid="agenda-vencidos">${r.vencidos} vencidos</span>
+        ${r.cerrados ? `<span class="ctrl ctrl-CERRADO_RECUPERADO">${r.cerrados} cerrados por recuperación</span>` : ""}
+        <span class="proximo" data-testid="agenda-proximo-control">${r.proximo_control ? `Próximo control: ${esc(r.proximo_control.codigo)} el ${fecha(r.proximo_control.fecha_programada)}` : "Sin controles pendientes"}</span>
+      </div>
+      <div class="agenda-scroll tabla-envoltura"><table class="tabla completa" data-testid="agenda-tabla">
+        <thead><tr><th>Fecha programada</th><th>Control</th><th>Tipo</th><th>Ventana de cumplimiento</th><th>Estado</th></tr></thead>
+        <tbody>${a.controles.map((c) => `<tr data-estado="${estadoVisual(c)}" data-codigo="${c.codigo}">
+          <td>${fecha(c.fecha_programada)}</td><td>${esc(c.descripcion)}</td>
+          <td>${c.tipo === "CONTROL_TRATAMIENTO" ? "Tratamiento" : "Por edad"}</td>
+          <td>${fecha(c.fecha_inicio_ventana)} – ${fecha(c.fecha_limite)}</td><td>${chipControl(c)}</td></tr>`).join("")}</tbody></table></div>
+      <p class="nota">Agenda referencial calculada con el esquema ${esc(a.version_esquema)} al ${fecha(a.fecha_referencia)}; la confirma la microred. No es un diagnóstico.</p>`;
+  } catch (e) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje || "No se pudo calcular la agenda.")}</p>`; }
+}
+
+/* ---------- HIST-2.2: alertas de controles vencidos ---------- */
+const comunidadesAlerta = new Set();
+async function actualizarInsignia() {
+  try {
+    const r = await api("/api/alertas/resumen");
+    const ins = $("#insignia-alertas");
+    ins.textContent = r.total_vencidos;
+    ins.classList.toggle("cero", r.total_vencidos === 0);
+    ins.title = `${r.total_vencidos} control(es) vencido(s) en ${r.ninos_con_vencidos} niño(s)`;
+  } catch (_) { /* sin conexión: se conserva el último valor */ }
+}
+$("#insignia-alertas").addEventListener("click", (ev) => { ev.preventDefault(); mostrar("alertas"); });
+
+let secuenciaAlertas = 0;
+async function cargarAlertas() {
+  const mia = ++secuenciaAlertas;
+  const p = new URLSearchParams();
+  if ($("#filtro-alerta-comunidad").value) p.set("comunidad", $("#filtro-alerta-comunidad").value);
+  if ($("#filtro-alerta-prioridad").value) p.set("prioridad", $("#filtro-alerta-prioridad").value);
+  const [r, filas] = await Promise.all([api("/api/alertas/resumen"), api("/api/alertas/controles-vencidos?" + p)]);
+  if (mia !== secuenciaAlertas) return; // llegó una respuesta de un filtro anterior: se descarta
+  $("#total-alertas").textContent = `${filas.length} alerta(s)`;
+  $("#alertas-resumen").innerHTML = `
+    <div class="tarjeta kpi"><strong data-testid="kpi-vencidos">${r.total_vencidos}</strong><span>controles vencidos</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-ninos-vencidos">${r.ninos_con_vencidos}</strong><span>niños con controles vencidos</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-alta">${r.por_prioridad.ALTA}</strong><span>prioridad alta</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-media">${r.por_prioridad.MEDIA}</strong><span>prioridad media</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-baja">${r.por_prioridad.BAJA}</strong><span>prioridad baja</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-proximos">${r.proximos_7_dias}</strong><span>controles por vencer en 7 días</span></div>`;
+  if (!$("#filtro-alerta-comunidad").value) {
+    filas.forEach((f) => comunidadesAlerta.add(f.nino.comunidad));
+    const sel = $("#filtro-alerta-comunidad"), actual = sel.value;
+    sel.innerHTML = '<option value="">Todas</option>' + [...comunidadesAlerta].sort().map((c) => `<option value="${esc(c)}">${esc(c)}</option>`).join("");
+    sel.value = actual;
+  }
+  $("#sin-alertas").hidden = filas.length > 0;
+  $("#cuerpo-alertas").innerHTML = filas.map((f) => `
+    <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-codigo="${f.control.codigo}">
+      <td><span class="badge prio-${f.prioridad}" data-testid="prioridad">${f.prioridad}</span></td>
+      <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>DNI ${f.nino.dni}</small></td>
+      <td>${esc(f.control.descripcion)}</td><td>${fecha(f.control.fecha_programada)}</td>
+      <td class="atrasado">${f.control.dias_vencido} d</td><td>${esc(f.nino.comunidad)}</td>
+      <td>${f.nino.tutor_celular || "—"}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");
+  $$("#cuerpo-alertas tr").forEach((tr) => tr.addEventListener("click", () => abrirExpediente(tr.dataset.id)));
+}
+$("#filtro-alerta-comunidad").addEventListener("change", cargarAlertas);
+$("#filtro-alerta-prioridad").addEventListener("change", cargarAlertas);
+
 $("#btn-buscar-dni").addEventListener("click", async () => {
   try { const exp = await api("/api/ninos/dni/" + $("#buscar-dni").value.trim()); abrirExpediente(exp.id); }
   catch (e) { toast(e.mensaje || "No encontrado", false); }
@@ -281,5 +372,6 @@ $("#btn-reporte").addEventListener("click", generarReporte);
   restaurarBorrador();
   estadoRed();
   vistaPrevia();
+  actualizarInsignia();
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
 })();

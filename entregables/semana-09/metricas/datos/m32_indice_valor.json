@@ -1,0 +1,152 @@
+{
+ "lineas_base_as_is": {
+  "V1_registros_por_evaluacion": 3,
+  "V2_pct_agenda": 0.0,
+  "V3_pct_deteccion": 0.0,
+  "fuente": "Diagnóstico S1/S6: tres registros manuales por evaluación (historia clínica, tarjeta de control y HIS); sin agenda ni detección automática de vencidos"
+ },
+ "formulas": {
+  "V1": "mejora_pct = (3 - registros_por_evaluacion) / (3 - 1) x 100",
+  "V2": "mejora_pct = % de niños ACTIVOS con agenda normativa generada (GET /api/ninos/{id}/agenda = 200 y aplica); AS-IS = 0",
+  "V3": "mejora_pct = F1 x 100 de control_atrasado (GET /api/ninos) frente al oráculo normativo independiente; AS-IS = 0",
+  "indice": "promedio simple de mejora_pct de V1, V2 y V3",
+  "V4": "p95 agregado de Locust (50 usuarios, 60 s), mix común de tareas, promedio de 2 corridas (ms) - indicador de calidad de servicio",
+  "V5": "disponibilidad = sondas GET /api/salud con 200 en < 2 s / sondas x 100 - indicador de calidad de servicio",
+  "V6": "% de criterios Dado-Cuando-Entonces con su(s) prueba(s) automatizada(s) en verde (m21) - proxy de satisfacción; el SUS real queda pendiente (metricas/instrumento_SUS.md)"
+ },
+ "indicadores": {
+  "v1.0": {
+   "V1_registros_por_evaluacion": {
+    "as_is": 3,
+    "valor": 1,
+    "mejora_pct": 100.0,
+    "fuente": "datos/m32_v1.0_B150.json (V1)"
+   },
+   "V2_pct_ninos_activos_con_agenda_normativa": {
+    "as_is": 0.0,
+    "valor_pct": 0.0,
+    "activos": 140,
+    "con_agenda": 0,
+    "mejora_pct": 0.0,
+    "fuente": "datos/m32_v1.0_B150.json (V2)"
+   },
+   "V3_F1_deteccion_controles_vencidos": {
+    "as_is": 0.0,
+    "F1": 0.7292,
+    "precision": 0.7071,
+    "sensibilidad": 0.7527,
+    "matriz": {
+     "TP": 70,
+     "FP": 29,
+     "FN": 23,
+     "TN": 18
+    },
+    "mejora_pct": 72.9,
+    "criterio": "v1.0: campo control_atrasado heurístico (30 días); v1.5: normativo",
+    "fuente": "datos/m32_v1.0_B150.json (V3)"
+   },
+   "V4_p95_agregado_ms_mix_comun": {
+    "valor_ms": 175.0,
+    "mediana_ms": 21.0,
+    "p99_ms": 345.0,
+    "fallos_pct": 0.0,
+    "rps": 38.88,
+    "fuente": "datos/m32_carga.json"
+   },
+   "V5_disponibilidad_pct": {
+    "valor_pct": 100.0,
+    "sondas": 728,
+    "fuente": "datos/m32_disponibilidad.json"
+   },
+   "V6_satisfaccion_proxy_pct_criterios_verificados": {
+    "valor_pct": 100.0,
+    "criterios": "17/17",
+    "fuente": "datos/m21_cobertura_rf.json",
+    "pendiente": "SUS real con usuarios (instrumento en metricas/instrumento_SUS.md): no aplicado"
+   }
+  },
+  "v1.5": {
+   "V1_registros_por_evaluacion": {
+    "as_is": 3,
+    "valor": 1,
+    "mejora_pct": 100.0,
+    "fuente": "datos/m32_v1.5_B150.json (V1)"
+   },
+   "V2_pct_ninos_activos_con_agenda_normativa": {
+    "as_is": 0.0,
+    "valor_pct": 100.0,
+    "activos": 140,
+    "con_agenda": 140,
+    "mejora_pct": 100.0,
+    "fuente": "datos/m32_v1.5_B150.json (V2)"
+   },
+   "V3_F1_deteccion_controles_vencidos": {
+    "as_is": 0.0,
+    "F1": 1.0,
+    "precision": 1.0,
+    "sensibilidad": 1.0,
+    "matriz": {
+     "TP": 93,
+     "FP": 0,
+     "FN": 0,
+     "TN": 47
+    },
+    "mejora_pct": 100.0,
+    "criterio": "v1.0: campo control_atrasado heurístico (30 días); v1.5: normativo",
+    "fuente": "datos/m32_v1.5_B150.json (V3)"
+   },
+   "V4_p95_agregado_ms_mix_comun": {
+    "valor_ms": 610.0,
+    "mediana_ms": 74.5,
+    "p99_ms": 1100.0,
+    "fallos_pct": 0.0,
+    "rps": 35.23,
+    "fuente": "datos/m32_carga.json"
+   },
+   "V5_disponibilidad_pct": {
+    "valor_pct": 100.0,
+    "sondas": 856,
+    "fuente": "datos/m32_disponibilidad.json"
+   },
+   "V6_satisfaccion_proxy_pct_criterios_verificados": {
+    "valor_pct": 100.0,
+    "criterios": "33/33",
+    "fuente": "datos/m21_cobertura_rf.json",
+    "pendiente": "SUS real con usuarios (instrumento en metricas/instrumento_SUS.md): no aplicado"
+   },
+   "V4_p95_agregado_ms_mix_ampliado_agenda_alertas": {
+    "valor_ms": 750.0,
+    "fuente": "datos/m32_carga.json (v15_agenda)"
+   }
+  }
+ },
+ "indice_impacto_en_valor_pct": {
+  "v1.0": {
+   "mejoras": {
+    "V1": 100.0,
+    "V2": 0.0,
+    "V3": 72.9
+   },
+   "indice": 57.6,
+   "indice_sin_redondear": 57.6389
+  },
+  "v1.5": {
+   "mejoras": {
+    "V1": 100.0,
+    "V2": 100.0,
+    "V3": 100.0
+   },
+   "indice": 100.0,
+   "indice_sin_redondear": 100.0
+  }
+ },
+ "meta_guia_pct": {
+  "Inc.1": 50.0,
+  "Inc.2": 80.0
+ },
+ "cumple": {
+  "Inc.1": true,
+  "Inc.2": true
+ },
+ "advertencia": "V1 de v1.0 y v1.5 es idéntico (un registro nominal único desde el Inc. 1). El índice de v1.5 es 100 % porque los tres indicadores con línea base alcanzan su máximo; no equivale a 100 % del alcance del Inc. 2 (avance 2/4 historias): mide solo los tres indicadores definidos."
+}

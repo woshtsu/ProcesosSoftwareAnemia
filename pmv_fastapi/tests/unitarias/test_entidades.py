@@ -4,9 +4,12 @@ from datetime import date
 
 import pytest
 
-from app.domain.entidades import Evaluacion, edad_en_meses, validar_datos_evaluacion, validar_datos_nino
-from app.domain.errores import ErrorCampo, ErrorValidacion
-from app.domain.reglas_clinicas import Clasificacion
+from app.domain.model.clasificacion import Clasificacion
+from app.domain.model.entidades import Evaluacion
+from app.domain.model.errores import ErrorCampo, ErrorValidacion
+from app.domain.model.tiempo import edad_en_meses
+from app.domain.service.reglas_clinicas import aplicar_reglas_clinicas
+from app.domain.service.validaciones import validar_datos_evaluacion, validar_datos_nino
 from tests.conftest import HOY, datos_eval, datos_nino
 
 
@@ -81,7 +84,7 @@ def test_evaluacion_calcula_ajuste_y_clasificacion():
     e = Evaluacion(
         fecha=HOY, hemoglobina_observada=11.0, peso_kg=8, talla_cm=70, altitud_m=3550, edad_meses=10, registrado_por="x"
     )
-    e.calcular()
+    aplicar_reglas_clinicas(e)
     assert e.hemoglobina_ajustada == 8.6
     assert e.clasificacion == Clasificacion.MODERADA
     assert e.tiene_anemia
@@ -95,7 +98,7 @@ def test_fecha_local_usa_hora_de_peru():
     # DEF-02: 01:30 UTC del 29-sep son las 20:30 del 28-sep en Perú.
     from datetime import UTC, datetime
 
-    from app.domain.entidades import fecha_local, limites_utc
+    from app.domain.model.tiempo import fecha_local, limites_utc
 
     assert fecha_local(datetime(2026, 9, 29, 1, 30, tzinfo=UTC)) == date(2026, 9, 28)
     assert fecha_local(datetime(2026, 9, 29, 1, 30)) == date(2026, 9, 28)  # sin zona: se asume UTC

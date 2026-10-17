@@ -1,0 +1,843 @@
+{
+ "V2": {
+  "activos": 140,
+  "con_agenda_generada": 0,
+  "con_agenda_y_al_menos_un_control": 0,
+  "pct_agenda": 0.0,
+  "pct_agenda_con_controles": 0.0,
+  "codigos_http_agenda": {
+   "404": 140
+  }
+ },
+ "V3": {
+  "hoy": "2026-10-16",
+  "n_dataset": 150,
+  "n_activos_evaluados": 140,
+  "n_alta_excluidos": 10,
+  "no_encontrados": [],
+  "prevalencia_oraculo": 0.664,
+  "control_atrasado_api_ninos": {
+   "TP": 70,
+   "FP": 29,
+   "FN": 23,
+   "TN": 18,
+   "n": 140,
+   "precision": 0.7070707070707071,
+   "sensibilidad": 0.7526881720430108,
+   "exactitud": 0.6285714285714286,
+   "F1": 0.7291666666666666,
+   "especificidad": 0.3829787234042553
+  },
+  "bootstrap95_F1_control_atrasado": [
+   0.655,
+   0.794
+  ],
+  "discrepancias_ninos": [
+   {
+    "dni": "60000001",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "frontera_limite_hoy_N6"
+   },
+   {
+    "dni": "60000004",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "frontera_limite_hoy_N12"
+   },
+   {
+    "dni": "60000007",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "frontera_limite_hoy_N24"
+   },
+   {
+    "dni": "60000010",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "frontera_limite_hoy_N36"
+   },
+   {
+    "dni": "60000014",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "frontera_ventana_N9_d-15"
+   },
+   {
+    "dni": "60000017",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2026-08-27",
+      "limite": "2026-09-26",
+      "dias_vencido": 20
+     }
+    ],
+    "escenario": "frontera_ventana_N9_d+31"
+   },
+   {
+    "dni": "60000019",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "frontera_ventana_N18_d-15"
+   },
+   {
+    "dni": "60000022",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD18",
+      "programada": "2026-08-27",
+      "limite": "2026-09-26",
+      "dias_vencido": 20
+     }
+    ],
+    "escenario": "frontera_ventana_N18_d+31"
+   },
+   {
+    "dni": "60000024",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "frontera_ventana_N30_d-15"
+   },
+   {
+    "dni": "60000027",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD30",
+      "programada": "2026-08-27",
+      "limite": "2026-09-26",
+      "dias_vencido": 20
+     }
+    ],
+    "escenario": "frontera_ventana_N30_d+31"
+   },
+   {
+    "dni": "60000037",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "trat_c1m_limite_hoy"
+   },
+   {
+    "dni": "60000040",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "trat_recupera_dia20"
+   },
+   {
+    "dni": "60000041",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "trat_recupera_dia50"
+   },
+   {
+    "dni": "60000042",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "CONTROL_TRATAMIENTO",
+      "codigo": "C1M",
+      "programada": "2026-08-08",
+      "limite": "2026-09-07",
+      "dias_vencido": 39
+     }
+    ],
+    "escenario": "trat_recupera_dia75"
+   },
+   {
+    "dni": "60000043",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "trat_sostenida"
+   },
+   {
+    "dni": "60000045",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "trat_cumplido_c1m_en_borde"
+   },
+   {
+    "dni": "60000049",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "recien_nacido_100d"
+   },
+   {
+    "dni": "60000050",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "recien_nacido_170d"
+   },
+   {
+    "dni": "60000051",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "cerca_60m_0"
+   },
+   {
+    "dni": "60000052",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "cerca_60m_15"
+   },
+   {
+    "dni": "60000053",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "cerca_60m_28"
+   },
+   {
+    "dni": "60000057",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2024-09-13",
+      "limite": "2024-10-13",
+      "dias_vencido": 733
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD15",
+      "programada": "2025-03-13",
+      "limite": "2025-04-12",
+      "dias_vencido": 552
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD18",
+      "programada": "2025-06-13",
+      "limite": "2025-07-13",
+      "dias_vencido": 460
+     }
+    ],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000059",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "anemia"
+   },
+   {
+    "dni": "60000069",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2024-05-20",
+      "limite": "2024-06-19",
+      "dias_vencido": 849
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD12",
+      "programada": "2024-11-20",
+      "limite": "2024-12-20",
+      "dias_vencido": 665
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD15",
+      "programada": "2025-02-20",
+      "limite": "2025-03-22",
+      "dias_vencido": 573
+     }
+    ],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000070",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000071",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD18",
+      "programada": "2023-07-01",
+      "limite": "2023-07-31",
+      "dias_vencido": 1173
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD24",
+      "programada": "2024-01-01",
+      "limite": "2024-01-31",
+      "dias_vencido": 989
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD30",
+      "programada": "2024-07-01",
+      "limite": "2024-07-31",
+      "dias_vencido": 807
+     }
+    ],
+    "escenario": "anemia"
+   },
+   {
+    "dni": "60000073",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "unico_reciente"
+   },
+   {
+    "dni": "60000074",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2026-02-23",
+      "limite": "2026-03-25",
+      "dias_vencido": 205
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2026-05-23",
+      "limite": "2026-06-22",
+      "dias_vencido": 116
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD12",
+      "programada": "2026-08-23",
+      "limite": "2026-09-22",
+      "dias_vencido": 24
+     }
+    ],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000078",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "CONTROL_TRATAMIENTO",
+      "codigo": "C1M",
+      "programada": "2026-08-20",
+      "limite": "2026-09-19",
+      "dias_vencido": 27
+     }
+    ],
+    "escenario": "tardio"
+   },
+   {
+    "dni": "60000080",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2022-09-01",
+      "limite": "2022-10-01",
+      "dias_vencido": 1476
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD18",
+      "programada": "2023-09-01",
+      "limite": "2023-10-01",
+      "dias_vencido": 1111
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD21",
+      "programada": "2023-12-01",
+      "limite": "2023-12-31",
+      "dias_vencido": 1020
+     }
+    ],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000081",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2026-09-07",
+      "limite": "2026-10-07",
+      "dias_vencido": 9
+     }
+    ],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000085",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2024-11-25",
+      "limite": "2024-12-25",
+      "dias_vencido": 660
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2025-02-25",
+      "limite": "2025-03-27",
+      "dias_vencido": 568
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD12",
+      "programada": "2025-05-25",
+      "limite": "2025-06-24",
+      "dias_vencido": 479
+     }
+    ],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000089",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2026-01-29",
+      "limite": "2026-02-28",
+      "dias_vencido": 230
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD12",
+      "programada": "2026-07-29",
+      "limite": "2026-08-28",
+      "dias_vencido": 49
+     }
+    ],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000101",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2024-08-23",
+      "limite": "2024-09-22",
+      "dias_vencido": 754
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD12",
+      "programada": "2024-11-23",
+      "limite": "2024-12-23",
+      "dias_vencido": 662
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD15",
+      "programada": "2025-02-23",
+      "limite": "2025-03-25",
+      "dias_vencido": 570
+     }
+    ],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000102",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "tardio"
+   },
+   {
+    "dni": "60000107",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2026-07-19",
+      "limite": "2026-08-18",
+      "dias_vencido": 59
+     }
+    ],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000110",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "tardio"
+   },
+   {
+    "dni": "60000115",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000119",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2025-07-28",
+      "limite": "2025-08-27",
+      "dias_vencido": 415
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD15",
+      "programada": "2026-04-28",
+      "limite": "2026-05-28",
+      "dias_vencido": 141
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD18",
+      "programada": "2026-07-28",
+      "limite": "2026-08-27",
+      "dias_vencido": 50
+     }
+    ],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000125",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2025-04-09",
+      "limite": "2025-05-09",
+      "dias_vencido": 525
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD12",
+      "programada": "2025-07-09",
+      "limite": "2025-08-08",
+      "dias_vencido": 434
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD15",
+      "programada": "2025-10-09",
+      "limite": "2025-11-08",
+      "dias_vencido": 342
+     }
+    ],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000127",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2026-02-05",
+      "limite": "2026-03-07",
+      "dias_vencido": 223
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD12",
+      "programada": "2026-05-05",
+      "limite": "2026-06-04",
+      "dias_vencido": 134
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD15",
+      "programada": "2026-08-05",
+      "limite": "2026-09-04",
+      "dias_vencido": 42
+     }
+    ],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000131",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000132",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000133",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2025-06-05",
+      "limite": "2025-07-05",
+      "dias_vencido": 468
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD15",
+      "programada": "2025-12-05",
+      "limite": "2026-01-04",
+      "dias_vencido": 285
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD18",
+      "programada": "2026-03-05",
+      "limite": "2026-04-04",
+      "dias_vencido": 195
+     }
+    ],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000136",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2022-04-30",
+      "limite": "2022-05-30",
+      "dias_vencido": 1600
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2022-07-30",
+      "limite": "2022-08-29",
+      "dias_vencido": 1509
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD18",
+      "programada": "2023-04-30",
+      "limite": "2023-05-30",
+      "dias_vencido": 1235
+     }
+    ],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000138",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2024-03-26",
+      "limite": "2024-04-25",
+      "dias_vencido": 904
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2024-06-26",
+      "limite": "2024-07-26",
+      "dias_vencido": 812
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD15",
+      "programada": "2024-12-26",
+      "limite": "2025-01-25",
+      "dias_vencido": 629
+     }
+    ],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000140",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "tardio"
+   },
+   {
+    "dni": "60000142",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000146",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000147",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2024-11-28",
+      "limite": "2024-12-28",
+      "dias_vencido": 657
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2025-02-28",
+      "limite": "2025-03-30",
+      "dias_vencido": 565
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD15",
+      "programada": "2025-08-28",
+      "limite": "2025-09-27",
+      "dias_vencido": 384
+     }
+    ],
+    "escenario": "omisiones"
+   },
+   {
+    "dni": "60000148",
+    "oraculo": true,
+    "api": false,
+    "detalle_oraculo": [
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD6",
+      "programada": "2024-12-24",
+      "limite": "2025-01-23",
+      "dias_vencido": 631
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD9",
+      "programada": "2025-03-24",
+      "limite": "2025-04-23",
+      "dias_vencido": 541
+     },
+     {
+      "tipo": "TAMIZAJE_EDAD",
+      "codigo": "EDAD12",
+      "programada": "2025-06-24",
+      "limite": "2025-07-24",
+      "dias_vencido": 449
+     }
+    ],
+    "escenario": "cumplidor"
+   },
+   {
+    "dni": "60000150",
+    "oraculo": false,
+    "api": true,
+    "detalle_oraculo": [],
+    "escenario": "unico_reciente"
+   }
+  ],
+  "alta_marcados_atrasado_api": 7,
+  "alta_total": 10
+ },
+ "V6": {
+  "n_ninos": 150,
+  "calentamiento_descartado": 3,
+  "GET /api/ninos": {
+   "n": 30,
+   "mediana_ms": 24.0,
+   "min_ms": 22.1,
+   "p95_ms": 28.1,
+   "max_ms": 88.2,
+   "media_ms": 26.7
+  }
+ },
+ "V1": {
+  "escrituras_para_registrar_nino_con_evaluacion": 1,
+  "escrituras_para_agregar_un_control": 1,
+  "registros_por_evaluacion": 1,
+  "filas_bd_antes": [
+   150,
+   826
+  ],
+  "filas_bd_despues_registro": [
+   151,
+   827
+  ],
+  "delta_nino_y_evaluacion": [
+   1,
+   1
+  ],
+  "status_control": 201,
+  "evaluaciones_tras_control": 2,
+  "vistas_que_reflejan_el_registro": {
+   "expediente_con_1_evaluacion": true,
+   "seguimiento_lista_al_nino": true,
+   "reporte_cuenta_la_evaluacion": true,
+   "agenda_sin_digitacion_adicional": false
+  },
+  "nota": "Se creó el niño 69999991 (sintético) en la base de prueba; no se reutiliza."
+ }
+}

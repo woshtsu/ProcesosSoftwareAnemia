@@ -1,9 +1,12 @@
-"""Prueba de carga del PMV (Locust).
+"""Prueba de carga (Locust): PMV del Incremento 1 y avance del Incremento 2 (agenda y alertas).
 
 Ejecución:
   locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 \
          --headless -u 50 -r 10 -t 60s --csv docs/evidencias/carga
-Perfil: 50 usuarios concurrentes simulando personal de postas de una microred.
+Perfil: 50 usuarios concurrentes simulando personal de postas de una microred. Tareas y pesos:
+listar seguimiento 5, abrir expediente 4, agenda del niño 3 (HIST-2.1), vista previa 3, alertas de controles
+vencidos 2 y resumen de alertas 2 (HIST-2.2; el resumen alimenta la insignia de la cabecera), registrar niño 2,
+reporte 1. Conviene cargar antes los datos sintéticos: python -m scripts.cargar_datos_prueba
 """
 
 import itertools
@@ -29,6 +32,20 @@ class PersonalPosta(HttpUser):
     def abrir_expediente(self):
         if self.ids:
             self.client.get(f"/api/ninos/{random.choice(self.ids)}", name="GET /api/ninos/{id}")
+
+    @task(3)
+    def agenda_del_nino(self):
+        if self.ids:
+            self.client.get(f"/api/ninos/{random.choice(self.ids)}/agenda", name="GET /api/ninos/{id}/agenda")
+
+    @task(2)
+    def alertas_controles_vencidos(self):
+        filtros = random.choice(["", "?prioridad=ALTA", "?comunidad=Palmayoc", "?comunidad=Llacuas&prioridad=MEDIA"])
+        self.client.get(f"/api/alertas/controles-vencidos{filtros}", name="GET /api/alertas/controles-vencidos")
+
+    @task(2)
+    def resumen_alertas(self):
+        self.client.get("/api/alertas/resumen", name="GET /api/alertas/resumen")
 
     @task(3)
     def vista_previa(self):

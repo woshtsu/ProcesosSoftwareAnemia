@@ -1,6 +1,6 @@
 [project]
 name = "anemia-junin-pmv"
-version = "1.0.0"
+version = "1.5.0"
 description = "PMV — Sistema de Detección Temprana de Anemia Infantil en Zonas Rurales de Junín"
 requires-python = ">=3.11"
 
@@ -21,7 +21,7 @@ max-complexity = 12
 "scripts/**" = ["E501"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests/unitarias", "tests/integracion"]
+testpaths = ["tests/unitarias", "tests/integracion", "tests/arquitectura"]
 markers = ["e2e: pruebas de interfaz con Playwright (requieren el servidor en ejecución)"]
 
 [tool.coverage.run]

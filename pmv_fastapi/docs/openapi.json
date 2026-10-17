@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Sistema de Detección Temprana de Anemia Infantil — Junín",
-    "description": "API del Incremento 1 (PMV): registro nominal, expediente digital, validación clínica, seguimiento y reporte del periodo.",
-    "version": "1.0.0-pmv"
+    "description": "API del Incremento 1 (registro nominal, expediente digital, validación clínica, seguimiento y reporte del periodo) y del avance del Incremento 2 (agenda automática de controles y alertas de controles vencidos).",
+    "version": "1.5.0-inc2-avance"
   },
   "paths": {
     "/api/salud": {
@@ -55,7 +55,7 @@
             }
           },
           "422": {
-            "description": "Unprocessable Entity",
+            "description": "Unprocessable Content",
             "content": {
               "application/json": {
                 "schema": {
@@ -131,7 +131,7 @@
                 }
               }
             },
-            "description": "Unprocessable Entity"
+            "description": "Unprocessable Content"
           }
         }
       },
@@ -448,6 +448,150 @@
         }
       }
     },
+    "/api/ninos/{nino_id}/agenda": {
+      "get": {
+        "tags": [
+          "HIST-2.1 Agenda"
+        ],
+        "summary": "Agenda",
+        "description": "Agenda de controles del niño según el esquema normativo (calculada en línea, sin tabla propia).",
+        "operationId": "agenda_api_ninos__nino_id__agenda_get",
+        "parameters": [
+          {
+            "name": "nino_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Nino Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgendaSalida"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/alertas/controles-vencidos": {
+      "get": {
+        "tags": [
+          "HIST-2.2 Alertas"
+        ],
+        "summary": "Controles Vencidos",
+        "description": "Controles vencidos de niños activos, ordenados por prioridad y días de atraso.",
+        "operationId": "controles_vencidos_api_alertas_controles_vencidos_get",
+        "parameters": [
+          {
+            "name": "comunidad",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Comunidad"
+            }
+          },
+          {
+            "name": "prioridad",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Prioridad"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlertaSalida"
+                  },
+                  "title": "Response Controles Vencidos Api Alertas Controles Vencidos Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        }
+      }
+    },
+    "/api/alertas/resumen": {
+      "get": {
+        "tags": [
+          "HIST-2.2 Alertas"
+        ],
+        "summary": "Resumen Alertas",
+        "operationId": "resumen_alertas_api_alertas_resumen_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumenAlertasSalida"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/reportes/periodo": {
       "get": {
         "tags": [
@@ -596,6 +740,230 @@
         },
         "type": "object",
         "title": "ActualizacionNino"
+      },
+      "AgendaSalida": {
+        "properties": {
+          "nino_id": {
+            "type": "string",
+            "title": "Nino Id"
+          },
+          "version_esquema": {
+            "type": "string",
+            "title": "Version Esquema"
+          },
+          "fecha_referencia": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Referencia"
+          },
+          "aplica": {
+            "type": "boolean",
+            "title": "Aplica",
+            "description": "False si el niño tiene alta: no se programan controles"
+          },
+          "motivo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Motivo"
+          },
+          "resumen": {
+            "$ref": "#/components/schemas/ResumenAgendaSalida"
+          },
+          "controles": {
+            "items": {
+              "$ref": "#/components/schemas/ControlSalida"
+            },
+            "type": "array",
+            "title": "Controles"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nino_id",
+          "version_esquema",
+          "fecha_referencia",
+          "aplica",
+          "motivo",
+          "resumen",
+          "controles"
+        ],
+        "title": "AgendaSalida"
+      },
+      "AlertaNino": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "dni": {
+            "type": "string",
+            "title": "Dni"
+          },
+          "nombre_completo": {
+            "type": "string",
+            "title": "Nombre Completo"
+          },
+          "comunidad": {
+            "type": "string",
+            "title": "Comunidad"
+          },
+          "tutor_celular": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tutor Celular"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "dni",
+          "nombre_completo",
+          "comunidad",
+          "tutor_celular"
+        ],
+        "title": "AlertaNino"
+      },
+      "AlertaSalida": {
+        "properties": {
+          "nino": {
+            "$ref": "#/components/schemas/AlertaNino"
+          },
+          "control": {
+            "$ref": "#/components/schemas/ControlSalida"
+          },
+          "ultima_clasificacion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ultima Clasificacion"
+          },
+          "prioridad": {
+            "type": "string",
+            "title": "Prioridad",
+            "description": "ALTA, MEDIA o BAJA"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nino",
+          "control",
+          "ultima_clasificacion",
+          "prioridad"
+        ],
+        "title": "AlertaSalida"
+      },
+      "ControlSalida": {
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "title": "Codigo",
+            "description": "DHx, DHc1, DHc2 (por edad) o C1M, C3M, C6M (tratamiento)"
+          },
+          "tipo": {
+            "type": "string",
+            "title": "Tipo",
+            "description": "TAMIZAJE_EDAD o CONTROL_TRATAMIENTO"
+          },
+          "descripcion": {
+            "type": "string",
+            "title": "Descripcion"
+          },
+          "fecha_programada": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Programada"
+          },
+          "fecha_inicio_ventana": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Inicio Ventana",
+            "description": "Primer día en que una evaluación cumple el control"
+          },
+          "fecha_limite": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Limite",
+            "description": "Último día en que una evaluación cumple el control"
+          },
+          "estado": {
+            "type": "string",
+            "title": "Estado",
+            "description": "CUMPLIDO, PENDIENTE, VENCIDO o CERRADO_RECUPERADO"
+          },
+          "proximo": {
+            "type": "boolean",
+            "title": "Proximo",
+            "description": "PENDIENTE que vence en 7 días o menos"
+          },
+          "dias_vencido": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dias Vencido",
+            "description": "Días desde la fecha límite (solo VENCIDO)"
+          },
+          "evaluacion_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evaluacion Id",
+            "description": "Evaluación que cumplió el control (solo CUMPLIDO)"
+          },
+          "edad_meses_programada": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Edad Meses Programada",
+            "description": "Edad objetivo en meses (solo controles por edad)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "codigo",
+          "tipo",
+          "descripcion",
+          "fecha_programada",
+          "fecha_inicio_ventana",
+          "fecha_limite",
+          "estado",
+          "proximo",
+          "dias_vencido",
+          "evaluacion_id",
+          "edad_meses_programada"
+        ],
+        "title": "ControlSalida"
       },
       "ErrorDetalle": {
         "properties": {
@@ -889,7 +1257,13 @@
           },
           "control_atrasado": {
             "type": "boolean",
-            "title": "Control Atrasado"
+            "title": "Control Atrasado",
+            "description": "True si la agenda normativa tiene al menos un control VENCIDO"
+          },
+          "controles_vencidos": {
+            "type": "integer",
+            "title": "Controles Vencidos",
+            "description": "Cantidad de controles VENCIDOS en la agenda del niño"
           }
         },
         "type": "object",
@@ -904,7 +1278,8 @@
           "ultima_hb_ajustada",
           "ultima_clasificacion",
           "dias_desde_ultimo_control",
-          "control_atrasado"
+          "control_atrasado",
+          "controles_vencidos"
         ],
         "title": "FilaSeguimiento"
       },
@@ -1110,6 +1485,86 @@
           "mensaje"
         ],
         "title": "RespuestaError"
+      },
+      "ResumenAgendaSalida": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "cumplidos": {
+            "type": "integer",
+            "title": "Cumplidos"
+          },
+          "pendientes": {
+            "type": "integer",
+            "title": "Pendientes"
+          },
+          "vencidos": {
+            "type": "integer",
+            "title": "Vencidos"
+          },
+          "cerrados": {
+            "type": "integer",
+            "title": "Cerrados"
+          },
+          "proximos": {
+            "type": "integer",
+            "title": "Proximos"
+          },
+          "proximo_control": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ControlSalida"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "cumplidos",
+          "pendientes",
+          "vencidos",
+          "cerrados",
+          "proximos",
+          "proximo_control"
+        ],
+        "title": "ResumenAgendaSalida"
+      },
+      "ResumenAlertasSalida": {
+        "properties": {
+          "total_vencidos": {
+            "type": "integer",
+            "title": "Total Vencidos"
+          },
+          "por_prioridad": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Por Prioridad"
+          },
+          "ninos_con_vencidos": {
+            "type": "integer",
+            "title": "Ninos Con Vencidos"
+          },
+          "proximos_7_dias": {
+            "type": "integer",
+            "title": "Proximos 7 Dias"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total_vencidos",
+          "por_prioridad",
+          "ninos_con_vencidos",
+          "proximos_7_dias"
+        ],
+        "title": "ResumenAlertasSalida"
       },
       "ValidationError": {
         "properties": {

@@ -1,0 +1,35 @@
+// 71_s9_arbol_gqm.dot — Árbol Goal-Question-Metric (Semana 9). Fuente: guía S9, Actividades 1 a 3; metricas/datos/resumen_gqm.json
+digraph gqm {
+  graph [rankdir=LR, fontname="DejaVu Sans", fontsize=15, labelloc=t, nodesep=0.28, ranksep=0.9, pad=0.3,
+         label="Árbol GQM: 3 goals, 6 preguntas y 6 métricas (más M1.3 complementaria)"];
+  node  [shape=box, style="filled,rounded", fontname="DejaVu Sans", fontsize=11, margin="0.14,0.08", penwidth=1.4];
+  edge  [color="#4A5A6A", penwidth=1.4, arrowsize=0.8];
+
+  // Pilar 1
+  node [fillcolor="#C9DAEC", color="#2F5D8A"];
+  G1  [label=<<B>G-01 · Arquitectura (Pilar 1)</B><BR/>Evaluar el desacoplamiento de la<BR/>estructura de código en GitHub>, fillcolor="#9CBCDC"];
+  Q11 [label=<<B>Q1.1</B> ¿El dominio está aislado de<BR/>frameworks y librerías externas?>];
+  Q12 [label=<<B>Q1.2</B> ¿Puertos y adaptadores están<BR/>en módulos independientes?>];
+  Q13 [label=<<B>Q1.3 (complementaria)</B> ¿Las dependencias<BR/>apuntan hacia el núcleo?>, style="filled,rounded,dashed"];
+  M11 [label=<<B>M1.1</B> Índice de contaminación<BR/>del dominio (meta 0,0 %)>];
+  M12 [label=<<B>M1.2</B> Conformidad estructural<BR/>hexagonal (meta 100 %)>];
+  M13 [label=<<B>M1.3</B> Acoplamiento por capa y<BR/>violaciones de dependencia>, style="filled,rounded,dashed"];
+  // Pilar 2
+  node [fillcolor="#C5E3D2", color="#2E6B4E"];
+  G2  [label=<<B>G-02 · Pruebas (Pilar 2)</B><BR/>Verificar la estabilidad funcional de<BR/>los Incrementos 1 y 2>, fillcolor="#93CBAE"];
+  Q21 [label=<<B>Q2.1</B> ¿Qué % de RF tiene evidencias<BR/>fotográficas aprobadas?>];
+  Q22 [label=<<B>Q2.2</B> ¿Cuál es la densidad de defectos<BR/>funcionales entre Inc. 1 e Inc. 2?>];
+  M21 [label=<<B>M2.1</B> Cobertura funcional con<BR/>capturas (meta 100 %)>];
+  M22 [label=<<B>M2.2</B> Tasa de defectos funcionales<BR/>(meta ≤ 1,0 y ≤ 0,2 Def/RF)>];
+  // Pilar 3
+  node [fillcolor="#F3E2B3", color="#B08A2E"];
+  G3  [label=<<B>G-03 · Valor (Pilar 3)</B><BR/>Evaluar la efectividad del proceso y<BR/>de los entregables para el usuario>, fillcolor="#E8C970"];
+  Q31 [label=<<B>Q3.1</B> ¿En qué medida se reducen las<BR/>brechas operativas del AS-IS?>];
+  Q32 [label=<<B>Q3.2</B> ¿Cómo evolucionan tiempos de<BR/>respuesta, disponibilidad y satisfacción?>];
+  M31 [label=<<B>M3.1</B> Cobertura de brechas resueltas<BR/>(meta ≥ 60 % y ≥ 90 %)>];
+  M32 [label=<<B>M3.2</B> Índice de impacto en valor<BR/>(meta ≥ 50 % y ≥ 80 %)>];
+
+  G1 -> Q11 -> M11; G1 -> Q12 -> M12; G1 -> Q13 -> M13;
+  G2 -> Q21 -> M21; G2 -> Q22 -> M22;
+  G3 -> Q31 -> M31; G3 -> Q32 -> M32;
+}

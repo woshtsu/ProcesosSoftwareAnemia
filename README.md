@@ -14,7 +14,7 @@ El problema organizacional: en las zonas rurales de Junín el tamizaje de hemogl
 .
 ├── README.md                    este archivo
 ├── AGENTS.md                    instrucciones de continuidad para agentes
-├── .claude/agents/              definiciones de los subagentes (Claude Code)
+├── .claude/agents/              definiciones de los subagentes
 ├── coordinacion/                canal de comunicación entre agentes
 │   ├── TABLERO.md               tareas, estado y responsable
 │   ├── RUTAS.md                 mapa canónico de rutas (fuente de verdad)
@@ -46,6 +46,7 @@ El detalle de cada ruta está en [`coordinacion/RUTAS.md`](coordinacion/RUTAS.md
 | S3-4 | Actividades, organización, responsabilidades, productos, WBS, priorización, estimación y plan del proyecto | [`guias/S3-4_…`](guias/S3.GU%C3%8DA%20DE%20TRABAJO%20SEMANA%203%20Y%204.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | Revisado; pendientes diagramas y conciliación técnica (T-004, T-007) |
 | S5 | Ejecución de procesos principales del PMV: requisitos, diseño, construcción, pruebas y despliegue | [Guía S5](guias/S5-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%205.md) | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` — **por crear**; base: [PDF Actividad 5](entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf), [extracción](entregables/semana-05/_extraccion_Informe_Actividad5.md) | Por crear (T-005) |
 | S6 | Informe integrador de las Unidades I y II | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) | Propuesta de revisión — por actualizar (T-006) |
+| S9 | Evaluación GQM del proceso y producto: arquitectura hexagonal, pruebas Inc. 1 y 2 con capturas, entrega de valor (con avance del 50 % del Inc. 2) | [Guía S9](guias/S9-PSW-GU%C3%8DA%20DE%20TRABAJO.md) | [`Entregable_Semana9`](entregables/semana-09/Entregable_Semana9_Anemia_Junin.md) · [checklist](entregables/semana-09/CHECKLIST_CUMPLIMIENTO_S9.md) · PDF/DOCX en `exportados/semana-09/` | En revisión (T-011); pendiente publicar rama/tag del Inc. 2 |
 
 Las versiones anteriores están en `archivo/versiones-anteriores/`. El historial completo se conserva en git (`git log --follow <ruta>`).
 
@@ -107,13 +108,13 @@ python -m venv .venv                 # solo si aún no existe
 
 Abrir `http://127.0.0.1:8000/`. Instrucciones completas y carga de datos sintéticos: [README del PMV](anemia_junin/README.md).
 
-Revisión local T-010 (2026-09-25, Python 3.13.7): **242 pruebas aprobadas, cobertura 96,66 %, Ruff sin hallazgos**. Se detectó además un defecto de entrada numérica fuera de la suite (DEV-101). La evidencia de carga conservada corresponde a la ejecución anterior de Claude; no se volvió a ejecutar en esta revisión.
+Revisión local T-010 (2026-09-25, Python 3.13.7): **242 pruebas aprobadas, cobertura 96,66 %, Ruff sin hallazgos**. Se detectó además un defecto de entrada numérica fuera de la suite (DEV-101). La evidencia de carga conservada corresponde a la ejecución anterior; no se volvió a ejecutar en esta revisión.
 
 Informe y pendientes priorizados: [revisión del avance](coordinacion/informes/2026-09-25_orquestador_T-010.md). Los porcentajes de los checklists anteriores no certifican que el proyecto esté listo para entregar.
 
 ## Herramientas registradas en el equipo anterior (2026-09-25)
 
-Inventario histórico de Claude; no representa necesariamente este equipo. La revisión T-010 utilizó Python 3.13.7.
+Inventario histórico; no representa necesariamente este equipo. La revisión T-010 utilizó Python 3.13.7.
 
 | Herramienta | Estado |
 | --- | --- |

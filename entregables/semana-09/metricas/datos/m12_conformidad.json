@@ -1,0 +1,209 @@
+{
+  "v1.0": {
+    "version": "v1.0",
+    "raiz": "../inc1_v1.0_PMV",
+    "filas": [
+      {
+        "componente": "Núcleo de dominio",
+        "clave": "dominio",
+        "ruta_guia": "/src/domain/model/",
+        "ruta_real": "app/domain",
+        "criterio_a": true,
+        "detalle_a": "app/domain/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "0 importaciones externas; 0 importaciones de otras capas.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "Sin importaciones externas (9 importaciones: stdlib e internas de dominio)"
+        ]
+      },
+      {
+        "componente": "Puertos de entrada",
+        "clave": "puertos_entrada",
+        "ruta_guia": "/src/ports/inbound/",
+        "ruta_real": "(no existe)",
+        "criterio_a": false,
+        "detalle_a": "No existe ninguna carpeta ni módulo de este componente.",
+        "criterio_a_laxo": false,
+        "criterio_b": false,
+        "detalle_b": "No hay puertos de entrada: ningún caso de uso se define como interfaz.",
+        "estado": "NO CONFORME",
+        "estado_laxo": "NO CONFORME",
+        "evidencia": []
+      },
+      {
+        "componente": "Puertos de salida",
+        "clave": "puertos_salida",
+        "ruta_guia": "/src/ports/outbound/",
+        "ruta_real": "app/application/puertos.py",
+        "criterio_a": false,
+        "detalle_a": "app/application/puertos.py: módulo dentro del paquete app/application/ que también aloja ['casos_uso.py']",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "2 interfaces; violaciones de pureza: 0; importaciones de infraestructura/otras capas: 0.",
+        "estado": "NO CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/application/puertos.py:13 RepositorioNinos(Protocol): 9 métodos sin lógica",
+          "app/application/puertos.py:33 Reloj(Protocol): 1 métodos sin lógica"
+        ]
+      },
+      {
+        "componente": "Adaptadores de entrada",
+        "clave": "adaptadores_entrada",
+        "ruta_guia": "/src/adapters/inbound/rest/",
+        "ruta_real": "app/adapters/entrada",
+        "criterio_a": true,
+        "detalle_a": "app/adapters/entrada/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": false,
+        "detalle_b": "Importa 0 puerto(s) de entrada; importa 1 módulo(s) de aplicación (clases concretas); 0 de adaptadores de salida.",
+        "estado": "NO CONFORME",
+        "estado_laxo": "NO CONFORME",
+        "evidencia": [
+          "app/adapters/entrada/http/api.py:12 from app.application.casos_uso import ServicioExpediente"
+        ]
+      },
+      {
+        "componente": "Adaptadores de salida",
+        "clave": "adaptadores_salida",
+        "ruta_guia": "/src/adapters/outbound/persistence/",
+        "ruta_real": "app/adapters/salida",
+        "criterio_a": true,
+        "detalle_a": "app/adapters/salida/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "2 clase(s) implementan RepositorioNinos; 2 importaciones de SQLAlchemy; 0 importaciones de aplicación/adaptadores de entrada.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/adapters/salida/persistencia/memoria.py:9 RepositorioEnMemoria (implementa estructuralmente RepositorioNinos)",
+          "app/adapters/salida/persistencia/sqlalchemy_repo.py:149 RepositorioSQLAlchemy (implementa estructuralmente RepositorioNinos)",
+          "app/adapters/salida/persistencia/sqlalchemy_repo.py:6 from sqlalchemy import (",
+          "app/adapters/salida/persistencia/sqlalchemy_repo.py:18 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, selectinload, sessionmaker"
+        ]
+      }
+    ],
+    "conformes": 2,
+    "total": 5,
+    "m12_pct": 40.0,
+    "sensibilidad": {
+      "laxa_pct": 60.0,
+      "estricta_pct": 40.0,
+      "ultra_estricta_pct": 20.0
+    },
+    "observaciones": [
+      "Implementación de un puerto de salida fuera de adaptadores de salida: app/application/casos_uso.py:207 RelojSistema implementa el puerto Reloj"
+    ]
+  },
+  "v1.5": {
+    "version": "v1.5",
+    "raiz": "pmv_fastapi",
+    "filas": [
+      {
+        "componente": "Núcleo de dominio",
+        "clave": "dominio",
+        "ruta_guia": "/src/domain/model/",
+        "ruta_real": "app/domain/model, app/domain/service",
+        "criterio_a": true,
+        "detalle_a": "app/domain/model/: paquete propio; app/domain/service/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "0 importaciones externas; 0 importaciones de otras capas.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "Sin importaciones externas (35 importaciones: stdlib e internas de dominio)"
+        ]
+      },
+      {
+        "componente": "Puertos de entrada",
+        "clave": "puertos_entrada",
+        "ruta_guia": "/src/ports/inbound/",
+        "ruta_real": "app/ports/inbound",
+        "criterio_a": true,
+        "detalle_a": "app/ports/inbound/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "5 interfaces; violaciones de pureza: 0; importaciones de infraestructura/otras capas: 0.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/ports/inbound/agenda.py:8 GenerarAgenda(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/alertas.py:8 ConsultarControlesVencidos(Protocol): 2 métodos sin lógica",
+          "app/ports/inbound/expediente.py:9 GestionarExpediente(Protocol): 7 métodos sin lógica",
+          "app/ports/inbound/reportes.py:7 GenerarReporte(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/seguimiento.py:6 ConsultarSeguimiento(Protocol): 1 métodos sin lógica"
+        ]
+      },
+      {
+        "componente": "Puertos de salida",
+        "clave": "puertos_salida",
+        "ruta_guia": "/src/ports/outbound/",
+        "ruta_real": "app/ports/outbound",
+        "criterio_a": true,
+        "detalle_a": "app/ports/outbound/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "2 interfaces; violaciones de pureza: 0; importaciones de infraestructura/otras capas: 0.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/ports/outbound/reloj.py:7 Reloj(Protocol): 1 métodos sin lógica",
+          "app/ports/outbound/repositorio_ninos.py:13 RepositorioNinos(Protocol): 9 métodos sin lógica"
+        ]
+      },
+      {
+        "componente": "Adaptadores de entrada",
+        "clave": "adaptadores_entrada",
+        "ruta_guia": "/src/adapters/inbound/rest/",
+        "ruta_real": "app/adapters/inbound",
+        "criterio_a": true,
+        "detalle_a": "app/adapters/inbound/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "Importa 5 puerto(s) de entrada; importa 0 módulo(s) de aplicación (clases concretas); 0 de adaptadores de salida.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/adapters/inbound/http/api.py:17 from app.ports.inbound.agenda import GenerarAgenda",
+          "app/adapters/inbound/http/api.py:18 from app.ports.inbound.alertas import ConsultarControlesVencidos",
+          "app/adapters/inbound/http/api.py:19 from app.ports.inbound.expediente import GestionarExpediente",
+          "app/adapters/inbound/http/api.py:20 from app.ports.inbound.reportes import GenerarReporte",
+          "app/adapters/inbound/http/api.py:21 from app.ports.inbound.seguimiento import ConsultarSeguimiento"
+        ]
+      },
+      {
+        "componente": "Adaptadores de salida",
+        "clave": "adaptadores_salida",
+        "ruta_guia": "/src/adapters/outbound/persistence/",
+        "ruta_real": "app/adapters/outbound",
+        "criterio_a": true,
+        "detalle_a": "app/adapters/outbound/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "2 clase(s) implementan RepositorioNinos; 3 importaciones de SQLAlchemy; 0 importaciones de aplicación/adaptadores de entrada.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/adapters/outbound/persistence/memoria.py:11 RepositorioEnMemoria (hereda RepositorioNinos)",
+          "app/adapters/outbound/persistence/sqlalchemy_repo.py:159 RepositorioSQLAlchemy (hereda RepositorioNinos)",
+          "app/adapters/outbound/persistence/sqlalchemy_repo.py:6 from sqlalchemy import (",
+          "app/adapters/outbound/persistence/sqlalchemy_repo.py:18 from sqlalchemy.exc import IntegrityError",
+          "app/adapters/outbound/persistence/sqlalchemy_repo.py:19 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, selectinload, sessionmaker"
+        ]
+      }
+    ],
+    "conformes": 5,
+    "total": 5,
+    "m12_pct": 100.0,
+    "sensibilidad": {
+      "laxa_pct": 100.0,
+      "estricta_pct": 100.0,
+      "ultra_estricta_pct": 100.0
+    },
+    "observaciones": []
+  }
+}

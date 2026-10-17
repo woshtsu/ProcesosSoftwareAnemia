@@ -1,0 +1,230 @@
+{
+ "clasificacion_por_defecto": {
+  "DEF-01": {
+   "tipo": "NO FUNCIONAL",
+   "rf": "RF-05",
+   "momento": "detectado antes de liberar (Inc. 1)",
+   "justificacion": "Patrón N+1 en el reporte del periodo: el resultado era correcto pero tardaba p95 = 2 200 ms con 50 usuarios; es un atributo de rendimiento, no de comportamiento funcional."
+  },
+  "DEF-02": {
+   "tipo": "FUNCIONAL",
+   "rf": "RF-05",
+   "momento": "detectado antes de liberar (Inc. 1)",
+   "justificacion": "El conteo de registrados del periodo comparaba días en UTC y excluía registros posteriores a las 19:00 de Perú: el reporte entregaba cifras incorrectas."
+  },
+  "DEF-03": {
+   "tipo": "FUNCIONAL",
+   "rf": "RF-05",
+   "momento": "escapado, detectado en el ciclo del Inc. 2",
+   "justificacion": "GET /api/reportes/periodo respondía 500 con fechas extremas (9999-12-31): la funcionalidad del reporte fallaba con una entrada aceptada por el esquema."
+  },
+  "DEF-04": {
+   "tipo": "FUNCIONAL",
+   "rf": "RF-01",
+   "rf_secundarios": [
+    "RF-02"
+   ],
+   "momento": "escapado, detectado en el ciclo del Inc. 2",
+   "justificacion": "El registro aceptaba y guardaba DNI/celular con dígitos Unicode o salto de línea: la validación de datos del registro (RF-01, también en PATCH de RF-02) era incorrecta."
+  },
+  "DEF-05": {
+   "tipo": "FUNCIONAL",
+   "rf": "RF-03",
+   "momento": "escapado, detectado en el ciclo del Inc. 2",
+   "justificacion": "La vista previa clínica devolvía Hb ajustada y clasificación sin sentido con altitud NaN/99999 o nacimiento absurdo: la validación con reglas clínicas (RF-03) estaba incompleta."
+  },
+  "DEF-06": {
+   "tipo": "FUNCIONAL",
+   "rf": "RF-01",
+   "rf_secundarios": [
+    "RF-02"
+   ],
+   "momento": "escapado, detectado en el ciclo del Inc. 2",
+   "justificacion": "Textos sin largo máximo: se guardaban nombres de 100 000 caracteres aunque la columna es VARCHAR(80); falla la validación de datos del registro (RF-01)."
+  },
+  "DEF-07": {
+   "tipo": "FUNCIONAL",
+   "rf": "RF-04",
+   "momento": "escapado, detectado en el ciclo del Inc. 2",
+   "justificacion": "La búsqueda del seguimiento (GET /api/ninos?q=) trataba % y _ como comodines SQL y devolvía resultados engañosos (RF-04)."
+  },
+  "DEF-08": {
+   "tipo": "FUNCIONAL",
+   "rf": "RF-01",
+   "momento": "escapado, detectado en el ciclo del Inc. 2",
+   "justificacion": "Dos registros simultáneos con el mismo DNI: el segundo respondía 500 en lugar de 409 (carrera entre la comprobación previa y la restricción UNIQUE); el registro de niños (RF-01) no manejaba bien el DNI duplicado. Código heredado del Inc. 1, hallado por la exploración EX-42 en el ciclo del Inc. 2."
+  }
+ },
+ "defectos_en_registros": [
+  "DEF-01",
+  "DEF-02",
+  "DEF-03",
+  "DEF-04",
+  "DEF-05",
+  "DEF-06",
+  "DEF-07",
+  "DEF-08"
+ ],
+ "kloc": {
+  "v1.0": {
+   "archivos": 18,
+   "lineas_sin_blancos_ni_comentarios": 1022,
+   "kloc": 1.022
+  },
+  "v1.5": {
+   "archivos": 39,
+   "lineas_sin_blancos_ni_comentarios": 1688,
+   "kloc": 1.688
+  }
+ },
+ "inc1": {
+  "regla": "(funcionales detectados antes de liberar + funcionales escapados detectados en el ciclo del Inc. 2) / 5 RF",
+  "defectos_funcionales_antes_de_liberar": [
+   "DEF-02"
+  ],
+  "defectos_funcionales_escapados": [
+   "DEF-03",
+   "DEF-04",
+   "DEF-05",
+   "DEF-06",
+   "DEF-07",
+   "DEF-08"
+  ],
+  "n_funcionales": 7,
+  "n_rf": 5,
+  "tasa_def_por_rf": 1.4,
+  "variante_solo_detectados_antes_de_liberar": {
+   "n": 1,
+   "tasa_def_por_rf": 0.2
+  },
+  "variante_sin_DEF-08_valor_antes_de_la_campana_de_exploratorias": {
+   "n": 6,
+   "tasa_def_por_rf": 1.2,
+   "nota": "DEF-08 (RF-01, carrera de DNI duplicado) se halló con las 45 pruebas exploratorias de caja negra; sin él el valor era 6/5."
+  },
+  "variante_todos_los_defectos_incl_no_funcionales": {
+   "n": 8,
+   "tasa_def_por_rf": 1.6
+  },
+  "funcionales_por_rf": {
+   "RF-01": {
+    "defectos": [
+     "DEF-04",
+     "DEF-06",
+     "DEF-08"
+    ],
+    "n": 3
+   },
+   "RF-02": {
+    "defectos": [],
+    "n": 0
+   },
+   "RF-03": {
+    "defectos": [
+     "DEF-05"
+    ],
+    "n": 1
+   },
+   "RF-04": {
+    "defectos": [
+     "DEF-07"
+    ],
+    "n": 1
+   },
+   "RF-05": {
+    "defectos": [
+     "DEF-02",
+     "DEF-03"
+    ],
+    "n": 2
+   }
+  },
+  "todos_los_defectos_por_rf": {
+   "RF-01": {
+    "defectos": [
+     "DEF-04",
+     "DEF-06",
+     "DEF-08"
+    ],
+    "n": 3
+   },
+   "RF-02": {
+    "defectos": [],
+    "n": 0
+   },
+   "RF-03": {
+    "defectos": [
+     "DEF-05"
+    ],
+    "n": 1
+   },
+   "RF-04": {
+    "defectos": [
+     "DEF-07"
+    ],
+    "n": 1
+   },
+   "RF-05": {
+    "defectos": [
+     "DEF-01",
+     "DEF-02",
+     "DEF-03"
+    ],
+    "n": 3
+   }
+  },
+  "densidad_por_kloc": {
+   "kloc_v1.0": 1.022,
+   "funcionales_atribuibles": 6.85,
+   "solo_antes_de_liberar": 0.98,
+   "todos_incl_no_funcionales": 7.83,
+   "nota": "KLOC del código del Inc. 1 (v1.0-PMV). Los DEF-03..08 se hallaron en v1.5 pero estaban en código heredado del Inc. 1."
+  }
+ },
+ "inc2": {
+  "regla": "defectos funcionales en RF-06 y RF-07 detectados en su ciclo / 2 RF entregados en el avance",
+  "n_funcionales_rf06_rf07": 0,
+  "defectos": [],
+  "detalle_registro": {},
+  "n_rf": 2,
+  "tasa_def_por_rf": 0.0,
+  "verificacion_exploratoria": {
+   "script": "herramientas/gqm/exploratorias_inc2.py",
+   "salida_texto": "entregables/semana-09/metricas/salidas/exploratorias_inc2_resultado.txt",
+   "casos_totales": 45,
+   "estados_todos": {
+    "OK": 43,
+    "OBS": 2
+   },
+   "casos_sobre_codigo_nuevo": 39,
+   "estados_codigo_nuevo": {
+    "OK": 37,
+    "OBS": 2
+   },
+   "fallas_en_codigo_nuevo": [],
+   "casos_sobre_codigo_heredado": 6,
+   "estados_codigo_heredado": {
+    "OK": 6
+   },
+   "fallas_en_codigo_heredado": [],
+   "nota": "OBS = comportamiento que la especificación no define o decisión de diseño documentada; no se cuenta como defecto.",
+   "historial_de_corridas": "corrida 1: 3 FALLA (EX-22 y EX-31 eran errores de diseño de los casos, corregidos; EX-42 era el defecto real DEF-08 en código heredado); corrida 2: 1 FALLA (EX-43, un PATCH con 'database is locked' de SQLite bajo 8 escritores simultáneos, reclasificado como OBS: limitación del motor de desarrollo; las lecturas de alertas, código nuevo, no fallaron); corrida 3 (final): 43 OK, 2 OBS, 0 FALLA. Ver salidas/exploratorias_inc2_resultado*.txt"
+  },
+  "densidad_por_kloc": {
+   "kloc_v1.5": 1.688,
+   "por_kloc_total_v1.5": 0.0,
+   "kloc_neto_incremento_aprox": 0.666,
+   "por_kloc_neto_incremento_aprox": 0.0,
+   "nota": "KLOC neto = líneas de v1.5 menos líneas de v1.0 (aproximación del código nuevo; v1.5 también modifica código heredado)."
+  }
+ },
+ "meta_guia_def_por_rf_max": {
+  "Inc.1": 1.0,
+  "Inc.2": 0.2
+ },
+ "cumple": {
+  "Inc.1": false,
+  "Inc.2": true,
+  "Inc.1_variante_solo_antes_de_liberar": true
+ }
+}

@@ -17,6 +17,8 @@ body { margin: 0; font-family: "Segoe UI", Roboto, system-ui, sans-serif; backgr
 .usuario select { width: auto; border-radius: 6px; border: 0; padding: 5px 8px; }
 .red { color: #7CE08F; font-size: 14px; }
 .red.fuera { color: #FFB4B4; }
+.insignia { background: #fff; color: var(--rojo); border-radius: 999px; padding: 2px 11px; font-weight: 800; font-size: 13px; text-decoration: none; min-width: 28px; text-align: center; }
+.insignia.cero { color: var(--verde); }
 .pestanas { display: flex; gap: 4px; padding: 0 16px; background: var(--blanco); border-bottom: 1px solid var(--borde); overflow-x: auto; }
 .pestana { border: 0; background: none; padding: 13px 16px; font: inherit; font-weight: 600; color: var(--gris); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
 .pestana.activa { color: var(--azul); border-bottom-color: var(--azul); }
@@ -63,6 +65,19 @@ button, .boton { font: inherit; font-weight: 600; border-radius: 8px; padding: 9
 .tabla tbody tr:nth-child(even) { background: #F7F9FC; }
 .tabla tbody tr.click { cursor: pointer; } .tabla tbody tr.click:hover { background: #E8F1FB; }
 .atrasado { color: var(--rojo); font-weight: 700; }
+.ctrl { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.ctrl-CUMPLIDO { background: var(--verde-f); color: var(--verde); }
+.ctrl-PENDIENTE { background: #EEF1F4; color: var(--gris); }
+.ctrl-PROXIMO { background: var(--ambar-f); color: var(--ambar); }
+.ctrl-VENCIDO { background: var(--rojo-f); color: var(--rojo); }
+.ctrl-CERRADO_RECUPERADO { background: var(--azul-claro); color: var(--azul); }
+.prio-ALTA { background: var(--rojo-f); color: var(--rojo); }
+.prio-MEDIA { background: var(--naranja-f); color: var(--naranja); }
+.prio-BAJA { background: var(--ambar-f); color: var(--ambar); }
+.resumen-agenda { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.resumen-agenda .proximo { color: var(--gris); font-size: 13.5px; }
+.agenda-scroll { max-height: 420px; overflow-y: auto; }
+.nota { color: var(--gris); font-size: 12.5px; margin: 8px 0 0; }
 .vacio { color: var(--gris); padding: 16px; margin: 0; }
 .cabecera-exp { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .datos { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px 18px; margin-top: 10px; }
@@ -81,5 +96,6 @@ button, .boton { font: inherit; font-weight: 600; border-radius: 8px; padding: 9
   .bloques { grid-template-columns: 1fr; }
   .fila2 { grid-template-columns: 1fr; }
   .barra { padding: 10px 14px; } .usuario label { display: none; }
-  .tabla th:nth-child(2), .tabla td:nth-child(2), .tabla th:nth-child(4), .tabla td:nth-child(4) { display: none; }
+  .tabla:not(.completa) th:nth-child(2), .tabla:not(.completa) td:nth-child(2),
+  .tabla:not(.completa) th:nth-child(4), .tabla:not(.completa) td:nth-child(4) { display: none; }
 }

@@ -1,0 +1,10 @@
+{
+ "sondas": 64,
+ "disponibles": 64,
+ "disponibilidad_pct": 100.0,
+ "latencia_mediana_ms": 2.0,
+ "latencia_p95_ms": 14.3,
+ "latencia_max_ms": 17.7,
+ "fallos": [],
+ "umbral_s": 2.0
+}

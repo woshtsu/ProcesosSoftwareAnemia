@@ -29,6 +29,9 @@ Desde un entregable en `entregables/semana-XX/` se enlaza así: `![Figura N. Ley
 | 07 | Despliegue | `src/integrador/diagramas.py` | sí | sí | S6 |
 | 08 | Modelo de datos | `src/integrador/diagramas.py` | sí | sí | S6 |
 | 09 | Secuencia de registro | `src/integrador/diagramas.py` | sí | sí | S6 |
+| 70 | S9 Cadena de trazabilidad integrada (problema → valor, por pilar) | `src/70_s9_cadena_trazabilidad.dot` (Graphviz) | sí | sí | S9 |
+| 71 | S9 Árbol GQM (G-01..G-03, Q1.1..Q3.2, M1.1..M3.2 y M1.3) | `src/71_s9_arbol_gqm.dot` (Graphviz) | sí | sí | S9 |
+| 72 | S9 Vista hexagonal de v1.5.0-inc2-avance (puertos y adaptadores reales) | `src/72_s9_hexagonal_v15.dot` (Graphviz) | sí | sí | S9 |
 
 Las figuras de S1 (`entregables/semana-01/img/image1..11.png`) y S2 (`entregables/semana-02/img/image1.png`) son imágenes raster sin fuente editable; si se rehacen, pasarán a este catálogo.
 
@@ -47,4 +50,13 @@ PlantUML (requiere Java 17 + `plantuml.jar`; Graphviz opcional para algunos tipo
 ```bash
 java -jar plantuml.jar -tsvg -o ../svg diagramas/src/*.puml
 java -jar plantuml.jar -tpng -o ../png diagramas/src/*.puml
+```
+
+Graphviz (diagramas 70 a 72, Semana 9; requiere `dot`):
+
+```bash
+cd diagramas/src
+for n in 70_s9_cadena_trazabilidad 71_s9_arbol_gqm 72_s9_hexagonal_v15; do
+  dot -Tpng -Gdpi=150 $n.dot -o ../png/$n.png && dot -Tsvg $n.dot -o ../svg/$n.svg
+done
 ```

@@ -1,0 +1,34 @@
+
+[2026-10-16 17:47:29,376] vm/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-16 17:47:29,376] vm/INFO/locust.main: Run time limit set to 60 seconds
+[2026-10-16 17:47:29,377] vm/INFO/locust.runners: Ramping to 50 users at a rate of 10.00 per second
+[2026-10-16 17:47:33,384] vm/INFO/locust.runners: All users spawned: {"PersonalPostaAgenda": 25, "PersonalPostaComun": 25} (50 total users)
+[2026-10-16 17:48:29,376] vm/INFO/locust.main: --run-time limit reached, shutting down
+[2026-10-16 17:48:29,401] vm/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      GET /api/alertas/controles-vencidos                                               83     0(0.00%) |    296      38    1308    240 |    1.38        0.00
+GET      GET /api/alertas/resumen                                                          91     0(0.00%) |    307      38    1616    190 |    1.52        0.00
+GET      GET /api/ninos                                                                   627     0(0.00%) |    306      35    1878    220 |   10.45        0.00
+GET      GET /api/ninos/{id}                                                              462     0(0.00%) |    105       3    1035     43 |    7.70        0.00
+GET      GET /api/ninos/{id}/agenda                                                       127     0(0.00%) |    140       3    1225     46 |    2.12        0.00
+GET      GET /api/reportes/periodo                                                        103     0(0.00%) |    266       6    1620    140 |    1.72        0.00
+POST     POST /api/ninos                                                                  219     0(0.00%) |    306       7    2064    140 |    3.65        0.00
+POST     POST /api/validaciones/evaluacion                                                334     0(0.00%) |     27       2     150     22 |    5.56        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      2046     0(0.00%) |    202       2    2064     93 |   34.09        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      GET /api/alertas/controles-vencidos                                                   240    280    410    460    610    730   1100   1300   1300   1300   1300     83
+GET      GET /api/alertas/resumen                                                              190    280    390    420    620   1200   1400   1600   1600   1600   1600     91
+GET      GET /api/ninos                                                                        220    320    400    460    660    890   1300   1500   1900   1900   1900    627
+GET      GET /api/ninos/{id}                                                                    43     80    130    160    280    440    670    760   1000   1000   1000    462
+GET      GET /api/ninos/{id}/agenda                                                             46     97    150    200    390    710    870   1200   1200   1200   1200    127
+GET      GET /api/reportes/periodo                                                             140    230    360    460    700    880   1200   1300   1600   1600   1600    103
+POST     POST /api/ninos                                                                       140    280    420    520    830   1200   1400   1600   2100   2100   2100    219
+POST     POST /api/validaciones/evaluacion                                                      22     33     40     46     62     75     92    110    150    150    150    334
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             93    180    270    320    540    760   1200   1300   1900   2100   2100   2046
+

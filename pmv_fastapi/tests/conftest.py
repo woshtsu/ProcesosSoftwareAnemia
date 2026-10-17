@@ -4,8 +4,8 @@ from datetime import date
 import pytest
 from fastapi.testclient import TestClient
 
-from app.adapters.salida.persistencia.memoria import RepositorioEnMemoria
-from app.application.casos_uso import ServicioExpediente
+from app.adapters.outbound.persistence.memoria import RepositorioEnMemoria
+from app.application.servicio_expediente import ServicioExpediente
 from app.main import crear_app
 
 HOY = date(2026, 9, 28)
@@ -61,10 +61,11 @@ def cliente(tmp_path):
     if url.startswith("postgresql"):
         from sqlalchemy import text
 
-        with app.state.servicio.repo.engine.begin() as con:
+        with app.state.repositorio.engine.begin() as con:
             con.execute(text("TRUNCATE evaluacion_hemoglobina, nino CASCADE"))
     with TestClient(app) as c:
         yield c
+    app.state.repositorio.engine.dispose()  # cierra las conexiones: evita ResourceWarning por bases SQLite abiertas
 
 
 def cuerpo_registro(**cambios_nino):
@@ -73,3 +74,35 @@ def cuerpo_registro(**cambios_nino):
     e = datos_eval()
     e["fecha"] = e["fecha"].isoformat()
     return {"nino": n, "evaluacion_inicial": e}
+
+
+# --- Constructores de dominio para las pruebas de agenda y alertas (Incremento 2) -------------------------------------
+
+
+def evaluacion_de(fecha: date, clasificacion: str = "SIN_ANEMIA", **cambios):
+    """Evaluación de dominio con la clasificación fijada directamente (sin pasar por las reglas clínicas)."""
+    from app.domain.model.clasificacion import Clasificacion
+    from app.domain.model.entidades import Evaluacion
+
+    base = dict(
+        fecha=fecha,
+        hemoglobina_observada=12.0,
+        peso_kg=8.0,
+        talla_cm=70.0,
+        altitud_m=3000,
+        edad_meses=12,
+        registrado_por="prueba",
+        clasificacion=Clasificacion(clasificacion),
+    )
+    base.update(cambios)
+    return Evaluacion(**base)
+
+
+def nino_de(nacimiento: date, evaluaciones: list | None = None, estado: str = "ACTIVO", **cambios):
+    """Niño de dominio con las evaluaciones dadas: ``[(fecha, clasificación), ...]`` o ``Evaluacion``."""
+    from app.domain.model.entidades import Evaluacion, Nino
+
+    nino = Nino(**{**datos_nino(fecha_nacimiento=nacimiento, estado=estado), "registrado_por": "prueba", **cambios})
+    for e in evaluaciones or []:
+        nino.evaluaciones.append(e if isinstance(e, Evaluacion) else evaluacion_de(*e, nino_id=nino.id))
+    return nino

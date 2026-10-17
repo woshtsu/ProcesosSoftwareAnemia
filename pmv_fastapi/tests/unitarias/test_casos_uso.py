@@ -4,8 +4,8 @@ from datetime import date
 
 import pytest
 
-from app.domain.errores import ErrorValidacion, NoEncontrado, RegistroDuplicado
-from app.domain.reglas_clinicas import Clasificacion
+from app.domain.model.clasificacion import Clasificacion
+from app.domain.model.errores import ErrorValidacion, NoEncontrado, RegistroDuplicado
 from tests.conftest import datos_eval, datos_nino
 
 
@@ -76,12 +76,15 @@ def test_listar_seguimiento_prioriza_casos_graves_y_filtra(servicio):
     servicio.registrar_nino(datos_nino(dni="70000001"), datos_eval(hemoglobina_observada=13.5), "a")
     servicio.registrar_nino(
         datos_nino(dni="70000002", comunidad="Llacuas"),
-        datos_eval(hemoglobina_observada=9.0, fecha=date(2026, 8, 1)),
+        datos_eval(hemoglobina_observada=9.0, fecha=date(2026, 7, 1)),
         "a",
     )
     filas = servicio.listar_seguimiento()
     assert [f["nino"].dni for f in filas] == ["70000002", "70000001"]
-    assert filas[0]["control_atrasado"] and filas[0]["dias_desde_ultimo_control"] == 58
+    # Desde el Incremento 2 «atrasado» es estado normativo: el C1M (programado 01-ago, límite 31-ago) está vencido.
+    assert filas[0]["control_atrasado"] and filas[0]["controles_vencidos"] == 1
+    assert filas[0]["dias_desde_ultimo_control"] == 89
+    assert not filas[1]["control_atrasado"] and filas[1]["controles_vencidos"] == 0
     assert len(servicio.listar_seguimiento(texto="llacuas")) == 1
     assert len(servicio.listar_seguimiento(clasificacion="SIN_ANEMIA")) == 1
     assert servicio.listar_seguimiento(estado="ALTA") == []
@@ -116,7 +119,7 @@ def test_reloj_del_sistema_usa_la_fecha_de_peru():
     # DEF-02: un servidor en UTC (p. ej. un contenedor Docker) no debe adelantar el día después de las 19:00.
     from datetime import datetime
 
-    from app.application.casos_uso import RelojSistema
-    from app.domain.entidades import ZONA_PERU
+    from app.adapters.outbound.reloj_sistema import RelojSistema
+    from app.domain.model.tiempo import ZONA_PERU
 
     assert RelojSistema().hoy() == datetime.now(ZONA_PERU).date()

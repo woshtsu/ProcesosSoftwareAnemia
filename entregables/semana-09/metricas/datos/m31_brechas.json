@@ -1,0 +1,211 @@
+{
+ "regla": "1 = mecanismo TO-BE completo operativo y probado; 0,5 = parcial (operativo y probado solo en parte); 0 = no",
+ "formula": "M3.1 = (suma de puntos B1..B6) / 6 x 100; complementaria = (puntos de las brechas comprometidas hasta el incremento) / (n.º de brechas comprometidas) x 100",
+ "plan_brechas_por_incremento": "B1->INC-1; B2->INC-2; B3->INC-4; B4->INC-3; B5->INC-5; B6->INC-3 e INC-6 (en INC-1 parcial: reporte del periodo HU-05)",
+ "puntuacion": {
+  "B1": {
+   "brecha": "Triple registro manual sin registro nominal único",
+   "mecanismo_to_be": "Registro nominal único validado: un solo registro por evaluación que alimenta expediente, seguimiento y reporte (INC-1).",
+   "v1.0": 1.0,
+   "v1.5": 1.0,
+   "evidencia": "V1 medido por API: 1 escritura por evaluación (3 en el AS-IS) y el registro se refleja en expediente, seguimiento y reporte; RF-01..RF-05 con prueba automatizada y E2E (m21: 17/17 criterios en v1.0, 33/33 en v1.5); DNI único (409)."
+  },
+  "B2": {
+   "brecha": "Agenda calculada a mano, sin agenda normativa ni recordatorios",
+   "mecanismo_to_be": "Agenda de controles según el esquema normativo + detección de vencidos + recordatorios a la familia y agenda del personal (INC-2/INC-4).",
+   "v1.0": 0.0,
+   "v1.5": 0.5,
+   "evidencia": "v1.0: no existe GET /api/ninos/{id}/agenda (404 en 140/140 activos, m32_v1.0_B150 V2) y control_atrasado es una heurística de 30 días desde la última evaluación, no normativa (F1 0,729 frente al oráculo normativo). v1.5: agenda normativa operativa y probada (RF-06, 23 pruebas, 2 E2E) y detección de vencidos con F1 = 1,000 frente al oráculo (476/476 controles coinciden). Parcial porque faltan los recordatorios a la familia (INC-4), la agenda del personal (HIST-2.3) y el registro de asistencia (HIST-2.4): no hay ninguna ocurrencia de 'recordatorio' en el código."
+  },
+  "B3": {
+   "brecha": "Barreras ocultas hasta el abandono",
+   "mecanismo_to_be": "Registro y análisis de barreras del hogar/servicio (INC-4).",
+   "v1.0": 0.0,
+   "v1.5": 0.0,
+   "evidencia": "Ni rutas ni campos ni pantallas de barreras en ninguna versión (0 ocurrencias de 'barrera' en app/)."
+  },
+  "B4": {
+   "brecha": "Visita domiciliaria en papel, sin conexión",
+   "mecanismo_to_be": "Registro de visita domiciliaria con captura sin conexión y sincronización (INC-3).",
+   "v1.0": 0.0,
+   "v1.5": 0.0,
+   "evidencia": "No existe ruta ni formulario de visita domiciliaria. El service worker solo guarda en caché la interfaz; el README declara que el registro definitivo requiere conexión."
+  },
+  "B5": {
+   "brecha": "Riesgo identificado cuando el abandono ya ocurrió",
+   "mecanismo_to_be": "Detección anticipada del riesgo de abandono y priorización de la búsqueda activa (INC-5).",
+   "v1.0": 0.0,
+   "v1.5": 0.0,
+   "evidencia": "La lista de alertas de v1.5 prioriza controles ya vencidos (por días de atraso y gravedad): es reactiva. No hay modelo ni regla que anticipe el riesgo antes del vencimiento; 0 ocurrencias de 'riesgo'/'abandono' en app/. El indicador 'próximo a vencer' (7 días) es aviso de calendario, no estimación de riesgo de abandono."
+  },
+  "B6": {
+   "brecha": "Conectividad intermitente: información no registrada ni reportada en el momento",
+   "mecanismo_to_be": "Registro y reporte en el momento, con operación sin conexión y sincronización (INC-3 e INC-6; en INC-1 parcial con el reporte del periodo HU-05).",
+   "v1.0": 0.5,
+   "v1.5": 0.5,
+   "evidencia": "Parcial: el reporte consolidado del periodo (HU-05, JSON y CSV) se entrega en el momento y está probado (RF-05, E2E incluido), y la interfaz conserva el borrador del formulario en el dispositivo y abre desde caché. Falta lo esencial del mecanismo TO-BE: no hay operación sin conexión ni cola de sincronización (INC-3). Sin cambios en v1.5 (el avance del Inc. 2 no toca B6). Sensibilidad: si se exigiera operación sin conexión para puntuar > 0, B6 sería 0 en ambas versiones."
+  }
+ },
+ "resultado_principal": {
+  "v1.0": {
+   "suma_puntos": 1.5,
+   "de_6": 6,
+   "cobertura_pct": 25.0
+  },
+  "v1.5": {
+   "suma_puntos": 2.0,
+   "de_6": 6,
+   "cobertura_pct": 33.3
+  }
+ },
+ "cobertura_brechas_comprometidas_en_el_plan": {
+  "Inc.1": {
+   "version": "v1.0",
+   "brechas_comprometidas": [
+    "B1"
+   ],
+   "puntos": 1.0,
+   "cobertura_pct": 100.0
+  },
+  "Inc.2": {
+   "version": "v1.5",
+   "brechas_comprometidas": [
+    "B1",
+    "B2"
+   ],
+   "puntos": 1.5,
+   "cobertura_pct": 75.0
+  }
+ },
+ "sensibilidad_B6_igual_a_0": {
+  "v1.0": 16.7,
+  "v1.5": 25.0
+ },
+ "hechos_verificados": {
+  "rutas_http_relativas_al_prefijo_api": {
+   "v1.0": [
+    "GET /ninos",
+    "GET /ninos/dni/{dni}",
+    "GET /ninos/{nino_id}",
+    "GET /reportes/periodo",
+    "GET /salud",
+    "PATCH /ninos/{nino_id}",
+    "POST /ninos",
+    "POST /ninos/{nino_id}/evaluaciones",
+    "POST /validaciones/evaluacion"
+   ],
+   "v1.5": [
+    "GET /alertas/controles-vencidos",
+    "GET /alertas/resumen",
+    "GET /ninos",
+    "GET /ninos/dni/{dni}",
+    "GET /ninos/{nino_id}",
+    "GET /ninos/{nino_id}/agenda",
+    "GET /reportes/periodo",
+    "GET /salud",
+    "PATCH /ninos/{nino_id}",
+    "POST /ninos",
+    "POST /ninos/{nino_id}/evaluaciones",
+    "POST /validaciones/evaluacion"
+   ]
+  },
+  "palabras_clave_en_app": {
+   "v1.0": {
+    "recordatorio": 0,
+    "barrera": 0,
+    "riesgo": 0,
+    "abandono": 0,
+    "sms": 0,
+    "whatsapp": 0,
+    "push": 0
+   },
+   "v1.5": {
+    "recordatorio": 0,
+    "barrera": 0,
+    "riesgo": 0,
+    "abandono": 0,
+    "sms": 0,
+    "whatsapp": 0,
+    "push": 0
+   }
+  },
+  "palabras_clave_detalle_no_vacias": {
+   "v1.0": {},
+   "v1.5": {}
+  },
+  "agenda_v1.0_http": {
+   "404": 140
+  },
+  "agenda_v1.5_http": {
+   "200": 140
+  },
+  "pct_ninos_activos_con_agenda": {
+   "v1.0": 0.0,
+   "v1.5": 100.0
+  },
+  "F1_vencidos_vs_oraculo": {
+   "v1.0": 0.7292,
+   "v1.5": 1.0
+  },
+  "registros_por_evaluacion": {
+   "v1.0": 1,
+   "v1.5": 1
+  },
+  "pruebas_RF": {
+   "v1.0": {
+    "RF-01": {
+     "n_pruebas": 10,
+     "n_e2e": 1
+    },
+    "RF-02": {
+     "n_pruebas": 7,
+     "n_e2e": 1
+    },
+    "RF-03": {
+     "n_pruebas": 11,
+     "n_e2e": 1
+    },
+    "RF-04": {
+     "n_pruebas": 3,
+     "n_e2e": 1
+    },
+    "RF-05": {
+     "n_pruebas": 6,
+     "n_e2e": 1
+    }
+   },
+   "v1.5": {
+    "RF-01": {
+     "n_pruebas": 13,
+     "n_e2e": 1
+    },
+    "RF-02": {
+     "n_pruebas": 7,
+     "n_e2e": 1
+    },
+    "RF-03": {
+     "n_pruebas": 14,
+     "n_e2e": 1
+    },
+    "RF-04": {
+     "n_pruebas": 6,
+     "n_e2e": 1
+    },
+    "RF-05": {
+     "n_pruebas": 8,
+     "n_e2e": 1
+    },
+    "RF-06": {
+     "n_pruebas": 23,
+     "n_e2e": 2
+    },
+    "RF-07": {
+     "n_pruebas": 17,
+     "n_e2e": 2
+    }
+   }
+  },
+  "reporte_periodo_en_ambas": true,
+  "cola_sincronizacion_offline": "No existe: sw.js solo cachea la interfaz (GET fuera de /api/); README: 'El registro definitivo requiere conexión; la cola de sincronización offline es alcance del INC-3'"
+ }
+}

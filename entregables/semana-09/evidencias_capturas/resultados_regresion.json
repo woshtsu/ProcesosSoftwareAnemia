@@ -1,0 +1,152 @@
+{
+  "modo": "regresion",
+  "version": "v1.5.0-inc2-avance",
+  "capturas": [
+    {
+      "archivo": "RF-01/RF01_v15_regresion.png",
+      "rf": "RF-01",
+      "incremento": "regresion",
+      "paso": "Paso 2 · RESULTADO",
+      "descripcion": "Confirmación «Registro guardado: Rosa Elvira Ccente Poma» y expediente del niño recién creado con su evaluación inicial.",
+      "fecha_hora": "16/10/2026 14:16:46",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "Notificación de éxito y expediente abierto; confirmación en 294 ms.",
+      "version": "v1.5.0-inc2-avance"
+    },
+    {
+      "archivo": "RF-02/RF02_v15_regresion.png",
+      "rf": "RF-02",
+      "incremento": "regresion",
+      "paso": "Paso 6 · RESULTADO (nuevo control)",
+      "descripcion": "Confirmación «Control registrado»; el historial pasa de 2 a 3 evaluaciones, con el historial anterior intacto.",
+      "fecha_hora": "16/10/2026 14:16:51",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "Nueva fila en el historial y gráfico actualizado; confirmación en 184 ms.",
+      "version": "v1.5.0-inc2-avance"
+    },
+    {
+      "archivo": "RF-03/RF03_v15_regresion.png",
+      "rf": "RF-03",
+      "incremento": "regresion",
+      "paso": "Paso 2 · RESULTADO (vista previa)",
+      "descripcion": "Vista previa de validación clínica: edad al control, ajuste por altitud, Hb ajustada y clasificación calculadas por el servidor.",
+      "fecha_hora": "16/10/2026 14:16:54",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "«Validación clínica (vista previa) Edad al control 1 a 1 m Ajuste por altitud (3720 m) −2.5 g/dL Hemoglobina ajustada 9.1 g/dL Clasificación Anemia moderada» (Hb ajustada 9.1 g/dL).",
+      "version": "v1.5.0-inc2-avance"
+    },
+    {
+      "archivo": "RF-04/RF04_v15_regresion.png",
+      "rf": "RF-04",
+      "incremento": "regresion",
+      "paso": "Paso 2 · RESULTADO (filtro por clasificación)",
+      "descripcion": "Filtro «Anemia leve» aplicado: solo aparecen niños cuya última clasificación es leve, con fecha y antigüedad del último control.",
+      "fecha_hora": "16/10/2026 14:16:56",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "9 fila(s), todas «Anemia leve»; coincide con GET /api/ninos?clasificacion=LEVE (9).",
+      "version": "v1.5.0-inc2-avance"
+    },
+    {
+      "archivo": "RF-05/RF05_v15_regresion.png",
+      "rf": "RF-05",
+      "incremento": "regresion",
+      "paso": "Paso 2 · RESULTADO (reporte en pantalla)",
+      "descripcion": "Reporte del periodo: indicadores (niños registrados, evaluaciones, evaluados, % con anemia), barras por clasificación y tabla por comunidad.",
+      "fecha_hora": "16/10/2026 14:16:58",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "28 niños registrados en el periodo; reporte generado en 102 ms.",
+      "version": "v1.5.0-inc2-avance"
+    }
+  ],
+  "tiempos": [
+    {
+      "rf": "RF-01",
+      "accion": "clic en «Guardar registro» → confirmación visible + expediente",
+      "ms": 294,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-02",
+      "accion": "consulta: clic en «Abrir» → expediente visible",
+      "ms": 163,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-02",
+      "accion": "actualización (PATCH): clic en «Guardar cambios» → confirmación + datos nuevos",
+      "ms": 190,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-02",
+      "accion": "nuevo control (POST): clic en «Guardar control» → confirmación + fila nueva",
+      "ms": 184,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-03",
+      "accion": "vista previa: digitar Hb → clasificación visible (incluye antirrebote de 350 ms)",
+      "ms": 863,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-03",
+      "accion": "rechazo: clic en «Guardar» con datos inválidos → mensajes por campo",
+      "ms": 80,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-04",
+      "accion": "filtro por clasificación «Anemia leve» → tabla filtrada",
+      "ms": 51,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-04",
+      "accion": "búsqueda «Palmayoc» → tabla filtrada (incluye antirrebote de 250 ms)",
+      "ms": 308,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-05",
+      "accion": "clic en «Generar» → reporte visible",
+      "ms": 102,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-05",
+      "accion": "clic en «Descargar CSV» → archivo descargado",
+      "ms": 116,
+      "umbral_2s": true
+    }
+  ],
+  "criterios": {
+    "RF-01": {
+      "gwt": "Dado un formulario con datos válidos, cuando se pulsa «Guardar registro», entonces el sistema almacena el registro, muestra confirmación y abre el expediente en < 2 s.",
+      "cumple": true,
+      "detalle": "GET /api/ninos/dni/72000001 → 200 con 1 evaluación; confirmación en 294 ms. Verificación adicional: DNI repetido → HTTP 409."
+    },
+    "RF-02": {
+      "gwt": "Dado un expediente existente, cuando se consulta y se actualizan campos permitidos y se agrega un nuevo control, entonces persisten los cambios, el historial anterior se conserva y hay confirmación en < 2 s.",
+      "cumple": true,
+      "detalle": "Consulta 163 ms; PATCH 190 ms (comunidad/celular persistidos: True); nuevo control 184 ms (evaluaciones 2→3)."
+    },
+    "RF-03": {
+      "gwt": "Dado un formulario con datos clínicos, cuando se digita la Hb, entonces la vista previa muestra Hb ajustada y clasificación; y cuando los datos son inválidos, entonces se rechaza con mensaje comprensible por campo.",
+      "cumple": true,
+      "detalle": "Vista previa «Anemia moderada» en 863 ms (incl. 350 ms de antirrebote); rechazo en 80 ms con 2 campos marcados; POST /api/validaciones/evaluacion con Hb 25 → HTTP 422."
+    },
+    "RF-04": {
+      "gwt": "Dado un conjunto de niños en seguimiento, cuando se filtra por clasificación o se busca por comunidad, entonces el listado respeta el filtro y muestra el estado de control de cada niño en < 2 s.",
+      "cumple": true,
+      "detalle": "Filtro LEVE 9/9 filas en 51 ms; búsqueda Palmayoc 8/8 filas en 308 ms."
+    },
+    "RF-05": {
+      "gwt": "Dado un periodo válido, cuando se pulsa «Generar», entonces se muestran los indicadores del periodo (JSON) y se puede descargar el mismo conjunto como CSV, en < 2 s.",
+      "cumple": true,
+      "detalle": "Reporte en pantalla 102 ms (KPI 28 = API 28); CSV 116 ms con 18 filas = evaluaciones_realizadas 18; Content-Type text/csv; charset=utf-8."
+    }
+  },
+  "hallazgos": [],
+  "generado": "16/10/2026 14:17:00"
+}

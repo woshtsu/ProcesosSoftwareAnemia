@@ -1,0 +1,49 @@
+// 70_s9_cadena_trazabilidad.dot — Cadena metodológica de trazabilidad integrada (Semana 9)
+// Fuente: guías/S9-PSW-GUÍA DE TRABAJO.md (cadena); artefactos: S1, S2, S6, S9. Regenerar con el comando del final.
+digraph cadena {
+  graph [rankdir=TB, fontname="DejaVu Sans", fontsize=15, labelloc=t, nodesep=0.45, ranksep=0.7, pad=0.3,
+         label="Cadena de trazabilidad: del problema organizacional al valor para el usuario", splines=true];
+  node  [shape=plain, fontname="DejaVu Sans", fontsize=12];
+  edge  [color="#4A5A6A", penwidth=1.6, arrowsize=0.9];
+
+  // Fundamento (S1–S6): gris
+  n1 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#4A5A6A" BGCOLOR="#FFFFFF">
+    <TR><TD BGCOLOR="#D5DBE1" ALIGN="CENTER"><B>1. Problema organizacional</B></TD></TR>
+    <TR><TD ALIGN="LEFT" BALIGN="LEFT">Brechas AS-IS B1 a B6<BR/>(S1 §4; S6 Tabla 4)</TD></TR></TABLE>>];
+  n2 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#4A5A6A" BGCOLOR="#FFFFFF">
+    <TR><TD BGCOLOR="#D5DBE1" ALIGN="CENTER"><B>2. Proceso TO-BE</B></TD></TR>
+    <TR><TD ALIGN="LEFT" BALIGN="LEFT">Mejoras M1 a M6 por brecha<BR/>(S1 §5; S6 Tabla 5)</TD></TR></TABLE>>];
+  n3 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#4A5A6A" BGCOLOR="#FFFFFF">
+    <TR><TD BGCOLOR="#D5DBE1" ALIGN="CENTER"><B>3. Modelo adaptado</B></TD></TR>
+    <TR><TD ALIGN="LEFT" BALIGN="LEFT">Iterativo-incremental + Scrum<BR/>+ DevOps (S2; S6 Tabla 9)</TD></TR></TABLE>>];
+  // Pilar 1: azul
+  n4 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#2F5D8A" BGCOLOR="#FFFFFF">
+    <TR><TD BGCOLOR="#C9DAEC" ALIGN="CENTER"><B>4. Arquitectura hexagonal en Git</B><BR/><FONT POINT-SIZE="10" COLOR="#2F5D8A">PILAR 1 · G-01</FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BALIGN="LEFT">app/domain · app/ports · app/adapters<BR/>ADR-001 y ADR-008; M1.1, M1.2</TD></TR></TABLE>>];
+  // Pilar 2: verde
+  n5 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#2E6B4E" BGCOLOR="#FFFFFF">
+    <TR><TD BGCOLOR="#C5E3D2" ALIGN="CENTER"><B>5. Pruebas Inc. 1 y Inc. 2</B><BR/><FONT POINT-SIZE="10" COLOR="#2E6B4E">PILAR 2 · G-02</FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BALIGN="LEFT">RF-01 a RF-07 con captura<BR/>228 + 8 pruebas; M2.1, M2.2</TD></TR></TABLE>>];
+  // GQM: transversal
+  n6 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#1F2D3D" BGCOLOR="#FFFFFF">
+    <TR><TD BGCOLOR="#D5DBE1" ALIGN="CENTER"><B>6. Evaluación GQM</B><BR/><FONT POINT-SIZE="10" COLOR="#1F2D3D">MARCO DE MEDICIÓN (3 pilares)</FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BALIGN="LEFT">Goals G-01 a G-03<BR/>Q1.1 a Q3.2; M1.1 a M3.2</TD></TR></TABLE>>];
+  // Pilar 3: arena
+  n7 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#B08A2E" BGCOLOR="#FFFFFF">
+    <TR><TD BGCOLOR="#F3E2B3" ALIGN="CENTER"><B>7. Valor al usuario</B><BR/><FONT POINT-SIZE="10" COLOR="#7A5C12">PILAR 3 · G-03</FONT></TD></TR>
+    <TR><TD ALIGN="LEFT" BALIGN="LEFT">Indicadores V1 a V6<BR/>M3.1 (brechas), M3.2 (valor)</TD></TR></TABLE>>];
+
+  {rank=same; n1; n2; n3; n4}
+  {rank=same; n5; n6; n7}
+  n1 -> n2 -> n3 -> n4;
+  n4 -> n5 [constraint=true];
+  n5 -> n6 -> n7;
+  {rank=same; n5; n6; n7}
+  // leyenda
+  leyenda [shape=plain, label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="4" CELLPADDING="4">
+    <TR><TD BGCOLOR="#D5DBE1">Fundamento (S1 a S6) y marco GQM</TD>
+        <TD BGCOLOR="#C9DAEC">Pilar 1 · Arquitectura</TD>
+        <TD BGCOLOR="#C5E3D2">Pilar 2 · Pruebas</TD>
+        <TD BGCOLOR="#F3E2B3">Pilar 3 · Valor</TD></TR></TABLE>>];
+  n7 -> leyenda [style=invis];
+}

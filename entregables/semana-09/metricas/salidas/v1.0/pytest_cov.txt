@@ -1,0 +1,176 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0 -- .venv/bin/python
+rootdir: ../inc1_v1.0_PMV
+configfile: pyproject.toml
+plugins: locust-2.46.6, anyio-4.15.1, cov-7.1.0
+collecting ... collected 73 items
+
+tests/unitarias/test_casos_uso.py::test_registrar_nino_crea_expediente_con_evaluacion_clasificada PASSED [  1%]
+tests/unitarias/test_casos_uso.py::test_registro_duplicado_por_dni_se_rechaza PASSED [  2%]
+tests/unitarias/test_casos_uso.py::test_registro_invalido_acumula_errores_de_nino_y_evaluacion PASSED [  4%]
+tests/unitarias/test_casos_uso.py::test_consultar_y_buscar_por_dni PASSED [  5%]
+tests/unitarias/test_casos_uso.py::test_actualizar_datos_editables PASSED [  6%]
+tests/unitarias/test_casos_uso.py::test_actualizar_rechaza_cambios_invalidos[cambios0-dni] PASSED [  8%]
+tests/unitarias/test_casos_uso.py::test_actualizar_rechaza_cambios_invalidos[cambios1-estado] PASSED [  9%]
+tests/unitarias/test_casos_uso.py::test_actualizar_rechaza_cambios_invalidos[cambios2-altitud_m] PASSED [ 10%]
+tests/unitarias/test_casos_uso.py::test_registrar_nuevo_control PASSED   [ 12%]
+tests/unitarias/test_casos_uso.py::test_vista_previa_no_guarda PASSED    [ 13%]
+tests/unitarias/test_casos_uso.py::test_listar_seguimiento_prioriza_casos_graves_y_filtra PASSED [ 15%]
+tests/unitarias/test_casos_uso.py::test_reporte_del_periodo PASSED       [ 16%]
+tests/unitarias/test_casos_uso.py::test_reporte_cuenta_registros_nocturnos_en_el_dia_local PASSED [ 17%]
+tests/unitarias/test_casos_uso.py::test_reloj_del_sistema_usa_la_fecha_de_peru PASSED [ 19%]
+tests/unitarias/test_entidades.py::test_datos_validos_no_generan_errores PASSED [ 20%]
+tests/unitarias/test_entidades.py::test_dni_debe_tener_8_digitos[1234567] PASSED [ 21%]
+tests/unitarias/test_entidades.py::test_dni_debe_tener_8_digitos[123456789] PASSED [ 23%]
+tests/unitarias/test_entidades.py::test_dni_debe_tener_8_digitos[7123456A] PASSED [ 24%]
+tests/unitarias/test_entidades.py::test_dni_debe_tener_8_digitos[] PASSED [ 26%]
+tests/unitarias/test_entidades.py::test_campos_obligatorios_vacios PASSED [ 27%]
+tests/unitarias/test_entidades.py::test_fecha_nacimiento_futura_o_mayor_de_5_anos PASSED [ 28%]
+tests/unitarias/test_entidades.py::test_altitud_y_celular_invalidos PASSED [ 30%]
+tests/unitarias/test_entidades.py::test_evaluacion_fuera_de_rango[hemoglobina_observada-2.9] PASSED [ 31%]
+tests/unitarias/test_entidades.py::test_evaluacion_fuera_de_rango[hemoglobina_observada-20.1] PASSED [ 32%]
+tests/unitarias/test_entidades.py::test_evaluacion_fuera_de_rango[hemoglobina_observada-None] PASSED [ 34%]
+tests/unitarias/test_entidades.py::test_evaluacion_fuera_de_rango[peso_kg-45] PASSED [ 35%]
+tests/unitarias/test_entidades.py::test_evaluacion_fuera_de_rango[talla_cm-20] PASSED [ 36%]
+tests/unitarias/test_entidades.py::test_evaluacion_fuera_de_rango[fecha-valor5] PASSED [ 38%]
+tests/unitarias/test_entidades.py::test_evaluacion_fuera_de_rango[fecha-valor6] PASSED [ 39%]
+tests/unitarias/test_entidades.py::test_evaluacion_fuera_de_rango[fecha-None] PASSED [ 41%]
+tests/unitarias/test_entidades.py::test_mensaje_de_hemoglobina_es_comprensible PASSED [ 42%]
+tests/unitarias/test_entidades.py::test_edad_en_meses[nac0-ref0-11] PASSED [ 43%]
+tests/unitarias/test_entidades.py::test_edad_en_meses[nac1-ref1-11] PASSED [ 45%]
+tests/unitarias/test_entidades.py::test_edad_en_meses[nac2-ref2-10] PASSED [ 46%]
+tests/unitarias/test_entidades.py::test_edad_en_meses[nac3-ref3-24] PASSED [ 47%]
+tests/unitarias/test_entidades.py::test_evaluacion_calcula_ajuste_y_clasificacion PASSED [ 49%]
+tests/unitarias/test_entidades.py::test_error_validacion_se_representa_como_texto PASSED [ 50%]
+tests/unitarias/test_entidades.py::test_fecha_local_usa_hora_de_peru PASSED [ 52%]
+tests/unitarias/test_reglas_clinicas.py::test_ajuste_por_altitud_segun_ecuacion[0-0.0] PASSED [ 53%]
+tests/unitarias/test_reglas_clinicas.py::test_ajuste_por_altitud_segun_ecuacion[-10-0.0] PASSED [ 54%]
+tests/unitarias/test_reglas_clinicas.py::test_ajuste_por_altitud_segun_ecuacion[1000-0.6] PASSED [ 56%]
+tests/unitarias/test_reglas_clinicas.py::test_ajuste_por_altitud_segun_ecuacion[3000-2.0] PASSED [ 57%]
+tests/unitarias/test_reglas_clinicas.py::test_ajuste_por_altitud_segun_ecuacion[3550-2.4] PASSED [ 58%]
+tests/unitarias/test_reglas_clinicas.py::test_ajuste_por_altitud_segun_ecuacion[4000-2.7] PASSED [ 60%]
+tests/unitarias/test_reglas_clinicas.py::test_hemoglobina_ajustada_resta_el_ajuste PASSED [ 61%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[8-10.5-SIN_ANEMIA] PASSED [ 63%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[8-10.4-LEVE] PASSED [ 64%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[8-9.5-LEVE] PASSED [ 65%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[8-9.4-MODERADA] PASSED [ 67%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[8-7.0-MODERADA] PASSED [ 68%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[8-6.9-SEVERA] PASSED [ 69%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[30-11.0-SIN_ANEMIA] PASSED [ 71%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[30-10.9-LEVE] PASSED [ 72%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[30-10.0-LEVE] PASSED [ 73%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[30-9.9-MODERADA] PASSED [ 75%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[30-6.5-SEVERA] PASSED [ 76%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[23-10.5-SIN_ANEMIA] PASSED [ 78%]
+tests/unitarias/test_reglas_clinicas.py::test_clasificacion_en_limites_de_los_puntos_de_corte[24-10.5-LEVE] PASSED [ 79%]
+tests/unitarias/test_reglas_clinicas.py::test_fuera_de_rango_de_edad_no_aplica[0] PASSED [ 80%]
+tests/unitarias/test_reglas_clinicas.py::test_fuera_de_rango_de_edad_no_aplica[3] PASSED [ 82%]
+tests/unitarias/test_reglas_clinicas.py::test_fuera_de_rango_de_edad_no_aplica[5] PASSED [ 83%]
+tests/unitarias/test_reglas_clinicas.py::test_fuera_de_rango_de_edad_no_aplica[60] PASSED [ 84%]
+tests/integracion/test_api.py::test_salud_e_interfaz PASSED              [ 86%]
+tests/integracion/test_api.py::test_registro_exitoso_devuelve_expediente PASSED [ 87%]
+tests/integracion/test_api.py::test_registro_duplicado_devuelve_409 PASSED [ 89%]
+tests/integracion/test_api.py::test_datos_fuera_de_rango_devuelven_422_con_mensajes_en_espanol PASSED [ 90%]
+tests/integracion/test_api.py::test_formato_invalido_devuelve_422_en_espanol PASSED [ 91%]
+tests/integracion/test_api.py::test_consultar_expediente_por_id_y_dni PASSED [ 93%]
+tests/integracion/test_api.py::test_actualizar_expediente_y_registrar_control PASSED [ 94%]
+tests/integracion/test_api.py::test_vista_previa_de_validacion PASSED    [ 95%]
+tests/integracion/test_api.py::test_listado_de_seguimiento_con_filtros PASSED [ 97%]
+tests/integracion/test_api.py::test_reporte_json_y_csv PASSED            [ 98%]
+tests/integracion/test_zona_horaria.py::test_registro_nocturno_cuenta_en_el_dia_local PASSED [100%].venv/lib/python3.13/site-packages/coverage/collector.py:475: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a5cfcb80>
+  tuples.append((l1, l2))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/collections/__init__.py:450: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a6fa23e0>
+  @classmethod
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/collections/__init__.py:450: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a70297b0>
+  @classmethod
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/collections/__init__.py:450: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a6f02e30>
+  @classmethod
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+
+
+=============================== warnings summary ===============================
+../../venv/lib/python3.13/site-packages/fastapi/testclient.py:1
+  .venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/integracion/test_api.py::test_formato_invalido_devuelve_422_en_espanol
+  /usr/lib/python3.13/asyncio/events.py:36: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a6f00c70>
+    def __init__(self, callback, args, loop, context=None):
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/integracion/test_api.py::test_listado_de_seguimiento_con_filtros
+  .venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:470: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a6fa27a0>
+    def _gen_cache_key(
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/integracion/test_api.py::test_listado_de_seguimiento_con_filtros
+  .venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:470: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a6f034c0>
+    def _gen_cache_key(
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/integracion/test_api.py::test_listado_de_seguimiento_con_filtros
+  .venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:470: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a7043970>
+    def _gen_cache_key(
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/integracion/test_api.py::test_listado_de_seguimiento_con_filtros
+  .venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:470: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a6f00130>
+    def _gen_cache_key(
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/integracion/test_api.py::test_listado_de_seguimiento_con_filtros
+  .venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:470: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a5ccca90>
+    def _gen_cache_key(
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/integracion/test_api.py::test_listado_de_seguimiento_con_filtros
+  .venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:470: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f20a5e33d30>
+    def _gen_cache_key(
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.13.16-final-0 _______________
+
+Name                                                  Stmts   Miss Branch BrPart  Cover   Missing
+-------------------------------------------------------------------------------------------------
+app/__init__.py                                           0      0      0      0   100%
+app/adapters/__init__.py                                  0      0      0      0   100%
+app/adapters/entrada/__init__.py                          0      0      0      0   100%
+app/adapters/entrada/http/__init__.py                     0      0      0      0   100%
+app/adapters/entrada/http/api.py                         81      0      6      0   100%
+app/adapters/entrada/http/esquemas.py                    96      0      0      0   100%
+app/adapters/salida/__init__.py                           0      0      0      0   100%
+app/adapters/salida/persistencia/__init__.py              0      0      0      0   100%
+app/adapters/salida/persistencia/memoria.py              42      0     12      0   100%
+app/adapters/salida/persistencia/sqlalchemy_repo.py     108      1     10      3    97%   152->154, 207->209, 237
+app/application/__init__.py                               0      0      0      0   100%
+app/application/casos_uso.py                            101      0     22      0   100%
+app/application/puertos.py                                5      0      0      0   100%
+app/domain/__init__.py                                    0      0      0      0   100%
+app/domain/entidades.py                                 123      1     36      1    99%   101
+app/domain/errores.py                                    12      0      0      0   100%
+app/domain/reglas_clinicas.py                            43      0     12      0   100%
+app/main.py                                              30      0      0      0   100%
+-------------------------------------------------------------------------------------------------
+TOTAL                                                   641      2     98      4    99%
+Coverage XML written to file entregables/semana-09/metricas/salidas/v1.0/cobertura.xml
+Required test coverage of 80.0% reached. Total coverage: 99.19%
+============================= slowest 5 durations ==============================
+0.15s call     tests/integracion/test_api.py::test_salud_e_interfaz
+0.14s setup    tests/integracion/test_api.py::test_salud_e_interfaz
+0.12s call     tests/integracion/test_api.py::test_listado_de_seguimiento_con_filtros
+0.09s call     tests/integracion/test_api.py::test_actualizar_expediente_y_registrar_control
+0.09s call     tests/integracion/test_api.py::test_consultar_expediente_por_id_y_dni
+======================== 73 passed, 8 warnings in 1.97s ========================
+exit=0
