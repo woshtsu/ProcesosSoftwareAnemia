@@ -14,7 +14,7 @@ La Tabla 1 identifica el entregable y la Tabla 2 al equipo.
 | **Docente** | Guevara Jimenez, Jorge Alfredo |
 | **Semana y guía** | Semana 9: «Evaluación del proceso y producto de software mediante el modelo GQM» (`guias/S9-PSW-GUÍA DE TRABAJO.md`) |
 | **Fecha** | 16/10/2026 |
-| **Versiones del software evaluadas** | `v1.0-PMV` (Incremento 1, tag existente) y `v1.5.0-inc2-avance` (avance del 50 % del Incremento 2, en el árbol de trabajo; rama `feature/inc2-agenda-alertas` y etiqueta por publicar) |
+| **Versiones del software evaluadas** | `v1.0-PMV` (Incremento 1, tag existente) y `v1.5.0-inc2-avance` (avance del 50 % del Incremento 2; rama `feature/inc2-agenda-alertas` y etiqueta publicadas en GitHub el 17/10/2026, commit `416dfbc`) |
 | **Repositorio** | <https://github.com/woshtsu/ProcesosSoftwareAnemia> |
 
 **Tabla 2.** Integrantes, códigos, roles y responsabilidad propuesta en este entregable.
@@ -106,7 +106,7 @@ El informe se expone dividido en tres pilares. La Tabla 3 resume qué se muestra
 | **Reproducida** (16/10/2026, contenedor Linux de 2 CPU, Python 3.13, SQLite, Chromium headless) | Resultados que se obtuvieron ejecutando los scripts de `herramientas/gqm/` y guardados en `entregables/semana-09/metricas/` y `evidencias_capturas/` | 228 + 8 pruebas, cobertura, M1.1, M1.2, M1.3, M2.x, M3.x, carga, disponibilidad, 45 exploratorias, 31 capturas |
 | **Heredada** (S1 a S6) | Resultados de entregables previos que aquí no se re-ejecutaron | Brechas B1 a B6, matriz de intervención, ADR-001 a ADR-006, HU-01 a HU-05, DEF-01 y DEF-02 (S6) |
 | **Propuesta** | Decisiones o metas que el equipo plantea y que no están aprobadas | Reparto de expositores, ajuste de la meta de M3.1, fechas del plan PDCA, replanificación de sprints |
-| **Pendiente** | Lo que aún no existe o no se ha hecho | Publicación de la rama `feature/inc2-agenda-alertas` y del tag `v1.5.0-inc2-avance` (por publicar), tag `v2.0-Inc2` (se creará al cierre del Inc. 2), HIST-2.3 y HIST-2.4, SUS con usuarios, piloto en posta, análisis de SonarCloud, captura directa de la interfaz de GitHub |
+| **Pendiente** | Lo que aún no existe o no se ha hecho | Tag `v2.0-Inc2` (se creará al cierre del Inc. 2), HIST-2.3 y HIST-2.4, SUS con usuarios, piloto en posta, análisis de SonarCloud |
 
 ### 2.1 Avance del 50 % del Incremento 2 realizado antes de la evaluación
 
@@ -152,7 +152,7 @@ La Tabla 7 resume las seis métricas GQM de la guía con la meta de cada increme
 
 Cuatro conclusiones sintetizan los resultados.
 
-1. **Arquitectura.** El dominio estuvo aislado desde el Inc. 1 (M1.1 = 0,0 %), pero la estructura del PMV cumplía 2 de los 5 componentes de la guía (M1.2 = 40,0 %); el ADR-008 la llevó a 5/5 y eliminó la única violación de la regla de dependencia. **Reserva:** la evidencia de v1.5 es un árbol local; la rama `feature/inc2-agenda-alertas`, la etiqueta `v1.5.0-inc2-avance` y la captura de la interfaz de GitHub están por publicar (acción 8 del plan PDCA y lista previa a la exposición del Anexo B). `v2.0-Inc2` se creará al cierre del Inc. 2; mientras tanto el avance se identifica con `v1.5.0-inc2-avance`.
+1. **Arquitectura.** El dominio estuvo aislado desde el Inc. 1 (M1.1 = 0,0 %), pero la estructura del PMV cumplía 2 de los 5 componentes de la guía (M1.2 = 40,0 %); el ADR-008 la llevó a 5/5 y eliminó la única violación de la regla de dependencia. Ambas versiones están publicadas en GitHub: `v1.0-PMV` y `v1.5.0-inc2-avance` (rama `feature/inc2-agenda-alertas`, commit `416dfbc`), con capturas de la interfaz de GitHub en la sección 4.1. `v2.0-Inc2` se creará al cierre del Inc. 2; mientras tanto el avance se identifica con `v1.5.0-inc2-avance`.
 2. **Pruebas.** Los 7 RF entregados tienen ficha, captura aprobada y pruebas en verde (228 por defecto y 8 E2E; cobertura de 100 %). La meta del Inc. 1 no se cumplió (1,4 Def/RF): 6 de 7 defectos escaparon del PMV y se hallaron en el ciclo del Inc. 2; todos están corregidos con regresión. La meta del Inc. 2 se cumple solo por atribución de esos defectos al incremento de origen (0/2); contados sobre los 7 RF vigentes serían 0,86 y no cumpliría (Tabla 7).
 3. **Valor.** M3.2 pasa de 57,6 % a 100,0 %, pero mide solo V1 a V3 (no incluye tiempo de respuesta, disponibilidad ni satisfacción). M3.1 queda en 33,3 % frente a una meta de 90 %: la guía supone cerrar casi todas las brechas en dos incrementos y el plan las reparte en seis (sección 6.3).
 4. **Hallazgo adverso.** Con el mismo mix de carga el p95 agregado (V4) pasó de 175 ms a 610 ms, sin fallos y por debajo de 2 s. El 100,0 % de M3.2 no lo contradice porque V4 queda fuera del índice. La causa no está perfilada; es la acción 1 del plan PDCA (sección 7.3).
@@ -291,13 +291,13 @@ La guía describe la estructura con nombres de un proyecto Java (`/src/domain/mo
 | `/src/adapters/outbound/persistence/` | `app/adapters/salida/persistencia/` | `app/adapters/outbound/persistence/` (+ `reloj_sistema.py`) |
 | *(raíz de composición)* | `app/main.py` | `app/main.py` |
 
-En el tag `v1.0-PMV` la carpeta `app/` está en la raíz del repositorio (<https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.0-PMV/app>). La versión v1.5 vive en `pmv_fastapi/app/` del árbol de trabajo; su ruta en GitHub será la de la rama `feature/inc2-agenda-alertas` y la etiqueta `v1.5.0-inc2-avance` (<https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.5.0-inc2-avance/pmv_fastapi/app>, **por publicar**). Los árboles de carpetas se muestran en las Figuras 3 y 4 (versión en texto en el Anexo G.2).
+En el tag `v1.0-PMV` la carpeta `app/` está en la raíz del repositorio (<https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.0-PMV/app>). La versión v1.5 vive en `pmv_fastapi/app/` del árbol de trabajo; en GitHub está en la rama `feature/inc2-agenda-alertas` y la etiqueta `v1.5.0-inc2-avance` (<https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.5.0-inc2-avance/pmv_fastapi/app>, publicada el 17/10/2026). Las Figuras 3 y 4 son capturas de la interfaz de GitHub de ambas etiquetas; el árbol completo de carpetas está en el Anexo G.2 y en `evidencias_capturas/arquitectura/arbol_v1.0.png` y `arbol_v1.5.png`.
 
-![Figura 3. Captura del árbol de carpetas `app/` en v1.0-PMV (copia local con contenido idéntico al tag `v1.0-PMV`; elaboración propia)](evidencias_capturas/arquitectura/arbol_v1.0.png)
+![Figura 3. Vista en GitHub de la carpeta `app/` en la etiqueta `v1.0-PMV` (Incremento 1): `adapters`, `application`, `domain`, `web`; no existe `ports/` (captura del navegador, 17/10/2026)](evidencias_capturas/arquitectura/github_v1.0-PMV_app.png)
 
-![Figura 4. Captura del árbol de carpetas `app/` en v1.5.0-inc2-avance (árbol de trabajo local, por publicar en GitHub; elaboración propia)](evidencias_capturas/arquitectura/arbol_v1.5.png)
+![Figura 4. Vista en GitHub de `pmv_fastapi/app/` en la etiqueta `v1.5.0-inc2-avance` (avance del Incremento 2): aparece `ports/` junto a `adapters`, `application`, `domain` y `web` (captura del navegador, 17/10/2026)](evidencias_capturas/arquitectura/github_v1.5.0-inc2-avance_app.png)
 
-**Limitación de la evidencia.** Las dos capturas son del árbol local (copia con contenido idéntico al tag `v1.0-PMV` y árbol de trabajo de v1.5), generadas el 16/10/2026 18:46. El intento automatizado de capturar la página de GitHub del tag respondió HTTP 403 (el entorno no tiene acceso al repositorio) y no se pueden crear commits ni etiquetas desde este entorno. Por tanto, **la rama `feature/inc2-agenda-alertas`, la etiqueta `v1.5.0-inc2-avance` y la captura de la interfaz de GitHub están por publicar**: el equipo las realizará antes de la exposición con la lista del Anexo B. La auditoría de v1.0 se apoya en un tag que sí existe en GitHub; la de v1.5, en el árbol local. La etiqueta `v2.0-Inc2` se creará al cierre del Inc. 2 y mientras tanto el avance se identifica con `v1.5.0-inc2-avance`.
+**Evidencia en GitHub.** Las Figuras 3 y 4 son capturas del navegador tomadas el 17/10/2026 sobre las etiquetas publicadas `v1.0-PMV` y `v1.5.0-inc2-avance` (commit `416dfbc`, rama `feature/inc2-agenda-alertas`). En v1.0 la carpeta `app/` no tiene `ports/`; en v1.5 aparece `ports/` junto a `adapters/`, `application/`, `domain/` y `web/`, que es la estructura que audita la Matriz 4.1. El detalle de subcarpetas (`model/`, `service/`, `inbound/`, `outbound/`) está en el Anexo G.2 y en las capturas del árbol completo (`evidencias_capturas/arquitectura/arbol_v1.0.png` y `arbol_v1.5.png`). La etiqueta `v2.0-Inc2` se creará al cierre del Inc. 2; mientras tanto el avance se identifica con `v1.5.0-inc2-avance`.
 
 ### 4.2 Matriz 4.1 de auditoría arquitectónica
 
@@ -315,15 +315,15 @@ Las Tablas 14 y 15 son la Matriz 4.1 de la guía aplicada a cada versión. El es
 
 Resultado: 2 de 5 componentes conformes, **M1.2 = 40,0 %** (60,0 % con el criterio laxo; 20,0 % con el ultra estricto). El criterio **ultra estricto** exige, además, que todos los puertos de salida (incluido `Reloj`) tengan su implementación dentro del paquete de adaptadores de salida; en v1.0 `RelojSistema` está en `app/application/casos_uso.py:207`.
 
-**Tabla 15.** Matriz 4.1 para `v1.5.0-inc2-avance` (avance del Incremento 2). Las rutas serán las de la rama `feature/inc2-agenda-alertas` y la etiqueta `v1.5.0-inc2-avance` (base: <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.5.0-inc2-avance/pmv_fastapi/app>), **por publicar**; hoy corresponden al árbol de trabajo local.
+**Tabla 15.** Matriz 4.1 para `v1.5.0-inc2-avance` (avance del Incremento 2). Las rutas son las de la etiqueta `v1.5.0-inc2-avance` en GitHub (base: <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.5.0-inc2-avance/pmv_fastapi/app>), publicada el 17/10/2026 (Figura 4).
 
 | Componente Hexagonal | Ruta en Repositorio GitHub | Estado (Conforme / No Conforme) | Evidencia de Desacoplamiento / Hallazgo |
 | --- | --- | --- | --- |
-| **Núcleo de Dominio** | `pmv_fastapi/app/domain/model/` y `pmv_fastapi/app/domain/service/` *(por publicar)* | **Conforme** | 0 importaciones externas: 35 importaciones, 17 de la biblioteca estándar y 18 internas; 19 clases (m11). 0 importaciones de otras capas. |
-| **Puertos de Entrada** | `pmv_fastapi/app/ports/inbound/` *(por publicar)* | **Conforme** | 5 interfaces `Protocol` sin lógica: `GenerarAgenda` (`agenda.py:8`), `ConsultarControlesVencidos` (`alertas.py:8`), `GestionarExpediente` (`expediente.py:9`), `GenerarReporte` (`reportes.py:7`), `ConsultarSeguimiento` (`seguimiento.py:6`). |
-| **Puertos de Salida** | `pmv_fastapi/app/ports/outbound/` *(por publicar)* | **Conforme** | `Reloj` (`reloj.py:7`) y `RepositorioNinos` (`repositorio_ninos.py:13`, 9 métodos sin lógica); 0 violaciones de pureza ni importaciones de infraestructura. |
-| **Adaptadores Entrada** | `pmv_fastapi/app/adapters/inbound/http/` *(por publicar)* | **Conforme** | `api.py:17` a `api.py:21` importan los 5 puertos de entrada; 0 módulos de aplicación y 0 adaptadores de salida. |
-| **Adaptadores Salida** | `pmv_fastapi/app/adapters/outbound/persistence/` *(por publicar)* | **Conforme** | `RepositorioEnMemoria` (`memoria.py:11`) y `RepositorioSQLAlchemy` (`sqlalchemy_repo.py:159`) heredan de `RepositorioNinos`; SQLAlchemy solo en `sqlalchemy_repo.py` (líneas 6, 18 y 19); 0 importaciones de aplicación o de adaptadores de entrada. |
+| **Núcleo de Dominio** | `pmv_fastapi/app/domain/model/` y `pmv_fastapi/app/domain/service/` | **Conforme** | 0 importaciones externas: 35 importaciones, 17 de la biblioteca estándar y 18 internas; 19 clases (m11). 0 importaciones de otras capas. |
+| **Puertos de Entrada** | `pmv_fastapi/app/ports/inbound/` | **Conforme** | 5 interfaces `Protocol` sin lógica: `GenerarAgenda` (`agenda.py:8`), `ConsultarControlesVencidos` (`alertas.py:8`), `GestionarExpediente` (`expediente.py:9`), `GenerarReporte` (`reportes.py:7`), `ConsultarSeguimiento` (`seguimiento.py:6`). |
+| **Puertos de Salida** | `pmv_fastapi/app/ports/outbound/` | **Conforme** | `Reloj` (`reloj.py:7`) y `RepositorioNinos` (`repositorio_ninos.py:13`, 9 métodos sin lógica); 0 violaciones de pureza ni importaciones de infraestructura. |
+| **Adaptadores Entrada** | `pmv_fastapi/app/adapters/inbound/http/` | **Conforme** | `api.py:17` a `api.py:21` importan los 5 puertos de entrada; 0 módulos de aplicación y 0 adaptadores de salida. |
+| **Adaptadores Salida** | `pmv_fastapi/app/adapters/outbound/persistence/` | **Conforme** | `RepositorioEnMemoria` (`memoria.py:11`) y `RepositorioSQLAlchemy` (`sqlalchemy_repo.py:159`) heredan de `RepositorioNinos`; SQLAlchemy solo en `sqlalchemy_repo.py` (líneas 6, 18 y 19); 0 importaciones de aplicación o de adaptadores de entrada. |
 
 Resultado: 5 de 5 componentes conformes, **M1.2 = 100,0 %** con los tres criterios. La Figura 5 compara la conformidad por componente.
 
@@ -376,7 +376,7 @@ El criterio de revisión de ADR-007 (p95 de alertas mayor que 300 ms) se supera 
 
 **Q1.1 · ¿El núcleo de dominio está aislado de frameworks y librerías externas en la estructura de directorios?** **Sí, en ambos incrementos.** El dominio tiene 0 importaciones externas en `v1.0-PMV` (0 de 8 clases) y en `v1.5.0-inc2-avance` (0 de 19 clases): M1.1 = 0,0 % cumple ambas metas, y el dominio creció de 8 a 19 clases sin incorporar ninguna dependencia externa. La guía propone como ejemplo un 12 % de contaminación en el Inc. 1; el valor real fue 0,0 % y no hay mejora que atribuir a este indicador.
 
-**Q1.2 · ¿Los puertos y adaptadores están organizados correctamente en módulos independientes de GitHub?** **En el Inc. 1 solo parcialmente; en el avance del Inc. 2, sí.** La meta del Inc. 1 **no se cumplió** (M1.2 = 40,0 %; 60,0 % con el criterio laxo): faltaban los puertos de entrada, el puerto de salida vivía dentro de `application` y el adaptador HTTP importaba la clase concreta. La causa es de diseño: ADR-001 definió puertos de salida pero invocaba los casos de uso directamente, y la estructura de la guía es posterior al PMV. El ADR-008 llevó M1.2 a 100 % (5/5), eliminó la violación y dejó 14 pruebas que impiden retroceder. La evidencia son el árbol de carpetas y las importaciones citadas con archivo y línea; la rama, la etiqueta y la captura de GitHub de v1.5 siguen por publicar (sección 4.1).
+**Q1.2 · ¿Los puertos y adaptadores están organizados correctamente en módulos independientes de GitHub?** **En el Inc. 1 solo parcialmente; en el avance del Inc. 2, sí.** La meta del Inc. 1 **no se cumplió** (M1.2 = 40,0 %; 60,0 % con el criterio laxo): faltaban los puertos de entrada, el puerto de salida vivía dentro de `application` y el adaptador HTTP importaba la clase concreta. La causa es de diseño: ADR-001 definió puertos de salida pero invocaba los casos de uso directamente, y la estructura de la guía es posterior al PMV. El ADR-008 llevó M1.2 a 100 % (5/5), eliminó la violación y dejó 14 pruebas que impiden retroceder. La evidencia son la vista de ambas etiquetas en GitHub (Figuras 3 y 4), el árbol de carpetas y las importaciones citadas con archivo y línea.
 
 <div style="page-break-after: always;"></div>
 
@@ -921,7 +921,7 @@ La mejora estructural es real y verificable (Tabla 36); lo que no cambió es M1.
 
 #### 7.2.2 [Pilar 2 · Pruebas] Diagnóstico
 
-La suite creció de 73 a 228 pruebas por defecto con cobertura de 99,19 % a 100 %, pero **la cobertura de sentencias no detectó lo que sí halló la exploración de entradas límite**: 6 defectos funcionales escaparon de una suite con 99 % de cobertura. La acción de fondo es cambiar la Definición de Hecho (DoD) para incluir exploración de entradas límite y concurrencia. Persisten tres brechas de evidencia: la integración en PostgreSQL de v1.5 no se ejecutó, SonarCloud no se activó y la rama, el tag y la captura de GitHub de v1.5 están por publicar.
+La suite creció de 73 a 228 pruebas por defecto con cobertura de 99,19 % a 100 %, pero **la cobertura de sentencias no detectó lo que sí halló la exploración de entradas límite**: 6 defectos funcionales escaparon de una suite con 99 % de cobertura. La acción de fondo es cambiar la Definición de Hecho (DoD) para incluir exploración de entradas límite y concurrencia. Persisten dos brechas de evidencia: la integración en PostgreSQL de v1.5 no se ejecutó y SonarCloud no se activó.
 
 #### 7.2.3 [Pilar 3 · Valor] Diagnóstico
 
@@ -942,7 +942,7 @@ Las acciones siguen el ciclo Plan-Do-Check-Act sobre los hallazgos de la compara
 | 5 | P3 | La satisfacción no está medida | Aplicar el SUS (`instrumento_SUS.md`) con el Product Owner y el personal tras una tarea guiada | ≥ 5 respondientes por versión; SUS ≥ 68 (Inc. 1) y ≥ 80 (Inc. 2), metas por confirmar | SUS al cierre de cada incremento | Porras V. | 30/10/2026 |
 | 6 | P2 | SonarCloud sin activar e integración en PostgreSQL de v1.5 sin ejecutar | Configurar `sonar.organization` y `SONAR_TOKEN`; ejecutar el job de PostgreSQL del CI sobre v1.5; guardar capturas | Análisis publicado y job en verde; 0 incidencias críticas | Quality gate en el pipeline | Huamani R. | 23/10/2026 |
 | 7 | P3 | Metas de M3.1 de la guía (60 % y 90 %) incompatibles con el plan de seis incrementos | Presentar al docente las metas acumuladas (16,7 %, 33,3 %, 50,0 %, 66,7 %, 83,3 % y 100 %), conservando las de la guía como referencia | Metas acordadas por escrito; M3.1 con ambas lecturas | Reportar siempre ambas lecturas | Porras V. | 19/10/2026 |
-| 8 | P1 | Rama, tag y capturas de GitHub de v1.5 por publicar | Crear `feature/inc2-agenda-alertas` y el tag `v1.5.0-inc2-avance` (Anexo B); capturar GitHub; actualizar las rutas de la Tabla 15 | Tag visible en GitHub; captura en el Anexo A | Una etiqueta por incremento liberado | Porras V. y Auqui H. | 19/10/2026 (antes de la exposición) |
+| 8 | P1 | Publicar cada versión evaluada en GitHub | Rama `feature/inc2-agenda-alertas` y tag `v1.5.0-inc2-avance` publicados el 17/10/2026 (Figura 4); falta abrir el pull request a `main` | Tag visible en GitHub; pull request revisado | Una etiqueta por incremento liberado | Porras V. y Auqui H. | Hecho (17/10/2026); pull request al cierre del Inc. 2 |
 | 9 | P2 | Observaciones EX-17 (Unicode NFC/NFD) y EX-40 (activos mayores de 59 meses con alertas) | Decidir y documentar la política (normalizar a NFC; alta automática o excepción) | 2 observaciones cerradas con decisión y prueba | ADR breve | Auqui H. | 09/11/2026 |
 
 ### 7.4 Lecciones aprendidas
@@ -974,27 +974,26 @@ La carpeta `entregables/semana-09/evidencias_capturas/` contiene las 31 capturas
 | `RF-05/` | `RF05_inc1_paso1_entrada.png`<br>`RF05_inc1_paso2_resultado.png`<br>`RF05_inc1_paso3_json.png`<br>`RF05_inc1_paso4_csv.png`<br>`RF05_inc1_reporte_descargado.csv`<br>`RF05_v15_regresion.png`<br>`RF05_v15_regresion_reporte_descargado.csv` |
 | `RF-06/` | `RF06_inc2_paso1_entrada.png`<br>`RF06_inc2_paso2_resultado.png`<br>`RF06_inc2_paso3_proximo_a_vencer.png` |
 | `RF-07/` | `RF07_inc2_paso1_entrada.png`<br>`RF07_inc2_paso2_resultado_filtro_prioridad.png`<br>`RF07_inc2_paso3_resultado_filtro_comunidad.png` |
-| `arquitectura/` | `arbol_v1.0.png`<br>`arbol_v1.5.png` |
+| `arquitectura/` | `github_v1.0-PMV_app.png`<br>`github_v1.5.0-inc2-avance_app.png`<br>`arbol_v1.0.png`<br>`arbol_v1.5.png` |
 | `(raíz)` | `INDICE.md`<br>`capturar_evidencias.py`<br>`resultados_arquitectura.json`<br>`resultados_github.json`<br>`resultados_inc1.json`<br>`resultados_inc2.json`<br>`resultados_regresion.json` |
 
-Resultados de máquina: `resultados_inc1.json`, `resultados_inc2.json`, `resultados_regresion.json`, `resultados_arquitectura.json` y `resultados_github.json` (el intento de captura de GitHub falló con HTTP 403). Para regenerar las capturas: `python evidencias_capturas/capturar_evidencias.py` (ver Anexo C).
+Resultados de máquina: `resultados_inc1.json`, `resultados_inc2.json`, `resultados_regresion.json`, `resultados_arquitectura.json` y `resultados_github.json` (intento automático de captura de GitHub; las Figuras 3 y 4 se tomaron después desde el navegador del equipo). Para regenerar las capturas: `python evidencias_capturas/capturar_evidencias.py` (ver Anexo C).
 
 ### Anexo B. Repositorio GitHub y etiquetas
 
 - Repositorio: <https://github.com/woshtsu/ProcesosSoftwareAnemia>.
 - Etiqueta **existente**: `v1.0-PMV` (Incremento 1; en el tag la carpeta `app/` está en la raíz): <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.0-PMV/app>.
-- Etiqueta **por publicar**: `v1.5.0-inc2-avance` (avance del 50 % del Incremento 2), en la rama `feature/inc2-agenda-alertas`. El avance está en el árbol de trabajo (`pmv_fastapi/`, versión 1.5.0-inc2-avance) y **aún no tiene commit, rama ni etiqueta**; el equipo debe crearlos con los comandos siguientes. La URL prevista es <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.5.0-inc2-avance/pmv_fastapi/app>.
+- Etiqueta **publicada**: `v1.5.0-inc2-avance` (avance del 50 % del Incremento 2), commit `416dfbc` en la rama `feature/inc2-agenda-alertas`, publicada el 17/10/2026: <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v1.5.0-inc2-avance/pmv_fastapi/app>.
 - Etiqueta **reservada**: `v2.0-Inc2` (la pide la guía). Se creará al cierre del Incremento 2, al completar HIST-2.3 y HIST-2.4 y cumplir el Check de la acción 3 del plan PDCA; mientras tanto el avance se identifica con `v1.5.0-inc2-avance`.
 
-**Comandos propuestos (PowerShell, Windows; desde la raíz del repositorio).** Revise con `git status` qué archivos se incluyen y excluya bases de datos locales (`datos/*.db`) y entornos virtuales:
+**Comandos usados para publicar el avance (PowerShell, Windows; desde la raíz del repositorio):**
 
 ```powershell
-git status
 git switch -c feature/inc2-agenda-alertas
-git add pmv_fastapi herramientas/gqm entregables/semana-09 diagramas ArchivosComplementarios/Semana09_S1.pdf
-git commit -m "feat(inc2): avance 50 % (HIST-2.1 y HIST-2.2), estructura hexagonal (ADR-008) y evaluación GQM de la semana 9"
+git add -A -- pmv_fastapi herramientas entregables/semana-09 exportados/semana-09 diagramas coordinacion README.md
+git commit -m "Inc. 2 avance 50%: agenda normativa y alertas (HIST-2.1, HIST-2.2), estructura hexagonal y evaluacion GQM S9"
+git tag -a v1.5.0-inc2-avance -m "Avance 50% del Incremento 2 (HIST-2.1 y HIST-2.2)"
 git push -u origin feature/inc2-agenda-alertas
-git tag -a v1.5.0-inc2-avance -m "Incremento 2: avance del 50 % (HIST-2.1 y HIST-2.2)"
 git push origin v1.5.0-inc2-avance
 ```
 
@@ -1007,12 +1006,12 @@ git tag -a v2.0-Inc2 -m "Incremento 2 completo (HIST-2.1 a HIST-2.4)"
 git push origin v2.0-Inc2
 ```
 
-**Lista previa a la exposición (para el equipo).** Estas acciones no se pudieron realizar desde el entorno de redacción (sin acceso al repositorio ni permiso para crear commits o etiquetas):
+**Lista previa a la exposición (para el equipo).**
 
-1. Publicar la rama y la etiqueta con los comandos anteriores.
-2. Abrir en GitHub el árbol `app/` de la etiqueta `v1.0-PMV` y el árbol `pmv_fastapi/app/` de la etiqueta `v1.5.0-inc2-avance`, y capturar ambas vistas con el navegador (la URL visible).
-3. Guardar las capturas en `entregables/semana-09/evidencias_capturas/arquitectura/` (por ejemplo `github_v1.0-PMV_app.png` y `github_v1.5.0-inc2-avance_app.png`) e incorporarlas al Anexo A y a la sección 4.1 junto a las Figuras 3 y 4.
-4. Cambiar «por publicar» por «publicada» en la Tabla 15 y en la sección 4.1, y comprobar que los enlaces abren.
+1. ~~Publicar la rama y la etiqueta~~: hecho el 17/10/2026.
+2. ~~Capturar en GitHub `app/` de `v1.0-PMV` y `pmv_fastapi/app/` de `v1.5.0-inc2-avance`~~: hecho (Figuras 3 y 4).
+3. Abrir el pull request de `feature/inc2-agenda-alertas` hacia `main` cuando el equipo lo revise.
+4. Crear `v2.0-Inc2` al cierre del Incremento 2.
 
 ### Anexo C. Reproducibilidad
 

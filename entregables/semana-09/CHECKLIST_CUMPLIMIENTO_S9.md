@@ -5,7 +5,7 @@
 - **Evidencias contrastadas (solo lectura):** `entregables/semana-09/evidencias_capturas/`, `entregables/semana-09/metricas/` (datos, salidas, gráficos), `pmv_fastapi/` (v1.5), copia v1.0 en `../inc1_v1.0_PMV` (idéntica al tag salvo fin de línea), tag `v1.0-PMV`, entregables S1, S3-4 y S6 (`temp-s6`), `ArchivosComplementarios/Semana09_S1.pdf`
 - **Revisor:** revisor documental y auditor de cumplimiento independiente (no participó en la redacción) · **Primera revisión y segunda pasada:** 16/10/2026
 - **Verificaciones del auditor (repetidas en la segunda pasada):** `pytest -q -p no:cacheprovider` en `pmv_fastapi` = **228 passed**; `pytest tests/e2e` = **8 passed**; `ruff check .` = **All checks passed**; `ruff format --check .` = **64 archivos correctos**; script de enlaces y anclas (43 enlaces locales y 43 anclas del índice, **0 rotos**); script de numeración (**48 tablas y 40 figuras consecutivas, todas citadas, 0 referencias a números inexistentes**); encabezados de las 6 matrices de la guía comparados uno a uno (**idénticos**); Tabla 38 igual al contenido real de `evidencias_capturas/`; `git ls-remote --tags origin` (solo `v1.0-PMV`); apertura con Read de 20 PNG y 4 gráficos o diagramas.
-- **Resultado:** 69 requisitos (guía + aclaraciones): 66 CUMPLE, 2 CUMPLE PARCIAL, 1 NO CUMPLE. **Cumplimiento estricto ponderado (CUMPLE = 1; PARCIAL = 0,5; NO = 0): 97,1 %** (primera revisión: 95,7 %). Solo contra la guía (63 requisitos): **96,8 %**.
+- **Resultado (actualizado 17/10/2026):** 69 requisitos (guía + aclaraciones): 67 CUMPLE, 1 CUMPLE PARCIAL, 1 NO CUMPLE. **Cumplimiento estricto ponderado (CUMPLE = 1; PARCIAL = 0,5; NO = 0): 97,8 %** (segunda pasada: 97,1 %; primera revisión: 95,7 %). Solo contra la guía (63 requisitos): **97,6 %**.
 - **Hallazgos de la primera revisión (22):** 17 resueltos, 4 parciales, 1 abierto. **Hallazgos nuevos de la segunda pasada:** 4 menores y 4 de estilo. **Ninguno crítico.** De los tres mayores, H-02 y H-03 quedaron resueltos; H-01 depende de publicar en GitHub.
 
 > Convención: CUMPLE = el requisito está presente y verificado; CUMPLE PARCIAL = presente con una carencia concreta; NO CUMPLE = ausente. «Ubicación en guía» es la actividad, matriz o sección de la guía; la «Sección del entregable» es la del informe revisado (numeración nueva).
@@ -46,7 +46,7 @@
 | A4-06 | Fila Adaptadores de Entrada | Matriz 4.1 | Tablas 14-15 | **CUMPLE** | `api.py:12` (v1.0) y `api.py:17-21` (v1.5) verificados. |
 | A4-07 | Fila Adaptadores de Salida | Matriz 4.1 | Tablas 14-15 | **CUMPLE** | `sqlalchemy_repo.py:149` y `:159` verificados. |
 | A4-08 | Reporte de desacoplamiento del dominio (cero contaminación) con evidencia cuantitativa | Act. 4; Sec. III-4 | §4.3, Tablas 16-17 | **CUMPLE** | M1.1 y M1.3 con cifras reproducibles; 14 pruebas de arquitectura vigilan la regla. |
-| A4-09 | Auditoría evidenciada en la carpeta y el repositorio GitHub (no solo en el árbol local) | Act. 4; rúbrica 2 | §4.1 «Limitación de la evidencia»; Figuras 3-4; Tabla 15; Anexo B | **CUMPLE PARCIAL** | El tag `v1.0-PMV` existe en `origin` y su estructura se citó correctamente. Las capturas de los árboles se regeneraron (18:46) con ruta relativa en el pie, ya no `file:///...`. Pero v1.5 sigue sin commit, rama ni tag y no hay capturas de la interfaz de GitHub: el informe lo declara en §1, §2.2, §4.1, Tabla 15 y Anexo B (lista previa a la exposición) y las acciones dependen del equipo (H-01 parcial). |
+| A4-09 | Auditoría evidenciada en la carpeta y el repositorio GitHub (no solo en el árbol local) | Act. 4; rúbrica 2 | §4.1 «Evidencia en GitHub»; Figuras 3-4; Tabla 15; Anexo B | **CUMPLE** | Actualización 17/10/2026: rama `feature/inc2-agenda-alertas` y tag `v1.5.0-inc2-avance` (commit `416dfbc`) publicados; las Figuras 3 y 4 son capturas de la interfaz de GitHub de `v1.0-PMV/app` y `v1.5.0-inc2-avance/pmv_fastapi/app`. |
 | A5-01 | Ficha 5.1 por RF del Incremento 1 (RF-01 a RF-05) | Act. 5; Ficha modelo | Tablas 19-23 | **CUMPLE** | 5 fichas. |
 | A5-02 | Ficha 5.1 por RF del Incremento 2 entregado (RF-06 y RF-07) | Act. 5 | Tablas 24-25 | **CUMPLE** | 2 fichas. |
 | A5-03 | Campos de la ficha: proyecto, incremento, código RF/HU, nombre, criterio Dado-Cuando-Entonces, ID caso de prueba, tipo, resultado esperado, evidencias, evaluación, fecha, evaluador | Ficha 5.1 | Tablas 19-25 | **CUMPLE** | Todos presentes; se agregan tiempos medidos, resultado observado y rótulos literales de la guía en la primera y la última captura de cada ficha; las pruebas que respaldan cada RF pasaron al Anexo G.6 (Tabla 43). |
@@ -114,12 +114,12 @@
 | Criterio | Puntaje probable | Justificación | Qué falta para el máximo |
 | --- | --- | --- | --- |
 | Formulación del Modelo GQM (Act. 1, 2 y 3) | **4 / 4** | Tres goals con los 5 elementos de Basili en la plantilla de la sesión, 6 preguntas literales de la guía (+ Q1.3 complementaria), 6 métricas con fórmula, script, fuente y metas Inc. 1 / Inc. 2, diferenciando producto (G-01, G-02) y proceso/valor (G-03). Las salvedades de M2.2, M3.1 y M3.2 ya aparecen en la Tabla 7 y en la Tabla 12. | Nada obligatorio. |
-| Auditoría de Arquitectura Hexagonal en GitHub (Act. 4) | **3 / 4** | Estructura y equivalencia con la guía, Matriz 4.1 por versión con archivo y línea (verificados), M1.1 = 0,0 %, M1.3 y 14 pruebas de arquitectura: supera con holgura el nivel «Bueno». No alcanza «Excelente» porque la demostración «en GitHub» de v1.5 es un árbol local (sin rama, tag ni captura de GitHub); la de v1.0 sí usa un tag existente. | Publicar la rama y el tag `v1.5.0-inc2-avance`, capturar la interfaz de GitHub de ambos árboles y marcar «publicada» en la Tabla 15 (Anexo B). Con eso, 4 / 4. |
+| Auditoría de Arquitectura Hexagonal en GitHub (Act. 4) | **4 / 4** | Actualización 17/10/2026: con la rama y el tag publicados y las capturas de GitHub (Figuras 3 y 4), la estructura y el aislamiento del dominio se demuestran en el repositorio; Matriz 4.1 por versión con archivo y línea, M1.1 = 0,0 %, M1.3 y 14 pruebas de arquitectura. |
 | Pruebas Funcionales con Capturas por RF (Act. 5) | **3 / 4** (4 / 4 si el docente acepta el alcance del 50 % pactado) | 7 fichas completas, 24 capturas de fichas y 5 de regresión, reales, legibles y coherentes; Matriz 5.2 con columnas exactas y los 9 RF; fichas planificadas de RF-08 y RF-09 sin simular evidencia; 228 + 8 pruebas, cobertura 100 %. La rúbrica dice «TODOS los RF de los Incrementos 1 y 2» y RF-08 y RF-09 no tienen ejecución ni captura. | Acordar por escrito el alcance, o completar HIST-2.3 y HIST-2.4 con sus capturas (acción 3 del PDCA); opcional: regenerar capturas con configuración regional es-PE. |
 | Evaluación de Entrega de Valor al Usuario (Act. 6) | **4 / 4** | Matriz 6.1 con las 6 brechas, indicadores cuantitativos reales V1 a V6 con línea base, M3.1 con cuatro lecturas (principal, complementaria, sensibilidad y estricta), M3.2 con salvedad explícita y Tabla 35 que separa lo medido de lo que exige piloto; no sobredeclara. | Nada obligatorio. |
 | Comparativa GQM y Mejora Continua (Act. 7) | **4 / 4** | Matriz 7.1 con variaciones recalculadas y correctas (+150,0 %, −100,0 %, −38,8 %, +33,3 %, −25,0 %, +73,5 %, +248,6 %), causa raíz y acción por métrica, diagnóstico por pilar, 9 acciones PDCA coherentes con el Anexo E y 5 lecciones. | Nada obligatorio. |
 
-**Total probable: 18 / 20** (valor conservador; igual que en la primera revisión, porque los dos puntos perdidos dependen de acciones fuera del texto). Con la publicación en GitHub (criterio 2) y la aceptación del alcance del 50 % por el docente (criterio 3), el máximo alcanzable es **20 / 20**.
+**Total probable: 19 / 20** (actualización del 17/10/2026: el criterio 2 sube a 4/4 con la evidencia en GitHub). El punto restante depende de que el docente acepte el alcance del 50 % del Inc. 2 en el criterio 3 o de completar RF-08 y RF-09.
 
 ## Parte D. Auditoría de veracidad: cifras verificadas
 
@@ -261,13 +261,13 @@ No hay hallazgos **CRÍTICOS**. Orden: mayor, menor, estilo.
 
 | Bloque | Requisitos | CUMPLE | PARCIAL | NO CUMPLE | Cumplimiento ponderado |
 | --- | --- | --- | --- | --- | --- |
-| A.1 Actividades 1 a 7 | 51 | 50 | 1 | 0 | 99,0 % |
+| A.1 Actividades 1 a 7 | 51 | 51 | 0 | 0 | 100,0 % |
 | A.2 Estructura III y anexos | 12 | 10 | 1 | 1 | 87,5 % |
-| **Subtotal guía (A.1 + A.2)** | **63** | **60** | **2** | **1** | **96,8 %** |
+| **Subtotal guía (A.1 + A.2)** | **63** | **61** | **1** | **1** | **97,6 %** |
 | B. Aclaraciones del cliente | 6 | 6 | 0 | 0 | 100,0 % |
-| **Total (guía + aclaraciones)** | **69** | **66** | **2** | **1** | **97,1 %** |
+| **Total (guía + aclaraciones)** | **69** | **67** | **1** | **1** | **97,8 %** |
 
-**Cumplimiento estricto global: 97,1 %** (primera revisión: 95,7 %). Los tres ítems que no están en CUMPLE son A4-09 (evidencia en GitHub de v1.5), E-05 (RF-08 y RF-09 sin captura) y E-12 (etiqueta `v2.0-Inc2`). Si el equipo publica rama y tag con las capturas de GitHub, A4-09 pasa a CUMPLE (97,8 %); si además se completan HIST-2.3 y HIST-2.4 con sus capturas y se crea `v2.0-Inc2` al cierre del Inc. 2, se llega a 100 %.
+**Cumplimiento estricto global: 97,8 %** (actualización del 17/10/2026, tras publicar la rama y el tag y añadir las capturas de GitHub; segunda pasada: 97,1 %; primera revisión: 95,7 %). Los dos ítems que no están en CUMPLE son E-05 (RF-08 y RF-09 sin captura, fuera del avance del 50 %) y E-12 (la etiqueta `v2.0-Inc2` se crea al cierre del Inc. 2). Al cerrar el Incremento 2 ambos pasan a CUMPLE.
 
 ## Pendientes del equipo antes de la exposición
 
@@ -275,8 +275,8 @@ Acciones que no se pudieron hacer desde el contenedor (sin acceso a GitHub ni pe
 
 | N.º | Pendiente | Responsable propuesto (informe) | Fecha del informe | Hallazgo o ítem que cierra |
 | --- | --- | --- | --- | --- |
-| 1 | Revisar `git status` y publicar la rama `feature/inc2-agenda-alertas` y el tag `v1.5.0-inc2-avance` con los comandos del Anexo B (decidir antes si `ArchivosComplementarios/Semana09_S1.pdf` se versiona; N-04). | Porras V. y Auqui H. | 19/10/2026 (acción 8) | H-01, A4-09, N-04 |
-| 2 | Abrir en GitHub el árbol `app/` del tag `v1.0-PMV` y `pmv_fastapi/app/` del tag `v1.5.0-inc2-avance`; capturar ambas vistas con la URL visible; guardarlas en `evidencias_capturas/arquitectura/`; agregarlas como Figuras 3b y 4b; cambiar «por publicar» por «publicada» en las Tablas 1 y 15 y en §4.1; comprobar que los enlaces abren. | Porras V. y Auqui H. | 19/10/2026 | H-01, A4-09 |
+| 1 | ~~Revisar `git status` y publicar la rama `feature/inc2-agenda-alertas` y el tag `v1.5.0-inc2-avance` con los comandos del Anexo B (decidir antes si `ArchivosComplementarios/Semana09_S1.pdf` se versiona; N-04).~~ **Hecho el 17/10/2026** (commit `416dfbc`) | Porras V. y Auqui H. | 19/10/2026 (acción 8) | H-01, A4-09, N-04 |
+| 2 | ~~Abrir en GitHub el árbol `app/` del tag `v1.0-PMV` y `pmv_fastapi/app/` del tag `v1.5.0-inc2-avance`; capturar ambas vistas con la URL visible; guardarlas en `evidencias_capturas/arquitectura/`; agregarlas como Figuras 3b y 4b; cambiar «por publicar» por «publicada» en las Tablas 1 y 15 y en §4.1; comprobar que los enlaces abren.~~ **Hecho el 17/10/2026** (Figuras 3 y 4) | Porras V. y Auqui H. | 19/10/2026 | H-01, A4-09 |
 | 3 | Acordar con el docente: (a) que `v1.5.0-inc2-avance` identifica el avance mientras `v2.0-Inc2` no exista; (b) que el alcance del Inc. 2 evaluado es el 50 % (RF-06 y RF-07); (c) las metas acumuladas de M3.1 (acción 7). | Porras V. | 19/10/2026 | E-12, criterio 3 de la rúbrica, A3-06 |
 | 4 | Firmar las 7 fichas ejecutadas como QA Lead («firma pendiente» en las Tablas 19 a 25) o dejar la constancia de que la ejecución es automatizada. | Huamani R. | Antes de la exposición | A5-06 |
 | 5 | Aplicar el instrumento SUS (≥ 5 respondientes por versión: Product Owner y personal de salud) y reportar el valor; hasta entonces el informe lo declara «pendiente». | Porras V. | 30/10/2026 (acción 5) | V6 como proxy (Tabla 35) |
