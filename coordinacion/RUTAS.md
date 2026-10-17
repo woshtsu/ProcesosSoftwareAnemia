@@ -98,3 +98,18 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 - `anemia_junin/scripts/verificar_navegador.py`: prueba de aceptación técnica en Chromium con capturas.
 - `archivo/versiones-anteriores/semana-06-integrador/`: integrador anterior a la conciliación del cierre.
 - `exportados/LEEME_ENTREGA.md`: índice del paquete y campos pendientes del equipo.
+
+## Rutas de la Semana 9 (ORQ-003)
+
+| Contenido | Ruta |
+| --- | --- |
+| Guía S9 | `guias/S9-PSW-GUÍA DE TRABAJO.md` |
+| Entregable vigente | `entregables/semana-09/Entregable_Semana9_Anemia_Junin.md` |
+| Checklist de cumplimiento | `entregables/semana-09/CHECKLIST_CUMPLIMIENTO_S9.md` |
+| Capturas por RF (Actividad 5) | `entregables/semana-09/evidencias_capturas/RF-0X/`, `arquitectura/`, `INDICE.md`, `capturar_evidencias.py` |
+| Métricas GQM (datos, salidas crudas, gráficos) | `entregables/semana-09/metricas/{datos,salidas,graficos}/`, `metricas/README.md`, `metricas/instrumento_SUS.md` |
+| Scripts de medición GQM | `herramientas/gqm/` |
+| Conversión MD → DOCX/PDF | `herramientas/conversion/exportar_s9.py` |
+| Exportados | `exportados/semana-09/Entregable_Semana9_Anemia_Junin.docx` y `.pdf` |
+| Diagramas S9 | `diagramas/{src,png,svg}/70_s9_cadena_trazabilidad`, `71_s9_arbol_gqm`, `72_s9_hexagonal_v15` |
+| Avance del Inc. 2 (v1.5.0-inc2-avance) | `pmv_fastapi/` (estructura `app/domain/{model,service}`, `app/ports/{inbound,outbound}`, `app/application`, `app/adapters/{inbound,outbound}`), `pmv_fastapi/CHANGELOG.md`, `pmv_fastapi/docs/adr/ADR-007*`, `ADR-008*`, `pmv_fastapi/docs/evidencias/registro_defectos_inc2.md`, `pmv_fastapi/docs/evidencias/inc2/` |

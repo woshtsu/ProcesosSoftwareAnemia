@@ -1,0 +1,12 @@
+## tests/unitarias
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+174 tests collected in 0.04s
+## tests/integracion
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+40 tests collected in 0.06s
+## tests/arquitectura
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+14 tests collected in 0.01s

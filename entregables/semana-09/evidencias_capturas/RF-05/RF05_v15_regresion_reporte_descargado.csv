@@ -1,0 +1,19 @@
+﻿fecha,dni,nino,comunidad,edad_meses,hb_observada,altitud_m,hb_ajustada,clasificacion,peso_kg,talla_cm,registrado_por
+2026-09-01,71000008,Dilan Suárez Meza,Huaycha,20,13.9,3950.0,11.2,SIN_ANEMIA,11.3,84.0,carga.datos.prueba
+2026-09-04,71000012,Thiago Arzapalo Vila,Palmayoc,14,13.3,3720.0,10.8,SIN_ANEMIA,9.9,77.0,carga.datos.prueba
+2026-09-06,71000004,Brayan Ccanto Samaniego,Llacuas,28,13.1,3890.0,10.5,LEVE,12.9,89.0,carga.datos.prueba
+2026-09-08,71000009,Kiara Inga Lazo,Huaycha,10,12.2,3950.0,9.5,LEVE,8.9,73.0,carga.datos.prueba
+2026-09-12,71000002,Jhon Kevin Huamán Poma,Palmayoc,12,11.8,3720.0,9.3,MODERADA,9.4,75.5,carga.datos.prueba
+2026-09-13,71000013,Ariana Solís Rojas,Huaycha,24,13.6,3950.0,10.9,LEVE,11.7,86.0,carga.datos.prueba
+2026-09-18,71000007,Nayeli Pomalaza Cerrón,Llacuas,39,13.4,3890.0,10.8,LEVE,14.1,96.0,carga.datos.prueba
+2026-09-21,71000011,Sheyla Huari Pari,Llacuas,8,13.0,3890.0,10.4,LEVE,8.0,69.0,carga.datos.prueba
+2026-09-26,71000001,Luz Mery Quispe Rojas,Llacuas,7,11.9,3550.0,9.5,LEVE,8.0,68.5,carga.datos.prueba
+2026-09-26,71000025,Lucero Pari Taipe,Chongos Alto,55,12.6,3550.0,10.2,LEVE,19.6,105.0,carga.datos.prueba
+2026-09-28,71000014,Josué Pari Condori,Chongos Alto,10,10.4,3550.0,8.0,MODERADA,8.3,72.0,carga.datos.prueba
+2026-10-01,71000006,Luis Ángel Rivera Chuquillanqui,Chongos Alto,6,12.9,3550.0,10.5,SIN_ANEMIA,7.9,68.0,carga.datos.prueba
+2026-10-06,71000003,Yeny Condori Huaylla,Chongos Alto,9,11.2,3550.0,8.8,MODERADA,8.6,71.8,carga.datos.prueba
+2026-10-11,71000012,Thiago Arzapalo Vila,Palmayoc,15,13.6,3720.0,11.1,SIN_ANEMIA,10.2,78.2,carga.datos.prueba
+2026-10-16,71000024,Santiago Rojas Meza,Huaycha,30,14.7,3950.0,12.0,SIN_ANEMIA,14.1,86.3,carga.datos.prueba
+2026-10-16,71000026,Adriel Taipe Orihuela,Llacuas,7,14.6,3890.0,12.0,SIN_ANEMIA,7.4,63.3,carga.datos.prueba
+2026-10-16,72000001,Rosa Elvira Ccente Poma,Palmayoc,13,11.6,3720.0,9.1,MODERADA,8.4,71.0,enf.rosa.quispe
+2026-10-16,71000001,Luz Mery Quispe Rojas,Llacuas,8,11.5,3550.0,9.1,MODERADA,8.2,69.0,enf.rosa.quispe

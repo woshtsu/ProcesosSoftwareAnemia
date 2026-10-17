@@ -1,0 +1,32 @@
+{
+  "modo": "arquitectura",
+  "version": "-",
+  "capturas": [
+    {
+      "archivo": "arquitectura/arbol_v1.0.png",
+      "rf": "Arquitectura",
+      "incremento": "arquitectura",
+      "paso": "Árbol de carpetas app/ (v1.0-PMV)",
+      "descripcion": "Árbol de app/ en v1.0-PMV",
+      "fecha_hora": "16/10/2026 18:46:42",
+      "url": "app/ (tag v1.0-PMV)",
+      "resultado_observado": "Árbol de app/ (tag v1.0-PMV)",
+      "version": "v1.0-PMV"
+    },
+    {
+      "archivo": "arquitectura/arbol_v1.5.png",
+      "rf": "Arquitectura",
+      "incremento": "arquitectura",
+      "paso": "Árbol de carpetas app/ (v1.5.0-inc2-avance)",
+      "descripcion": "Árbol de app/ en v1.5.0-inc2-avance (rama de trabajo local)",
+      "fecha_hora": "16/10/2026 18:46:43",
+      "url": "pmv_fastapi/app/",
+      "resultado_observado": "Árbol de pmv_fastapi/app/",
+      "version": "v1.5.0-inc2-avance"
+    }
+  ],
+  "tiempos": [],
+  "criterios": {},
+  "hallazgos": [],
+  "generado": "16/10/2026 18:46:43"
+}

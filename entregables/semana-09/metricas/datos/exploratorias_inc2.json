@@ -1,0 +1,407 @@
+[
+ {
+  "id": "EX-01",
+  "area": "Agenda",
+  "entrada": "Recién nacido (nace hoy), evaluación inicial hoy",
+  "esperado": "aplica=true; 12 controles por edad, todos PENDIENTE; 0 vencidos; el primero a los 6 meses",
+  "obtenido": "aplica=True total=12 pendientes=12 vencidos=0 primero=2027-04-16",
+  "estado": "OK",
+  "ms": 17
+ },
+ {
+  "id": "EX-02",
+  "area": "Agenda",
+  "entrada": "Niño que cumple exactamente 6 meses hoy; su única evaluación es de hoy",
+  "esperado": "El control de 6 meses queda CUMPLIDO con esa evaluación (programada = hoy, dentro de la ventana)",
+  "obtenido": "control 6 m: ('CUMPLIDO', '2026-10-16')",
+  "estado": "OK",
+  "ms": 12
+ },
+ {
+  "id": "EX-03",
+  "area": "Agenda",
+  "entrada": "Niño a un día de cumplir 6 meses, evaluación hoy",
+  "esperado": "Control de 6 meses PENDIENTE (programada mañana; la evaluación de hoy cae dentro de su ventana, por lo que queda CUMPLIDO) -- se verifica que el estado sea CUMPLIDO o PENDIENTE sin error y con proximo coherente",
+  "obtenido": "CUMPLIDO proximo=False prog=2026-10-17 límite=2026-11-16",
+  "estado": "OK",
+  "ms": 12
+ },
+ {
+  "id": "EX-04",
+  "area": "Agenda",
+  "entrada": "Niño de 59 meses exactos, evaluación inicial hoy, sin anemia",
+  "esperado": "Registro aceptado; agenda 200 con 0 controles (los de 60+ meses no se programan), sin error",
+  "obtenido": "aplica=True total=0 motivo=None",
+  "estado": "OK",
+  "ms": 11
+ },
+ {
+  "id": "EX-05",
+  "area": "Agenda",
+  "entrada": "Registrar niño de 60 meses exactos",
+  "esperado": "Rechazo 422 con mensaje en fecha_nacimiento (atiende menores de 5 años)",
+  "obtenido": "HTTP 422 {\"mensaje\":\"Revise los datos marcados.\",\"errores\":[{\"campo\":\"fecha_nacimiento\",\"mensaje\":\"El sistema atiende a menores d",
+  "estado": "OK",
+  "ms": 2
+ },
+ {
+  "id": "EX-06",
+  "area": "Agenda",
+  "entrada": "Niño de 59 meses con anemia LEVE hoy",
+  "esperado": "Sin controles de tratamiento: C1M caería a los 60 meses (fuera de población)",
+  "obtenido": "total=0: []",
+  "estado": "OK",
+  "ms": 11
+ },
+ {
+  "id": "EX-07",
+  "area": "Agenda",
+  "entrada": "Niño de 58 meses con anemia MODERADA hoy",
+  "esperado": "Solo C1M (a los 59 meses); C3M y C6M quedan fuera (>=60 meses)",
+  "obtenido": "tratamiento=['C1M']",
+  "estado": "OK",
+  "ms": 12
+ },
+ {
+  "id": "EX-08",
+  "area": "Agenda",
+  "entrada": "Niño de 5 meses con Hb muy baja (evaluación hoy, menor de 6 meses)",
+  "esperado": "Sin diagnóstico de anemia (NO_APLICA bajo 6 meses): no se programan C1M/C3M/C6M",
+  "obtenido": "controles de tratamiento=0",
+  "estado": "OK",
+  "ms": 11
+ },
+ {
+  "id": "EX-09",
+  "area": "Agenda",
+  "entrada": "Cambio de umbral 23 a 24 meses: la misma Hb ajustada 10,7 g/dL a los 23 m y a los 24 m",
+  "esperado": "23 m: SIN_ANEMIA (umbral 10,5); 24 m: LEVE (umbral 11,0)",
+  "obtenido": "23 m -> SIN_ANEMIA (esperado SIN_ANEMIA); 24 m -> LEVE (esperado LEVE)",
+  "estado": "OK",
+  "ms": 28
+ },
+ {
+  "id": "EX-10",
+  "area": "Alta/reactivación",
+  "entrada": "Niño con control vencido -> PATCH estado=ALTA -> GET agenda y alertas",
+  "esperado": "Agenda aplica=false con motivo; el niño desaparece de /alertas",
+  "obtenido": "antes=True aplica=False motivo='El niño tiene alta: no se programan controles.' sigue_en_alertas=False",
+  "estado": "OK",
+  "ms": 104
+ },
+ {
+  "id": "EX-11",
+  "area": "Alta/reactivación",
+  "entrada": "ALTA -> PATCH estado=ACTIVO (reactivación)",
+  "esperado": "Vuelve la agenda (aplica=true) y reaparece la alerta vencida; mismo conteo que antes del alta",
+  "obtenido": "alertas antes=1 tras reactivar=1 aplica=True",
+  "estado": "OK",
+  "ms": 109
+ },
+ {
+  "id": "EX-12",
+  "area": "Alta/reactivación",
+  "entrada": "PATCH estado con valores no válidos: 'PENDIENTE', 'alta' (minúscula), '', null",
+  "esperado": "422 con mensaje por campo en cada uno; nunca 5xx ni cambio de estado",
+  "obtenido": "[('PENDIENTE', 422), ('alta', 422), ('', 422), (None, 422)]; estado final=ACTIVO",
+  "estado": "OK",
+  "ms": 23
+ },
+ {
+  "id": "EX-13",
+  "area": "Alta/reactivación",
+  "entrada": "PATCH con campo no editable (fecha_nacimiento) y cuerpo vacío {}",
+  "esperado": "Rechazo claro o ignorado sin efecto; sin 5xx; la fecha de nacimiento no cambia",
+  "obtenido": "campo no editable -> HTTP 200; cuerpo vacío -> HTTP 200; fecha_nacimiento sin cambio=2025-12-16",
+  "estado": "OK",
+  "ms": 22
+ },
+ {
+  "id": "EX-14",
+  "area": "IDs",
+  "entrada": "Agenda con ids inexistentes: uuid válido ausente, texto, 5 000 caracteres, '%00', '../', emoji, espacios",
+  "esperado": "404 con mensaje JSON en todos; nunca 5xx",
+  "obtenido": "[('00000000-000', 404), ('no-existe', 404), ('xxxxxxxxxxxx', 404), ('%00', 404), ('..%2F..%2Fet', 404), ('%F0%9F%98%80', 404), ('%20%20', 404)]",
+  "estado": "OK",
+  "ms": 14
+ },
+ {
+  "id": "EX-15",
+  "area": "Filtros",
+  "entrada": "Niño en 'Ñahuimpuquio'; filtro 'ÑAHUIMPUQUIO', 'ñahuimpuquio', ' Ñahuimpuquio ', 'Nahuimpuquio'",
+  "esperado": "Coinciden las tres primeras (insensible a mayúsculas y espacios); 'Nahuimpuquio' (sin tilde) no coincide",
+  "obtenido": "{'ÑAHUIMPUQUIO': True, 'ñahuimpuquio': True, ' Ñahuimpuquio ': True, 'Nahuimpuquio': False}",
+  "estado": "OK",
+  "ms": 178
+ },
+ {
+  "id": "EX-16",
+  "area": "Filtros",
+  "entrada": "Comunidad grabada como 'palmayoc' (minúscula) y 'PALMAYOC': filtro 'Palmayoc'",
+  "esperado": "Ambas aparecen (misma comunidad con distinta escritura)",
+  "obtenido": "presentes=[True, True]",
+  "estado": "OK",
+  "ms": 53
+ },
+ {
+  "id": "EX-17",
+  "area": "Filtros",
+  "entrada": "Comunidad en forma Unicode descompuesta (N + tilde combinante) frente a la compuesta guardada",
+  "esperado": "Idealmente coincide; si no, es una limitación de normalización Unicode (NFC/NFD)",
+  "obtenido": "filtro NFD NO coincide con valor NFC almacenado",
+  "estado": "OBS",
+  "ms": 42
+ },
+ {
+  "id": "EX-18",
+  "area": "Filtros",
+  "entrada": "Comunidad con comodines y valores extremos: '%', '_', '', 5 000 caracteres, emoji, NUL",
+  "esperado": "'%' y '_' se tratan como texto (0 resultados); '' no filtra; 200 siempre",
+  "obtenido": "{'%': (200, 0), '_': (200, 0), 'xxxxxx': (200, 0), '\\\\U0001f600': (200, 0), '\\\\x00': (200, 0)}; comunidad='' -> 481 de 481",
+  "estado": "OK",
+  "ms": 278
+ },
+ {
+  "id": "EX-19",
+  "area": "Filtros",
+  "entrada": "prioridad: 'ALTA', 'alta', 'Alta', 'URGENTE', '', ' ALTA ', repetida (?prioridad=ALTA&prioridad=BAJA)",
+  "esperado": "Valores válidos exactos -> 200; no válidos -> 422 con mensaje; vacío = sin filtro; nunca 5xx",
+  "obtenido": "{\"'ALTA'\": 200, \"'alta'\": 422, \"'Alta'\": 422, \"'URGENTE'\": 422, \"''\": 200, \"' ALTA '\": 422, 'repetida': 200}",
+  "estado": "OK",
+  "ms": 127
+ },
+ {
+  "id": "EX-20",
+  "area": "Filtros",
+  "entrada": "Método no permitido y rutas cercanas: POST /api/alertas/resumen, GET /api/alertas, GET /api/alertas/controles-vencidos/",
+  "esperado": "405 / 404 con JSON, nunca 5xx",
+  "obtenido": "[405, 404, 307]",
+  "estado": "OK",
+  "ms": 3
+ },
+ {
+  "id": "EX-21",
+  "area": "Alertas",
+  "entrada": "Frontera de prioridad por atraso (último estado SIN_ANEMIA, control por edad): días vencidos 1, 7, 8, 30, 31",
+  "esperado": "BAJA hasta 7 días; MEDIA de 8 a 30; ALTA desde 31",
+  "obtenido": "1 d -> dias_vencido=1, BAJA (esperado BAJA); 7 d -> dias_vencido=7, BAJA (esperado BAJA); 8 d -> dias_vencido=8, MEDIA (esperado MEDIA); 30 d -> dias_vencido=30, MEDIA (esperado MEDIA); 31 d -> dias_vencido=31, ALTA (esperado ALTA)",
+  "estado": "OK",
+  "ms": 286
+ },
+ {
+  "id": "EX-22",
+  "area": "Alertas",
+  "entrada": "Control por edad vencido hace 3 días en niño cuya última clasificación es MODERADA / SEVERA / LEVE",
+  "esperado": "MODERADA y SEVERA -> ALTA; LEVE -> BAJA (atraso <=7 d, control por edad)",
+  "obtenido": "MODERADA -> ALTA (esperado ALTA), ultima_clasificacion=MODERADA; SEVERA -> ALTA (esperado ALTA), ultima_clasificacion=SEVERA; LEVE -> BAJA (esperado BAJA), ultima_clasificacion=LEVE",
+  "estado": "OK",
+  "ms": 194
+ },
+ {
+  "id": "EX-23",
+  "area": "Alertas",
+  "entrada": "Control de TRATAMIENTO (C1M) vencido hace 2 días",
+  "esperado": "Prioridad ALTA (regla: todo control de tratamiento es ALTA)",
+  "obtenido": "[('C1M', 2, 'ALTA')]",
+  "estado": "OK",
+  "ms": 81
+ },
+ {
+  "id": "EX-24",
+  "area": "Alertas",
+  "entrada": "Coherencia global: prioridad de TODAS las alertas del sistema recalculada con la regla del ADR-007 desde los campos devueltos",
+  "esperado": "0 discrepancias entre prioridad devuelta y regla",
+  "obtenido": "490 alertas revisadas; discrepancias=[]",
+  "estado": "OK",
+  "ms": 74
+ },
+ {
+  "id": "EX-25",
+  "area": "Alertas",
+  "entrada": "Orden de la lista: prioridad (ALTA>MEDIA>BAJA) y dentro de cada una, días de atraso descendente",
+  "esperado": "Lista ordenada según la especificación",
+  "obtenido": "490 alertas; ordenadas=True",
+  "estado": "OK",
+  "ms": 45
+ },
+ {
+  "id": "EX-26",
+  "area": "Alertas",
+  "entrada": "Consistencia entre resumen y lista; dias_vencido = hoy - fecha_limite; ventana = programada -15/+30 en cada alerta",
+  "esperado": "Totales iguales; fórmulas exactas en todas las alertas",
+  "obtenido": "alertas=490 resumen={'total_vencidos': 490, 'por_prioridad': {'ALTA': 454, 'MEDIA': 24, 'BAJA': 12}, 'ninos_con_vencidos': 107, 'proximos_7_dias': 10} fórmulas_incorrectas=0",
+  "estado": "OK",
+  "ms": 107
+ },
+ {
+  "id": "EX-27",
+  "area": "Alertas",
+  "entrada": "Próximo a vencer: control PENDIENTE cuyo límite es hoy, hoy+7 y hoy+8",
+  "esperado": "proximo=true en hoy y hoy+7; false en hoy+8",
+  "obtenido": "[(0, 'PENDIENTE', True, True), (7, 'PENDIENTE', True, True), (8, 'PENDIENTE', False, False)]",
+  "estado": "OK",
+  "ms": 36
+ },
+ {
+  "id": "EX-28",
+  "area": "Alertas",
+  "entrada": "Control que vence hoy (límite = hoy) y el que venció ayer (límite = hoy-1)",
+  "esperado": "Límite = hoy es PENDIENTE (no alerta); límite = hoy-1 es VENCIDO con dias_vencido=1",
+  "obtenido": "[(0, 'PENDIENTE', None), (-1, 'VENCIDO', 1)]",
+  "estado": "OK",
+  "ms": 23
+ },
+ {
+  "id": "EX-29",
+  "area": "Ventana",
+  "entrada": "Evaluaciones en programada-16, -15, +30, +31 días para el control de 12 meses (hoy posterior al límite)",
+  "esperado": "Cumplen -15 y +30; no cumplen -16 ni +31 (quedan VENCIDO)",
+  "obtenido": "[(-16, 'VENCIDO', 'VENCIDO'), (-15, 'CUMPLIDO', 'CUMPLIDO'), (30, 'CUMPLIDO', 'CUMPLIDO'), (31, 'VENCIDO', 'VENCIDO')]",
+  "estado": "OK",
+  "ms": 67
+ },
+ {
+  "id": "EX-30",
+  "area": "Ventana",
+  "entrada": "Una evaluación que cae en la ventana de DOS controles (tamizaje 12 m y C1M de una anemia previa)",
+  "esperado": "Cumple solo uno (el de tratamiento en empate de fecha); el otro permanece sin cumplir (VENCIDO si pasó su límite)",
+  "obtenido": "C1M=CUMPLIDO tamizaje12=VENCIDO",
+  "estado": "OK",
+  "ms": 18
+ },
+ {
+  "id": "EX-31",
+  "area": "Ventana",
+  "entrada": "Anemia y recuperación (SIN_ANEMIA) ANTES de abrirse la ventana de C1M (día 12) y, en otro niño, DENTRO de la ventana de C1M (día 20); hoy 100 días después",
+  "esperado": "Día 12: C1M, C3M y C6M CERRADO_RECUPERADO (aún no habían vencido). Día 20: la evaluación cae en la ventana de C1M y lo cumple (CUMPLIDO); C3M y C6M CERRADO_RECUPERADO",
+  "obtenido": "día 12: {'C1M': 'CERRADO_RECUPERADO', 'C3M': 'CERRADO_RECUPERADO', 'C6M': 'CERRADO_RECUPERADO'}; día 20: {'C1M': 'CUMPLIDO', 'C3M': 'CERRADO_RECUPERADO', 'C6M': 'CERRADO_RECUPERADO'}",
+  "estado": "OK",
+  "ms": 35
+ },
+ {
+  "id": "EX-32",
+  "area": "Ventana",
+  "entrada": "Anemia, recuperación a los 75 días (C1M ya vencido)",
+  "esperado": "C1M permanece VENCIDO (historial); C3M y C6M CERRADO_RECUPERADO",
+  "obtenido": "{'C1M': 'VENCIDO', 'C3M': 'CERRADO_RECUPERADO', 'C6M': 'CERRADO_RECUPERADO'}",
+  "estado": "OK",
+  "ms": 18
+ },
+ {
+  "id": "EX-33",
+  "area": "Ventana",
+  "entrada": "Anemia sostenida: LEVE, a los 33 días MODERADA, a los 62 días LEVE",
+  "esperado": "El calendario no se reinicia: solo 3 controles de tratamiento (C1M, C3M, C6M) del primer diagnóstico",
+  "obtenido": "['C1M', 'C3M', 'C6M']",
+  "estado": "OK",
+  "ms": 25
+ },
+ {
+  "id": "EX-34",
+  "area": "Ventana",
+  "entrada": "Dos evaluaciones EL MISMO DÍA y una evaluación retroactiva anterior a la primera",
+  "esperado": "Se aceptan; la agenda se recalcula sin error. Una evaluación retroactiva puede adelantar el inicio de la agenda (diseño ADR-007)",
+  "obtenido": "misma fecha HTTP 201; retroactiva HTTP 201; total de controles 9 -> 12; vencidos=2",
+  "estado": "OK",
+  "ms": 25
+ },
+ {
+  "id": "EX-35",
+  "area": "Entradas",
+  "entrada": "Evaluación con fecha futura, anterior al nacimiento, igual al nacimiento",
+  "esperado": "Futura y anterior -> 422; igual al nacimiento -> 201",
+  "obtenido": "[422, 422, 201]",
+  "estado": "OK",
+  "ms": 20
+ },
+ {
+  "id": "EX-36",
+  "area": "Entradas",
+  "entrada": "Altitud límite al registrar: 0, 5000, 5001, -1, 4999.9",
+  "esperado": "0, 5000 y 4999.9 aceptados; 5001 y -1 rechazados con 422",
+  "obtenido": "[(0, 201), (5000, 201), (5001, 422), (-1, 422), (4999.9, 201)]",
+  "estado": "OK",
+  "ms": 26
+ },
+ {
+  "id": "EX-37",
+  "area": "Consistencia",
+  "entrada": "Para todos los niños activos: controles_vencidos de GET /api/ninos == nº de alertas del niño; control_atrasado == (controles_vencidos>0)",
+  "esperado": "0 discrepancias",
+  "obtenido": "184 niños revisados; discrepancias=[]",
+  "estado": "OK",
+  "ms": 86
+ },
+ {
+  "id": "EX-38",
+  "area": "Consistencia",
+  "entrada": "Orden de los controles en cada agenda (fecha programada ascendente) y fórmulas de ventana en una muestra de 60 agendas",
+  "esperado": "Siempre ordenados; límite = programada+30 e inicio = programada-15",
+  "obtenido": "60 agendas; incumplimientos=0",
+  "estado": "OK",
+  "ms": 229
+ },
+ {
+  "id": "EX-39",
+  "area": "Consistencia",
+  "entrada": "Cambio de altitud por PATCH en un niño con evaluaciones previas",
+  "esperado": "Las evaluaciones previas conservan su altitud y clasificación (no se reescribe el historial); la agenda no cambia",
+  "obtenido": "HTTP 200; altitud de la evaluación=3500.0; resumen igual=True",
+  "estado": "OK",
+  "ms": 23
+ },
+ {
+  "id": "EX-40",
+  "area": "Niños mayores",
+  "entrada": "Niño ACTIVO que ya superó los 59 meses (insertado con SQL directo, nacido hace 70 meses, última evaluación hace 2 años)",
+  "esperado": "Decisión de diseño: fuera de población (sin alertas nuevas) o ALTA explícita. Se registra lo observado",
+  "obtenido": "niño de 70 meses ACTIVO: 2 alertas vencidas ([('DHx', 639), ('DHc1', 549)]); seguimiento: edad_meses=70, control_atrasado=True",
+  "estado": "OBS",
+  "ms": 93
+ },
+ {
+  "id": "EX-41",
+  "area": "Concurrencia",
+  "entrada": "20 hilos simultáneos agregan evaluaciones (fechas distintas) al mismo niño y otros 20 leen su agenda",
+  "esperado": "Todas 201/200; el expediente termina con 21 evaluaciones; sin 5xx ni 'database is locked'",
+  "obtenido": "{('w', 201): 20, ('r', 200): 20}; evaluaciones finales=21",
+  "estado": "OK",
+  "ms": 1815
+ },
+ {
+  "id": "EX-42",
+  "area": "Concurrencia",
+  "entrada": "10 hilos simultáneos registran el MISMO DNI",
+  "esperado": "Exactamente un 201 y nueve 409; nunca 5xx ni duplicados",
+  "obtenido": "{409: 9, 201: 1}; filas con ese DNI=1",
+  "estado": "OK",
+  "ms": 452
+ },
+ {
+  "id": "EX-43",
+  "area": "Concurrencia",
+  "entrada": "Alternar ALTA/ACTIVO desde 8 hilos mientras otros 8 consultan /alertas y /resumen (30 vueltas)",
+  "esperado": "Las LECTURAS de alertas/resumen (código nuevo) nunca devuelven 5xx. Los PATCH concurrentes sobre el mismo niño pueden fallar con 5xx por el bloqueo de escritura de SQLite ('database is locked'): se informa como OBS, no como defecto (motor de desarrollo; en PostgreSQL no aplica)",
+  "obtenido": "lecturas de alertas: {200: 480}; PATCH de estado: {200: 240}",
+  "estado": "OK",
+  "ms": 29533
+ },
+ {
+  "id": "EX-44",
+  "area": "Volumen",
+  "entrada": "Niño con unas 120 evaluaciones (una cada 14 días) y su agenda",
+  "esperado": "200 y agenda en menos de 1 s; sin error",
+  "obtenido": "109 evaluaciones; agenda en 4 ms; total controles=12",
+  "estado": "OK",
+  "ms": 845
+ },
+ {
+  "id": "EX-45",
+  "area": "Entradas",
+  "entrada": "Búsqueda por DNI con caracteres raros en GET /api/ninos/dni/{dni} y ?q= con comodines/Unicode/inyección",
+  "esperado": "404 / 200 vacío; nunca 5xx",
+  "obtenido": "[404, 404, 404, 404, 200, 200, 200, 200, 200]",
+  "estado": "OK",
+  "ms": 63
+ }
+]

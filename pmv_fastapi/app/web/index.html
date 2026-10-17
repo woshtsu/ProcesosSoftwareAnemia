@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1F4E79">
-  <title>Anemia Junín · Registro nominal</title>
+  <title>Anemia Junín · Agenda y alertas</title>
   <link rel="manifest" href="/static/manifest.json">
   <link rel="icon" href="/static/icono.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/static/estilos.css">
@@ -15,10 +15,11 @@
       <img src="/static/icono.svg" alt="" width="32" height="32">
       <div>
         <strong>Anemia Junín</strong>
-        <span>Registro nominal · Incremento 1</span>
+        <span>Incremento 2 (avance 50 %) · v1.5</span>
       </div>
     </div>
     <div class="usuario">
+      <a href="#" id="insignia-alertas" class="insignia cero" data-testid="insignia-alertas" title="Controles vencidos (abrir Alertas)">0</a>
       <label for="usuario">Usuario</label>
       <select id="usuario" data-testid="usuario">
         <option value="enf.rosa.quispe">Enf. Rosa Quispe</option>
@@ -32,6 +33,7 @@
     <button class="pestana activa" data-vista="registro" data-testid="tab-registro">Registrar niño</button>
     <button class="pestana" data-vista="seguimiento" data-testid="tab-seguimiento">Seguimiento</button>
     <button class="pestana" data-vista="expediente" data-testid="tab-expediente">Expediente</button>
+    <button class="pestana" data-vista="alertas" data-testid="tab-alertas">Alertas</button>
     <button class="pestana" data-vista="reporte" data-testid="tab-reporte">Reporte</button>
   </nav>
 
@@ -125,6 +127,29 @@
         <button id="btn-buscar-dni" class="primario">Abrir</button>
       </div>
       <div id="expediente" data-testid="expediente"><p class="vacio">Seleccione un niño desde Seguimiento o busque por DNI.</p></div>
+    </section>
+
+    <!-- HIST-2.2 -->
+    <section id="vista-alertas" class="vista">
+      <div class="titulo"><h1>Alertas de controles vencidos</h1><span id="total-alertas" class="chip"></span></div>
+      <div id="alertas-resumen" class="kpis" data-testid="alertas-resumen"></div>
+      <div class="filtros tarjeta">
+        <label>Comunidad
+          <select id="filtro-alerta-comunidad" data-testid="filtro-alerta-comunidad"><option value="">Todas</option></select>
+        </label>
+        <label>Prioridad
+          <select id="filtro-alerta-prioridad" data-testid="filtro-alerta-prioridad">
+            <option value="">Todas</option><option value="ALTA">Alta</option><option value="MEDIA">Media</option><option value="BAJA">Baja</option>
+          </select>
+        </label>
+      </div>
+      <div class="tabla-envoltura tarjeta">
+        <table class="tabla completa" data-testid="alertas-tabla">
+          <thead><tr><th>Prioridad</th><th>Niño</th><th>Control vencido</th><th>Programado</th><th>Atraso</th><th>Comunidad</th><th>Celular tutor</th><th>Última clasificación</th></tr></thead>
+          <tbody id="cuerpo-alertas"></tbody>
+        </table>
+        <p id="sin-alertas" class="vacio" hidden data-testid="sin-alertas">No hay controles vencidos con el filtro elegido.</p>
+      </div>
     </section>
 
     <!-- HU-05 -->

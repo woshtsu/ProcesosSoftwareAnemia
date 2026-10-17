@@ -18,6 +18,7 @@ Estados: `PENDIENTE` · `EN CURSO` · `BLOQUEADA` · `EN REVISIÓN` · `HECHO`
 | T-008 | Verificar y ejecutar el PMV: instalar, correr pruebas, cobertura, levantar la app; completar `anemia_junin/README.md` y sección "Cómo ejecutar" del README raíz | desarrollador | EN CURSO | `anemia_junin/`, `guias/S3.GUÍA DE TRABAJO SEMANA 3 Y 4.md`, `entregables/semana-03-04/...md`, `entregables/semana-05/_extraccion_Informe_Actividad5.md` | `anemia_junin/README.md`, evidencias en `anemia_junin/docs/evidencias/`, informe con cifras reales | — | Avance técnico verificado en T-010: README, entrypoint, E2E HTTP y carga existen; 242 pruebas/96,66 % reproducidos con Python 3.13.7. Falta informe de cierre y respuesta DEV-100; defecto adicional DEV-101. |
 | T-009 | Convertir entregables finales a PDF/DOCX para el aula virtual | conversor-entregas | EN CURSO | `entregables/semana-XX/*.md` revisados | `exportados/semana-XX/*.pdf` y `*.docx` | T-002..T-006 | Pandoc **no instalado**; alternativa Python (ver README). |
 | T-010 | Revisar avance recibido, guías actualizadas y continuidad de estructura | orquestador | HECHO (2026-09-25) | commit b6c6db2, guias/, código y entregables | informe de revisión, rutas y tablero sincronizados | — | `coordinacion/informes/2026-09-25_orquestador_T-010.md`. Revisión completada; quedan tareas de implementación y entrega. |
+| T-011 | S9: avance 50 % del Inc. 2 (HIST-2.1 y HIST-2.2, v1.5.0-inc2-avance), métricas GQM reales, capturas por RF e informe técnico GQM por pilares | orquestador + desarrollador + revisor-documental | EN REVISIÓN (2026-10-16) | `guias/S9-PSW-GUÍA DE TRABAJO.md`, S1, S3-4, S6 (rama temp-s6), `pmv_fastapi/` | `entregables/semana-09/Entregable_Semana9_Anemia_Junin.md`, `CHECKLIST_CUMPLIMIENTO_S9.md`, `evidencias_capturas/`, `metricas/`, `exportados/semana-09/` | — | `coordinacion/informes/2026-10-16_orquestador_T-011.md`. Cumplimiento estricto 97,1 %. Pendientes del equipo: publicar rama/tag `v1.5.0-inc2-avance` y capturar GitHub, firmas QA, SUS, HIST-2.3/2.4 y tag `v2.0-Inc2`. |
 
 ## Solicitudes abiertas
 
@@ -39,6 +40,7 @@ Estados: `PENDIENTE` · `EN CURSO` · `BLOQUEADA` · `EN REVISIÓN` · `HECHO`
 | DEV-100 | revisor-documental → desarrollador | Discrepancias documento-código detectadas en T-004 (11 puntos) | EN CURSO | `coordinacion/solicitudes/DEV-100.md` |
 | DEV-101 | orquestador → desarrollador | Entradas numéricas no finitas/desbordadas producen HTTP 500 | ABIERTA | `coordinacion/solicitudes/DEV-101.md` |
 | ORQ-001 | orquestador → orquestador | Registrar AGENTS.md y adoptar las guías descargadas | RESUELTA | `coordinacion/solicitudes/ORQ-001.md` |
+| ORQ-003 | orquestador → orquestador | Rutas de la Semana 9 (`entregables/semana-09/`, `herramientas/gqm/`, `herramientas/conversion/exportar_s9.py`, `exportados/semana-09/`, diagramas 70–72) | RESUELTA | `coordinacion/solicitudes/ORQ-003.md` |
 
 ## Historial
 
@@ -46,3 +48,4 @@ Estados: `PENDIENTE` · `EN CURSO` · `BLOQUEADA` · `EN REVISIÓN` · `HECHO`
 - 2026-09-25 — revisor-documental: revisión S1 (T-002) y S2 (T-003); checklists y solicitudes DIAG-001..006, INV-001.
 - 2026-09-25 — revisor-documental: revisión S3-4 (T-004); checklist, solicitudes DIAG-100..105 y DEV-100.
 - 2026-09-25 — orquestador (Codex), T-010: revisión del avance, rutas de guías actualizadas, pruebas reproducidas, defecto DEV-101 y continuidad mediante AGENTS.md. S1–S3/4 pasan a EN REVISIÓN por pendientes efectivos; el cierre histórico no equivale a aceptación final.
+- 2026-10-16 — orquestador, T-011: avance 50 % del Inc. 2 (v1.5.0-inc2-avance, 228 pruebas + 8 E2E, cobertura 100 %), DEF-03..DEF-08 corregidos, métricas GQM calculadas sobre v1.0-PMV y v1.5, 31 capturas por RF y entregable S9 con checklist (97,1 %). Sin commits ni tags.

@@ -1,0 +1,118 @@
+{
+ "meta": {
+  "definicion": "disponibilidad = sondas con HTTP 200 en < 2 s / sondas x 100",
+  "intervalo_s": 1,
+  "decision": "Se sondea durante TODAS las corridas de carga (condición más exigente, 50 usuarios) y además en una sesión de observación de 10 min por versión sin carga; se informa cada modalidad y el total combinado por versión."
+ },
+ "durante_carga": {
+  "v10_comun": {
+   "version": "v1.0",
+   "modalidad": "sonda GET /api/salud cada 1 s durante la prueba de carga",
+   "corridas": {
+    "r1": {
+     "sondas": 64,
+     "disponibles": 64,
+     "disponibilidad_pct": 100.0,
+     "latencia_mediana_ms": 2.3,
+     "latencia_p95_ms": 15.4,
+     "latencia_max_ms": 38.6
+    },
+    "r2": {
+     "sondas": 64,
+     "disponibles": 64,
+     "disponibilidad_pct": 100.0,
+     "latencia_mediana_ms": 2.0,
+     "latencia_p95_ms": 14.3,
+     "latencia_max_ms": 17.7
+    }
+   },
+   "sondas_total": 128,
+   "disponibles_total": 128,
+   "disponibilidad_pct_global": 100.0
+  },
+  "v15_comun": {
+   "version": "v1.5",
+   "modalidad": "sonda GET /api/salud cada 1 s durante la prueba de carga",
+   "corridas": {
+    "r1": {
+     "sondas": 64,
+     "disponibles": 64,
+     "disponibilidad_pct": 100.0,
+     "latencia_mediana_ms": 10.7,
+     "latencia_p95_ms": 54.8,
+     "latencia_max_ms": 87.3
+    },
+    "r2": {
+     "sondas": 64,
+     "disponibles": 64,
+     "disponibilidad_pct": 100.0,
+     "latencia_mediana_ms": 7.5,
+     "latencia_p95_ms": 52.3,
+     "latencia_max_ms": 95.2
+    }
+   },
+   "sondas_total": 128,
+   "disponibles_total": 128,
+   "disponibilidad_pct_global": 100.0
+  },
+  "v15_agenda": {
+   "version": "v1.5",
+   "modalidad": "sonda GET /api/salud cada 1 s durante la prueba de carga",
+   "corridas": {
+    "r1": {
+     "sondas": 64,
+     "disponibles": 64,
+     "disponibilidad_pct": 100.0,
+     "latencia_mediana_ms": 10.8,
+     "latencia_p95_ms": 40.5,
+     "latencia_max_ms": 50.9
+    },
+    "r2": {
+     "sondas": 64,
+     "disponibles": 64,
+     "disponibilidad_pct": 100.0,
+     "latencia_mediana_ms": 10.2,
+     "latencia_p95_ms": 51.1,
+     "latencia_max_ms": 132.5
+    }
+   },
+   "sondas_total": 128,
+   "disponibles_total": 128,
+   "disponibilidad_pct_global": 100.0
+  }
+ },
+ "sesion_sin_carga": {
+  "v1.0": {
+   "sondas": 600,
+   "disponibles": 600,
+   "disponibilidad_pct": 100.0,
+   "latencia_mediana_ms": 2.0,
+   "latencia_p95_ms": 2.5,
+   "latencia_max_ms": 5.5,
+   "duracion_s_aprox": 600,
+   "modalidad": "sesión de observación sin carga, base B150, sonda GET /api/salud cada 1 s"
+  },
+  "v1.5": {
+   "sondas": 600,
+   "disponibles": 600,
+   "disponibilidad_pct": 100.0,
+   "latencia_mediana_ms": 2.0,
+   "latencia_p95_ms": 2.6,
+   "latencia_max_ms": 6.4,
+   "duracion_s_aprox": 600,
+   "modalidad": "sesión de observación sin carga, base B150, sonda GET /api/salud cada 1 s"
+  }
+ },
+ "total_por_version": {
+  "v1.0": {
+   "sondas": 728,
+   "disponibles": 728,
+   "disponibilidad_pct": 100.0
+  },
+  "v1.5": {
+   "sondas": 856,
+   "disponibles": 856,
+   "disponibilidad_pct": 100.0
+  }
+ }
+}

@@ -1,0 +1,51 @@
+# Pruebas exploratorias del Incremento 2 (agenda y alertas) - salida cruda
+# Fecha: 2026-10-16T18:00:08-05:00 (hora de Perú); versión v1.5.0-inc2-avance; servidor uvicorn :8321 con SQLite <directorio temporal> y dataset B150 cargado por API
+# Comando: python herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <sqlite>
+
+EX-01 [OK] aplica=True total=12 pendientes=12 vencidos=0 primero=2027-04-16
+EX-02 [OK] control 6 m: ('CUMPLIDO', '2026-10-16')
+EX-03 [OK] CUMPLIDO proximo=False prog=2026-10-17 límite=2026-11-16
+EX-04 [OK] aplica=True total=0 motivo=None
+EX-05 [OK] HTTP 422 {"mensaje":"Revise los datos marcados.","errores":[{"campo":"fecha_nacimiento","mensaje":"El sistema atiende a menores d
+EX-06 [OK] total=0: []
+EX-07 [OK] tratamiento=['C1M']
+EX-08 [OK] controles de tratamiento=0
+EX-09 [OK] 23 m -> SIN_ANEMIA (esperado SIN_ANEMIA); 24 m -> LEVE (esperado LEVE)
+EX-10 [OK] antes=True aplica=False motivo='El niño tiene alta: no se programan controles.' sigue_en_alertas=False
+EX-11 [OK] alertas antes=1 tras reactivar=1 aplica=True
+EX-12 [OK] [('PENDIENTE', 422), ('alta', 422), ('', 422), (None, 422)]; estado final=ACTIVO
+EX-13 [OK] campo no editable -> HTTP 200; cuerpo vacío -> HTTP 200; fecha_nacimiento sin cambio=2025-12-16
+EX-14 [OK] [('00000000-000', 404), ('no-existe', 404), ('xxxxxxxxxxxx', 404), ('%00', 404), ('..%2F..%2Fet', 404), ('%F0%9F%98%80', 404), ('%20%20', 404)]
+EX-15 [OK] {'ÑAHUIMPUQUIO': True, 'ñahuimpuquio': True, ' Ñahuimpuquio ': True, 'Nahuimpuquio': False}
+EX-16 [OK] presentes=[True, True]
+EX-17 [OBS] filtro NFD NO coincide con valor NFC almacenado
+EX-18 [OK] {'%': (200, 0), '_': (200, 0), 'xxxxxx': (200, 0), '\\U0001f600': (200, 0), '\\x00': (200, 0)}; comunidad='' -> 481 de 481
+EX-19 [OK] {"'ALTA'": 200, "'alta'": 422, "'Alta'": 422, "'URGENTE'": 422, "''": 200, "' ALTA '": 422, 'repetida': 200}
+EX-20 [OK] [405, 404, 307]
+EX-21 [OK] 1 d -> dias_vencido=1, BAJA (esperado BAJA); 7 d -> dias_vencido=7, BAJA (esperado BAJA); 8 d -> dias_vencido=8, MEDIA (esperado MEDIA); 30 d -> dias_vencido=30, MEDIA (esperado MEDIA); 31 d -> dias_v
+EX-22 [FALLA] MODERADA -> None (esperado ALTA), ultima_clasificacion=None; SEVERA -> None (esperado ALTA), ultima_clasificacion=None; LEVE -> None (esperado BAJA), ultima_clasificacion=None
+EX-23 [OK] [('C1M', 2, 'ALTA')]
+EX-24 [OK] 487 alertas revisadas; discrepancias=[]
+EX-25 [OK] 487 alertas; ordenadas=True
+EX-26 [OK] alertas=487 resumen={'total_vencidos': 487, 'por_prioridad': {'ALTA': 452, 'MEDIA': 24, 'BAJA': 11}, 'ninos_con_vencidos': 104, 'proximos_7_dias': 10} fórmulas_incorrectas=0
+EX-27 [OK] [(0, 'PENDIENTE', True, True), (7, 'PENDIENTE', True, True), (8, 'PENDIENTE', False, False)]
+EX-28 [OK] [(0, 'PENDIENTE', None), (-1, 'VENCIDO', 1)]
+EX-29 [OK] [(-16, 'VENCIDO', 'VENCIDO'), (-15, 'CUMPLIDO', 'CUMPLIDO'), (30, 'CUMPLIDO', 'CUMPLIDO'), (31, 'VENCIDO', 'VENCIDO')]
+EX-30 [OK] C1M=CUMPLIDO tamizaje12=VENCIDO
+EX-31 [FALLA] {'C1M': 'CUMPLIDO', 'C3M': 'CERRADO_RECUPERADO', 'C6M': 'CERRADO_RECUPERADO'}
+EX-32 [OK] {'C1M': 'VENCIDO', 'C3M': 'CERRADO_RECUPERADO', 'C6M': 'CERRADO_RECUPERADO'}
+EX-33 [OK] ['C1M', 'C3M', 'C6M']
+EX-34 [OK] misma fecha HTTP 201; retroactiva HTTP 201; total de controles 9 -> 12; vencidos=2
+EX-35 [OK] [422, 422, 201]
+EX-36 [OK] [(0, 201), (5000, 201), (5001, 422), (-1, 422), (4999.9, 201)]
+EX-37 [OK] 183 niños revisados; discrepancias=[]
+EX-38 [OK] 60 agendas; incumplimientos=0
+EX-39 [OK] HTTP 200; altitud de la evaluación=3500.0; resumen igual=True
+EX-40 [OBS] niño de 70 meses ACTIVO: 2 alertas vencidas ([('DHx', 639), ('DHc1', 549)]); seguimiento: edad_meses=70, control_atrasado=True
+EX-41 [OK] {('w', 201): 20, ('r', 200): 20}; evaluaciones finales=21
+EX-42 [FALLA] {409: 7, 500: 2, 201: 1}; filas con ese DNI=1
+EX-43 [OK] {200: 720}
+EX-44 [OK] 109 evaluaciones; agenda en 5 ms; total controles=12
+EX-45 [OK] [404, 404, 404, 404, 200, 200, 200, 200, 200]
+Counter({'OK': 40, 'FALLA': 3, 'OBS': 2})
+exit=0

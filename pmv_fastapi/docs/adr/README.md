@@ -1,4 +1,4 @@
-# Registros de Decisiones Arquitectónicas (ADR) — Incremento 1
+# Registros de Decisiones Arquitectónicas (ADR) — Incrementos 1 y 2
 
 | ADR | Decisión | Atributo de calidad (NFR) principal | Estado |
 |---|---|---|---|
@@ -8,3 +8,7 @@
 | [ADR-004](ADR-004-reglas-clinicas-parametrizadas.md) | Reglas clínicas parametrizadas en el dominio | Exactitud clínica, trazabilidad normativa | Aceptada (pendiente de confirmación por la microred) |
 | [ADR-005](ADR-005-api-rest-openapi.md) | API REST JSON con contrato OpenAPI y errores por campo en español | Interoperabilidad, usabilidad | Aceptada |
 | [ADR-006](ADR-006-consultas-por-lotes.md) | Consultas por lotes en reportes (corrección DEF-01) | Rendimiento (latencia p95) | Aceptada |
+| [ADR-007](ADR-007-agenda-calculada-en-dominio.md) | Agenda de controles calculada en línea en el dominio (`ESQUEMA_AGENDA_V1`), sin tabla propia | Exactitud normativa, consistencia del dato, capacidad de prueba | Aceptada (parámetros pendientes de confirmación por la microred) |
+| [ADR-008](ADR-008-puertos-de-entrada-y-estructura-hexagonal.md) | Puertos de entrada (`typing.Protocol`) y estructura hexagonal verificada por pruebas de arquitectura | Mantenibilidad, evolución por incrementos | Aceptada |
+
+Nota: ADR-008 detalla y hace verificable lo decidido en ADR-001.

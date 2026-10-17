@@ -2,7 +2,8 @@
 
 import pytest
 
-from app.domain.reglas_clinicas import Clasificacion, ajuste_por_altitud, clasificar_anemia, hemoglobina_ajustada
+from app.domain.model.clasificacion import Clasificacion
+from app.domain.service.reglas_clinicas import ajuste_por_altitud, clasificar_anemia, hemoglobina_ajustada
 
 
 @pytest.mark.parametrize(

@@ -1,0 +1,112 @@
+{
+  "modo": "inc2",
+  "version": "v1.5.0-inc2-avance",
+  "capturas": [
+    {
+      "archivo": "RF-06/RF06_inc2_paso1_entrada.png",
+      "rf": "RF-06",
+      "incremento": "inc2",
+      "paso": "Paso 1 · ENTRADA",
+      "descripcion": "Pestaña «Seguimiento» con el niño sintético DNI 71000022 (anemia leve en tratamiento) localizado; se abrirá su expediente.",
+      "fecha_hora": "16/10/2026 14:16:07",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "Fila del niño visible con su clasificación y la marca de controles vencidos.",
+      "version": "v1.5.0-inc2-avance"
+    },
+    {
+      "archivo": "RF-06/RF06_inc2_paso2_resultado.png",
+      "rf": "RF-06",
+      "incremento": "inc2",
+      "paso": "Paso 2 · RESULTADO (agenda del expediente)",
+      "descripcion": "Sección «Agenda de controles» del expediente: lista de controles por edad y de tratamiento con fecha programada, ventana de cumplimiento y estado (cumplido, pendiente, próximo a vencer, vencido).",
+      "fecha_hora": "16/10/2026 14:16:08",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "13 controles; estados {'CUMPLIDO': 2, 'PENDIENTE': 9, 'VENCIDO': 2}. Resumen: 13 controles · 2 cumplidos · 9 pendientes · 0 por vencer · 2 vencidos · Próximo control: DHc1 el 03/11/2026",
+      "version": "v1.5.0-inc2-avance"
+    },
+    {
+      "archivo": "RF-06/RF06_inc2_paso3_proximo_a_vencer.png",
+      "rf": "RF-06",
+      "incremento": "inc2",
+      "paso": "Paso 3 · RESULTADO (control próximo a vencer)",
+      "descripcion": "Agenda de otro niño sintético con anemia moderada (DNI 71000003) con un control en estado «Próximo a vencer» (los datos de prueba no traen un niño con los cuatro estados a la vez).",
+      "fecha_hora": "16/10/2026 14:16:09",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "1 control(es) en estado «Próximo a vencer»; resumen «1 por vencer».",
+      "version": "v1.5.0-inc2-avance"
+    },
+    {
+      "archivo": "RF-07/RF07_inc2_paso1_entrada.png",
+      "rf": "RF-07",
+      "incremento": "inc2",
+      "paso": "Paso 1 · ENTRADA (alertas sin filtro)",
+      "descripcion": "Pestaña «Alertas» con el resumen (vencidos, niños, prioridad alta/media/baja, por vencer en 7 días) y la tabla completa, antes de aplicar filtros; la insignia de la cabecera muestra el total de vencidos.",
+      "fecha_hora": "16/10/2026 14:16:11",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "9 controles vencidos, 9 alertas ordenadas por prioridad; carga en 176 ms.",
+      "version": "v1.5.0-inc2-avance"
+    },
+    {
+      "archivo": "RF-07/RF07_inc2_paso2_resultado_filtro_prioridad.png",
+      "rf": "RF-07",
+      "incremento": "inc2",
+      "paso": "Paso 2 · RESULTADO (filtro por prioridad ALTA)",
+      "descripcion": "Filtro «Prioridad: Alta» aplicado: la tabla muestra solo alertas de prioridad alta (control de tratamiento vencido, clasificación moderada/severa o más de 30 días de atraso).",
+      "fecha_hora": "16/10/2026 14:16:11",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "7 alerta(s) ALTA de 9; coincide con la API.",
+      "version": "v1.5.0-inc2-avance"
+    },
+    {
+      "archivo": "RF-07/RF07_inc2_paso3_resultado_filtro_comunidad.png",
+      "rf": "RF-07",
+      "incremento": "inc2",
+      "paso": "Paso 3 · RESULTADO (filtro por comunidad)",
+      "descripcion": "Filtro «Comunidad: Huaycha» aplicado: solo las alertas de esa comunidad.",
+      "fecha_hora": "16/10/2026 14:16:12",
+      "url": "http://127.0.0.1:8102/",
+      "resultado_observado": "1 alerta(s), todas de Huaycha.",
+      "version": "v1.5.0-inc2-avance"
+    }
+  ],
+  "tiempos": [
+    {
+      "rf": "RF-06",
+      "accion": "clic en el niño → expediente con agenda calculada",
+      "ms": 119,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-07",
+      "accion": "clic en pestaña «Alertas» → resumen + tabla",
+      "ms": 176,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-07",
+      "accion": "filtro prioridad «Alta» → tabla filtrada",
+      "ms": 69,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-07",
+      "accion": "filtro comunidad «Huaycha» → tabla filtrada",
+      "ms": 70,
+      "umbral_2s": true
+    }
+  ],
+  "criterios": {
+    "RF-06": {
+      "gwt": "Dado un niño con anemia en tratamiento, cuando se abre su expediente, entonces el sistema muestra la agenda normativa de controles con el estado de cada uno (cumplido/pendiente/próximo/vencido) en < 2 s.",
+      "cumple": true,
+      "detalle": "DNI 71000022: 13 controles, estados {'CUMPLIDO': 2, 'PENDIENTE': 9, 'VENCIDO': 2} (UI = API: True); DNI 71000003 (anemia moderada) con 1 próximo(s); ningún niño sintético reúne los 4 estados a la vez, por eso se usan 2 niños; agenda en 119 ms."
+    },
+    "RF-07": {
+      "gwt": "Dado un conjunto de niños con controles, cuando se abre la pestaña «Alertas» y se filtra por prioridad o comunidad, entonces se listan los controles vencidos priorizados con su resumen, en < 2 s.",
+      "cumple": true,
+      "detalle": "Resumen UI = API (9 vencidos); filtro ALTA 7 filas en 69 ms; comunidad Huaycha 1/1 filas en 70 ms; pestaña en 176 ms."
+    }
+  },
+  "hallazgos": [],
+  "generado": "16/10/2026 14:16:12"
+}

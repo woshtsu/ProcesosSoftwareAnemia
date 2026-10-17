@@ -1,0 +1,138 @@
+# Corrida 2 (con DEF-08 corregido y EX-22/EX-31 ajustados; EX-43 aún con criterio estricto: un 500 por "database is locked" en un PATCH)
+# Fecha: 2026-10-16T18:02:44-05:00 (hora de Perú); v1.5.0-inc2-avance con la corrección de DEF-08; servidor uvicorn :8321, SQLite nueva con dataset B150 cargado por API
+# Comando: python herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <sqlite>
+# Corrida 1 (antes de la corrección y de ajustar EX-22/EX-31): exploratorias_inc2_resultado_corrida1.txt
+
+Exception in thread Thread-56 (alt):
+Traceback (most recent call last):
+  File ".venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File ".venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File ".venv/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File ".venv/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File ".venv/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File ".venv/lib/python3.13/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+    raise exc
+  File ".venv/lib/python3.13/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File ".venv/lib/python3.13/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File ".venv/lib/python3.13/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+        self.READ_NUM_BYTES, timeout=timeout
+    )
+  File ".venv/lib/python3.13/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File ".venv/lib/python3.13/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadError: [Errno 104] Connection reset by peer
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/threading.py", line 1044, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/lib/python3.13/threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "herramientas/gqm/exploratorias_inc2.py", line 466, in alt
+    res.append(h.patch(f"/api/ninos/{nid}", json={"estado": "ALTA" if (i + k) % 2 else "ACTIVO"}).status_code)
+               ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ".venv/lib/python3.13/site-packages/httpx/_client.py", line 1218, in patch
+    return self.request(
+           ~~~~~~~~~~~~^
+        "PATCH",
+        ^^^^^^^^
+    ...<11 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File ".venv/lib/python3.13/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ".venv/lib/python3.13/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File ".venv/lib/python3.13/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File ".venv/lib/python3.13/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File ".venv/lib/python3.13/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File ".venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File ".venv/lib/python3.13/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadError: [Errno 104] Connection reset by peer
+EX-01 [OK] aplica=True total=12 pendientes=12 vencidos=0 primero=2027-04-16
+EX-02 [OK] control 6 m: ('CUMPLIDO', '2026-10-16')
+EX-03 [OK] CUMPLIDO proximo=False prog=2026-10-17 límite=2026-11-16
+EX-04 [OK] aplica=True total=0 motivo=None
+EX-05 [OK] HTTP 422 {"mensaje":"Revise los datos marcados.","errores":[{"campo":"fecha_nacimiento","mensaje":"El sistema atiende a menores d
+EX-06 [OK] total=0: []
+EX-07 [OK] tratamiento=['C1M']
+EX-08 [OK] controles de tratamiento=0
+EX-09 [OK] 23 m -> SIN_ANEMIA (esperado SIN_ANEMIA); 24 m -> LEVE (esperado LEVE)
+EX-10 [OK] antes=True aplica=False motivo='El niño tiene alta: no se programan controles.' sigue_en_alertas=False
+EX-11 [OK] alertas antes=1 tras reactivar=1 aplica=True
+EX-12 [OK] [('PENDIENTE', 422), ('alta', 422), ('', 422), (None, 422)]; estado final=ACTIVO
+EX-13 [OK] campo no editable -> HTTP 200; cuerpo vacío -> HTTP 200; fecha_nacimiento sin cambio=2025-12-16
+EX-14 [OK] [('00000000-000', 404), ('no-existe', 404), ('xxxxxxxxxxxx', 404), ('%00', 404), ('..%2F..%2Fet', 404), ('%F0%9F%98%80', 404), ('%20%20', 404)]
+EX-15 [OK] {'ÑAHUIMPUQUIO': True, 'ñahuimpuquio': True, ' Ñahuimpuquio ': True, 'Nahuimpuquio': False}
+EX-16 [OK] presentes=[True, True]
+EX-17 [OBS] filtro NFD NO coincide con valor NFC almacenado
+EX-18 [OK] {'%': (200, 0), '_': (200, 0), 'xxxxxx': (200, 0), '\\U0001f600': (200, 0), '\\x00': (200, 0)}; comunidad='' -> 481 de 481
+EX-19 [OK] {"'ALTA'": 200, "'alta'": 422, "'Alta'": 422, "'URGENTE'": 422, "''": 200, "' ALTA '": 422, 'repetida': 200}
+EX-20 [OK] [405, 404, 307]
+EX-21 [OK] 1 d -> dias_vencido=1, BAJA (esperado BAJA); 7 d -> dias_vencido=7, BAJA (esperado BAJA); 8 d -> dias_vencido=8, MEDIA (esperado MEDIA); 30 d -> dias_vencido=30, MEDIA (esperado MEDIA); 31 d -> dias_v
+EX-22 [OK] MODERADA -> ALTA (esperado ALTA), ultima_clasificacion=MODERADA; SEVERA -> ALTA (esperado ALTA), ultima_clasificacion=SEVERA; LEVE -> BAJA (esperado BAJA), ultima_clasificacion=LEVE
+EX-23 [OK] [('C1M', 2, 'ALTA')]
+EX-24 [OK] 490 alertas revisadas; discrepancias=[]
+EX-25 [OK] 490 alertas; ordenadas=True
+EX-26 [OK] alertas=490 resumen={'total_vencidos': 490, 'por_prioridad': {'ALTA': 454, 'MEDIA': 24, 'BAJA': 12}, 'ninos_con_vencidos': 107, 'proximos_7_dias': 10} fórmulas_incorrectas=0
+EX-27 [OK] [(0, 'PENDIENTE', True, True), (7, 'PENDIENTE', True, True), (8, 'PENDIENTE', False, False)]
+EX-28 [OK] [(0, 'PENDIENTE', None), (-1, 'VENCIDO', 1)]
+EX-29 [OK] [(-16, 'VENCIDO', 'VENCIDO'), (-15, 'CUMPLIDO', 'CUMPLIDO'), (30, 'CUMPLIDO', 'CUMPLIDO'), (31, 'VENCIDO', 'VENCIDO')]
+EX-30 [OK] C1M=CUMPLIDO tamizaje12=VENCIDO
+EX-31 [OK] día 12: {'C1M': 'CERRADO_RECUPERADO', 'C3M': 'CERRADO_RECUPERADO', 'C6M': 'CERRADO_RECUPERADO'}; día 20: {'C1M': 'CUMPLIDO', 'C3M': 'CERRADO_RECUPERADO', 'C6M': 'CERRADO_RECUPERADO'}
+EX-32 [OK] {'C1M': 'VENCIDO', 'C3M': 'CERRADO_RECUPERADO', 'C6M': 'CERRADO_RECUPERADO'}
+EX-33 [OK] ['C1M', 'C3M', 'C6M']
+EX-34 [OK] misma fecha HTTP 201; retroactiva HTTP 201; total de controles 9 -> 12; vencidos=2
+EX-35 [OK] [422, 422, 201]
+EX-36 [OK] [(0, 201), (5000, 201), (5001, 422), (-1, 422), (4999.9, 201)]
+EX-37 [OK] 184 niños revisados; discrepancias=[]
+EX-38 [OK] 60 agendas; incumplimientos=0
+EX-39 [OK] HTTP 200; altitud de la evaluación=3500.0; resumen igual=True
+EX-40 [OBS] niño de 70 meses ACTIVO: 2 alertas vencidas ([('DHx', 639), ('DHc1', 549)]); seguimiento: edad_meses=70, control_atrasado=True
+EX-41 [OK] {('w', 201): 20, ('r', 200): 20}; evaluaciones finales=21
+EX-42 [OK] {409: 9, 201: 1}; filas con ese DNI=1
+EX-43 [FALLA] {200: 697, 500: 1}
+EX-44 [OK] 109 evaluaciones; agenda en 4 ms; total controles=12
+EX-45 [OK] [404, 404, 404, 404, 200, 200, 200, 200, 200]
+Counter({'OK': 42, 'OBS': 2, 'FALLA': 1})
+exit=0
