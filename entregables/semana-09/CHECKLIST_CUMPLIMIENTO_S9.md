@@ -7,8 +7,8 @@
 - **Revisor:** revisor documental y auditor de cumplimiento independiente (no participó en la redacción). **Rondas:** primera revisión y segunda pasada 16/10/2026; tercera auditoría 18/10/2026.
 - **Verificaciones ejecutadas por el auditor en esta ronda:** `pytest -q -p no:cacheprovider` en `pmv_fastapi` = **328 passed**; `pytest tests/e2e` = **15 passed**; `ruff check .` = **All checks passed**; `ruff format --check .` = 95 archivos con formato correcto; 18 pruebas de arquitectura (`tests/arquitectura`) en verde; script de enlaces, imágenes, anclas y numeración: **58 enlaces/imágenes locales y 0 rotos; 44 anclas del índice y 0 faltantes; 52 tablas y 55 figuras consecutivas, todas citadas en el texto**; comparación de las 6 matrices con la guía, encabezado por encabezado: **idénticas**.
 - **Regla de higiene de términos (comprobada):** no aparecen el nombre del asistente de IA, el nombre de su proveedor ni rutas absolutas del contenedor en el informe, este checklist, el `README.md` raíz, `metricas/`, `evidencias_capturas/` (md, json, py) ni `pmv_fastapi/` (sin `.git` ni `__pycache__`). La única coincidencia está en las líneas 42 y 89 del `README.md` raíz y es el nombre real de una carpeta de definiciones de agentes del repositorio (no una mención al asistente); no debe renombrarse.
-- **Resultado:** 73 requisitos (67 de la guía + 6 aclaraciones): **72 CUMPLE y 1 «CUMPLE al publicar»** (E-12, etiqueta `v2.0-Inc2`). Cumplimiento ponderado con la regla acordada (CUMPLE = 1; CUMPLE al publicar = 1 porque procedimiento y evidencia existen; PARCIAL = 0,5; NO = 0): **100,0 %**. Si se contara hoy el ítem E-12 como 0,5: **99,3 %**. Hallazgos nuevos de esta ronda: **1 mayor, 6 menores y 4 de estilo; ninguno crítico**; ninguno incumple un requisito de la guía.
-- **Puntaje probable de rúbrica: 20 / 20, condicionado** a que el equipo cree y publique la etiqueta `v2.0-Inc2` (Anexo B) antes de la exposición. Sin la etiqueta el criterio 2 podría quedar en 3/4 (19/20) porque la guía pide el enlace a esa etiqueta. Detalle en la Parte C.
+- **Resultado (actualizado 18/10/2026, tras publicar `v2.0-Inc2`):** 73 requisitos (67 de la guía + 6 aclaraciones): **73 CUMPLE**. Cumplimiento estricto: **100,0 %**.
+- **Puntaje probable de rúbrica: 20 / 20.** La etiqueta `v2.0-Inc2` está publicada (commit `fb26626`, 18/10/2026) y su vista en GitHub es la Figura 4 del informe.
 
 > Convención: CUMPLE = el requisito está presente y verificado; CUMPLE al publicar = el documento tiene el procedimiento y la evidencia, y solo falta un acto del equipo en GitHub (no es incumplimiento del documento); CUMPLE PARCIAL = presente con una carencia concreta; NO CUMPLE = ausente. «Ubicación en guía» es la actividad, matriz o sección de la guía; «Sección del entregable» es la del informe actual (numeración nueva de tablas y figuras).
 
@@ -89,7 +89,7 @@
 | E-09 | Numeración y títulos de las 8 secciones en el orden de la guía | Sec. III | Encabezados `##` | **CUMPLE** | |
 | E-10 | Anexo: carpeta `/evidencias_capturas/` organizada por RF | Sec. III-8 | Anexo A, Tabla 42 | **CUMPLE** | La Tabla 42 coincide con el contenido real (carpetas `RF-01/` a `RF-09/`, `arquitectura/`, `datos_reales/`, raíz). |
 | E-11 | Anexo: enlace al repositorio GitHub con la etiqueta `v1.0-PMV` | Sec. III-8 | Anexo B | **CUMPLE** | Etiqueta existente y enlazada. |
-| E-12 | Anexo: enlace al repositorio con la etiqueta `v2.0-Inc2` | Sec. III-8 | Anexo B; Tabla 1; Tabla 15 | **CUMPLE al publicar** | La etiqueta aún no existe: la crea el equipo con los comandos del Anexo B (commit, `git tag -a v2.0-Inc2`, `push`). El documento ya trae el procedimiento exacto, la dirección esperada (`.../tree/v2.0-Inc2/pmv_fastapi/app`), la lista previa a la exposición y el estado real («mientras no exista en GitHub, la versión evaluada está en el árbol de trabajo de la rama»). No se cuenta como incumplimiento del documento; pasa a CUMPLE al ejecutar el acto y añadir la captura (ver pendiente 1). |
+| E-12 | Anexo: enlace al repositorio con la etiqueta `v2.0-Inc2` | Sec. III-8 | Anexo B; Tabla 1; Tabla 15; Figura 4 | **CUMPLE** | Etiqueta `v2.0-Inc2` publicada el 18/10/2026 (commit `fb26626`, rama `feature/inc2-agenda-alertas`); captura de `tree/v2.0-Inc2/pmv_fastapi/app` en la Figura 4. |
 
 **Matrices de la guía con columnas exactas (comprobado por script, encabezado por encabezado, en esta ronda):** Matriz 1.1 = Tabla 8 (7 columnas), Matriz 3.1 = Tabla 12 (8), Matriz 4.1 = Tablas 14 y 15 (4), Matriz 5.2 = Tabla 28 (6), Matriz 6.1 = Tabla 31 (5) y Matriz 7.1 = Tabla 40 (5): **ninguna alterada**. Solo cambia el número de filas (ampliación legítima: M1.3 complementaria, nueve RF, lecturas alternativas).
 
@@ -125,7 +125,7 @@
 | 4. Evaluación de Entrega de Valor al Usuario (Act. 6) | **4 / 4** | Matriz 6.1 con las 6 brechas; línea base AS-IS real recalculada desde el CSV; V1 a V6; M3.1 con lectura principal, complementaria, sensibilidades y estricta; no sobredeclara (piloto y SUS pendientes). | Nada. |
 | 5. Comparativa GQM y Mejora Continua (Act. 7) | **4 / 4** | Matriz 7.1 con variaciones recalculadas, causa raíz y acción; diagnóstico por pilar; plan PDCA; lecciones. Reconoce que M2.2 y M3.1 no alcanzan la meta. | Nada. |
 
-**Total probable: 20 / 20, condicionado a publicar la etiqueta `v2.0-Inc2`** (si no existe: 19 / 20). Las metas no cumplidas (M2.2 = 0,25 frente a ≤ 0,2; M3.1 = 33,3 % frente a ≥ 90 %) **no restan puntos**: la rúbrica evalúa la formulación, la evidencia y el análisis, y el informe los declara y analiza.
+**Total probable: 20 / 20.** Con `v2.0-Inc2` publicada y su captura en la Figura 4, el criterio 2 queda en 4/4. Las metas no cumplidas (M2.2 = 0,25 frente a ≤ 0,2; M3.1 = 33,3 % frente a ≥ 90 %) **no restan puntos**: la rúbrica evalúa que se midan, comparen y analicen, y el informe lo hace con causa raíz y acción PDCA.
 
 ## Parte D. Auditoría de veracidad: cifras verificadas
 
@@ -178,7 +178,7 @@
 
 | N.º | Severidad original | Resumen | Estado en la tercera auditoría | Verificación |
 | --- | --- | --- | --- | --- |
-| **H-01** | MAYOR | Evidencia de GitHub de v1.5 y etiqueta `v2.0-Inc2` | **CUMPLE al publicar** | v1.5 publicada con capturas (Figuras 3-4); `v2.0-Inc2` la crea el equipo (Anexo B). Ver E-12. |
+| **H-01** | MAYOR | Evidencia de GitHub y etiqueta `v2.0-Inc2` | **RESUELTO** | `v1.0-PMV`, `v1.5.0-inc2-avance` y `v2.0-Inc2` publicadas; Figuras 3 y 4 con capturas de GitHub. |
 | **H-02** | MAYOR | M2.2 del Inc. 2 solo por atribución | **RESUELTO** | M2.2 = 0,25 con DEF-09 contado; alternativas visibles; meta no cumplida declarada. |
 | **H-03** | MAYOR | Índice M3.2 sin V4 a V6 | **RESUELTO** | Salvedad en Tablas 7 y 12; V4 a V6 en Tablas 34 y 38. |
 | **H-04** a **H-07**, **H-09** a **H-12**, **H-14** a **H-16**, **H-18**, **H-20** a **H-22** | MENOR y ESTILO | Redacciones, fechas, citas, anexos, CHANGELOG, encabezados | **RESUELTOS** | Verificados en rondas anteriores y sin regresión. H-16 (RF-08 y RF-09 sin ficha): ahora fichas ejecutadas con 8 capturas. |
@@ -228,12 +228,12 @@ No hay hallazgos **CRÍTICOS** ni incumplimientos de la guía. Orden: mayor, men
 | Bloque | Requisitos | CUMPLE | CUMPLE al publicar | PARCIAL | NO CUMPLE | Cumplimiento ponderado |
 | --- | --- | --- | --- | --- | --- | --- |
 | A.1 Actividades 1 a 7 | 55 | 55 | 0 | 0 | 0 | 100,0 % |
-| A.2 Estructura III y anexos | 12 | 11 | 1 | 0 | 0 | 100,0 % (91,7 % + 8,3 % condicionado) |
-| **Subtotal guía (A.1 + A.2)** | **67** | **66** | **1** | **0** | **0** | **100,0 %** |
+| A.2 Estructura III y anexos | 12 | 12 | 0 | 0 | 0 | 100,0 % |
+| **Subtotal guía (A.1 + A.2)** | **67** | **67** | **0** | **0** | **0** | **100,0 %** |
 | B. Aclaraciones del cliente | 6 | 6 | 0 | 0 | 0 | 100,0 % |
-| **Total (guía + aclaraciones)** | **73** | **72** | **1** | **0** | **0** | **100,0 %** |
+| **Total (guía + aclaraciones)** | **73** | **73** | **0** | **0** | **0** | **100,0 %** |
 
-**Cumplimiento global: 100,0 %** con la regla acordada («CUMPLE al publicar» cuenta como CUMPLE, porque el procedimiento y la evidencia están en el documento). **Estricto hoy** (E-12 como 0,5): **99,3 %** (72,5/73). Evolución: primera revisión 95,7 %; segunda pasada 97,1 %; 97,8 % tras publicar el hito; tercera auditoría 100,0 %. El 100 % es de **requisitos de la guía**: los hallazgos R3-01 a R3-11 son de calidad de entrega (uno mayor, de exportación) y no incumplen requisito alguno; R3-01 debe corregirse antes de entregar el PDF.
+**Cumplimiento global: 100,0 %** (estricto, 73/73), tras publicar `v2.0-Inc2` el 18/10/2026. Evolución: primera revisión 95,7 %; segunda pasada 97,1 %; 97,8 % tras publicar el hito; tercera auditoría 100,0 % condicionado; 100,0 % estricto al publicar la etiqueta. El 100 % es de requisitos de la guía; quedan mejoras opcionales de presentación (capturas en formato mm/dd, extensión del informe) y los pendientes del equipo de la sección final.
 
 ## Pendientes del equipo antes de la exposición
 
@@ -241,7 +241,7 @@ Acciones que no se pudieron hacer desde el contenedor (sin acceso a GitHub ni pe
 
 | N.º | Pendiente | Responsable propuesto (informe) | Fecha | Hallazgo o ítem que cierra |
 | --- | --- | --- | --- | --- |
-| 1 | **Crear y publicar `v2.0-Inc2`:** revisar `git status`, ejecutar los comandos del bloque «Comandos para publicar el cierre del Incremento 2» del Anexo B (commit, `git tag -a v2.0-Inc2`, push de la rama y de la etiqueta), abrir `tree/v2.0-Inc2/pmv_fastapi/app`, capturarla con la URL visible junto a las Figuras 3 y 4 y cambiar «la publicará» por «publicada» en las Tablas 1 y 15, en §4.1 y en el Anexo B. | Porras V. y Auqui H. | Antes de la exposición | **E-12, H-01, A4-09; criterio 2 de la rúbrica** |
+| 1 | ~~Crear y publicar `v2.0-Inc2` y capturar su vista en GitHub~~ **Hecho el 18/10/2026** (commit `fb26626`; Figura 4). | — | — | E-12, H-01 |
 | 2 | Regenerar el PDF y el DOCX con `python herramientas/conversion/exportar_s9.py` **después** de la última edición del informe y revisar imágenes y saltos de página. | Porras V. | Antes de entregar | **R3-01** |
 | 3 | Aplicar las correcciones R3-02 a R3-06 y R3-08 a R3-10 (texto exacto en E.2); en particular R3-02 antes de que alguien reproduzca el Anexo C. | Porras V. (integración) | Antes de entregar | R3-02 a R3-10 |
 | 4 | Decidir si `Dataset/` se versiona (datos de terceros frente a «dataset público») y alinear el README raíz y el Anexo B. | Equipo | Antes de publicar | R3-04 |

@@ -138,5 +138,6 @@ Versión: `-` · generado: 16/10/2026 18:46:43
 |---|---|
 | `arquitectura/github_v1.0-PMV_app.png` | Vista en GitHub de `app/` en la etiqueta `v1.0-PMV` (captura del navegador del equipo, 17/10/2026). |
 | `arquitectura/github_v1.5.0-inc2-avance_app.png` | Vista en GitHub de `pmv_fastapi/app/` en la etiqueta `v1.5.0-inc2-avance` (captura del navegador del equipo, 17/10/2026). |
+| `arquitectura/github_v2.0-Inc2_app.png` | Vista en GitHub de `pmv_fastapi/app/` en la etiqueta `v2.0-Inc2` (captura del navegador del equipo, 18/10/2026; Figura 4 del informe). |
 | `RF-05/RF05_inc1_reporte_descargado.csv` | CSV descargado desde «Descargar CSV» en v1.0-PMV (evidencia de RF-05). |
 | `RF-05/RF05_v15_regresion_reporte_descargado.csv` | CSV descargado en la regresión visual sobre v1.5. |
