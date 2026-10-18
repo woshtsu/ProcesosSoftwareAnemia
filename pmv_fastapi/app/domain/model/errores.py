@@ -25,3 +25,7 @@ class RegistroDuplicado(Exception):
 
 class NoEncontrado(Exception):
     """El recurso solicitado no existe."""
+
+
+class ConflictoAsistencia(Exception):
+    """El control ya tiene una asistencia registrada o ya está cumplido (HIST-2.4)."""

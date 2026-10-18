@@ -53,6 +53,12 @@
    "rf": "RF-01",
    "momento": "escapado, detectado en el ciclo del Inc. 2",
    "justificacion": "Dos registros simultáneos con el mismo DNI: el segundo respondía 500 en lugar de 409 (carrera entre la comprobación previa y la restricción UNIQUE); el registro de niños (RF-01) no manejaba bien el DNI duplicado. Código heredado del Inc. 1, hallado por la exploración EX-42 en el ciclo del Inc. 2."
+  },
+  "DEF-09": {
+   "tipo": "FUNCIONAL",
+   "rf": "RF-08",
+   "momento": "detectado antes de liberar (Inc. 2, código nuevo)",
+   "justificacion": "En la pestaña Agenda (RF-08), la respuesta de la carga inicial sobrescribía las fechas «Desde» y «Hasta» que la persona acababa de escribir y «Consultar» pedía otro rango: la funcionalidad de elegir el rango de la agenda del personal fallaba. Hallado por las pruebas E2E de RF-08 (CP-180, CP-183 y CP-186) en código nuevo, antes de liberar la v2.0."
   }
  },
  "defectos_en_registros": [
@@ -63,7 +69,8 @@
   "DEF-05",
   "DEF-06",
   "DEF-07",
-  "DEF-08"
+  "DEF-08",
+  "DEF-09"
  ],
  "kloc": {
   "v1.0": {
@@ -75,6 +82,11 @@
    "archivos": 39,
    "lineas_sin_blancos_ni_comentarios": 1688,
    "kloc": 1.688
+  },
+  "v2.0": {
+   "archivos": 55,
+   "lineas_sin_blancos_ni_comentarios": 2782,
+   "kloc": 2.782
   }
  },
  "inc1": {
@@ -181,7 +193,7 @@
    "nota": "KLOC del código del Inc. 1 (v1.0-PMV). Los DEF-03..08 se hallaron en v1.5 pero estaban en código heredado del Inc. 1."
   }
  },
- "inc2": {
+ "inc2_avance": {
   "regla": "defectos funcionales en RF-06 y RF-07 detectados en su ciclo / 2 RF entregados en el avance",
   "n_funcionales_rf06_rf07": 0,
   "defectos": [],
@@ -218,13 +230,65 @@
    "nota": "KLOC neto = líneas de v1.5 menos líneas de v1.0 (aproximación del código nuevo; v1.5 también modifica código heredado)."
   }
  },
+ "inc2": {
+  "regla": "(defectos funcionales del código nuevo de RF-06..RF-09 detectados en el ciclo del incremento, antes de liberar + escapados a producción) / 4 RF del incremento",
+  "n_rf": 4,
+  "rf": [
+   "RF-06",
+   "RF-07",
+   "RF-08",
+   "RF-09"
+  ],
+  "defectos_funcionales_antes_de_liberar": [
+   "DEF-09"
+  ],
+  "defectos_funcionales_escapados_a_produccion": [],
+  "n_funcionales": 1,
+  "tasa_def_por_rf": 0.25,
+  "lectura_principal": "1/4 = 0,25 Def/RF: DEF-09 (RF-08) detectado por las pruebas E2E antes de liberar cuenta como defecto funcional del incremento",
+  "variante_escapados_a_produccion": {
+   "n": 0,
+   "tasa_def_por_rf": 0.0,
+   "nota": "La v2.0.0-inc2 aún no se libera (el tag v2.0-Inc2 lo crea el equipo): por definición no hay defectos escapados. Las 27 exploratorias de RF-08/RF-09 no hallaron fallas."
+  },
+  "detalle_registro": {
+   "DEF-09": "En la pestaña Agenda (RF-08), la respuesta de la carga inicial sobrescribía las fechas «Desde» y «Hasta» que la persona acababa de escribir y «Consultar» pedía otro rango: la funcionalidad de elegir el rango de la agenda del personal fallaba. Hallado por las pruebas E2E de RF-08 (CP-180, CP-183 y CP-186) en código nuevo, antes de liberar la v2.0."
+  },
+  "defectos_por_rf": {
+   "RF-06": [],
+   "RF-07": [],
+   "RF-08": [
+    "DEF-09"
+   ],
+   "RF-09": []
+  },
+  "verificacion_exploratoria_rf08_rf09": {
+   "script": "herramientas/gqm/exploratorias_inc2_final.py",
+   "salida_texto": "entregables/semana-09/metricas/salidas/exploratorias_inc2_final_resultado.txt",
+   "casos": 27,
+   "estados": {
+    "OK": 27
+   },
+   "historial_de_corridas": "corrida 1: 25 OK y 2 FALLA (EXF-28 y EXF-29 eran errores de diseño de los casos: el control cerrado por recuperación elegido tenía fecha futura, por lo que el 422 era el resultado correcto, y la evaluación vinculada elegida era la más antigua, que ya cumplía otro control); corregidos los casos, corrida 2 (final): 27 OK, 0 FALLA, 0 OBS. Ver salidas/exploratorias_inc2_final_resultado*.txt"
+  },
+  "densidad_por_kloc": {
+   "kloc_v2.0": 2.782,
+   "kloc_v1.5": 1.688,
+   "por_kloc_total_v2.0": 0.36,
+   "kloc_agregado_en_el_cierre_aprox": 1.094,
+   "por_kloc_agregado_en_el_cierre_aprox": 0.91,
+   "nota": "KLOC agregado = líneas de v2.0 menos líneas de v1.5 (aproximación del código nuevo de RF-08, RF-09 y el dataset; incluye cambios en código existente)."
+  }
+ },
  "meta_guia_def_por_rf_max": {
   "Inc.1": 1.0,
   "Inc.2": 0.2
  },
  "cumple": {
   "Inc.1": false,
-  "Inc.2": true,
+  "avance_v1.5": true,
+  "Inc.2": false,
+  "Inc.2_variante_escapados_a_produccion": true,
   "Inc.1_variante_solo_antes_de_liberar": true
  }
 }

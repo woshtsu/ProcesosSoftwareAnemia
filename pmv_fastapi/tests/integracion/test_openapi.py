@@ -10,7 +10,7 @@ def test_cp113_openapi_publicado_esta_al_dia():
     publicado = Path(exportar_openapi.DESTINO).read_text(encoding="utf-8")
     assert exportar_openapi.generar() == publicado, "ejecute: python -m scripts.exportar_openapi"
     contrato = json.loads(publicado)
-    assert contrato["info"]["version"] == "1.5.0-inc2-avance"
+    assert contrato["info"]["version"] == "2.0.0-inc2"
     assert "/api/alertas/resumen" in contrato["paths"]
 
 

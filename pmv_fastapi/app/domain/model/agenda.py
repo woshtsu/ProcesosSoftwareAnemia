@@ -32,6 +32,10 @@ class ControlProgramado:
     fecha_inicio_ventana: date  # primer día en que el control se considera cumplido
     edad_meses_programada: int | None = None  # solo controles por edad
     proximo: bool = False  # PENDIENTE que vence en 7 días o menos
+    inasistencia_registrada: bool = False  # el personal registró que el niño no asistió (HIST-2.4); control sin cumplir
+    motivo_inasistencia: str | None = None
+    cumplido_por_asistencia: bool = False  # CUMPLIDO porque el personal registró que el niño asistió (HIST-2.4)
+    asistencia_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -42,6 +46,7 @@ class ResumenAgenda:
     vencidos: int = 0
     cerrados: int = 0
     proximos: int = 0  # subconjunto de pendientes que vencen en 7 días o menos
+    inasistencias: int = 0  # controles sin cumplir con una inasistencia registrada
     proximo_control: ControlProgramado | None = None  # primer control PENDIENTE por fecha programada
 
 

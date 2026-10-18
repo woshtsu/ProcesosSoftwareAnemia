@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1F4E79">
-  <title>Anemia Junín · Agenda y alertas</title>
+  <title>Anemia Junín · Agenda y asistencia</title>
   <link rel="manifest" href="/static/manifest.json">
   <link rel="icon" href="/static/icono.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/static/estilos.css">
@@ -15,7 +15,7 @@
       <img src="/static/icono.svg" alt="" width="32" height="32">
       <div>
         <strong>Anemia Junín</strong>
-        <span>Incremento 2 (avance 50 %) · v1.5</span>
+        <span>Incremento 2 · v2.0</span>
       </div>
     </div>
     <div class="usuario">
@@ -29,10 +29,13 @@
     </div>
   </header>
 
+  <div id="aviso-referencia" class="aviso-referencia" role="status" data-testid="aviso-fecha-referencia" hidden></div>
+
   <nav class="pestanas" role="tablist">
     <button class="pestana activa" data-vista="registro" data-testid="tab-registro">Registrar niño</button>
     <button class="pestana" data-vista="seguimiento" data-testid="tab-seguimiento">Seguimiento</button>
     <button class="pestana" data-vista="expediente" data-testid="tab-expediente">Expediente</button>
+    <button class="pestana" data-vista="agenda" data-testid="tab-agenda">Agenda</button>
     <button class="pestana" data-vista="alertas" data-testid="tab-alertas">Alertas</button>
     <button class="pestana" data-vista="reporte" data-testid="tab-reporte">Reporte</button>
   </nav>
@@ -96,7 +99,7 @@
     <section id="vista-seguimiento" class="vista">
       <div class="titulo"><h1>Niños en seguimiento</h1><span id="total-seguimiento" class="chip"></span></div>
       <div class="filtros tarjeta">
-        <input id="buscar" type="search" placeholder="Buscar por nombre, DNI o comunidad" data-testid="buscar">
+        <input id="buscar" type="search" placeholder="Buscar por nombre, DNI, código o comunidad" data-testid="buscar">
         <select id="filtro-clasificacion" data-testid="filtro-clasificacion">
           <option value="">Todas las clasificaciones</option>
           <option value="SEVERA">Anemia severa</option>
@@ -112,7 +115,7 @@
       </div>
       <div class="tabla-envoltura tarjeta">
         <table class="tabla" data-testid="tabla-seguimiento">
-          <thead><tr><th>Niño</th><th>DNI</th><th>Edad</th><th>Comunidad</th><th>Último control</th><th>Hb ajustada</th><th>Clasificación</th></tr></thead>
+          <thead><tr><th>Niño</th><th>DNI / código</th><th>Edad</th><th>Comunidad</th><th>Último control</th><th>Hb ajustada</th><th>Clasificación</th></tr></thead>
           <tbody id="cuerpo-seguimiento"></tbody>
         </table>
         <p id="sin-resultados" class="vacio" hidden>No hay niños que coincidan con el filtro.</p>
@@ -123,10 +126,37 @@
     <section id="vista-expediente" class="vista">
       <div class="titulo"><h1>Expediente digital</h1></div>
       <div class="filtros tarjeta">
-        <input id="buscar-dni" inputmode="numeric" maxlength="8" placeholder="Buscar expediente por DNI" data-testid="buscar-dni">
+        <input id="buscar-dni" maxlength="12" placeholder="Buscar expediente por DNI o código (DJ-00001)" data-testid="buscar-dni">
         <button id="btn-buscar-dni" class="primario">Abrir</button>
       </div>
-      <div id="expediente" data-testid="expediente"><p class="vacio">Seleccione un niño desde Seguimiento o busque por DNI.</p></div>
+      <div id="expediente" data-testid="expediente"><p class="vacio">Seleccione un niño desde Seguimiento o busque por DNI o código.</p></div>
+    </section>
+
+    <!-- HIST-2.3 -->
+    <section id="vista-agenda" class="vista">
+      <div class="titulo"><h1>Agenda del personal</h1><span id="total-agenda" class="chip"></span></div>
+      <div class="filtros tarjeta">
+        <label>Desde <input id="agenda-desde" type="date" data-testid="agenda-desde"></label>
+        <label>Hasta <input id="agenda-hasta" type="date" data-testid="agenda-hasta"></label>
+        <label>Establecimiento
+          <select id="filtro-agenda-establecimiento" data-testid="filtro-agenda-establecimiento"><option value="">Todos</option></select>
+        </label>
+        <label>Comunidad
+          <select id="filtro-agenda-comunidad" data-testid="filtro-agenda-comunidad"><option value="">Todas</option></select>
+        </label>
+        <button id="agenda-consultar" class="primario" data-testid="agenda-consultar">Consultar</button>
+        <button id="agenda-anterior" class="secundario" data-testid="agenda-anterior" title="Mismo rango, hacia atrás">‹ Anterior</button>
+        <button id="agenda-siguiente" class="secundario" data-testid="agenda-siguiente" title="Mismo rango, hacia adelante">Siguiente ›</button>
+      </div>
+      <div id="agenda-error" class="alerta" hidden data-testid="agenda-error"></div>
+      <div id="agenda-personal-resumen" class="resumen-agenda" data-testid="agenda-personal-resumen"></div>
+      <div class="tabla-envoltura tarjeta">
+        <table class="tabla completa" data-testid="agenda-personal-tabla">
+          <thead><tr><th>Niño</th><th>Control</th><th>Tipo</th><th>Establecimiento · comunidad</th><th>Estado</th><th>Asistencia</th></tr></thead>
+          <tbody id="cuerpo-agenda-personal"></tbody>
+        </table>
+      </div>
+      <p class="nota">Los controles cumplidos se muestran atenuados. Los cerrados por recuperación no se listan.</p>
     </section>
 
     <!-- HIST-2.2 -->
@@ -164,6 +194,37 @@
       <div id="reporte" data-testid="reporte"></div>
     </section>
   </main>
+
+  <!-- HIST-2.4: registro de asistencia a un control -->
+  <div id="modal-asistencia" class="modal" hidden data-testid="modal-asistencia">
+    <form id="form-asistencia" class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="modal-titulo" novalidate>
+      <h2 id="modal-titulo"></h2>
+      <p id="modal-detalle" class="nota"></p>
+      <div id="campo-evaluacion" class="campo">
+        <label for="asistencia-evaluacion">Evaluación del día (opcional)</label>
+        <select id="asistencia-evaluacion" data-testid="asistencia-evaluacion"></select>
+      </div>
+      <div id="campo-motivo">
+        <div class="campo">
+          <label for="asistencia-motivo">Motivo de la inasistencia</label>
+          <select id="asistencia-motivo" data-testid="asistencia-motivo">
+            <option value="">Seleccione un motivo</option>
+            <option>Viaje o traslado de la familia</option>
+            <option>Enfermedad del niño</option>
+            <option>Distancia o falta de transporte</option>
+            <option>Olvido de la cita</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="campo"><label for="asistencia-detalle">Detalle (opcional)</label><input id="asistencia-detalle" maxlength="150" data-testid="asistencia-detalle"></div>
+      </div>
+      <small id="asistencia-error" class="error" data-testid="asistencia-error"></small>
+      <div class="acciones">
+        <button type="button" id="asistencia-cancelar" class="secundario" data-testid="asistencia-cancelar">Cancelar</button>
+        <button type="submit" id="asistencia-confirmar" class="primario" data-testid="asistencia-confirmar">Registrar</button>
+      </div>
+    </form>
+  </div>
 
   <div id="toast" class="toast" hidden></div>
   <script src="/static/app.js"></script>

@@ -1,4 +1,4 @@
-/* Cliente web (PWA). Consume la API REST: Incremento 1 (PMV) y avance del Incremento 2 (agenda y alertas). */
+/* Cliente web (PWA). Consume la API REST: Incremento 1 (PMV) e Incremento 2 (agenda, alertas, agenda del personal y asistencia). */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const ETIQUETA = { SIN_ANEMIA: "Sin anemia", LEVE: "Anemia leve", MODERADA: "Anemia moderada", SEVERA: "Anemia severa", NO_APLICA: "No aplica (< 6 m)" };
@@ -8,6 +8,9 @@ const CAMPOS_NINO = ["dni", "nombres", "apellidos", "sexo", "fecha_nacimiento", 
 const CAMPOS_EVAL = ["fecha", "hemoglobina_observada", "peso_kg", "talla_cm"];
 const NUMERICOS = ["altitud_m", "hemoglobina_observada", "peso_kg", "talla_cm"];
 const hoyISO = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+/* «Hoy» del sistema: lo fija el servidor (con FECHA_REFERENCIA es el corte del dataset); mientras responde se usa el del navegador. */
+let HOY = hoyISO();
+const SEVERIDAD_HIS = { LEV: "Leve", MOD: "Moderada", SEV: "Severa" };
 
 async function api(ruta, opciones = {}) {
   const r = await fetch(ruta, {
@@ -36,6 +39,7 @@ function mostrar(vista) {
   $$(".vista").forEach((v) => v.classList.toggle("activa", v.id === "vista-" + vista));
   if (vista === "seguimiento") cargarSeguimiento();
   if (vista === "alertas") cargarAlertas();
+  if (vista === "agenda") cargarAgendaPersonal();
   actualizarInsignia();
 }
 $$(".pestana").forEach((b) => b.addEventListener("click", () => mostrar(b.dataset.vista)));
@@ -132,7 +136,7 @@ function valoresPorDefecto() {
   form.elements.establecimiento.value = "P. S. Chongos Alto";
   form.elements.distrito.value = "Chongos Alto";
   form.elements.altitud_m.value = 3550;
-  form.elements.fecha.value = hoyISO();
+  form.elements.fecha.value = HOY;
 }
 $("#limpiar").addEventListener("click", () => { form.reset(); borrarBorrador(); limpiarErrores(); valoresPorDefecto(); vistaPrevia(); });
 
@@ -147,7 +151,7 @@ async function cargarSeguimiento() {
   $("#sin-resultados").hidden = filas.length > 0;
   $("#cuerpo-seguimiento").innerHTML = filas.map((f) => `
     <tr class="click" data-id="${f.id}">
-      <td><strong>${esc(f.nombre_completo)}</strong></td><td>${f.dni}</td><td>${edad(f.edad_meses)}</td><td>${esc(f.comunidad)}</td>
+      <td><strong>${esc(f.nombre_completo)}</strong></td><td>${esc(f.dni || f.codigo_origen || "—")}</td><td>${edad(f.edad_meses)}</td><td>${esc(f.comunidad)}</td>
       <td class="${f.control_atrasado ? "atrasado" : ""}">${fecha(f.ultima_fecha_control)}${f.dias_desde_ultimo_control !== null ? ` · ${f.dias_desde_ultimo_control} d` : ""}${f.controles_vencidos ? ` <span class="ctrl ctrl-VENCIDO" data-testid="vencidos-fila">${f.controles_vencidos} vencido(s)</span>` : ""}</td>
       <td>${f.ultima_hb_ajustada !== null ? f.ultima_hb_ajustada.toFixed(1) : "—"}</td><td>${badge(f.ultima_clasificacion)}</td>
     </tr>`).join("");
@@ -184,20 +188,23 @@ async function abrirExpediente(id) {
   $("#expediente").innerHTML = `
     <div class="tarjeta">
       <div class="cabecera-exp">
-        <div><h2 style="font-size:19px;margin:0">${esc(exp.nombres)} ${esc(exp.apellidos)}</h2>
+        <div><h2 style="font-size:19px;margin:0" data-testid="expediente-nombre">${esc(exp.nombre_completo)}</h2>
           <span class="chip">${exp.estado === "ACTIVO" ? "Seguimiento activo" : "Alta"}</span> ${u ? badge(u.clasificacion) : ""}</div>
         <div><button class="secundario" id="btn-editar">Editar datos</button></div>
       </div>
       <div class="datos">
-        <div><span>DNI</span><strong>${exp.dni}</strong></div>
+        <div><span>DNI</span><strong>${exp.dni || "No registrado"}</strong></div>
         <div><span>Edad</span><strong>${edad(exp.edad_meses)}</strong></div>
         <div><span>Nacimiento</span><strong>${fecha(exp.fecha_nacimiento)}</strong></div>
-        <div><span>Sexo</span><strong>${exp.sexo}</strong></div>
+        <div><span>Sexo</span><strong>${exp.sexo || "No registrado"}</strong></div>
         <div><span>Comunidad / distrito</span><strong>${esc(exp.comunidad)} · ${esc(exp.distrito)}</strong></div>
         <div><span>Altitud</span><strong>${exp.altitud_m} m s. n. m.</strong></div>
-        <div><span>Madre / tutor</span><strong>${esc(exp.tutor_nombre)}</strong></div>
+        <div><span>Madre / tutor</span><strong>${exp.tutor_nombre ? esc(exp.tutor_nombre) : "No registrado"}</strong></div>
         <div><span>Celular</span><strong>${exp.tutor_celular || "—"}</strong></div>
         <div><span>Establecimiento</span><strong>${esc(exp.establecimiento)}</strong></div>
+        ${exp.origen !== "SISTEMA" ? `<div data-testid="expediente-origen"><span>Origen de los datos</span><strong>Dataset DIRESA Junín (anonimizado)</strong></div>
+        <div><span>Código</span><strong data-testid="expediente-codigo">${esc(exp.codigo_origen)}</strong></div>
+        <div><span>Provincia · red · microred</span><strong>${esc(exp.provincia || "—")} · ${esc(exp.red || "—")} · ${esc(exp.microred || "—")}</strong></div>` : ""}
       </div>
       <form id="form-editar" class="grid" style="margin-top:12px" hidden novalidate>
         ${[["comunidad","Comunidad"],["altitud_m","Altitud (m)"],["tutor_nombre","Madre / tutor"],["tutor_celular","Celular"]].map(([c,l]) =>
@@ -210,13 +217,14 @@ async function abrirExpediente(id) {
       <div class="tarjeta tabla-envoltura">
         <table class="tabla" data-testid="tabla-evaluaciones"><thead><tr><th>Fecha</th><th>Edad</th><th>Hb obs.</th><th>Hb ajust.</th><th>Clasificación</th><th>Peso / talla</th></tr></thead>
         <tbody>${exp.evaluaciones.map((e) => `<tr><td>${fecha(e.fecha)}</td><td>${edad(e.edad_meses)}</td><td>${e.hemoglobina_observada.toFixed(1)}</td>
-          <td><strong>${e.hemoglobina_ajustada.toFixed(1)}</strong></td><td>${badge(e.clasificacion)}</td><td>${e.peso_kg} kg · ${e.talla_cm} cm</td></tr>`).join("")}</tbody></table>
+          <td><strong>${e.hemoglobina_ajustada.toFixed(1)}</strong></td><td>${badge(e.clasificacion)}${e.clasificacion_origen ? `<br><small data-testid="clasificacion-his">HIS: ${SEVERIDAD_HIS[e.clasificacion_origen] || esc(e.clasificacion_origen)}</small>` : ""}</td>
+          <td>${e.peso_kg === null || e.talla_cm === null ? '<span data-testid="sin-antropometria">no registrado</span>' : `${e.peso_kg} kg · ${e.talla_cm} cm`}</td></tr>`).join("")}</tbody></table>
       </div>
       <div class="tarjeta">
         <h2>Evolución de hemoglobina ajustada</h2>${grafico(exp.evaluaciones) || '<p class="vacio" style="padding:0">Se mostrará con dos o más controles.</p>'}
         <h2 style="margin-top:14px">Registrar nuevo control</h2>
         <form id="form-control" novalidate>
-          <div class="fila2"><div class="campo"><label>Fecha</label><input type="date" name="fecha" value="${hoyISO()}"><small class="error"></small></div>
+          <div class="fila2"><div class="campo"><label>Fecha</label><input type="date" name="fecha" value="${HOY}"><small class="error"></small></div>
           <div class="campo"><label>Hb observada (g/dL)</label><input type="number" step="0.1" name="hemoglobina_observada"><small class="error"></small></div></div>
           <div class="fila2"><div class="campo"><label>Peso (kg)</label><input type="number" step="0.1" name="peso_kg"><small class="error"></small></div>
           <div class="campo"><label>Talla (cm)</label><input type="number" step="0.1" name="talla_cm"><small class="error"></small></div></div>
@@ -253,8 +261,15 @@ const estadoVisual = (c) => (c.estado === "PENDIENTE" && c.proximo ? "PROXIMO" :
 const chipControl = (c) => {
   const v = estadoVisual(c);
   const extra = c.estado === "VENCIDO" ? ` · ${c.dias_vencido} d` : "";
-  return `<span class="ctrl ctrl-${v}" data-testid="estado-control" data-estado="${v}">${ESTADO_CTRL[v]}${extra}</span>`;
+  const asistio = c.cumplido_por_asistencia ? " (asistió)" : "";
+  const marca = c.inasistencia_registrada
+    ? ` <span class="ctrl ctrl-INASISTENCIA" data-testid="marca-inasistencia" title="${esc(c.motivo_inasistencia)}">Inasistencia registrada</span>` : "";
+  return `<span class="ctrl ctrl-${v}" data-testid="estado-control" data-estado="${v}">${ESTADO_CTRL[v]}${extra}${asistio}</span>${marca}`;
 };
+/* HIST-2.4: solo se registra la asistencia de controles ya programados (fecha <= hoy) y todavía sin cumplir ni marcar. */
+const puedeRegistrarAsistencia = (c) => (c.estado === "PENDIENTE" || c.estado === "VENCIDO") && !c.inasistencia_registrada && c.fecha_programada <= HOY;
+const botonesAsistencia = (c) => puedeRegistrarAsistencia(c)
+  ? `<button type="button" class="mini" data-accion="ASISTIO" data-testid="btn-asistio">Asistió</button><button type="button" class="mini no" data-accion="NO_ASISTIO" data-testid="btn-no-asistio">No asistió</button>` : "";
 
 async function cargarAgenda(id) {
   actualizarInsignia(); // un control nuevo o un cambio de estado modifica el total de vencidos de la cabecera
@@ -271,17 +286,135 @@ async function cargarAgenda(id) {
         <span class="ctrl ctrl-PROXIMO" data-testid="agenda-proximos">${r.proximos} por vencer</span>
         <span class="ctrl ctrl-VENCIDO" data-testid="agenda-vencidos">${r.vencidos} vencidos</span>
         ${r.cerrados ? `<span class="ctrl ctrl-CERRADO_RECUPERADO">${r.cerrados} cerrados por recuperación</span>` : ""}
+        ${r.inasistencias ? `<span class="ctrl ctrl-INASISTENCIA" data-testid="agenda-inasistencias">${r.inasistencias} con inasistencia</span>` : ""}
         <span class="proximo" data-testid="agenda-proximo-control">${r.proximo_control ? `Próximo control: ${esc(r.proximo_control.codigo)} el ${fecha(r.proximo_control.fecha_programada)}` : "Sin controles pendientes"}</span>
       </div>
       <div class="agenda-scroll tabla-envoltura"><table class="tabla completa" data-testid="agenda-tabla">
-        <thead><tr><th>Fecha programada</th><th>Control</th><th>Tipo</th><th>Ventana de cumplimiento</th><th>Estado</th></tr></thead>
-        <tbody>${a.controles.map((c) => `<tr data-estado="${estadoVisual(c)}" data-codigo="${c.codigo}">
+        <thead><tr><th>Fecha programada</th><th>Control</th><th>Tipo</th><th>Ventana de cumplimiento</th><th>Estado</th><th>Asistencia</th></tr></thead>
+        <tbody>${a.controles.map((c) => `<tr data-estado="${estadoVisual(c)}" data-codigo="${c.codigo}" data-programada="${c.fecha_programada}" data-nino="${id}" data-desc="${esc(c.descripcion)}">
           <td>${fecha(c.fecha_programada)}</td><td>${esc(c.descripcion)}</td>
           <td>${c.tipo === "CONTROL_TRATAMIENTO" ? "Tratamiento" : "Por edad"}</td>
-          <td>${fecha(c.fecha_inicio_ventana)} – ${fecha(c.fecha_limite)}</td><td>${chipControl(c)}</td></tr>`).join("")}</tbody></table></div>
+          <td>${fecha(c.fecha_inicio_ventana)} – ${fecha(c.fecha_limite)}</td><td>${chipControl(c)}</td>
+          <td class="celda-acciones">${botonesAsistencia(c)}</td></tr>`).join("")}</tbody></table></div>
       <p class="nota">Agenda referencial calculada con el esquema ${esc(a.version_esquema)} al ${fecha(a.fecha_referencia)}; la confirma la microred. No es un diagnóstico.</p>`;
+    $$("[data-accion]", caja).forEach((b) => b.addEventListener("click", () => abrirModalAsistencia(b.closest("tr"), b.dataset.accion, () => cargarAgenda(id))));
   } catch (e) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje || "No se pudo calcular la agenda.")}</p>`; }
 }
+
+/* ---------- HIST-2.3: agenda del personal ---------- */
+const DIAS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+const diaSemana = (iso) => DIAS[new Date(iso + "T12:00:00").getDay()];
+const sumarDias = (iso, n) => { const d = new Date(iso + "T12:00:00"); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
+const diasEntre = (a, b) => Math.round((new Date(b + "T12:00:00") - new Date(a + "T12:00:00")) / 86400000);
+let secuenciaAgenda = 0;
+
+function llenarSelect(sel, opciones, vacio, actual) {
+  sel.innerHTML = `<option value="">${vacio}</option>` + opciones.map((o) => `<option value="${esc(o)}">${esc(o)}</option>`).join("");
+  sel.value = opciones.includes(actual) ? actual : "";
+}
+
+async function cargarAgendaPersonal() {
+  const mia = ++secuenciaAgenda;
+  const enviado = { desde: $("#agenda-desde").value, hasta: $("#agenda-hasta").value };
+  const p = new URLSearchParams();
+  [["desde", "#agenda-desde"], ["hasta", "#agenda-hasta"], ["establecimiento", "#filtro-agenda-establecimiento"], ["comunidad", "#filtro-agenda-comunidad"]]
+    .forEach(([k, id]) => { if ($(id).value) p.set(k, $(id).value); });
+  const aviso = $("#agenda-error");
+  let a;
+  try { a = await api("/api/agenda?" + p); }
+  catch (e) {
+    if (mia !== secuenciaAgenda) return;
+    aviso.textContent = (e.errores?.[0] || e).mensaje || "No se pudo consultar la agenda."; aviso.hidden = false;
+    return;
+  }
+  if (mia !== secuenciaAgenda) return; // llegó la respuesta de una consulta anterior: se descarta
+  aviso.hidden = true;
+  // Solo se completa lo que la persona no tocó mientras llegaba la respuesta (DEF-09): lo escrito después se respeta.
+  if ($("#agenda-desde").value === enviado.desde) $("#agenda-desde").value = a.desde;
+  if ($("#agenda-hasta").value === enviado.hasta) $("#agenda-hasta").value = a.hasta;
+  llenarSelect($("#filtro-agenda-establecimiento"), a.establecimientos_disponibles, "Todos", a.establecimiento);
+  llenarSelect($("#filtro-agenda-comunidad"), a.comunidades_disponibles, "Todas", a.comunidad);
+  const r = a.resumen;
+  $("#total-agenda").textContent = `${r.total} control(es) · ${r.ninos} niño(s)`;
+  $("#agenda-personal-resumen").innerHTML = `
+    <span class="chip" data-testid="agenda-personal-total">${r.total} programados</span>
+    <span class="ctrl ctrl-CUMPLIDO" data-testid="agenda-personal-cumplidos">${r.cumplidos} cumplidos</span>
+    <span class="ctrl ctrl-PENDIENTE" data-testid="agenda-personal-pendientes">${r.pendientes} pendientes</span>
+    <span class="ctrl ctrl-VENCIDO" data-testid="agenda-personal-vencidos">${r.vencidos} vencidos</span>
+    <span class="ctrl ctrl-INASISTENCIA" data-testid="agenda-personal-inasistencias">${r.con_inasistencia} con inasistencia</span>
+    <span class="proximo">Del ${fecha(a.desde)} al ${fecha(a.hasta)} · fecha de referencia ${fecha(a.fecha_referencia)}</span>`;
+  $("#cuerpo-agenda-personal").innerHTML = a.dias.map((d) => `
+    <tr class="dia${d.total ? "" : " sin-controles"}" data-fecha="${d.fecha}" data-testid="agenda-personal-dia">
+      <td colspan="6">${diaSemana(d.fecha)} ${fecha(d.fecha)}<small data-testid="agenda-personal-dia-total">${d.total} control(es)${d.total ? ` · ${d.cumplidos} cumplidos · ${d.pendientes} pendientes · ${d.vencidos} vencidos` : ""}</small></td>
+    </tr>` + d.items.map((i) => {
+      const c = i.control, v = estadoVisual(c);
+      return `<tr class="${c.estado === "CUMPLIDO" ? "atenuado" : ""}" data-estado="${v}" data-codigo="${c.codigo}" data-programada="${c.fecha_programada}" data-nino="${i.nino.id}" data-nombre="${esc(i.nino.nombre_completo)}" data-desc="${esc(c.descripcion)}">
+        <td><a href="#" class="enlace-nino" data-testid="agenda-personal-nino">${esc(i.nino.nombre_completo)}</a><br><small>${i.nino.dni ? "DNI " + i.nino.dni : esc(i.nino.codigo_origen || "")}</small></td>
+        <td>${esc(c.descripcion)}</td><td>${c.tipo === "CONTROL_TRATAMIENTO" ? "Tratamiento" : "Por edad"}</td>
+        <td>${esc(i.nino.establecimiento)}<br><small>${esc(i.nino.comunidad)}</small></td>
+        <td>${chipControl(c)}${i.prioridad ? ` <span class="badge prio-${i.prioridad}" data-testid="prioridad">${i.prioridad}</span>` : ""}</td>
+        <td class="celda-acciones">${botonesAsistencia(c)}</td></tr>`;
+    }).join("")).join("");
+  $$("#cuerpo-agenda-personal .enlace-nino").forEach((x) => x.addEventListener("click", (ev) => { ev.preventDefault(); abrirExpediente(x.closest("tr").dataset.nino); }));
+  $$("#cuerpo-agenda-personal [data-accion]").forEach((b) => b.addEventListener("click", () => abrirModalAsistencia(b.closest("tr"), b.dataset.accion, cargarAgendaPersonal)));
+}
+$("#agenda-consultar").addEventListener("click", cargarAgendaPersonal);
+$("#filtro-agenda-establecimiento").addEventListener("change", cargarAgendaPersonal);
+$("#filtro-agenda-comunidad").addEventListener("change", cargarAgendaPersonal);
+function moverRango(signo) {
+  const desde = $("#agenda-desde").value, hasta = $("#agenda-hasta").value;
+  if (!desde || !hasta) return;
+  const paso = diasEntre(desde, hasta) + 1;
+  $("#agenda-desde").value = sumarDias(desde, signo * paso); $("#agenda-hasta").value = sumarDias(hasta, signo * paso);
+  cargarAgendaPersonal();
+}
+$("#agenda-anterior").addEventListener("click", () => moverRango(-1));
+$("#agenda-siguiente").addEventListener("click", () => moverRango(1));
+
+/* ---------- HIST-2.4: registrar asistencia a un control ---------- */
+const modal = { fila: null, accion: null, alTerminar: null };
+function cerrarModalAsistencia() { $("#modal-asistencia").hidden = true; modal.fila = null; }
+async function abrirModalAsistencia(fila, accion, alTerminar) {
+  modal.fila = fila; modal.accion = accion; modal.alTerminar = alTerminar;
+  const nombre = fila.dataset.nombre || $("[data-testid=expediente-nombre]")?.textContent || "";
+  const asistio = accion === "ASISTIO";
+  $("#modal-titulo").textContent = asistio ? "Registrar asistencia" : "Registrar inasistencia";
+  $("#modal-detalle").textContent = `${nombre} · ${fila.dataset.desc} · programado el ${fecha(fila.dataset.programada)}`;
+  $("#campo-motivo").hidden = asistio; $("#campo-evaluacion").hidden = !asistio;
+  $("#asistencia-motivo").value = ""; $("#asistencia-detalle").value = ""; $("#asistencia-error").textContent = "";
+  $("#asistencia-evaluacion").innerHTML = '<option value="">Sin evaluación vinculada</option>';
+  $("#asistencia-confirmar").textContent = asistio ? "Registrar asistencia" : "Registrar inasistencia";
+  $("#modal-asistencia").hidden = false;
+  (asistio ? $("#asistencia-evaluacion") : $("#asistencia-motivo")).focus();
+  if (asistio) {
+    try {
+      const exp = await api("/api/ninos/" + fila.dataset.nino);
+      if (modal.fila !== fila) return;
+      $("#asistencia-evaluacion").innerHTML += exp.evaluaciones.map((e) => `<option value="${e.id}">${fecha(e.fecha)} · Hb ajustada ${e.hemoglobina_ajustada.toFixed(1)} g/dL</option>`).join("");
+    } catch (_) { /* sin evaluaciones para vincular: se registra la asistencia sin vínculo */ }
+  }
+}
+$("#asistencia-cancelar").addEventListener("click", cerrarModalAsistencia);
+$("#modal-asistencia").addEventListener("click", (ev) => { if (ev.target.id === "modal-asistencia") cerrarModalAsistencia(); });
+addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !$("#modal-asistencia").hidden) cerrarModalAsistencia(); });
+$("#form-asistencia").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const { fila, accion } = modal;
+  const cuerpo = { fecha_programada: fila.dataset.programada, estado: accion };
+  if (accion === "NO_ASISTIO") {
+    const opcion = $("#asistencia-motivo").value, detalle = $("#asistencia-detalle").value.trim();
+    if (!opcion) { $("#asistencia-error").textContent = "Seleccione el motivo de la inasistencia."; return; }
+    cuerpo.motivo = (detalle ? `${opcion}: ${detalle}` : opcion).slice(0, 200);
+  } else if ($("#asistencia-evaluacion").value) cuerpo.evaluacion_id = $("#asistencia-evaluacion").value;
+  try {
+    await api(`/api/ninos/${fila.dataset.nino}/controles/${encodeURIComponent(fila.dataset.codigo)}/asistencia`, { method: "POST", body: JSON.stringify(cuerpo) });
+    const alTerminar = modal.alTerminar;
+    cerrarModalAsistencia();
+    toast(accion === "ASISTIO" ? "Asistencia registrada" : "Inasistencia registrada");
+    if (alTerminar) alTerminar();
+    actualizarInsignia();
+  } catch (e) { $("#asistencia-error").textContent = (e.errores?.[0] || e).mensaje || "No se pudo registrar."; }
+});
 
 /* ---------- HIST-2.2: alertas de controles vencidos ---------- */
 const comunidadesAlerta = new Set();
@@ -322,8 +455,8 @@ async function cargarAlertas() {
   $("#cuerpo-alertas").innerHTML = filas.map((f) => `
     <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-codigo="${f.control.codigo}">
       <td><span class="badge prio-${f.prioridad}" data-testid="prioridad">${f.prioridad}</span></td>
-      <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>DNI ${f.nino.dni}</small></td>
-      <td>${esc(f.control.descripcion)}</td><td>${fecha(f.control.fecha_programada)}</td>
+      <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " + f.nino.dni : esc(f.nino.codigo_origen || "")}</small></td>
+      <td>${esc(f.control.descripcion)}${f.control.inasistencia_registrada ? ` <span class="ctrl ctrl-INASISTENCIA" data-testid="marca-inasistencia" title="${esc(f.control.motivo_inasistencia)}">Inasistencia registrada</span>` : ""}</td><td>${fecha(f.control.fecha_programada)}</td>
       <td class="atrasado">${f.control.dias_vencido} d</td><td>${esc(f.nino.comunidad)}</td>
       <td>${f.nino.tutor_celular || "—"}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");
   $$("#cuerpo-alertas tr").forEach((tr) => tr.addEventListener("click", () => abrirExpediente(tr.dataset.id)));
@@ -331,10 +464,19 @@ async function cargarAlertas() {
 $("#filtro-alerta-comunidad").addEventListener("change", cargarAlertas);
 $("#filtro-alerta-prioridad").addEventListener("change", cargarAlertas);
 
-$("#btn-buscar-dni").addEventListener("click", async () => {
-  try { const exp = await api("/api/ninos/dni/" + $("#buscar-dni").value.trim()); abrirExpediente(exp.id); }
-  catch (e) { toast(e.mensaje || "No encontrado", false); }
-});
+async function buscarExpediente() {
+  const valor = $("#buscar-dni").value.trim();
+  try {
+    if (/^[0-9]{8}$/.test(valor)) { abrirExpediente((await api("/api/ninos/dni/" + valor)).id); return; }
+    // Los registros del dataset no tienen DNI: se buscan por su código seudónimo (todos los estados).
+    const filas = await api("/api/ninos?" + new URLSearchParams({ estado: "", q: valor }));
+    const exacto = filas.find((f) => (f.codigo_origen || "").toLowerCase() === valor.toLowerCase());
+    if (!exacto) throw { mensaje: "No existe un niño con ese DNI o código." };
+    abrirExpediente(exacto.id);
+  } catch (e) { toast(e.mensaje || "No encontrado", false); }
+}
+$("#btn-buscar-dni").addEventListener("click", buscarExpediente);
+$("#buscar-dni").addEventListener("keydown", (ev) => { if (ev.key === "Enter") buscarExpediente(); });
 
 /* ---------- HU-05: reporte ---------- */
 async function generarReporte() {
@@ -364,14 +506,37 @@ async function generarReporte() {
 $("#btn-reporte").addEventListener("click", generarReporte);
 
 /* ---------- inicio ---------- */
-(function iniciar() {
-  const h = hoyISO(); const d = new Date(); d.setDate(1);
-  $("#desde").value = new Date(d.getFullYear(), d.getMonth() - 1, 1).toISOString().slice(0, 10);
-  $("#hasta").value = h;
+const primeroDelMesAnterior = (iso) => { const [a, m] = iso.split("-").map(Number); return new Date(Date.UTC(a, m - 2, 1)).toISOString().slice(0, 10); };
+function fijarFechasPorDefecto() {
+  $("#desde").value = primeroDelMesAnterior(HOY);
+  $("#hasta").value = HOY;
   valoresPorDefecto();
+}
+/* Contexto del servidor: «hoy» y, si está fijada, la fecha de referencia (corte del dataset) con un aviso visible. */
+async function cargarContexto() {
+  try {
+    const c = await api("/api/salud");
+    const anterior = HOY;
+    HOY = c.fecha_hoy;
+    const aviso = $("#aviso-referencia");
+    aviso.hidden = !c.fecha_referencia;
+    if (c.fecha_referencia) aviso.textContent = `Fecha de referencia: ${fecha(c.fecha_referencia)} (corte del dataset)`;
+    if (HOY !== anterior) {
+      $("#desde").value = primeroDelMesAnterior(HOY);
+      $("#hasta").value = HOY;
+      // La fecha del control solo se reemplaza si todavía es la que se puso por defecto (no pisa lo que el personal escribió).
+      if (!form.elements.fecha.value || form.elements.fecha.value === anterior) form.elements.fecha.value = HOY;
+      vistaPrevia();
+    }
+  } catch (_) { /* sin conexión: se conserva la fecha del navegador */ }
+}
+
+(function iniciar() {
+  fijarFechasPorDefecto();
   restaurarBorrador();
   estadoRed();
   vistaPrevia();
   actualizarInsignia();
+  cargarContexto();
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
 })();

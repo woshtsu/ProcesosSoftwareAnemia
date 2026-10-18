@@ -208,5 +208,116 @@
     ],
     "violaciones_regla_dependencia": [],
     "n_violaciones": 0
+  },
+  "v2.0": {
+    "version": "v2.0",
+    "capas": [
+      {
+        "capa": "dominio",
+        "nombre": "Núcleo de dominio",
+        "modulos": 17,
+        "Ce_modulos": 0,
+        "Ca_modulos": 19,
+        "I_modulos": 0.0,
+        "Ce_capas": 0,
+        "Ca_capas": 5,
+        "I_capas": 0.0,
+        "depende_de": [],
+        "dependen_de_ella": [
+          "adaptadores_entrada",
+          "adaptadores_salida",
+          "aplicacion",
+          "puertos_entrada",
+          "puertos_salida"
+        ]
+      },
+      {
+        "capa": "puertos_entrada",
+        "nombre": "Puertos de entrada",
+        "modulos": 9,
+        "Ce_modulos": 7,
+        "Ca_modulos": 8,
+        "I_modulos": 0.47,
+        "Ce_capas": 1,
+        "Ca_capas": 2,
+        "I_capas": 0.33,
+        "depende_de": [
+          "dominio"
+        ],
+        "dependen_de_ella": [
+          "adaptadores_entrada",
+          "aplicacion"
+        ]
+      },
+      {
+        "capa": "puertos_salida",
+        "nombre": "Puertos de salida",
+        "modulos": 2,
+        "Ce_modulos": 2,
+        "Ca_modulos": 11,
+        "I_modulos": 0.15,
+        "Ce_capas": 1,
+        "Ca_capas": 2,
+        "I_capas": 0.33,
+        "depende_de": [
+          "dominio"
+        ],
+        "dependen_de_ella": [
+          "adaptadores_salida",
+          "aplicacion"
+        ]
+      },
+      {
+        "capa": "aplicacion",
+        "nombre": "Aplicación (casos de uso)",
+        "modulos": 7,
+        "Ce_modulos": 28,
+        "Ca_modulos": 0,
+        "I_modulos": 1.0,
+        "Ce_capas": 3,
+        "Ca_capas": 0,
+        "I_capas": 1.0,
+        "depende_de": [
+          "dominio",
+          "puertos_entrada",
+          "puertos_salida"
+        ],
+        "dependen_de_ella": []
+      },
+      {
+        "capa": "adaptadores_entrada",
+        "nombre": "Adaptadores de entrada",
+        "modulos": 2,
+        "Ce_modulos": 15,
+        "Ca_modulos": 0,
+        "I_modulos": 1.0,
+        "Ce_capas": 2,
+        "Ca_capas": 0,
+        "I_capas": 1.0,
+        "depende_de": [
+          "dominio",
+          "puertos_entrada"
+        ],
+        "dependen_de_ella": []
+      },
+      {
+        "capa": "adaptadores_salida",
+        "nombre": "Adaptadores de salida",
+        "modulos": 4,
+        "Ce_modulos": 8,
+        "Ca_modulos": 0,
+        "I_modulos": 1.0,
+        "Ce_capas": 2,
+        "Ca_capas": 0,
+        "I_capas": 1.0,
+        "depende_de": [
+          "dominio",
+          "puertos_salida"
+        ],
+        "dependen_de_ella": []
+      }
+    ],
+    "violaciones_regla_dependencia": [],
+    "n_violaciones": 0
   }
 }

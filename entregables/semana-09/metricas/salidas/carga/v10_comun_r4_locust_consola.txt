@@ -1,0 +1,28 @@
+
+[2026-10-17 20:33:53,877] vm/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-17 20:33:53,877] vm/INFO/locust.main: Run time limit set to 60 seconds
+[2026-10-17 20:33:53,878] vm/INFO/locust.runners: Ramping to 50 users at a rate of 10.00 per second
+[2026-10-17 20:33:57,885] vm/INFO/locust.runners: All users spawned: {"PersonalPostaComun": 50} (50 total users)
+[2026-10-17 20:34:53,877] vm/INFO/locust.main: --run-time limit reached, shutting down
+[2026-10-17 20:34:53,894] vm/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      GET /api/ninos                                                                   820     0(0.00%) |     76      16     614     41 |   13.67        0.00
+GET      GET /api/ninos/{id}                                                              621     0(0.00%) |     13       2     130      6 |   10.35        0.00
+GET      GET /api/reportes/periodo                                                        146     0(0.00%) |     40       7     341     18 |    2.43        0.00
+POST     POST /api/ninos                                                                  273     0(0.00%) |     30       7     310     13 |    4.55        0.00
+POST     POST /api/validaciones/evaluacion                                                461     0(0.00%) |      7       1      82      3 |    7.69        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      2321     0(0.00%) |     38       1     614     19 |   38.70        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      GET /api/ninos                                                                         41     70     92    110    180    250    320    380    610    610    610    820
+GET      GET /api/ninos/{id}                                                                     6     10     15     18     34     49     64     72    130    130    130    621
+GET      GET /api/reportes/periodo                                                              18     32     51     57     93    170    200    240    340    340    340    146
+POST     POST /api/ninos                                                                        13     25     38     47     79    100    140    170    310    310    310    273
+POST     POST /api/validaciones/evaluacion                                                       3      6      8     12     18     26     43     55     83     83     83    461
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                             19     29     41     54     97    150    240    320    440    610    610   2321
+

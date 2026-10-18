@@ -31,6 +31,10 @@ Reglas (ver ADR-007):
      «vencidos» de los 6, 9 y 12 meses.
   6. Solo niños en estado ACTIVO (los de ALTA no tienen agenda) y solo controles con el niño menor de 60 meses en
      la fecha programada.
+  7. Asistencia (HIST-2.4, ADR-010): el personal puede registrar «asistió» o «no asistió» para un control, identificado
+     por (código, fecha programada). «Asistió» cumple el control aunque no haya evaluación; si trae una evaluación
+     vinculada, esa evaluación se asigna a ese control. «No asistió» no cambia el estado (sigue PENDIENTE o VENCIDO)
+     pero lo marca con ``inasistencia_registrada``; si luego una evaluación lo cumple, el control queda CUMPLIDO.
 """
 
 import calendar
@@ -44,6 +48,7 @@ from app.domain.model.agenda import (
     ResumenAgenda,
     TipoControl,
 )
+from app.domain.model.asistencia import AsistenciaControl, EstadoAsistencia
 from app.domain.model.clasificacion import Clasificacion
 from app.domain.model.entidades import Evaluacion, Nino
 from app.domain.model.tiempo import edad_en_meses, fecha_local
@@ -88,12 +93,14 @@ MOTIVO_ALTA = "El niño tiene alta: no se programan controles."
 _ORDEN_TIPO = {TipoControl.CONTROL_TRATAMIENTO: 0, TipoControl.TAMIZAJE_EDAD: 1}
 
 
+_DIAS_MES = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+
+
 def agregar_meses(fecha: date, meses: int) -> date:
     """Suma meses calendario; si el día no existe en el mes destino se usa su último día (31-ene + 1 = 28/29-feb)."""
-    indice = fecha.year * 12 + (fecha.month - 1) + meses
-    anio, mes0 = divmod(indice, 12)
-    mes = mes0 + 1
-    return date(anio, mes, min(fecha.day, calendar.monthrange(anio, mes)[1]))
+    anio, mes0 = divmod(fecha.year * 12 + (fecha.month - 1) + meses, 12)
+    ultimo = 29 if mes0 == 1 and calendar.isleap(anio) else _DIAS_MES[mes0]
+    return date(anio, mes0 + 1, min(fecha.day, ultimo))
 
 
 @dataclass
@@ -177,19 +184,30 @@ def _previstos_tratamiento(nino: Nino, episodios: list[_Episodio], esq: EsquemaA
 
 
 def _asignar_evaluaciones(
-    previstos: list[_Previsto], evaluaciones: list[Evaluacion], esq: EsquemaAgenda
+    previstos: list[_Previsto],
+    evaluaciones: list[Evaluacion],
+    esq: EsquemaAgenda,
+    vinculadas: dict[int, Evaluacion] | None = None,
 ) -> dict[int, Evaluacion]:
-    """Asigna a cada control, como máximo, una evaluación dentro de su ventana; cada evaluación sirve a un control."""
+    """Asigna a cada control, como máximo, una evaluación dentro de su ventana; cada evaluación sirve a un control.
+
+    ``vinculadas`` son las evaluaciones que el personal vinculó a una asistencia (regla 7): se asignan primero, aunque
+    estén fuera de la ventana, y no participan en el emparejamiento por cercanía.
+    """
+    asignadas: dict[int, Evaluacion] = dict(vinculadas or {})
+    usadas: set[str] = {ev.id for ev in asignadas.values()}
     pares = []
     for i, previsto in enumerate(previstos):
+        if i in asignadas:
+            continue
         for ev in evaluaciones:
+            if ev.id in usadas:
+                continue
             desfase = (ev.fecha - previsto.programada).days
             if -esq.tolerancia_previa_dias <= desfase <= esq.tolerancia_posterior_dias:
                 clave = (abs(desfase), previsto.programada, _ORDEN_TIPO[previsto.tipo], ev.fecha, ev.creado_en)
                 pares.append((clave, i, ev))
     pares.sort(key=lambda p: p[0])
-    asignadas: dict[int, Evaluacion] = {}
-    usadas: set[str] = set()
     for _, i, ev in pares:
         if i not in asignadas and ev.id not in usadas:
             asignadas[i] = ev
@@ -197,7 +215,30 @@ def _asignar_evaluaciones(
     return asignadas
 
 
-def _resolver(previsto: _Previsto, evaluacion: Evaluacion | None, hoy: date, esq: EsquemaAgenda) -> ControlProgramado:
+def _asistencias_por_control(nino: Nino) -> dict[tuple[str, date], AsistenciaControl]:
+    return {(a.codigo_control, a.fecha_programada): a for a in nino.asistencias}
+
+
+def _vinculadas(
+    previstos: list[_Previsto], asistencias: dict[tuple[str, date], AsistenciaControl], evaluaciones: list[Evaluacion]
+) -> dict[int, Evaluacion]:
+    """Evaluaciones que una asistencia «asistió» vincula a su control (regla 7)."""
+    por_id = {ev.id: ev for ev in evaluaciones}
+    vinculadas: dict[int, Evaluacion] = {}
+    for i, previsto in enumerate(previstos):
+        a = asistencias.get((previsto.codigo, previsto.programada))
+        if a and a.estado == EstadoAsistencia.ASISTIO and a.evaluacion_id in por_id:
+            vinculadas[i] = por_id[a.evaluacion_id]
+    return vinculadas
+
+
+def _resolver(
+    previsto: _Previsto,
+    evaluacion: Evaluacion | None,
+    asistencia: AsistenciaControl | None,
+    hoy: date,
+    esq: EsquemaAgenda,
+) -> ControlProgramado:
     limite = previsto.programada + timedelta(days=esq.tolerancia_posterior_dias)
     campos = {
         "codigo": previsto.codigo,
@@ -208,10 +249,22 @@ def _resolver(previsto: _Previsto, evaluacion: Evaluacion | None, hoy: date, esq
         "fecha_inicio_ventana": previsto.programada - timedelta(days=esq.tolerancia_previa_dias),
         "edad_meses_programada": previsto.edad_meses,
     }
-    if evaluacion is not None:
+    asistio = asistencia is not None and asistencia.estado == EstadoAsistencia.ASISTIO
+    if evaluacion is not None or asistio:
         return ControlProgramado(
-            estado=EstadoControl.CUMPLIDO, dias_vencido=None, evaluacion_id=evaluacion.id, **campos
+            estado=EstadoControl.CUMPLIDO,
+            dias_vencido=None,
+            evaluacion_id=evaluacion.id if evaluacion else None,
+            cumplido_por_asistencia=asistio,
+            asistencia_id=asistencia.id if asistio else None,
+            **campos,
         )
+    if asistencia is not None:  # NO_ASISTIO: el estado no cambia, solo se marca
+        campos |= {
+            "inasistencia_registrada": True,
+            "motivo_inasistencia": asistencia.motivo,
+            "asistencia_id": asistencia.id,
+        }
     recuperado = previsto.episodio.recuperado_en if previsto.episodio else None
     if recuperado is not None and (esq.cerrar_vencidos_al_recuperar or limite >= recuperado):
         return ControlProgramado(
@@ -236,6 +289,7 @@ def _resumir(controles: list[ControlProgramado]) -> ResumenAgenda:
         vencidos=sum(1 for c in controles if c.estado == EstadoControl.VENCIDO),
         cerrados=sum(1 for c in controles if c.estado == EstadoControl.CERRADO_RECUPERADO),
         proximos=sum(1 for c in pendientes if c.proximo),
+        inasistencias=sum(1 for c in controles if c.inasistencia_registrada),
         proximo_control=pendientes[0] if pendientes else None,
     )
 
@@ -248,6 +302,12 @@ def generar_agenda(nino: Nino, hoy: date, esquema: EsquemaAgenda = ESQUEMA_AGEND
     previstos = _previstos_por_edad(nino, evaluaciones, esquema)
     previstos += _previstos_tratamiento(nino, _episodios_de_anemia(evaluaciones, esquema), esquema)
     previstos.sort(key=lambda p: (p.programada, _ORDEN_TIPO[p.tipo], p.codigo))
-    asignadas = _asignar_evaluaciones(previstos, evaluaciones, esquema)
-    controles = [_resolver(p, asignadas.get(i), hoy, esquema) for i, p in enumerate(previstos)]
+    asistencias = _asistencias_por_control(nino)
+    asignadas = _asignar_evaluaciones(
+        previstos, evaluaciones, esquema, _vinculadas(previstos, asistencias, evaluaciones)
+    )
+    controles = [
+        _resolver(p, asignadas.get(i), asistencias.get((p.codigo, p.programada)), hoy, esquema)
+        for i, p in enumerate(previstos)
+    ]
     return AgendaNino(nino.id, esquema.version, hoy, aplica=True, controles=controles, resumen=_resumir(controles))

@@ -8,27 +8,39 @@
    "mecanismo_to_be": "Registro nominal único validado: un solo registro por evaluación que alimenta expediente, seguimiento y reporte (INC-1).",
    "v1.0": 1.0,
    "v1.5": 1.0,
-   "evidencia": "V1 medido por API: 1 escritura por evaluación (3 en el AS-IS) y el registro se refleja en expediente, seguimiento y reporte; RF-01..RF-05 con prueba automatizada y E2E (m21: 17/17 criterios en v1.0, 33/33 en v1.5); DNI único (409)."
+   "v2.0": 1.0,
+   "evidencia": "V1 medido por API: 1 escritura por evaluación (3 en el AS-IS) y el registro se refleja en expediente, seguimiento y reporte; RF-01..RF-05 con prueba automatizada y E2E (m21: 17/17 criterios en v1.0, 33/33 en v1.5, 48/48 en v2.0 sobre RF-01..RF-09); DNI único (409). En la v2.0 el registro desde la aplicación sigue exigiendo todos los campos (origen SISTEMA) y V1 sigue en 1."
   },
   "B2": {
    "brecha": "Agenda calculada a mano, sin agenda normativa ni recordatorios",
    "mecanismo_to_be": "Agenda de controles según el esquema normativo + detección de vencidos + recordatorios a la familia y agenda del personal (INC-2/INC-4).",
    "v1.0": 0.0,
    "v1.5": 0.5,
-   "evidencia": "v1.0: no existe GET /api/ninos/{id}/agenda (404 en 140/140 activos, m32_v1.0_B150 V2) y control_atrasado es una heurística de 30 días desde la última evaluación, no normativa (F1 0,729 frente al oráculo normativo). v1.5: agenda normativa operativa y probada (RF-06, 23 pruebas, 2 E2E) y detección de vencidos con F1 = 1,000 frente al oráculo (476/476 controles coinciden). Parcial porque faltan los recordatorios a la familia (INC-4), la agenda del personal (HIST-2.3) y el registro de asistencia (HIST-2.4): no hay ninguna ocurrencia de 'recordatorio' en el código."
+   "v2.0": 0.5,
+   "evidencia": "v1.0: no existe GET /api/ninos/{id}/agenda (404 en 140/140 activos, m32_v1.0_B150 V2) y control_atrasado es una heurística de 30 días desde la última evaluación, no normativa (F1 0,729 frente al oráculo normativo). v1.5: agenda normativa operativa y probada (RF-06) y detección de vencidos con F1 = 1,000 frente al oráculo (476/476 controles coinciden); parcial porque faltaban los recordatorios a la familia (INC-4), la agenda del personal (HIST-2.3) y el registro de asistencia (HIST-2.4). v2.0: se completan agenda del personal (RF-08: GET /api/agenda, controles por día con filtros y totales) y registro de asistencia (RF-09: asistió/no asistió con motivo y alerta elevada); verificado con B150 (100 % de los activos con agenda, F1 = 1,000, 476/476 controles) y con la muestra real de 500 niños de la DIRESA (100 % con agenda; 1 638/1 638 controles vencidos visibles en la agenda del personal y coincidentes con el oráculo). Sigue siendo parcial (0,5) porque el mecanismo TO-BE de B2 incluye los recordatorios a la familia (HIST-4.1, INC-4) y no hay ninguna ocurrencia de 'recordatorio' en el código: el personal ve y vigila los controles, pero el sistema todavía no avisa a la familia.",
+   "sensibilidad": {
+    "b2_limitado_a_lo_comprometido_en_INC2": 1.0,
+    "nota": "Si el mecanismo de B2 se limitara a lo que el plan compromete para INC-2 (agenda normativa, vencidos, agenda del personal y asistencia; sin recordatorios), B2 sería 1,0 en la v2.0: M3.1 = 41,7 % y 100 % de las brechas comprometidas. Se informa solo como sensibilidad: la puntuación oficial conserva la definición original del mecanismo."
+   }
   },
   "B3": {
    "brecha": "Barreras ocultas hasta el abandono",
    "mecanismo_to_be": "Registro y análisis de barreras del hogar/servicio (INC-4).",
    "v1.0": 0.0,
    "v1.5": 0.0,
-   "evidencia": "Ni rutas ni campos ni pantallas de barreras en ninguna versión (0 ocurrencias de 'barrera' en app/)."
+   "v2.0": 0.0,
+   "evidencia": "Ni rutas ni campos ni pantallas de barreras en ninguna versión (0 ocurrencias de 'barrera' en app/). La v2.0 registra el motivo de una inasistencia (lista de cinco opciones y un detalle libre, RF-09), pero eso no es un registro ni un análisis de barreras del hogar o del servicio (HIST-4.3) ni genera alertas de barreras críticas (HIST-4.4).",
+   "sensibilidad": {
+    "b3_si_el_motivo_de_inasistencia_cuenta_como_registro_parcial": 0.5,
+    "nota": "Si se aceptara el motivo de inasistencia como registro parcial de barreras, B3 sería 0,5 en la v2.0 y M3.1 = 41,7 %. No se adopta: el motivo no se agrega ni se analiza."
+   }
   },
   "B4": {
    "brecha": "Visita domiciliaria en papel, sin conexión",
    "mecanismo_to_be": "Registro de visita domiciliaria con captura sin conexión y sincronización (INC-3).",
    "v1.0": 0.0,
    "v1.5": 0.0,
+   "v2.0": 0.0,
    "evidencia": "No existe ruta ni formulario de visita domiciliaria. El service worker solo guarda en caché la interfaz; el README declara que el registro definitivo requiere conexión."
   },
   "B5": {
@@ -36,14 +48,16 @@
    "mecanismo_to_be": "Detección anticipada del riesgo de abandono y priorización de la búsqueda activa (INC-5).",
    "v1.0": 0.0,
    "v1.5": 0.0,
-   "evidencia": "La lista de alertas de v1.5 prioriza controles ya vencidos (por días de atraso y gravedad): es reactiva. No hay modelo ni regla que anticipe el riesgo antes del vencimiento; 0 ocurrencias de 'riesgo'/'abandono' en app/. El indicador 'próximo a vencer' (7 días) es aviso de calendario, no estimación de riesgo de abandono."
+   "v2.0": 0.0,
+   "evidencia": "La lista de alertas de v1.5 y v2.0 prioriza controles ya vencidos (por días de atraso y gravedad, con un nivel más si hubo inasistencia registrada): es reactiva. No hay modelo ni regla que anticipe el riesgo antes del vencimiento; 0 ocurrencias de 'riesgo'/'abandono' en app/. El indicador 'próximo a vencer' (7 días) es aviso de calendario, no estimación de riesgo de abandono."
   },
   "B6": {
    "brecha": "Conectividad intermitente: información no registrada ni reportada en el momento",
    "mecanismo_to_be": "Registro y reporte en el momento, con operación sin conexión y sincronización (INC-3 e INC-6; en INC-1 parcial con el reporte del periodo HU-05).",
    "v1.0": 0.5,
    "v1.5": 0.5,
-   "evidencia": "Parcial: el reporte consolidado del periodo (HU-05, JSON y CSV) se entrega en el momento y está probado (RF-05, E2E incluido), y la interfaz conserva el borrador del formulario en el dispositivo y abre desde caché. Falta lo esencial del mecanismo TO-BE: no hay operación sin conexión ni cola de sincronización (INC-3). Sin cambios en v1.5 (el avance del Inc. 2 no toca B6). Sensibilidad: si se exigiera operación sin conexión para puntuar > 0, B6 sería 0 en ambas versiones."
+   "v2.0": 0.5,
+   "evidencia": "Parcial: el reporte consolidado del periodo (HU-05, JSON y CSV) se entrega en el momento y está probado (RF-05, E2E incluido), y la interfaz conserva el borrador del formulario en el dispositivo y abre desde caché. Falta lo esencial del mecanismo TO-BE: no hay operación sin conexión ni cola de sincronización (INC-3). Sin cambios en v1.5 ni en v2.0 (el Inc. 2 no toca B6; la asistencia se registra en línea). Sensibilidad: si se exigiera operación sin conexión para puntuar > 0, B6 sería 0 en ambas versiones."
   }
  },
  "resultado_principal": {
@@ -53,6 +67,11 @@
    "cobertura_pct": 25.0
   },
   "v1.5": {
+   "suma_puntos": 2.0,
+   "de_6": 6,
+   "cobertura_pct": 33.3
+  },
+  "v2.0": {
    "suma_puntos": 2.0,
    "de_6": 6,
    "cobertura_pct": 33.3
@@ -67,8 +86,17 @@
    "puntos": 1.0,
    "cobertura_pct": 100.0
   },
-  "Inc.2": {
+  "avance_v1.5": {
    "version": "v1.5",
+   "brechas_comprometidas": [
+    "B1",
+    "B2"
+   ],
+   "puntos": 1.5,
+   "cobertura_pct": 75.0
+  },
+  "Inc.2": {
+   "version": "v2.0",
    "brechas_comprometidas": [
     "B1",
     "B2"
@@ -79,7 +107,13 @@
  },
  "sensibilidad_B6_igual_a_0": {
   "v1.0": 16.7,
-  "v1.5": 25.0
+  "v1.5": 25.0,
+  "v2.0": 25.0
+ },
+ "sensibilidad_v2.0_B2_y_B3": {
+  "v2.0_B2_sin_recordatorios": 41.7,
+  "v2.0_B3_motivo_de_inasistencia_como_parcial": 41.7,
+  "v2.0_ambas": 50.0
  },
  "hechos_verificados": {
   "rutas_http_relativas_al_prefijo_api": {
@@ -107,6 +141,23 @@
     "POST /ninos",
     "POST /ninos/{nino_id}/evaluaciones",
     "POST /validaciones/evaluacion"
+   ],
+   "v2.0": [
+    "GET /agenda",
+    "GET /alertas/controles-vencidos",
+    "GET /alertas/resumen",
+    "GET /ninos",
+    "GET /ninos/dni/{dni}",
+    "GET /ninos/{nino_id}",
+    "GET /ninos/{nino_id}/agenda",
+    "GET /ninos/{nino_id}/asistencias",
+    "GET /reportes/periodo",
+    "GET /salud",
+    "PATCH /ninos/{nino_id}",
+    "POST /ninos",
+    "POST /ninos/{nino_id}/controles/{codigo}/asistencia",
+    "POST /ninos/{nino_id}/evaluaciones",
+    "POST /validaciones/evaluacion"
    ]
   },
   "palabras_clave_en_app": {
@@ -127,11 +178,21 @@
     "sms": 0,
     "whatsapp": 0,
     "push": 0
+   },
+   "v2.0": {
+    "recordatorio": 0,
+    "barrera": 0,
+    "riesgo": 0,
+    "abandono": 0,
+    "sms": 0,
+    "whatsapp": 0,
+    "push": 0
    }
   },
   "palabras_clave_detalle_no_vacias": {
    "v1.0": {},
-   "v1.5": {}
+   "v1.5": {},
+   "v2.0": {}
   },
   "agenda_v1.0_http": {
    "404": 140
@@ -139,17 +200,28 @@
   "agenda_v1.5_http": {
    "200": 140
   },
+  "agenda_v2.0_http": {
+   "200": 140
+  },
   "pct_ninos_activos_con_agenda": {
    "v1.0": 0.0,
-   "v1.5": 100.0
+   "v1.5": 100.0,
+   "v2.0": 100.0
   },
   "F1_vencidos_vs_oraculo": {
    "v1.0": 0.7292,
-   "v1.5": 1.0
+   "v1.5": 1.0,
+   "v2.0": 1.0
   },
   "registros_por_evaluacion": {
    "v1.0": 1,
-   "v1.5": 1
+   "v1.5": 1,
+   "v2.0": 1
+  },
+  "dataset_real_muestra_500": {
+   "pct_ninos_activos_con_agenda": 100.0,
+   "pct_controles_vencidos_visibles_en_agenda_del_personal": 100.0,
+   "concordancia_con_oraculo_por_control_pct": 100.0
   },
   "pruebas_RF": {
    "v1.0": {
@@ -203,9 +275,47 @@
      "n_pruebas": 17,
      "n_e2e": 2
     }
+   },
+   "v2.0": {
+    "RF-01": {
+     "n_pruebas": 17,
+     "n_e2e": 1
+    },
+    "RF-02": {
+     "n_pruebas": 7,
+     "n_e2e": 1
+    },
+    "RF-03": {
+     "n_pruebas": 14,
+     "n_e2e": 1
+    },
+    "RF-04": {
+     "n_pruebas": 10,
+     "n_e2e": 2
+    },
+    "RF-05": {
+     "n_pruebas": 8,
+     "n_e2e": 1
+    },
+    "RF-06": {
+     "n_pruebas": 28,
+     "n_e2e": 3
+    },
+    "RF-07": {
+     "n_pruebas": 17,
+     "n_e2e": 2
+    },
+    "RF-08": {
+     "n_pruebas": 15,
+     "n_e2e": 3
+    },
+    "RF-09": {
+     "n_pruebas": 26,
+     "n_e2e": 2
+    }
    }
   },
-  "reporte_periodo_en_ambas": true,
+  "reporte_periodo_en_todas": true,
   "cola_sincronizacion_offline": "No existe: sw.js solo cachea la interfaz (GET fuera de /api/); README: 'El registro definitivo requiere conexión; la cola de sincronización offline es alcance del INC-3'"
  }
 }

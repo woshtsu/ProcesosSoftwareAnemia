@@ -1,0 +1,4326 @@
+{
+  "fuente": "Dataset/Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv (DIRESA Junín, HIS)",
+  "fecha_corte": "30/06/2024",
+  "parametros": {
+    "plazos_dias": {
+      "mes": 30,
+      "3m": 90,
+      "6m": 180
+    },
+    "holgura_dias": 30,
+    "regla_seguimiento_posible": "fecha_dx + plazo + holgura ≤ fecha de corte"
+  },
+  "perfil": {
+    "filas": 12486,
+    "rango_fecha_dx": [
+      "14/01/2022",
+      "21/06/2024"
+    ],
+    "rango_fecha_nac": [
+      "17/07/2021",
+      "09/05/2024"
+    ],
+    "fecha_corte_supuesta": "30/06/2024",
+    "cobertura": {
+      "provincias": 9,
+      "redes": 9,
+      "microredes": 41,
+      "distritos_nombres_distintos": 121,
+      "distritos_pares_provincia_distrito": 124,
+      "establecimientos_nombres_distintos": 443,
+      "establecimientos_combinacion_red_microred_nombre": 449
+    },
+    "por_provincia": {
+      "HUANCAYO": {
+        "n": 4194,
+        "pct": 33.6
+      },
+      "SATIPO": {
+        "n": 3797,
+        "pct": 30.4
+      },
+      "CHANCHAMAYO": {
+        "n": 1829,
+        "pct": 14.6
+      },
+      "CHUPACA": {
+        "n": 660,
+        "pct": 5.3
+      },
+      "CONCEPCION": {
+        "n": 592,
+        "pct": 4.7
+      },
+      "JAUJA": {
+        "n": 573,
+        "pct": 4.6
+      },
+      "TARMA": {
+        "n": 459,
+        "pct": 3.7
+      },
+      "YAULI": {
+        "n": 220,
+        "pct": 1.8
+      },
+      "JUNIN": {
+        "n": 162,
+        "pct": 1.3
+      }
+    },
+    "por_red": {
+      "VALLE DEL MANTARO": {
+        "n": 4709,
+        "pct": 37.7
+      },
+      "SATIPO": {
+        "n": 2816,
+        "pct": 22.6
+      },
+      "PICHANAKI": {
+        "n": 1263,
+        "pct": 10.1
+      },
+      "SAN MARTIN DE PANGOA": {
+        "n": 981,
+        "pct": 7.9
+      },
+      "JAUJA": {
+        "n": 762,
+        "pct": 6.1
+      },
+      "RED DE SALUD CHUPACA": {
+        "n": 737,
+        "pct": 5.9
+      },
+      "CHANCHAMAYO": {
+        "n": 590,
+        "pct": 4.7
+      },
+      "TARMA": {
+        "n": 455,
+        "pct": 3.6
+      },
+      "JUNIN": {
+        "n": 173,
+        "pct": 1.4
+      }
+    },
+    "edad_al_dx_meses": {
+      "mediana": 12.0,
+      "p25": 6.0,
+      "p75": 14.0,
+      "min": 0.0,
+      "max": 33.0,
+      "grupos": {
+        "<6 m": {
+          "n": 931,
+          "pct": 7.5
+        },
+        "6–11 m": {
+          "n": 4823,
+          "pct": 38.6
+        },
+        "12–23 m": {
+          "n": 6029,
+          "pct": 48.3
+        },
+        "24–35 m": {
+          "n": 703,
+          "pct": 5.6
+        },
+        "≥36 m": {
+          "n": 0,
+          "pct": 0.0
+        }
+      }
+    },
+    "severidad_his": {
+      "LEV": {
+        "n": 8001,
+        "pct": 64.1
+      },
+      "MOD": {
+        "n": 4199,
+        "pct": 33.6
+      },
+      "SIN DATO": {
+        "n": 205,
+        "pct": 1.6
+      },
+      "SEV": {
+        "n": 81,
+        "pct": 0.6
+      }
+    },
+    "seguro_valores_crudos": {
+      "1, ": {
+        "n": 11579,
+        "pct": 92.7
+      },
+      "2, ": {
+        "n": 499,
+        "pct": 4.0
+      },
+      "0, ": {
+        "n": 255,
+        "pct": 2.0
+      },
+      "1, 2, ": {
+        "n": 49,
+        "pct": 0.4
+      },
+      "3, ": {
+        "n": 41,
+        "pct": 0.3
+      },
+      "4, ": {
+        "n": 33,
+        "pct": 0.3
+      },
+      "0, 1, ": {
+        "n": 10,
+        "pct": 0.1
+      },
+      "2, 4, ": {
+        "n": 8,
+        "pct": 0.1
+      },
+      "1, 4, ": {
+        "n": 6,
+        "pct": 0.0
+      },
+      "1, 3, ": {
+        "n": 3,
+        "pct": 0.0
+      },
+      "0, 2, ": {
+        "n": 1,
+        "pct": 0.0
+      },
+      "1, 2, 4, ": {
+        "n": 1,
+        "pct": 0.0
+      },
+      "0, 2, 4, ": {
+        "n": 1,
+        "pct": 0.0
+      }
+    },
+    "seguro_con_mas_de_un_codigo": {
+      "n": 79,
+      "N": 12486,
+      "pct": 0.6,
+      "formula": "filas con ≥2 códigos de seguro ÷ filas"
+    }
+  },
+  "calidad": {
+    "nulos_por_columna": {
+      "num_doc": {
+        "n": 0,
+        "pct": 0.0
+      },
+      "seguro": {
+        "n": 0,
+        "pct": 0.0
+      },
+      "fecha_nac": {
+        "n": 0,
+        "pct": 0.0
+      },
+      "fecha_dx": {
+        "n": 0,
+        "pct": 0.0
+      },
+      "valor_lab_dx": {
+        "n": 205,
+        "pct": 1.6
+      },
+      "fecha_dosaje_dx": {
+        "n": 919,
+        "pct": 7.4
+      },
+      "hb_dx": {
+        "n": 1909,
+        "pct": 15.3
+      },
+      "fecha_dosaje_mes": {
+        "n": 4107,
+        "pct": 32.9
+      },
+      "hb": {
+        "n": 4901,
+        "pct": 39.3
+      },
+      "fecha_dosaje_3_meses": {
+        "n": 5650,
+        "pct": 45.3
+      },
+      "hb_tresmeses": {
+        "n": 6312,
+        "pct": 50.6
+      },
+      "fecha_dosaje_6_meses": {
+        "n": 6703,
+        "pct": 53.7
+      },
+      "hb_seismeses": {
+        "n": 7108,
+        "pct": 56.9
+      },
+      "fecha_recup": {
+        "n": 6627,
+        "pct": 53.1
+      },
+      "recup": {
+        "n": 0,
+        "pct": 0.0
+      },
+      "fecha_supT1": {
+        "n": 981,
+        "pct": 7.9
+      },
+      "fecha_supT2": {
+        "n": 3322,
+        "pct": 26.6
+      },
+      "fecha_supT3": {
+        "n": 4942,
+        "pct": 39.6
+      },
+      "fecha_supT4": {
+        "n": 6297,
+        "pct": 50.4
+      },
+      "fecha_supT5": {
+        "n": 7371,
+        "pct": 59.0
+      },
+      "fecha_supT6": {
+        "n": 12455,
+        "pct": 99.8
+      },
+      "fecha_ta": {
+        "n": 3156,
+        "pct": 25.3
+      },
+      "Red": {
+        "n": 0,
+        "pct": 0.0
+      },
+      "MicroRed": {
+        "n": 0,
+        "pct": 0.0
+      },
+      "Nombre_Establecimiento": {
+        "n": 0,
+        "pct": 0.0
+      },
+      "Provincia": {
+        "n": 0,
+        "pct": 0.0
+      },
+      "Distrito": {
+        "n": 0,
+        "pct": 0.0
+      }
+    },
+    "num_doc": {
+      "valores_distintos": 8754,
+      "filas": 12486,
+      "en_notacion_cientifica": {
+        "n": 12486,
+        "N": 12486,
+        "pct": 100.0,
+        "formula": "num_doc con 'E+nn' ÷ filas"
+      },
+      "filas_con_num_doc_repetido": {
+        "n": 6167,
+        "N": 12486,
+        "pct": 49.4,
+        "formula": "filas cuyo num_doc aparece ≥2 veces ÷ filas"
+      },
+      "maximo_filas_por_num_doc": 24,
+      "pares_num_doc_fecha_nac_distintos": 10434,
+      "conclusion": "No utilizable como identificador ni como clave: está truncado a 6 cifras significativas (notación científica) y colisiona entre niños distintos."
+    },
+    "duplicados": {
+      "filas_duplicadas_exactas_extra": 33,
+      "filas_involucradas_en_duplicados_exactos": 66,
+      "filas_con_igual_num_doc_fecha_nac_fecha_dx": 549,
+      "nota": "Sin identificador fiable no se puede afirmar si son el mismo niño; son posibles duplicados."
+    },
+    "severidad_vs_hb_dx": {
+      "criterio_A_sin_altitud": "Criterio A (cribado simple, sin altitud): severidad LEV/MOD/SEV registrada con Hb observada ≥ 13,0 g/dL. Es una cota gruesa: en provincias de altura puede ser un falso positivo, porque la severidad se asigna con Hb ajustada.",
+      "LEV_con_hb_dx_ge_13_en_provincias_hasta_1000_m": {
+        "n": 4,
+        "N": 3506,
+        "pct": 0.1,
+        "formula": "LEV con hb_dx≥13 en Satipo/Chanchamayo (capital < 1 000 m, ajuste ≈ 0) ÷ LEV con hb_dx en esas provincias"
+      },
+      "hb_dx_ge_13_con_severidad": {
+        "n": 628,
+        "N": 10577,
+        "pct": 5.9,
+        "formula": "dx con severidad y hb_dx≥13 ÷ dx con hb_dx"
+      },
+      "LEV_con_hb_dx_ge_13": {
+        "n": 568,
+        "N": 6867,
+        "pct": 8.3,
+        "formula": "LEV con hb_dx≥13 ÷ LEV con hb_dx"
+      },
+      "hb_dx_maxima_en_LEV": 17.2,
+      "SEV_con_hb_dx_ge_11": {
+        "n": 6,
+        "N": 57,
+        "pct": 10.5,
+        "formula": "SEV con hb_dx≥11 ÷ SEV con hb_dx"
+      },
+      "mediana_hb_dx_por_provincia_y_severidad": {
+        "CHANCHAMAYO": {
+          "LEV": 10.4,
+          "MOD": 9.6,
+          "SEV": 8.2
+        },
+        "CHUPACA": {
+          "LEV": 12.5,
+          "MOD": 11.5,
+          "SEV": 10.9
+        },
+        "CONCEPCION": {
+          "LEV": 12.6,
+          "MOD": 11.3,
+          "SEV": 9.2
+        },
+        "HUANCAYO": {
+          "LEV": 12.5,
+          "MOD": 11.5,
+          "SEV": 9.0
+        },
+        "JAUJA": {
+          "LEV": 12.8,
+          "MOD": 11.7,
+          "SEV": 8.4
+        },
+        "JUNIN": {
+          "LEV": 13.6,
+          "MOD": 12.6,
+          "SEV": 9.6
+        },
+        "SATIPO": {
+          "LEV": 10.4,
+          "MOD": 9.6,
+          "SEV": 8.5
+        },
+        "TARMA": {
+          "LEV": 11.6,
+          "MOD": 9.9,
+          "SEV": 9.4
+        },
+        "YAULI": {
+          "LEV": 13.5,
+          "MOD": 12.4,
+          "SEV": null
+        }
+      },
+      "lectura": "La mediana de hb_dx de los casos LEV sube con la altitud (≈10,4 g/dL en Satipo/Chanchamayo frente a ≈13,6 en Junín): la severidad del HIS se asigna con Hb AJUSTADA por altitud y hb_dx es la Hb OBSERVADA. Por eso 'LEV con Hb ≥ 13' no es necesariamente un error, pero sí un valor que un usuario o un sistema sin el ajuste interpretaría como no anémico.",
+      "criterio_B_exploratorio_con_altitud": {
+        "descripcion": "Hb ajustada = hb_dx − ajuste OMS 2011 según altitud de la capital provincial (INEI 2014); umbrales: SIN ANEMIA ≥ 11,0; LEV 10,0–10,9; MOD 7,0–9,9; SEV < 7,0. Es aproximado (altitud de la capital, no del establecimiento; tabla de ajuste referencial a contrastar con la NTS vigente).",
+        "concordancia": {
+          "n": 8212,
+          "N": 10503,
+          "pct": 78.2,
+          "formula": "severidad esperada = severidad HIS ÷ dx con severidad y hb_dx"
+        },
+        "esperado_sin_anemia_pero_con_severidad": {
+          "n": 840,
+          "N": 10503,
+          "pct": 8.0,
+          "formula": "Hb ajustada ≥ 11 con severidad registrada ÷ idem"
+        },
+        "matriz_esperada_vs_HIS": {
+          "LEV": {
+            "LEV": 5441,
+            "MOD": 729,
+            "SEV": 4
+          },
+          "MOD": {
+            "LEV": 641,
+            "MOD": 2754,
+            "SEV": 35
+          },
+          "SEV": {
+            "LEV": 9,
+            "MOD": 33,
+            "SEV": 17
+          },
+          "SIN ANEMIA": {
+            "LEV": 776,
+            "MOD": 63,
+            "SEV": 1
+          }
+        }
+      }
+    },
+    "fechas_incoherentes": {
+      "dosaje_dx_antes_del_dx": 0,
+      "dosaje_dx_despues_del_dx": 0,
+      "recuperacion_antes_del_dx": 0,
+      "nacimiento_despues_del_dx": 0,
+      "control_antes_del_dx": 0,
+      "suplementacion_antes_del_dx": 0,
+      "fin_tratamiento_antes_del_dx": 0,
+      "cualquier_fecha_posterior_al_corte": 0,
+      "edad_al_dx_fuera_de_0_35_meses": 0,
+      "entregas_no_monotonas": 0,
+      "recup1_sin_fecha_recup_o_viceversa": 0,
+      "fecha_ta_igual_fecha_dx": {
+        "n": 3084,
+        "N": 9330,
+        "pct": 33.1,
+        "formula": "fecha_ta = fecha_dx ÷ filas con fecha_ta"
+      },
+      "primera_entrega_igual_fecha_dx": {
+        "n": 11505,
+        "N": 11505,
+        "pct": 100.0,
+        "formula": "fecha_supT1 = fecha_dx ÷ filas con fecha_supT1"
+      },
+      "dosaje_dx_igual_fecha_dx": {
+        "n": 11567,
+        "N": 11567,
+        "pct": 100.0,
+        "formula": "fecha_dosaje_dx = fecha_dx ÷ filas con fecha_dosaje_dx"
+      },
+      "rango_dias_dx_a_control": {
+        "mes": [
+          29,
+          58
+        ],
+        "3m": [
+          87,
+          119
+        ],
+        "6m": [
+          178,
+          209
+        ]
+      }
+    },
+    "hb_fuera_de_rango_3_20": {
+      "hb_dx": {
+        "menor_3": 0,
+        "mayor_20": 0
+      },
+      "hb": {
+        "menor_3": 1,
+        "mayor_20": 0
+      },
+      "hb_tresmeses": {
+        "menor_3": 0,
+        "mayor_20": 0
+      },
+      "hb_seismeses": {
+        "menor_3": 1,
+        "mayor_20": 0
+      }
+    },
+    "hb_fuera_de_rango_total": 2,
+    "fecha_dosaje_sin_hb": {
+      "dx": {
+        "n": 990,
+        "N": 11567,
+        "pct": 8.6,
+        "formula": "fecha_dosaje_dx sin hb_dx ÷ fecha_dosaje_dx"
+      },
+      "mes": {
+        "n": 794,
+        "N": 8379,
+        "pct": 9.5,
+        "formula": "fecha de dosaje al mes sin Hb ÷ con fecha"
+      },
+      "3m": {
+        "n": 662,
+        "N": 6836,
+        "pct": 9.7,
+        "formula": "fecha de dosaje a los 3 meses sin Hb ÷ con fecha"
+      },
+      "6m": {
+        "n": 405,
+        "N": 5783,
+        "pct": 7.0,
+        "formula": "fecha de dosaje a los 6 meses sin Hb ÷ con fecha"
+      }
+    },
+    "recup_documentada_con_hb_6m_menor_11": {
+      "n": 212,
+      "N": 4413,
+      "pct": 4.8,
+      "formula": "recup=1 con hb_seismeses<11 (observada, antes de ajustar por altitud: ya sería anemia) ÷ recup=1 con hb_seismeses"
+    }
+  },
+  "indicadores_globales": {
+    "diagnosticados": 12486,
+    "control_mes": {
+      "n": 8379,
+      "N": 12486,
+      "pct": 67.1,
+      "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+    },
+    "control_mes_con_seguimiento_posible": {
+      "n": 8213,
+      "N": 11702,
+      "pct": 70.2,
+      "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+    },
+    "control_mes_sin_holgura": {
+      "n": 8379,
+      "N": 12241,
+      "pct": 68.5,
+      "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+    },
+    "control_mes_con_hb": {
+      "n": 7585,
+      "N": 12486,
+      "pct": 60.7,
+      "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+    },
+    "demora_mes_dias": {
+      "n": 8379,
+      "mediana": 1.0,
+      "p90": 6.0,
+      "min": -1.0,
+      "max": 28.0,
+      "pct_con_retraso_positivo": 59.4,
+      "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+    },
+    "control_3m": {
+      "n": 6836,
+      "N": 12486,
+      "pct": 54.7,
+      "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+    },
+    "control_3m_con_seguimiento_posible": {
+      "n": 6652,
+      "N": 10419,
+      "pct": 63.8,
+      "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+    },
+    "control_3m_sin_holgura": {
+      "n": 6836,
+      "N": 11107,
+      "pct": 61.5,
+      "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+    },
+    "control_3m_con_hb": {
+      "n": 6174,
+      "N": 12486,
+      "pct": 49.4,
+      "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+    },
+    "demora_3m_dias": {
+      "n": 6836,
+      "mediana": 2.0,
+      "p90": 11.5,
+      "min": -3.0,
+      "max": 29.0,
+      "pct_con_retraso_positivo": 85.1,
+      "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+    },
+    "control_6m": {
+      "n": 5783,
+      "N": 12486,
+      "pct": 46.3,
+      "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+    },
+    "control_6m_con_seguimiento_posible": {
+      "n": 5646,
+      "N": 8540,
+      "pct": 66.1,
+      "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+    },
+    "control_6m_sin_holgura": {
+      "n": 5783,
+      "N": 9090,
+      "pct": 63.6,
+      "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+    },
+    "control_6m_con_hb": {
+      "n": 5378,
+      "N": 12486,
+      "pct": 43.1,
+      "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+    },
+    "demora_6m_dias": {
+      "n": 5783,
+      "mediana": 4.0,
+      "p90": 16.0,
+      "min": -2.0,
+      "max": 29.0,
+      "pct_con_retraso_positivo": 95.7,
+      "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+    },
+    "sin_ningun_control": {
+      "n": 2237,
+      "N": 12486,
+      "pct": 17.9,
+      "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+    },
+    "tres_controles": {
+      "n": 3682,
+      "N": 12486,
+      "pct": 29.5,
+      "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+    },
+    "sin_ningun_control_con_seguimiento_posible": {
+      "n": 1050,
+      "N": 8540,
+      "pct": 12.3,
+      "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+    },
+    "tres_controles_con_seguimiento_posible": {
+      "n": 3577,
+      "N": 8540,
+      "pct": 41.9,
+      "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+    },
+    "perdida_seguimiento_6m": {
+      "n": 6703,
+      "N": 12486,
+      "pct": 53.7,
+      "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+    },
+    "perdida_seguimiento_6m_con_seguimiento_posible": {
+      "n": 2894,
+      "N": 8540,
+      "pct": 33.9,
+      "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+    },
+    "recuperacion_documentada": {
+      "n": 5859,
+      "N": 12486,
+      "pct": 46.9,
+      "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+    },
+    "recuperacion_con_seguimiento_6m": {
+      "n": 5682,
+      "N": 8540,
+      "pct": 66.5,
+      "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+    },
+    "recuperacion_con_seguimiento_12m": {
+      "n": 3724,
+      "N": 5383,
+      "pct": 69.2,
+      "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+    },
+    "recuperados_sobre_control_cierre": {
+      "n": 4731,
+      "N": 5783,
+      "pct": 81.8,
+      "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+    },
+    "dias_dx_a_recuperacion": {
+      "n": 5859,
+      "mediana": 184.0,
+      "p90": 305.0
+    },
+    "suplementacion_distribucion": {
+      "0": {
+        "n": 981,
+        "N": 12486,
+        "pct": 7.9,
+        "formula": "0 entregas ÷ diagnosticados"
+      },
+      "1": {
+        "n": 2341,
+        "N": 12486,
+        "pct": 18.7,
+        "formula": "1 entregas ÷ diagnosticados"
+      },
+      "2": {
+        "n": 1620,
+        "N": 12486,
+        "pct": 13.0,
+        "formula": "2 entregas ÷ diagnosticados"
+      },
+      "3": {
+        "n": 1355,
+        "N": 12486,
+        "pct": 10.9,
+        "formula": "3 entregas ÷ diagnosticados"
+      },
+      "4": {
+        "n": 1074,
+        "N": 12486,
+        "pct": 8.6,
+        "formula": "4 entregas ÷ diagnosticados"
+      },
+      "5": {
+        "n": 5084,
+        "N": 12486,
+        "pct": 40.7,
+        "formula": "5 entregas ÷ diagnosticados"
+      },
+      "6": {
+        "n": 31,
+        "N": 12486,
+        "pct": 0.2,
+        "formula": "6 entregas ÷ diagnosticados"
+      }
+    },
+    "entregas_ge5": {
+      "n": 5115,
+      "N": 12486,
+      "pct": 41.0,
+      "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+    },
+    "entregas_0": {
+      "n": 981,
+      "N": 12486,
+      "pct": 7.9,
+      "formula": "0 entregas registradas ÷ diagnosticados"
+    },
+    "entregas_ge5_con_seguimiento_posible": {
+      "n": 4957,
+      "N": 9726,
+      "pct": 51.0,
+      "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+    },
+    "media_entregas": 3.17,
+    "fin_tratamiento_registrado": {
+      "n": 9330,
+      "N": 12486,
+      "pct": 74.7,
+      "formula": "fecha_ta registrada ÷ diagnosticados"
+    },
+    "fin_tratamiento_con_seguimiento_6m": {
+      "n": 6974,
+      "N": 8540,
+      "pct": 81.7,
+      "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+    },
+    "dx_a_primera_suplementacion_dias": {
+      "n": 11505,
+      "mediana": 0.0,
+      "p90": 0.0,
+      "pct_mismo_dia": 100.0,
+      "sin_primera_entrega": {
+        "n": 981,
+        "N": 12486,
+        "pct": 7.9,
+        "formula": "sin fecha_supT1 ÷ diagnosticados"
+      },
+      "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+    },
+    "sin_hb_dx": {
+      "n": 1909,
+      "N": 12486,
+      "pct": 15.3,
+      "formula": "sin hb_dx ÷ diagnosticados"
+    }
+  },
+  "por_provincia": {
+    "HUANCAYO": {
+      "diagnosticados": 4194,
+      "control_mes": {
+        "n": 2787,
+        "N": 4194,
+        "pct": 66.5,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 2724,
+        "N": 3928,
+        "pct": 69.3,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 2787,
+        "N": 4116,
+        "pct": 67.7,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 2368,
+        "N": 4194,
+        "pct": 56.5,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 2787,
+        "mediana": 1.0,
+        "p90": 8.0,
+        "min": -1.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 58.7,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 2161,
+        "N": 4194,
+        "pct": 51.5,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 2088,
+        "N": 3472,
+        "pct": 60.1,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 2161,
+        "N": 3729,
+        "pct": 58.0,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 1800,
+        "N": 4194,
+        "pct": 42.9,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 2161,
+        "mediana": 2.0,
+        "p90": 15.0,
+        "min": -3.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 86.1,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 1686,
+        "N": 4194,
+        "pct": 40.2,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 1638,
+        "N": 2857,
+        "pct": 57.3,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 1686,
+        "N": 3041,
+        "pct": 55.4,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 1498,
+        "N": 4194,
+        "pct": 35.7,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 1686,
+        "mediana": 4.0,
+        "p90": 18.0,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 94.5,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 838,
+        "N": 4194,
+        "pct": 20.0,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 1072,
+        "N": 4194,
+        "pct": 25.6,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 434,
+        "N": 2857,
+        "pct": 15.2,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 1036,
+        "N": 2857,
+        "pct": 36.3,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 2508,
+        "N": 4194,
+        "pct": 59.8,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 1219,
+        "N": 2857,
+        "pct": 42.7,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 1776,
+        "N": 4194,
+        "pct": 42.3,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 1709,
+        "N": 2857,
+        "pct": 59.8,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 1196,
+        "N": 1901,
+        "pct": 62.9,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 1324,
+        "N": 1686,
+        "pct": 78.5,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 1776,
+        "mediana": 188.0,
+        "p90": 367.0
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 415,
+          "N": 4194,
+          "pct": 9.9,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 870,
+          "N": 4194,
+          "pct": 20.7,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 591,
+          "N": 4194,
+          "pct": 14.1,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 458,
+          "N": 4194,
+          "pct": 10.9,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 409,
+          "N": 4194,
+          "pct": 9.8,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 1440,
+          "N": 4194,
+          "pct": 34.3,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 11,
+          "N": 4194,
+          "pct": 0.3,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 1451,
+        "N": 4194,
+        "pct": 34.6,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 415,
+        "N": 4194,
+        "pct": 9.9,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 1409,
+        "N": 3257,
+        "pct": 43.3,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 2.94,
+      "fin_tratamiento_registrado": {
+        "n": 2921,
+        "N": 4194,
+        "pct": 69.6,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 2108,
+        "N": 2857,
+        "pct": 73.8,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 3779,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 415,
+          "N": 4194,
+          "pct": 9.9,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 976,
+        "N": 4194,
+        "pct": 23.3,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "SATIPO": {
+      "diagnosticados": 3797,
+      "control_mes": {
+        "n": 2606,
+        "N": 3797,
+        "pct": 68.6,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 2563,
+        "N": 3565,
+        "pct": 71.9,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 2606,
+        "N": 3723,
+        "pct": 70.0,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 2480,
+        "N": 3797,
+        "pct": 65.3,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 2606,
+        "mediana": 1.0,
+        "p90": 3.0,
+        "min": -1.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 59.7,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 2198,
+        "N": 3797,
+        "pct": 57.9,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 2141,
+        "N": 3181,
+        "pct": 67.3,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 2198,
+        "N": 3383,
+        "pct": 65.0,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 2087,
+        "N": 3797,
+        "pct": 55.0,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 2198,
+        "mediana": 2.0,
+        "p90": 6.2999999999999545,
+        "min": -3.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 85.9,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 1903,
+        "N": 3797,
+        "pct": 50.1,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 1867,
+        "N": 2606,
+        "pct": 71.6,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 1903,
+        "N": 2774,
+        "pct": 68.6,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 1843,
+        "N": 3797,
+        "pct": 48.5,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 1903,
+        "mediana": 3.0,
+        "p90": 12.0,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 97.0,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 627,
+        "N": 3797,
+        "pct": 16.5,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 1248,
+        "N": 3797,
+        "pct": 32.9,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 276,
+        "N": 2606,
+        "pct": 10.6,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 1223,
+        "N": 2606,
+        "pct": 46.9,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 1894,
+        "N": 3797,
+        "pct": 49.9,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 739,
+        "N": 2606,
+        "pct": 28.4,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 1804,
+        "N": 3797,
+        "pct": 47.5,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 1759,
+        "N": 2606,
+        "pct": 67.5,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 1082,
+        "N": 1551,
+        "pct": 69.8,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 1501,
+        "N": 1903,
+        "pct": 78.9,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 1804,
+        "mediana": 184.0,
+        "p90": 298.0
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 219,
+          "N": 3797,
+          "pct": 5.8,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 641,
+          "N": 3797,
+          "pct": 16.9,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 443,
+          "N": 3797,
+          "pct": 11.7,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 374,
+          "N": 3797,
+          "pct": 9.8,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 289,
+          "N": 3797,
+          "pct": 7.6,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 1823,
+          "N": 3797,
+          "pct": 48.0,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 8,
+          "N": 3797,
+          "pct": 0.2,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 1831,
+        "N": 3797,
+        "pct": 48.2,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 219,
+        "N": 3797,
+        "pct": 5.8,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 1773,
+        "N": 2974,
+        "pct": 59.6,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 3.42,
+      "fin_tratamiento_registrado": {
+        "n": 2946,
+        "N": 3797,
+        "pct": 77.6,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 2197,
+        "N": 2606,
+        "pct": 84.3,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 3578,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 219,
+          "N": 3797,
+          "pct": 5.8,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 416,
+        "N": 3797,
+        "pct": 11.0,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "CHANCHAMAYO": {
+      "diagnosticados": 1829,
+      "control_mes": {
+        "n": 1176,
+        "N": 1829,
+        "pct": 64.3,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 1155,
+        "N": 1707,
+        "pct": 67.7,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 1176,
+        "N": 1796,
+        "pct": 65.5,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 1142,
+        "N": 1829,
+        "pct": 62.4,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 1176,
+        "mediana": 1.0,
+        "p90": 9.0,
+        "min": -1.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 61.6,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 966,
+        "N": 1829,
+        "pct": 52.8,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 947,
+        "N": 1536,
+        "pct": 61.7,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 966,
+        "N": 1626,
+        "pct": 59.4,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 950,
+        "N": 1829,
+        "pct": 51.9,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 966,
+        "mediana": 2.0,
+        "p90": 13.0,
+        "min": -3.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 83.9,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 941,
+        "N": 1829,
+        "pct": 51.4,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 924,
+        "N": 1239,
+        "pct": 74.6,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 941,
+        "N": 1319,
+        "pct": 71.3,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 904,
+        "N": 1829,
+        "pct": 49.4,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 941,
+        "mediana": 4.0,
+        "p90": 17.0,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 96.5,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 328,
+        "N": 1829,
+        "pct": 17.9,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 542,
+        "N": 1829,
+        "pct": 29.6,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 132,
+        "N": 1239,
+        "pct": 10.7,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 530,
+        "N": 1239,
+        "pct": 42.8,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 888,
+        "N": 1829,
+        "pct": 48.6,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 315,
+        "N": 1239,
+        "pct": 25.4,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 932,
+        "N": 1829,
+        "pct": 51.0,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 917,
+        "N": 1239,
+        "pct": 74.0,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 565,
+        "N": 731,
+        "pct": 77.3,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 848,
+        "N": 941,
+        "pct": 90.1,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 932,
+        "mediana": 184.0,
+        "p90": 210.89999999999998
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 115,
+          "N": 1829,
+          "pct": 6.3,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 364,
+          "N": 1829,
+          "pct": 19.9,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 248,
+          "N": 1829,
+          "pct": 13.6,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 250,
+          "N": 1829,
+          "pct": 13.7,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 178,
+          "N": 1829,
+          "pct": 9.7,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 671,
+          "N": 1829,
+          "pct": 36.7,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 3,
+          "N": 1829,
+          "pct": 0.2,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 674,
+        "N": 1829,
+        "pct": 36.9,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 115,
+        "N": 1829,
+        "pct": 6.3,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 649,
+        "N": 1418,
+        "pct": 45.8,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 3.11,
+      "fin_tratamiento_registrado": {
+        "n": 1510,
+        "N": 1829,
+        "pct": 82.6,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 1138,
+        "N": 1239,
+        "pct": 91.8,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 1714,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 115,
+          "N": 1829,
+          "pct": 6.3,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 124,
+        "N": 1829,
+        "pct": 6.8,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "CHUPACA": {
+      "diagnosticados": 660,
+      "control_mes": {
+        "n": 458,
+        "N": 660,
+        "pct": 69.4,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 445,
+        "N": 623,
+        "pct": 71.4,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 458,
+        "N": 649,
+        "pct": 70.6,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 389,
+        "N": 660,
+        "pct": 58.9,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 458,
+        "mediana": 1.0,
+        "p90": 10.0,
+        "min": -1.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 60.7,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 384,
+        "N": 660,
+        "pct": 58.2,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 379,
+        "N": 564,
+        "pct": 67.2,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 384,
+        "N": 594,
+        "pct": 64.6,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 326,
+        "N": 660,
+        "pct": 49.4,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 384,
+        "mediana": 2.0,
+        "p90": 14.0,
+        "min": -3.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 83.3,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 290,
+        "N": 660,
+        "pct": 43.9,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 284,
+        "N": 470,
+        "pct": 60.4,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 290,
+        "N": 501,
+        "pct": 57.9,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 258,
+        "N": 660,
+        "pct": 39.1,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 290,
+        "mediana": 4.0,
+        "p90": 18.0,
+        "min": -2.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 94.5,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 106,
+        "N": 660,
+        "pct": 16.1,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 202,
+        "N": 660,
+        "pct": 30.6,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 58,
+        "N": 470,
+        "pct": 12.3,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 198,
+        "N": 470,
+        "pct": 42.1,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 370,
+        "N": 660,
+        "pct": 56.1,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 186,
+        "N": 470,
+        "pct": 39.6,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 328,
+        "N": 660,
+        "pct": 49.7,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 318,
+        "N": 470,
+        "pct": 67.7,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 210,
+        "N": 303,
+        "pct": 69.3,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 245,
+        "N": 290,
+        "pct": 84.5,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 328,
+        "mediana": 187.0,
+        "p90": 304.3
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 47,
+          "N": 660,
+          "pct": 7.1,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 121,
+          "N": 660,
+          "pct": 18.3,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 85,
+          "N": 660,
+          "pct": 12.9,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 69,
+          "N": 660,
+          "pct": 10.5,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 44,
+          "N": 660,
+          "pct": 6.7,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 292,
+          "N": 660,
+          "pct": 44.2,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 2,
+          "N": 660,
+          "pct": 0.3,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 294,
+        "N": 660,
+        "pct": 44.5,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 47,
+        "N": 660,
+        "pct": 7.1,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 285,
+        "N": 525,
+        "pct": 54.3,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 3.25,
+      "fin_tratamiento_registrado": {
+        "n": 489,
+        "N": 660,
+        "pct": 74.1,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 383,
+        "N": 470,
+        "pct": 81.5,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 613,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 47,
+          "N": 660,
+          "pct": 7.1,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 70,
+        "N": 660,
+        "pct": 10.6,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "CONCEPCION": {
+      "diagnosticados": 592,
+      "control_mes": {
+        "n": 376,
+        "N": 592,
+        "pct": 63.5,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 371,
+        "N": 556,
+        "pct": 66.7,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 376,
+        "N": 576,
+        "pct": 65.3,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 311,
+        "N": 592,
+        "pct": 52.5,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 376,
+        "mediana": 1.0,
+        "p90": 9.0,
+        "min": -1.0,
+        "max": 26.0,
+        "pct_con_retraso_positivo": 56.1,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 293,
+        "N": 592,
+        "pct": 49.5,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 282,
+        "N": 486,
+        "pct": 58.0,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 293,
+        "N": 522,
+        "pct": 56.1,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 243,
+        "N": 592,
+        "pct": 41.0,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 293,
+        "mediana": 2.0,
+        "p90": 11.0,
+        "min": -3.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 81.9,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 239,
+        "N": 592,
+        "pct": 40.4,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 236,
+        "N": 409,
+        "pct": 57.7,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 239,
+        "N": 426,
+        "pct": 56.1,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 201,
+        "N": 592,
+        "pct": 34.0,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 239,
+        "mediana": 4.0,
+        "p90": 15.0,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 94.1,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 123,
+        "N": 592,
+        "pct": 20.8,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 142,
+        "N": 592,
+        "pct": 24.0,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 59,
+        "N": 409,
+        "pct": 14.4,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 139,
+        "N": 409,
+        "pct": 34.0,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 353,
+        "N": 592,
+        "pct": 59.6,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 173,
+        "N": 409,
+        "pct": 42.3,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 243,
+        "N": 592,
+        "pct": 41.0,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 236,
+        "N": 409,
+        "pct": 57.7,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 154,
+        "N": 242,
+        "pct": 63.6,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 171,
+        "N": 239,
+        "pct": 71.5,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 243,
+        "mediana": 186.0,
+        "p90": 301.00000000000006
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 59,
+          "N": 592,
+          "pct": 10.0,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 124,
+          "N": 592,
+          "pct": 20.9,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 92,
+          "N": 592,
+          "pct": 15.5,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 68,
+          "N": 592,
+          "pct": 11.5,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 46,
+          "N": 592,
+          "pct": 7.8,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 200,
+          "N": 592,
+          "pct": 33.8,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 3,
+          "N": 592,
+          "pct": 0.5,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 203,
+        "N": 592,
+        "pct": 34.3,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 59,
+        "N": 592,
+        "pct": 10.0,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 198,
+        "N": 452,
+        "pct": 43.8,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 2.9,
+      "fin_tratamiento_registrado": {
+        "n": 396,
+        "N": 592,
+        "pct": 66.9,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 302,
+        "N": 409,
+        "pct": 73.8,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 533,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 59,
+          "N": 592,
+          "pct": 10.0,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 119,
+        "N": 592,
+        "pct": 20.1,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "JAUJA": {
+      "diagnosticados": 573,
+      "control_mes": {
+        "n": 413,
+        "N": 573,
+        "pct": 72.1,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 404,
+        "N": 529,
+        "pct": 76.4,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 413,
+        "N": 561,
+        "pct": 73.6,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 407,
+        "N": 573,
+        "pct": 71.0,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 413,
+        "mediana": 1.0,
+        "p90": 4.0,
+        "min": -1.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 51.1,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 369,
+        "N": 573,
+        "pct": 64.4,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 359,
+        "N": 475,
+        "pct": 75.6,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 369,
+        "N": 503,
+        "pct": 73.4,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 363,
+        "N": 573,
+        "pct": 63.4,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 369,
+        "mediana": 1.0,
+        "p90": 7.0,
+        "min": -3.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 81.3,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 297,
+        "N": 573,
+        "pct": 51.8,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 285,
+        "N": 387,
+        "pct": 73.6,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 297,
+        "N": 417,
+        "pct": 71.2,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 291,
+        "N": 573,
+        "pct": 50.8,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 297,
+        "mediana": 3.0,
+        "p90": 13.800000000000068,
+        "min": -2.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 93.9,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 80,
+        "N": 573,
+        "pct": 14.0,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 217,
+        "N": 573,
+        "pct": 37.9,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 30,
+        "N": 387,
+        "pct": 7.8,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 205,
+        "N": 387,
+        "pct": 53.0,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 276,
+        "N": 573,
+        "pct": 48.2,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 102,
+        "N": 387,
+        "pct": 26.4,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 310,
+        "N": 573,
+        "pct": 54.1,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 295,
+        "N": 387,
+        "pct": 76.2,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 202,
+        "N": 260,
+        "pct": 77.7,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 263,
+        "N": 297,
+        "pct": 88.6,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 310,
+        "mediana": 183.0,
+        "p90": 214.10000000000002
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 50,
+          "N": 573,
+          "pct": 8.7,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 98,
+          "N": 573,
+          "pct": 17.1,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 68,
+          "N": 573,
+          "pct": 11.9,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 43,
+          "N": 573,
+          "pct": 7.5,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 42,
+          "N": 573,
+          "pct": 7.3,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 270,
+          "N": 573,
+          "pct": 47.1,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 2,
+          "N": 573,
+          "pct": 0.3,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 272,
+        "N": 573,
+        "pct": 47.5,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 50,
+        "N": 573,
+        "pct": 8.7,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 264,
+        "N": 445,
+        "pct": 59.3,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 3.3,
+      "fin_tratamiento_registrado": {
+        "n": 428,
+        "N": 573,
+        "pct": 74.7,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 333,
+        "N": 387,
+        "pct": 86.0,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 523,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 50,
+          "N": 573,
+          "pct": 8.7,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 51,
+        "N": 573,
+        "pct": 8.9,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "TARMA": {
+      "diagnosticados": 459,
+      "control_mes": {
+        "n": 338,
+        "N": 459,
+        "pct": 73.6,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 326,
+        "N": 431,
+        "pct": 75.6,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 338,
+        "N": 446,
+        "pct": 75.8,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 279,
+        "N": 459,
+        "pct": 60.8,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 338,
+        "mediana": 1.0,
+        "p90": 6.0,
+        "min": -1.0,
+        "max": 25.0,
+        "pct_con_retraso_positivo": 64.2,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 289,
+        "N": 459,
+        "pct": 63.0,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 281,
+        "N": 377,
+        "pct": 74.5,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 289,
+        "N": 407,
+        "pct": 71.0,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 237,
+        "N": 459,
+        "pct": 51.6,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 289,
+        "mediana": 2.0,
+        "p90": 9.199999999999989,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 87.9,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 246,
+        "N": 459,
+        "pct": 53.6,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 236,
+        "N": 298,
+        "pct": 79.2,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 246,
+        "N": 322,
+        "pct": 76.4,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 210,
+        "N": 459,
+        "pct": 45.8,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 246,
+        "mediana": 4.0,
+        "p90": 13.5,
+        "min": -2.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 96.3,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 51,
+        "N": 459,
+        "pct": 11.1,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 161,
+        "N": 459,
+        "pct": 35.1,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 18,
+        "N": 298,
+        "pct": 6.0,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 152,
+        "N": 298,
+        "pct": 51.0,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 213,
+        "N": 459,
+        "pct": 46.4,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 62,
+        "N": 298,
+        "pct": 20.8,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 265,
+        "N": 459,
+        "pct": 57.7,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 257,
+        "N": 298,
+        "pct": 86.2,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 172,
+        "N": 193,
+        "pct": 89.1,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 226,
+        "N": 246,
+        "pct": 91.9,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 265,
+        "mediana": 185.0,
+        "p90": 349.39999999999986
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 15,
+          "N": 459,
+          "pct": 3.3,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 59,
+          "N": 459,
+          "pct": 12.9,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 45,
+          "N": 459,
+          "pct": 9.8,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 52,
+          "N": 459,
+          "pct": 11.3,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 42,
+          "N": 459,
+          "pct": 9.2,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 245,
+          "N": 459,
+          "pct": 53.4,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 1,
+          "N": 459,
+          "pct": 0.2,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 246,
+        "N": 459,
+        "pct": 53.6,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 15,
+        "N": 459,
+        "pct": 3.3,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 238,
+        "N": 346,
+        "pct": 68.8,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 3.71,
+      "fin_tratamiento_registrado": {
+        "n": 358,
+        "N": 459,
+        "pct": 78.0,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 279,
+        "N": 298,
+        "pct": 93.6,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 444,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 15,
+          "N": 459,
+          "pct": 3.3,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 79,
+        "N": 459,
+        "pct": 17.2,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "YAULI": {
+      "diagnosticados": 220,
+      "control_mes": {
+        "n": 128,
+        "N": 220,
+        "pct": 58.2,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 128,
+        "N": 209,
+        "pct": 61.2,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 128,
+        "N": 217,
+        "pct": 59.0,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 123,
+        "N": 220,
+        "pct": 55.9,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 128,
+        "mediana": 1.0,
+        "p90": 11.299999999999997,
+        "min": -1.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 68.8,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 102,
+        "N": 220,
+        "pct": 46.4,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 101,
+        "N": 190,
+        "pct": 53.2,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 102,
+        "N": 198,
+        "pct": 51.5,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 99,
+        "N": 220,
+        "pct": 45.0,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 102,
+        "mediana": 2.0,
+        "p90": 12.0,
+        "min": -2.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 75.5,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 92,
+        "N": 220,
+        "pct": 41.8,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 88,
+        "N": 152,
+        "pct": 57.9,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 92,
+        "N": 165,
+        "pct": 55.8,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 86,
+        "N": 220,
+        "pct": 39.1,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 92,
+        "mediana": 5.0,
+        "p90": 20.80000000000001,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 93.5,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 56,
+        "N": 220,
+        "pct": 25.5,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 50,
+        "N": 220,
+        "pct": 22.7,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 28,
+        "N": 152,
+        "pct": 18.4,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 47,
+        "N": 152,
+        "pct": 30.9,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 128,
+        "N": 220,
+        "pct": 58.2,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 64,
+        "N": 152,
+        "pct": 42.1,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 94,
+        "N": 220,
+        "pct": 42.7,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 87,
+        "N": 152,
+        "pct": 57.2,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 62,
+        "N": 107,
+        "pct": 57.9,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 71,
+        "N": 92,
+        "pct": 77.2,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 94,
+        "mediana": 185.0,
+        "p90": 359.1
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 38,
+          "N": 220,
+          "pct": 17.3,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 44,
+          "N": 220,
+          "pct": 20.0,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 31,
+          "N": 220,
+          "pct": 14.1,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 24,
+          "N": 220,
+          "pct": 10.9,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 17,
+          "N": 220,
+          "pct": 7.7,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 65,
+          "N": 220,
+          "pct": 29.5,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 1,
+          "N": 220,
+          "pct": 0.5,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 66,
+        "N": 220,
+        "pct": 30.0,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 38,
+        "N": 220,
+        "pct": 17.3,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 64,
+        "N": 176,
+        "pct": 36.4,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 2.62,
+      "fin_tratamiento_registrado": {
+        "n": 149,
+        "N": 220,
+        "pct": 67.7,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 120,
+        "N": 152,
+        "pct": 78.9,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 182,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 38,
+          "N": 220,
+          "pct": 17.3,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 38,
+        "N": 220,
+        "pct": 17.3,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "JUNIN": {
+      "diagnosticados": 162,
+      "control_mes": {
+        "n": 97,
+        "N": 162,
+        "pct": 59.9,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 97,
+        "N": 154,
+        "pct": 63.0,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 97,
+        "N": 157,
+        "pct": 61.8,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 86,
+        "N": 162,
+        "pct": 53.1,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 97,
+        "mediana": 1.0,
+        "p90": 9.600000000000023,
+        "min": -1.0,
+        "max": 26.0,
+        "pct_con_retraso_positivo": 61.9,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 74,
+        "N": 162,
+        "pct": 45.7,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 74,
+        "N": 138,
+        "pct": 53.6,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 74,
+        "N": 145,
+        "pct": 51.0,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 69,
+        "N": 162,
+        "pct": 42.6,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 74,
+        "mediana": 2.0,
+        "p90": 17.400000000000006,
+        "min": -1.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 87.8,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 89,
+        "N": 162,
+        "pct": 54.9,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 88,
+        "N": 122,
+        "pct": 72.1,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 89,
+        "N": 125,
+        "pct": 71.2,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 87,
+        "N": 162,
+        "pct": 53.7,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 89,
+        "mediana": 5.0,
+        "p90": 20.200000000000003,
+        "min": -2.0,
+        "max": 27.0,
+        "pct_con_retraso_positivo": 95.5,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 28,
+        "N": 162,
+        "pct": 17.3,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 48,
+        "N": 162,
+        "pct": 29.6,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 15,
+        "N": 122,
+        "pct": 12.3,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 47,
+        "N": 122,
+        "pct": 38.5,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 73,
+        "N": 162,
+        "pct": 45.1,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 34,
+        "N": 122,
+        "pct": 27.9,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 107,
+        "N": 162,
+        "pct": 66.0,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 104,
+        "N": 122,
+        "pct": 85.2,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 81,
+        "N": 95,
+        "pct": 85.3,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 82,
+        "N": 89,
+        "pct": 92.1,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 107,
+        "mediana": 192.0,
+        "p90": 367.80000000000007
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 23,
+          "N": 162,
+          "pct": 14.2,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 20,
+          "N": 162,
+          "pct": 12.3,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 17,
+          "N": 162,
+          "pct": 10.5,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 17,
+          "N": 162,
+          "pct": 10.5,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 7,
+          "N": 162,
+          "pct": 4.3,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 78,
+          "N": 162,
+          "pct": 48.1,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 0,
+          "N": 162,
+          "pct": 0.0,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 78,
+        "N": 162,
+        "pct": 48.1,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 23,
+        "N": 162,
+        "pct": 14.2,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 77,
+        "N": 133,
+        "pct": 57.9,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 3.23,
+      "fin_tratamiento_registrado": {
+        "n": 133,
+        "N": 162,
+        "pct": 82.1,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 114,
+        "N": 122,
+        "pct": 93.4,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 139,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 23,
+          "N": 162,
+          "pct": 14.2,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 36,
+        "N": 162,
+        "pct": 22.2,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    }
+  },
+  "por_severidad": {
+    "LEV": {
+      "diagnosticados": 8001,
+      "control_mes": {
+        "n": 5433,
+        "N": 8001,
+        "pct": 67.9,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 5333,
+        "N": 7520,
+        "pct": 70.9,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 5433,
+        "N": 7852,
+        "pct": 69.2,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 4938,
+        "N": 8001,
+        "pct": 61.7,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 5433,
+        "mediana": 1.0,
+        "p90": 5.0,
+        "min": -1.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 58.7,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 4453,
+        "N": 8001,
+        "pct": 55.7,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 4338,
+        "N": 6698,
+        "pct": 64.8,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 4453,
+        "N": 7133,
+        "pct": 62.4,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 4031,
+        "N": 8001,
+        "pct": 50.4,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 4453,
+        "mediana": 2.0,
+        "p90": 11.0,
+        "min": -3.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 84.5,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 3836,
+        "N": 8001,
+        "pct": 47.9,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 3746,
+        "N": 5553,
+        "pct": 67.5,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 3836,
+        "N": 5896,
+        "pct": 65.1,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 3560,
+        "N": 8001,
+        "pct": 44.5,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 3836,
+        "mediana": 4.0,
+        "p90": 16.0,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 96.0,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 1348,
+        "N": 8001,
+        "pct": 16.8,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 2437,
+        "N": 8001,
+        "pct": 30.5,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 637,
+        "N": 5553,
+        "pct": 11.5,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 2366,
+        "N": 5553,
+        "pct": 42.6,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 4165,
+        "N": 8001,
+        "pct": 52.1,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 1807,
+        "N": 5553,
+        "pct": 32.5,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 3906,
+        "N": 8001,
+        "pct": 48.8,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 3804,
+        "N": 5553,
+        "pct": 68.5,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 2490,
+        "N": 3515,
+        "pct": 70.8,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 3161,
+        "N": 3836,
+        "pct": 82.4,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 3906,
+        "mediana": 184.0,
+        "p90": 297.5
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 521,
+          "N": 8001,
+          "pct": 6.5,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 1493,
+          "N": 8001,
+          "pct": 18.7,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 1052,
+          "N": 8001,
+          "pct": 13.1,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 868,
+          "N": 8001,
+          "pct": 10.8,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 672,
+          "N": 8001,
+          "pct": 8.4,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 3377,
+          "N": 8001,
+          "pct": 42.2,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 18,
+          "N": 8001,
+          "pct": 0.2,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 3395,
+        "N": 8001,
+        "pct": 42.4,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 521,
+        "N": 8001,
+        "pct": 6.5,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 3286,
+        "N": 6276,
+        "pct": 52.4,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 3.23,
+      "fin_tratamiento_registrado": {
+        "n": 6081,
+        "N": 8001,
+        "pct": 76.0,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 4598,
+        "N": 5553,
+        "pct": 82.8,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 7480,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 521,
+          "N": 8001,
+          "pct": 6.5,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 1134,
+        "N": 8001,
+        "pct": 14.2,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "MOD": {
+      "diagnosticados": 4199,
+      "control_mes": {
+        "n": 2846,
+        "N": 4199,
+        "pct": 67.8,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 2783,
+        "N": 3937,
+        "pct": 70.7,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 2846,
+        "N": 4122,
+        "pct": 69.0,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 2552,
+        "N": 4199,
+        "pct": 60.8,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 2846,
+        "mediana": 1.0,
+        "p90": 7.0,
+        "min": -1.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 60.6,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 2300,
+        "N": 4199,
+        "pct": 54.8,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 2234,
+        "N": 3510,
+        "pct": 63.6,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 2300,
+        "N": 3740,
+        "pct": 61.5,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 2066,
+        "N": 4199,
+        "pct": 49.2,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 2300,
+        "mediana": 2.0,
+        "p90": 12.0,
+        "min": -3.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 86.4,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 1885,
+        "N": 4199,
+        "pct": 44.9,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 1838,
+        "N": 2822,
+        "pct": 65.1,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 1885,
+        "N": 3018,
+        "pct": 62.5,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 1763,
+        "N": 4199,
+        "pct": 42.0,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 1885,
+        "mediana": 4.0,
+        "p90": 17.0,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 95.4,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 745,
+        "N": 4199,
+        "pct": 17.7,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 1217,
+        "N": 4199,
+        "pct": 29.0,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 343,
+        "N": 2822,
+        "pct": 12.2,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 1183,
+        "N": 2822,
+        "pct": 41.9,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 2314,
+        "N": 4199,
+        "pct": 55.1,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 984,
+        "N": 2822,
+        "pct": 34.9,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 1885,
+        "N": 4199,
+        "pct": 44.9,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 1817,
+        "N": 2822,
+        "pct": 64.4,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 1186,
+        "N": 1753,
+        "pct": 67.7,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 1527,
+        "N": 1885,
+        "pct": 81.0,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 1885,
+        "mediana": 184.0,
+        "p90": 321.60000000000014
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 296,
+          "N": 4199,
+          "pct": 7.0,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 810,
+          "N": 4199,
+          "pct": 19.3,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 549,
+          "N": 4199,
+          "pct": 13.1,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 476,
+          "N": 4199,
+          "pct": 11.3,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 393,
+          "N": 4199,
+          "pct": 9.4,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 1662,
+          "N": 4199,
+          "pct": 39.6,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 13,
+          "N": 4199,
+          "pct": 0.3,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 1675,
+        "N": 4199,
+        "pct": 39.9,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 296,
+        "N": 4199,
+        "pct": 7.0,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 1628,
+        "N": 3260,
+        "pct": 49.9,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 3.17,
+      "fin_tratamiento_registrado": {
+        "n": 3107,
+        "N": 4199,
+        "pct": 74.0,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 2272,
+        "N": 2822,
+        "pct": 80.5,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 3903,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 296,
+          "N": 4199,
+          "pct": 7.0,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 620,
+        "N": 4199,
+        "pct": 14.8,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "SEV": {
+      "diagnosticados": 81,
+      "control_mes": {
+        "n": 48,
+        "N": 81,
+        "pct": 59.3,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 48,
+        "N": 75,
+        "pct": 64.0,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 48,
+        "N": 79,
+        "pct": 60.8,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 48,
+        "N": 81,
+        "pct": 59.3,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 48,
+        "mediana": 1.0,
+        "p90": 7.900000000000013,
+        "min": -1.0,
+        "max": 25.0,
+        "pct_con_retraso_positivo": 64.6,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 38,
+        "N": 81,
+        "pct": 46.9,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 37,
+        "N": 66,
+        "pct": 56.1,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 38,
+        "N": 72,
+        "pct": 52.8,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 35,
+        "N": 81,
+        "pct": 43.2,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 38,
+        "mediana": 1.5,
+        "p90": 12.500000000000021,
+        "min": -2.0,
+        "max": 24.0,
+        "pct_con_retraso_positivo": 73.7,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 25,
+        "N": 81,
+        "pct": 30.9,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 25,
+        "N": 43,
+        "pct": 58.1,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 25,
+        "N": 47,
+        "pct": 53.2,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 24,
+        "N": 81,
+        "pct": 29.6,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 25,
+        "mediana": 4.0,
+        "p90": 16.6,
+        "min": 0.0,
+        "max": 24.0,
+        "pct_con_retraso_positivo": 96.0,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 24,
+        "N": 81,
+        "pct": 29.6,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 14,
+        "N": 81,
+        "pct": 17.3,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 12,
+        "N": 43,
+        "pct": 27.9,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 14,
+        "N": 43,
+        "pct": 32.6,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 56,
+        "N": 81,
+        "pct": 69.1,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 18,
+        "N": 43,
+        "pct": 41.9,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 27,
+        "N": 81,
+        "pct": 33.3,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 22,
+        "N": 43,
+        "pct": 51.2,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 21,
+        "N": 35,
+        "pct": 60.0,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 17,
+        "N": 25,
+        "pct": 68.0,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 27,
+        "mediana": 184.0,
+        "p90": 393.2000000000001
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 17,
+          "N": 81,
+          "pct": 21.0,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 14,
+          "N": 81,
+          "pct": 17.3,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 12,
+          "N": 81,
+          "pct": 14.8,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 5,
+          "N": 81,
+          "pct": 6.2,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 9,
+          "N": 81,
+          "pct": 11.1,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 24,
+          "N": 81,
+          "pct": 29.6,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 0,
+          "N": 81,
+          "pct": 0.0,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 24,
+        "N": 81,
+        "pct": 29.6,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 17,
+        "N": 81,
+        "pct": 21.0,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 22,
+        "N": 53,
+        "pct": 41.5,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 2.58,
+      "fin_tratamiento_registrado": {
+        "n": 52,
+        "N": 81,
+        "pct": 64.2,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 28,
+        "N": 43,
+        "pct": 65.1,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 64,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 17,
+          "N": 81,
+          "pct": 21.0,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 24,
+        "N": 81,
+        "pct": 29.6,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    },
+    "SIN DATO": {
+      "diagnosticados": 205,
+      "control_mes": {
+        "n": 52,
+        "N": 205,
+        "pct": 25.4,
+        "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+      },
+      "control_mes_con_seguimiento_posible": {
+        "n": 49,
+        "N": 170,
+        "pct": 28.8,
+        "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+      },
+      "control_mes_sin_holgura": {
+        "n": 52,
+        "N": 188,
+        "pct": 27.7,
+        "formula": "idem con fecha_dx ≤ 31/05/2024 (sin holgura; sensibilidad)"
+      },
+      "control_mes_con_hb": {
+        "n": 47,
+        "N": 205,
+        "pct": 22.9,
+        "formula": "control al mes con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_mes_dias": {
+        "n": 52,
+        "mediana": 2.0,
+        "p90": 20.9,
+        "min": -1.0,
+        "max": 28.0,
+        "pct_con_retraso_positivo": 69.2,
+        "formula": "fecha_dosaje al mes − (fecha_dx + 30 d), solo controles realizados"
+      },
+      "control_3m": {
+        "n": 45,
+        "N": 205,
+        "pct": 22.0,
+        "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+      },
+      "control_3m_con_seguimiento_posible": {
+        "n": 43,
+        "N": 145,
+        "pct": 29.7,
+        "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+      },
+      "control_3m_sin_holgura": {
+        "n": 45,
+        "N": 162,
+        "pct": 27.8,
+        "formula": "idem con fecha_dx ≤ 01/04/2024 (sin holgura; sensibilidad)"
+      },
+      "control_3m_con_hb": {
+        "n": 42,
+        "N": 205,
+        "pct": 20.5,
+        "formula": "control a los 3 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_3m_dias": {
+        "n": 45,
+        "mediana": 3.0,
+        "p90": 24.200000000000003,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 80.0,
+        "formula": "fecha_dosaje a los 3 meses − (fecha_dx + 90 d), solo controles realizados"
+      },
+      "control_6m": {
+        "n": 37,
+        "N": 205,
+        "pct": 18.0,
+        "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+      },
+      "control_6m_con_seguimiento_posible": {
+        "n": 37,
+        "N": 122,
+        "pct": 30.3,
+        "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+      },
+      "control_6m_sin_holgura": {
+        "n": 37,
+        "N": 129,
+        "pct": 28.7,
+        "formula": "idem con fecha_dx ≤ 02/01/2024 (sin holgura; sensibilidad)"
+      },
+      "control_6m_con_hb": {
+        "n": 31,
+        "N": 205,
+        "pct": 15.1,
+        "formula": "control a los 6 meses con fecha y Hb ÷ diagnosticados"
+      },
+      "demora_6m_dias": {
+        "n": 37,
+        "mediana": 4.0,
+        "p90": 19.79999999999999,
+        "min": -2.0,
+        "max": 29.0,
+        "pct_con_retraso_positivo": 83.8,
+        "formula": "fecha_dosaje a los 6 meses − (fecha_dx + 180 d), solo controles realizados"
+      },
+      "sin_ningun_control": {
+        "n": 120,
+        "N": 205,
+        "pct": 58.5,
+        "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+      },
+      "tres_controles": {
+        "n": 14,
+        "N": 205,
+        "pct": 6.8,
+        "formula": "con los 3 dosajes (mes, 3 m, 6 m) ÷ diagnosticados"
+      },
+      "sin_ningun_control_con_seguimiento_posible": {
+        "n": 58,
+        "N": 122,
+        "pct": 47.5,
+        "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+      },
+      "tres_controles_con_seguimiento_posible": {
+        "n": 14,
+        "N": 122,
+        "pct": 11.5,
+        "formula": "los 3 dosajes ÷ dx con seguimiento de 6 m posible"
+      },
+      "perdida_seguimiento_6m": {
+        "n": 168,
+        "N": 205,
+        "pct": 82.0,
+        "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+      },
+      "perdida_seguimiento_6m_con_seguimiento_posible": {
+        "n": 85,
+        "N": 122,
+        "pct": 69.7,
+        "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+      },
+      "recuperacion_documentada": {
+        "n": 41,
+        "N": 205,
+        "pct": 20.0,
+        "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+      },
+      "recuperacion_con_seguimiento_6m": {
+        "n": 39,
+        "N": 122,
+        "pct": 32.0,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+      },
+      "recuperacion_con_seguimiento_12m": {
+        "n": 27,
+        "N": 80,
+        "pct": 33.8,
+        "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+      },
+      "recuperados_sobre_control_cierre": {
+        "n": 26,
+        "N": 37,
+        "pct": 70.3,
+        "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+      },
+      "dias_dx_a_recuperacion": {
+        "n": 41,
+        "mediana": 184.0,
+        "p90": 297.0
+      },
+      "suplementacion_distribucion": {
+        "0": {
+          "n": 147,
+          "N": 205,
+          "pct": 71.7,
+          "formula": "0 entregas ÷ diagnosticados"
+        },
+        "1": {
+          "n": 24,
+          "N": 205,
+          "pct": 11.7,
+          "formula": "1 entregas ÷ diagnosticados"
+        },
+        "2": {
+          "n": 7,
+          "N": 205,
+          "pct": 3.4,
+          "formula": "2 entregas ÷ diagnosticados"
+        },
+        "3": {
+          "n": 6,
+          "N": 205,
+          "pct": 2.9,
+          "formula": "3 entregas ÷ diagnosticados"
+        },
+        "4": {
+          "n": 0,
+          "N": 205,
+          "pct": 0.0,
+          "formula": "4 entregas ÷ diagnosticados"
+        },
+        "5": {
+          "n": 21,
+          "N": 205,
+          "pct": 10.2,
+          "formula": "5 entregas ÷ diagnosticados"
+        },
+        "6": {
+          "n": 0,
+          "N": 205,
+          "pct": 0.0,
+          "formula": "6 entregas ÷ diagnosticados"
+        }
+      },
+      "entregas_ge5": {
+        "n": 21,
+        "N": 205,
+        "pct": 10.2,
+        "formula": "≥5 fechas fecha_supT1..T6 registradas ÷ diagnosticados"
+      },
+      "entregas_0": {
+        "n": 147,
+        "N": 205,
+        "pct": 71.7,
+        "formula": "0 entregas registradas ÷ diagnosticados"
+      },
+      "entregas_ge5_con_seguimiento_posible": {
+        "n": 21,
+        "N": 137,
+        "pct": 15.3,
+        "formula": "≥5 entregas ÷ dx con fecha_dx ≤ 01/02/2024 (5.ª entrega esperada a ~120 d + holgura)"
+      },
+      "media_entregas": 0.79,
+      "fin_tratamiento_registrado": {
+        "n": 90,
+        "N": 205,
+        "pct": 43.9,
+        "formula": "fecha_ta registrada ÷ diagnosticados"
+      },
+      "fin_tratamiento_con_seguimiento_6m": {
+        "n": 76,
+        "N": 122,
+        "pct": 62.3,
+        "formula": "fecha_ta registrada ÷ dx con seguimiento de 6 m posible"
+      },
+      "dx_a_primera_suplementacion_dias": {
+        "n": 58,
+        "mediana": 0.0,
+        "p90": 0.0,
+        "pct_mismo_dia": 100.0,
+        "sin_primera_entrega": {
+          "n": 147,
+          "N": 205,
+          "pct": 71.7,
+          "formula": "sin fecha_supT1 ÷ diagnosticados"
+        },
+        "formula": "fecha_supT1 − fecha_dx (diagnosticados con entrega 1)"
+      },
+      "sin_hb_dx": {
+        "n": 131,
+        "N": 205,
+        "pct": 63.9,
+        "formula": "sin hb_dx ÷ diagnosticados"
+      }
+    }
+  },
+  "por_trimestre_dx": {
+    "2022Q1": {
+      "n": 282,
+      "control_mes_pct": 33.7,
+      "control_3m_pct": 67.4,
+      "control_6m_pct": 69.5,
+      "recup_pct": 71.6
+    },
+    "2022Q2": {
+      "n": 375,
+      "control_mes_pct": 80.0,
+      "control_3m_pct": 70.9,
+      "control_6m_pct": 51.7,
+      "recup_pct": 58.7
+    },
+    "2022Q3": {
+      "n": 1070,
+      "control_mes_pct": 42.1,
+      "control_3m_pct": 48.5,
+      "control_6m_pct": 67.5,
+      "recup_pct": 69.4
+    },
+    "2022Q4": {
+      "n": 713,
+      "control_mes_pct": 70.4,
+      "control_3m_pct": 61.7,
+      "control_6m_pct": 62.4,
+      "recup_pct": 68.6
+    },
+    "2023Q1": {
+      "n": 1374,
+      "control_mes_pct": 65.7,
+      "control_3m_pct": 59.2,
+      "control_6m_pct": 66.0,
+      "recup_pct": 69.9
+    },
+    "2023Q2": {
+      "n": 1539,
+      "control_mes_pct": 71.0,
+      "control_3m_pct": 63.2,
+      "control_6m_pct": 66.6,
+      "recup_pct": 70.9
+    },
+    "2023Q3": {
+      "n": 1807,
+      "control_mes_pct": 77.3,
+      "control_3m_pct": 67.8,
+      "control_6m_pct": 69.2,
+      "recup_pct": 67.0
+    },
+    "2023Q4": {
+      "n": 1891,
+      "control_mes_pct": 75.9,
+      "control_3m_pct": 66.2,
+      "control_6m_pct": 55.2,
+      "recup_pct": 46.6
+    },
+    "2024Q1": {
+      "n": 2015,
+      "control_mes_pct": 77.4,
+      "control_3m_pct": 57.5,
+      "control_6m_pct": 0.0,
+      "recup_pct": 2.4
+    },
+    "2024Q2": {
+      "n": 1420,
+      "control_mes_pct": 45.3,
+      "control_3m_pct": 0.0,
+      "control_6m_pct": 0.0,
+      "recup_pct": 0.9
+    }
+  },
+  "brecha_inc2": [
+    {
+      "indicador_S1_tabla8": "Cobertura oportuna de medición/control (proceso)",
+      "indicador_AS_IS": "control_mes / control_3m / control_6m (global y con seguimiento posible)",
+      "relacion_con_inc2": "Línea base del indicador de valor V2/V3 «controles programados y vencidos visibles»: hoy no existe agenda normativa; el control depende de que el niño vuelva y alguien lo registre."
+    },
+    {
+      "indicador_S1_tabla8": "Demora de controles vencidos (proceso)",
+      "indicador_AS_IS": "demora_mes / demora_3m / demora_6m (mediana y p90 de días respecto de la fecha esperada)",
+      "relacion_con_inc2": "Solo mide los controles que SÍ se hicieron; los vencidos nunca atendidos no tienen demora observable (sesgo de supervivencia). El Inc. 2 muestra los vencidos con su demora actual."
+    },
+    {
+      "indicador_S1_tabla8": "Pérdida de seguimiento (valor)",
+      "indicador_AS_IS": "perdida_seguimiento_6m y sin_ningun_control (global y con seguimiento posible)",
+      "relacion_con_inc2": "Línea base del indicador de pérdida de seguimiento de S1 (y S3-4): niños sin cierre a 6 meses; el Inc. 2 la ataca con alertas y agenda del personal."
+    },
+    {
+      "indicador_S1_tabla8": "Recuperación documentada al año (resultado)",
+      "indicador_AS_IS": "recuperacion_documentada, recuperacion_con_seguimiento_6m/12m, recuperados_sobre_control_cierre",
+      "relacion_con_inc2": "Resultado clínico de referencia; no es atribuible solo al sistema, se usa como contexto."
+    }
+  ],
+  "advertencias": [
+    "El dataset solo contiene niños CON diagnóstico de anemia: no hay población total ni sanos, por lo que no se puede calcular prevalencia ni cobertura de tamizaje.",
+    "Solo constan dosajes dentro de la ventana de cada control (1.º: 29–58 d; 3.º: 87–119 d; 6.º: 178–209 d desde el dx). Un control fuera de ventana, o no registrado en el HIS, aparece como «no realizado»: el indicador mide control registrado en ventana, no asistencia real.",
+    "Censura por corte: los diagnósticos recientes (hasta 21/06/2024) no han tenido tiempo de cumplir los controles. Por eso se reportan dos lecturas: sobre todos los diagnosticados (cifra bruta, penalizada) y sobre quienes tenían seguimiento posible (cifra más justa).",
+    "La fecha esperada de cada control (dx + 30/90/180 d) y la holgura de 30 d son supuestos operativos de este análisis, coherentes con el rango observado de las fechas; deben contrastarse con la norma técnica vigente.",
+    "num_doc no es confiable (notación científica, no único): no hay identificación del niño; puede haber repeticiones del mismo niño en filas distintas (varios diagnósticos o duplicados). No se intentó reidentificar a nadie.",
+    "La severidad del HIS parece asignarse con Hb ajustada por altitud, mientras hb_dx es la observada; la concordancia calculada con la altitud de la capital provincial es una aproximación.",
+    "fecha_supT1 coincide con fecha_dx en el 100 % de los casos y fecha_ta coincide con fecha_dx en una parte de los registros: el tiempo dx→primera suplementación no mide demora real y fecha_ta debe usarse con cautela.",
+    "Una entrega no registrada puede ser entrega no hecha o registro faltante; el dataset no distingue ambas cosas.",
+    "El dataset no incluye adherencia real (consumo), visitas domiciliarias, referencias ni motivos de abandono."
+  ]
+}

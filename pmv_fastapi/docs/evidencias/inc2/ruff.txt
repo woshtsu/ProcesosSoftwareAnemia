@@ -1,4 +1,4 @@
 $ ruff check . && ruff format --check .
 ruff 0.15.11
 All checks passed!
-64 files already formatted
+95 files already formatted

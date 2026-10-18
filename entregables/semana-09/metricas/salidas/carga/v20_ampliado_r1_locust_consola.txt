@@ -1,0 +1,38 @@
+
+[2026-10-17 20:32:42,750] vm/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-17 20:32:42,751] vm/INFO/locust.main: Run time limit set to 60 seconds
+[2026-10-17 20:32:42,751] vm/INFO/locust.runners: Ramping to 50 users at a rate of 10.00 per second
+[2026-10-17 20:32:46,760] vm/INFO/locust.runners: All users spawned: {"PersonalPosta": 50} (50 total users)
+[2026-10-17 20:33:42,751] vm/INFO/locust.main: --run-time limit reached, shutting down
+[2026-10-17 20:33:42,776] vm/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      GET /api/agenda                                                                  256     0(0.00%) |    342      13    1417    260 |    4.28        0.00
+GET      GET /api/alertas/controles-vencidos                                              169     0(0.00%) |    369      30    1019    350 |    2.82        0.00
+GET      GET /api/alertas/resumen                                                         149     0(0.00%) |    393      29    1315    350 |    2.49        0.00
+GET      GET /api/ninos                                                                   441     0(0.00%) |    378      30    1451    320 |    7.36        0.00
+GET      GET /api/ninos/{id}                                                              305     0(0.00%) |     97       3    1168     36 |    5.09        0.00
+GET      GET /api/ninos/{id}/agenda                                                       218     0(0.00%) |     97       3     710     44 |    3.64        0.00
+GET      GET /api/ninos/{id}/asistencias                                                   85     0(0.00%) |    109       3     794     34 |    1.42        0.00
+GET      GET /api/reportes/periodo                                                         58     0(0.00%) |    289       7     911    210 |    0.97        0.00
+POST     POST /api/ninos                                                                  134     0(0.00%) |    226       8     947    180 |    2.24        0.00
+POST     POST /api/validaciones/evaluacion                                                225     0(0.00%) |     25       1     261     12 |    3.76        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      2040     0(0.00%) |    239       1    1451    140 |   34.07        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      GET /api/agenda                                                                       260    410    520    580    740    850   1100   1200   1400   1400   1400    256
+GET      GET /api/alertas/controles-vencidos                                                   350    480    560    600    750    820    910    970   1000   1000   1000    169
+GET      GET /api/alertas/resumen                                                              350    470    530    600    810    990   1100   1300   1300   1300   1300    149
+GET      GET /api/ninos                                                                        320    460    540    620    780    920   1100   1200   1500   1500   1500    441
+GET      GET /api/ninos/{id}                                                                    36     68     93    140    260    420    670    750   1200   1200   1200    305
+GET      GET /api/ninos/{id}/agenda                                                             44     71    120    170    300    370    520    660    710    710    710    218
+GET      GET /api/ninos/{id}/asistencias                                                        34     60     91    140    400    600    680    790    790    790    790     85
+GET      GET /api/reportes/periodo                                                             210    360    460    520    660    800    870    910    910    910    910     58
+POST     POST /api/ninos                                                                       180    290    340    370    450    610    800    840    950    950    950    134
+POST     POST /api/validaciones/evaluacion                                                      12     22     31     38     72    100    120    130    260    260    260    225
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            140    270    390    450    630    780    940   1100   1400   1500   1500   2040
+

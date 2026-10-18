@@ -42,7 +42,7 @@
      "TN": 18
     },
     "mejora_pct": 72.9,
-    "criterio": "v1.0: campo control_atrasado heurístico (30 días); v1.5: normativo",
+    "criterio": "v1.0: campo control_atrasado heurístico (30 días); v1.5 y v2.0: normativo",
     "fuente": "datos/m32_v1.0_B150.json (V3)"
    },
    "V4_p95_agregado_ms_mix_comun": {
@@ -51,11 +51,22 @@
     "p99_ms": 345.0,
     "fallos_pct": 0.0,
     "rps": 38.88,
-    "fuente": "datos/m32_carga.json"
+    "fuente": "datos/m32_carga.json",
+    "repeticion_misma_sesion_que_v2.0": {
+     "corridas": [
+      "r3",
+      "r4"
+     ],
+     "valor_ms": 155.0,
+     "mediana_ms": 19.5,
+     "p99_ms": 315.0,
+     "fallos_pct": 0.0,
+     "rps": 38.77
+    }
    },
    "V5_disponibilidad_pct": {
     "valor_pct": 100.0,
-    "sondas": 728,
+    "sondas": 856,
     "fuente": "datos/m32_disponibilidad.json"
    },
    "V6_satisfaccion_proxy_pct_criterios_verificados": {
@@ -92,7 +103,7 @@
      "TN": 47
     },
     "mejora_pct": 100.0,
-    "criterio": "v1.0: campo control_atrasado heurístico (30 días); v1.5: normativo",
+    "criterio": "v1.0: campo control_atrasado heurístico (30 días); v1.5 y v2.0: normativo",
     "fuente": "datos/m32_v1.5_B150.json (V3)"
    },
    "V4_p95_agregado_ms_mix_comun": {
@@ -118,6 +129,61 @@
     "valor_ms": 750.0,
     "fuente": "datos/m32_carga.json (v15_agenda)"
    }
+  },
+  "v2.0": {
+   "V1_registros_por_evaluacion": {
+    "as_is": 3,
+    "valor": 1,
+    "mejora_pct": 100.0,
+    "fuente": "datos/m32_v2.0_B150.json (V1)"
+   },
+   "V2_pct_ninos_activos_con_agenda_normativa": {
+    "as_is": 0.0,
+    "valor_pct": 100.0,
+    "activos": 140,
+    "con_agenda": 140,
+    "mejora_pct": 100.0,
+    "fuente": "datos/m32_v2.0_B150.json (V2)"
+   },
+   "V3_F1_deteccion_controles_vencidos": {
+    "as_is": 0.0,
+    "F1": 1.0,
+    "precision": 1.0,
+    "sensibilidad": 1.0,
+    "matriz": {
+     "TP": 93,
+     "FP": 0,
+     "FN": 0,
+     "TN": 47
+    },
+    "mejora_pct": 100.0,
+    "criterio": "v1.0: campo control_atrasado heurístico (30 días); v1.5 y v2.0: normativo",
+    "fuente": "datos/m32_v2.0_B150.json (V3)"
+   },
+   "V4_p95_agregado_ms_mix_comun": {
+    "valor_ms": 815.0,
+    "mediana_ms": 75.5,
+    "p99_ms": 1250.0,
+    "fallos_pct": 0.0,
+    "rps": 33.92,
+    "fuente": "datos/m32_carga.json"
+   },
+   "V5_disponibilidad_pct": {
+    "valor_pct": 100.0,
+    "sondas": 856,
+    "fuente": "datos/m32_disponibilidad.json"
+   },
+   "V6_satisfaccion_proxy_pct_criterios_verificados": {
+    "valor_pct": 100.0,
+    "criterios": "48/48",
+    "fuente": "datos/m21_cobertura_rf.json",
+    "pendiente": "SUS real con usuarios (instrumento en metricas/instrumento_SUS.md): no aplicado"
+   },
+   "V4_p95_agregado_ms_mix_ampliado_agenda_personal_asistencia": {
+    "valor_ms": 815.0,
+    "fuente": "datos/m32_carga.json (v20_ampliado)",
+    "nota": "mix del locustfile de la v2.0: común + agenda del niño, alertas, resumen, agenda del personal y asistencias; no es comparable con el mix común"
+   }
   }
  },
  "indice_impacto_en_valor_pct": {
@@ -138,6 +204,15 @@
    },
    "indice": 100.0,
    "indice_sin_redondear": 100.0
+  },
+  "v2.0": {
+   "mejoras": {
+    "V1": 100.0,
+    "V2": 100.0,
+    "V3": 100.0
+   },
+   "indice": 100.0,
+   "indice_sin_redondear": 100.0
   }
  },
  "meta_guia_pct": {
@@ -146,7 +221,167 @@
  },
  "cumple": {
   "Inc.1": true,
+  "avance_v1.5": true,
   "Inc.2": true
  },
- "advertencia": "V1 de v1.0 y v1.5 es idéntico (un registro nominal único desde el Inc. 1). El índice de v1.5 es 100 % porque los tres indicadores con línea base alcanzan su máximo; no equivale a 100 % del alcance del Inc. 2 (avance 2/4 historias): mide solo los tres indicadores definidos."
+ "advertencia": "V1 de v1.0, v1.5 y v2.0 es idéntico (un registro nominal único desde el Inc. 1). El índice de v1.5 y el de v2.0 son 100 % porque los tres indicadores con línea base alcanzan su máximo en el dataset B150; mide solo los tres indicadores definidos (V1, V2, V3), no el alcance completo del incremento ni el valor clínico. La agenda del personal y la asistencia (RF-08 y RF-09) no tienen un indicador propio en el índice: se verifican con los criterios Dado-Cuando-Entonces (M2.1/V6) y con la sección linea_base_real_DIRESA.",
+ "linea_base_real_DIRESA": {
+  "fuente_as_is": "datos/asis_dataset_diresa.json (herramientas/dataset/analisis_asis.py) sobre el dataset completo: 12 486 diagnósticos de anemia en menores de 36 meses, DIRESA Junín, HIS, corte 30/06/2024",
+  "fuente_v2_0": "datos/m32_dataset_real.json: muestra estratificada de 500 niños (Provincia x severidad HIS, semilla 2026) importada a la v2.0 con FECHA_REFERENCIA=2024-06-30",
+  "regla_seguimiento_posible": "fecha_dx + plazo + holgura ≤ fecha de corte (plazos {'mes': 30, '3m': 90, '6m': 180}, holgura 30 d)",
+  "control_de_hemoglobina_registrado": {
+   "al_mes": {
+    "bruto": {
+     "n": 8379,
+     "N": 12486,
+     "pct": 67.1,
+     "formula": "fecha_dosaje al mes registrada ÷ diagnosticados"
+    },
+    "con_seguimiento_posible": {
+     "n": 8213,
+     "N": 11702,
+     "pct": 70.2,
+     "formula": "control al mes ÷ diagnosticados con fecha_dx ≤ 01/05/2024 (plazo 30 d + holgura 30 d antes del corte)"
+    }
+   },
+   "a_los_3_meses": {
+    "bruto": {
+     "n": 6836,
+     "N": 12486,
+     "pct": 54.7,
+     "formula": "fecha_dosaje a los 3 meses registrada ÷ diagnosticados"
+    },
+    "con_seguimiento_posible": {
+     "n": 6652,
+     "N": 10419,
+     "pct": 63.8,
+     "formula": "control a los 3 meses ÷ diagnosticados con fecha_dx ≤ 02/03/2024 (plazo 90 d + holgura 30 d antes del corte)"
+    }
+   },
+   "a_los_6_meses": {
+    "bruto": {
+     "n": 5783,
+     "N": 12486,
+     "pct": 46.3,
+     "formula": "fecha_dosaje a los 6 meses registrada ÷ diagnosticados"
+    },
+    "con_seguimiento_posible": {
+     "n": 5646,
+     "N": 8540,
+     "pct": 66.1,
+     "formula": "control a los 6 meses ÷ diagnosticados con fecha_dx ≤ 03/12/2023 (plazo 180 d + holgura 30 d antes del corte)"
+    }
+   },
+   "lectura": "«Bruto» divide por todos los diagnosticados (penaliza a quienes aún no podían tener el control por el corte); «con seguimiento posible» divide solo por quienes ya habían cumplido el plazo más la holgura. Mide dosajes registrados en ventana, no asistencia real."
+  },
+  "perdida_de_seguimiento_a_6_meses": {
+   "bruto": {
+    "n": 6703,
+    "N": 12486,
+    "pct": 53.7,
+    "formula": "sin dosaje a los 6 meses ÷ diagnosticados (= 100 − control 6 m)"
+   },
+   "con_seguimiento_posible": {
+    "n": 2894,
+    "N": 8540,
+    "pct": 33.9,
+    "formula": "sin dosaje a 6 m ÷ dx con seguimiento de 6 m posible"
+   },
+   "sin_ningun_control_bruto": {
+    "n": 2237,
+    "N": 12486,
+    "pct": 17.9,
+    "formula": "sin dosaje a 1, 3 ni 6 meses ÷ diagnosticados"
+   },
+   "sin_ningun_control_con_seguimiento_posible": {
+    "n": 1050,
+    "N": 8540,
+    "pct": 12.3,
+    "formula": "sin ningún dosaje ÷ dx con seguimiento de 6 m posible"
+   }
+  },
+  "recuperacion_documentada": {
+   "bruta": {
+    "n": 5859,
+    "N": 12486,
+    "pct": 46.9,
+    "formula": "recup=1 (con fecha_recup) ÷ diagnosticados"
+   },
+   "con_seguimiento_6m": {
+    "n": 5682,
+    "N": 8540,
+    "pct": 66.5,
+    "formula": "recup=1 ÷ dx con fecha_dx ≤ 03/12/2023"
+   },
+   "con_seguimiento_12m": {
+    "n": 3724,
+    "N": 5383,
+    "pct": 69.2,
+    "formula": "recup=1 ÷ dx con fecha_dx ≤ 01/07/2023 (≥ 1 año de seguimiento)"
+   },
+   "sobre_control_de_cierre_6m": {
+    "n": 4731,
+    "N": 5783,
+    "pct": 81.8,
+    "formula": "recup=1 con dosaje a 6 m ÷ con dosaje a 6 m (control de cierre; Tabla 8 de S1)"
+   }
+  },
+  "controles_vencidos_visibles_para_el_personal": {
+   "definicion": "% de los controles vencidos (según el oráculo independiente de la agenda normativa) que el personal puede ver como VENCIDO en la agenda del personal (GET /api/agenda) y en la lista de alertas",
+   "as_is_pct": 0.0,
+   "as_is_justificacion": "No existe agenda ni lista de controles vencidos en el proceso actual (cuaderno, tarjeta e HIS): el control depende de que el niño vuelva y alguien lo registre; un control vencido no es visible hasta que el niño ya no regresa (B2, B5).",
+   "v2_0_muestra_500_pct": 100.0,
+   "v2_0_n": 1638,
+   "v2_0_N": 1638,
+   "v2_0_visibles_en_alertas_pct": 100.0,
+   "ninos_activos_con_agenda_generada": {
+    "as_is_pct": 0.0,
+    "v2_0_pct": 100.0,
+    "v2_0_n": 500,
+    "v2_0_N": 500
+   },
+   "concordancia_con_el_oraculo": {
+    "por_nino_F1": 1.0,
+    "por_control_pct": 100.0,
+    "coinciden": 1638,
+    "controles": 1638
+   },
+   "controles_vencidos_detectados": 1638,
+   "ninos_con_vencidos": 419,
+   "por_prioridad": {
+    "ALTA": 1543,
+    "MEDIA": 71,
+    "BAJA": 24
+   },
+   "capacidad_por_control_de_tratamiento": {
+    "C1M": {
+     "ninos_con_el_control_programado": 416,
+     "pct_ninos_con_el_control_programado": 83.2,
+     "vencidos_oraculo": 182,
+     "vencidos_visibles_en_agenda_del_personal": 182,
+     "pct_vencidos_visibles": 100.0
+    },
+    "C3M": {
+     "ninos_con_el_control_programado": 416,
+     "pct_ninos_con_el_control_programado": 83.2,
+     "vencidos_oraculo": 152,
+     "vencidos_visibles_en_agenda_del_personal": 152,
+     "pct_vencidos_visibles": 100.0
+    },
+    "C6M": {
+     "ninos_con_el_control_programado": 416,
+     "pct_ninos_con_el_control_programado": 83.2,
+     "vencidos_oraculo": 92,
+     "vencidos_visibles_en_agenda_del_personal": 92,
+     "pct_vencidos_visibles": 100.0
+    }
+   }
+  },
+  "advertencias_de_lectura": [
+   "El AS-IS (resultado del proceso: dosajes registrados en el HIS) y la v2.0 (capacidad del sistema: controles visibles) NO miden lo mismo y no se promedian ni entran en el índice de impacto en valor; se muestran lado a lado.",
+   "El 0 % del AS-IS es estructural (no existe agenda), no una medición sobre el dataset; el 100 % de la v2.0 es sobre la muestra de 500 niños importada, no sobre los 12 486 diagnósticos ni sobre los resultados clínicos.",
+   "«Vencido» en la v2.0 significa «sin registro en la base importada»: el extracto del HIS solo trae el diagnóstico y los dosajes al mes, 3 y 6 meses, de modo que los dosajes por edad (6, 9, 12 meses...) figuran como vencidos aunque pudieran haberse hecho.",
+   "La visibilidad no demuestra mejora clínica ni de asistencia: eso requiere un piloto con usuarios (el SUS y la medición en campo siguen pendientes)."
+  ]
+ }
 }

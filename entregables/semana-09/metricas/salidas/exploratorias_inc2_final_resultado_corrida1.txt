@@ -1,0 +1,28 @@
+EXF-01 [OK] HTTP 200; 2026-10-12 a 2026-10-18; 7 días; fecha_referencia=2026-10-17
+EXF-02 [OK] {1: (200, 1), 31: (200, 31), 32: (422, None)}
+EXF-03 [OK] {'desde>hasta': 422, '2026-13-45': 422, '2026-02-30': 422, 'abc': 422, '2026-10-1': 422, '2026-10-01T1': 422, '%00': 422, 'xxxxxxxxxxxx': 422, 'vacío': 422}
+EXF-04 [OK] solo desde: HTTP 200 2026-10-17..2026-10-23; solo hasta: HTTP 200 2026-10-11..2026-10-17
+EXF-05 [OK] {'0001-01-01': (422, None), '9999-12-01': (422, None), '1900-01-01': (422, None)}
+EXF-06 [OK] programado hace 0 d -> PENDIENTE (esperado PENDIENTE); programado hace 10 d -> PENDIENTE (esperado PENDIENTE); programado hace 31 d -> VENCIDO (esperado VENCIDO)
+EXF-07 [OK] resumen={'total': 48, 'cumplidos': 11, 'pendientes': 37, 'vencidos': 0, 'con_inasistencia': 0, 'ninos': 41}; suma por día=48; cada día cuadra=True
+EXF-08 [OK] antes=True; con alta=False; reactivado=True
+EXF-09 [OK] 16 combinaciones: todas 200=True, todas con 0 controles=True; comunidad='' -> 49 de 49
+EXF-10 [OK] {'EXFDIEZ': True, 'exfdiez': True, ' ExfDiez ': True}
+EXF-11 [OK] 12 comunidades, 1 establecimientos; 'ExfOnce' presente=True
+EXF-12 [OK] 156 niños; tiempos (ms): [31, 32, 30, 28, 28]
+EXF-20 [OK] HTTP 201; estado=CUMPLIDO por_asistencia=True; en alertas=False; vencidos 483->482; agenda personal=['CUMPLIDO']
+EXF-21 [OK] 3 d: BAJA->MEDIA (esperado MEDIA), HTTP 201, VENCIDO, inasistencia=True; 20 d: MEDIA->ALTA (esperado ALTA), HTTP 201, VENCIDO, inasistencia=True; 40 d: ALTA->ALTA (esperado ALTA), HTTP 201, VENCIDO, inasistencia=True
+EXF-22 [OK] {'sin motivo': 422, '2 car.': 422, 'espacios': 422, '201 car.': 422, '200 car.': 201, 'asistió+201': 422}
+EXF-23 [OK] {"'ASISTIÓ'": 422, "'asistio'": 422, "'Asistio'": 422, "''": 422, 'None': 422, '1': 422, "['ASISTIO']": 422, '{}': 422, 'no JSON': 422, 'fecha nula': 422}; asistencias guardadas=0
+EXF-24 [OK] {'niño inexistente': 404, 'código inexistente': 404, 'fecha desplazada': 404, 'id raro': 404, 'código raro': 404, 'código 5000': 404}
+EXF-25 [OK] futura -> 422; programado hoy -> 201
+EXF-26 [OK] ASISTIO+NO_ASISTIO: 201,409, guardadas=1, conservada=ASISTIO; NO_ASISTIO+ASISTIO: 201,409, guardadas=1, conservada=NO_ASISTIO; ASISTIO+ASISTIO: 201,409, guardadas=1, conservada=ASISTIO
+EXF-27 [OK] códigos {201: 1, 409: 7}; asistencias guardadas=1
+EXF-28 [FALLA] cumplido -> 409 (estado CUMPLIDO); cerrado por recuperación -> 422 (2 cerrados)
+EXF-29 [FALLA] ajena 422; NO_ASISTIO+evaluación 422; inexistente 422; propia 422, vinculada=False
+EXF-30 [OK] NO_ASISTIO 201; evaluación 201; control CUMPLIDO, inasistencia visible=False
+EXF-31 [OK] HTTP 404 {"mensaje":"El niño no tiene programado el control DHc2 con fecha 2026-08-28.","errores":[]}
+EXF-32 [OK] 3 asistencias, ordenadas=True; sin asistencias=[]; inexistente=404
+EXF-33 [OK] [("'Obstetra Prue", 201, 'Obstetra Prueba'), ("''", 201, 'personal.posta'), ('None', 201, 'personal.posta'), ("'UUUUUUUUUUUUU", 201, 'UUUUUUUUUUUUUUUUUUUU')]
+EXF-34 [OK] escrituras {201: 6}; lecturas {200: 180}
+Counter({'OK': 25, 'FALLA': 2})

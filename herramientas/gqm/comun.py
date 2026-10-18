@@ -2,12 +2,14 @@
 
 Define dónde está cada capa hexagonal en cada versión evaluada y cómo clasificar una importación.
 Las rutas de las versiones se pueden cambiar con las variables de entorno GQM_RAIZ_V10 (por omisión, ../inc1_v1.0_PMV respecto de la raíz del repositorio;
-se crea con «git worktree add ../inc1_v1.0_PMV v1.0-PMV») y GQM_RAIZ_V15 (por omisión, pmv_fastapi/).
+se crea con «git worktree add ../inc1_v1.0_PMV v1.0-PMV»), GQM_RAIZ_V15 (por omisión, ../v15_export/pmv_fastapi: copia del avance v1.5, se crea con
+«git archive v1.5.0-inc2-avance pmv_fastapi | tar -x -C ../v15_export») y GQM_RAIZ_V20 (por omisión, pmv_fastapi/, la versión actual 2.0.0-inc2).
 """
 
 from __future__ import annotations
 
 import ast
+import json
 import os
 import sys
 from dataclasses import dataclass, field
@@ -20,9 +22,15 @@ SALIDAS = METRICAS / "salidas"
 
 RAICES = {
     "v1.0": Path(os.getenv("GQM_RAIZ_V10", str(REPO.parent / "inc1_v1.0_PMV"))),
-    "v1.5": Path(os.getenv("GQM_RAIZ_V15", str(REPO / "pmv_fastapi"))),
+    "v1.5": Path(os.getenv("GQM_RAIZ_V15", str(REPO.parent / "v15_export" / "pmv_fastapi"))),
+    "v2.0": Path(os.getenv("GQM_RAIZ_V20", str(REPO / "pmv_fastapi"))),
 }
-ETIQUETA = {"v1.0": "v1.0-PMV (Inc. 1)", "v1.5": "v1.5.0-inc2-avance (Inc. 2)"}
+ETIQUETA = {
+    "v1.0": "v1.0-PMV (Inc. 1)",
+    "v1.5": "v1.5.0-inc2-avance (avance del Inc. 2)",
+    "v2.0": "v2.0.0-inc2 (Inc. 2, cierre)",
+}
+VERSIONES = ["v1.0", "v1.5", "v2.0"]
 
 # Capas por versión: nombre -> lista de rutas (relativas a la raíz de la versión; carpeta o archivo .py).
 CAPAS = {
@@ -45,6 +53,7 @@ CAPAS = {
         "composicion": ["app/main.py"],
     },
 }
+CAPAS["v2.0"] = CAPAS["v1.5"]  # misma estructura hexagonal (ADR-008)
 NOMBRE_CAPA = {
     "dominio": "Núcleo de dominio",
     "puertos_entrada": "Puertos de entrada",
@@ -169,3 +178,22 @@ def lineas_codigo_sin_docstrings(archivo: Path) -> int:
 @dataclass
 class Resultado:
     datos: dict = field(default_factory=dict)
+
+
+def fusionar_json(ruta: Path, nuevo: dict) -> dict:
+    """Escribe ``nuevo`` en ``ruta`` conservando las claves (versiones) ya medidas que no se recalculan."""
+    previo = {}
+    if ruta.exists():
+        previo = json.loads(ruta.read_text(encoding="utf-8"))
+    previo.update(nuevo)
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    ruta.write_text(json.dumps(previo, ensure_ascii=False, indent=2), encoding="utf-8")
+    return previo
+
+
+def ruta_rel(ruta: Path) -> str:
+    """Ruta para mostrar en las salidas: relativa a la raíz del repositorio (sin rutas absolutas de la máquina)."""
+    try:
+        return ruta.resolve().relative_to(REPO).as_posix() or "."
+    except ValueError:
+        return os.path.relpath(ruta.resolve(), REPO).replace(os.sep, "/")

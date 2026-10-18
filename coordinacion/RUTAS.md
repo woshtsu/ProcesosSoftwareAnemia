@@ -111,5 +111,7 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Scripts de medición GQM | `herramientas/gqm/` |
 | Conversión MD → DOCX/PDF | `herramientas/conversion/exportar_s9.py` |
 | Exportados | `exportados/semana-09/Entregable_Semana9_Anemia_Junin.docx` y `.pdf` |
-| Diagramas S9 | `diagramas/{src,png,svg}/70_s9_cadena_trazabilidad`, `71_s9_arbol_gqm`, `72_s9_hexagonal_v15` |
+| Diagramas S9 | `diagramas/{src,png,svg}/70_s9_cadena_trazabilidad`, `71_s9_arbol_gqm`, `72_s9_hexagonal_v20` |
 | Avance del Inc. 2 (v1.5.0-inc2-avance) | `pmv_fastapi/` (estructura `app/domain/{model,service}`, `app/ports/{inbound,outbound}`, `app/application`, `app/adapters/{inbound,outbound}`), `pmv_fastapi/CHANGELOG.md`, `pmv_fastapi/docs/adr/ADR-007*`, `ADR-008*`, `pmv_fastapi/docs/evidencias/registro_defectos_inc2.md`, `pmv_fastapi/docs/evidencias/inc2/` |
+
+| Dataset DIRESA Junín (insumo, anonimizado en origen) | `Dataset/` (CSV y diccionario); importador `pmv_fastapi/scripts/importar_dataset_diresa.py`; análisis `herramientas/dataset/analisis_asis.py` |

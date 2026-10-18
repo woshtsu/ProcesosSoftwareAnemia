@@ -1,0 +1,245 @@
+[
+ {
+  "id": "EXF-01",
+  "area": "RF-08 rango",
+  "entrada": "GET /api/agenda sin parámetros",
+  "esperado": "200; semana lunes a domingo de la fecha de hoy (7 días); fecha_referencia = hoy",
+  "obtenido": "HTTP 200; 2026-10-12 a 2026-10-18; 7 días; fecha_referencia=2026-10-17",
+  "estado": "OK",
+  "ms": 30
+ },
+ {
+  "id": "EXF-02",
+  "area": "RF-08 rango",
+  "entrada": "Rangos de 1, 31 y 32 días",
+  "esperado": "1 y 31 días -> 200 con ese número de días; 32 días -> 422",
+  "obtenido": "{1: (200, 1), 31: (200, 31), 32: (422, None)}",
+  "estado": "OK",
+  "ms": 61
+ },
+ {
+  "id": "EXF-03",
+  "area": "RF-08 rango",
+  "entrada": "desde posterior a hasta; fechas imposibles (2026-13-45, 2026-02-30), texto, vacío, '2026-10-1', fecha con hora",
+  "esperado": "422 con mensaje en todos los inválidos (el vacío equivale a no indicar); nunca 5xx",
+  "obtenido": "{'desde>hasta': 422, '2026-13-45': 422, '2026-02-30': 422, 'abc': 422, '2026-10-1': 422, '2026-10-01T1': 422, '%00': 422, 'xxxxxxxxxxxx': 422, 'vacío': 422}",
+  "estado": "OK",
+  "ms": 15
+ },
+ {
+  "id": "EXF-04",
+  "area": "RF-08 rango",
+  "entrada": "Un solo extremo: solo desde, solo hasta",
+  "esperado": "Sin 5xx; si responde 200, el rango no supera 31 días y contiene la fecha indicada",
+  "obtenido": "solo desde: HTTP 200 2026-10-17..2026-10-23; solo hasta: HTTP 200 2026-10-11..2026-10-17",
+  "estado": "OK",
+  "ms": 71
+ },
+ {
+  "id": "EXF-05",
+  "area": "RF-08 rango",
+  "entrada": "Años extremos: 0001-01-01..0001-01-31, 9999-12-01..9999-12-31, 1900-01-01..1900-01-31",
+  "esperado": "Sin 5xx (200 con días vacíos o 422)",
+  "obtenido": "{'0001-01-01': (422, None), '9999-12-01': (422, None), '1900-01-01': (422, None)}",
+  "estado": "OK",
+  "ms": 5
+ },
+ {
+  "id": "EXF-06",
+  "area": "RF-08 contenido",
+  "entrada": "Niño con un control por edad programado HOY, otro hace 10 días (pendiente) y otro hace 31 días (vencido por 1 día)",
+  "esperado": "Cada control aparece en el día de su fecha programada con su estado: hoy PENDIENTE, hace 10 días PENDIENTE, hace 31 días VENCIDO",
+  "obtenido": "programado hace 0 d -> PENDIENTE (esperado PENDIENTE); programado hace 10 d -> PENDIENTE (esperado PENDIENTE); programado hace 31 d -> VENCIDO (esperado VENCIDO)",
+  "estado": "OK",
+  "ms": 52
+ },
+ {
+  "id": "EXF-07",
+  "area": "RF-08 contenido",
+  "entrada": "Totales: resumen y totales por día de un rango de 31 días con todos los niños de la prueba",
+  "esperado": "resumen.total = suma de dias.total; cumplidos + pendientes + vencidos = total; cada día cuadra con sus ítems",
+  "obtenido": "resumen={'total': 48, 'cumplidos': 11, 'pendientes': 37, 'vencidos': 0, 'con_inasistencia': 0, 'ninos': 41}; suma por día=48; cada día cuadra=True",
+  "estado": "OK",
+  "ms": 27
+ },
+ {
+  "id": "EXF-08",
+  "area": "RF-08 contenido",
+  "entrada": "Niño con alta: tenía un control en la semana; se le da de alta",
+  "esperado": "Sus controles dejan de aparecer en la agenda del personal; al reactivarlo reaparecen",
+  "obtenido": "antes=True; con alta=False; reactivado=True",
+  "estado": "OK",
+  "ms": 52
+ },
+ {
+  "id": "EXF-09",
+  "area": "RF-08 filtros",
+  "entrada": "Filtros por establecimiento y comunidad inexistentes, vacíos y con texto especial ('%', '_', comilla, '; DROP TABLE', NUL, 5 000 caracteres, emoji)",
+  "esperado": "200 con 0 controles para valores inexistentes; '%' y '_' se tratan como texto; vacío = sin filtro; nunca 5xx",
+  "obtenido": "16 combinaciones: todas 200=True, todas con 0 controles=True; comunidad='' -> 49 de 49",
+  "estado": "OK",
+  "ms": 217
+ },
+ {
+  "id": "EXF-10",
+  "area": "RF-08 filtros",
+  "entrada": "Comunidad grabada 'ExfDiez' y filtro 'EXFDIEZ', 'exfdiez', ' ExfDiez '",
+  "esperado": "Coincide sin distinguir mayúsculas ni espacios (igual que en las alertas)",
+  "obtenido": "{'EXFDIEZ': True, 'exfdiez': True, ' ExfDiez ': True}",
+  "estado": "OK",
+  "ms": 36
+ },
+ {
+  "id": "EXF-11",
+  "area": "RF-08 filtros",
+  "entrada": "Opciones de filtro: establecimientos_disponibles y comunidades_disponibles tras crear un niño en la comunidad 'ExfOnce'",
+  "esperado": "La nueva comunidad figura en comunidades_disponibles, sin duplicados ni valores vacíos",
+  "obtenido": "12 comunidades, 1 establecimientos; 'ExfOnce' presente=True",
+  "estado": "OK",
+  "ms": 34
+ },
+ {
+  "id": "EXF-12",
+  "area": "RF-08 rendimiento",
+  "entrada": "Rango de 31 días con todos los niños creados hasta ahora, 5 mediciones",
+  "esperado": "200 y menos de 1 s en cada medición",
+  "obtenido": "156 niños; tiempos (ms): [27, 27, 27, 27, 27]",
+  "estado": "OK",
+  "ms": 167
+ },
+ {
+  "id": "EXF-20",
+  "area": "RF-09 asistió",
+  "entrada": "Control vencido (atraso 20 d): POST asistencia ASISTIO",
+  "esperado": "201; el control pasa a CUMPLIDO (cumplido_por_asistencia); sale de las alertas; la agenda del personal lo muestra CUMPLIDO; el resumen de vencidos baja en 1",
+  "obtenido": "HTTP 201; estado=CUMPLIDO por_asistencia=True; en alertas=False; vencidos 483->482; agenda personal=['CUMPLIDO']",
+  "estado": "OK",
+  "ms": 120
+ },
+ {
+  "id": "EXF-21",
+  "area": "RF-09 no asistió",
+  "entrada": "Controles vencidos hace 3 d (BAJA), 20 d (MEDIA) y 40 d (ALTA): POST NO_ASISTIO con motivo",
+  "esperado": "201; el control sigue VENCIDO con inasistencia_registrada y motivo; la prioridad sube un nivel (BAJA->MEDIA, MEDIA->ALTA, ALTA se mantiene)",
+  "obtenido": "3 d: BAJA->MEDIA (esperado MEDIA), HTTP 201, VENCIDO, inasistencia=True; 20 d: MEDIA->ALTA (esperado ALTA), HTTP 201, VENCIDO, inasistencia=True; 40 d: ALTA->ALTA (esperado ALTA), HTTP 201, VENCIDO, inasistencia=True",
+  "estado": "OK",
+  "ms": 233
+ },
+ {
+  "id": "EXF-22",
+  "area": "RF-09 validación",
+  "entrada": "NO_ASISTIO sin motivo, con motivo de 2 caracteres, de solo espacios, de 201 caracteres y de 200; ASISTIO con motivo largo de 201",
+  "esperado": "Sin motivo, 2 caracteres y solo espacios -> 422; 201 caracteres -> 422; 200 caracteres -> 201; sin 5xx. (El motivo de 3 a 200 caracteres es la regla de ADR-010.)",
+  "obtenido": "{'sin motivo': 422, '2 car.': 422, 'espacios': 422, '201 car.': 422, '200 car.': 201, 'asistió+201': 422}",
+  "estado": "OK",
+  "ms": 97
+ },
+ {
+  "id": "EXF-23",
+  "area": "RF-09 validación",
+  "entrada": "Estado no válido: 'ASISTIÓ', 'asistio', 'Asistio', '', null, número, lista; cuerpo vacío, cuerpo no JSON, fecha_programada nula",
+  "esperado": "422 en todos; nunca 5xx; no se guarda nada",
+  "obtenido": "{\"'ASISTIÓ'\": 422, \"'asistio'\": 422, \"'Asistio'\": 422, \"''\": 422, 'None': 422, '1': 422, \"['ASISTIO']\": 422, '{}': 422, 'no JSON': 422, 'fecha nula': 422}; asistencias guardadas=0",
+  "estado": "OK",
+  "ms": 39
+ },
+ {
+  "id": "EXF-24",
+  "area": "RF-09 control inexistente",
+  "entrada": "Niño inexistente; código inexistente; fecha programada que no corresponde al control; id y código con caracteres raros",
+  "esperado": "404 con mensaje JSON (o 422 por fecha futura en los casos que lo ameriten); nunca 5xx",
+  "obtenido": "{'niño inexistente': 404, 'código inexistente': 404, 'fecha desplazada': 404, 'id raro': 404, 'código raro': 404, 'código 5000': 404}",
+  "estado": "OK",
+  "ms": 30
+ },
+ {
+  "id": "EXF-25",
+  "area": "RF-09 fecha",
+  "entrada": "Fecha programada futura (mañana), hoy y control programado hoy",
+  "esperado": "Futura -> 422; un control programado hoy admite asistencia (201)",
+  "obtenido": "futura -> 422; programado hoy -> 201",
+  "estado": "OK",
+  "ms": 34
+ },
+ {
+  "id": "EXF-26",
+  "area": "RF-09 duplicados",
+  "entrada": "Segundo registro del mismo control (ASISTIO y luego NO_ASISTIO; NO_ASISTIO y luego ASISTIO; ASISTIO dos veces)",
+  "esperado": "El segundo -> 409 con mensaje; el primero se conserva; GET asistencias lista una sola",
+  "obtenido": "ASISTIO+NO_ASISTIO: 201,409, guardadas=1, conservada=ASISTIO; NO_ASISTIO+ASISTIO: 201,409, guardadas=1, conservada=NO_ASISTIO; ASISTIO+ASISTIO: 201,409, guardadas=1, conservada=ASISTIO",
+  "estado": "OK",
+  "ms": 66
+ },
+ {
+  "id": "EXF-27",
+  "area": "RF-09 duplicados",
+  "entrada": "8 solicitudes simultáneas (hilos) para el mismo control",
+  "esperado": "Exactamente un 201 y el resto 409; ningún 5xx; una sola asistencia guardada",
+  "obtenido": "códigos {409: 7, 201: 1}; asistencias guardadas=1",
+  "estado": "OK",
+  "ms": 390
+ },
+ {
+  "id": "EXF-28",
+  "area": "RF-09 estados",
+  "entrada": "Control ya CUMPLIDO por una evaluación en su ventana; control CERRADO por recuperación",
+  "esperado": "409 en ambos (ya no hay nada que registrar)",
+  "obtenido": "cumplido -> 409 (estado CUMPLIDO); cerrado por recuperación -> 409 (1 cerrado(s) con fecha pasada)",
+  "estado": "OK",
+  "ms": 40
+ },
+ {
+  "id": "EXF-29",
+  "area": "RF-09 evaluación vinculada",
+  "entrada": "ASISTIO con evaluacion_id propia del niño; con evaluación de otro niño; NO_ASISTIO con evaluacion_id; id inexistente",
+  "esperado": "Propia -> 201 y queda vinculada; ajena, con NO_ASISTIO e inexistente -> 422; sin 5xx",
+  "obtenido": "ajena 422; NO_ASISTIO+evaluación 422; inexistente 422; propia 201, vinculada=True",
+  "estado": "OK",
+  "ms": 42
+ },
+ {
+  "id": "EXF-30",
+  "area": "RF-09 secuencia",
+  "entrada": "NO_ASISTIO y después una evaluación dentro de la ventana del control",
+  "esperado": "El control queda CUMPLIDO y la marca de inasistencia deja de figurar (CP-126), sin error",
+  "obtenido": "NO_ASISTIO 201; evaluación 201; control CUMPLIDO, inasistencia visible=False",
+  "estado": "OK",
+  "ms": 24
+ },
+ {
+  "id": "EXF-31",
+  "area": "RF-09 alta",
+  "entrada": "Registrar asistencia de un control de un niño con ALTA",
+  "esperado": "Sin 5xx; lo razonable es 404/409/422 porque ya no tiene agenda",
+  "obtenido": "HTTP 404 {\"mensaje\":\"El niño no tiene programado el control DHc2 con fecha 2026-08-28.\",\"errores\":[]}",
+  "estado": "OK",
+  "ms": 19
+ },
+ {
+  "id": "EXF-32",
+  "area": "RF-09 listado",
+  "entrada": "GET /api/ninos/{id}/asistencias de un niño con 3 asistencias en distinto orden de registro; de un niño sin asistencias; de un niño inexistente",
+  "esperado": "Ordenadas por fecha programada; [] para el niño sin asistencias; 404 para el inexistente",
+  "obtenido": "3 asistencias, ordenadas=True; sin asistencias=[]; inexistente=404",
+  "estado": "OK",
+  "ms": 37
+ },
+ {
+  "id": "EXF-33",
+  "area": "RF-09 auditoría",
+  "entrada": "Encabezado X-Usuario con nombre, vacío, ausente y de 300 caracteres",
+  "esperado": "registrado_por guarda el usuario (o un valor por omisión); sin 5xx",
+  "obtenido": "[(\"'Obstetra Prue\", 201, 'Obstetra Prueba'), (\"''\", 201, 'personal.posta'), ('None', 201, 'personal.posta'), (\"'UUUUUUUUUUUUU\", 201, 'UUUUUUUUUUUUUUUUUUUU')]",
+  "estado": "OK",
+  "ms": 59
+ },
+ {
+  "id": "EXF-34",
+  "area": "RF-09 + RF-08 concurrencia",
+  "entrada": "6 hilos que registran asistencias de controles distintos mientras 6 hilos leen la agenda del personal y las alertas",
+  "esperado": "Ningún 5xx en las lecturas; las escrituras 201 (si SQLite bloquea, es limitación del motor de desarrollo -> OBS)",
+  "obtenido": "escrituras {201: 6}; lecturas {200: 180}",
+  "estado": "OK",
+  "ms": 9037
+ }
+]

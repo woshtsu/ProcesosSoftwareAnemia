@@ -62,7 +62,7 @@ def cliente(tmp_path):
         from sqlalchemy import text
 
         with app.state.repositorio.engine.begin() as con:
-            con.execute(text("TRUNCATE evaluacion_hemoglobina, nino CASCADE"))
+            con.execute(text("TRUNCATE asistencia_control, evaluacion_hemoglobina, nino CASCADE"))
     with TestClient(app) as c:
         yield c
     app.state.repositorio.engine.dispose()  # cierra las conexiones: evita ResourceWarning por bases SQLite abiertas

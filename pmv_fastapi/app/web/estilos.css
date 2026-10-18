@@ -16,6 +16,7 @@ body { margin: 0; font-family: "Segoe UI", Roboto, system-ui, sans-serif; backgr
 .usuario { display: flex; align-items: center; gap: 8px; font-size: 13px; }
 .usuario select { width: auto; border-radius: 6px; border: 0; padding: 5px 8px; }
 .red { color: #7CE08F; font-size: 14px; }
+.aviso-referencia { background: var(--ambar-f); color: var(--ambar); border-bottom: 1px solid #E8D79A; padding: 7px 20px; font-size: 13.5px; font-weight: 700; text-align: center; }
 .red.fuera { color: #FFB4B4; }
 .insignia { background: #fff; color: var(--rojo); border-radius: 999px; padding: 2px 11px; font-weight: 800; font-size: 13px; text-decoration: none; min-width: 28px; text-align: center; }
 .insignia.cero { color: var(--verde); }
@@ -71,6 +72,19 @@ button, .boton { font: inherit; font-weight: 600; border-radius: 8px; padding: 9
 .ctrl-PROXIMO { background: var(--ambar-f); color: var(--ambar); }
 .ctrl-VENCIDO { background: var(--rojo-f); color: var(--rojo); }
 .ctrl-CERRADO_RECUPERADO { background: var(--azul-claro); color: var(--azul); }
+.ctrl-INASISTENCIA { background: var(--naranja-f); color: var(--naranja); }
+.atenuado td { opacity: .5; }
+.atenuado td:last-child { opacity: 1; }
+.dia td { background: var(--azul-claro); color: var(--azul); font-weight: 700; border-top: 2px solid #A9C4E2; }
+.dia td small { font-weight: 600; color: var(--gris); margin-left: 8px; }
+.dia.sin-controles td { opacity: .65; }
+.mini { padding: 4px 10px; font-size: 12.5px; border-radius: 6px; border: 1px solid #A9C4E2; background: #fff; color: var(--azul); margin-right: 4px; }
+.mini:hover { background: var(--azul-claro); }
+.mini.no { color: var(--naranja); border-color: #F0C29B; }
+.celda-acciones { white-space: nowrap; }
+.modal { position: fixed; inset: 0; background: rgba(20,40,70,.45); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 20; }
+.modal-caja { background: #fff; border-radius: var(--radio); box-shadow: var(--sombra); padding: 18px 20px; width: min(440px, 100%); max-height: 90vh; overflow-y: auto; }
+.modal-caja h2 { margin-bottom: 4px; }
 .prio-ALTA { background: var(--rojo-f); color: var(--rojo); }
 .prio-MEDIA { background: var(--naranja-f); color: var(--naranja); }
 .prio-BAJA { background: var(--ambar-f); color: var(--ambar); }

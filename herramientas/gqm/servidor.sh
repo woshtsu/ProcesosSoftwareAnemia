@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Arranca/detiene el servidor de una versión sobre su propia base SQLite (sin PostgreSQL).
-# Uso: servidor.sh start <v1.0|v1.5> <puerto> <ruta_db.sqlite>
+# Uso: servidor.sh start <v1.0|v1.5|v2.0> <puerto> <ruta_db.sqlite>   (v2.0: FECHA_REFERENCIA del entorno, si existe, fija el «hoy»)
 #      servidor.sh stop <puerto>
-#      servidor.sh cargar-app <v1.0|v1.5> <ruta_db.sqlite> [--reiniciar]   (cargador sintético propio de la app)
+#      servidor.sh cargar-app <v1.0|v1.5|v2.0> <ruta_db.sqlite> [--reiniciar]   (cargador sintético propio de la app)
 set -u
 RAIZ="$(cd "$(dirname "$0")/../.." && pwd)"
 PY="${PY:-python}"
-dir_app() { case "$1" in v1.0) echo "${GQM_RAIZ_V10:-$RAIZ/../inc1_v1.0_PMV}";; v1.5) echo "${GQM_RAIZ_V15:-$RAIZ/pmv_fastapi}";; esac; }
+dir_app() { case "$1" in v1.0) echo "${GQM_RAIZ_V10:-$RAIZ/../inc1_v1.0_PMV}";; v1.5) echo "${GQM_RAIZ_V15:-$RAIZ/../v15_export/pmv_fastapi}";; v2.0) echo "${GQM_RAIZ_V20:-$RAIZ/pmv_fastapi}";; esac; }
 PIDS="${GQM_TMP:-/tmp/gqm}/pids"; mkdir -p "$PIDS"
 case "${1:-}" in
   start)

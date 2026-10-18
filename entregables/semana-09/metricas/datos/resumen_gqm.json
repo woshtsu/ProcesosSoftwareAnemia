@@ -1,8 +1,9 @@
 {
- "fecha": "16/10/2026",
+ "fecha": "17/10/2026",
  "versiones": {
   "Inc.1": "v1.0-PMV",
-  "Inc.2": "v1.5.0-inc2-avance (avance 50 %)"
+  "avance_v1.5": "v1.5.0-inc2-avance (hito intermedio, 50 %)",
+  "Inc.2": "v2.0.0-inc2 (cierre del incremento)"
  },
  "metricas": [
   {
@@ -12,13 +13,23 @@
    "unidad": "%",
    "sentido_meta": "<=",
    "valor_inc1": 0.0,
+   "valor_avance_v15": 0.0,
    "valor_inc2": 0.0,
    "meta_inc1": 0.0,
    "meta_inc2": 0.0,
    "cumple_inc1": true,
+   "cumple_avance_v15": true,
    "cumple_inc2": true,
    "variacion_pct": "n/a (base 0)",
    "diferencia_abs": 0.0,
+   "variacion_inc1_a_avance_v15": {
+    "variacion_pct": "n/a (base 0)",
+    "diferencia_abs": 0.0
+   },
+   "variacion_avance_v15_a_inc2": {
+    "variacion_pct": "n/a (base 0)",
+    "diferencia_abs": 0.0
+   },
    "fuente": "datos/m11_contaminacion.json",
    "detalle": {
     "inc1": {
@@ -26,10 +37,15 @@
      "clases_dominio": 8,
      "importaciones_totales": 9
     },
-    "inc2": {
+    "avance_v15": {
      "importaciones_externas": 0,
      "clases_dominio": 19,
      "importaciones_totales": 35
+    },
+    "inc2": {
+     "importaciones_externas": 0,
+     "clases_dominio": 32,
+     "importaciones_totales": 67
     }
    }
   },
@@ -40,20 +56,32 @@
    "unidad": "%",
    "sentido_meta": ">=",
    "valor_inc1": 40.0,
+   "valor_avance_v15": 100.0,
    "valor_inc2": 100.0,
    "meta_inc1": 100.0,
    "meta_inc2": 100.0,
    "cumple_inc1": false,
+   "cumple_avance_v15": true,
    "cumple_inc2": true,
    "variacion_pct": 150.0,
    "diferencia_abs": 60.0,
+   "variacion_inc1_a_avance_v15": {
+    "variacion_pct": 150.0,
+    "diferencia_abs": 60.0
+   },
+   "variacion_avance_v15_a_inc2": {
+    "variacion_pct": 0.0,
+    "diferencia_abs": 0.0
+   },
    "fuente": "datos/m12_conformidad.json",
    "variante_laxa": {
     "inc1": 60.0,
+    "avance_v15": 100.0,
     "inc2": 100.0
    },
    "detalle": {
     "inc1_conformes": "2/5",
+    "avance_v15_conformes": "5/5",
     "inc2_conformes": "5/5",
     "inc1_estado": {
      "Núcleo de dominio": "CONFORME",
@@ -78,20 +106,30 @@
    "unidad": "%",
    "sentido_meta": ">=",
    "valor_inc1": 100.0,
+   "valor_avance_v15": 100.0,
    "valor_inc2": 100.0,
    "meta_inc1": 100.0,
    "meta_inc2": 100.0,
    "cumple_inc1": true,
+   "cumple_avance_v15": true,
    "cumple_inc2": true,
    "variacion_pct": 0.0,
    "diferencia_abs": 0.0,
-   "fuente": "evidencias_capturas/resultados_inc1.json y resultados_inc2.json",
-   "valor_inc2_sobre_alcance_total": 50.0,
-   "cumple_inc2_sobre_alcance_total": false,
+   "variacion_inc1_a_avance_v15": {
+    "variacion_pct": 0.0,
+    "diferencia_abs": 0.0
+   },
+   "variacion_avance_v15_a_inc2": {
+    "variacion_pct": 0.0,
+    "diferencia_abs": 0.0
+   },
+   "fuente": "evidencias_capturas/resultados_inc1.json, resultados_inc2.json y resultados_inc2final.json",
+   "valor_avance_v15_sobre_alcance_total": 50.0,
+   "cumple_avance_v15_sobre_alcance_total": false,
    "detalle": {
     "inc1": "5/5 RF (RF-01, RF-02, RF-03, RF-04, RF-05)",
-    "inc2_avance": "2/2 RF entregados en el avance (RF-06, RF-07)",
-    "inc2_alcance_total": "2/4 RF del Inc. 2 (RF-06..RF-09); RF-08 y RF-09 pendientes (8 SP de 18)"
+    "avance_v15": "2/2 RF entregados en el avance (RF-06, RF-07); 2/4 sobre el alcance total",
+    "inc2": "4/4 RF del Inc. 2 (RF-06, RF-07, RF-08, RF-09); RF-06 y RF-07 con las capturas del avance (v1.5), RF-08 y RF-09 con las capturas de la v2.0"
    }
   },
   {
@@ -101,21 +139,37 @@
    "unidad": "Def/RF",
    "sentido_meta": "<=",
    "valor_inc1": 1.4,
-   "valor_inc2": 0.0,
+   "valor_avance_v15": 0.0,
+   "valor_inc2": 0.25,
    "meta_inc1": 1.0,
    "meta_inc2": 0.2,
    "cumple_inc1": false,
-   "cumple_inc2": true,
-   "variacion_pct": -100.0,
-   "diferencia_abs": -1.4,
+   "cumple_avance_v15": true,
+   "cumple_inc2": false,
+   "variacion_pct": -82.1,
+   "diferencia_abs": -1.15,
+   "variacion_inc1_a_avance_v15": {
+    "variacion_pct": -100.0,
+    "diferencia_abs": -1.4
+   },
+   "variacion_avance_v15_a_inc2": {
+    "variacion_pct": "n/a (base 0)",
+    "diferencia_abs": 0.25
+   },
    "fuente": "datos/m22_defectos.json",
    "variantes_inc1": {
     "solo_detectados_antes_de_liberar": 0.2,
     "todos_incl_no_funcionales": 1.6
    },
+   "variante_inc2_escapados_a_produccion": {
+    "valor": 0.0,
+    "cumple": true,
+    "regla": "defectos funcionales escapados a producción / 4 RF; la v2.0 aún no se libera y no hay escapados"
+   },
    "detalle": {
     "inc1": "7 funcionales / 5 RF (DEF-02, DEF-03, DEF-04, DEF-05, DEF-06, DEF-07, DEF-08)",
-    "inc2": "0 funcionales / 2 RF",
+    "avance_v15": "0 funcionales / 2 RF",
+    "inc2": "1 funcional / 4 RF (DEF-09, RF-08, detectado por E2E antes de liberar)",
     "densidad_por_kloc": {
      "inc1": {
       "kloc_v1.0": 1.022,
@@ -124,12 +178,20 @@
       "todos_incl_no_funcionales": 7.83,
       "nota": "KLOC del código del Inc. 1 (v1.0-PMV). Los DEF-03..08 se hallaron en v1.5 pero estaban en código heredado del Inc. 1."
      },
-     "inc2": {
+     "avance_v15": {
       "kloc_v1.5": 1.688,
       "por_kloc_total_v1.5": 0.0,
       "kloc_neto_incremento_aprox": 0.666,
       "por_kloc_neto_incremento_aprox": 0.0,
       "nota": "KLOC neto = líneas de v1.5 menos líneas de v1.0 (aproximación del código nuevo; v1.5 también modifica código heredado)."
+     },
+     "inc2": {
+      "kloc_v2.0": 2.782,
+      "kloc_v1.5": 1.688,
+      "por_kloc_total_v2.0": 0.36,
+      "kloc_agregado_en_el_cierre_aprox": 1.094,
+      "por_kloc_agregado_en_el_cierre_aprox": 0.91,
+      "nota": "KLOC agregado = líneas de v2.0 menos líneas de v1.5 (aproximación del código nuevo de RF-08, RF-09 y el dataset; incluye cambios en código existente)."
      }
     }
    }
@@ -141,30 +203,52 @@
    "unidad": "%",
    "sentido_meta": ">=",
    "valor_inc1": 25.0,
+   "valor_avance_v15": 33.3,
    "valor_inc2": 33.3,
    "meta_inc1": 60.0,
    "meta_inc2": 90.0,
    "cumple_inc1": false,
+   "cumple_avance_v15": false,
    "cumple_inc2": false,
    "variacion_pct": 33.3,
    "diferencia_abs": 8.33,
+   "variacion_inc1_a_avance_v15": {
+    "variacion_pct": 33.3,
+    "diferencia_abs": 8.33
+   },
+   "variacion_avance_v15_a_inc2": {
+    "variacion_pct": 0.0,
+    "diferencia_abs": 0.0
+   },
    "fuente": "datos/m31_brechas.json",
    "valores_sin_redondear": {
     "inc1": 25.0,
+    "avance_v15": 33.3333,
     "inc2": 33.3333
    },
    "complementaria_brechas_comprometidas": {
     "inc1_B1": 100.0,
+    "avance_v15_B1_B2": 75.0,
     "inc2_B1_B2": 75.0,
     "cumple_inc1": true,
     "cumple_inc2": false,
-    "nota": "denominador = brechas que el plan compromete hasta el incremento (Inc.1: B1; Inc.2: B1+B2)"
+    "nota": "denominador = brechas que el plan compromete hasta el incremento (Inc.1: B1; Inc.2: B1+B2). B2 sigue en 0,5 porque faltan los recordatorios a la familia (INC-4)"
+   },
+   "sensibilidad_inc2": {
+    "v2.0_B2_sin_recordatorios": 41.7,
+    "v2.0_B3_motivo_de_inasistencia_como_parcial": 41.7,
+    "v2.0_ambas": 50.0
    },
    "detalle": {
     "inc1": {
      "suma_puntos": 1.5,
      "de_6": 6,
      "cobertura_pct": 25.0
+    },
+    "avance_v15": {
+     "suma_puntos": 2.0,
+     "de_6": 6,
+     "cobertura_pct": 33.3
     },
     "inc2": {
      "suma_puntos": 2.0,
@@ -174,32 +258,39 @@
     "puntaje_por_brecha": {
      "B1": {
       "v1.0": 1.0,
-      "v1.5": 1.0
+      "v1.5": 1.0,
+      "v2.0": 1.0
      },
      "B2": {
       "v1.0": 0.0,
-      "v1.5": 0.5
+      "v1.5": 0.5,
+      "v2.0": 0.5
      },
      "B3": {
       "v1.0": 0.0,
-      "v1.5": 0.0
+      "v1.5": 0.0,
+      "v2.0": 0.0
      },
      "B4": {
       "v1.0": 0.0,
-      "v1.5": 0.0
+      "v1.5": 0.0,
+      "v2.0": 0.0
      },
      "B5": {
       "v1.0": 0.0,
-      "v1.5": 0.0
+      "v1.5": 0.0,
+      "v2.0": 0.0
      },
      "B6": {
       "v1.0": 0.5,
-      "v1.5": 0.5
+      "v1.5": 0.5,
+      "v2.0": 0.5
      }
     },
     "sensibilidad_B6_igual_a_0": {
      "v1.0": 16.7,
-     "v1.5": 25.0
+     "v1.5": 25.0,
+     "v2.0": 25.0
     }
    }
   },
@@ -210,16 +301,27 @@
    "unidad": "%",
    "sentido_meta": ">=",
    "valor_inc1": 57.6,
+   "valor_avance_v15": 100.0,
    "valor_inc2": 100.0,
    "meta_inc1": 50.0,
    "meta_inc2": 80.0,
    "cumple_inc1": true,
+   "cumple_avance_v15": true,
    "cumple_inc2": true,
    "variacion_pct": 73.5,
    "diferencia_abs": 42.36,
+   "variacion_inc1_a_avance_v15": {
+    "variacion_pct": 73.5,
+    "diferencia_abs": 42.36
+   },
+   "variacion_avance_v15_a_inc2": {
+    "variacion_pct": 0.0,
+    "diferencia_abs": 0.0
+   },
    "fuente": "datos/m32_indice_valor.json",
    "valores_sin_redondear": {
     "inc1": 57.6389,
+    "avance_v15": 100.0,
     "inc2": 100.0
    },
    "detalle": {
@@ -227,6 +329,11 @@
      "V1": 100.0,
      "V2": 0.0,
      "V3": 72.9
+    },
+    "mejoras_avance_v15": {
+     "V1": 100.0,
+     "V2": 100.0,
+     "V3": 100.0
     },
     "mejoras_inc2": {
      "V1": 100.0,
@@ -243,8 +350,14 @@
       "V4_p95_ms": 610.0,
       "V5_disponibilidad_pct": 100.0,
       "V6_criterios_verificados_pct": 100.0
+     },
+     "v2.0": {
+      "V4_p95_ms": 815.0,
+      "V5_disponibilidad_pct": 100.0,
+      "V6_criterios_verificados_pct": 100.0
      }
     },
+    "linea_base_real_DIRESA": "ver datos/m32_indice_valor.json, sección linea_base_real_DIRESA (no entra en el índice)",
     "pendiente": "SUS real con usuarios (metricas/instrumento_SUS.md) no aplicado"
    }
   }
@@ -265,11 +378,25 @@
     "aplicacion": 1.0,
     "adaptadores_entrada": 1.0,
     "adaptadores_salida": 1.0
+   },
+   "v2.0": {
+    "dominio": 0.0,
+    "puertos_entrada": 0.33,
+    "puertos_salida": 0.33,
+    "aplicacion": 1.0,
+    "adaptadores_entrada": 1.0,
+    "adaptadores_salida": 1.0
    }
   },
   "M1.3_violaciones_regla_dependencia": {
    "v1.0": 1,
-   "v1.5": 0
+   "v1.5": 0,
+   "v2.0": 0
+  },
+  "criterios_DCE_verificados": {
+   "v1.0": "17/17",
+   "v1.5": "33/33",
+   "v2.0": "48/48"
   }
  }
 }

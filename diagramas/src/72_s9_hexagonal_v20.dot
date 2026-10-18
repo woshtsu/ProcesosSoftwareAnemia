@@ -1,0 +1,42 @@
+// 72_s9_hexagonal_v20.dot — Puertos y adaptadores de v2.0.0-inc2. Fuente: pmv_fastapi/app (árbol real), ADR-008, ADR-009, ADR-010, m13_acoplamiento.json
+digraph hex {
+  graph [rankdir=TB, fontname="DejaVu Sans", fontsize=15, labelloc=t, nodesep=0.5, ranksep=0.95, pad=0.3, compound=true, splines=spline,
+         label="Vista hexagonal de v2.0.0-inc2: las dependencias apuntan hacia el dominio"];
+  node  [shape=box, style="filled", fontname="DejaVu Sans", fontsize=11, margin="0.16,0.10", penwidth=1.4];
+  edge  [fontname="DejaVu Sans", fontsize=10, color="#2F5D8A", penwidth=1.6, arrowsize=0.9];
+
+  main [label=<<B>app/main.py</B><BR/>raíz de composición (único módulo que<BR/>importa application y adapters)>, fillcolor="#F1F3F5", color="#4A5A6A"];
+
+  subgraph cluster_ext_in { label="Infraestructura de entrada"; fontsize=11; style="rounded,dashed"; color="#4A5A6A";
+    http [label=<<B>adapters/inbound/http</B><BR/>api.py (FastAPI), esquemas.py (DTO)<BR/><FONT POINT-SIZE="10">importa 8 puertos de entrada, 0 de application</FONT>>, fillcolor="#E6EEF7", color="#2F5D8A"];
+  }
+  subgraph cluster_hex { label="Hexágono (aplicación y dominio)"; fontsize=11; style="rounded"; color="#2F5D8A"; bgcolor="#F7FAFD";
+    pin  [label=<<B>ports/inbound</B><BR/>9 puertos (Protocol): GestionarExpediente · ConsultarSeguimiento<BR/>GenerarReporte · GenerarAgenda · ConsultarControlesVencidos<BR/>ConsultarAgendaPersonal · RegistrarAsistencia<BR/>ConsultarContexto · ImportarDataset>, fillcolor="#C9DAEC", color="#2F5D8A"];
+    app  [label=<<B>application</B><BR/>7 servicios (implementan los puertos): expediente · agenda<BR/>alertas · agenda_personal · asistencia<BR/>contexto · importacion>, fillcolor="#C9DAEC", color="#2F5D8A"];
+    pout [label=<<B>ports/outbound</B><BR/>RepositorioNinos · Reloj (Protocol)>, fillcolor="#C9DAEC", color="#2F5D8A"];
+    dom  [label=<<B>domain/model</B> (11 módulos): entidades, agenda, agenda_personal, alertas,<BR/>asistencia, clasificación, contexto, errores, importación, origen, tiempo<BR/><B>domain/service</B> (6): reglas_clinicas, validaciones, agenda,<BR/>agenda_personal, alertas, asistencia<BR/><FONT POINT-SIZE="10">Núcleo: 32 clases, 0 importaciones externas (M1.1 = 0,0 %)</FONT>>, fillcolor="#9CBCDC", color="#1F4A73", penwidth=2.2];
+  }
+  subgraph cluster_ext_out { label="Infraestructura de salida"; fontsize=11; style="rounded,dashed"; color="#4A5A6A";
+    per [label=<<B>adapters/outbound</B><BR/>persistence/sqlalchemy_repo.py (PostgreSQL/SQLite)<BR/>persistence/memoria.py · reloj_sistema.py · reloj_fijo.py>, fillcolor="#E6EEF7", color="#2F5D8A"];
+  }
+
+  {rank=same; http; pin; app; pout; per}
+  // Orden horizontal: las flechas muestran la dirección de la DEPENDENCIA (dir=back invierte la punta, no el orden)
+  http -> pin  [label="depende de"];
+  pin  -> app  [label="implementa", style=dashed, dir=back];
+  app  -> pout [label="usa"];
+  pout -> per  [label="implementa", style=dashed, dir=back];
+
+  http -> dom [color="#1F4A73", xlabel="solo domain.model"];
+  pin  -> dom;
+  app  -> dom;
+  pout -> dom;
+  per  -> dom [color="#1F4A73"];
+
+  main -> http [style=dotted, color="#7A8794", label="ensambla", constraint=true];
+  main -> app  [style=dotted, color="#7A8794", constraint=true];
+  main -> per  [style=dotted, color="#7A8794", constraint=true];
+
+  nota [shape=note, fillcolor="#FBF3DF", color="#B08A2E", fontsize=10, label=<Violaciones de la regla de dependencia: 0 (M1.3).<BR ALIGN="LEFT"/>Vigilado por 18 pruebas de arquitectura (tests/arquitectura).<BR ALIGN="LEFT"/>Flecha continua = importación; discontinua = implementa; punteada = ensambla.<BR ALIGN="LEFT"/>>];
+  dom -> nota [style=invis];
+}
