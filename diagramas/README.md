@@ -54,6 +54,8 @@ java -jar plantuml.jar -tpng -o ../png diagramas/src/*.puml
 
 Graphviz (diagramas 70 a 72, Semana 9; requiere `dot`):
 
+La fuente `src/72_s9_hexagonal_v15.dot` y sus derivados `png/72_s9_hexagonal_v15.png` y `svg/72_s9_hexagonal_v15.svg` se conservan como evidencia heredada del avance 1.5 (ORQ-004). La versión vigente del Incremento 2 completo es `72_s9_hexagonal_v20`.
+
 ```bash
 cd diagramas/src
 for n in 70_s9_cadena_trazabilidad 71_s9_arbol_gqm 72_s9_hexagonal_v20; do

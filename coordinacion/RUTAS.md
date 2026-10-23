@@ -101,6 +101,8 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 
 ## Rutas de la Semana 9 (ORQ-003)
 
+Figura heredada del avance 1.5, conservada al resolver el merge (ORQ-004): `diagramas/src/72_s9_hexagonal_v15.dot`, `diagramas/png/72_s9_hexagonal_v15.png` y `diagramas/svg/72_s9_hexagonal_v15.svg`. La figura vigente del Incremento 2 completo sigue siendo `72_s9_hexagonal_v20`.
+
 | Contenido | Ruta |
 | --- | --- |
 | Guía S9 | `guias/S9-PSW-GUÍA DE TRABAJO.md` |

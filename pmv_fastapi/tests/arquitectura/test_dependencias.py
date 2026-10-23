@@ -161,7 +161,7 @@ def test_cp177_los_modulos_nuevos_del_dominio_y_los_puertos_existen_y_quedan_cub
         "service/agenda_personal.py",
     }
     nuevos_puertos = {"agenda_personal", "asistencia", "contexto", "importacion"}
-    assert nuevos_dominio <= {str(p.relative_to(APP / "domain")) for p in modulos("domain")}
+    assert nuevos_dominio <= {p.relative_to(APP / "domain").as_posix() for p in modulos("domain")}
     assert nuevos_puertos <= {p.stem for p in modulos("ports/inbound")}
     for nombre in nuevos_dominio:  # sin frameworks ni capas externas (lo exige también CP-37, aquí se nombra el caso)
         assert prohibidos(APP / "domain" / nombre, FRAMEWORKS | set(CAPAS_EXTERNAS)) == []
