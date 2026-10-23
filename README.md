@@ -80,6 +80,8 @@ Las versiones anteriores están en `archivo/versiones-anteriores/`. El historial
 
 ## Agentes y comunicación
 
+Para retomar con la IA de cualquier integrante, comenzar por [`.claude/CLAUDE.md`](.claude/CLAUDE.md) y el [contexto actual](.claude/CONTEXTO_ACTUAL.md). Las preguntas, propuestas y traspasos se pueden escribir en [`.claude/intercambios/`](.claude/intercambios/README.md), con autor y tarea, usando su plantilla. El tablero, las solicitudes formales y los informes siguen en `coordinacion/`. Los archivos se comparten entre equipos mediante Git.
+
 | Agente | Modelo | Rol |
 | --- | --- | --- |
 | `orquestador` | opus | Estructura, rutas, README, tablero, archivo, commits |
@@ -89,7 +91,7 @@ Las versiones anteriores están en `archivo/versiones-anteriores/`. El historial
 | `investigador` | haiku | Investigación y resúmenes con fuentes (solo lectura) |
 | `conversor-entregas` | opus | Conversión .md → PDF/DOCX en `exportados/` |
 
-Definiciones: `.claude/agents/<agente>.md`. Los agentes se comunican **solo por archivos** en `coordinacion/`:
+Definiciones: `.claude/agents/<agente>.md`. La coordinación formal se registra **por archivos** en `coordinacion/`, complementada por los intercambios compartidos de `.claude/`:
 
 1. Las tareas (`T-###`) se registran en [`coordinacion/TABLERO.md`](coordinacion/TABLERO.md).
 2. Un agente que necesita algo de otro crea `coordinacion/solicitudes/<PREFIJO>-###.md` desde la plantilla (p. ej. el revisor pide un diagrama con `DIAG-001.md`). El prefijo indica quién atiende: `ORQ`, `DOC`, `DIAG`, `DEV`, `INV`, `CONV`.

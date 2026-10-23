@@ -37,7 +37,7 @@ def _servidor(entorno):
     proc = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "app.main:crear_app", "--factory", "--port", str(puerto)],
         cwd=RAIZ,
-        env=entorno,
+        env={**entorno, "AUTH_MODE": "demo"},
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )

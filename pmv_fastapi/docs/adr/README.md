@@ -2,6 +2,7 @@
 
 | ADR | Decisión | Atributo de calidad (NFR) principal | Estado |
 |---|---|---|---|
+| [ADR-011](ADR-011-supabase-auth.md) | Supabase Auth, cookies HttpOnly y protección de la API; persistencia actual conservada | Autenticación, trazabilidad, separación de responsabilidades | Implementado localmente; primer acceso remoto pendiente |
 | [ADR-001](ADR-001-arquitectura-hexagonal.md) | Arquitectura hexagonal (puertos y adaptadores) en un monolito modular | Mantenibilidad, capacidad de prueba, evolución por incrementos | Aceptada |
 | [ADR-002](ADR-002-pwa-web.md) | Cliente PWA web adaptable en lugar de app nativa | Portabilidad, facilidad de despliegue en postas | Aceptada |
 | [ADR-003](ADR-003-postgresql.md) | PostgreSQL como base central con restricciones de integridad | Integridad y confiabilidad del dato | Aceptada |

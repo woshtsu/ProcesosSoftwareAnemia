@@ -1,5 +1,26 @@
 # Mapa canónico de rutas
 
+## Contexto y coordinación compartida entre IA (ORQ-007)
+
+- Entrada común: `.claude/CLAUDE.md`.
+- Resumen vigente de continuidad: `.claude/CONTEXTO_ACTUAL.md`.
+- Canal de mensajes: `.claude/intercambios/README.md` y `.claude/intercambios/<T-###>_<autor>_<tema>.md`.
+- Plantilla de mensajes: `.claude/plantillas/INTERCAMBIO.md`.
+- Los estados de tareas, rutas, solicitudes formales e informes siguen en `coordinacion/`; el protocolo admite el canal adicional de intercambios.
+
+## Autenticación Supabase (ORQ-006)
+
+Previsualizaciones temporales del login: `diagramas/_build/auth/` (ignoradas por Git).
+
+Modelo `pmv_fastapi/app/domain/model/autenticacion.py`; puertos `pmv_fastapi/app/ports/inbound/sesiones.py` y `pmv_fastapi/app/ports/outbound/proveedor_identidad.py`; servicio `pmv_fastapi/app/application/servicio_sesion.py`; proveedor `pmv_fastapi/app/adapters/outbound/supabase_auth.py`; HTTP `pmv_fastapi/app/adapters/inbound/http/autenticacion.py`; cliente `pmv_fastapi/app/web/auth.js`; configuración `pmv_fastapi/.env.example`; pruebas `pmv_fastapi/tests/integracion/test_autenticacion.py` y `pmv_fastapi/tests/e2e/test_login.py`; decisión `pmv_fastapi/docs/adr/ADR-011-supabase-auth.md`.
+
+## Síntesis para feria de proyectos (ORQ-005)
+
+- Fuente vigente: `entregables/feria/Proyecto_Feria_Anemia_Junin.md`.
+- PDF de participación: `exportados/feria/Proyecto_Feria_Anemia_Junin.pdf`.
+- Generador reproducible: `herramientas/conversion/exportar_feria.py`.
+- Previsualizaciones y revisión visual: `diagramas/_build/feria/` (ignorado por Git).
+
 Fuente única de verdad sobre **dónde vive cada cosa**. Todas las rutas son relativas a la raíz del repositorio.
 Si un agente necesita crear una ruta nueva, lo pide al `orquestador` mediante una solicitud (`coordinacion/solicitudes/ORQ-###.md`); solo el orquestador edita este archivo.
 

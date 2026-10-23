@@ -11,6 +11,12 @@ from app.main import crear_app
 HOY = date(2026, 9, 28)
 
 
+@pytest.fixture(autouse=True)
+def modo_demo_explicito(monkeypatch):
+    """Las pruebas históricas usan datos sintéticos; auth se prueba con supabase explícito."""
+    monkeypatch.setenv("AUTH_MODE", "demo")
+
+
 class RelojFijo:
     def __init__(self, dia: date = HOY):
         self.dia = dia

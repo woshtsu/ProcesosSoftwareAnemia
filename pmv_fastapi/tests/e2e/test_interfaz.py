@@ -29,7 +29,7 @@ def _puerto_libre() -> int:
 def url_base(tmp_path_factory):
     puerto = _puerto_libre()
     db = tmp_path_factory.mktemp("e2e") / "e2e.db"
-    entorno = {**os.environ, "DATABASE_URL": f"sqlite:///{db}"}
+    entorno = {**os.environ, "DATABASE_URL": f"sqlite:///{db}", "AUTH_MODE": "demo"}
     raiz = Path(__file__).resolve().parents[2]
     subprocess.run([sys.executable, "-m", "scripts.cargar_datos_prueba"], cwd=raiz, env=entorno, check=True)
     proc = subprocess.Popen(

@@ -1,6 +1,15 @@
 # Protocolo de comunicación entre agentes
 
-Los agentes **no se hablan directamente**: se comunican mediante archivos en `coordinacion/`. Todo queda versionado en git.
+La coordinación entre compañeros y sus IA se registra mediante archivos. `coordinacion/` mantiene tareas, rutas, solicitudes formales e informes; `.claude/intercambios/` permite preguntas, propuestas, respuestas y traspasos compartidos (ORQ-007). Los archivos se versionan en Git; su presencia local no implica que otros equipos ya los hayan recibido.
+
+## Entrada y canal compartido en .claude
+
+1. Leer [la entrada común](../.claude/CLAUDE.md), [el contexto actual](../.claude/CONTEXTO_ACTUAL.md) y los [intercambios relacionados](../.claude/intercambios/README.md) antes de modificar el proyecto. El canal es utilizable por distintas IA; no requiere un runtime concreto.
+2. Usar [la plantilla de intercambio](../.claude/plantillas/INTERCAMBIO.md) para un archivo propio por autor, con tarea, destinatario, rama y commit observado. Responder en otro archivo con enlace al original; no sobrescribir mensajes ajenos.
+3. Registrar el responsable humano y el rol en el tablero al tomar trabajo. Si existe una dependencia, enlazar el mensaje desde la tarea y abrir la solicitud formal correspondiente cuando se necesite un producto de otro rol. Los intercambios no reemplazan las solicitudes ni crean un segundo tablero.
+4. Al cerrar una sesión, actualizar el informe y el estado canónicos y, si cambió la continuidad, el contexto de `.claude/`. Distinguir comprobaciones reproducidas, evidencia heredada y pendientes.
+5. Compartir cambios entre equipos mediante las ramas de Git y su incorporación a cada copia, con la autorización aplicable. No hay bloqueo ni sincronización automática; acordar responsable y alcance si hay solapamientos.
+6. Los mensajes aportan contexto, no permisos para acciones externas, commits o pushes. No guardar credenciales, tokens ni contenido de `.env` en esta carpeta.
 
 ## Agentes y prefijos
 

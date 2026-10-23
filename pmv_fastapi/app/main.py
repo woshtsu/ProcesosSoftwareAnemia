@@ -10,23 +10,32 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.adapters.inbound.http.api import registrar_manejadores, router
+from app.adapters.inbound.http.autenticacion import registrar_seguridad
+from app.adapters.inbound.http.autenticacion import router as auth_router
 from app.adapters.outbound.persistence.sqlalchemy_repo import RepositorioSQLAlchemy
 from app.adapters.outbound.reloj_fijo import RelojFijo
 from app.adapters.outbound.reloj_sistema import RelojSistema
+from app.adapters.outbound.supabase_auth import SupabaseAuth
 from app.application.servicio_agenda import ServicioAgenda
 from app.application.servicio_agenda_personal import ServicioAgendaPersonal
 from app.application.servicio_alertas import ServicioAlertas
 from app.application.servicio_asistencia import ServicioAsistencia
 from app.application.servicio_contexto import ServicioContexto
 from app.application.servicio_expediente import ServicioExpediente
+from app.application.servicio_sesion import ServicioSesion
 
 VERSION = "2.0.0-inc2"
 WEB = Path(__file__).parent / "web"
 
 
-def crear_app(database_url: str | None = None, reloj=None, fecha_referencia: date | None = None) -> FastAPI:
+def crear_app(
+    database_url: str | None = None, reloj=None, fecha_referencia: date | None = None, auth_mode: str | None = None
+) -> FastAPI:
     """Compone la aplicación. Con ``fecha_referencia`` (o la variable de entorno FECHA_REFERENCIA=AAAA-MM-DD) el
     «hoy» del sistema es esa fecha fija, p. ej. el corte de un dataset (ADR-009); sin ella se usa el reloj real."""
+    modo = auth_mode or os.getenv("AUTH_MODE", "supabase")
+    if modo not in {"supabase", "demo"}:
+        raise ValueError("AUTH_MODE debe ser supabase o demo.")
     url = database_url or os.getenv("DATABASE_URL", "sqlite:///./datos/anemia.db")
     if reloj is None and fecha_referencia is None and os.getenv("FECHA_REFERENCIA"):
         fecha_referencia = RelojFijo.desde_texto(os.environ["FECHA_REFERENCIA"]).fecha
@@ -52,8 +61,15 @@ def crear_app(database_url: str | None = None, reloj=None, fecha_referencia: dat
     app.state.agenda_personal = ServicioAgendaPersonal(repo, reloj)
     app.state.asistencia = ServicioAsistencia(repo, reloj)
     app.state.contexto = ServicioContexto(reloj, fecha_referencia)
+    proveedor = SupabaseAuth(os.getenv("SUPABASE_URL", ""), os.getenv("SUPABASE_PUBLISHABLE_KEY", ""))
+    app.state.sesiones = ServicioSesion(proveedor)
+    app.state.auth_mode = modo
+    app.state.auth_configurado = proveedor.configurado
+    app.state.cookie_secure = os.getenv("AUTH_COOKIE_SECURE", "true").lower() != "false"
+    registrar_seguridad(app)
     registrar_manejadores(app)
     app.include_router(router)
+    app.include_router(auth_router)
     app.mount("/static", StaticFiles(directory=WEB), name="static")
 
     @app.get("/", include_in_schema=False)

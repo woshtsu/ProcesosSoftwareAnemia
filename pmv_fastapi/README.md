@@ -1,5 +1,34 @@
 # Anemia Junín — Incremento 2 (100 %)
 
+## Inicio de sesión con Supabase Auth
+
+La aplicación exige iniciar sesión por defecto. Esta etapa integra **Auth**; `DATABASE_URL` sigue seleccionando la base actual (SQLite o PostgreSQL). No se han migrado tablas a Supabase.
+
+1. Crea el proyecto de Supabase. En **Connect**, copia Project URL y la clave **publishable** (también se admite la clave pública `anon` anterior). No utilices `service_role` ni claves secretas.
+2. En **Authentication**, habilita el proveedor Email y desactiva **Allow new users to sign up**. En **Users → Add user → Create new user**, crea las cuentas del personal con correo confirmado. Todos los usuarios confirmados de este proyecto tendrán acceso; en esta etapa no hay roles ni separación por establecimiento.
+3. En `pmv_fastapi/`, copia `.env.example` a `.env` y completa `SUPABASE_URL` y `SUPABASE_PUBLISHABLE_KEY`. El archivo real está ignorado por Git. La URL y clave proporcionadas por el usuario ya se configuraron localmente en la sesión T-015.
+4. Inicia desde esa carpeta, en PowerShell:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m uvicorn app.main:crear_app --factory --env-file .env --reload --port 8000
+```
+
+Abre `http://127.0.0.1:8000` e ingresa con la cuenta creada en Supabase. El formulario informa credenciales incorrectas, correo sin confirmar o problemas de conexión. Al recargar conserva la sesión y **Cerrar sesión** elimina las cookies. El usuario de auditoría es el UUID verificado, no el selector de la demostración.
+
+Para HTTP local: `AUTH_COOKIE_SECURE=false`; para HTTPS: `true` (valor predeterminado). Si faltan las variables de Supabase, el acceso clínico permanece bloqueado. El frontend y la API deben servirse desde el mismo origen.
+
+Los tokens se guardan en cookies HttpOnly y no se exponen al JavaScript. La API clínica verifica la identidad con Supabase, las respuestas no se cachean y los cambios requieren protección CSRF. Los borradores persistentes del formulario se reservan para el modo demo. Detalles y límites: [ADR-011](docs/adr/ADR-011-supabase-auth.md).
+
+Para reproducir las capturas y pruebas históricas sin autenticación, activa la demo explícitamente, solo en un entorno local con datos sintéticos:
+
+```powershell
+$env:AUTH_MODE = "demo"
+.\.venv\Scripts\python.exe -m uvicorn app.main:crear_app --factory --port 8000
+```
+
+Pruebas del login: `python -m pytest tests/integracion/test_autenticacion.py -q`; navegador: `python -m pytest tests/e2e/test_login.py -m e2e -q --no-cov` (requiere Chromium de Playwright). Estas pruebas simulan Supabase y no crean cuentas reales. Los endpoints son `GET /api/auth/config`, `POST /api/auth/login`, `GET /api/auth/session` y `POST /api/auth/logout`. Las mutaciones deben enviar `X-CSRF-Protection: 1`; el frontend lo incorpora automáticamente.
+
 **Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín**
 Procesos de Software (ASUC01702) · 2026-20 · Versión `v2.0.0-inc2` (etiqueta prevista `v2.0-Inc2`; el PMV liberado es `v1.0-PMV` y el avance del 50 % fue `v1.5.0-inc2-avance`)
 
@@ -199,7 +228,7 @@ El pipeline `.github/workflows/ci.yml` ejecuta lint, pruebas con cobertura (incl
 - La base de la versión 1.x no es compatible con la 2.0: se migra con `db/02_migracion_v2_0.sql` (PostgreSQL) o se recrea (SQLite).
 - Los parámetros de `ESQUEMA_AGENDA_V1` (meses de los dosajes, tolerancias de −15/+30 días, umbrales de prioridad) y los puntos de corte clínicos deben ser confirmados por la microred antes del uso clínico.
 - La agenda y las alertas se calculan en cada consulta (costo lineal en los niños activos: ≈ 120 a 155 ms con 1 000 niños en SQLite); se materializarán si se supera el criterio de ADR-007.
-- Sin autenticación: el usuario se identifica con el encabezado `X-Usuario` solo para auditoría. La autenticación por roles se incorpora antes de usar datos reales (Ley N.° 29733).
+- Supabase Auth implementado (ADR-011). Pendientes: roles y permisos por establecimiento; en modo demo el selector `X-Usuario` sigue siendo solo auditoría sintética.
 - El registro definitivo requiere conexión; la cola de sincronización offline es alcance del INC-3.
 - Los diagramas de `docs/diagramas/` corresponden a la versión `v1.0-PMV` y no se regeneraron para esta estructura.
 - Las fechas del sistema se interpretan en hora de Perú (UTC-5, sin horario de verano).

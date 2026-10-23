@@ -10,6 +10,25 @@
   <link rel="stylesheet" href="/static/estilos.css">
 </head>
 <body>
+  <main id="acceso" class="acceso" aria-labelledby="titulo-login">
+    <section class="tarjeta tarjeta-login">
+      <img src="/static/icono.svg" alt="" width="46" height="46">
+      <p class="login-marca">ANEMIA JUNÍN</p>
+      <h1 id="titulo-login">Bienvenido de nuevo</h1>
+      <p class="login-descripcion">Ingresa para organizar los controles y dar continuidad al seguimiento de los niños.</p>
+      <form id="form-login">
+        <div class="campo"><label for="login-email">Correo electrónico</label>
+          <input id="login-email" type="email" autocomplete="username" required maxlength="254" placeholder="nombre@establecimiento.pe"></div>
+        <div class="campo"><label for="login-password">Contraseña</label>
+          <input id="login-password" type="password" autocomplete="current-password" required maxlength="1024"></div>
+        <p id="login-error" class="alerta" role="alert" hidden></p>
+        <button id="login-enviar" class="primario" type="submit" disabled>Iniciar sesión</button>
+      </form>
+      <p id="login-estado" class="login-ayuda" role="status">Comprobando el acceso…</p>
+      <p class="login-ayuda">Acceso para personal autorizado. Si necesitas una cuenta, contacta al administrador de tu establecimiento.</p>
+    </section>
+  </main>
+  <div id="aplicacion" hidden>
   <header class="barra">
     <div class="marca">
       <img src="/static/icono.svg" alt="" width="32" height="32">
@@ -20,11 +39,13 @@
     </div>
     <div class="usuario">
       <a href="#" id="insignia-alertas" class="insignia cero" data-testid="insignia-alertas" title="Controles vencidos (abrir Alertas)">0</a>
-      <label for="usuario">Usuario</label>
+      <label id="usuario-demo-label" for="usuario">Usuario de demostración</label>
       <select id="usuario" data-testid="usuario">
         <option value="enf.rosa.quispe">Enf. Rosa Quispe</option>
         <option value="tec.juan.huaman">Téc. Juan Huamán</option>
       </select>
+      <span id="usuario-autenticado" hidden></span>
+      <button id="cerrar-sesion" type="button" class="secundario" hidden>Cerrar sesión</button>
       <span id="red" class="red" title="Estado de conexión">●</span>
     </div>
   </header>
@@ -227,6 +248,8 @@
   </div>
 
   <div id="toast" class="toast" hidden></div>
+  </div>
+  <script src="/static/auth.js"></script>
   <script src="/static/app.js"></script>
 </body>
 </html>

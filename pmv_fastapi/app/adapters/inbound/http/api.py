@@ -61,8 +61,10 @@ def contexto_uc(request: Request) -> ConsultarContexto:
     return request.app.state.contexto
 
 
-def usuario_actual(x_usuario: str | None = Header(default=None, alias="X-Usuario")) -> str:
-    # Autenticación real (roles por establecimiento) se incorpora en un incremento posterior.
+def usuario_actual(request: Request, x_usuario: str | None = Header(default=None, alias="X-Usuario")) -> str:
+    if request.app.state.auth_mode == "supabase":
+        return request.state.usuario.id
+    # Solo en el modo demo explícito se admite el selector de identidad sintética.
     return (x_usuario or "personal.posta").strip()[:60]
 
 

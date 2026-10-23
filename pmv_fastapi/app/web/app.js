@@ -13,7 +13,7 @@ let HOY = hoyISO();
 const SEVERIDAD_HIS = { LEV: "Leve", MOD: "Moderada", SEV: "Severa" };
 
 async function api(ruta, opciones = {}) {
-  const r = await fetch(ruta, {
+  const r = await window.Auth.fetch(ruta, {
     ...opciones,
     headers: { "Content-Type": "application/json", "X-Usuario": $("#usuario").value, ...(opciones.headers || {}) },
   });
@@ -72,9 +72,11 @@ function pintarErrores(errores, contenedor = form) {
   });
 }
 function guardarBorrador() {
+  if (window.Auth.modo !== "demo") return;
   try { localStorage.setItem(CLAVE_BORRADOR, JSON.stringify(leerFormulario())); $("#borrador").hidden = false; } catch (_) { /* almacenamiento no disponible */ }
 }
 function restaurarBorrador() {
+  if (window.Auth.modo !== "demo") return;
   try {
     const b = JSON.parse(localStorage.getItem(CLAVE_BORRADOR) || "null");
     if (!b) return;
@@ -531,7 +533,8 @@ async function cargarContexto() {
   } catch (_) { /* sin conexión: se conserva la fecha del navegador */ }
 }
 
-(function iniciar() {
+(async function iniciar() {
+  if (!await window.Auth.ready) return;
   fijarFechasPorDefecto();
   restaurarBorrador();
   estadoRed();
