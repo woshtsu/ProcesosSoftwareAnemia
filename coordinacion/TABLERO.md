@@ -26,11 +26,13 @@ T-017 — Preparar producción de main con Render/Supabase y CI/CD. Responsable:
 | T-014 | Síntesis para feria: problemática, solución tecnológica, impacto y evidencias S9 | orquestador / revisor-documental / conversor-entregas (secuencial) | HECHO (2026-10-23) | Informe y capturas S9, verificación T-013 | `exportados/feria/Proyecto_Feria_Anemia_Junin.pdf` | — | Tres páginas, tres capturas; revisión visual completa. Informe: `coordinacion/informes/2026-10-23_conversor-entregas_T-014.md`. Subida a la feria a cargo del usuario. |
 | T-015 | Login con Supabase Auth, renovación, cierre y protección API | desarrollador / orquestador (secuencial) | EN REVISIÓN (2026-10-23) | Proyecto Supabase y petición del usuario; ORQ-006 | Login integrado con persistencia actual | — | Implementación local y pruebas aprobadas; primer usuario y desactivación de registro público diferidos por el usuario. Informe: `coordinacion/informes/2026-10-23_desarrollador_T-015.md`. |
 | T-016 | Contexto de últimos cambios y coordinación compartida entre IA en .claude | orquestador | HECHO (2026-10-23) | Informes T-013 a T-015 y solicitud del usuario | Entrada, contexto, intercambios y plantilla compartidos; protocolo enlazado | — | `coordinacion/informes/2026-10-23_orquestador_T-016.md`. ORQ-007 resuelta. Sin commits ni pushes. |
+| T-018 | S11: evaluación CMMI-DEV del proceso y producto (PLAN, ESTIM, VER, VAL, PQA, CM), fichas VER/VAL de RF-01 a RF-09, CAR y plan de mejora | revisor-documental + desarrollador (secuencial) | EN REVISIÓN (2026-10-30) | `guias/S11-PSW-GUÍA DE TRABAJO 11.docx`, S3-4, S9, `pmv_fastapi/` | `entregables/semana-11/Entregable_Semana11_Anemia_Junin.md` | T-011, T-012, T-015, T-017 | `coordinacion/informes/2026-10-30_revisor-documental_T-018.md`. Pendientes: aceptación del usuario/SUS, E2E y CI remoto no reverificados, exportación a PDF, confirmar responsables del plan. |
 
 ## Solicitudes abiertas
 
 | ID | Solicitante → Destino | Tema | Estado | Archivo |
 | --- | --- | --- | --- | --- |
+| ORQ-009 | revisor-documental → orquestador | Rutas del entregable de la Semana 11 | RESUELTA | `coordinacion/solicitudes/ORQ-009.md` |
 | ORQ-007 | orquestador → orquestador | Entrada y canal de coordinación compartida en .claude | RESUELTA | `coordinacion/solicitudes/ORQ-007.md` |
 | ORQ-006 | desarrollador → orquestador | Rutas de autenticación Supabase y pruebas | RESUELTA | `coordinacion/solicitudes/ORQ-006.md` |
 | ORQ-005 | revisor-documental → orquestador | Rutas de la síntesis y PDF para feria | RESUELTA | `coordinacion/solicitudes/ORQ-005.md` |
