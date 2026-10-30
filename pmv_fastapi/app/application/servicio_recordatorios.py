@@ -6,6 +6,7 @@ WhatsApp Cloud con respaldo por SMS cuando está configurado.
 """
 
 import json
+import threading
 import uuid
 from datetime import date
 
@@ -17,6 +18,7 @@ from app.domain.model.errores import (
     ErrorValidacion,
     FirmaInvalida,
     NoEncontrado,
+    WebhookNoConfigurado,
 )
 from app.domain.model.notificacion import (
     ConfiguracionWebhook,
@@ -87,9 +89,17 @@ class ServicioRecordatorios(
         self.reloj = reloj
         self.barreras = barreras
         self.webhook = webhook
+        # Una generación, respuesta o aviso de entrega a la vez en este proceso: dos generaciones simultáneas no envían
+        # dos veces el mismo mensaje (la restricción UNIQUE solo evita la segunda fila, no el segundo envío) y dos
+        # respuestas simultáneas no se pisan (ADR-014).
+        self._cerrojo = threading.Lock()
 
     # HIST-4.1 -----------------------------------------------------------------------------------------------------
     def generar_recordatorios(self, usuario: str, establecimiento: str | None = None) -> ResultadoGeneracion:
+        with self._cerrojo:
+            return self._generar(usuario, establecimiento)
+
+    def _generar(self, usuario: str, establecimiento: str | None) -> ResultadoGeneracion:
         hoy = self.reloj.hoy()
         filtro = (establecimiento or "").strip().casefold()
         existentes = {r.clave: r for r in self.recordatorios.listar_recordatorios()}
@@ -175,6 +185,10 @@ class ServicioRecordatorios(
 
     # HIST-4.2 -----------------------------------------------------------------------------------------------------
     def registrar_respuesta(self, recordatorio_id: str, datos: dict, usuario: str) -> ResultadoRespuesta:
+        with self._cerrojo:
+            return self._responder(recordatorio_id, datos, usuario)
+
+    def _responder(self, recordatorio_id: str, datos: dict, usuario: str) -> ResultadoRespuesta:
         recordatorio = self.recordatorios.obtener_recordatorio(recordatorio_id)
         if not recordatorio:
             raise NoEncontrado("No existe el recordatorio solicitado.")
@@ -218,7 +232,10 @@ class ServicioRecordatorios(
         return verificacion_valida(modo, token, self.webhook.verify_token)
 
     def procesar_webhook(self, cuerpo: bytes, firma: str | None) -> ResumenWebhook:
-        if self.webhook.app_secret and not firma_valida(cuerpo, firma, self.webhook.app_secret):
+        # Falla cerrado: sin secreto no hay forma de comprobar quién llama y el endpoint es público.
+        if not self.webhook.app_secret:
+            raise WebhookNoConfigurado("El webhook está deshabilitado: falta configurar WHATSAPP_APP_SECRET.")
+        if not firma_valida(cuerpo, firma, self.webhook.app_secret):
             raise FirmaInvalida("La firma de la notificación no es válida.")
         try:
             payload = json.loads(cuerpo)
@@ -227,6 +244,10 @@ class ServicioRecordatorios(
         return self.procesar_eventos(extraer_eventos(payload))
 
     def procesar_eventos(self, eventos: EventosWebhook) -> ResumenWebhook:
+        with self._cerrojo:
+            return self._aplicar_eventos(eventos)
+
+    def _aplicar_eventos(self, eventos: EventosWebhook) -> ResumenWebhook:
         hoy = self.reloj.hoy()
         aplicados = registradas = ignorados = 0
         for evento in eventos.estados:

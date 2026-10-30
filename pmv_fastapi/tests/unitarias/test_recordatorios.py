@@ -17,6 +17,7 @@ from app.domain.model.errores import (
     ErrorValidacion,
     FirmaInvalida,
     NoEncontrado,
+    WebhookNoConfigurado,
 )
 from app.domain.model.notificacion import (
     CanalEnvio,
@@ -670,9 +671,12 @@ def test_cp356_el_webhook_firmado_se_procesa_y_el_invalido_se_rechaza(repo, noti
     )
 
 
-def test_cp357_sin_secreto_configurado_el_webhook_acepta_sin_firma(repo, servicio):
+def test_cp357_sin_secreto_configurado_el_webhook_falla_cerrado_y_no_procesa_nada(repo, servicio):
     guardar(repo)
     r1 = primero(servicio)
     cuerpo = json.dumps(payload(estados=[{"id": r1.id_externo, "status": "read"}])).encode()
-    assert servicio.procesar_webhook(cuerpo, None).estados_aplicados == 1
+    for firma in (None, "sha256=00", firmar(cuerpo, ""), firmar(cuerpo, "cualquiera")):
+        with pytest.raises(WebhookNoConfigurado):
+            servicio.procesar_webhook(cuerpo, firma)
+    assert repo.obtener_recordatorio(r1.id).estado == r1.estado  # ni el estado de entrega ni nada cambió
     assert servicio.verificar_suscripcion("subscribe", "") is False

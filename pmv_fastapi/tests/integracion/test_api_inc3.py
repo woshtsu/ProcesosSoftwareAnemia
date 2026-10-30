@@ -2,7 +2,9 @@
 conexión (HIST-3.2), conflictos (HIST-3.3) y visita domiciliaria priorizada (VIS-3.5). Hoy = 28-sep-2026.
 """
 
+import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 
 import pytest
 
@@ -119,6 +121,27 @@ def test_cp264_reenviar_el_mismo_lote_responde_duplicada_y_no_agrega_filas(clien
     assert [x["id_recurso"] for x in segunda["resultados"]] == [x["id_recurso"] for x in primera["resultados"]]
     assert segunda["resultados"][0]["id_cliente"] == "tmp-1"
     assert contar(cliente) == antes
+
+
+def test_cp264b_el_mismo_id_operacion_enviado_a_la_vez_se_aplica_una_sola_vez(cliente):
+    """Un reintento tras un tiempo de espera puede llegar mientras el primer envío sigue en curso: la evaluación (que la
+    base no protege con una restricción propia) no debe quedar duplicada."""
+    existente = registrar(cliente, **ESCENARIO["V"])
+    una = op("REGISTRAR_EVALUACION", evaluacion(), 1, nino_ref={"id": existente})
+    antes = len(cliente.get(f"/api/ninos/{existente}").json()["evaluaciones"])
+    repo = cliente.app.state.repositorio
+    agregar = repo.agregar_evaluacion
+
+    def agregar_lento(evaluacion):  # ensancha la ventana entre «no existe» y «guardada»
+        time.sleep(0.02)
+        return agregar(evaluacion)
+
+    repo.agregar_evaluacion = agregar_lento
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        respuestas = list(pool.map(lambda _: sincronizar(cliente, una), range(6)))
+    todas = [x for r in respuestas for x in resultados(r)]
+    assert sorted(todas) == ["APLICADA"] + ["DUPLICADA"] * 5
+    assert len(cliente.get(f"/api/ninos/{existente}").json()["evaluaciones"]) == antes + 1
 
 
 def test_cp265_las_operaciones_se_procesan_por_fecha_local_y_la_respuesta_conserva_el_orden_recibido(cliente):

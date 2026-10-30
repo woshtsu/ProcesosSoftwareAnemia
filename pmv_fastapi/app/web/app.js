@@ -655,10 +655,10 @@ async function cargarAlertasBarreras() {
   $("#cuerpo-alertas-barreras").innerHTML = filas.map((f) => `
     <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-testid="alerta-barrera">
       <td><span class="badge prio-${f.prioridad}" data-testid="prioridad-barrera">${f.prioridad}</span></td>
-      <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " + f.nino.dni : esc(f.nino.codigo_origen || "")}</small></td>
+      <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " + esc(f.nino.dni) : esc(f.nino.codigo_origen || "")}</small></td>
       <td><ul class="lista-barreras" data-testid="razones-barrera">${f.razones.map((r) => `<li>${esc(r.descripcion)}</li>`).join("")}</ul></td>
       <td><ul class="lista-barreras">${f.barreras.slice(0, 3).map((b) => `<li>${esc(TIPOS_BARRERA[b.tipo] || b.tipo)} · ${fecha(b.fecha)}</li>`).join("")}</ul></td>
-      <td>${esc(f.nino.comunidad)}</td><td>${f.nino.tutor_celular || "—"}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");
+      <td>${esc(f.nino.comunidad)}</td><td>${esc(f.nino.tutor_celular || "—")}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");
   $$("#cuerpo-alertas-barreras tr").forEach((tr) => tr.addEventListener("click", () => abrirExpediente(tr.dataset.id)));
 }
 $("#filtro-alerta-comunidad").addEventListener("change", cargarAlertas);
@@ -767,7 +767,7 @@ $("#form-visita").addEventListener("submit", async (ev) => {
   const barrera = datos.resultado === "REALIZADA" ? "" : $("#visita-barrera").value;
   if (barrera === "OTRA" && !datos.observaciones) { $("#visita-error").textContent = "Con «Otra» barrera, descríbala en las observaciones."; return; }
   const registrarBarreraAsociada = () => (barrera
-    ? barreraAsociada(ref, { tipo: barrera, detalle: datos.observaciones, fuente: "VISITA", fecha: datos.fecha }, nombre)
+    ? barreraAsociada(ref, { tipo: barrera, detalle: datos.observaciones && datos.observaciones.slice(0, 200), fuente: "VISITA", fecha: datos.fecha }, nombre)
     : Promise.resolve());
   const terminar = (texto) => { cerrarModalVisita(); toast(texto); if (alTerminar) alTerminar(); };
   if (ref.id) {
@@ -808,7 +808,7 @@ async function cargarVisitas() {
   $("#cuerpo-visitas").innerHTML = filas.map((f) => `
     <tr data-nino="${f.nino.id}" data-nombre="${esc(f.nino.nombre_completo)}" data-testid="visita-priorizada">
       <td><strong>${f.posicion}</strong></td>
-      <td><a href="#" class="enlace-nino">${esc(f.nino.nombre_completo)}</a><br><small>${f.nino.dni ? "DNI " + f.nino.dni : esc(f.nino.codigo_origen || "")}</small></td>
+      <td><a href="#" class="enlace-nino">${esc(f.nino.nombre_completo)}</a><br><small>${f.nino.dni ? "DNI " + esc(f.nino.dni) : esc(f.nino.codigo_origen || "")}</small></td>
       <td>${esc(f.nino.comunidad)}</td><td>${badge(f.ultima_clasificacion)}</td>
       <td class="${f.dias_control_vencido ? "atrasado" : ""}">${f.dias_control_vencido ? f.dias_control_vencido + " d" : "—"}${f.inasistencias_recientes ? ` <span class="ctrl ctrl-INASISTENCIA">${f.inasistencias_recientes} inasist.</span>` : ""}</td>
       <td>${f.ultima_visita ? `${fecha(f.ultima_visita)} · ${f.dias_desde_ultima_visita} d` : "Sin visitas"}</td>

@@ -251,7 +251,7 @@ Resultados de la versión `4.0.0-inc4` (reproducibles con los comandos de arriba
 | Control | Resultado |
 |---|---|
 | ruff | 0 hallazgos; formato correcto |
-| pytest (unitarias, integración, arquitectura) | **657 pruebas en verde**: 416 unitarias, 216 de integración (SQLite) y 25 de arquitectura (158 nuevas respecto de la 3.0) |
+| pytest (unitarias, integración, arquitectura) | **660 pruebas en verde**: 416 unitarias, 219 de integración (SQLite) y 25 de arquitectura (161 nuevas respecto de la 3.0) |
 | Cobertura de `app/` | **99,79 %**; 100 % en todo lo nuevo del Incremento 4 (quedan `autenticacion.py` con 94 % y `supabase_auth.py` con 97 %, anteriores) |
 | E2E (Playwright, Chromium) | **28 en verde**: 24 anteriores y 4 nuevas (recordatorios simulados con respuesta `NO_PUEDE` y alerta de barrera crítica, barrera sin conexión que sincroniza, barrera asociada a una inasistencia, barrera de una visita no lograda con su componente en el puntaje) |
 | Contrato OpenAPI | `docs/openapi.json` al día (29 rutas) |
@@ -299,7 +299,7 @@ El pipeline `.github/workflows/ci.yml` ejecuta lint, pruebas con cobertura (incl
 - Supabase Auth implementado (ADR-011). Pendientes: roles y permisos por establecimiento; en modo demo el selector `X-Usuario` sigue siendo solo auditoría sintética.
 - Sin conexión solo se guardan en el dispositivo el registro de un niño con su evaluación inicial, las evaluaciones, las asistencias, las visitas (INC-3, ADR-012) y las barreras (INC-4); editar un expediente y dar de alta requieren conexión. La clasificación de un niño registrado sin conexión aparece al sincronizar.
 - Los pesos del puntaje de visitas priorizadas (ADR-013, incluido `BARRERA_CRITICA`) son una propuesta del equipo y deben validarse con la microred.
-- Recordatorios (INC-4, ADR-014): sin credenciales de Meta el envío es simulado; la plantilla de WhatsApp debe ser aprobada por Meta; sin `WHATSAPP_APP_SECRET` el webhook acepta cuerpos sin firma (configurarlo en producción); las respuestas por SMS no se reciben; la generación es manual y requiere conexión, igual que registrar la respuesta de un tutor (solo las barreras se guardan sin conexión). Las reglas de barreras críticas y su vigencia de 90 días no están validadas por la microred.
+- Recordatorios (INC-4, ADR-014): sin credenciales de Meta el envío es simulado; la plantilla de WhatsApp debe ser aprobada por Meta; el webhook falla cerrado (503 sin `WHATSAPP_APP_SECRET`; 403 con firma ausente o inválida); las respuestas por SMS no se reciben; la generación es manual y requiere conexión, igual que registrar la respuesta de un tutor (solo las barreras se guardan sin conexión). Las reglas de barreras críticas y su vigencia de 90 días no están validadas por la microred.
 - Los diagramas de `docs/diagramas/` corresponden a la versión `v1.0-PMV` y no se regeneraron para esta estructura.
 - Las fechas del sistema se interpretan en hora de Perú (UTC-5, sin horario de verano).
 

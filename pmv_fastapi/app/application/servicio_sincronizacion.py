@@ -7,6 +7,8 @@ asistencia, visitas y barreras), de modo que las reglas clínicas y de negocio n
 de verdad: cuando ya tiene un dato distinto no lo sobrescribe, abre un conflicto que una persona resuelve después.
 """
 
+import threading
+
 from app.domain.model.asistencia import EstadoAsistencia
 from app.domain.model.errores import (
     ConflictoAsistencia,
@@ -81,11 +83,17 @@ class ServicioSincronizacion(SincronizarOperaciones, GestionarConflictos):
         self.gestion_visitas = gestion_visitas
         self.gestion_barreras = gestion_barreras
         self.reloj = reloj
+        # Un solo lote o resolución a la vez en este proceso: el mismo ``id_operacion`` reenviado mientras el primer
+        # envío sigue en curso (p. ej. un reintento tras un tiempo de espera) no puede crear dos veces un registro que
+        # la base no protege con una restricción (evaluaciones). Con varios procesos la clave primaria de la bitácora
+        # sigue siendo la última defensa (ADR-012).
+        self._cerrojo = threading.Lock()
 
     # HIST-3.2 -----------------------------------------------------------------------------------------------------
     def sincronizar(self, operaciones: list[OperacionEntrante], usuario: str) -> list[ResultadoSincronizacion]:
         orden = sorted(range(len(operaciones)), key=lambda i: (normalizar_fecha_local(operaciones[i].fecha_local), i))
-        resultados = {i: self._procesar(operaciones[i], usuario) for i in orden}
+        with self._cerrojo:
+            resultados = {i: self._procesar(operaciones[i], usuario) for i in orden}
         return [resultados[i] for i in range(len(operaciones))]
 
     def _procesar(self, op: OperacionEntrante, usuario: str) -> ResultadoSincronizacion:
@@ -284,6 +292,10 @@ class ServicioSincronizacion(SincronizarOperaciones, GestionarConflictos):
         return self.sync.listar_conflictos(estado)
 
     def resolver_conflicto(self, conflicto_id: str, resolucion: str, usuario: str) -> ConflictoSincronizacion:
+        with self._cerrojo:
+            return self._resolver(conflicto_id, resolucion, usuario)
+
+    def _resolver(self, conflicto_id: str, resolucion: str, usuario: str) -> ConflictoSincronizacion:
         conflicto = self.sync.obtener_conflicto(conflicto_id)
         if not conflicto:
             raise NoEncontrado("No existe el conflicto solicitado.")

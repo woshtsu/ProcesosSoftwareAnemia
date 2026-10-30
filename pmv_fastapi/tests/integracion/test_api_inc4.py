@@ -5,7 +5,9 @@ Ninguna prueba hace una llamada de red real: el notificador es el simulado o un 
 """
 
 import json
+import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 
 import httpx
@@ -305,6 +307,24 @@ def test_cp382_respuesta_duplicada_409_e_inexistente_404(cliente):
     )
 
 
+def test_cp382b_dos_generaciones_simultaneas_no_envian_dos_veces_el_mismo_mensaje(tmp_path):
+    class Contador:
+        enviados = 0
+
+        def enviar(self, mensaje):
+            time.sleep(0.01)  # ensancha la ventana entre «no existe» y «guardado»
+            Contador.enviados += 1
+            return crear_notificador({}).enviar(mensaje)
+
+    app = crear_app(f"sqlite:///{tmp_path}/c.db", reloj=RelojFijo(), notificador=Contador())
+    with TestClient(app) as c:
+        registrar(c, **ESCENARIO["T"])
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            lotes = list(pool.map(lambda _: generar(c), range(4)))
+        assert Contador.enviados == sum(x["enviados"] for x in lotes) == len(c.get("/api/recordatorios").json()) > 0
+    app.state.repositorio.engine.dispose()
+
+
 # --- Webhook de WhatsApp ----------------------------------------------------------------------------------------------
 
 
@@ -493,13 +513,36 @@ def test_cp390_un_cuerpo_que_no_es_json_firmado_es_422(whatsapp):
     assert r.status_code == 422 and r.json()["errores"][0]["campo"] == "cuerpo"
 
 
-def test_cp391_sin_secreto_configurado_se_acepta_sin_firma_y_se_ignora_lo_irreconocible(cliente):
+def test_cp391_sin_secreto_configurado_el_webhook_falla_cerrado_con_503_y_no_cambia_nada(cliente):
     registrar(cliente, **ESCENARIO["T"])
     uno = generar(cliente)["recordatorios"][0]
-    r = cliente.post(RUTA_WEBHOOK, json=evento(estados=[{"id": uno["id"], "status": "read"}]))
+    estado = evento(estados=[{"id": uno["id"], "status": "read"}])
+    crudo = json.dumps(estado).encode()
+    firmas = ({}, {"X-Hub-Signature-256": firmar(crudo, SECRETO)}, {"X-Hub-Signature-256": firmar(crudo, "")})
+    for cabeceras in firmas:  # ni sin firma ni con una firma «válida» calculada con un secreto vacío o adivinado
+        r = cliente.post(RUTA_WEBHOOK, content=crudo, headers=cabeceras)
+        assert r.status_code == 503 and "WHATSAPP_APP_SECRET" in r.json()["mensaje"]
+    for cuerpo in ({"object": "whatsapp_business_account"}, [1, 2], estado):
+        assert cliente.post(RUTA_WEBHOOK, json=cuerpo).status_code == 503
+    assert cliente.post(RUTA_WEBHOOK, content=b"no es json").status_code == 503
+    metricas = cliente.get("/api/recordatorios/metricas").json()
+    assert (metricas["entregados"], metricas["leidos"], metricas["con_respuesta"]) == (0, 0, 0)
+    assert (
+        cliente.get(
+            RUTA_WEBHOOK, params={"hub.mode": "subscribe", "hub.verify_token": "", "hub.challenge": "1"}
+        ).status_code
+        == 403
+    )
+
+
+def test_cp391b_con_secreto_se_ignora_lo_irreconocible(whatsapp):
+    c, _ = whatsapp
+    registrar(c, **ESCENARIO["T"])
+    uno = generar(c)["recordatorios"][0]
+    r = c.post(RUTA_WEBHOOK, **firmado(evento(estados=[{"id": uno["id"], "status": "read"}])))
     assert r.status_code == 200 and r.json() == {"estados_aplicados": 0, "respuestas_registradas": 0, "ignorados": 1}
-    assert cliente.post(RUTA_WEBHOOK, json={"object": "whatsapp_business_account"}).json()["ignorados"] == 0
-    assert cliente.post(RUTA_WEBHOOK, json=[1, 2]).status_code == 200
+    assert c.post(RUTA_WEBHOOK, **firmado({"object": "whatsapp_business_account"})).json()["ignorados"] == 0
+    assert c.post(RUTA_WEBHOOK, **firmado([1, 2])).status_code == 200
 
 
 # --- Sincronización de barreras ---------------------------------------------------------------------------------------
@@ -596,7 +639,8 @@ def test_cp395_los_endpoints_del_incremento_4_exigen_sesion(auth_cliente, metodo
 def test_cp396_el_webhook_es_publico_sin_sesion_ni_csrf_pero_exige_la_firma(auth_cliente, monkeypatch):  # noqa: F811
     c, _, _ = auth_cliente
     cuerpo = evento()
-    assert c.post(RUTA_WEBHOOK, json=cuerpo).status_code == 200  # sin secreto configurado, sin sesión y sin CSRF
+    # Sin sesión ni CSRF llega al caso de uso (no es 401 ni 403 por CSRF); sin secreto configurado falla cerrado.
+    assert c.post(RUTA_WEBHOOK, json=cuerpo).status_code == 503
     c.app.state.recordatorios.webhook = ConfiguracionWebhook(TOKEN_VERIFICACION, SECRETO)
     crudo = json.dumps(cuerpo).encode()
     assert c.post(RUTA_WEBHOOK, content=crudo).status_code == 403

@@ -48,14 +48,14 @@ Se implementó el Incremento 4 completo, versión `4.0.0-inc4`, sin romper el In
 - **Puntaje de visita:** `PESOS_V2` suma `BARRERA_CRITICA` (15 o 8 puntos) solo a quien tiene alerta de barreras; el rango es 0 a 100 sin barreras y hasta 115 con ellas. Se conserva `PESOS_V1` para no alterar las pruebas ni el orden de INC-3.
 - **Tasa de entrega:** excluye los envíos simulados (no se entregan); la tasa de confirmación se calcula sobre todo lo enviado.
 - **Reintento:** un recordatorio `FALLIDO` se reintenta en la siguiente generación sobre el mismo registro (campo `intentos`).
-- **Webhook sin secreto:** si no se configura `WHATSAPP_APP_SECRET` acepta cuerpos sin firma (comodidad de la demo); con secreto exige la firma. Debe configurarse en producción.
+- **Webhook sin secreto:** falla cerrado (corregido en la revisión independiente, ver abajo): sin `WHATSAPP_APP_SECRET` el `POST` responde 503 y no procesa nada; con secreto exige la firma (403 si falta o es inválida). Debe configurarse para recibir eventos de WhatsApp.
 - **Prioridad de la alerta de barreras:** solo `ALTA` o `MEDIA` (422 con `BAJA`).
 - Las respuestas por SMS no se reciben.
 
 ## Pendientes y riesgos
 
 - La plantilla `recordatorio_control` debe ser aprobada por Meta (riesgo S3-4); mientras tanto el modo simulado permite demostrar el flujo. Falta probar el envío real con credenciales de prueba (no se hizo por regla del encargo).
-- Configurar `WHATSAPP_APP_SECRET` y `WHATSAPP_VERIFY_TOKEN` en Render y registrar el webhook en Meta.
+- Configurar `WHATSAPP_APP_SECRET` (obligatorio: sin él el webhook responde 503) y `WHATSAPP_VERIFY_TOKEN` en Render y registrar el webhook en Meta.
 - Validar con la microred las reglas de barreras críticas, la vigencia de 90 días y el peso de `BARRERA_CRITICA`.
 - El celular del tutor viaja a Meta o al proveedor SMS: requiere el consentimiento de la familia, que el software no gestiona.
 - La generación de recordatorios es manual y síncrona; para un volumen mayor convendría una tarea programada y una cola de envío.
@@ -65,3 +65,20 @@ Se implementó el Incremento 4 completo, versión `4.0.0-inc4`, sin romper el In
 ## Solicitudes abiertas a otros agentes
 
 Ninguna.
+
+## Revisión independiente
+
+Revisión de calidad y seguridad hecha después de la entrega, sobre `git diff a8df23b..HEAD`. Veredicto: aprobado con observaciones; las historias HIST-3.1 a 3.4, VIS-3.5 y HIST-4.1 a 4.4 cumplen la especificación.
+
+**Corregido**
+- **Seguridad, alta: el webhook aceptaba cuerpos sin firma si no se configuraba `WHATSAPP_APP_SECRET`.** Al ser una ruta pública, cualquiera podía registrar respuestas del tutor o alterar estados de entrega. Ahora falla cerrado: sin secreto el `POST` responde **503** («El webhook está deshabilitado: falta configurar WHATSAPP_APP_SECRET.») y no procesa nada; con secreto exige la firma `X-Hub-Signature-256` (403 si falta o es inválida). Nuevo error de dominio `WebhookNoConfigurado`, manejador único 403/503 en la API, contrato OpenAPI regenerado y documentado en ADR-014, `docs/DESPLIEGUE.md`, `.env.example`, README y CHANGELOG. Pruebas ajustadas (CP-357, CP-391, CP-396) y nueva CP-391b (con secreto se ignora lo irreconocible).
+- **Concurrencia, media: reenvío simultáneo del mismo `id_operacion` duplicaba una evaluación** (la base no tiene restricción propia para evaluaciones; la clave primaria de la bitácora solo detenía el registro de la operación, después de crear el recurso). Se reprodujo con hilos y ahora `ServicioSincronizacion` procesa un lote o una resolución a la vez por proceso (cerrojo), de modo que el segundo envío responde `DUPLICADA`. Con varios procesos sigue valiendo la clave primaria como última defensa. Prueba nueva CP-264b (falla sin el cerrojo).
+- **Concurrencia, media: dos generaciones simultáneas de recordatorios enviaban dos veces el mismo mensaje** (la restricción UNIQUE solo evitaba la segunda fila). `ServicioRecordatorios` serializa la generación, el registro de respuestas y los avisos de entrega. Prueba nueva CP-382b (falla sin el cerrojo).
+- **Interfaz, baja:** en una visita no lograda con barrera, las observaciones (hasta 500 caracteres) se copiaban como detalle de la barrera (máximo 200) y el servidor la rechazaba; ahora se recorta a 200. Los campos DNI y celular de las tablas nuevas («Barreras críticas» y «Visitas») pasan por `esc()` por consistencia (ya los validaba el servidor).
+
+**Observaciones sin corregir (aceptables para el piloto)**
+- El caché de datos del service worker se borra solo al cerrar sesión, no al vencer la sesión; se descartó borrarlo ante un 401 porque el vencimiento normal del token de acceso vaciaría el caché sin conexión. La cola de pendientes (IndexedDB) conserva datos clínicos tras cerrar sesión por diseño (ADR-012).
+- Un tutor con varios niños que responde sin citar el mensaje (sin `context.id`) se asocia al recordatorio sin respuesta más reciente de su número; con la respuesta citada es exacto.
+- `id_operacion` se compara tal cual: un UUID en mayúsculas y el mismo en minúsculas serían operaciones distintas (el cliente siempre genera minúsculas). No hay límite de tamaño del cuerpo del webhook ni de `datos` por operación más allá del que imponga el servidor o el proxy.
+
+**Verificación posterior:** `pytest --cov=app` (sin `tests/rendimiento`): **660 aprobadas**, cobertura total **99,79 %** (100 % en todos los archivos nuevos); `pytest tests/e2e`: **28 aprobadas**; `ruff check .` y `ruff format --check .` limpios; `scripts.exportar_openapi --verificar` al día. Sin las palabras prohibidas ni rutas absolutas en lo nuevo.

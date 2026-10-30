@@ -57,3 +57,7 @@ class ConflictoRespuesta(Exception):
 
 class FirmaInvalida(Exception):
     """La notificación del webhook no trae una firma válida (HIST-4.2)."""
+
+
+class WebhookNoConfigurado(Exception):
+    """El webhook no puede recibir eventos porque no se configuró el secreto con que se valida su firma (ADR-014)."""

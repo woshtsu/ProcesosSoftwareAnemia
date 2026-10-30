@@ -27,6 +27,7 @@ from app.domain.model.errores import (
     FirmaInvalida,
     NoEncontrado,
     RegistroDuplicado,
+    WebhookNoConfigurado,
 )
 from app.domain.model.notificacion import VistaRecordatorio
 from app.domain.model.sincronizacion import (
@@ -234,6 +235,12 @@ MENSAJES_TIPO = {
 }
 
 
+async def _webhook_rechazado(_, exc: Exception):
+    """Webhook de WhatsApp: 403 si la firma falta o es inválida; 503 (falla cerrado) si no hay secreto configurado."""
+    estado = 503 if isinstance(exc, WebhookNoConfigurado) else 403
+    return JSONResponse(status_code=estado, content={"mensaje": str(exc), "errores": []})
+
+
 def registrar_manejadores(app) -> None:
     @app.exception_handler(RequestValidationError)
     async def _formato(_, exc: RequestValidationError):
@@ -290,9 +297,8 @@ def registrar_manejadores(app) -> None:
             status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "respuesta", "mensaje": str(exc)}]}
         )
 
-    @app.exception_handler(FirmaInvalida)
-    async def _firma_invalida(_, exc: FirmaInvalida):
-        return JSONResponse(status_code=403, content={"mensaje": str(exc), "errores": []})
+    app.add_exception_handler(FirmaInvalida, _webhook_rechazado)
+    app.add_exception_handler(WebhookNoConfigurado, _webhook_rechazado)
 
     @app.exception_handler(NoEncontrado)
     async def _no_encontrado(_, exc: NoEncontrado):
@@ -1019,14 +1025,15 @@ def verificar_webhook(
     "/notificaciones/whatsapp/webhook",
     response_model=s.ResumenWebhookSalida,
     tags=["HIST-4.2 Respuestas"],
-    responses={403: {"model": s.RespuestaError}, 422: {"model": s.RespuestaError}},
+    responses={403: {"model": s.RespuestaError}, 422: {"model": s.RespuestaError}, 503: {"model": s.RespuestaError}},
 )
 async def recibir_webhook(request: Request, svc: ProcesarNotificacionesWhatsApp = Depends(webhook_uc)):
     """Recibe los estados de entrega (enviado, entregado, leído, fallido) y las respuestas del tutor desde WhatsApp.
 
-    Público (sin sesión) pero protegido por la firma ``X-Hub-Signature-256``, que se exige cuando se configuró
-    ``WHATSAPP_APP_SECRET`` (403 si es inválida). La respuesta se asocia al recordatorio por el mensaje al que responde
-    o, si no, por el número del tutor. Lo que no se reconoce se ignora y se cuenta.
+    Público (sin sesión) pero protegido por la firma ``X-Hub-Signature-256``, que siempre se exige (403 si falta o es
+    inválida). Falla cerrado: si no se configuró ``WHATSAPP_APP_SECRET`` responde 503 y no procesa nada. La respuesta
+    se asocia al recordatorio por el mensaje al que responde o, si no, por el número del tutor. Lo que no se reconoce
+    se ignora y se cuenta.
     """
     cuerpo = await request.body()
     resumen = await run_in_threadpool(svc.procesar_webhook, cuerpo, request.headers.get("X-Hub-Signature-256"))

@@ -39,9 +39,9 @@ class ProcesarNotificacionesWhatsApp(Protocol):
         ...
 
     def procesar_webhook(self, cuerpo: bytes, firma: str | None) -> ResumenWebhook:
-        """Aplica los estados de entrega y las respuestas de una notificación de WhatsApp. Con
-        ``WHATSAPP_APP_SECRET`` configurado exige la firma ``X-Hub-Signature-256`` (FirmaInvalida si no es válida);
-        ErrorValidacion si el cuerpo no es un JSON."""
+        """Aplica los estados de entrega y las respuestas de una notificación de WhatsApp. Siempre exige la firma
+        ``X-Hub-Signature-256`` (FirmaInvalida si no es válida) y falla cerrado: sin ``WHATSAPP_APP_SECRET``
+        configurado lanza WebhookNoConfigurado y no procesa nada; ErrorValidacion si el cuerpo no es un JSON."""
         ...
 
     def procesar_eventos(self, eventos: EventosWebhook) -> ResumenWebhook:

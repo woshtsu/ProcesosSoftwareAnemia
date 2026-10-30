@@ -12,7 +12,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). L
 - **Visita priorizada `VISITA-V2` (ADR-013)**: componente `BARRERA_CRITICA` (15 puntos si la alerta es ALTA, 8 si es MEDIA) solo para los niños con barreras críticas; el puntaje llega hasta 115 con barreras y no cambia sin ellas.
 - Interfaz: pestaña «Recordatorios» (generar, filtrar por estado, métricas, tabla con la marca SIMULADO y registro de la respuesta del tutor), sección «Barreras de acceso» en el expediente con el formulario «Registrar barrera» (también sin conexión), «Barrera asociada (opcional)» en los formularios de inasistencia y de visita. Service worker `v4`.
 - ADR-014; ADR-013 actualizado; migración `db/04_migracion_v4_0.sql`; RLS de las tablas nuevas en `db/02_supabase.sql`; variables `WHATSAPP_*` y `SMS_*` en `.env.example` y `docs/DESPLIEGUE.md`.
-- Pruebas: 158 pruebas nuevas de pytest (de 499 a 657: 416 unitarias, 216 de integración y 25 de arquitectura), cobertura total de 99,79 % y 100 % en los archivos nuevos, y 4 E2E nuevas con Playwright (de 24 a 28), CP-304 a CP-405. **Ninguna prueba hace llamadas de red reales**: WhatsApp y SMS se simulan con `httpx.MockTransport`.
+- Pruebas: 161 pruebas nuevas de pytest (de 499 a 660: 416 unitarias, 219 de integración y 25 de arquitectura), cobertura total de 99,79 % y 100 % en los archivos nuevos, y 4 E2E nuevas con Playwright (de 24 a 28), CP-304 a CP-405. **Ninguna prueba hace llamadas de red reales**: WhatsApp y SMS se simulan con `httpx.MockTransport`.
 
 ### Cambiado
 - `priorizar_nino` recibe la alerta de barreras del niño (opcional) y `PESOS_V2` reemplaza a `PESOS_V1` como vigente (`VISITA-V1` se conserva). `ServicioVisitas` recibe de forma opcional el repositorio de barreras. `ServicioSincronizacion` recibe el caso de uso de barreras.
@@ -21,7 +21,8 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). L
 
 ### Limitaciones
 - Sin credenciales de Meta el sistema funciona en modo simulado: no sale ningún mensaje. La plantilla `recordatorio_control` debe ser aprobada por Meta antes de enviar de verdad.
-- Sin `WHATSAPP_APP_SECRET` el webhook acepta cuerpos sin firma: en producción debe configurarse. Las respuestas por SMS no se reciben.
+- Revisión independiente: reenvíos y generaciones simultáneas se serializan por proceso (no se duplica una evaluación ni un mensaje) y la barrera de una visita recorta el detalle a 200 caracteres.
+- El webhook de WhatsApp falla cerrado: sin `WHATSAPP_APP_SECRET` responde 503 y no procesa nada; con el secreto exige la firma (403 si falta o es inválida). Las respuestas por SMS no se reciben.
 - Generar los recordatorios y registrar la respuesta de un tutor requieren conexión; solo las barreras se guardan sin conexión. La generación es manual (botón o llamada al endpoint), no automática.
 - Las reglas de barreras críticas, su vigencia de 90 días y el peso de `BARRERA_CRITICA` son una propuesta del equipo pendiente de validación por la microred.
 

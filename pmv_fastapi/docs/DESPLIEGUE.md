@@ -22,7 +22,7 @@ Comprobación posterior: `select to_regclass('public.recordatorio'), to_regclass
 | `WHATSAPP_TOKEN` | Token de acceso de la WhatsApp Cloud API. Con `WHATSAPP_PHONE_NUMBER_ID` activa el envío real. |
 | `WHATSAPP_PHONE_NUMBER_ID` | Identificador del número emisor en Meta. |
 | `WHATSAPP_VERIFY_TOKEN` | Texto que usted elige y escribe también en Meta al registrar el webhook; sin él la verificación se rechaza. |
-| `WHATSAPP_APP_SECRET` | Secreto de la aplicación de Meta: valida la firma `X-Hub-Signature-256` de los eventos. **Configurarlo siempre en producción**: sin él el webhook acepta cuerpos sin firma. |
+| `WHATSAPP_APP_SECRET` | Secreto de la aplicación de Meta: valida la firma `X-Hub-Signature-256` de los eventos. **Obligatorio para recibir eventos**: el webhook falla cerrado y, sin este secreto, `POST /api/notificaciones/whatsapp/webhook` responde 503 y no procesa nada (con firma ausente o inválida responde 403). |
 | `WHATSAPP_PLANTILLA` | Nombre de la plantilla aprobada (por defecto `recordatorio_control`). |
 | `WHATSAPP_IDIOMA` | Código de idioma de la plantilla (por defecto `es`). |
 | `WHATSAPP_API_VERSION` | Versión de la Graph API (por defecto `v21.0`). |
@@ -34,7 +34,7 @@ Comprobación posterior: `select to_regclass('public.recordatorio'), to_regclass
 
 La aprobación puede tardar y está fuera del control del equipo (riesgo S3-4 del plan): mientras tanto, el modo simulado permite demostrar todo el flujo. No incluir diagnóstico en la plantilla. El tutor debe haber dado su consentimiento para recibir mensajes.
 
-**Webhook.** En Meta (WhatsApp → Configuración → Webhook) registrar `https://TU_SERVICIO/api/notificaciones/whatsapp/webhook` con el `WHATSAPP_VERIFY_TOKEN` y suscribir el campo `messages`. La ruta es pública (no usa la sesión del personal) y se protege con la firma. Nunca se hacen llamadas a Meta desde las pruebas ni desde el CI.
+**Webhook.** En Meta (WhatsApp → Configuración → Webhook) registrar `https://TU_SERVICIO/api/notificaciones/whatsapp/webhook` con el `WHATSAPP_VERIFY_TOKEN` y suscribir el campo `messages`. La ruta es pública (no usa la sesión del personal) y se protege con la firma `X-Hub-Signature-256`, que siempre se exige: configure `WHATSAPP_APP_SECRET` antes de registrar el webhook (sin él Meta recibiría 503). Prueba rápida: sin el secreto, `curl -X POST .../api/notificaciones/whatsapp/webhook -d '{}'` debe responder 503; con el secreto y sin firma, 403. Nunca se hacen llamadas a Meta desde las pruebas ni desde el CI.
 
 ### Versión 3.0 (sin conexión, sincronización y visitas): qué SQL ejecutar
 

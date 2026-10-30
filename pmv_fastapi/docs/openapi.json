@@ -1949,7 +1949,7 @@
           "HIST-4.2 Respuestas"
         ],
         "summary": "Recibir Webhook",
-        "description": "Recibe los estados de entrega (enviado, entregado, leído, fallido) y las respuestas del tutor desde WhatsApp.\n\nPúblico (sin sesión) pero protegido por la firma ``X-Hub-Signature-256``, que se exige cuando se configuró\n``WHATSAPP_APP_SECRET`` (403 si es inválida). La respuesta se asocia al recordatorio por el mensaje al que responde\no, si no, por el número del tutor. Lo que no se reconoce se ignora y se cuenta.",
+        "description": "Recibe los estados de entrega (enviado, entregado, leído, fallido) y las respuestas del tutor desde WhatsApp.\n\nPúblico (sin sesión) pero protegido por la firma ``X-Hub-Signature-256``, que siempre se exige (403 si falta o es\ninválida). Falla cerrado: si no se configuró ``WHATSAPP_APP_SECRET`` responde 503 y no procesa nada. La respuesta\nse asocia al recordatorio por el mensaje al que responde o, si no, por el número del tutor. Lo que no se reconoce\nse ignora y se cuenta.",
         "operationId": "recibir_webhook_api_notificaciones_whatsapp_webhook_post",
         "responses": {
           "200": {
@@ -1981,6 +1981,16 @@
               }
             },
             "description": "Unprocessable Content"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Service Unavailable"
           }
         }
       }
