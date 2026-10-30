@@ -144,3 +144,14 @@ Figura heredada del avance 1.5, conservada al resolver el merge (ORQ-004): `diag
 | Avance del Inc. 2 (v1.5.0-inc2-avance) | `pmv_fastapi/` (estructura `app/domain/{model,service}`, `app/ports/{inbound,outbound}`, `app/application`, `app/adapters/{inbound,outbound}`), `pmv_fastapi/CHANGELOG.md`, `pmv_fastapi/docs/adr/ADR-007*`, `ADR-008*`, `pmv_fastapi/docs/evidencias/registro_defectos_inc2.md`, `pmv_fastapi/docs/evidencias/inc2/` |
 
 | Dataset DIRESA Junín (insumo, anonimizado en origen) | `Dataset/` (CSV y diccionario); importador `pmv_fastapi/scripts/importar_dataset_diresa.py`; análisis `herramientas/dataset/analisis_asis.py` |
+
+## Rutas de la Semana 11 (ORQ-009)
+
+| Contenido | Ruta |
+| --- | --- |
+| Guía S11 (CMMI-DEV) | `guias/S11-PSW-GUÍA DE TRABAJO 11.docx` |
+| Entregable vigente | `entregables/semana-11/Entregable_Semana11_Anemia_Junin.md` |
+| Evidencias reutilizadas | `entregables/semana-09/evidencias_capturas/` y `entregables/semana-09/metricas/` |
+| Exportado PDF | `exportados/semana-11/Entregable_Semana11_Anemia_Junin.pdf` |
+| Generador del PDF (Markdown → HTML → Chrome/Edge) | `herramientas/conversion/exportar_s11.py` |
+| Reportes exportados del anexo (Ruff, cobertura y pruebas del 30/10/2026) | `entregables/semana-11/anexos/ruff.txt` y `entregables/semana-11/anexos/cobertura_y_pruebas.txt` |
