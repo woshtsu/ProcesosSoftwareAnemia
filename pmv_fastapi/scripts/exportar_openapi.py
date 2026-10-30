@@ -16,11 +16,28 @@ from app.main import crear_app
 DESTINO = Path(__file__).resolve().parents[1] / "docs" / "openapi.json"
 
 
+DESCRIPCION_422 = "Unprocessable Content"  # nombre vigente del estado 422 (RFC 9110)
+
+
+def _normalizar(contrato: dict) -> dict:
+    """Fija textos que dependen de la versión de Python para que el contrato sea idéntico en 3.11 y 3.13.
+
+    FastAPI toma la descripción del 422 de http.HTTPStatus, que cambió de «Unprocessable Entity»
+    (hasta Python 3.12) a «Unprocessable Content» (Python 3.13).
+    """
+    for operaciones in contrato.get("paths", {}).values():
+        for operacion in operaciones.values():
+            respuesta = operacion.get("responses", {}).get("422")
+            if respuesta is not None and respuesta.get("description") == "Unprocessable Entity":
+                respuesta["description"] = DESCRIPCION_422
+    return contrato
+
+
 def generar() -> str:
     """Contrato OpenAPI como texto JSON estable (sangría de 2 espacios, UTF-8, sin salto de línea final)."""
     app = crear_app("sqlite:///:memory:")  # la base no se usa: solo se necesita el esquema de las rutas
     try:
-        return json.dumps(app.openapi(), indent=2, ensure_ascii=False)
+        return json.dumps(_normalizar(app.openapi()), indent=2, ensure_ascii=False)
     finally:
         app.state.repositorio.engine.dispose()
 

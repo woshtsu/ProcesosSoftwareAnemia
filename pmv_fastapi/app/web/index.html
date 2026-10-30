@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1F4E79">
-  <title>Anemia Junín · Agenda y asistencia</title>
+  <title>Anemia Junín · Recordatorios y barreras</title>
   <link rel="manifest" href="/static/manifest.json">
   <link rel="icon" href="/static/icono.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/static/estilos.css">
@@ -34,10 +34,11 @@
       <img src="/static/icono.svg" alt="" width="32" height="32">
       <div>
         <strong>Anemia Junín</strong>
-        <span>Incremento 2 · v2.0</span>
+        <span>Incremento 4 · v4.0</span>
       </div>
     </div>
     <div class="usuario">
+      <button type="button" id="sync-indicador" class="sync-indicador al-dia" data-testid="indicador-sync" data-pendientes="0" title="Estado de la sincronización (abrir el panel)">Al día</button>
       <a href="#" id="insignia-alertas" class="insignia cero" data-testid="insignia-alertas" title="Controles vencidos (abrir Alertas)">0</a>
       <label id="usuario-demo-label" for="usuario">Usuario de demostración</label>
       <select id="usuario" data-testid="usuario">
@@ -52,12 +53,17 @@
 
   <div id="aviso-referencia" class="aviso-referencia" role="status" data-testid="aviso-fecha-referencia" hidden></div>
 
+  <div id="aviso-cache" class="aviso-referencia aviso-cache" role="status" data-testid="aviso-cache" hidden>Sin conexión con el servidor: se muestran los últimos datos guardados en este dispositivo.</div>
+
   <nav class="pestanas" role="tablist">
     <button class="pestana activa" data-vista="registro" data-testid="tab-registro">Registrar niño</button>
     <button class="pestana" data-vista="seguimiento" data-testid="tab-seguimiento">Seguimiento</button>
     <button class="pestana" data-vista="expediente" data-testid="tab-expediente">Expediente</button>
     <button class="pestana" data-vista="agenda" data-testid="tab-agenda">Agenda</button>
+    <button class="pestana" data-vista="visitas" data-testid="tab-visitas">Visitas</button>
+    <button class="pestana" data-vista="recordatorios" data-testid="tab-recordatorios">Recordatorios</button>
     <button class="pestana" data-vista="alertas" data-testid="tab-alertas">Alertas</button>
+    <button class="pestana" data-vista="sincronizacion" data-testid="tab-sincronizacion">Sincronización</button>
     <button class="pestana" data-vista="reporte" data-testid="tab-reporte">Reporte</button>
   </nav>
 
@@ -180,7 +186,56 @@
       <p class="nota">Los controles cumplidos se muestran atenuados. Los cerrados por recuperación no se listan.</p>
     </section>
 
-    <!-- HIST-2.2 -->
+    <!-- VIS-3.5 -->
+    <section id="vista-visitas" class="vista">
+      <div class="titulo"><h1>Visitas domiciliarias priorizadas</h1><span id="total-visitas" class="chip"></span></div>
+      <div class="filtros tarjeta">
+        <label>Establecimiento
+          <select id="filtro-visitas-establecimiento" data-testid="filtro-visitas-establecimiento"><option value="">Todos</option></select>
+        </label>
+        <label>Mostrar
+          <select id="filtro-visitas-limite" data-testid="filtro-visitas-limite"><option>10</option><option selected>20</option><option>50</option><option>100</option></select>
+        </label>
+        <button id="visitas-consultar" class="primario" data-testid="visitas-consultar">Actualizar</button>
+      </div>
+      <div id="visitas-error" class="alerta" hidden data-testid="visitas-error"></div>
+      <div class="tabla-envoltura tarjeta">
+        <table class="tabla completa" data-testid="visitas-tabla">
+          <thead><tr><th>#</th><th>Niño</th><th>Comunidad</th><th>Clasificación</th><th>Control vencido</th><th>Última visita</th><th>Puntaje</th><th>Visita</th></tr></thead>
+          <tbody id="cuerpo-visitas"></tbody>
+        </table>
+        <p id="sin-visitas" class="vacio" hidden data-testid="sin-visitas">No hay niños en tratamiento por visitar con el filtro elegido.</p>
+      </div>
+      <p class="nota">El puntaje (0 a 100, hasta 115 si el niño tiene barreras críticas) es una propuesta del equipo (ADR-013), no una norma del MINSA: apoya la decisión del personal, no la reemplaza. Pulse un puntaje para ver cómo se calculó.</p>
+    </section>
+
+    <!-- HIST-4.1 y HIST-4.2 -->
+    <section id="vista-recordatorios" class="vista">
+      <div class="titulo"><h1>Recordatorios de control</h1><span id="total-recordatorios" class="chip" data-testid="total-recordatorios"></span></div>
+      <div class="filtros tarjeta">
+        <button id="recordatorios-generar" class="primario" data-testid="recordatorios-generar" title="Genera y envía los recordatorios de hoy (no repite los ya enviados)">Generar recordatorios de hoy</button>
+        <label>Estado
+          <select id="filtro-recordatorio-estado" data-testid="filtro-recordatorio-estado">
+            <option value="">Todos</option><option value="ENVIADO_SIMULADO">Simulado</option><option value="ENVIADO">Enviado</option>
+            <option value="ENTREGADO">Entregado</option><option value="LEIDO">Leído</option><option value="FALLIDO">Fallido</option>
+          </select>
+        </label>
+        <button id="recordatorios-actualizar" class="secundario" data-testid="recordatorios-actualizar">Actualizar</button>
+      </div>
+      <div id="recordatorios-resultado" class="alerta aviso-ok" role="status" hidden data-testid="recordatorios-resultado"></div>
+      <div id="recordatorios-error" class="alerta" hidden data-testid="recordatorios-error"></div>
+      <div id="recordatorios-metricas" class="kpis" data-testid="recordatorios-metricas"></div>
+      <div class="tabla-envoltura tarjeta">
+        <table class="tabla completa" data-testid="recordatorios-tabla">
+          <thead><tr><th>Niño</th><th>Control</th><th>Tipo</th><th>Canal · estado</th><th>Celular</th><th>Respuesta del tutor</th><th></th></tr></thead>
+          <tbody id="cuerpo-recordatorios"></tbody>
+        </table>
+        <p id="sin-recordatorios" class="vacio" hidden data-testid="sin-recordatorios">Aún no hay recordatorios con el filtro elegido. Pulse «Generar recordatorios de hoy».</p>
+      </div>
+      <p class="nota">Los mensajes no incluyen diagnóstico. Si no hay un canal de mensajería configurado, los recordatorios se registran como <strong>simulados</strong>: no sale ningún mensaje real (ADR-014). Los niños del dataset DIRESA no tienen celular y se cuentan como «sin contacto».</p>
+    </section>
+
+    <!-- HIST-2.2 y HIST-4.4 -->
     <section id="vista-alertas" class="vista">
       <div class="titulo"><h1>Alertas de controles vencidos</h1><span id="total-alertas" class="chip"></span></div>
       <div id="alertas-resumen" class="kpis" data-testid="alertas-resumen"></div>
@@ -201,6 +256,37 @@
         </table>
         <p id="sin-alertas" class="vacio" hidden data-testid="sin-alertas">No hay controles vencidos con el filtro elegido.</p>
       </div>
+      <h2 style="margin-top:18px">Barreras críticas <span id="total-alertas-barreras" class="chip" data-testid="total-alertas-barreras"></span></h2>
+      <p class="nota" style="margin:0 0 8px">Niños cuyas barreras de acceso al tratamiento ponen en riesgo su seguimiento (ADR-014). Se calculan con el mismo filtro de comunidad.</p>
+      <div id="alertas-barreras-error" class="alerta" hidden data-testid="alertas-barreras-error"></div>
+      <div class="tabla-envoltura tarjeta">
+        <table class="tabla completa" data-testid="alertas-barreras-tabla">
+          <thead><tr><th>Prioridad</th><th>Niño</th><th>Razón</th><th>Barreras vigentes</th><th>Comunidad</th><th>Celular tutor</th><th>Última clasificación</th></tr></thead>
+          <tbody id="cuerpo-alertas-barreras"></tbody>
+        </table>
+        <p id="sin-alertas-barreras" class="vacio" hidden data-testid="sin-alertas-barreras">No hay niños con barreras críticas.</p>
+      </div>
+    </section>
+
+    <!-- HIST-3.4 -->
+    <section id="vista-sincronizacion" class="vista">
+      <div class="titulo"><h1>Sincronización</h1><span id="sync-resumen" class="chip" data-testid="sync-resumen"></span></div>
+      <div class="filtros tarjeta">
+        <button id="sync-ahora" class="primario" data-testid="sync-ahora">Sincronizar ahora</button>
+        <span id="sync-ultima" class="nota" data-testid="sync-ultima"></span>
+      </div>
+      <div id="sync-aviso" class="alerta" hidden data-testid="sync-aviso"></div>
+      <h2>Pendientes en este dispositivo</h2>
+      <div class="tabla-envoltura tarjeta">
+        <table class="tabla completa" data-testid="sync-tabla">
+          <thead><tr><th>Registro</th><th>Hora local</th><th>Estado</th><th>Último intento</th><th></th></tr></thead>
+          <tbody id="cuerpo-sync"></tbody>
+        </table>
+        <p id="sync-vacio" class="vacio" hidden data-testid="sync-vacio">No hay registros pendientes: todo está sincronizado.</p>
+      </div>
+      <h2 style="margin-top:18px">Conflictos con el servidor <span id="conflictos-total" class="chip" data-testid="conflictos-total"></span></h2>
+      <p class="nota" style="margin:0 0 8px">Un conflicto significa que el servidor ya tenía un dato distinto. Nada se sobrescribe sin que usted lo decida.</p>
+      <div id="conflictos" data-testid="conflictos"></div>
     </section>
 
     <!-- HU-05 -->
@@ -238,6 +324,10 @@
           </select>
         </div>
         <div class="campo"><label for="asistencia-detalle">Detalle (opcional)</label><input id="asistencia-detalle" maxlength="150" data-testid="asistencia-detalle"></div>
+        <div class="campo">
+          <label for="asistencia-barrera">Barrera asociada (opcional)</label>
+          <select id="asistencia-barrera" class="select-barrera" data-vacio="Sin barrera" data-testid="asistencia-barrera"></select>
+        </div>
       </div>
       <small id="asistencia-error" class="error" data-testid="asistencia-error"></small>
       <div class="acciones">
@@ -247,9 +337,80 @@
     </form>
   </div>
 
+  <!-- VIS-3.5: registro de una visita domiciliaria -->
+  <div id="modal-visita" class="modal" hidden data-testid="modal-visita">
+    <form id="form-visita" class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="visita-titulo" novalidate>
+      <h2 id="visita-titulo">Registrar visita domiciliaria</h2>
+      <p id="visita-detalle" class="nota"></p>
+      <div class="campo"><label for="visita-fecha">Fecha de la visita</label><input id="visita-fecha" name="fecha" type="date" data-testid="visita-fecha"></div>
+      <div class="campo"><label for="visita-resultado">Resultado</label>
+        <select id="visita-resultado" name="resultado" data-testid="visita-resultado">
+          <option value="REALIZADA">Realizada</option><option value="NO_ENCONTRADO">No se encontró a la familia</option><option value="RECHAZADA">La familia rechazó la visita</option>
+        </select></div>
+      <div class="campo" id="campo-suplemento"><label for="visita-suplemento">¿El niño consume el suplemento?</label>
+        <select id="visita-suplemento" name="consume_suplemento" data-testid="visita-suplemento">
+          <option value="DESCONOCIDO">No se sabe</option><option value="SI">Sí</option><option value="NO">No</option>
+        </select></div>
+      <div class="campo" id="campo-visita-barrera" hidden><label for="visita-barrera">Barrera asociada (opcional)</label>
+        <select id="visita-barrera" class="select-barrera" data-vacio="Sin barrera" data-testid="visita-barrera"></select></div>
+      <div class="campo"><label for="visita-observaciones">Observaciones (opcional, hasta 500 caracteres; con «Otra» barrera, describa aquí la barrera)</label>
+        <input id="visita-observaciones" name="observaciones" maxlength="500" data-testid="visita-observaciones"></div>
+      <small id="visita-error" class="error" data-testid="visita-error"></small>
+      <div class="acciones">
+        <button type="button" id="visita-cancelar" class="secundario" data-testid="visita-cancelar">Cancelar</button>
+        <button type="submit" id="visita-confirmar" class="primario" data-testid="visita-confirmar">Registrar visita</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- HIST-4.2: respuesta del tutor a un recordatorio -->
+  <div id="modal-respuesta" class="modal" hidden data-testid="modal-respuesta">
+    <form id="form-respuesta" class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="respuesta-titulo" novalidate>
+      <h2 id="respuesta-titulo">Registrar respuesta del tutor</h2>
+      <p id="respuesta-detalle" class="nota"></p>
+      <div class="campo"><label for="respuesta-opcion">Respuesta del tutor</label>
+        <select id="respuesta-opcion" data-testid="respuesta-opcion">
+          <option value="CONFIRMA">Confirma que asistirá</option><option value="NO_PUEDE">No puede asistir</option><option value="REPROGRAMAR">Pide reprogramar</option>
+        </select></div>
+      <div class="campo" id="campo-respuesta-fecha" hidden><label for="respuesta-fecha">Nueva fecha</label>
+        <input id="respuesta-fecha" type="date" data-testid="respuesta-fecha"></div>
+      <div id="campo-respuesta-barrera" hidden>
+        <div class="campo"><label for="respuesta-barrera">Motivo: barrera de acceso (opcional)</label>
+          <select id="respuesta-barrera" class="select-barrera" data-vacio="No se indicó" data-testid="respuesta-barrera"></select></div>
+        <div class="campo"><label for="respuesta-barrera-detalle">Detalle (obligatorio con «Otra»)</label>
+          <input id="respuesta-barrera-detalle" maxlength="200" data-testid="respuesta-barrera-detalle"></div>
+      </div>
+      <small id="respuesta-error" class="error" data-testid="respuesta-error"></small>
+      <div class="acciones">
+        <button type="button" id="respuesta-cancelar" class="secundario" data-testid="respuesta-cancelar">Cancelar</button>
+        <button type="submit" id="respuesta-confirmar" class="primario" data-testid="respuesta-confirmar">Registrar respuesta</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- HIST-4.3: registro de una barrera de acceso al tratamiento -->
+  <div id="modal-barrera" class="modal" hidden data-testid="modal-barrera">
+    <form id="form-barrera" class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="barrera-titulo" novalidate>
+      <h2 id="barrera-titulo">Registrar barrera de acceso</h2>
+      <p id="barrera-detalle-nino" class="nota"></p>
+      <div class="campo"><label for="barrera-tipo">Barrera</label>
+        <select id="barrera-tipo" class="select-barrera" data-vacio="Seleccione una barrera" data-testid="barrera-tipo"></select></div>
+      <div class="campo"><label for="barrera-detalle">Detalle (obligatorio con «Otra», hasta 200 caracteres)</label>
+        <input id="barrera-detalle" maxlength="200" data-testid="barrera-detalle"></div>
+      <div class="campo"><label for="barrera-fecha">Fecha</label><input id="barrera-fecha" type="date" data-testid="barrera-fecha"></div>
+      <small id="barrera-error" class="error" data-testid="barrera-error"></small>
+      <div class="acciones">
+        <button type="button" id="barrera-cancelar" class="secundario" data-testid="barrera-cancelar">Cancelar</button>
+        <button type="submit" id="barrera-confirmar" class="primario" data-testid="barrera-confirmar">Registrar barrera</button>
+      </div>
+    </form>
+  </div>
+
   <div id="toast" class="toast" hidden></div>
   </div>
   <script src="/static/auth.js"></script>
+  <script src="/static/cola.js"></script>
+  <script src="/static/sync.js"></script>
   <script src="/static/app.js"></script>
 </body>
 </html>

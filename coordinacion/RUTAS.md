@@ -145,6 +145,8 @@ Figura heredada del avance 1.5, conservada al resolver el merge (ORQ-004): `diag
 
 | Dataset DIRESA Junín (insumo, anonimizado en origen) | `Dataset/` (CSV y diccionario); importador `pmv_fastapi/scripts/importar_dataset_diresa.py`; análisis `herramientas/dataset/analisis_asis.py` |
 
+| Incremento 3 (v3.0.0-inc3, T-019) | Cola y sincronización `pmv_fastapi/app/web/{cola,sync,sw}.js`; dominio `pmv_fastapi/app/domain/service/{conflictos,operaciones,visitas}.py`; migración `pmv_fastapi/db/03_migracion_v3_0.sql`; decisiones `pmv_fastapi/docs/adr/ADR-012*` y `ADR-013*`; E2E `pmv_fastapi/tests/e2e/test_inc3_sin_conexion.py`; informe `coordinacion/informes/2026-10-30_desarrollador_T-019.md` |
+
 ## Rutas de la Semana 11 (ORQ-009)
 
 | Contenido | Ruta |

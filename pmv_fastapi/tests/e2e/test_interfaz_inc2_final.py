@@ -116,7 +116,8 @@ def consultar_agenda(pg, desde, hasta, comunidad=None):
     if comunidad:
         pg.get_by_test_id("filtro-agenda-comunidad").select_option(comunidad)
     pg.wait_for_function(
-        "([d, h]) => document.querySelector('[data-testid=agenda-personal-resumen]').textContent.includes('fecha de referencia')"
+        "([d, h]) => !document.querySelector('[data-testid=agenda-personal-resumen]').dataset.cargando"
+        " && document.querySelector('[data-testid=agenda-personal-resumen]').textContent.includes('fecha de referencia')"
         " && document.querySelector('#agenda-hasta').value === h && document.querySelector('#agenda-desde').value === d",
         arg=[desde.isoformat(), hasta.isoformat()],
     )
@@ -331,7 +332,7 @@ def test_cp186_dataset_agenda_y_alertas_usan_la_fecha_de_referencia(pagina_datas
     assert "fecha de referencia 30/06/2024" in pg.get_by_test_id("agenda-personal-resumen").inner_text()
     api = httpx.get(url_dataset + "/api/agenda", params={"desde": "2024-06-01", "hasta": "2024-06-30"}).json()
     assert api["resumen"]["total"] >= 1
-    assert pg.locator("tr[data-codigo]").count() == api["resumen"]["total"]
+    expect(pg.locator("tr[data-codigo]")).to_have_count(api["resumen"]["total"])
     nombres = pg.get_by_test_id("agenda-personal-nino").all_inner_texts()
     assert nombres and all(n.startswith("Registro DJ-") for n in nombres)  # nadie sin nombre legible
     pg.get_by_test_id("tab-alertas").click()

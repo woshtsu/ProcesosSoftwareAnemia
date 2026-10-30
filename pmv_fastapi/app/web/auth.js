@@ -63,6 +63,8 @@ window.Auth = (() => {
     try {
       const r = await request("/api/auth/logout", { method: "POST" });
       if (!r.ok && r.status !== 503) throw new Error("No se pudo cerrar la sesión. Inténtalo nuevamente.");
+      // Los datos clínicos guardados para uso sin conexión no deben quedar a disposición de la siguiente persona.
+      try { await Promise.all((await caches.keys()).filter((k) => k.startsWith("anemia-junin-datos-")).map((k) => caches.delete(k))); } catch (_) {}
       location.reload();
     } catch (e) { alert(e.message || "Sin conexión. No se pudo cerrar la sesión."); $("#cerrar-sesion").disabled = false; }
   });

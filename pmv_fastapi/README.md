@@ -1,4 +1,4 @@
-# Anemia Junín — Incremento 2 (100 %)
+# Anemia Junín — Incremento 4 (v4.0.0-inc4)
 
 ## Inicio de sesión con Supabase Auth
 
@@ -77,6 +77,39 @@ Habilitador: estructura de puertos y adaptadores explícita y verificada con pru
 - **Registros del dataset**: sin DNI ni nombres se muestran como «Registro DJ-00002 (dataset anonimizado)» (`expediente-nombre`), con su código (`expediente-codigo`) y origen (`expediente-origen`), la severidad del HIS (`clasificacion-his`) y «no registrado» donde no hay peso ni talla (`sin-antropometria`). El buscador y la pestaña «Expediente» aceptan DNI o código.
 - **Aviso de fecha de referencia** (`aviso-fecha-referencia`): visible solo cuando el servidor se inicia con `FECHA_REFERENCIA`; las fechas por defecto de los formularios salen del servidor.
 
+## Incremento 3 — Sin conexión, sincronización y visita priorizada
+
+| Historia | Descripción | Estado |
+|---|---|---|
+| HIST-3.1 | Registrar sin conexión (cola en IndexedDB, service worker) | ✅ |
+| HIST-3.2 | Sincronizar al reconectar (`POST /api/sincronizacion`, idempotente) | ✅ |
+| HIST-3.3 | Resolver conflictos sin sobrescribir a ciegas | ✅ |
+| HIST-3.4 | Ver lo pendiente y los conflictos (indicador y pestaña «Sincronización») | ✅ |
+| VIS-3.5 | Visita domiciliaria priorizada (pestaña «Visitas») | ✅ |
+
+- **Sin conexión (ADR-012)**: niño con evaluación inicial, evaluación, asistencia y visita se guardan en el dispositivo (`app/web/cola.js`) con `id_operacion` UUID, `id_dispositivo` y fecha local, y se envían solos al volver la red (`app/web/sync.js`) o con «Sincronizar ahora». El service worker (`app/web/sw.js`) precachea el shell y sirve las lecturas con red primero y caché de respaldo; la aplicación abre sin conexión. El caché de datos se borra al cerrar sesión.
+- **Resultados por operación**: `APLICADA`, `DUPLICADA` (reenviar no duplica), `CONFLICTO` (el servidor ya tenía un dato distinto; queda pendiente de resolver con `CONSERVAR_SERVIDOR`, `APLICAR_CLIENTE` o `DESCARTAR`) y `RECHAZADA` (error de validación; se corrige o se descarta). El servidor es la fuente de verdad.
+- **Visita priorizada (ADR-013)**: puntaje de 0 a 100 con severidad (hasta 40), control vencido (30), inasistencias de los últimos 90 días (15) y días desde la última visita (15; sin visita, el máximo). **Los pesos son una propuesta del equipo, no una norma del MINSA.**
+- **Qué SQL ejecutar**: ver `docs/DESPLIEGUE.md` (`db/03_migracion_v3_0.sql` migra una base 2.0).
+- **Interfaz** (`data-testid`): `indicador-sync` (con `data-pendientes`), pestañas `tab-visitas` y `tab-sincronizacion`, `visita-priorizada`, `puntaje`, `btn-visitar`, `modal-visita`, `pendiente`, `conflicto`, `aviso-cache`.
+
+## Incremento 4 — Recordatorios por WhatsApp y barreras
+
+| Historia | Descripción | Estado |
+|---|---|---|
+| HIST-4.1 | Enviar recordatorio de control (WhatsApp con respaldo SMS; simulado por defecto) | ✅ |
+| HIST-4.2 | Registrar la confirmación del tutor (personal o webhook de WhatsApp) | ✅ |
+| HIST-4.3 | Registrar barreras de acceso al tratamiento (también sin conexión) | ✅ |
+| HIST-4.4 | Alertar barreras críticas y sumarlas a la visita priorizada | ✅ |
+
+- **Puerto `Notificador` (ADR-014)**: simulado (por defecto), WhatsApp Cloud API con mensaje de plantilla, SMS genérico y composición con respaldo. Se elige por variables de entorno (`.env.example`, `docs/DESPLIEGUE.md`); **sin ellas no sale ningún mensaje** y la pestaña «Recordatorios» rotula cada envío como SIMULADO. Las pruebas usan `httpx.MockTransport`: nunca hay llamadas reales a Meta ni a proveedores SMS.
+- **Qué se recuerda**: control pendiente de hoy, control cuya ventana abre en 3 días o menos y control vencido. Idempotente (un recordatorio por niño, control y tipo), reintenta los fallidos y **no escribe a los niños del dataset DIRESA** (no tienen celular: «sin contacto»). El mensaje no incluye diagnóstico.
+- **Respuesta del tutor**: `CONFIRMA`, `NO_PUEDE` o `REPROGRAMAR` (fecha de hasta 90 días), registrada por el personal o recibida por el webhook `/api/notificaciones/whatsapp/webhook` (verificación con token y firma `X-Hub-Signature-256`). Con `NO_PUEDE` se puede registrar la barrera en el mismo acto.
+- **Barreras**: 8 tipos (`OTRA` exige detalle) desde el expediente, la respuesta `NO_PUEDE`, la inasistencia o la visita no lograda. Es **crítica** (alerta en la pestaña «Alertas») si es un rechazo del tratamiento o un efecto adverso del suplemento, si hay dos o más barreras distintas en 60 días, o si hay una barrera vigente (90 días) con anemia moderada o severa y un control vencido. **Reglas propuestas por el equipo, no validadas por la microred.**
+- **Visita priorizada `VISITA-V2`**: los niños con barreras críticas suman el componente `BARRERA_CRITICA` (15 o 8 puntos); el puntaje va de 0 a 100 (hasta 115 con barreras críticas).
+- **Qué SQL ejecutar**: ver `docs/DESPLIEGUE.md` (`db/04_migracion_v4_0.sql` migra una base 3.0).
+- **Interfaz** (`data-testid`): pestaña `tab-recordatorios`, `recordatorios-generar`, `recordatorios-resultado`, `recordatorios-metricas`, `recordatorio`, `marca-simulado`, `btn-responder`, `modal-respuesta`, `btn-barrera-nino`, `modal-barrera`, `barrera-pendiente`, `alerta-barrera`, `asistencia-barrera`, `visita-barrera`.
+
 ## Arquitectura
 
 Arquitectura **hexagonal** en un monolito modular (ADR-001 y ADR-008). Las dependencias apuntan siempre hacia el dominio y las verifican las pruebas de `tests/arquitectura/`.
@@ -86,10 +119,11 @@ app/
 ├── domain/model/        entidades y objetos de valor puros (Nino, Evaluacion, ControlProgramado, AsistenciaControl, AgendaPersonal, OrigenDatos…)
 ├── domain/service/      reglas clínicas, validaciones, agenda, agenda del personal, asistencia y alertas (funciones puras)
 ├── ports/inbound/       casos de uso como typing.Protocol (GestionarExpediente, GenerarAgenda, ConsultarAgendaPersonal, RegistrarAsistencia, ImportarDataset…)
-├── ports/outbound/      RepositorioNinos y Reloj
-├── application/         implementación de los casos de uso (servicio_expediente, servicio_agenda, servicio_agenda_personal, servicio_asistencia, servicio_alertas, servicio_importacion, servicio_contexto)
+├── ports/outbound/      RepositorioNinos, Reloj, Notificador, RepositorioRecordatorios y RepositorioBarreras
+├── application/         implementación de los casos de uso (servicio_expediente, servicio_agenda, servicio_agenda_personal, servicio_asistencia, servicio_alertas, servicio_importacion, servicio_contexto, servicio_recordatorios, servicio_barreras)
 ├── adapters/inbound/http/          FastAPI y DTO; depende solo de ports.inbound y domain.model
 ├── adapters/outbound/persistence/  SQLAlchemy (PostgreSQL/SQLite) y en memoria
+├── adapters/outbound/notificaciones/  Notificador simulado, WhatsApp Cloud, SMS y con respaldo
 ├── adapters/outbound/reloj_sistema.py   reloj en hora de Perú · reloj_fijo.py reloj con FECHA_REFERENCIA
 ├── web/                 cliente PWA (HTML/CSS/JS, service worker, Swagger UI local)
 └── main.py              raíz de composición (único módulo que conoce las implementaciones)
@@ -100,7 +134,7 @@ tests/
 ├── e2e/                 Playwright con servidor real y datos sintéticos
 └── rendimiento/         Locust y micro-benchmark de latencia
 scripts/                 cargar_datos_prueba, importar_dataset_diresa (+ importador_diresa/), exportar_openapi
-db/                      esquema PostgreSQL 2.0 y migración 02_migracion_v2_0.sql
+db/                      esquema PostgreSQL 4.0 y migraciones 02_migracion_v2_0.sql, 03_migracion_v3_0.sql y 04_migracion_v4_0.sql
 ```
 
 ## API
@@ -121,6 +155,18 @@ Contrato completo en `docs/openapi.json` (se regenera con `python -m scripts.exp
 | **`GET /api/agenda?desde=&hasta=&establecimiento=&comunidad=`** | **Nuevo (HIST-2.3)**: agenda del personal; por defecto la semana de la fecha de referencia; máximo 31 días (422 si `desde` > `hasta`, el formato es inválido o el rango supera 31 días); totales por día y del rango; controles cumplidos, pendientes y vencidos |
 | **`POST /api/ninos/{id}/controles/{codigo}/asistencia`** | **Nuevo (HIST-2.4)**: `{fecha_programada, estado: ASISTIO\|NO_ASISTIO, motivo?, evaluacion_id?}`; 201; 404 (niño o control inexistente); 409 (ya registrada, control cumplido o cerrado); 422 (fecha futura, motivo faltante) |
 | **`GET /api/ninos/{id}/asistencias`** | **Nuevo (HIST-2.4)**: asistencias registradas del niño |
+| **`POST /api/sincronizacion`** | **Nuevo (HIST-3.2)**: lote de 1 a 200 operaciones `{id_operacion, tipo, id_dispositivo, fecha_local, id_cliente?, nino_ref?, datos}`; devuelve el resultado por operación (`APLICADA`, `DUPLICADA`, `CONFLICTO`, `RECHAZADA`) y un resumen; 422 si el lote está vacío, supera 200 o una operación es inválida |
+| **`GET /api/sincronizacion/conflictos?estado=`** | **Nuevo (HIST-3.3)**: conflictos con `datos_cliente` y `datos_servidor`; `estado` PENDIENTE o RESUELTO |
+| **`POST /api/sincronizacion/conflictos/{id}/resolver`** | **Nuevo (HIST-3.3)**: `{resolucion: CONSERVAR_SERVIDOR\|APLICAR_CLIENTE\|DESCARTAR}`; 404; 409 si ya está resuelto; 422 si el dominio no permite aplicar el dato del dispositivo |
+| **`POST /api/ninos/{id}/visitas`** · **`GET /api/ninos/{id}/visitas`** | **Nuevo (VIS-3.5)**: registrar una visita `{fecha, resultado: REALIZADA\|NO_ENCONTRADO\|RECHAZADA, consume_suplemento?, observaciones?}` (201; 404; 409 si ya hay una ese día; 422) y listarlas |
+| **`GET /api/visitas/priorizadas?establecimiento=&limite=`** | **Nuevo (VIS-3.5)**: niños en tratamiento por puntaje con sus componentes; `limite` de 1 a 200 (20 por defecto) |
+| **`POST /api/ninos/{id}/barreras`** · **`GET /api/ninos/{id}/barreras`** | **Nuevo (HIST-4.3)**: registrar una barrera `{tipo, detalle?, fuente?, fecha?}` (201; 404; 409 si se repite tipo, fecha y fuente; 422) y listarlas |
+| **`GET /api/alertas/barreras?comunidad=&prioridad=`** | **Nuevo (HIST-4.4)**: niños con barreras críticas, prioridad ALTA o MEDIA, razones y barreras vigentes; 422 si la prioridad no es ALTA o MEDIA |
+| **`POST /api/recordatorios/generar`** | **Nuevo (HIST-4.1)**: genera y envía el lote de hoy (`{establecimiento?}`); devuelve enviados, fallidos, `omitidos_sin_contacto` y `omitidos_ya_enviado`; idempotente |
+| **`GET /api/recordatorios?estado=&desde=&nino_id=&limite=`** | **Nuevo (HIST-4.1)**: recordatorios con el celular enmascarado; `limite` de 1 a 1000; 422 si el estado o el límite son inválidos |
+| **`GET /api/recordatorios/metricas?desde=&hasta=`** | **Nuevo (HIST-4.1)**: tasas de envío, entrega (solo envíos reales), respuesta y confirmación, en total y por canal |
+| **`POST /api/recordatorios/{id}/respuesta`** | **Nuevo (HIST-4.2)**: `{respuesta: CONFIRMA\|NO_PUEDE\|REPROGRAMAR, fecha_reprogramada?, barrera?}`; 404; 409 si ya tiene respuesta; 422 |
+| **`GET`/`POST /api/notificaciones/whatsapp/webhook`** | **Nuevo (HIST-4.2)**: verificación (`hub.mode`, `hub.verify_token`, `hub.challenge`; 403 si no coincide) y recepción de estados y respuestas, públicos y protegidos por la firma `X-Hub-Signature-256` (403 si es inválida; 422 si el cuerpo no es JSON) |
 
 Cambios de contrato en la 2.0 (aditivos salvo lo indicado): `dni`, `nombres`, `apellidos`, `sexo`, `tutor_nombre` y `tutor_celular` pueden ser `null` (solo en niños del dataset); se agregan `nombre_completo`, `origen`, `codigo_origen`, `provincia`, `red` y `microred`; las evaluaciones agregan `clasificacion_origen` y su peso y talla pueden ser `null`. `POST /api/ninos` siempre crea el origen `SISTEMA` y exige todos los campos como antes.
 
@@ -200,6 +246,26 @@ locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 \
        --headless -u 50 -r 10 -t 60s --csv docs/evidencias/carga/carga          # carga
 ```
 
+Resultados de la versión `4.0.0-inc4` (reproducibles con los comandos de arriba; el E2E usa `pytest tests/e2e`):
+
+| Control | Resultado |
+|---|---|
+| ruff | 0 hallazgos; formato correcto |
+| pytest (unitarias, integración, arquitectura) | **660 pruebas en verde**: 416 unitarias, 219 de integración (SQLite) y 25 de arquitectura (161 nuevas respecto de la 3.0) |
+| Cobertura de `app/` | **99,79 %**; 100 % en todo lo nuevo del Incremento 4 (quedan `autenticacion.py` con 94 % y `supabase_auth.py` con 97 %, anteriores) |
+| E2E (Playwright, Chromium) | **28 en verde**: 24 anteriores y 4 nuevas (recordatorios simulados con respuesta `NO_PUEDE` y alerta de barrera crítica, barrera sin conexión que sincroniza, barrera asociada a una inasistencia, barrera de una visita no lograda con su componente en el puntaje) |
+| Contrato OpenAPI | `docs/openapi.json` al día (29 rutas) |
+
+Resultados de la versión `3.0.0-inc3` (reproducibles con los comandos de arriba; el E2E usa `pytest tests/e2e`):
+
+| Control | Resultado |
+|---|---|
+| ruff | 0 hallazgos; formato correcto |
+| pytest (unitarias, integración, arquitectura) | **499 pruebas en verde**: 331 unitarias, 147 de integración (SQLite; también en PostgreSQL 16) y 21 de arquitectura |
+| Cobertura de `app/` | **99,70 %**; 100 % en todo lo nuevo del Incremento 3 (quedan `autenticacion.py` con 94 % y `supabase_auth.py` con 97 %, anteriores) |
+| E2E (Playwright, Chromium) | **24 en verde**: 17 anteriores y 7 nuevas (registro y control sin conexión que sincronizan, recarga sin conexión desde caché, datos incompletos sin conexión, asistencia sin conexión, visita priorizada en línea y sin conexión, conflicto resuelto desde el panel) |
+| Contrato OpenAPI | `docs/openapi.json` al día |
+
 Resultados de la versión `v2.0.0-inc2` (salidas completas en `docs/evidencias/inc2/`):
 
 | Control | Resultado |
@@ -231,7 +297,9 @@ El pipeline `.github/workflows/ci.yml` ejecuta lint, pruebas con cobertura (incl
 - Los parámetros de `ESQUEMA_AGENDA_V1` (meses de los dosajes, tolerancias de −15/+30 días, umbrales de prioridad) y los puntos de corte clínicos deben ser confirmados por la microred antes del uso clínico.
 - La agenda y las alertas se calculan en cada consulta (costo lineal en los niños activos: ≈ 120 a 155 ms con 1 000 niños en SQLite); se materializarán si se supera el criterio de ADR-007.
 - Supabase Auth implementado (ADR-011). Pendientes: roles y permisos por establecimiento; en modo demo el selector `X-Usuario` sigue siendo solo auditoría sintética.
-- El registro definitivo requiere conexión; la cola de sincronización offline es alcance del INC-3.
+- Sin conexión solo se guardan en el dispositivo el registro de un niño con su evaluación inicial, las evaluaciones, las asistencias, las visitas (INC-3, ADR-012) y las barreras (INC-4); editar un expediente y dar de alta requieren conexión. La clasificación de un niño registrado sin conexión aparece al sincronizar.
+- Los pesos del puntaje de visitas priorizadas (ADR-013, incluido `BARRERA_CRITICA`) son una propuesta del equipo y deben validarse con la microred.
+- Recordatorios (INC-4, ADR-014): sin credenciales de Meta el envío es simulado; la plantilla de WhatsApp debe ser aprobada por Meta; el webhook falla cerrado (503 sin `WHATSAPP_APP_SECRET`; 403 con firma ausente o inválida); las respuestas por SMS no se reciben; la generación es manual y requiere conexión, igual que registrar la respuesta de un tutor (solo las barreras se guardan sin conexión). Las reglas de barreras críticas y su vigencia de 90 días no están validadas por la microred.
 - Los diagramas de `docs/diagramas/` corresponden a la versión `v1.0-PMV` y no se regeneraron para esta estructura.
 - Las fechas del sistema se interpretan en hora de Perú (UTC-5, sin horario de verano).
 

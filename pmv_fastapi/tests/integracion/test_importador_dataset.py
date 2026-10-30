@@ -178,7 +178,7 @@ def test_cp159_importacion_completa_por_cli_con_reporte_json(base, tmp_path, cap
     assert ejecutar("--completo", "--reiniciar", "--reporte", str(reporte)) == 0
     r = json.loads(reporte.read_text(encoding="utf-8"))
     assert (r["modo"], r["filas_leidas"], r["ninos_importados"], r["ninos_omitidos"]) == ("completo", 20, 18, 2)
-    assert r["fecha_referencia"] == "2024-06-30" and r["version"] == "2.0.0-inc2"
+    assert r["fecha_referencia"] == "2024-06-30" and r["version"] == "4.0.0-inc4"
     assert r["evaluaciones_importadas"] == {
         "total": 42,
         "por_tipo": {"CONTROL_1_MES": 11, "CONTROL_3_MESES": 9, "CONTROL_6_MESES": 4, "DIAGNOSTICO": 18},
