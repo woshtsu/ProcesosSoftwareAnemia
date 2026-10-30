@@ -15,6 +15,11 @@ validarse con la microred). Es determinista y la suma de sus cuatro componentes 
   * INASISTENCIAS registradas (RF-09) cuya fecha programada cae en los últimos 90 días: 5 puntos cada una, hasta 15.
   * ULTIMA_VISITA: hasta 15 puntos, proporcionales a los días desde la última visita (tope de 90 días); un niño sin
     ninguna visita recibe el máximo.
+Desde la versión 4.0 (VISITA-V2, ADR-013) se suma un quinto componente solo a los niños con barreras críticas
+(HIST-4.4, ``domain/service/barreras.py``):
+  * BARRERA_CRITICA: 15 puntos si su alerta de barreras es de prioridad ALTA y 8 si es MEDIA. Un niño sin barreras
+    críticas no lleva este componente, de modo que su puntaje no cambia (sigue de 0 a 100) y el máximo con barreras
+    es 115.
 Solo se priorizan los niños en tratamiento: activos cuya última evaluación tiene anemia.
 """
 
@@ -22,7 +27,9 @@ from dataclasses import dataclass, field
 from datetime import date, timedelta
 
 from app.domain.model.agenda import AgendaNino, EstadoControl
+from app.domain.model.alertas import Prioridad
 from app.domain.model.asistencia import EstadoAsistencia
+from app.domain.model.barrera import AlertaBarrera
 from app.domain.model.clasificacion import Clasificacion
 from app.domain.model.entidades import Nino
 from app.domain.model.errores import ErrorCampo
@@ -51,11 +58,19 @@ class PesosPrioridadVisita:
     dias_ventana_inasistencias: int = 90
     maximo_ultima_visita: float = 15.0
     dias_tope_ultima_visita: int = 90
+    puntos_barrera_critica: dict[Prioridad, float] = field(default_factory=dict)  # por prioridad de la alerta (V2)
 
 
 PESOS_V1 = PesosPrioridadVisita(
     version="VISITA-V1",
     por_severidad={Clasificacion.SEVERA: 40.0, Clasificacion.MODERADA: 25.0, Clasificacion.LEVE: 10.0},
+)
+
+# V2 (INC-4): mismos pesos que V1 más el componente de barreras críticas. Propuesta del equipo, no norma del MINSA.
+PESOS_V2 = PesosPrioridadVisita(
+    version="VISITA-V2",
+    por_severidad=PESOS_V1.por_severidad,
+    puntos_barrera_critica={Prioridad.ALTA: 15.0, Prioridad.MEDIA: 8.0},
 )
 
 
@@ -122,9 +137,17 @@ def _proporcional(valor: int, tope: int, maximo: float) -> float:
 
 
 def priorizar_nino(
-    nino: Nino, agenda: AgendaNino, ultima_visita: date | None, hoy: date, pesos: PesosPrioridadVisita = PESOS_V1
+    nino: Nino,
+    agenda: AgendaNino,
+    ultima_visita: date | None,
+    hoy: date,
+    pesos: PesosPrioridadVisita = PESOS_V2,
+    alerta_barrera: AlertaBarrera | None = None,
 ) -> NinoPriorizado:
-    """Puntaje y componentes de un niño en tratamiento (quien llama filtra antes con ``en_tratamiento``)."""
+    """Puntaje y componentes de un niño en tratamiento (quien llama filtra antes con ``en_tratamiento``).
+
+    ``alerta_barrera`` es la alerta de barreras críticas del niño, si la tiene (HIST-4.4): suma el componente
+    BARRERA_CRITICA."""
     clasificacion = nino.ultima_evaluacion.clasificacion
     atrasos = [c.dias_vencido or 0 for c in agenda.controles if c.estado == EstadoControl.VENCIDO]
     dias_vencido = max(atrasos, default=0)
@@ -165,6 +188,16 @@ def priorizar_nino(
             pesos.maximo_ultima_visita,
         ),
     )
+    if alerta_barrera is not None:
+        componentes += (
+            ComponentePuntaje(
+                "BARRERA_CRITICA",
+                "Barreras críticas",
+                "; ".join(r.descripcion for r in alerta_barrera.razones),
+                pesos.puntos_barrera_critica[alerta_barrera.prioridad],
+                max(pesos.puntos_barrera_critica.values()),
+            ),
+        )
     return NinoPriorizado(
         nino_id=nino.id,
         dni=nino.dni,

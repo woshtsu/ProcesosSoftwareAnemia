@@ -33,6 +33,7 @@ _ASISTENCIA = {
     "evaluacion_id": "texto",
 }
 _VISITA = {"fecha": "fecha", "resultado": "texto", "consume_suplemento": "texto", "observaciones": "texto"}
+_BARRERA = {"tipo": "texto", "detalle": "texto", "fuente": "texto", "fecha": "fecha"}
 
 _MENSAJE = {
     "fecha": "Fecha inválida (use AAAA-MM-DD).",
@@ -80,7 +81,7 @@ def normalizar_datos(tipo: str, datos: dict) -> tuple[dict, list[ErrorCampo]]:
     """Datos de la operación con los tipos del dominio y los errores de formato (lista vacía si todo está bien).
 
     Resultado según el tipo: REGISTRAR_NINO -> ``{"nino": {...}, "evaluacion": {...}}``; REGISTRAR_EVALUACION,
-    REGISTRAR_ASISTENCIA y REGISTRAR_VISITA -> el diccionario plano de campos.
+    REGISTRAR_ASISTENCIA, REGISTRAR_VISITA y REGISTRAR_BARRERA -> el diccionario plano de campos.
     """
     errores: list[ErrorCampo] = []
     if tipo == TipoOperacion.REGISTRAR_NINO:
@@ -91,6 +92,7 @@ def normalizar_datos(tipo: str, datos: dict) -> tuple[dict, list[ErrorCampo]]:
         TipoOperacion.REGISTRAR_EVALUACION: _EVALUACION,
         TipoOperacion.REGISTRAR_ASISTENCIA: _ASISTENCIA,
         TipoOperacion.REGISTRAR_VISITA: _VISITA,
+        TipoOperacion.REGISTRAR_BARRERA: _BARRERA,
     }.get(tipo)
     if esquema is None:
         return {}, [ErrorCampo("tipo", "Tipo de operación desconocido.")]

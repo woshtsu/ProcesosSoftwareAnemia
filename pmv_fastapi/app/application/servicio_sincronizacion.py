@@ -3,13 +3,14 @@
 El dispositivo guarda sus operaciones en una cola local con un ``id_operacion`` (UUID). Al reconectar las envía en un
 lote; este servicio las procesa en orden de fecha local y es idempotente: una operación ya procesada se responde como
 DUPLICADA sin tocar nada. Para crear los registros reutiliza los mismos casos de uso del registro en línea (expediente,
-asistencia y visitas), de modo que las reglas clínicas y de negocio no se repiten. El servidor es la fuente de verdad:
-cuando ya tiene un dato distinto no lo sobrescribe, abre un conflicto que una persona resuelve después.
+asistencia, visitas y barreras), de modo que las reglas clínicas y de negocio no se repiten. El servidor es la fuente
+de verdad: cuando ya tiene un dato distinto no lo sobrescribe, abre un conflicto que una persona resuelve después.
 """
 
 from app.domain.model.asistencia import EstadoAsistencia
 from app.domain.model.errores import (
     ConflictoAsistencia,
+    ConflictoBarrera,
     ConflictoVisita,
     ConflictoYaResuelto,
     ErrorCampo,
@@ -47,6 +48,7 @@ from app.domain.service.operaciones import normalizar_datos, normalizar_fecha_lo
 from app.domain.service.validaciones import exigir, validar_datos_evaluacion, validar_datos_nino
 from app.domain.service.visitas import validar_datos_visita
 from app.ports.inbound.asistencia import RegistrarAsistencia
+from app.ports.inbound.barreras import GestionarBarreras
 from app.ports.inbound.expediente import GestionarExpediente
 from app.ports.inbound.sincronizacion import GestionarConflictos, SincronizarOperaciones
 from app.ports.inbound.visitas import GestionarVisitas
@@ -69,6 +71,7 @@ class ServicioSincronizacion(SincronizarOperaciones, GestionarConflictos):
         asistencia: RegistrarAsistencia,
         gestion_visitas: GestionarVisitas,
         reloj: Reloj,
+        gestion_barreras: GestionarBarreras,
     ):
         self.repo = repo
         self.visitas = visitas
@@ -76,6 +79,7 @@ class ServicioSincronizacion(SincronizarOperaciones, GestionarConflictos):
         self.expediente = expediente
         self.asistencia = asistencia
         self.gestion_visitas = gestion_visitas
+        self.gestion_barreras = gestion_barreras
         self.reloj = reloj
 
     # HIST-3.2 -----------------------------------------------------------------------------------------------------
@@ -109,6 +113,8 @@ class ServicioSincronizacion(SincronizarOperaciones, GestionarConflictos):
             falta_codigo = [] if datos.get("codigo") else [ErrorCampo("codigo", "Es obligatorio.")]
             exigir(validar_datos_asistencia(datos, hoy) + falta_codigo)
             return self._asistencia(op, nino, datos, usuario)
+        if op.tipo == TipoOperacion.REGISTRAR_BARRERA:
+            return self._barrera(op, nino, datos, usuario)
         exigir(validar_datos_visita(datos, nino.fecha_nacimiento, hoy))
         return self._visita(op, nino, datos, usuario)
 
@@ -184,6 +190,14 @@ class ServicioSincronizacion(SincronizarOperaciones, GestionarConflictos):
                 op, ResultadoOperacion.DUPLICADA, decision.id_recurso, "El niño ya tiene esa visita."
             )
         return self._conflicto(op, decision, nino.id, usuario)
+
+    def _barrera(self, op, nino, datos: dict, usuario: str) -> ResultadoSincronizacion:
+        """Una barrera es un hecho, no un valor que pueda chocar: si el niño ya la tiene se mapea a la existente."""
+        try:
+            barrera = self.gestion_barreras.registrar_barrera(nino.id, datos, usuario)
+        except ConflictoBarrera as e:
+            return self._registrar(op, ResultadoOperacion.DUPLICADA, e.id_existente, "El niño ya tiene esa barrera.")
+        return self._registrar(op, ResultadoOperacion.APLICADA, barrera.id)
 
     # Registro del resultado ---------------------------------------------------------------------------------------
     def _registrar(

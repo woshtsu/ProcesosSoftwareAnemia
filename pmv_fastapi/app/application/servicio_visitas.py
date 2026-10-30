@@ -1,11 +1,14 @@
 """Caso de uso VIS-3.5: registrar visitas domiciliarias y priorizar a los niños en tratamiento (ADR-013).
 
-Una sola carga por lotes de niños y de últimas visitas, con el cálculo en memoria (sin consultas por niño, ADR-006).
+Una sola carga por lotes de niños, de últimas visitas y de barreras vigentes, con el cálculo en memoria (sin consultas
+por niño, ADR-006). Con el repositorio de barreras (INC-4), los niños con barreras críticas suman el componente
+BARRERA_CRITICA al puntaje (ADR-013).
 """
 
 from app.domain.model.errores import ConflictoVisita, NoEncontrado
 from app.domain.model.visita import NinoPriorizado, VisitaDomiciliaria
 from app.domain.service.agenda import generar_agenda
+from app.domain.service.barreras import evaluar_barreras_nino, fecha_limite_consulta
 from app.domain.service.validaciones import exigir
 from app.domain.service.visitas import (
     crear_visita,
@@ -17,15 +20,23 @@ from app.domain.service.visitas import (
 )
 from app.ports.inbound.visitas import ConsultarVisitasPriorizadas, GestionarVisitas
 from app.ports.outbound.reloj import Reloj
+from app.ports.outbound.repositorio_barreras import RepositorioBarreras
 from app.ports.outbound.repositorio_ninos import RepositorioNinos
 from app.ports.outbound.repositorio_visitas import RepositorioVisitas
 
 
 class ServicioVisitas(GestionarVisitas, ConsultarVisitasPriorizadas):
-    def __init__(self, repo: RepositorioNinos, visitas: RepositorioVisitas, reloj: Reloj):
+    def __init__(
+        self,
+        repo: RepositorioNinos,
+        visitas: RepositorioVisitas,
+        reloj: Reloj,
+        barreras: RepositorioBarreras | None = None,
+    ):
         self.repo = repo
         self.visitas = visitas
         self.reloj = reloj
+        self.barreras = barreras
 
     def _nino(self, nino_id: str):
         nino = self.repo.obtener(nino_id)
@@ -53,5 +64,10 @@ class ServicioVisitas(GestionarVisitas, ConsultarVisitasPriorizadas):
             if en_tratamiento(n) and (not filtro or n.establecimiento.casefold() == filtro)
         ]
         ultimas = self.visitas.ultimas_visitas({n.id for n in candidatos})
-        items = [priorizar_nino(n, generar_agenda(n, hoy), ultimas.get(n.id), hoy) for n in candidatos]
+        con_barreras = self.barreras.barreras_desde(fecha_limite_consulta(hoy)) if self.barreras else {}
+        items = []
+        for n in candidatos:
+            agenda = generar_agenda(n, hoy)
+            alerta = evaluar_barreras_nino(n, agenda, con_barreras[n.id], hoy) if n.id in con_barreras else None
+            items.append(priorizar_nino(n, agenda, ultimas.get(n.id), hoy, alerta_barrera=alerta))
         return ordenar_priorizados(items)[:limite]

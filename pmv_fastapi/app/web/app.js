@@ -48,6 +48,7 @@ function mostrar(vista) {
   if (vista === "alertas") cargarAlertas();
   if (vista === "agenda") cargarAgendaPersonal();
   if (vista === "visitas") cargarVisitas();
+  if (vista === "recordatorios") cargarRecordatorios();
   if (vista === "sincronizacion") cargarSincronizacion();
   if (vista !== "expediente") expedienteActual = null;
   actualizarInsignia();
@@ -303,9 +304,12 @@ async function abrirExpediente(id) {
       <h2>Agenda de controles</h2>
       <div id="agenda-contenido"><p class="vacio" style="padding:0">Calculando agenda…</p></div>
     </div>
-    ${seccionVisitas()}`;
+    ${seccionVisitas()}
+    ${seccionBarreras()}`;
   cargarAgenda(id);
   cargarVisitasNino({ id }, exp.nombre_completo);
+  cargarBarrerasNino({ id }, exp.nombre_completo);
+  $("#btn-barrera-nino").addEventListener("click", () => abrirModalBarrera({ ref: { id }, nombre: exp.nombre_completo, alTerminar: () => cargarBarrerasNino({ id }, exp.nombre_completo) }));
   $("#btn-editar").addEventListener("click", () => ($("#form-editar").hidden = !$("#form-editar").hidden));
   $("#form-editar").addEventListener("submit", async (ev) => {
     ev.preventDefault();
@@ -386,9 +390,12 @@ async function abrirExpedienteLocal(idCliente) {
         </form>
       </div>
     </div>
-    ${seccionVisitas()}`;
+    ${seccionVisitas()}
+    ${seccionBarreras()}`;
   const ref = { id_cliente: idCliente };
   cargarVisitasNino(ref, nombre);
+  cargarBarrerasNino(ref, nombre);
+  $("#btn-barrera-nino").addEventListener("click", () => abrirModalBarrera({ ref, nombre, alTerminar: () => cargarBarrerasNino(ref, nombre) }));
   $("#form-control").addEventListener("submit", (ev) => { ev.preventDefault(); registrarControl(ev.target, ref, nombre, () => abrirExpediente("local:" + idCliente)); });
   $("#btn-visita-nino").addEventListener("click", () => abrirModalVisita({ ref, nombre, alTerminar: () => cargarVisitasNino(ref, nombre) }));
 }
@@ -443,7 +450,7 @@ async function cargarAgenda(id) {
           <td>${fecha(c.fecha_inicio_ventana)} – ${fecha(c.fecha_limite)}</td><td>${chipControl(c)}</td>
           <td class="celda-acciones">${botonesAsistencia(c, id)}</td></tr>`).join("")}</tbody></table></div>
       <p class="nota">Agenda referencial calculada con el esquema ${esc(a.version_esquema)} al ${fecha(a.fecha_referencia)}; la confirma la microred. No es un diagnóstico.</p>`;
-    $$("[data-accion]", caja).forEach((b) => b.addEventListener("click", () => abrirModalAsistencia(b.closest("tr"), b.dataset.accion, () => cargarAgenda(id))));
+    $$("[data-accion]", caja).forEach((b) => b.addEventListener("click", () => abrirModalAsistencia(b.closest("tr"), b.dataset.accion, () => { cargarAgenda(id); if ($("#barreras-nino")) cargarBarrerasNino({ id }); })));
   } catch (e) { caja.innerHTML = `<p class="alerta">${esc(sinConexion(e) ? "Sin conexión: la agenda de este niño aún no se consultó en este dispositivo." : e.mensaje || "No se pudo calcular la agenda.")}</p>`; }
 }
 
@@ -527,7 +534,7 @@ async function abrirModalAsistencia(fila, accion, alTerminar) {
   $("#modal-titulo").textContent = asistio ? "Registrar asistencia" : "Registrar inasistencia";
   $("#modal-detalle").textContent = `${nombre} · ${fila.dataset.desc} · programado el ${fecha(fila.dataset.programada)}`;
   $("#campo-motivo").hidden = asistio; $("#campo-evaluacion").hidden = !asistio;
-  $("#asistencia-motivo").value = ""; $("#asistencia-detalle").value = ""; $("#asistencia-error").textContent = "";
+  $("#asistencia-motivo").value = ""; $("#asistencia-detalle").value = ""; $("#asistencia-barrera").value = ""; $("#asistencia-error").textContent = "";
   $("#asistencia-evaluacion").innerHTML = '<option value="">Sin evaluación vinculada</option>';
   $("#asistencia-confirmar").textContent = asistio ? "Registrar asistencia" : "Registrar inasistencia";
   $("#modal-asistencia").hidden = false;
@@ -553,8 +560,16 @@ $("#form-asistencia").addEventListener("submit", async (ev) => {
     cuerpo.motivo = (detalle ? `${opcion}: ${detalle}` : opcion).slice(0, 200);
   } else if ($("#asistencia-evaluacion").value) cuerpo.evaluacion_id = $("#asistencia-evaluacion").value;
   const alTerminar = modal.alTerminar;
+  /* HIST-4.3: la barrera que el personal asocia a la inasistencia se registra aparte, con la fuente INASISTENCIA. */
+  const barrera = accion === "NO_ASISTIO" ? { tipo: $("#asistencia-barrera").value, detalle: $("#asistencia-detalle").value.trim() || null } : { tipo: "" };
+  if (barrera.tipo === "OTRA" && !barrera.detalle) { $("#asistencia-error").textContent = "Con «Otra» barrera, describa la barrera en el detalle."; return; }
+  const nombreNino = fila.dataset.nombre || $("[data-testid=expediente-nombre]")?.textContent || "";
+  const registrarBarreraAsociada = () => (barrera.tipo
+    ? barreraAsociada({ id: fila.dataset.nino }, { tipo: barrera.tipo, detalle: barrera.detalle, fuente: "INASISTENCIA", fecha: HOY }, nombreNino)
+    : Promise.resolve());
   try {
     await api(`/api/ninos/${fila.dataset.nino}/controles/${encodeURIComponent(fila.dataset.codigo)}/asistencia`, { method: "POST", body: JSON.stringify(cuerpo) });
+    await registrarBarreraAsociada();
     cerrarModalAsistencia();
     toast(accion === "ASISTIO" ? "Asistencia registrada" : "Inasistencia registrada");
     if (alTerminar) alTerminar();
@@ -564,6 +579,7 @@ $("#form-asistencia").addEventListener("submit", async (ev) => {
     const nombre = fila.dataset.nombre || $("[data-testid=expediente-nombre]")?.textContent || "";
     await window.Cola.encolar("REGISTRAR_ASISTENCIA", { codigo: fila.dataset.codigo, ...cuerpo }, { nino_ref: { id: fila.dataset.nino },
       resumen: `${accion === "ASISTIO" ? "Asistencia" : "Inasistencia"} de ${etiquetaNino(nombre)} al control ${fila.dataset.desc} (${fecha(fila.dataset.programada)})` });
+    await registrarBarreraAsociada();
     cerrarModalAsistencia();
     toast("Guardado en el dispositivo: se sincronizará al reconectar");
     if (alTerminar) alTerminar();
@@ -614,6 +630,36 @@ async function cargarAlertas() {
       <td class="atrasado">${f.control.dias_vencido} d</td><td>${esc(f.nino.comunidad)}</td>
       <td>${f.nino.tutor_celular || "—"}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");
   $$("#cuerpo-alertas tr").forEach((tr) => tr.addEventListener("click", () => abrirExpediente(tr.dataset.id)));
+  cargarAlertasBarreras();
+}
+/* HIST-4.4: niños con barreras críticas (mismo filtro de comunidad y de prioridad que los controles vencidos). */
+let secuenciaAlertasBarreras = 0;
+async function cargarAlertasBarreras() {
+  const mia = ++secuenciaAlertasBarreras;
+  const p = new URLSearchParams();
+  if ($("#filtro-alerta-comunidad").value) p.set("comunidad", $("#filtro-alerta-comunidad").value);
+  if (["ALTA", "MEDIA"].includes($("#filtro-alerta-prioridad").value)) p.set("prioridad", $("#filtro-alerta-prioridad").value);
+  const aviso = $("#alertas-barreras-error");
+  let filas;
+  try { filas = await api("/api/alertas/barreras?" + p); }
+  catch (e) {
+    if (mia !== secuenciaAlertasBarreras) return;
+    aviso.textContent = sinConexion(e) ? "Sin conexión: las barreras críticas aún no se consultaron en este dispositivo." : (e.errores?.[0] || e).mensaje || "No se pudieron consultar las barreras críticas.";
+    aviso.hidden = false;
+    return;
+  }
+  if (mia !== secuenciaAlertasBarreras) return;
+  aviso.hidden = true;
+  $("#total-alertas-barreras").textContent = `${filas.length} niño(s)`;
+  $("#sin-alertas-barreras").hidden = filas.length > 0;
+  $("#cuerpo-alertas-barreras").innerHTML = filas.map((f) => `
+    <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-testid="alerta-barrera">
+      <td><span class="badge prio-${f.prioridad}" data-testid="prioridad-barrera">${f.prioridad}</span></td>
+      <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " + f.nino.dni : esc(f.nino.codigo_origen || "")}</small></td>
+      <td><ul class="lista-barreras" data-testid="razones-barrera">${f.razones.map((r) => `<li>${esc(r.descripcion)}</li>`).join("")}</ul></td>
+      <td><ul class="lista-barreras">${f.barreras.slice(0, 3).map((b) => `<li>${esc(TIPOS_BARRERA[b.tipo] || b.tipo)} · ${fecha(b.fecha)}</li>`).join("")}</ul></td>
+      <td>${esc(f.nino.comunidad)}</td><td>${f.nino.tutor_celular || "—"}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");
+  $$("#cuerpo-alertas-barreras tr").forEach((tr) => tr.addEventListener("click", () => abrirExpediente(tr.dataset.id)));
 }
 $("#filtro-alerta-comunidad").addEventListener("change", cargarAlertas);
 $("#filtro-alerta-prioridad").addEventListener("change", cargarAlertas);
@@ -696,6 +742,7 @@ function abrirModalVisita({ ref, nombre, alTerminar }) {
   $("#visita-fecha").value = HOY; $("#visita-fecha").max = HOY;
   $("#visita-resultado").value = "REALIZADA"; $("#visita-suplemento").value = "DESCONOCIDO"; $("#visita-suplemento").disabled = false;
   $("#visita-observaciones").value = ""; $("#visita-error").textContent = "";
+  $("#visita-barrera").value = ""; $("#campo-visita-barrera").hidden = true;
   $("#modal-visita").hidden = false;
   $("#visita-resultado").focus();
 }
@@ -704,6 +751,8 @@ $("#visita-resultado").addEventListener("change", () => {
   const realizada = $("#visita-resultado").value === "REALIZADA";
   $("#visita-suplemento").disabled = !realizada;
   if (!realizada) $("#visita-suplemento").value = "DESCONOCIDO";
+  $("#campo-visita-barrera").hidden = realizada; // HIST-4.3: una visita no lograda puede dejar una barrera
+  if (realizada) $("#visita-barrera").value = "";
 });
 $("#visita-cancelar").addEventListener("click", cerrarModalVisita);
 $("#modal-visita").addEventListener("click", (ev) => { if (ev.target.id === "modal-visita") cerrarModalVisita(); });
@@ -715,12 +764,18 @@ $("#form-visita").addEventListener("submit", async (ev) => {
     observaciones: $("#visita-observaciones").value.trim() || null };
   if (!datos.fecha) { $("#visita-error").textContent = "Ingrese la fecha de la visita."; return; }
   if (datos.fecha > HOY) { $("#visita-error").textContent = "La fecha de la visita no puede ser futura."; return; }
+  const barrera = datos.resultado === "REALIZADA" ? "" : $("#visita-barrera").value;
+  if (barrera === "OTRA" && !datos.observaciones) { $("#visita-error").textContent = "Con «Otra» barrera, descríbala en las observaciones."; return; }
+  const registrarBarreraAsociada = () => (barrera
+    ? barreraAsociada(ref, { tipo: barrera, detalle: datos.observaciones, fuente: "VISITA", fecha: datos.fecha }, nombre)
+    : Promise.resolve());
   const terminar = (texto) => { cerrarModalVisita(); toast(texto); if (alTerminar) alTerminar(); };
   if (ref.id) {
-    try { await api(`/api/ninos/${ref.id}/visitas`, { method: "POST", body: JSON.stringify(datos) }); terminar("Visita registrada"); return; }
+    try { await api(`/api/ninos/${ref.id}/visitas`, { method: "POST", body: JSON.stringify(datos) }); await registrarBarreraAsociada(); terminar("Visita registrada"); return; }
     catch (e) { if (!sinConexion(e)) { $("#visita-error").textContent = (e.errores?.[0] || e).mensaje || "No se pudo registrar la visita."; return; } }
   }
   await window.Cola.encolar("REGISTRAR_VISITA", datos, { nino_ref: ref, resumen: `Visita domiciliaria a ${etiquetaNino(nombre)} del ${fecha(datos.fecha)}` });
+  await registrarBarreraAsociada();
   terminar("Guardado en el dispositivo: se sincronizará al reconectar");
 });
 
@@ -773,8 +828,205 @@ $("#visitas-consultar").addEventListener("click", cargarVisitas);
 $("#filtro-visitas-establecimiento").addEventListener("change", cargarVisitas);
 $("#filtro-visitas-limite").addEventListener("change", cargarVisitas);
 
+/* ---------- HIST-4.3: barreras de acceso al tratamiento ---------- */
+const TIPOS_BARRERA = {
+  TRANSPORTE: "Falta de transporte", ECONOMICA: "Falta de dinero", OLVIDO: "Olvido de la cita", TRABAJO_CUIDADOR: "Trabajo de la madre o cuidador",
+  DISTANCIA_CLIMA: "Distancia o clima", EFECTOS_ADVERSOS_SUPLEMENTO: "Efectos adversos del suplemento", RECHAZO_TRATAMIENTO: "Rechazo del tratamiento", OTRA: "Otra (describir)",
+};
+const FUENTE_BARRERA = { PERSONAL: "Personal de salud", RESPUESTA_RECORDATORIO: "Respuesta a un recordatorio", INASISTENCIA: "Inasistencia a un control", VISITA: "Visita domiciliaria" };
+/* Los selectores de barrera comparten el catálogo; la primera opción (vacía) depende de cada uno. */
+$$(".select-barrera").forEach((s) => {
+  s.innerHTML = `<option value="">${esc(s.dataset.vacio)}</option>` + Object.entries(TIPOS_BARRERA).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join("");
+});
+
+/* Registra una barrera: en línea si el niño ya está en el servidor; si no, queda en la cola del dispositivo (REGISTRAR_BARRERA). */
+async function registrarBarrera(ref, datos, nombre) {
+  if (ref.id) {
+    try { await api(`/api/ninos/${ref.id}/barreras`, { method: "POST", body: JSON.stringify(datos) }); return "enviada"; }
+    catch (e) {
+      if (e.estado === 409) return "existente"; // el niño ya tenía esa barrera: no se duplica
+      if (!sinConexion(e)) throw e;
+    }
+  }
+  await window.Cola.encolar("REGISTRAR_BARRERA", datos, { nino_ref: ref, resumen: `Barrera «${TIPOS_BARRERA[datos.tipo]}» de ${etiquetaNino(nombre)} del ${fecha(datos.fecha)}` });
+  return "en cola";
+}
+
+/* La barrera asociada a una inasistencia o a una visita no debe impedir que estas queden registradas: si falla, se avisa. */
+async function barreraAsociada(ref, datos, nombre) {
+  try { await registrarBarrera(ref, datos, nombre); }
+  catch (e) { toast("Se registró, pero la barrera no se pudo guardar: " + ((e.errores?.[0] || e).mensaje || "inténtelo desde el expediente"), false); }
+}
+
+const seccionBarreras = () => `
+    <div class="tarjeta" style="margin-top:14px" data-testid="barreras-seccion">
+      <div class="cabecera-exp"><h2>Barreras de acceso</h2>
+        <button type="button" class="secundario" id="btn-barrera-nino" data-testid="btn-barrera-nino">Registrar barrera</button></div>
+      <div id="barreras-nino"><p class="vacio" style="padding:0">Cargando barreras…</p></div>
+    </div>`;
+
+async function cargarBarrerasNino(ref) {
+  const caja = $("#barreras-nino");
+  let hechas = [], aviso = "";
+  if (ref.id) {
+    try { hechas = await api(`/api/ninos/${ref.id}/barreras`); }
+    catch (e) { if (!sinConexion(e)) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje || "No se pudieron consultar las barreras.")}</p>`; return; } aviso = "Sin conexión: las barreras ya sincronizadas aún no se consultaron en este dispositivo."; }
+  }
+  const pendientes = (await window.Cola.listar()).filter((o) => o.tipo === "REGISTRAR_BARRERA" && mismaRef(o.nino_ref, ref));
+  if (!caja.isConnected) return;
+  const filas = pendientes.map((o) => `<tr class="atenuado" data-testid="barrera-pendiente"><td>${fecha(o.datos.fecha)}</td><td>${esc(TIPOS_BARRERA[o.datos.tipo] || o.datos.tipo)}</td>
+      <td>${esc(o.datos.detalle || "—")}</td><td>${esc(FUENTE_BARRERA[o.datos.fuente] || o.datos.fuente)}</td><td><span class="ctrl ctrl-LOCAL">Pendiente de sincronizar</span></td></tr>`)
+    .concat(hechas.map((b) => `<tr data-testid="barrera-fila"><td>${fecha(b.fecha)}</td><td>${esc(TIPOS_BARRERA[b.tipo] || b.tipo)}</td><td>${esc(b.detalle || "—")}</td>
+      <td>${esc(FUENTE_BARRERA[b.fuente] || b.fuente)}</td><td>${esc(b.registrado_por)}</td></tr>`));
+  caja.innerHTML = (aviso ? `<p class="nota">${esc(aviso)}</p>` : "") + (filas.length
+    ? `<div class="tabla-envoltura"><table class="tabla completa" data-testid="barreras-nino-tabla"><thead><tr><th>Fecha</th><th>Barrera</th><th>Detalle</th><th>Origen</th><th>Registrada por</th></tr></thead><tbody>${filas.join("")}</tbody></table></div>`
+    : '<p class="vacio" style="padding:0" data-testid="barreras-nino-vacio">No se registraron barreras de acceso para este niño.</p>');
+}
+
+const modalBarrera = { ref: null, nombre: "", alTerminar: null };
+function cerrarModalBarrera() { $("#modal-barrera").hidden = true; }
+function abrirModalBarrera({ ref, nombre, alTerminar }) {
+  Object.assign(modalBarrera, { ref, nombre, alTerminar });
+  $("#barrera-detalle-nino").textContent = nombre;
+  $("#barrera-tipo").value = ""; $("#barrera-detalle").value = ""; $("#barrera-error").textContent = "";
+  $("#barrera-fecha").value = HOY; $("#barrera-fecha").max = HOY;
+  $("#modal-barrera").hidden = false;
+  $("#barrera-tipo").focus();
+}
+$("#barrera-cancelar").addEventListener("click", cerrarModalBarrera);
+$("#modal-barrera").addEventListener("click", (ev) => { if (ev.target.id === "modal-barrera") cerrarModalBarrera(); });
+addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !$("#modal-barrera").hidden) cerrarModalBarrera(); });
+$("#form-barrera").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const { ref, nombre, alTerminar } = modalBarrera;
+  const datos = { tipo: $("#barrera-tipo").value, detalle: $("#barrera-detalle").value.trim() || null, fuente: "PERSONAL", fecha: $("#barrera-fecha").value };
+  if (!datos.tipo) { $("#barrera-error").textContent = "Seleccione una barrera."; return; }
+  if (datos.tipo === "OTRA" && !datos.detalle) { $("#barrera-error").textContent = "Con «Otra» describa la barrera en el detalle."; return; }
+  if (!datos.fecha) { $("#barrera-error").textContent = "Ingrese la fecha de la barrera."; return; }
+  if (datos.fecha > HOY) { $("#barrera-error").textContent = "La fecha de la barrera no puede ser futura."; return; }
+  try {
+    const resultado = await registrarBarrera(ref, datos, nombre);
+    cerrarModalBarrera();
+    toast(resultado === "en cola" ? "Guardado en el dispositivo: se sincronizará al reconectar" : resultado === "existente" ? "El niño ya tenía registrada esa barrera" : "Barrera registrada");
+    if (alTerminar) alTerminar();
+  } catch (e) { $("#barrera-error").textContent = (e.errores?.[0] || e).mensaje || "No se pudo registrar la barrera."; }
+});
+
+/* ---------- HIST-4.1 y HIST-4.2: recordatorios y respuesta del tutor ---------- */
+const ESTADO_RECORDATORIO = { ENVIADO_SIMULADO: "Simulado (no se envió)", ENVIADO: "Enviado", ENTREGADO: "Entregado", LEIDO: "Leído", FALLIDO: "Fallido" };
+const TIPO_RECORDATORIO = { PROXIMO: "Próximo", CITA_DEL_DIA: "Cita de hoy", VENCIDO: "Vencido" };
+const CANAL = { SIMULADO: "Simulado", WHATSAPP: "WhatsApp", SMS: "SMS" };
+const pct = (v) => (v === null || v === undefined ? "—" : `${Math.round(v * 100)} %`);
+const textoRespuesta = (r) => (!r.respuesta ? "" : r.respuesta === "CONFIRMA" ? "Confirma" : r.respuesta === "NO_PUEDE" ? "No puede asistir"
+  : `Reprograma${r.fecha_reprogramada ? " para el " + fecha(r.fecha_reprogramada) : ""}`);
+
+function pintarMetricasRecordatorios(m) {
+  $("#recordatorios-metricas").innerHTML = `
+    <div class="tarjeta kpi"><strong data-testid="kpi-rec-total">${m.total}</strong><span>recordatorios generados</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-rec-enviados">${m.enviados}</strong><span>enviados (${m.simulados} simulados)</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-rec-fallidos">${m.fallidos}</strong><span>fallidos</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-rec-entrega">${pct(m.tasa_entrega)}</strong><span>tasa de entrega (envíos reales)</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-rec-respuestas">${m.con_respuesta}</strong><span>con respuesta del tutor</span></div>
+    <div class="tarjeta kpi"><strong data-testid="kpi-rec-confirmacion">${pct(m.tasa_confirmacion)}</strong><span>tasa de confirmación</span></div>`;
+}
+
+let secuenciaRecordatorios = 0;
+async function cargarRecordatorios() {
+  const mia = ++secuenciaRecordatorios;
+  const p = new URLSearchParams();
+  if ($("#filtro-recordatorio-estado").value) p.set("estado", $("#filtro-recordatorio-estado").value);
+  const aviso = $("#recordatorios-error");
+  let filas, metricas;
+  try { [filas, metricas] = await Promise.all([api("/api/recordatorios?" + p), api("/api/recordatorios/metricas")]); }
+  catch (e) {
+    if (mia !== secuenciaRecordatorios) return;
+    aviso.textContent = sinConexion(e) ? "Sin conexión: los recordatorios aún no se consultaron en este dispositivo." : (e.errores?.[0] || e).mensaje || "No se pudieron consultar los recordatorios.";
+    aviso.hidden = false;
+    return;
+  }
+  if (mia !== secuenciaRecordatorios) return;
+  aviso.hidden = true;
+  pintarMetricasRecordatorios(metricas);
+  $("#total-recordatorios").textContent = `${filas.length} recordatorio(s)`;
+  $("#sin-recordatorios").hidden = filas.length > 0;
+  $("#cuerpo-recordatorios").innerHTML = filas.map((r) => `
+    <tr data-id="${r.id}" data-nombre="${esc(r.nino.nombre_completo)}" data-control="${esc(r.codigo_control)}" data-programada="${r.fecha_programada}" data-testid="recordatorio">
+      <td><a href="#" class="enlace-nino" data-nino="${r.nino.id}">${esc(r.nino.nombre_completo)}</a><br><small>${esc(r.nino.comunidad)}</small></td>
+      <td>${esc(r.codigo_control)}<br><small>${fecha(r.fecha_programada)}</small></td>
+      <td>${esc(TIPO_RECORDATORIO[r.tipo] || r.tipo)}</td>
+      <td>${r.simulado ? '<span class="ctrl ctrl-SIMULADO" data-testid="marca-simulado" title="No salió ningún mensaje real">SIMULADO</span> ' : `<span class="ctrl ctrl-${r.estado}">${esc(CANAL[r.canal] || r.canal)}</span> `}
+        <span data-testid="estado-recordatorio">${esc(ESTADO_RECORDATORIO[r.estado] || r.estado)}</span>${r.detalle ? `<br><small>${esc(r.detalle)}</small>` : ""}</td>
+      <td>${esc(r.destino)}</td>
+      <td data-testid="respuesta-recordatorio">${r.respuesta ? `${esc(textoRespuesta(r))}<br><small>${r.origen_respuesta === "WHATSAPP" ? "por WhatsApp" : "registrada por " + esc(r.respondido_por || "")}</small>` : '<span class="nota">Sin respuesta</span>'}</td>
+      <td class="celda-acciones">${r.respuesta || r.estado === "FALLIDO" ? "" : '<button type="button" class="mini" data-testid="btn-responder">Registrar respuesta</button>'}</td>
+    </tr>`).join("");
+  $$("#cuerpo-recordatorios .enlace-nino").forEach((x) => x.addEventListener("click", (ev) => { ev.preventDefault(); abrirExpediente(x.dataset.nino); }));
+  $$("#cuerpo-recordatorios [data-testid=btn-responder]").forEach((b) => b.addEventListener("click", () => abrirModalRespuesta(b.closest("tr"))));
+}
+$("#filtro-recordatorio-estado").addEventListener("change", cargarRecordatorios);
+$("#recordatorios-actualizar").addEventListener("click", cargarRecordatorios);
+
+$("#recordatorios-generar").addEventListener("click", async () => {
+  const boton = $("#recordatorios-generar"), caja = $("#recordatorios-resultado");
+  if (!navigator.onLine) { toast("Generar los recordatorios requiere conexión", false); return; }
+  boton.disabled = true;
+  try {
+    const r = await api("/api/recordatorios/generar", { method: "POST", body: JSON.stringify({}) });
+    const simulados = r.recordatorios.some((x) => x.simulado);
+    caja.textContent = `Recordatorios de hoy: ${r.enviados} enviado(s), ${r.fallidos} fallido(s), ${r.omitidos_sin_contacto} sin contacto y ${r.omitidos_ya_enviado} ya enviado(s) antes.`
+      + (simulados ? " Modo simulado: no salió ningún mensaje real." : "");
+    caja.hidden = false;
+    await cargarRecordatorios();
+  } catch (e) {
+    toast(sinConexion(e) ? "Sin conexión: no se pudieron generar los recordatorios" : (e.errores?.[0] || e).mensaje || "No se pudieron generar los recordatorios", false);
+  } finally { boton.disabled = false; }
+});
+
+const modalRespuesta = { fila: null };
+function cerrarModalRespuesta() { $("#modal-respuesta").hidden = true; modalRespuesta.fila = null; }
+function actualizarCamposRespuesta() {
+  const opcion = $("#respuesta-opcion").value;
+  $("#campo-respuesta-fecha").hidden = opcion !== "REPROGRAMAR";
+  $("#campo-respuesta-barrera").hidden = opcion !== "NO_PUEDE";
+}
+function abrirModalRespuesta(fila) {
+  modalRespuesta.fila = fila;
+  $("#respuesta-detalle").textContent = `${fila.dataset.nombre} · control ${fila.dataset.control} · programado el ${fecha(fila.dataset.programada)}`;
+  $("#respuesta-opcion").value = "CONFIRMA"; $("#respuesta-fecha").value = ""; $("#respuesta-fecha").min = HOY;
+  $("#respuesta-barrera").value = ""; $("#respuesta-barrera-detalle").value = ""; $("#respuesta-error").textContent = "";
+  actualizarCamposRespuesta();
+  $("#modal-respuesta").hidden = false;
+  $("#respuesta-opcion").focus();
+}
+$("#respuesta-opcion").addEventListener("change", actualizarCamposRespuesta);
+$("#respuesta-cancelar").addEventListener("click", cerrarModalRespuesta);
+$("#modal-respuesta").addEventListener("click", (ev) => { if (ev.target.id === "modal-respuesta") cerrarModalRespuesta(); });
+addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !$("#modal-respuesta").hidden) cerrarModalRespuesta(); });
+$("#form-respuesta").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const fila = modalRespuesta.fila, opcion = $("#respuesta-opcion").value;
+  const cuerpo = { respuesta: opcion };
+  if (opcion === "REPROGRAMAR") {
+    cuerpo.fecha_reprogramada = $("#respuesta-fecha").value;
+    if (!cuerpo.fecha_reprogramada) { $("#respuesta-error").textContent = "Indique la nueva fecha."; return; }
+  }
+  if (opcion === "NO_PUEDE" && $("#respuesta-barrera").value) {
+    cuerpo.barrera = { tipo: $("#respuesta-barrera").value, detalle: $("#respuesta-barrera-detalle").value.trim() || null };
+    if (cuerpo.barrera.tipo === "OTRA" && !cuerpo.barrera.detalle) { $("#respuesta-error").textContent = "Con «Otra» describa la barrera en el detalle."; return; }
+  }
+  try {
+    const r = await api(`/api/recordatorios/${fila.dataset.id}/respuesta`, { method: "POST", body: JSON.stringify(cuerpo) });
+    cerrarModalRespuesta();
+    toast(r.barrera_sugerida ? "Respuesta registrada. Conviene registrar el motivo como barrera en el expediente" : "Respuesta registrada");
+    await cargarRecordatorios();
+    actualizarInsignia();
+  } catch (e) {
+    $("#respuesta-error").textContent = sinConexion(e) ? "Sin conexión: la respuesta del tutor se registra cuando haya conexión." : (e.errores?.[0] || e).mensaje || "No se pudo registrar la respuesta.";
+  }
+});
+
 /* ---------- HIST-3.2 a 3.4: indicador, pendientes y conflictos ---------- */
-const TIPO_OPERACION = { REGISTRAR_NINO: "Registro de niño", REGISTRAR_EVALUACION: "Control de hemoglobina", REGISTRAR_ASISTENCIA: "Asistencia a control", REGISTRAR_VISITA: "Visita domiciliaria" };
+const TIPO_OPERACION = { REGISTRAR_NINO: "Registro de niño", REGISTRAR_EVALUACION: "Control de hemoglobina", REGISTRAR_ASISTENCIA: "Asistencia a control", REGISTRAR_VISITA: "Visita domiciliaria", REGISTRAR_BARRERA: "Barrera de acceso" };
 const horaLocal = (iso) => (iso ? `${fecha(iso.slice(0, 10))} ${iso.slice(11, 16)}` : "—");
 let conflictosPendientes = 0;
 async function actualizarSync() {

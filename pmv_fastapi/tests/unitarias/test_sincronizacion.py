@@ -11,6 +11,7 @@ import pytest
 
 from app.adapters.outbound.persistence.memoria import RepositorioEnMemoria
 from app.application.servicio_asistencia import ServicioAsistencia
+from app.application.servicio_barreras import ServicioBarreras
 from app.application.servicio_expediente import ServicioExpediente
 from app.application.servicio_sincronizacion import ServicioSincronizacion
 from app.application.servicio_visitas import ServicioVisitas
@@ -45,6 +46,7 @@ class Mundo:
             ServicioAsistencia(self.repo, reloj),
             visitas,
             reloj,
+            ServicioBarreras(self.repo, self.repo, reloj),
         )
         self.minuto = 0
 

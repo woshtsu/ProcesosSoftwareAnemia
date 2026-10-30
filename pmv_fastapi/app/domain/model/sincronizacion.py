@@ -16,6 +16,7 @@ class TipoOperacion(StrEnum):
     REGISTRAR_EVALUACION = "REGISTRAR_EVALUACION"
     REGISTRAR_ASISTENCIA = "REGISTRAR_ASISTENCIA"
     REGISTRAR_VISITA = "REGISTRAR_VISITA"
+    REGISTRAR_BARRERA = "REGISTRAR_BARRERA"  # INC-4: barrera de acceso registrada sin conexión (ADR-014)
 
 
 class ResultadoOperacion(StrEnum):

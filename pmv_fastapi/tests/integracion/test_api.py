@@ -12,7 +12,7 @@ def test_salud_e_interfaz(cliente):
     assert "Anemia Junín" in cliente.get("/").text
     assert cliente.get("/sw.js").status_code == 200
     assert "/static/vendor/swagger-ui-bundle.js" in cliente.get("/docs").text
-    assert cliente.get("/openapi.json").json()["info"]["version"] == "3.0.0-inc3"
+    assert cliente.get("/openapi.json").json()["info"]["version"] == "4.0.0-inc4"
 
 
 def test_registro_exitoso_devuelve_expediente(cliente):

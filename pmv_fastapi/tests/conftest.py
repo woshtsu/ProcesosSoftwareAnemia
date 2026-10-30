@@ -70,7 +70,7 @@ def cliente(tmp_path):
         with app.state.repositorio.engine.begin() as con:
             con.execute(
                 text(
-                    "TRUNCATE conflicto_sincronizacion, operacion_sincronizada, visita_domiciliaria, asistencia_control, evaluacion_hemoglobina, nino CASCADE"
+                    "TRUNCATE barrera, recordatorio, conflicto_sincronizacion, operacion_sincronizada, visita_domiciliaria, asistencia_control, evaluacion_hemoglobina, nino CASCADE"
                 )
             )
     with TestClient(app) as c:

@@ -6,23 +6,29 @@ from collections import Counter
 from datetime import date
 
 from fastapi import APIRouter, Depends, Header, Query, Request
+from fastapi.concurrency import run_in_threadpool
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import JSONResponse, PlainTextResponse, StreamingResponse
 
 from app.adapters.inbound.http import esquemas as s
 from app.domain.model.agenda import ControlProgramado
 from app.domain.model.agenda_personal import AgendaPersonal, ItemAgendaPersonal
 from app.domain.model.alertas import AlertaControl
 from app.domain.model.asistencia import AsistenciaControl
+from app.domain.model.barrera import AlertaBarrera, Barrera
 from app.domain.model.entidades import Evaluacion, Nino
 from app.domain.model.errores import (
     ConflictoAsistencia,
+    ConflictoBarrera,
+    ConflictoRespuesta,
     ConflictoVisita,
     ConflictoYaResuelto,
     ErrorValidacion,
+    FirmaInvalida,
     NoEncontrado,
     RegistroDuplicado,
 )
+from app.domain.model.notificacion import VistaRecordatorio
 from app.domain.model.sincronizacion import (
     ConflictoSincronizacion,
     OperacionEntrante,
@@ -35,8 +41,15 @@ from app.ports.inbound.agenda import GenerarAgenda
 from app.ports.inbound.agenda_personal import ConsultarAgendaPersonal
 from app.ports.inbound.alertas import ConsultarControlesVencidos
 from app.ports.inbound.asistencia import RegistrarAsistencia
+from app.ports.inbound.barreras import ConsultarAlertasBarreras, GestionarBarreras
 from app.ports.inbound.contexto import ConsultarContexto
 from app.ports.inbound.expediente import GestionarExpediente
+from app.ports.inbound.notificaciones import (
+    ConsultarRecordatorios,
+    GenerarRecordatorios,
+    ProcesarNotificacionesWhatsApp,
+    RegistrarRespuestaRecordatorio,
+)
 from app.ports.inbound.reportes import GenerarReporte
 from app.ports.inbound.seguimiento import ConsultarSeguimiento
 from app.ports.inbound.sincronizacion import GestionarConflictos, SincronizarOperaciones
@@ -92,6 +105,30 @@ def sincronizacion_uc(request: Request) -> SincronizarOperaciones:
 
 def conflictos_uc(request: Request) -> GestionarConflictos:
     return request.app.state.sincronizacion
+
+
+def barreras_uc(request: Request) -> GestionarBarreras:
+    return request.app.state.barreras
+
+
+def alertas_barreras_uc(request: Request) -> ConsultarAlertasBarreras:
+    return request.app.state.barreras
+
+
+def generar_recordatorios_uc(request: Request) -> GenerarRecordatorios:
+    return request.app.state.recordatorios
+
+
+def recordatorios_uc(request: Request) -> ConsultarRecordatorios:
+    return request.app.state.recordatorios
+
+
+def respuesta_uc(request: Request) -> RegistrarRespuestaRecordatorio:
+    return request.app.state.recordatorios
+
+
+def webhook_uc(request: Request) -> ProcesarNotificacionesWhatsApp:
+    return request.app.state.recordatorios
 
 
 def usuario_actual(request: Request, x_usuario: str | None = Header(default=None, alias="X-Usuario")) -> str:
@@ -240,6 +277,22 @@ def registrar_manejadores(app) -> None:
         return JSONResponse(
             status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "estado", "mensaje": str(exc)}]}
         )
+
+    @app.exception_handler(ConflictoBarrera)
+    async def _conflicto_barrera(_, exc: ConflictoBarrera):
+        return JSONResponse(
+            status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "tipo", "mensaje": str(exc)}]}
+        )
+
+    @app.exception_handler(ConflictoRespuesta)
+    async def _conflicto_respuesta(_, exc: ConflictoRespuesta):
+        return JSONResponse(
+            status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "respuesta", "mensaje": str(exc)}]}
+        )
+
+    @app.exception_handler(FirmaInvalida)
+    async def _firma_invalida(_, exc: FirmaInvalida):
+        return JSONResponse(status_code=403, content={"mensaje": str(exc), "errores": []})
 
     @app.exception_handler(NoEncontrado)
     async def _no_encontrado(_, exc: NoEncontrado):
@@ -505,7 +558,8 @@ def visitas_priorizadas(
     """Niños en tratamiento ordenados por un puntaje explicable (0 a 100) para planificar las visitas domiciliarias.
 
     Componentes: severidad de la última evaluación, días del control más vencido, inasistencias de los últimos 90 días
-    y días desde la última visita. Los pesos son una propuesta del equipo (ADR-013), no una norma del MINSA.
+    y días desde la última visita; los niños con barreras críticas (HIST-4.4) suman además el componente
+    BARRERA_CRITICA (hasta 15 puntos). Los pesos son una propuesta del equipo (ADR-013), no una norma del MINSA.
     """
     return [_priorizado(i, p) for i, p in enumerate(svc.visitas_priorizadas(establecimiento, limite), start=1)]
 
@@ -733,3 +787,247 @@ def reporte(desde: date, hasta: date, formato: str = "json", svc: GenerarReporte
             headers={"Content-Disposition": f'attachment; filename="{nombre}"'},
         )
     return s.ReportePeriodo(**{k: v for k, v in datos.items() if k not in ("evaluaciones", "ninos")})
+
+
+# --- INC-4: barreras (HIST-4.3 y HIST-4.4) --------------------------------------------------------------------------
+
+
+def _barrera(b: Barrera) -> s.BarreraSalida:
+    return s.BarreraSalida(
+        id=b.id,
+        nino_id=b.nino_id,
+        tipo=b.tipo.value,
+        detalle=b.detalle,
+        fuente=b.fuente.value,
+        fecha=b.fecha,
+        recordatorio_id=b.recordatorio_id,
+        registrado_por=b.registrado_por,
+        creado_en=b.creado_en,
+    )
+
+
+@router.post(
+    "/ninos/{nino_id}/barreras",
+    status_code=201,
+    response_model=s.BarreraSalida,
+    tags=["HIST-4.3 Barreras"],
+    responses={404: {"model": s.RespuestaError}, 409: {"model": s.RespuestaError}, 422: {"model": s.RespuestaError}},
+)
+def registrar_barrera(
+    nino_id: str,
+    datos: s.BarreraEntrada,
+    svc: GestionarBarreras = Depends(barreras_uc),
+    usuario: str = Depends(usuario_actual),
+):
+    """Registra una barrera de acceso al tratamiento (catálogo de 8 tipos; con OTRA el detalle es obligatorio).
+
+    La fuente indica de dónde sale: PERSONAL, RESPUESTA_RECORDATORIO, INASISTENCIA o VISITA. 409 si el niño ya tiene
+    esa barrera (mismo tipo, fecha y fuente); 422 si el tipo o la fuente son inválidos, falta el detalle o la fecha es
+    futura.
+    """
+    return _barrera(svc.registrar_barrera(nino_id, datos.model_dump(), usuario))
+
+
+@router.get(
+    "/ninos/{nino_id}/barreras",
+    response_model=list[s.BarreraSalida],
+    tags=["HIST-4.3 Barreras"],
+    responses={404: {"model": s.RespuestaError}},
+)
+def barreras_del_nino(nino_id: str, svc: GestionarBarreras = Depends(barreras_uc)):
+    """Barreras registradas del niño, la más reciente primero (se muestran en su expediente)."""
+    return [_barrera(b) for b in svc.listar_barreras(nino_id)]
+
+
+def _alerta_barrera(a: AlertaBarrera) -> s.AlertaBarreraSalida:
+    return s.AlertaBarreraSalida(
+        nino=s.AlertaBarreraNino(
+            id=a.nino_id,
+            dni=a.dni,
+            codigo_origen=a.codigo_origen,
+            nombre_completo=a.nombre_completo,
+            comunidad=a.comunidad,
+            establecimiento=a.establecimiento,
+            tutor_celular=a.tutor_celular,
+        ),
+        prioridad=a.prioridad.value,
+        razones=[s.RazonBarreraSalida(codigo=r.codigo.value, descripcion=r.descripcion) for r in a.razones],
+        ultima_clasificacion=a.ultima_clasificacion.value if a.ultima_clasificacion else None,
+        dias_control_vencido=a.dias_control_vencido,
+        barreras=[_barrera(b) for b in a.barreras],
+    )
+
+
+@router.get(
+    "/alertas/barreras",
+    response_model=list[s.AlertaBarreraSalida],
+    tags=["HIST-4.4 Alertas de barreras"],
+    responses={422: {"model": s.RespuestaError}},
+)
+def alertas_de_barreras(
+    comunidad: str | None = None,
+    prioridad: str | None = None,
+    svc: ConsultarAlertasBarreras = Depends(alertas_barreras_uc),
+):
+    """Niños con barreras críticas, por prioridad, con la razón de cada alerta.
+
+    Es crítica una barrera de RECHAZO_TRATAMIENTO o EFECTOS_ADVERSOS_SUPLEMENTO; o dos o más barreras distintas en
+    60 días; o cualquier barrera vigente (90 días) con anemia moderada o severa y un control vencido.
+    """
+    return [_alerta_barrera(a) for a in svc.alertas_barreras(comunidad=comunidad, prioridad=prioridad)]
+
+
+# --- INC-4: recordatorios y respuesta del tutor (HIST-4.1 y HIST-4.2) ------------------------------------------------
+
+
+def _recordatorio(v: VistaRecordatorio) -> s.RecordatorioSalida:
+    r = v.recordatorio
+    return s.RecordatorioSalida(
+        id=r.id,
+        nino=s.RecordatorioNino(
+            id=r.nino_id,
+            nombre_completo=v.nombre_nino,
+            codigo_origen=v.codigo_origen,
+            comunidad=v.comunidad,
+            establecimiento=v.establecimiento,
+        ),
+        codigo_control=r.codigo_control,
+        fecha_programada=r.fecha_programada,
+        tipo=r.tipo.value,
+        canal=r.canal.value,
+        simulado=r.simulado,
+        estado=r.estado.value,
+        destino=f"*****{r.destino[-4:]}",
+        mensaje=r.mensaje,
+        detalle=r.detalle,
+        intentos=r.intentos,
+        creado_en=r.creado_en,
+        enviado_en=r.enviado_en,
+        respuesta=r.respuesta.value if r.respuesta else None,
+        fecha_reprogramada=r.fecha_reprogramada,
+        respondido_en=r.respondido_en,
+        respondido_por=r.respondido_por,
+        origen_respuesta=r.origen_respuesta.value if r.origen_respuesta else None,
+    )
+
+
+@router.post(
+    "/recordatorios/generar",
+    response_model=s.GeneracionSalida,
+    tags=["HIST-4.1 Recordatorios"],
+)
+def generar_recordatorios(
+    datos: s.GenerarRecordatoriosEntrada | None = None,
+    svc: GenerarRecordatorios = Depends(generar_recordatorios_uc),
+    usuario: str = Depends(usuario_actual),
+):
+    """Genera y envía el lote de recordatorios del día (controles próximos, de hoy y vencidos).
+
+    Es idempotente: un recordatorio es único por niño, control y tipo, así que repetir la generación no repite
+    mensajes. Devuelve enviados, fallidos y omitidos («sin contacto» y «ya enviado»). Los niños del dataset no tienen
+    celular y se cuentan como «sin contacto». Con el notificador simulado (por defecto) no sale ningún mensaje real.
+    """
+    r = svc.generar_recordatorios(usuario, datos.establecimiento if datos else None)
+    return s.GeneracionSalida(
+        fecha=r.fecha,
+        candidatos=r.candidatos,
+        enviados=r.enviados,
+        fallidos=r.fallidos,
+        omitidos_sin_contacto=r.omitidos_sin_contacto,
+        omitidos_ya_enviado=r.omitidos_ya_enviado,
+        recordatorios=[_recordatorio(v) for v in r.recordatorios],
+    )
+
+
+@router.get(
+    "/recordatorios",
+    response_model=list[s.RecordatorioSalida],
+    tags=["HIST-4.1 Recordatorios"],
+    responses={422: {"model": s.RespuestaError}},
+)
+def listar_recordatorios(
+    estado: str | None = None,
+    desde: date | None = None,
+    nino_id: str | None = None,
+    limite: int = Query(200, description="De 1 a 1000"),
+    svc: ConsultarRecordatorios = Depends(recordatorios_uc),
+):
+    """Recordatorios generados (el más reciente primero); filtrables por estado, por fecha de generación y por niño."""
+    return [
+        _recordatorio(v) for v in svc.listar_recordatorios(estado=estado, desde=desde, nino_id=nino_id, limite=limite)
+    ]
+
+
+@router.get(
+    "/recordatorios/metricas",
+    response_model=s.MetricasRecordatoriosSalida,
+    tags=["HIST-4.1 Recordatorios"],
+    responses={422: {"model": s.RespuestaError}},
+)
+def metricas_recordatorios(
+    desde: date | None = None, hasta: date | None = None, svc: ConsultarRecordatorios = Depends(recordatorios_uc)
+):
+    """Métricas de entrega de mensajes (hito H4): tasas de envío, entrega y confirmación, en total y por canal.
+
+    Las tasas son proporciones de 0 a 1. La tasa de entrega usa solo los envíos reales: los simulados no se entregan.
+    """
+    m = svc.metricas_recordatorios(desde, hasta)
+    return s.MetricasRecordatoriosSalida(
+        **{**vars(m), "por_canal": [s.MetricasCanalSalida(**vars(c)) for c in m.por_canal]}
+    )
+
+
+@router.post(
+    "/recordatorios/{recordatorio_id}/respuesta",
+    response_model=s.RespuestaSalida,
+    tags=["HIST-4.2 Respuestas"],
+    responses={404: {"model": s.RespuestaError}, 409: {"model": s.RespuestaError}, 422: {"model": s.RespuestaError}},
+)
+def responder_recordatorio(
+    recordatorio_id: str,
+    datos: s.RespuestaEntrada,
+    svc: RegistrarRespuestaRecordatorio = Depends(respuesta_uc),
+    usuario: str = Depends(usuario_actual),
+):
+    """El personal registra la respuesta del tutor: CONFIRMA, NO_PUEDE o REPROGRAMAR (con fecha, hasta 90 días).
+
+    Con NO_PUEDE puede indicar la barrera (tipo y detalle): se registra con la fuente RESPUESTA_RECORDATORIO; si no la
+    indica, ``barrera_sugerida`` es verdadero. 409 si el recordatorio ya tiene respuesta; 422 si los datos no son
+    válidos.
+    """
+    r = svc.registrar_respuesta(recordatorio_id, datos.model_dump(), usuario)
+    return s.RespuestaSalida(
+        recordatorio=_recordatorio(r.recordatorio), barrera_id=r.barrera_id, barrera_sugerida=r.barrera_sugerida
+    )
+
+
+@router.get("/notificaciones/whatsapp/webhook", tags=["HIST-4.2 Respuestas"], response_class=PlainTextResponse)
+def verificar_webhook(
+    modo: str | None = Query(None, alias="hub.mode"),
+    token: str | None = Query(None, alias="hub.verify_token"),
+    desafio: str | None = Query(None, alias="hub.challenge"),
+    svc: ProcesarNotificacionesWhatsApp = Depends(webhook_uc),
+):
+    """Verificación del webhook que hace Meta al registrarlo: devuelve ``hub.challenge`` si el token es el configurado
+    en ``WHATSAPP_VERIFY_TOKEN``; 403 en otro caso. Público: no usa la sesión del personal."""
+    if desafio is None or not svc.verificar_suscripcion(modo, token):
+        return JSONResponse(status_code=403, content={"mensaje": "Verificación rechazada.", "errores": []})
+    return PlainTextResponse(desafio)
+
+
+@router.post(
+    "/notificaciones/whatsapp/webhook",
+    response_model=s.ResumenWebhookSalida,
+    tags=["HIST-4.2 Respuestas"],
+    responses={403: {"model": s.RespuestaError}, 422: {"model": s.RespuestaError}},
+)
+async def recibir_webhook(request: Request, svc: ProcesarNotificacionesWhatsApp = Depends(webhook_uc)):
+    """Recibe los estados de entrega (enviado, entregado, leído, fallido) y las respuestas del tutor desde WhatsApp.
+
+    Público (sin sesión) pero protegido por la firma ``X-Hub-Signature-256``, que se exige cuando se configuró
+    ``WHATSAPP_APP_SECRET`` (403 si es inválida). La respuesta se asocia al recordatorio por el mensaje al que responde
+    o, si no, por el número del tutor. Lo que no se reconoce se ignora y se cuenta.
+    """
+    cuerpo = await request.body()
+    resumen = await run_in_threadpool(svc.procesar_webhook, cuerpo, request.headers.get("X-Hub-Signature-256"))
+    return s.ResumenWebhookSalida(**vars(resumen))

@@ -4,8 +4,10 @@ import copy
 from datetime import date
 
 from app.domain.model.asistencia import AsistenciaControl
+from app.domain.model.barrera import Barrera
 from app.domain.model.entidades import Evaluacion, Nino
-from app.domain.model.errores import ConflictoAsistencia, ConflictoVisita
+from app.domain.model.errores import ConflictoAsistencia, ConflictoBarrera, ConflictoRecordatorio, ConflictoVisita
+from app.domain.model.notificacion import CanalEnvio, EstadoRecordatorio, Recordatorio
 from app.domain.model.sincronizacion import (
     ConflictoSincronizacion,
     OperacionSincronizada,
@@ -13,17 +15,23 @@ from app.domain.model.sincronizacion import (
 )
 from app.domain.model.tiempo import fecha_local
 from app.domain.model.visita import VisitaDomiciliaria
+from app.ports.outbound.repositorio_barreras import RepositorioBarreras
 from app.ports.outbound.repositorio_ninos import RepositorioNinos
+from app.ports.outbound.repositorio_recordatorios import RepositorioRecordatorios
 from app.ports.outbound.repositorio_sincronizacion import RepositorioSincronizacion
 from app.ports.outbound.repositorio_visitas import RepositorioVisitas
 
 
-class RepositorioEnMemoria(RepositorioNinos, RepositorioVisitas, RepositorioSincronizacion):
+class RepositorioEnMemoria(
+    RepositorioNinos, RepositorioVisitas, RepositorioSincronizacion, RepositorioRecordatorios, RepositorioBarreras
+):
     def __init__(self) -> None:
         self._ninos: dict[str, Nino] = {}
         self._visitas: dict[str, VisitaDomiciliaria] = {}
         self._operaciones: dict[str, OperacionSincronizada] = {}
         self._conflictos: dict[str, ConflictoSincronizacion] = {}
+        self._recordatorios: dict[str, Recordatorio] = {}
+        self._barreras: dict[str, Barrera] = {}
 
     def guardar(self, nino: Nino) -> Nino:
         self._ninos[nino.id] = copy.deepcopy(nino)
@@ -41,6 +49,8 @@ class RepositorioEnMemoria(RepositorioNinos, RepositorioVisitas, RepositorioSinc
         ids = [i for i, n in self._ninos.items() if n.origen == origen]
         for i in ids:
             del self._ninos[i]
+        self._barreras = {k: b for k, b in self._barreras.items() if b.nino_id not in ids}
+        self._recordatorios = {k: r for k, r in self._recordatorios.items() if r.nino_id not in ids}
         return len(ids)
 
     def actualizar(self, nino: Nino) -> Nino:
@@ -185,3 +195,82 @@ class RepositorioEnMemoria(RepositorioNinos, RepositorioVisitas, RepositorioSinc
     def actualizar_conflicto(self, conflicto: ConflictoSincronizacion) -> ConflictoSincronizacion:
         self._conflictos[conflicto.id] = copy.deepcopy(conflicto)
         return conflicto
+
+    # --- Recordatorios ---------------------------------------------------------------------------------------------
+    def agregar_recordatorio(self, recordatorio: Recordatorio) -> Recordatorio:
+        if any(r.clave == recordatorio.clave for r in self._recordatorios.values()):
+            raise ConflictoRecordatorio("Ya existe un recordatorio para ese control y tipo.")
+        self._recordatorios[recordatorio.id] = copy.deepcopy(recordatorio)
+        return recordatorio
+
+    def actualizar_recordatorio(self, recordatorio: Recordatorio) -> Recordatorio:
+        self._recordatorios[recordatorio.id] = copy.deepcopy(recordatorio)
+        return recordatorio
+
+    def obtener_recordatorio(self, recordatorio_id: str) -> Recordatorio | None:
+        return copy.deepcopy(self._recordatorios.get(recordatorio_id))
+
+    def obtener_por_id_externo(self, id_externo: str) -> Recordatorio | None:
+        for r in self._recordatorios.values():
+            if r.id_externo == id_externo:
+                return copy.deepcopy(r)
+        return None
+
+    def buscar_para_respuesta(self, id_externo: str | None, destino: str | None) -> Recordatorio | None:
+        if id_externo and (r := self.obtener_por_id_externo(id_externo)):
+            return r
+        if not destino:
+            return None
+        candidatos = [
+            r
+            for r in self._recordatorios.values()
+            if r.destino == destino
+            and r.canal == CanalEnvio.WHATSAPP
+            and r.respuesta is None
+            and r.estado != EstadoRecordatorio.FALLIDO
+        ]
+        return copy.deepcopy(max(candidatos, key=lambda r: r.creado_en)) if candidatos else None
+
+    def listar_recordatorios(
+        self,
+        estado: str | None = None,
+        desde: date | None = None,
+        hasta: date | None = None,
+        nino_id: str | None = None,
+        limite: int | None = None,
+    ) -> list[Recordatorio]:
+        elegidos = [
+            r
+            for r in self._recordatorios.values()
+            if (not estado or r.estado == estado)
+            and (not nino_id or r.nino_id == nino_id)
+            and (not desde or fecha_local(r.creado_en) >= desde)
+            and (not hasta or fecha_local(r.creado_en) <= hasta)
+        ]
+        elegidos.sort(key=lambda r: r.creado_en, reverse=True)
+        return [copy.deepcopy(r) for r in (elegidos[:limite] if limite else elegidos)]
+
+    # --- Barreras --------------------------------------------------------------------------------------------------
+    def agregar_barrera(self, barrera: Barrera) -> Barrera:
+        previa = self.obtener_equivalente(barrera.nino_id, barrera.tipo, barrera.fecha, barrera.fuente)
+        if previa:
+            raise ConflictoBarrera("El niño ya tiene registrada esa barrera.", previa.id)
+        self._barreras[barrera.id] = copy.deepcopy(barrera)
+        return barrera
+
+    def obtener_equivalente(self, nino_id: str, tipo: str, fecha: date, fuente: str) -> Barrera | None:
+        for b in self._barreras.values():
+            if (b.nino_id, b.tipo, b.fecha, b.fuente) == (nino_id, tipo, fecha, fuente):
+                return copy.deepcopy(b)
+        return None
+
+    def listar_barreras(self, nino_id: str) -> list[Barrera]:
+        propias = [copy.deepcopy(b) for b in self._barreras.values() if b.nino_id == nino_id]
+        return sorted(propias, key=lambda b: (b.fecha, b.creado_en), reverse=True)
+
+    def barreras_desde(self, desde: date) -> dict[str, list[Barrera]]:
+        agrupadas: dict[str, list[Barrera]] = {}
+        for b in self._barreras.values():
+            if b.fecha >= desde:
+                agrupadas.setdefault(b.nino_id, []).append(copy.deepcopy(b))
+        return agrupadas

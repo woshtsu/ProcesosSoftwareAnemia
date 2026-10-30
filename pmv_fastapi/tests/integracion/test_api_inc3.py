@@ -488,5 +488,5 @@ def test_cp285_el_contrato_openapi_publica_los_endpoints_del_incremento_3(client
         "/api/ninos/{nino_id}/visitas",
     ):
         assert ruta in doc["paths"]
-    assert doc["info"]["version"] == "3.0.0-inc3"
+    assert doc["info"]["version"] == "4.0.0-inc4"
     assert doc["paths"]["/api/sincronizacion"]["post"]["responses"]["200"]

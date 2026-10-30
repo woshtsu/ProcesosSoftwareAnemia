@@ -2,7 +2,7 @@
    «red primero, caché de respaldo»: sin conexión la aplicación abre y muestra los últimos datos consultados, con la
    cabecera X-Desde-Cache para que la interfaz lo avise. Las escrituras no pasan por aquí: se guardan en la cola del
    dispositivo (IndexedDB) y las envía Sync. El caché de datos se borra al cerrar sesión (auth.js). */
-const VERSION = "v3";
+const VERSION = "v4";
 const CACHE_SHELL = `anemia-junin-shell-${VERSION}`;
 const CACHE_DATOS = `anemia-junin-datos-${VERSION}`;
 const SHELL = [

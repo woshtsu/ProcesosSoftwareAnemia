@@ -4,7 +4,7 @@
 
 **Decisión.** Se agrega la **visita domiciliaria** como hecho persistido y una **lista priorizada** calculada en el dominio (`app/domain/service/visitas.py`) con un puntaje **determinista y explicable**, de 0 a 100, cuya composición se devuelve en cada respuesta. **Los pesos son una propuesta del equipo del proyecto, no una norma del MINSA**; deben validarse con la microred antes de usarse como criterio operativo y por eso están versionados en `PESOS_V1` (`VISITA-V1`), igual que `ESQUEMA_AGENDA_V1` (ADR-007).
 
-Quién entra: solo **niños en tratamiento**, es decir, activos cuya **última evaluación tiene anemia**. Componentes (suman como máximo 100):
+Quién entra: solo **niños en tratamiento**, es decir, activos cuya **última evaluación tiene anemia**. Componentes (suman como máximo 100; con barreras críticas, 115):
 
 | Componente | Máximo | Cómo se calcula |
 |---|---|---|
@@ -12,6 +12,9 @@ Quién entra: solo **niños en tratamiento**, es decir, activos cuya **última e
 | `CONTROL_VENCIDO` | 30 | Proporcional a los días de atraso del control más vencido de la agenda (ADR-007), con tope de 60 días. |
 | `INASISTENCIAS` | 15 | 5 puntos por cada inasistencia registrada (RF-09) con fecha programada en los últimos 90 días. |
 | `ULTIMA_VISITA` | 15 | Proporcional a los días desde la última visita, con tope de 90 días; **sin ninguna visita, el máximo**. |
+| `BARRERA_CRITICA` | 15 | Solo con alerta de barreras críticas (INC-4): 15 si la prioridad es ALTA, 8 si es MEDIA. |
+
+**Actualización del Incremento 4 (`VISITA-V2`, ADR-014).** Se agrega un quinto componente, `BARRERA_CRITICA`, **solo** a los niños que tienen una alerta de barreras críticas (HIST-4.4): **15 puntos** si la alerta es de prioridad ALTA y **8** si es MEDIA (propuesta del equipo, igual que los demás pesos). Un niño sin barreras críticas no lleva el componente: su puntaje y su lista de componentes no cambian, así que el rango es de 0 a 100 sin barreras y de **0 a 115 con ellas** (máximo teórico: 100 + 15). Se eligió sumar en lugar de repartir el peso entre cinco componentes para no alterar el orden ya validado por el personal ni el puntaje de quienes no tienen barreras; el costo es un máximo variable, que la interfaz explica («hasta 115 si el niño tiene barreras críticas»). `PESOS_V1` se conserva como referencia; la versión vigente es `PESOS_V2` (`VISITA-V2`).
 
 Desempate: mayor puntaje, luego más días de control vencido y luego código/nombre, para que el orden sea reproducible.
 

@@ -2,6 +2,29 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Los datos incluidos son sintéticos.
 
+## [4.0.0-inc4] — Incremento 4: recordatorios por WhatsApp y barreras (HIST-4.1 a HIST-4.4)
+
+### Agregado
+- **HIST-4.1 Enviar recordatorio (ADR-014)**: puerto de salida `Notificador` con cuatro adaptadores (`app/adapters/outbound/notificaciones/`): simulado (por defecto, no envía nada), WhatsApp Cloud API con mensaje de plantilla, SMS genérico y composición con respaldo (si WhatsApp falla, se reintenta por SMS). `POST /api/recordatorios/generar` selecciona en el dominio los controles `PENDIENTE` de hoy, los que abren su ventana en 3 días o menos y los `VENCIDO`; es **idempotente** (único por niño, control y tipo), reintenta los `FALLIDO` y cuenta como «sin contacto» a los niños sin celular y a **todos** los del dataset DIRESA. Mensaje en español sencillo, sin diagnóstico. `GET /api/recordatorios?estado=&desde=&nino_id=&limite=` (celular enmascarado) y `GET /api/recordatorios/metricas?desde=&hasta=` (tasas de envío, entrega, respuesta y confirmación, por canal; la tasa de entrega excluye los simulados). Tabla `recordatorio`.
+- **HIST-4.2 Registrar confirmación**: `POST /api/recordatorios/{id}/respuesta` (`CONFIRMA`, `NO_PUEDE`, `REPROGRAMAR` con fecha de hasta 90 días; 404; 409 si ya hay respuesta; 422) y **webhook de WhatsApp** `GET`/`POST /api/notificaciones/whatsapp/webhook`: verificación con `WHATSAPP_VERIFY_TOKEN`, firma `X-Hub-Signature-256` (HMAC-SHA256 con `WHATSAPP_APP_SECRET`), estados de entrega que solo avanzan y respuestas asociadas por el mensaje al que responden o por el celular. El webhook es público (exento de sesión y de CSRF solo en esa ruta).
+- **HIST-4.3 Registrar barreras**: `POST`/`GET /api/ninos/{id}/barreras` (catálogo de 8 tipos, `OTRA` con detalle obligatorio, 4 fuentes; 409 si se repite tipo, fecha y fuente). Tabla `barrera`. Se registran desde el expediente, desde la respuesta `NO_PUEDE`, desde la inasistencia y desde la visita no lograda. Nueva operación `REGISTRAR_BARRERA` en la cola sin conexión (ADR-012): una barrera ya existente se responde `DUPLICADA`.
+- **HIST-4.4 Alertar barreras críticas**: `GET /api/alertas/barreras?comunidad=&prioridad=` con las razones `BARRERA_GRAVE`, `BARRERAS_RECURRENTES` y `ANEMIA_CONTROL_VENCIDO` (`REGLAS_BARRERAS_V1`, vigencia de 90 días, propuesta del equipo). Sección «Barreras críticas» en la pestaña «Alertas».
+- **Visita priorizada `VISITA-V2` (ADR-013)**: componente `BARRERA_CRITICA` (15 puntos si la alerta es ALTA, 8 si es MEDIA) solo para los niños con barreras críticas; el puntaje llega hasta 115 con barreras y no cambia sin ellas.
+- Interfaz: pestaña «Recordatorios» (generar, filtrar por estado, métricas, tabla con la marca SIMULADO y registro de la respuesta del tutor), sección «Barreras de acceso» en el expediente con el formulario «Registrar barrera» (también sin conexión), «Barrera asociada (opcional)» en los formularios de inasistencia y de visita. Service worker `v4`.
+- ADR-014; ADR-013 actualizado; migración `db/04_migracion_v4_0.sql`; RLS de las tablas nuevas en `db/02_supabase.sql`; variables `WHATSAPP_*` y `SMS_*` en `.env.example` y `docs/DESPLIEGUE.md`.
+- Pruebas: 158 pruebas nuevas de pytest (de 499 a 657: 416 unitarias, 216 de integración y 25 de arquitectura), cobertura total de 99,79 % y 100 % en los archivos nuevos, y 4 E2E nuevas con Playwright (de 24 a 28), CP-304 a CP-405. **Ninguna prueba hace llamadas de red reales**: WhatsApp y SMS se simulan con `httpx.MockTransport`.
+
+### Cambiado
+- `priorizar_nino` recibe la alerta de barreras del niño (opcional) y `PESOS_V2` reemplaza a `PESOS_V1` como vigente (`VISITA-V1` se conserva). `ServicioVisitas` recibe de forma opcional el repositorio de barreras. `ServicioSincronizacion` recibe el caso de uso de barreras.
+- `db/01_esquema_postgresql.sql` incluye las tablas nuevas. **Una base 3.0 se migra con `db/04_migracion_v4_0.sql`** (solo agrega tablas); SQLite se actualiza sola al arrancar.
+- Versión: `4.0.0` en `pyproject.toml`; `VERSION = "4.0.0-inc4"` en la API; subtítulo «Incremento 4 · v4.0». Contrato OpenAPI regenerado (29 rutas).
+
+### Limitaciones
+- Sin credenciales de Meta el sistema funciona en modo simulado: no sale ningún mensaje. La plantilla `recordatorio_control` debe ser aprobada por Meta antes de enviar de verdad.
+- Sin `WHATSAPP_APP_SECRET` el webhook acepta cuerpos sin firma: en producción debe configurarse. Las respuestas por SMS no se reciben.
+- Generar los recordatorios y registrar la respuesta de un tutor requieren conexión; solo las barreras se guardan sin conexión. La generación es manual (botón o llamada al endpoint), no automática.
+- Las reglas de barreras críticas, su vigencia de 90 días y el peso de `BARRERA_CRITICA` son una propuesta del equipo pendiente de validación por la microred.
+
 ## [3.0.0-inc3] — Incremento 3: registro sin conexión, sincronización y visita domiciliaria priorizada (HIST-3.1 a HIST-3.4 y VIS-3.5)
 
 ### Agregado

@@ -143,3 +143,12 @@ button, .boton { font: inherit; font-weight: 600; border-radius: 8px; padding: 9
 .conflicto .acciones { justify-content: flex-start; flex-wrap: wrap; }
 @media (max-width: 760px) { .conflicto .comparar { grid-template-columns: 1fr; } }
 .chip:empty { display: none; }
+
+/* Incremento 4: recordatorios, respuesta del tutor y barreras */
+.alerta.aviso-ok { background: var(--verde-f); color: var(--verde); }
+.ctrl-SIMULADO { background: var(--ambar-f); color: var(--ambar); }
+.ctrl-ENVIADO, .ctrl-ENTREGADO, .ctrl-LEIDO { background: var(--verde-f); color: var(--verde); }
+.ctrl-FALLIDO { background: var(--rojo-f); color: var(--rojo); }
+.ctrl-BARRERA { background: var(--naranja-f); color: var(--naranja); }
+#vista-recordatorios .kpi strong { font-size: 24px; }
+.lista-barreras { margin: 0; padding-left: 16px; font-size: 13px; }

@@ -12,7 +12,17 @@ from app.ports.inbound.sesiones import GestionarSesiones
 router = APIRouter(prefix="/api/auth", tags=["Autenticación"])
 ACCESS = "aj_access"
 REFRESH = "aj_refresh"
-PUBLICAS = {"/api/salud", "/api/auth/config", "/api/auth/login", "/api/auth/session", "/api/auth/logout"}
+# El webhook de WhatsApp lo llama Meta, sin sesión ni encabezado CSRF: se protege con su token de verificación (GET) y
+# con la firma X-Hub-Signature-256 (POST), que valida el caso de uso (HIST-4.2, ADR-014).
+WEBHOOK_WHATSAPP = "/api/notificaciones/whatsapp/webhook"
+PUBLICAS = {
+    "/api/salud",
+    "/api/auth/config",
+    "/api/auth/login",
+    "/api/auth/session",
+    "/api/auth/logout",
+    WEBHOOK_WHATSAPP,
+}
 
 
 def sesiones_uc(request: Request) -> GestionarSesiones:
@@ -52,7 +62,7 @@ def registrar_seguridad(app):
         path = request.url.path.rstrip("/")
         if app.state.auth_mode == "supabase" and path.startswith("/api/"):
             # El encabezado personalizado exige una petición del mismo origen en navegadores.
-            if request.method not in {"GET", "HEAD", "OPTIONS"}:
+            if request.method not in {"GET", "HEAD", "OPTIONS"} and path != WEBHOOK_WHATSAPP:
                 origin = request.headers.get("origin")
                 esperado = str(request.base_url).rstrip("/")
                 if request.headers.get("X-CSRF-Protection") != "1" or (origin and origin != esperado):

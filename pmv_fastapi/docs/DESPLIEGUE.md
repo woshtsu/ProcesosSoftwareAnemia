@@ -4,6 +4,38 @@ Configuración preparada el 2026-10-30; pendiente ejecución remota. Tras integr
 
 Si ya ejecutaste el SQL de la versión anterior (antes de este pull), ejecutar una sola vez `db/02_migracion_v2_0.sql` y después volver a ejecutar `db/02_supabase.sql`. No basta volver a ejecutar CREATE TABLE IF NOT EXISTS: no actualiza columnas. Para un proyecto vacío siguen aplicando los pasos siguientes con el SQL actualizado.
 
+### Versión 4.0 (recordatorios por WhatsApp y barreras): qué SQL ejecutar y qué configurar
+
+La versión 4.0.0-inc4 agrega dos tablas (`recordatorio` y `barrera`); no cambia ni elimina columnas de las tablas existentes.
+
+- **Proyecto vacío (nuevo):** ejecutar `db/01_esquema_postgresql.sql` y después `db/02_supabase.sql`. El esquema 4.0 ya incluye las tablas nuevas; **no** hay que ejecutar las migraciones.
+- **Base que ya está en 3.0** (Supabase ya configurado): ejecutar una sola vez `db/04_migracion_v4_0.sql` y después volver a ejecutar `db/02_supabase.sql`, que activa RLS y revoca el acceso de `anon` y `authenticated` sobre las tablas nuevas. La migración usa `IF NOT EXISTS`, está en una transacción y puede repetirse sin efecto.
+- **Base en 2.0 o 1.x:** ejecutar en orden `db/02_migracion_v2_0.sql` (solo 1.x), `db/03_migracion_v3_0.sql`, `db/04_migracion_v4_0.sql` y por último `db/02_supabase.sql`.
+- **SQLite de desarrollo:** `crear_esquema()` crea las tablas nuevas al arrancar; no requiere migración.
+
+Comprobación posterior: `select to_regclass('public.recordatorio'), to_regclass('public.barrera');` debe devolver los dos nombres.
+
+**Variables de entorno nuevas** (todas opcionales; en Render, en **Environment**). Sin ellas el sistema funciona completo en **modo simulado**: los recordatorios se registran y se rotulan «SIMULADO», pero no sale ningún mensaje.
+
+| Variable | Para qué sirve |
+| --- | --- |
+| `WHATSAPP_TOKEN` | Token de acceso de la WhatsApp Cloud API. Con `WHATSAPP_PHONE_NUMBER_ID` activa el envío real. |
+| `WHATSAPP_PHONE_NUMBER_ID` | Identificador del número emisor en Meta. |
+| `WHATSAPP_VERIFY_TOKEN` | Texto que usted elige y escribe también en Meta al registrar el webhook; sin él la verificación se rechaza. |
+| `WHATSAPP_APP_SECRET` | Secreto de la aplicación de Meta: valida la firma `X-Hub-Signature-256` de los eventos. **Configurarlo siempre en producción**: sin él el webhook acepta cuerpos sin firma. |
+| `WHATSAPP_PLANTILLA` | Nombre de la plantilla aprobada (por defecto `recordatorio_control`). |
+| `WHATSAPP_IDIOMA` | Código de idioma de la plantilla (por defecto `es`). |
+| `WHATSAPP_API_VERSION` | Versión de la Graph API (por defecto `v21.0`). |
+| `SMS_API_URL`, `SMS_API_TOKEN`, `SMS_REMITENTE` | Respaldo por SMS si WhatsApp falla (POST JSON `{to, from, message}` con `Authorization: Bearer`). Sin `SMS_API_URL` no hay respaldo. |
+
+**Plantilla de WhatsApp.** Un mensaje que el sistema envía por iniciativa propia debe usar una plantilla aprobada por Meta (categoría «Utilidad»). Crear `recordatorio_control`, idioma Español, con cuatro variables en el cuerpo, en este orden (nombre del niño, control, establecimiento, fecha sugerida):
+
+> Hola, le recordamos el {{2}} de {{1}} en {{3}}. Fecha sugerida: {{4}}. Responda: 1 = Confirmo, 2 = No puedo, 3 = Reprogramar.
+
+La aprobación puede tardar y está fuera del control del equipo (riesgo S3-4 del plan): mientras tanto, el modo simulado permite demostrar todo el flujo. No incluir diagnóstico en la plantilla. El tutor debe haber dado su consentimiento para recibir mensajes.
+
+**Webhook.** En Meta (WhatsApp → Configuración → Webhook) registrar `https://TU_SERVICIO/api/notificaciones/whatsapp/webhook` con el `WHATSAPP_VERIFY_TOKEN` y suscribir el campo `messages`. La ruta es pública (no usa la sesión del personal) y se protege con la firma. Nunca se hacen llamadas a Meta desde las pruebas ni desde el CI.
+
 ### Versión 3.0 (sin conexión, sincronización y visitas): qué SQL ejecutar
 
 La versión 3.0.0-inc3 agrega tres tablas (`visita_domiciliaria`, `operacion_sincronizada` y `conflicto_sincronizacion`); no cambia ni elimina columnas de las tablas existentes.

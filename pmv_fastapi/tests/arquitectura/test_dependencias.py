@@ -220,3 +220,59 @@ def test_cp296_el_puntaje_de_visitas_y_las_reglas_de_conflicto_son_funciones_pur
     for nombre in ("service/visitas.py", "service/conflictos.py", "service/operaciones.py"):
         importados = importaciones(APP / "domain" / nombre)
         assert not {m.split(".")[0] for m in importados} & {"os", "random", "sqlite3", "socket", "time"}, nombre
+
+
+# --- Reglas del incremento 4 (ADR-014) -------------------------------------------------------------------------------
+
+
+def test_cp398_los_modulos_nuevos_del_incremento_4_existen_y_respetan_la_regla_de_dependencias():
+    nuevos_dominio = {
+        "model/barrera.py",
+        "model/notificacion.py",
+        "service/barreras.py",
+        "service/notificaciones.py",
+    }
+    assert nuevos_dominio <= {p.relative_to(APP / "domain").as_posix() for p in modulos("domain")}
+    assert {"barreras", "notificaciones"} <= {p.stem for p in modulos("ports/inbound")}
+    assert {"notificador", "repositorio_barreras", "repositorio_recordatorios"} <= {
+        p.stem for p in modulos("ports/outbound")
+    }
+    assert {"servicio_barreras", "servicio_recordatorios"} <= {p.stem for p in modulos("application")}
+    assert {"simulado", "whatsapp_cloud", "sms", "respaldo"} <= {
+        p.stem for p in modulos("adapters/outbound/notificaciones")
+    }
+    for nombre in nuevos_dominio:
+        assert prohibidos(APP / "domain" / nombre, FRAMEWORKS | set(CAPAS_EXTERNAS) | {"httpx"}) == []
+
+
+def test_cp399_los_servicios_del_incremento_4_solo_conocen_puertos_y_dominio():
+    """Los casos de uso de barreras y recordatorios se apoyan en puertos (repositorios y ``Notificador``): nunca importan
+    a otros servicios, a los adaptadores ni al cliente HTTP (el cableado lo hace main.py)."""
+    permitidos = ("app.domain", "app.ports")
+    for nombre in (
+        "servicio_barreras.py",
+        "servicio_recordatorios.py",
+        "servicio_visitas.py",
+        "servicio_sincronizacion.py",
+    ):
+        internos = [m for m in importaciones(APP / "application" / nombre) if m.startswith(("app.", "."))]
+        assert [m for m in internos if not empieza_con(m, permitidos)] == [], nombre
+        assert prohibidos(APP / "application" / nombre, {"httpx", "requests"}) == [], nombre
+
+
+def test_cp400_solo_los_adaptadores_de_salida_hablan_http_con_proveedores_externos():
+    """El cliente HTTP (httpx) queda confinado a los adaptadores de salida de notificaciones y de Supabase Auth."""
+    con_httpx = sorted(p.relative_to(APP).as_posix() for p in APP.rglob("*.py") if prohibidos(p, {"httpx"}))
+    assert con_httpx
+    assert all(ruta.startswith("adapters/outbound/") for ruta in con_httpx), con_httpx
+    assert {"adapters/outbound/notificaciones/whatsapp_cloud.py", "adapters/outbound/notificaciones/sms.py"} <= set(
+        con_httpx
+    )
+
+
+def test_cp401_las_reglas_de_barreras_y_recordatorios_son_funciones_puras_sin_reloj_ni_entrada_salida():
+    for nombre in ("service/barreras.py", "service/notificaciones.py"):
+        importados = importaciones(APP / "domain" / nombre)
+        assert not {m.split(".")[0] for m in importados} & {"os", "random", "sqlite3", "socket", "time", "httpx"}, (
+            nombre
+        )
