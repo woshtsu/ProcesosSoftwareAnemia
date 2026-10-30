@@ -1,5 +1,11 @@
 # Mapa canónico de rutas
 
+## Producción y CI/CD (ORQ-004)
+
+- `.github/workflows/ci.yml`: CI del monorepositorio y solicitud de despliegue de main en Render; reemplaza por traslado `pmv_fastapi/.github/workflows/ci.yml`.
+- `pmv_fastapi/docs/DESPLIEGUE.md`: instrucciones Supabase, GitHub Actions y Render.
+- `pmv_fastapi/db/02_supabase.sql`: protección del esquema frente a Data API; ejecutar después de `01_esquema_postgresql.sql`.
+
 Fuente única de verdad sobre **dónde vive cada cosa**. Todas las rutas son relativas a la raíz del repositorio.
 Si un agente necesita crear una ruta nueva, lo pide al `orquestador` mediante una solicitud (`coordinacion/solicitudes/ORQ-###.md`); solo el orquestador edita este archivo.
 

@@ -1,5 +1,7 @@
 # Anemia Junín — Incremento 2 (avance del 50 %)
 
+Producción desde `main`: [guía paso a paso de Supabase, GitHub Actions y Render](docs/DESPLIEGUE.md). El workflow está en `../.github/workflows/ci.yml`, en la raíz del repositorio. Configuración remota pendiente; no implica despliegue verificado.
+
 **Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín**
 Procesos de Software (ASUC01702) · 2026-20 · Versión `v1.5.0-inc2-avance` (el PMV liberado es `v1.0-PMV`)
 

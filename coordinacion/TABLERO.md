@@ -6,6 +6,8 @@ Estados: `PENDIENTE` · `EN CURSO` · `BLOQUEADA` · `EN REVISIÓN` · `HECHO`
 
 ## Tareas
 
+T-012 — Preparar producción de main con Render/Supabase y CI/CD. Responsable: orquestador + desarrollador (secuencial). EN REVISIÓN (2026-10-30). Solicitud ORQ-004. Workflow, SQL y guía preparados. Pendientes configuración remota, ejecución completa del CI y evidencia del primer despliegue. Informe: `coordinacion/informes/2026-10-30_desarrollador_T-012.md`.
+
 | ID | Tarea | Agente | Estado | Entradas | Salida esperada | Depende de | Notas / informe |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | T-001 | Reestructurar repositorio, definir agentes, protocolo y README | orquestador | HECHO (2026-09-25) | repo original | estructura actual, `.claude/agents/`, `coordinacion/`, `README.md` | — | `coordinacion/informes/2026-09-25_orquestador_T-001.md` |
