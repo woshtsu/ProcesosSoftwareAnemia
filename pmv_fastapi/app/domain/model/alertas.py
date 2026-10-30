@@ -18,13 +18,14 @@ class AlertaControl:
     """Un control vencido de un niño activo, con los datos para contactar a la familia."""
 
     nino_id: str
-    dni: str
+    dni: str | None
     nombre_completo: str
     comunidad: str
     tutor_celular: str | None
     control: ControlProgramado
     ultima_clasificacion: Clasificacion | None
     prioridad: Prioridad
+    codigo_origen: str | None = None  # seudónimo del registro del dataset (p. ej. DJ-00001)
 
 
 @dataclass(frozen=True)

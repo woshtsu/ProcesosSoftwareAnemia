@@ -2,6 +2,30 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Los datos incluidos son sintéticos.
 
+## [2.0.0-inc2] — Incremento 2 al 100 % (HIST-2.3 y HIST-2.4) y dataset DIRESA Junín (tag previsto `v2.0-Inc2`)
+
+### Agregado
+- **HIST-2.3 Agenda del personal (RF-08)**: `GET /api/agenda?desde=&hasta=&establecimiento=&comunidad=` (`app/domain/service/agenda_personal.py`). Por defecto la semana (lunes a domingo) de la fecha de referencia; máximo 31 días (422 si el rango es inválido); totales por día y del rango; filtros por establecimiento y comunidad; una sola carga por lotes (sin N+1). Pestaña «Agenda» con tabla por día, navegación «Anterior/Siguiente» y controles cumplidos atenuados.
+- **HIST-2.4 Asistencia a un control (RF-09, ADR-010)**: tabla `asistencia_control` (`UNIQUE (nino_id, codigo_control, fecha_programada)`), `POST /api/ninos/{id}/controles/{codigo}/asistencia` (201; 404, 409 si ya hay asistencia o el control está cumplido o cerrado; 422 si la fecha es futura o falta el motivo) y `GET /api/ninos/{id}/asistencias`. Asistió: el control queda cumplido. No asistió: sigue pendiente o vencido con la marca «Inasistencia registrada» y la prioridad de la alerta sube un nivel. Botones «Asistió» y «No asistió» con ventana de confirmación en la agenda del expediente y en la pestaña «Agenda».
+- **Origen de los datos y dataset DIRESA Junín (ADR-009)**: `Nino.origen` (`SISTEMA` o `DATASET_DIRESA_JUNIN`), `codigo_origen`, `red`, `microred` y `provincia`; para el dataset `dni`, nombres, apellidos, sexo y tutor pueden ser nulos (solo para ese origen; las validaciones de `SISTEMA` no cambian y la base lo refuerza con `CHECK`); nombre legible «Registro DJ-00002 (dataset anonimizado)»; la búsqueda `q` y la pestaña «Expediente» encuentran por código; `Evaluacion.clasificacion_origen` (severidad del HIS) y peso y talla opcionales en las evaluaciones importadas.
+- **Fecha de referencia fija**: variable `FECHA_REFERENCIA=AAAA-MM-DD` (adaptador `reloj_fijo.py`); `GET /api/salud` devuelve `fecha_hoy` y `fecha_referencia`; aviso visible «Fecha de referencia: 30/06/2024 (corte del dataset)»; las fechas por defecto de la interfaz salen del servidor.
+- **Importador** `scripts/importar_dataset_diresa.py` (paquete `scripts/importador_diresa/`): lee el CSV (latin-1, `;`), asigna la altitud de la capital de provincia (INEI, *Perú: Compendio Estadístico 2014*, cuadro 1.12; aproximación declarada), no inventa peso ni talla, descarta y cuenta lo inválido, y entrega los registros al servicio de importación por el puerto de entrada (sin SQL directo). Opciones `--muestra 500 --semilla 2026` (estratificada Provincia × severidad, reproducible), `--completo`, `--reiniciar`, `--reporte`, `--fecha-referencia` y `--con-registros-sistema N`. Reportes de la corrida real en `docs/evidencias/inc2/importacion_muestra500.json` e `importacion_completa.json` (concordancia de severidad HIS vs sistema, distribución por provincia, descartes).
+- ADR-009 (origen y dataset) y ADR-010 (asistencia persistida); ADR-007 actualizado; migración `db/02_migracion_v2_0.sql` (probada en PostgreSQL 16); `tests/rendimiento/micro_benchmark.py`; registro de defectos con DEF-09; evidencias en `docs/evidencias/inc2/` (pruebas, cobertura, E2E, importaciones, optimización y capturas).
+- Pruebas: 98 pruebas nuevas de pytest (de 228 a 326) y 7 E2E nuevas con Playwright (de 8 a 15), numeradas de CP-116 a CP-187 (unitarias, integración con SQLite, arquitectura y E2E), una muestra real de 20 filas en `tests/fixtures/dataset_muestra.csv` (con casos de campos nulos) y 4 reglas nuevas de arquitectura (CP-176 a CP-179).
+
+### Cambiado
+- `db/01_esquema_postgresql.sql` incluye las columnas y restricciones nuevas (`nino.dni` admite nulo con `UNIQUE`; `ck_nino_sistema_completo` exige DNI y nombres para el origen `SISTEMA`; `peso_kg` y `talla_cm` admiten nulo; tabla `asistencia_control`). **Una base creada con la versión 1.x se migra con `db/02_migracion_v2_0.sql`; una base SQLite 1.x debe recrearse** (el arranque lo rechaza con un mensaje claro).
+- `GET /api/ninos`, expediente, alertas y reporte CSV: `dni`, `nombres` y demás campos personales pueden ser `null`; se agregan `nombre_completo`, `origen`, `codigo_origen`, `provincia`, `red` y `microred`. Los controles de la agenda agregan `inasistencia_registrada`, `motivo_inasistencia`, `cumplido_por_asistencia` y `asistencia_id`; el resumen agrega `inasistencias`.
+- **Optimización de la latencia (acción 1 del PDCA)**: carga de niños por Core en tres consultas y suma de meses sin `calendar.monthrange`; con 1 000 niños, p95 del listado de 159,6 a 128,2 ms y de las alertas de 185,7 a 155,3 ms (medianas de tres corridas; `docs/evidencias/inc2/optimizacion_p95.md`).
+- Versión: `2.0.0` en `pyproject.toml`; `VERSION = "2.0.0-inc2"` en la API; subtítulo «Incremento 2 · v2.0».
+
+### Corregido
+- **DEF-09**: en la pestaña «Agenda», la respuesta de la carga inicial sobrescribía las fechas que la persona acababa de escribir.
+
+### Limitaciones
+- Con el dataset completo (11 686 niños) las alertas tardan ≈ 2,5 s y devuelven 22 MiB sin paginar (la agenda del personal ≈ 1,6 s); con la muestra de 500 niños todo responde en menos de 0,1 s. Supera el criterio de revisión de ADR-007.
+- No se puede anular ni corregir una asistencia registrada por error; la autenticación por roles sigue pendiente.
+
 ## [1.5.0-inc2-avance] — Incremento 2, avance del 50 % (HIST-2.1 y HIST-2.2)
 
 ### Agregado
@@ -30,7 +54,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). L
 - Respuestas desordenadas al cambiar rápido los filtros de la pestaña de alertas: se descartan las respuestas de un filtro anterior (medida preventiva).
 
 ### Pendiente del incremento
-- HIST-2.3 Visualizar agenda del personal (5 SP) y HIST-2.4 Registrar asistencia a control (3 SP).
+- HIST-2.3 Visualizar agenda del personal (5 SP) y HIST-2.4 Registrar asistencia a control (3 SP) (completadas en la 2.0.0-inc2).
 
 ## [1.0.0-pmv] — Incremento 1, PMV (tag `v1.0-PMV`)
 

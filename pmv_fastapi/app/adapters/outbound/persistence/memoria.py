@@ -3,7 +3,9 @@
 import copy
 from datetime import date
 
+from app.domain.model.asistencia import AsistenciaControl
 from app.domain.model.entidades import Evaluacion, Nino
+from app.domain.model.errores import ConflictoAsistencia
 from app.domain.model.tiempo import fecha_local
 from app.ports.outbound.repositorio_ninos import RepositorioNinos
 
@@ -16,15 +18,43 @@ class RepositorioEnMemoria(RepositorioNinos):
         self._ninos[nino.id] = copy.deepcopy(nino)
         return nino
 
+    def guardar_varios(self, ninos: list[Nino]) -> int:
+        for nino in ninos:
+            self.guardar(nino)
+        return len(ninos)
+
+    def contar_por_origen(self, origen: str) -> int:
+        return sum(1 for n in self._ninos.values() if n.origen == origen)
+
+    def eliminar_por_origen(self, origen: str) -> int:
+        ids = [i for i, n in self._ninos.items() if n.origen == origen]
+        for i in ids:
+            del self._ninos[i]
+        return len(ids)
+
     def actualizar(self, nino: Nino) -> Nino:
-        evaluaciones = self._ninos[nino.id].evaluaciones
+        evaluaciones, asistencias = self._ninos[nino.id].evaluaciones, self._ninos[nino.id].asistencias
         self._ninos[nino.id] = copy.deepcopy(nino)
         self._ninos[nino.id].evaluaciones = evaluaciones
+        self._ninos[nino.id].asistencias = asistencias
         return nino
 
     def agregar_evaluacion(self, evaluacion: Evaluacion) -> Evaluacion:
         self._ninos[evaluacion.nino_id].evaluaciones.append(copy.deepcopy(evaluacion))
         return evaluacion
+
+    def agregar_asistencia(self, asistencia: AsistenciaControl) -> AsistenciaControl:
+        existentes = self._ninos[asistencia.nino_id].asistencias
+        if any(
+            a.codigo_control == asistencia.codigo_control and a.fecha_programada == asistencia.fecha_programada
+            for a in existentes
+        ):
+            raise ConflictoAsistencia(
+                f"El control {asistencia.codigo_control} del {asistencia.fecha_programada.isoformat()} "
+                "ya tiene una asistencia."
+            )
+        existentes.append(copy.deepcopy(asistencia))
+        return asistencia
 
     def obtener(self, nino_id: str) -> Nino | None:
         nino = self._ninos.get(nino_id)
@@ -43,7 +73,13 @@ class RepositorioEnMemoria(RepositorioNinos):
                 continue
             if texto:
                 t = texto.lower()
-                if t not in nino.nombre_completo.lower() and t not in nino.dni and t not in nino.comunidad.lower():
+                campos = (
+                    f"{nino.nombres or ''} {nino.apellidos or ''}",
+                    nino.dni or "",
+                    nino.codigo_origen or "",
+                    nino.comunidad,
+                )
+                if not any(t in campo.lower() for campo in campos):
                     continue
             resultado.append(copy.deepcopy(nino))
         return resultado

@@ -915,5 +915,1266 @@
         }
       ]
     }
+  },
+  "v2.0": {
+    "dominio": {
+      "capa": "dominio",
+      "rutas": [
+        "app/domain/model",
+        "app/domain/service"
+      ],
+      "archivos": [
+        "app/domain/model/__init__.py",
+        "app/domain/model/agenda.py",
+        "app/domain/model/agenda_personal.py",
+        "app/domain/model/alertas.py",
+        "app/domain/model/asistencia.py",
+        "app/domain/model/clasificacion.py",
+        "app/domain/model/contexto.py",
+        "app/domain/model/entidades.py",
+        "app/domain/model/errores.py",
+        "app/domain/model/importacion.py",
+        "app/domain/model/origen.py",
+        "app/domain/model/tiempo.py",
+        "app/domain/service/__init__.py",
+        "app/domain/service/agenda.py",
+        "app/domain/service/agenda_personal.py",
+        "app/domain/service/alertas.py",
+        "app/domain/service/asistencia.py",
+        "app/domain/service/reglas_clinicas.py",
+        "app/domain/service/validaciones.py"
+      ],
+      "n_clases": 32,
+      "clases": [
+        "app/domain/model/agenda.py:8 TipoControl",
+        "app/domain/model/agenda.py:13 EstadoControl",
+        "app/domain/model/agenda.py:21 ControlProgramado",
+        "app/domain/model/agenda.py:42 ResumenAgenda",
+        "app/domain/model/agenda.py:54 AgendaNino",
+        "app/domain/model/agenda_personal.py:11 ItemAgendaPersonal",
+        "app/domain/model/agenda_personal.py:25 DiaAgendaPersonal",
+        "app/domain/model/agenda_personal.py:36 ResumenAgendaPersonal",
+        "app/domain/model/agenda_personal.py:46 AgendaPersonal",
+        "app/domain/model/alertas.py:10 Prioridad",
+        "app/domain/model/alertas.py:17 AlertaControl",
+        "app/domain/model/alertas.py:32 ResumenAlertas",
+        "app/domain/model/asistencia.py:11 EstadoAsistencia",
+        "app/domain/model/asistencia.py:17 AsistenciaControl",
+        "app/domain/model/clasificacion.py:6 Clasificacion",
+        "app/domain/model/contexto.py:8 ContextoSistema",
+        "app/domain/model/entidades.py:14 Evaluacion",
+        "app/domain/model/entidades.py:43 Nino",
+        "app/domain/model/errores.py:7 ErrorCampo",
+        "app/domain/model/errores.py:13 ErrorValidacion",
+        "app/domain/model/errores.py:22 RegistroDuplicado",
+        "app/domain/model/errores.py:26 NoEncontrado",
+        "app/domain/model/errores.py:30 ConflictoAsistencia",
+        "app/domain/model/importacion.py:12 TipoEvaluacionImportada",
+        "app/domain/model/importacion.py:20 EvaluacionImportada",
+        "app/domain/model/importacion.py:28 RegistroImportado",
+        "app/domain/model/importacion.py:45 ResultadoImportacion",
+        "app/domain/model/origen.py:6 OrigenDatos",
+        "app/domain/service/agenda.py:59 EsquemaAgenda",
+        "app/domain/service/agenda.py:107 _Episodio",
+        "app/domain/service/agenda.py:113 _Previsto",
+        "app/domain/service/reglas_clinicas.py:28 PuntoDeCorte"
+      ],
+      "n_importaciones": 67,
+      "n_stdlib": 33,
+      "n_internas": 34,
+      "n_externas": 0,
+      "modulos_externos_distintos": [],
+      "indice_contaminacion_pct": 0.0,
+      "importaciones": [
+        {
+          "archivo": "app/domain/model/agenda.py",
+          "linea": 3,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass, field"
+        },
+        {
+          "archivo": "app/domain/model/agenda.py",
+          "linea": 4,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/domain/model/agenda.py",
+          "linea": 5,
+          "modulo": "enum",
+          "tipo": "stdlib",
+          "texto": "from enum import StrEnum"
+        },
+        {
+          "archivo": "app/domain/model/agenda_personal.py",
+          "linea": 3,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass, field"
+        },
+        {
+          "archivo": "app/domain/model/agenda_personal.py",
+          "linea": 4,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/domain/model/agenda_personal.py",
+          "linea": 6,
+          "modulo": "app.domain.model.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda import ControlProgramado"
+        },
+        {
+          "archivo": "app/domain/model/agenda_personal.py",
+          "linea": 7,
+          "modulo": "app.domain.model.alertas",
+          "tipo": "interno",
+          "texto": "from app.domain.model.alertas import Prioridad"
+        },
+        {
+          "archivo": "app/domain/model/alertas.py",
+          "linea": 3,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass, field"
+        },
+        {
+          "archivo": "app/domain/model/alertas.py",
+          "linea": 4,
+          "modulo": "enum",
+          "tipo": "stdlib",
+          "texto": "from enum import StrEnum"
+        },
+        {
+          "archivo": "app/domain/model/alertas.py",
+          "linea": 6,
+          "modulo": "app.domain.model.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda import ControlProgramado"
+        },
+        {
+          "archivo": "app/domain/model/alertas.py",
+          "linea": 7,
+          "modulo": "app.domain.model.clasificacion",
+          "tipo": "interno",
+          "texto": "from app.domain.model.clasificacion import Clasificacion"
+        },
+        {
+          "archivo": "app/domain/model/asistencia.py",
+          "linea": 3,
+          "modulo": "uuid",
+          "tipo": "stdlib",
+          "texto": "import uuid"
+        },
+        {
+          "archivo": "app/domain/model/asistencia.py",
+          "linea": 4,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass, field"
+        },
+        {
+          "archivo": "app/domain/model/asistencia.py",
+          "linea": 5,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date, datetime"
+        },
+        {
+          "archivo": "app/domain/model/asistencia.py",
+          "linea": 6,
+          "modulo": "enum",
+          "tipo": "stdlib",
+          "texto": "from enum import StrEnum"
+        },
+        {
+          "archivo": "app/domain/model/asistencia.py",
+          "linea": 8,
+          "modulo": "app.domain.model.tiempo",
+          "tipo": "interno",
+          "texto": "from app.domain.model.tiempo import ahora"
+        },
+        {
+          "archivo": "app/domain/model/clasificacion.py",
+          "linea": 3,
+          "modulo": "enum",
+          "tipo": "stdlib",
+          "texto": "from enum import StrEnum"
+        },
+        {
+          "archivo": "app/domain/model/contexto.py",
+          "linea": 3,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass"
+        },
+        {
+          "archivo": "app/domain/model/contexto.py",
+          "linea": 4,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/domain/model/entidades.py",
+          "linea": 3,
+          "modulo": "uuid",
+          "tipo": "stdlib",
+          "texto": "import uuid"
+        },
+        {
+          "archivo": "app/domain/model/entidades.py",
+          "linea": 4,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass, field"
+        },
+        {
+          "archivo": "app/domain/model/entidades.py",
+          "linea": 5,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date, datetime"
+        },
+        {
+          "archivo": "app/domain/model/entidades.py",
+          "linea": 7,
+          "modulo": "app.domain.model.asistencia",
+          "tipo": "interno",
+          "texto": "from app.domain.model.asistencia import AsistenciaControl"
+        },
+        {
+          "archivo": "app/domain/model/entidades.py",
+          "linea": 8,
+          "modulo": "app.domain.model.clasificacion",
+          "tipo": "interno",
+          "texto": "from app.domain.model.clasificacion import Clasificacion"
+        },
+        {
+          "archivo": "app/domain/model/entidades.py",
+          "linea": 9,
+          "modulo": "app.domain.model.origen",
+          "tipo": "interno",
+          "texto": "from app.domain.model.origen import OrigenDatos"
+        },
+        {
+          "archivo": "app/domain/model/entidades.py",
+          "linea": 10,
+          "modulo": "app.domain.model.tiempo",
+          "tipo": "interno",
+          "texto": "from app.domain.model.tiempo import ahora"
+        },
+        {
+          "archivo": "app/domain/model/errores.py",
+          "linea": 3,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass, field"
+        },
+        {
+          "archivo": "app/domain/model/importacion.py",
+          "linea": 7,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass, field"
+        },
+        {
+          "archivo": "app/domain/model/importacion.py",
+          "linea": 8,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/domain/model/importacion.py",
+          "linea": 9,
+          "modulo": "enum",
+          "tipo": "stdlib",
+          "texto": "from enum import StrEnum"
+        },
+        {
+          "archivo": "app/domain/model/origen.py",
+          "linea": 3,
+          "modulo": "enum",
+          "tipo": "stdlib",
+          "texto": "from enum import StrEnum"
+        },
+        {
+          "archivo": "app/domain/model/tiempo.py",
+          "linea": 3,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import UTC, date, datetime, time, timedelta, timezone"
+        },
+        {
+          "archivo": "app/domain/service/agenda.py",
+          "linea": 40,
+          "modulo": "calendar",
+          "tipo": "stdlib",
+          "texto": "import calendar"
+        },
+        {
+          "archivo": "app/domain/service/agenda.py",
+          "linea": 41,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass"
+        },
+        {
+          "archivo": "app/domain/service/agenda.py",
+          "linea": 42,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date, timedelta"
+        },
+        {
+          "archivo": "app/domain/service/agenda.py",
+          "linea": 44,
+          "modulo": "app.domain.model.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda import ("
+        },
+        {
+          "archivo": "app/domain/service/agenda.py",
+          "linea": 51,
+          "modulo": "app.domain.model.asistencia",
+          "tipo": "interno",
+          "texto": "from app.domain.model.asistencia import AsistenciaControl, EstadoAsistencia"
+        },
+        {
+          "archivo": "app/domain/service/agenda.py",
+          "linea": 52,
+          "modulo": "app.domain.model.clasificacion",
+          "tipo": "interno",
+          "texto": "from app.domain.model.clasificacion import Clasificacion"
+        },
+        {
+          "archivo": "app/domain/service/agenda.py",
+          "linea": 53,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Evaluacion, Nino"
+        },
+        {
+          "archivo": "app/domain/service/agenda.py",
+          "linea": 54,
+          "modulo": "app.domain.model.tiempo",
+          "tipo": "interno",
+          "texto": "from app.domain.model.tiempo import edad_en_meses, fecha_local"
+        },
+        {
+          "archivo": "app/domain/service/agenda.py",
+          "linea": 55,
+          "modulo": "app.domain.service.reglas_clinicas",
+          "tipo": "interno",
+          "texto": "from app.domain.service.reglas_clinicas import EDAD_MAX_MESES"
+        },
+        {
+          "archivo": "app/domain/service/agenda_personal.py",
+          "linea": 13,
+          "modulo": "collections",
+          "tipo": "stdlib",
+          "texto": "from collections import Counter"
+        },
+        {
+          "archivo": "app/domain/service/agenda_personal.py",
+          "linea": 14,
+          "modulo": "collections.abc",
+          "tipo": "stdlib",
+          "texto": "from collections.abc import Iterable"
+        },
+        {
+          "archivo": "app/domain/service/agenda_personal.py",
+          "linea": 15,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date, timedelta"
+        },
+        {
+          "archivo": "app/domain/service/agenda_personal.py",
+          "linea": 17,
+          "modulo": "app.domain.model.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda import AgendaNino, EstadoControl"
+        },
+        {
+          "archivo": "app/domain/service/agenda_personal.py",
+          "linea": 18,
+          "modulo": "app.domain.model.agenda_personal",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda_personal import ("
+        },
+        {
+          "archivo": "app/domain/service/agenda_personal.py",
+          "linea": 24,
+          "modulo": "app.domain.model.alertas",
+          "tipo": "interno",
+          "texto": "from app.domain.model.alertas import Prioridad"
+        },
+        {
+          "archivo": "app/domain/service/agenda_personal.py",
+          "linea": 25,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Nino"
+        },
+        {
+          "archivo": "app/domain/service/agenda_personal.py",
+          "linea": 26,
+          "modulo": "app.domain.service.alertas",
+          "tipo": "interno",
+          "texto": "from app.domain.service.alertas import calcular_prioridad"
+        },
+        {
+          "archivo": "app/domain/service/alertas.py",
+          "linea": 12,
+          "modulo": "app.domain.model.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda import AgendaNino, ControlProgramado, EstadoControl, TipoControl"
+        },
+        {
+          "archivo": "app/domain/service/alertas.py",
+          "linea": 13,
+          "modulo": "app.domain.model.alertas",
+          "tipo": "interno",
+          "texto": "from app.domain.model.alertas import AlertaControl, Prioridad, ResumenAlertas"
+        },
+        {
+          "archivo": "app/domain/service/alertas.py",
+          "linea": 14,
+          "modulo": "app.domain.model.clasificacion",
+          "tipo": "interno",
+          "texto": "from app.domain.model.clasificacion import Clasificacion"
+        },
+        {
+          "archivo": "app/domain/service/alertas.py",
+          "linea": 15,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Nino"
+        },
+        {
+          "archivo": "app/domain/service/asistencia.py",
+          "linea": 11,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/domain/service/asistencia.py",
+          "linea": 13,
+          "modulo": "app.domain.model.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda import AgendaNino, ControlProgramado, EstadoControl"
+        },
+        {
+          "archivo": "app/domain/service/asistencia.py",
+          "linea": 14,
+          "modulo": "app.domain.model.asistencia",
+          "tipo": "interno",
+          "texto": "from app.domain.model.asistencia import EstadoAsistencia"
+        },
+        {
+          "archivo": "app/domain/service/asistencia.py",
+          "linea": 15,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Nino"
+        },
+        {
+          "archivo": "app/domain/service/asistencia.py",
+          "linea": 16,
+          "modulo": "app.domain.model.errores",
+          "tipo": "interno",
+          "texto": "from app.domain.model.errores import ConflictoAsistencia, ErrorCampo, ErrorValidacion, NoEncontrado"
+        },
+        {
+          "archivo": "app/domain/service/reglas_clinicas.py",
+          "linea": 10,
+          "modulo": "dataclasses",
+          "tipo": "stdlib",
+          "texto": "from dataclasses import dataclass"
+        },
+        {
+          "archivo": "app/domain/service/reglas_clinicas.py",
+          "linea": 12,
+          "modulo": "app.domain.model.clasificacion",
+          "tipo": "interno",
+          "texto": "from app.domain.model.clasificacion import Clasificacion"
+        },
+        {
+          "archivo": "app/domain/service/reglas_clinicas.py",
+          "linea": 13,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Evaluacion"
+        },
+        {
+          "archivo": "app/domain/service/validaciones.py",
+          "linea": 3,
+          "modulo": "re",
+          "tipo": "stdlib",
+          "texto": "import re"
+        },
+        {
+          "archivo": "app/domain/service/validaciones.py",
+          "linea": 4,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/domain/service/validaciones.py",
+          "linea": 6,
+          "modulo": "app.domain.model.errores",
+          "tipo": "interno",
+          "texto": "from app.domain.model.errores import ErrorCampo, ErrorValidacion"
+        },
+        {
+          "archivo": "app/domain/service/validaciones.py",
+          "linea": 7,
+          "modulo": "app.domain.model.origen",
+          "tipo": "interno",
+          "texto": "from app.domain.model.origen import OrigenDatos"
+        },
+        {
+          "archivo": "app/domain/service/validaciones.py",
+          "linea": 8,
+          "modulo": "app.domain.model.tiempo",
+          "tipo": "interno",
+          "texto": "from app.domain.model.tiempo import edad_en_meses"
+        },
+        {
+          "archivo": "app/domain/service/validaciones.py",
+          "linea": 9,
+          "modulo": "app.domain.service.reglas_clinicas",
+          "tipo": "interno",
+          "texto": "from app.domain.service import reglas_clinicas as rc"
+        }
+      ]
+    },
+    "puertos_entrada": {
+      "capa": "puertos_entrada",
+      "rutas": [
+        "app/ports/inbound"
+      ],
+      "archivos": [
+        "app/ports/inbound/__init__.py",
+        "app/ports/inbound/agenda.py",
+        "app/ports/inbound/agenda_personal.py",
+        "app/ports/inbound/alertas.py",
+        "app/ports/inbound/asistencia.py",
+        "app/ports/inbound/contexto.py",
+        "app/ports/inbound/expediente.py",
+        "app/ports/inbound/importacion.py",
+        "app/ports/inbound/reportes.py",
+        "app/ports/inbound/seguimiento.py"
+      ],
+      "n_clases": 9,
+      "clases": [
+        "app/ports/inbound/agenda.py:8 GenerarAgenda",
+        "app/ports/inbound/agenda_personal.py:9 ConsultarAgendaPersonal",
+        "app/ports/inbound/alertas.py:8 ConsultarControlesVencidos",
+        "app/ports/inbound/asistencia.py:8 RegistrarAsistencia",
+        "app/ports/inbound/contexto.py:8 ConsultarContexto",
+        "app/ports/inbound/expediente.py:9 GestionarExpediente",
+        "app/ports/inbound/importacion.py:9 ImportarDataset",
+        "app/ports/inbound/reportes.py:7 GenerarReporte",
+        "app/ports/inbound/seguimiento.py:6 ConsultarSeguimiento"
+      ],
+      "n_importaciones": 20,
+      "n_stdlib": 13,
+      "n_internas": 7,
+      "n_externas": 0,
+      "modulos_externos_distintos": [],
+      "indice_contaminacion_pct": 0.0,
+      "importaciones": [
+        {
+          "archivo": "app/ports/inbound/agenda.py",
+          "linea": 3,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/inbound/agenda.py",
+          "linea": 5,
+          "modulo": "app.domain.model.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda import AgendaNino"
+        },
+        {
+          "archivo": "app/ports/inbound/agenda_personal.py",
+          "linea": 3,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/ports/inbound/agenda_personal.py",
+          "linea": 4,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/inbound/agenda_personal.py",
+          "linea": 6,
+          "modulo": "app.domain.model.agenda_personal",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda_personal import AgendaPersonal"
+        },
+        {
+          "archivo": "app/ports/inbound/alertas.py",
+          "linea": 3,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/inbound/alertas.py",
+          "linea": 5,
+          "modulo": "app.domain.model.alertas",
+          "tipo": "interno",
+          "texto": "from app.domain.model.alertas import AlertaControl, ResumenAlertas"
+        },
+        {
+          "archivo": "app/ports/inbound/asistencia.py",
+          "linea": 3,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/inbound/asistencia.py",
+          "linea": 5,
+          "modulo": "app.domain.model.asistencia",
+          "tipo": "interno",
+          "texto": "from app.domain.model.asistencia import AsistenciaControl"
+        },
+        {
+          "archivo": "app/ports/inbound/contexto.py",
+          "linea": 3,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/inbound/contexto.py",
+          "linea": 5,
+          "modulo": "app.domain.model.contexto",
+          "tipo": "interno",
+          "texto": "from app.domain.model.contexto import ContextoSistema"
+        },
+        {
+          "archivo": "app/ports/inbound/expediente.py",
+          "linea": 3,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/ports/inbound/expediente.py",
+          "linea": 4,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/inbound/expediente.py",
+          "linea": 6,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Evaluacion, Nino"
+        },
+        {
+          "archivo": "app/ports/inbound/importacion.py",
+          "linea": 3,
+          "modulo": "collections.abc",
+          "tipo": "stdlib",
+          "texto": "from collections.abc import Iterable"
+        },
+        {
+          "archivo": "app/ports/inbound/importacion.py",
+          "linea": 4,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/inbound/importacion.py",
+          "linea": 6,
+          "modulo": "app.domain.model.importacion",
+          "tipo": "interno",
+          "texto": "from app.domain.model.importacion import RegistroImportado, ResultadoImportacion"
+        },
+        {
+          "archivo": "app/ports/inbound/reportes.py",
+          "linea": 3,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/ports/inbound/reportes.py",
+          "linea": 4,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/inbound/seguimiento.py",
+          "linea": 3,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        }
+      ]
+    },
+    "puertos_salida": {
+      "capa": "puertos_salida",
+      "rutas": [
+        "app/ports/outbound"
+      ],
+      "archivos": [
+        "app/ports/outbound/__init__.py",
+        "app/ports/outbound/reloj.py",
+        "app/ports/outbound/repositorio_ninos.py"
+      ],
+      "n_clases": 2,
+      "clases": [
+        "app/ports/outbound/reloj.py:7 Reloj",
+        "app/ports/outbound/repositorio_ninos.py:14 RepositorioNinos"
+      ],
+      "n_importaciones": 6,
+      "n_stdlib": 4,
+      "n_internas": 2,
+      "n_externas": 0,
+      "modulos_externos_distintos": [],
+      "indice_contaminacion_pct": 0.0,
+      "importaciones": [
+        {
+          "archivo": "app/ports/outbound/reloj.py",
+          "linea": 3,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/ports/outbound/reloj.py",
+          "linea": 4,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/outbound/repositorio_ninos.py",
+          "linea": 7,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/ports/outbound/repositorio_ninos.py",
+          "linea": 8,
+          "modulo": "typing",
+          "tipo": "stdlib",
+          "texto": "from typing import Protocol"
+        },
+        {
+          "archivo": "app/ports/outbound/repositorio_ninos.py",
+          "linea": 10,
+          "modulo": "app.domain.model.asistencia",
+          "tipo": "interno",
+          "texto": "from app.domain.model.asistencia import AsistenciaControl"
+        },
+        {
+          "archivo": "app/ports/outbound/repositorio_ninos.py",
+          "linea": 11,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Evaluacion, Nino"
+        }
+      ]
+    },
+    "aplicacion": {
+      "capa": "aplicacion",
+      "rutas": [
+        "app/application"
+      ],
+      "archivos": [
+        "app/application/__init__.py",
+        "app/application/servicio_agenda.py",
+        "app/application/servicio_agenda_personal.py",
+        "app/application/servicio_alertas.py",
+        "app/application/servicio_asistencia.py",
+        "app/application/servicio_contexto.py",
+        "app/application/servicio_expediente.py",
+        "app/application/servicio_importacion.py"
+      ],
+      "n_clases": 7,
+      "clases": [
+        "app/application/servicio_agenda.py:11 ServicioAgenda",
+        "app/application/servicio_agenda_personal.py:22 ServicioAgendaPersonal",
+        "app/application/servicio_alertas.py:20 ServicioAlertas",
+        "app/application/servicio_asistencia.py:13 ServicioAsistencia",
+        "app/application/servicio_contexto.py:10 ServicioContexto",
+        "app/application/servicio_expediente.py:36 ServicioExpediente",
+        "app/application/servicio_importacion.py:57 ServicioImportacion"
+      ],
+      "n_importaciones": 63,
+      "n_stdlib": 9,
+      "n_internas": 54,
+      "n_externas": 0,
+      "modulos_externos_distintos": [],
+      "indice_contaminacion_pct": 0.0,
+      "importaciones": [
+        {
+          "archivo": "app/application/servicio_agenda.py",
+          "linea": 3,
+          "modulo": "app.domain.model.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda import AgendaNino"
+        },
+        {
+          "archivo": "app/application/servicio_agenda.py",
+          "linea": 4,
+          "modulo": "app.domain.model.errores",
+          "tipo": "interno",
+          "texto": "from app.domain.model.errores import NoEncontrado"
+        },
+        {
+          "archivo": "app/application/servicio_agenda.py",
+          "linea": 5,
+          "modulo": "app.domain.service.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.service.agenda import generar_agenda"
+        },
+        {
+          "archivo": "app/application/servicio_agenda.py",
+          "linea": 6,
+          "modulo": "app.ports.inbound.agenda",
+          "tipo": "interno",
+          "texto": "from app.ports.inbound.agenda import GenerarAgenda"
+        },
+        {
+          "archivo": "app/application/servicio_agenda.py",
+          "linea": 7,
+          "modulo": "app.ports.outbound.reloj",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.reloj import Reloj"
+        },
+        {
+          "archivo": "app/application/servicio_agenda.py",
+          "linea": 8,
+          "modulo": "app.ports.outbound.repositorio_ninos",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.repositorio_ninos import RepositorioNinos"
+        },
+        {
+          "archivo": "app/application/servicio_agenda_personal.py",
+          "linea": 7,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/application/servicio_agenda_personal.py",
+          "linea": 9,
+          "modulo": "app.domain.model.agenda_personal",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda_personal import AgendaPersonal"
+        },
+        {
+          "archivo": "app/application/servicio_agenda_personal.py",
+          "linea": 10,
+          "modulo": "app.domain.service.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.service.agenda import generar_agenda"
+        },
+        {
+          "archivo": "app/application/servicio_agenda_personal.py",
+          "linea": 11,
+          "modulo": "app.domain.service.agenda_personal",
+          "tipo": "interno",
+          "texto": "from app.domain.service.agenda_personal import construir_agenda_personal, resolver_rango"
+        },
+        {
+          "archivo": "app/application/servicio_agenda_personal.py",
+          "linea": 12,
+          "modulo": "app.domain.service.validaciones",
+          "tipo": "interno",
+          "texto": "from app.domain.service.validaciones import exigir, validar_rango_agenda"
+        },
+        {
+          "archivo": "app/application/servicio_agenda_personal.py",
+          "linea": 13,
+          "modulo": "app.ports.inbound.agenda_personal",
+          "tipo": "interno",
+          "texto": "from app.ports.inbound.agenda_personal import ConsultarAgendaPersonal"
+        },
+        {
+          "archivo": "app/application/servicio_agenda_personal.py",
+          "linea": 14,
+          "modulo": "app.ports.outbound.reloj",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.reloj import Reloj"
+        },
+        {
+          "archivo": "app/application/servicio_agenda_personal.py",
+          "linea": 15,
+          "modulo": "app.ports.outbound.repositorio_ninos",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.repositorio_ninos import RepositorioNinos"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 7,
+          "modulo": "collections.abc",
+          "tipo": "stdlib",
+          "texto": "from collections.abc import Iterator"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 9,
+          "modulo": "app.domain.model.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.model.agenda import AgendaNino"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 10,
+          "modulo": "app.domain.model.alertas",
+          "tipo": "interno",
+          "texto": "from app.domain.model.alertas import AlertaControl, Prioridad, ResumenAlertas"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 11,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Nino"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 12,
+          "modulo": "app.domain.model.errores",
+          "tipo": "interno",
+          "texto": "from app.domain.model.errores import ErrorCampo, ErrorValidacion"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 13,
+          "modulo": "app.domain.service.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.service.agenda import generar_agenda"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 14,
+          "modulo": "app.domain.service.alertas",
+          "tipo": "interno",
+          "texto": "from app.domain.service.alertas import alertas_de_nino, ordenar_alertas, resumir_alertas"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 15,
+          "modulo": "app.ports.inbound.alertas",
+          "tipo": "interno",
+          "texto": "from app.ports.inbound.alertas import ConsultarControlesVencidos"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 16,
+          "modulo": "app.ports.outbound.reloj",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.reloj import Reloj"
+        },
+        {
+          "archivo": "app/application/servicio_alertas.py",
+          "linea": 17,
+          "modulo": "app.ports.outbound.repositorio_ninos",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.repositorio_ninos import RepositorioNinos"
+        },
+        {
+          "archivo": "app/application/servicio_asistencia.py",
+          "linea": 3,
+          "modulo": "app.domain.model.asistencia",
+          "tipo": "interno",
+          "texto": "from app.domain.model.asistencia import AsistenciaControl, EstadoAsistencia"
+        },
+        {
+          "archivo": "app/application/servicio_asistencia.py",
+          "linea": 4,
+          "modulo": "app.domain.model.errores",
+          "tipo": "interno",
+          "texto": "from app.domain.model.errores import NoEncontrado"
+        },
+        {
+          "archivo": "app/application/servicio_asistencia.py",
+          "linea": 5,
+          "modulo": "app.domain.service.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.service.agenda import generar_agenda"
+        },
+        {
+          "archivo": "app/application/servicio_asistencia.py",
+          "linea": 6,
+          "modulo": "app.domain.service.asistencia",
+          "tipo": "interno",
+          "texto": "from app.domain.service.asistencia import localizar_control_registrable, validar_datos_asistencia"
+        },
+        {
+          "archivo": "app/application/servicio_asistencia.py",
+          "linea": 7,
+          "modulo": "app.domain.service.validaciones",
+          "tipo": "interno",
+          "texto": "from app.domain.service.validaciones import exigir"
+        },
+        {
+          "archivo": "app/application/servicio_asistencia.py",
+          "linea": 8,
+          "modulo": "app.ports.inbound.asistencia",
+          "tipo": "interno",
+          "texto": "from app.ports.inbound.asistencia import RegistrarAsistencia"
+        },
+        {
+          "archivo": "app/application/servicio_asistencia.py",
+          "linea": 9,
+          "modulo": "app.ports.outbound.reloj",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.reloj import Reloj"
+        },
+        {
+          "archivo": "app/application/servicio_asistencia.py",
+          "linea": 10,
+          "modulo": "app.ports.outbound.repositorio_ninos",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.repositorio_ninos import RepositorioNinos"
+        },
+        {
+          "archivo": "app/application/servicio_contexto.py",
+          "linea": 3,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/application/servicio_contexto.py",
+          "linea": 5,
+          "modulo": "app.domain.model.contexto",
+          "tipo": "interno",
+          "texto": "from app.domain.model.contexto import ContextoSistema"
+        },
+        {
+          "archivo": "app/application/servicio_contexto.py",
+          "linea": 6,
+          "modulo": "app.ports.inbound.contexto",
+          "tipo": "interno",
+          "texto": "from app.ports.inbound.contexto import ConsultarContexto"
+        },
+        {
+          "archivo": "app/application/servicio_contexto.py",
+          "linea": 7,
+          "modulo": "app.ports.outbound.reloj",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.reloj import Reloj"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 10,
+          "modulo": "collections",
+          "tipo": "stdlib",
+          "texto": "from collections import Counter"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 11,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import date"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 13,
+          "modulo": "app.domain.model.clasificacion",
+          "tipo": "interno",
+          "texto": "from app.domain.model.clasificacion import Clasificacion"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 14,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Evaluacion, Nino"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 15,
+          "modulo": "app.domain.model.errores",
+          "tipo": "interno",
+          "texto": "from app.domain.model.errores import ErrorCampo, ErrorValidacion, NoEncontrado, RegistroDuplicado"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 16,
+          "modulo": "app.domain.model.tiempo",
+          "tipo": "interno",
+          "texto": "from app.domain.model.tiempo import ahora, edad_en_meses"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 17,
+          "modulo": "app.domain.service.reglas_clinicas",
+          "tipo": "interno",
+          "texto": "from app.domain.service import reglas_clinicas as rc"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 18,
+          "modulo": "app.domain.service.agenda",
+          "tipo": "interno",
+          "texto": "from app.domain.service.agenda import generar_agenda"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 19,
+          "modulo": "app.domain.service.validaciones",
+          "tipo": "interno",
+          "texto": "from app.domain.service.validaciones import ("
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 27,
+          "modulo": "app.ports.inbound.expediente",
+          "tipo": "interno",
+          "texto": "from app.ports.inbound.expediente import GestionarExpediente"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 28,
+          "modulo": "app.ports.inbound.reportes",
+          "tipo": "interno",
+          "texto": "from app.ports.inbound.reportes import GenerarReporte"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 29,
+          "modulo": "app.ports.inbound.seguimiento",
+          "tipo": "interno",
+          "texto": "from app.ports.inbound.seguimiento import ConsultarSeguimiento"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 30,
+          "modulo": "app.ports.outbound.reloj",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.reloj import Reloj"
+        },
+        {
+          "archivo": "app/application/servicio_expediente.py",
+          "linea": 31,
+          "modulo": "app.ports.outbound.repositorio_ninos",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.repositorio_ninos import RepositorioNinos"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 11,
+          "modulo": "uuid",
+          "tipo": "stdlib",
+          "texto": "import uuid"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 12,
+          "modulo": "collections",
+          "tipo": "stdlib",
+          "texto": "from collections import Counter"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 13,
+          "modulo": "collections.abc",
+          "tipo": "stdlib",
+          "texto": "from collections.abc import Iterable"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 14,
+          "modulo": "datetime",
+          "tipo": "stdlib",
+          "texto": "from datetime import UTC, date, datetime, time"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 16,
+          "modulo": "app.domain.model.entidades",
+          "tipo": "interno",
+          "texto": "from app.domain.model.entidades import Evaluacion, Nino"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 17,
+          "modulo": "app.domain.model.importacion",
+          "tipo": "interno",
+          "texto": "from app.domain.model.importacion import RegistroImportado, ResultadoImportacion, TipoEvaluacionImportada"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 18,
+          "modulo": "app.domain.model.origen",
+          "tipo": "interno",
+          "texto": "from app.domain.model.origen import OrigenDatos"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 19,
+          "modulo": "app.domain.model.tiempo",
+          "tipo": "interno",
+          "texto": "from app.domain.model.tiempo import ZONA_PERU, edad_en_meses"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 20,
+          "modulo": "app.domain.service.reglas_clinicas",
+          "tipo": "interno",
+          "texto": "from app.domain.service import reglas_clinicas as rc"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 21,
+          "modulo": "app.domain.service.validaciones",
+          "tipo": "interno",
+          "texto": "from app.domain.service.validaciones import validar_datos_evaluacion, validar_datos_nino"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 22,
+          "modulo": "app.ports.inbound.importacion",
+          "tipo": "interno",
+          "texto": "from app.ports.inbound.importacion import ImportarDataset"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 23,
+          "modulo": "app.ports.outbound.reloj",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.reloj import Reloj"
+        },
+        {
+          "archivo": "app/application/servicio_importacion.py",
+          "linea": 24,
+          "modulo": "app.ports.outbound.repositorio_ninos",
+          "tipo": "interno",
+          "texto": "from app.ports.outbound.repositorio_ninos import RepositorioNinos"
+        }
+      ]
+    }
   }
 }

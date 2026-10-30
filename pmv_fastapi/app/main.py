@@ -1,6 +1,7 @@
 """Raíz de composición: conecta adaptadores con el núcleo (arquitectura hexagonal)."""
 
 import os
+from datetime import date
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -9,18 +10,35 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.adapters.inbound.http.api import registrar_manejadores, router
+from app.adapters.inbound.http.autenticacion import registrar_seguridad
+from app.adapters.inbound.http.autenticacion import router as auth_router
 from app.adapters.outbound.persistence.sqlalchemy_repo import RepositorioSQLAlchemy
+from app.adapters.outbound.reloj_fijo import RelojFijo
 from app.adapters.outbound.reloj_sistema import RelojSistema
+from app.adapters.outbound.supabase_auth import SupabaseAuth
 from app.application.servicio_agenda import ServicioAgenda
+from app.application.servicio_agenda_personal import ServicioAgendaPersonal
 from app.application.servicio_alertas import ServicioAlertas
+from app.application.servicio_asistencia import ServicioAsistencia
+from app.application.servicio_contexto import ServicioContexto
 from app.application.servicio_expediente import ServicioExpediente
+from app.application.servicio_sesion import ServicioSesion
 
-VERSION = "1.5.0-inc2-avance"
+VERSION = "2.0.0-inc2"
 WEB = Path(__file__).parent / "web"
 
 
-def crear_app(database_url: str | None = None, reloj=None) -> FastAPI:
+def crear_app(
+    database_url: str | None = None, reloj=None, fecha_referencia: date | None = None, auth_mode: str | None = None
+) -> FastAPI:
+    """Compone la aplicación. Con ``fecha_referencia`` (o la variable de entorno FECHA_REFERENCIA=AAAA-MM-DD) el
+    «hoy» del sistema es esa fecha fija, p. ej. el corte de un dataset (ADR-009); sin ella se usa el reloj real."""
+    modo = auth_mode or os.getenv("AUTH_MODE", "supabase")
+    if modo not in {"supabase", "demo"}:
+        raise ValueError("AUTH_MODE debe ser supabase o demo.")
     url = database_url or os.getenv("DATABASE_URL", "sqlite:///./datos/anemia.db")
+    if reloj is None and fecha_referencia is None and os.getenv("FECHA_REFERENCIA"):
+        fecha_referencia = RelojFijo.desde_texto(os.environ["FECHA_REFERENCIA"]).fecha
     repo = RepositorioSQLAlchemy(url)
     repo.crear_esquema()
 
@@ -28,19 +46,30 @@ def crear_app(database_url: str | None = None, reloj=None) -> FastAPI:
         title="Sistema de Detección Temprana de Anemia Infantil — Junín",
         version=VERSION,
         description="API del Incremento 1 (registro nominal, expediente digital, validación clínica, seguimiento "
-        "y reporte del periodo) y del avance del Incremento 2 (agenda automática de controles y alertas de "
-        "controles vencidos).",
+        "y reporte del periodo) y del Incremento 2 (agenda automática de controles, alertas de controles vencidos, "
+        "agenda del personal y registro de asistencia a control).",
         docs_url=None,
         redoc_url=None,
     )
-    reloj = reloj or RelojSistema()
+    if reloj is None:
+        reloj = RelojFijo(fecha_referencia) if fecha_referencia else RelojSistema()
     expediente = ServicioExpediente(repo, reloj)
     app.state.repositorio = repo
     app.state.expediente = app.state.seguimiento = app.state.reporte = expediente
     app.state.agenda = ServicioAgenda(repo, reloj)
     app.state.alertas = ServicioAlertas(repo, reloj)
+    app.state.agenda_personal = ServicioAgendaPersonal(repo, reloj)
+    app.state.asistencia = ServicioAsistencia(repo, reloj)
+    app.state.contexto = ServicioContexto(reloj, fecha_referencia)
+    proveedor = SupabaseAuth(os.getenv("SUPABASE_URL", ""), os.getenv("SUPABASE_PUBLISHABLE_KEY", ""))
+    app.state.sesiones = ServicioSesion(proveedor)
+    app.state.auth_mode = modo
+    app.state.auth_configurado = proveedor.configurado
+    app.state.cookie_secure = os.getenv("AUTH_COOKIE_SECURE", "true").lower() != "false"
+    registrar_seguridad(app)
     registrar_manejadores(app)
     app.include_router(router)
+    app.include_router(auth_router)
     app.mount("/static", StaticFiles(directory=WEB), name="static")
 
     @app.get("/", include_in_schema=False)
@@ -52,7 +81,7 @@ def crear_app(database_url: str | None = None, reloj=None) -> FastAPI:
         # Recursos servidos localmente: la documentación funciona sin acceso a CDN (entorno rural).
         return get_swagger_ui_html(
             openapi_url="/openapi.json",
-            title="API — Anemia Junín (Incremento 2, avance)",
+            title="API — Anemia Junín (Incremento 2)",
             swagger_js_url="/static/vendor/swagger-ui-bundle.js",
             swagger_css_url="/static/vendor/swagger-ui.css",
         )

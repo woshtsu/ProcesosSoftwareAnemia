@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Sistema de Detección Temprana de Anemia Infantil — Junín",
-    "description": "API del Incremento 1 (registro nominal, expediente digital, validación clínica, seguimiento y reporte del periodo) y del avance del Incremento 2 (agenda automática de controles y alertas de controles vencidos).",
-    "version": "1.5.0-inc2-avance"
+    "description": "API del Incremento 1 (registro nominal, expediente digital, validación clínica, seguimiento y reporte del periodo) y del Incremento 2 (agenda automática de controles, alertas de controles vencidos, agenda del personal y registro de asistencia a control).",
+    "version": "2.0.0-inc2"
   },
   "paths": {
     "/api/salud": {
@@ -12,13 +12,16 @@
           "Operación"
         ],
         "summary": "Salud",
+        "description": "Estado del servicio y fecha de hoy; ``fecha_referencia`` solo si se fijó FECHA_REFERENCIA (demo con dataset).",
         "operationId": "salud_api_salud_get",
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/SaludSalida"
+                }
               }
             }
           }
@@ -501,6 +504,261 @@
         }
       }
     },
+    "/api/ninos/{nino_id}/controles/{codigo}/asistencia": {
+      "post": {
+        "tags": [
+          "HIST-2.4 Asistencia"
+        ],
+        "summary": "Registrar Asistencia",
+        "description": "Registra que el niño asistió (con la evaluación del día, opcional) o no asistió (con motivo) a un control.\n\n409 si el control ya tiene una asistencia o ya está cumplido; 422 si la fecha programada es futura o faltan datos.",
+        "operationId": "registrar_asistencia_api_ninos__nino_id__controles__codigo__asistencia_post",
+        "parameters": [
+          {
+            "name": "nino_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Nino Id"
+            }
+          },
+          {
+            "name": "codigo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Codigo"
+            }
+          },
+          {
+            "name": "X-Usuario",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Usuario"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AsistenciaEntrada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsistenciaSalida"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        }
+      }
+    },
+    "/api/ninos/{nino_id}/asistencias": {
+      "get": {
+        "tags": [
+          "HIST-2.4 Asistencia"
+        ],
+        "summary": "Asistencias",
+        "description": "Asistencias e inasistencias registradas para los controles del niño, por fecha programada.",
+        "operationId": "asistencias_api_ninos__nino_id__asistencias_get",
+        "parameters": [
+          {
+            "name": "nino_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Nino Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AsistenciaSalida"
+                  },
+                  "title": "Response Asistencias Api Ninos  Nino Id  Asistencias Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agenda": {
+      "get": {
+        "tags": [
+          "HIST-2.3 Agenda del personal"
+        ],
+        "summary": "Agenda Del Personal",
+        "description": "Controles programados por día en un rango de hasta 31 días (por defecto, la semana de la fecha de referencia).\n\nIncluye cumplidos, pendientes y vencidos (con su prioridad); filtrable por establecimiento y comunidad.",
+        "operationId": "agenda_del_personal_api_agenda_get",
+        "parameters": [
+          {
+            "name": "desde",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Desde"
+            }
+          },
+          {
+            "name": "hasta",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Hasta"
+            }
+          },
+          {
+            "name": "establecimiento",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Establecimiento"
+            }
+          },
+          {
+            "name": "comunidad",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Comunidad"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgendaPersonalSalida"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        }
+      }
+    },
     "/api/alertas/controles-vencidos": {
       "get": {
         "tags": [
@@ -654,6 +912,102 @@
           }
         }
       }
+    },
+    "/api/auth/config": {
+      "get": {
+        "tags": [
+          "Autenticación"
+        ],
+        "summary": "Configuracion",
+        "operationId": "configuracion_api_auth_config_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Autenticación"
+        ],
+        "summary": "Login",
+        "operationId": "login_api_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginEntrada"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/session": {
+      "get": {
+        "tags": [
+          "Autenticación"
+        ],
+        "summary": "Session",
+        "operationId": "session_api_auth_session_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "Autenticación"
+        ],
+        "summary": "Logout",
+        "operationId": "logout_api_auth_logout_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -741,6 +1095,85 @@
         "type": "object",
         "title": "ActualizacionNino"
       },
+      "AgendaPersonalSalida": {
+        "properties": {
+          "desde": {
+            "type": "string",
+            "format": "date",
+            "title": "Desde"
+          },
+          "hasta": {
+            "type": "string",
+            "format": "date",
+            "title": "Hasta"
+          },
+          "fecha_referencia": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Referencia",
+            "description": "«Hoy» según el reloj del sistema"
+          },
+          "establecimiento": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Establecimiento"
+          },
+          "comunidad": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comunidad"
+          },
+          "resumen": {
+            "$ref": "#/components/schemas/ResumenAgendaPersonalSalida"
+          },
+          "dias": {
+            "items": {
+              "$ref": "#/components/schemas/DiaAgendaSalida"
+            },
+            "type": "array",
+            "title": "Dias"
+          },
+          "establecimientos_disponibles": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Establecimientos Disponibles"
+          },
+          "comunidades_disponibles": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Comunidades Disponibles"
+          }
+        },
+        "type": "object",
+        "required": [
+          "desde",
+          "hasta",
+          "fecha_referencia",
+          "establecimiento",
+          "comunidad",
+          "resumen",
+          "dias",
+          "establecimientos_disponibles",
+          "comunidades_disponibles"
+        ],
+        "title": "AgendaPersonalSalida"
+      },
       "AgendaSalida": {
         "properties": {
           "nino_id": {
@@ -802,8 +1235,26 @@
             "title": "Id"
           },
           "dni": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Dni"
+          },
+          "codigo_origen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Codigo Origen"
           },
           "nombre_completo": {
             "type": "string",
@@ -829,6 +1280,7 @@
         "required": [
           "id",
           "dni",
+          "codigo_origen",
           "nombre_completo",
           "comunidad",
           "tutor_celular"
@@ -857,7 +1309,7 @@
           "prioridad": {
             "type": "string",
             "title": "Prioridad",
-            "description": "ALTA, MEDIA o BAJA"
+            "description": "ALTA, MEDIA o BAJA (sube un nivel si hay una inasistencia registrada)"
           }
         },
         "type": "object",
@@ -868,6 +1320,120 @@
           "prioridad"
         ],
         "title": "AlertaSalida"
+      },
+      "AsistenciaEntrada": {
+        "properties": {
+          "fecha_programada": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Programada",
+            "description": "Fecha programada del control (AAAA-MM-DD), tal como figura en la agenda"
+          },
+          "estado": {
+            "type": "string",
+            "title": "Estado",
+            "description": "ASISTIO o NO_ASISTIO"
+          },
+          "motivo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Motivo",
+            "description": "Obligatorio si no asistió (3 a 200 caracteres)"
+          },
+          "evaluacion_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evaluacion Id",
+            "description": "Evaluación del día que acredita la asistencia (opcional)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fecha_programada",
+          "estado"
+        ],
+        "title": "AsistenciaEntrada"
+      },
+      "AsistenciaSalida": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "nino_id": {
+            "type": "string",
+            "title": "Nino Id"
+          },
+          "codigo_control": {
+            "type": "string",
+            "title": "Codigo Control"
+          },
+          "fecha_programada": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Programada"
+          },
+          "estado": {
+            "type": "string",
+            "title": "Estado"
+          },
+          "motivo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Motivo"
+          },
+          "evaluacion_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evaluacion Id"
+          },
+          "registrado_por": {
+            "type": "string",
+            "title": "Registrado Por"
+          },
+          "creado_en": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Creado En"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "nino_id",
+          "codigo_control",
+          "fecha_programada",
+          "estado",
+          "motivo",
+          "evaluacion_id",
+          "registrado_por",
+          "creado_en"
+        ],
+        "title": "AsistenciaSalida"
       },
       "ControlSalida": {
         "properties": {
@@ -947,6 +1513,27 @@
             ],
             "title": "Edad Meses Programada",
             "description": "Edad objetivo en meses (solo controles por edad)"
+          },
+          "inasistencia_registrada": {
+            "type": "boolean",
+            "title": "Inasistencia Registrada",
+            "description": "El personal registró que el niño no asistió a este control"
+          },
+          "motivo_inasistencia": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Motivo Inasistencia"
+          },
+          "cumplido_por_asistencia": {
+            "type": "boolean",
+            "title": "Cumplido Por Asistencia",
+            "description": "CUMPLIDO porque el personal registró que el niño asistió"
           }
         },
         "type": "object",
@@ -961,9 +1548,58 @@
           "proximo",
           "dias_vencido",
           "evaluacion_id",
-          "edad_meses_programada"
+          "edad_meses_programada",
+          "inasistencia_registrada",
+          "cumplido_por_asistencia"
         ],
         "title": "ControlSalida"
+      },
+      "DiaAgendaSalida": {
+        "properties": {
+          "fecha": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "cumplidos": {
+            "type": "integer",
+            "title": "Cumplidos"
+          },
+          "pendientes": {
+            "type": "integer",
+            "title": "Pendientes"
+          },
+          "vencidos": {
+            "type": "integer",
+            "title": "Vencidos"
+          },
+          "con_inasistencia": {
+            "type": "integer",
+            "title": "Con Inasistencia"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ItemAgendaPersonalSalida"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fecha",
+          "total",
+          "cumplidos",
+          "pendientes",
+          "vencidos",
+          "con_inasistencia",
+          "items"
+        ],
+        "title": "DiaAgendaSalida"
       },
       "ErrorDetalle": {
         "properties": {
@@ -1045,12 +1681,39 @@
             "type": "string",
             "title": "Clasificacion"
           },
+          "clasificacion_origen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clasificacion Origen",
+            "description": "Severidad registrada por el HIS (LEV, MOD, SEV); solo en evaluaciones importadas"
+          },
           "peso_kg": {
-            "type": "number",
-            "title": "Peso Kg"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Peso Kg",
+            "description": "None en las evaluaciones importadas de un dataset (no las registra)"
           },
           "talla_cm": {
-            "type": "number",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Talla Cm"
           },
           "registrado_por": {
@@ -1080,19 +1743,53 @@
             "title": "Id"
           },
           "dni": {
-            "type": "string",
-            "title": "Dni"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dni",
+            "description": "None en los registros del dataset anonimizado"
           },
           "nombres": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Nombres"
           },
           "apellidos": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Apellidos"
           },
-          "sexo": {
+          "nombre_completo": {
             "type": "string",
+            "title": "Nombre Completo",
+            "description": "Nombre legible; sin nombres: «Registro DJ-00001 (dataset anonimizado)»"
+          },
+          "sexo": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Sexo"
           },
           "fecha_nacimiento": {
@@ -1121,7 +1818,14 @@
             "title": "Altitud M"
           },
           "tutor_nombre": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Tutor Nombre"
           },
           "tutor_celular": {
@@ -1138,6 +1842,56 @@
           "estado": {
             "type": "string",
             "title": "Estado"
+          },
+          "origen": {
+            "type": "string",
+            "title": "Origen",
+            "description": "SISTEMA o DATASET_DIRESA_JUNIN"
+          },
+          "codigo_origen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Codigo Origen",
+            "description": "Código seudónimo del dataset (p. ej. DJ-00001)"
+          },
+          "red": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Red"
+          },
+          "microred": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Microred"
+          },
+          "provincia": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provincia"
           },
           "registrado_por": {
             "type": "string",
@@ -1167,6 +1921,7 @@
           "dni",
           "nombres",
           "apellidos",
+          "nombre_completo",
           "sexo",
           "fecha_nacimiento",
           "edad_meses",
@@ -1177,6 +1932,11 @@
           "tutor_nombre",
           "tutor_celular",
           "estado",
+          "origen",
+          "codigo_origen",
+          "red",
+          "microred",
+          "provincia",
           "registrado_por",
           "creado_en",
           "actualizado_en",
@@ -1191,8 +1951,30 @@
             "title": "Id"
           },
           "dni": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Dni"
+          },
+          "codigo_origen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Codigo Origen"
+          },
+          "origen": {
+            "type": "string",
+            "title": "Origen"
           },
           "nombre_completo": {
             "type": "string",
@@ -1270,6 +2052,8 @@
         "required": [
           "id",
           "dni",
+          "codigo_origen",
+          "origen",
           "nombre_completo",
           "edad_meses",
           "comunidad",
@@ -1295,6 +2079,111 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "ItemAgendaNino": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "codigo_origen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Codigo Origen"
+          },
+          "dni": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dni"
+          },
+          "nombre_completo": {
+            "type": "string",
+            "title": "Nombre Completo"
+          },
+          "establecimiento": {
+            "type": "string",
+            "title": "Establecimiento"
+          },
+          "comunidad": {
+            "type": "string",
+            "title": "Comunidad"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "codigo_origen",
+          "dni",
+          "nombre_completo",
+          "establecimiento",
+          "comunidad"
+        ],
+        "title": "ItemAgendaNino"
+      },
+      "ItemAgendaPersonalSalida": {
+        "properties": {
+          "nino": {
+            "$ref": "#/components/schemas/ItemAgendaNino"
+          },
+          "control": {
+            "$ref": "#/components/schemas/ControlSalida"
+          },
+          "prioridad": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prioridad",
+            "description": "ALTA, MEDIA o BAJA; solo si el control está vencido"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nino",
+          "control",
+          "prioridad"
+        ],
+        "title": "ItemAgendaPersonalSalida"
+      },
+      "LoginEntrada": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "minLength": 3,
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 1024,
+            "minLength": 1,
+            "format": "password",
+            "title": "Password",
+            "writeOnly": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "LoginEntrada"
       },
       "NinoEntrada": {
         "properties": {
@@ -1486,6 +2375,44 @@
         ],
         "title": "RespuestaError"
       },
+      "ResumenAgendaPersonalSalida": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "cumplidos": {
+            "type": "integer",
+            "title": "Cumplidos"
+          },
+          "pendientes": {
+            "type": "integer",
+            "title": "Pendientes"
+          },
+          "vencidos": {
+            "type": "integer",
+            "title": "Vencidos"
+          },
+          "con_inasistencia": {
+            "type": "integer",
+            "title": "Con Inasistencia"
+          },
+          "ninos": {
+            "type": "integer",
+            "title": "Ninos"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "cumplidos",
+          "pendientes",
+          "vencidos",
+          "con_inasistencia",
+          "ninos"
+        ],
+        "title": "ResumenAgendaPersonalSalida"
+      },
       "ResumenAgendaSalida": {
         "properties": {
           "total": {
@@ -1512,6 +2439,11 @@
             "type": "integer",
             "title": "Proximos"
           },
+          "inasistencias": {
+            "type": "integer",
+            "title": "Inasistencias",
+            "description": "Controles sin cumplir con una inasistencia registrada"
+          },
           "proximo_control": {
             "anyOf": [
               {
@@ -1531,6 +2463,7 @@
           "vencidos",
           "cerrados",
           "proximos",
+          "inasistencias",
           "proximo_control"
         ],
         "title": "ResumenAgendaSalida"
@@ -1565,6 +2498,40 @@
           "proximos_7_dias"
         ],
         "title": "ResumenAlertasSalida"
+      },
+      "SaludSalida": {
+        "properties": {
+          "estado": {
+            "type": "string",
+            "title": "Estado"
+          },
+          "fecha_hoy": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha Hoy",
+            "description": "«Hoy» según el reloj del sistema"
+          },
+          "fecha_referencia": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fecha Referencia",
+            "description": "Fecha fija configurada con FECHA_REFERENCIA (p. ej. el corte del dataset); None con el reloj real"
+          }
+        },
+        "type": "object",
+        "required": [
+          "estado",
+          "fecha_hoy",
+          "fecha_referencia"
+        ],
+        "title": "SaludSalida"
       },
       "ValidationError": {
         "properties": {

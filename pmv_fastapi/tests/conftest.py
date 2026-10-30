@@ -11,6 +11,12 @@ from app.main import crear_app
 HOY = date(2026, 9, 28)
 
 
+@pytest.fixture(autouse=True)
+def modo_demo_explicito(monkeypatch):
+    """Las pruebas históricas usan datos sintéticos; auth se prueba con supabase explícito."""
+    monkeypatch.setenv("AUTH_MODE", "demo")
+
+
 class RelojFijo:
     def __init__(self, dia: date = HOY):
         self.dia = dia
@@ -62,7 +68,7 @@ def cliente(tmp_path):
         from sqlalchemy import text
 
         with app.state.repositorio.engine.begin() as con:
-            con.execute(text("TRUNCATE evaluacion_hemoglobina, nino CASCADE"))
+            con.execute(text("TRUNCATE asistencia_control, evaluacion_hemoglobina, nino CASCADE"))
     with TestClient(app) as c:
         yield c
     app.state.repositorio.engine.dispose()  # cierra las conexiones: evita ResourceWarning por bases SQLite abiertas

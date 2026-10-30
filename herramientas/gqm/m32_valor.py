@@ -31,6 +31,15 @@ import comun as c
 import oraculo_agenda as o
 
 
+def hoy_servidor(cli: httpx.Client) -> date:
+    """«Hoy» del servidor bajo prueba: fecha_hoy de /api/salud si existe (v2.0) o el reloj de Perú."""
+    try:
+        f = cli.get("/api/salud").json().get("fecha_hoy")
+        return date.fromisoformat(f) if f else o.hoy_peru()
+    except Exception:  # noqa: BLE001
+        return o.hoy_peru()
+
+
 def cuenta(db: str) -> tuple[int, int]:
     con = sqlite3.connect(db)
     try:
@@ -42,7 +51,7 @@ def cuenta(db: str) -> tuple[int, int]:
 
 def seccion_v1(cli: httpx.Client, db: str | None, version: str) -> dict:
     """Un único POST registra al niño con su primera evaluación y un único POST agrega cada control posterior."""
-    hoy = o.hoy_peru()
+    hoy = hoy_servidor(cli)
     antes = cuenta(db) if db else None
     fn = o.sumar_meses(hoy, -14).isoformat()
     cuerpo = {"nino": {"dni": "69999991", "nombres": "Prueba", "apellidos": "Registro Unico", "sexo": "F",
@@ -126,8 +135,8 @@ def bootstrap_f1(pares: list[tuple[bool, bool]], b: int = 2000, semilla: int = 4
 
 def seccion_v3(cli: httpx.Client, dataset: dict, version: str) -> dict:
     hoy = date.fromisoformat(dataset["hoy"])
-    if o.hoy_peru() != hoy:
-        raise SystemExit(f"El dataset se generó para {hoy} pero hoy es {o.hoy_peru()}: regenere el dataset.")
+    if hoy_servidor(cli) != hoy:
+        raise SystemExit(f"El dataset se generó para {hoy} pero el servidor tiene {hoy_servidor(cli)}: regenere el dataset o fije FECHA_REFERENCIA={hoy}.")
     etiquetas = o.etiquetar(dataset, hoy)
     estado = {n["dni"]: n["estado"] for n in dataset["ninos"]}
     filas = cli.get("/api/ninos", params={"estado": ""}).json()  # todos los estados
@@ -159,7 +168,7 @@ def seccion_v3(cli: httpx.Client, dataset: dict, version: str) -> dict:
     altas = [d for d, e in estado.items() if e != "ACTIVO" and d in por_dni]
     res["alta_marcados_atrasado_api"] = sum(1 for d in altas if por_dni[d]["control_atrasado"])
     res["alta_total"] = len(altas)
-    if version == "v1.5":
+    if version in ("v1.5", "v2.0"):
         al = cli.get("/api/alertas/controles-vencidos").json()
         con_alerta = {a["nino"]["dni"] for a in al}
         pred2 = {d: (d in con_alerta) for d in pred}
@@ -198,15 +207,17 @@ def seccion_v6(cli: httpx.Client, version: str, n_ninos: int, repeticiones: int 
                 "media_ms": round(statistics.mean(t), 1)}
     res = {"n_ninos": n_ninos, "calentamiento_descartado": calentamiento,
            "GET /api/ninos": tiempos("/api/ninos")}
-    if version == "v1.5":
+    if version in ("v1.5", "v2.0"):
         res["GET /api/alertas/controles-vencidos"] = tiempos("/api/alertas/controles-vencidos")
         res["GET /api/alertas/resumen"] = tiempos("/api/alertas/resumen")
+    if version == "v2.0":
+        res["GET /api/agenda (semana de la fecha de referencia)"] = tiempos("/api/agenda")
     return res
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", required=True, choices=["v1.0", "v1.5"])
+    ap.add_argument("--version", required=True, choices=["v1.0", "v1.5", "v2.0"])
     ap.add_argument("--base", required=True)
     ap.add_argument("--seccion", nargs="+", default=["v2", "v3", "v6"], choices=["v1", "v2", "v3", "v6"])
     ap.add_argument("--dataset", default=None)

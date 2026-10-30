@@ -1,0 +1,98 @@
+{
+  "version": "2.0.0-inc2",
+  "archivo": "Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv",
+  "modo": "muestra",
+  "semilla": 2026,
+  "muestra_solicitada": 500,
+  "fecha_referencia": "2024-06-30",
+  "filas_leidas": 12486,
+  "filas_con_evaluacion_utilizable": 11686,
+  "filas_enviadas_a_importar": 500,
+  "ninos_importados": 500,
+  "ninos_omitidos": 0,
+  "ninos_con_alta_por_edad": 0,
+  "evaluaciones_importadas": {
+    "total": 1290,
+    "por_tipo": {
+      "CONTROL_1_MES": 309,
+      "CONTROL_3_MESES": 286,
+      "CONTROL_6_MESES": 242,
+      "DIAGNOSTICO": 453
+    }
+  },
+  "descartes_por_motivo": {
+    "control_1_mes_sin_hemoglobina": 26,
+    "control_3_meses_sin_hemoglobina": 18,
+    "control_6_meses_sin_hemoglobina": 15,
+    "diagnostico_sin_hemoglobina": 47
+  },
+  "calidad_del_archivo_completo": {
+    "control_1_mes_sin_hemoglobina": 794,
+    "control_3_meses_sin_hemoglobina": 662,
+    "control_6_meses_sin_hemoglobina": 405,
+    "diagnostico_sin_hemoglobina": 1909
+  },
+  "concordancia_his_vs_sistema": {
+    "matriz_his_vs_sistema": {
+      "LEV": {
+        "SIN_ANEMIA": 74,
+        "LEVE": 186,
+        "MODERADA": 32,
+        "SEVERA": 0,
+        "NO_APLICA": 1
+      },
+      "MOD": {
+        "SIN_ANEMIA": 4,
+        "LEVE": 42,
+        "MODERADA": 101,
+        "SEVERA": 2,
+        "NO_APLICA": 5
+      },
+      "SEV": {
+        "SIN_ANEMIA": 0,
+        "LEVE": 0,
+        "MODERADA": 1,
+        "SEVERA": 1,
+        "NO_APLICA": 0
+      },
+      "SIN_DATO": {
+        "SIN_ANEMIA": 0,
+        "LEVE": 0,
+        "MODERADA": 0,
+        "SEVERA": 1,
+        "NO_APLICA": 3
+      }
+    },
+    "diagnosticos_con_severidad_his": 449,
+    "diagnosticos_sin_severidad_his": 4,
+    "de_acuerdo": 288,
+    "porcentaje_acuerdo": 64.1,
+    "sistema_sin_anemia": 84,
+    "porcentaje_sistema_sin_anemia": 18.7,
+    "porcentaje_acuerdo_entre_anemicos": 78.9,
+    "nota": "La severidad del HIS no coincide con el sistema cuando el HIS usa otra regla de ajuste por altitud o registra la hemoglobina sin ajustar; la altitud aquí es la de la capital de la provincia (aproximación)."
+  },
+  "distribucion_por_provincia": {
+    "CHANCHAMAYO": 75,
+    "CHUPACA": 27,
+    "CONCEPCION": 22,
+    "HUANCAYO": 162,
+    "JAUJA": 24,
+    "JUNIN": 6,
+    "SATIPO": 157,
+    "TARMA": 18,
+    "YAULI": 9
+  },
+  "altitud_por_provincia_m": {
+    "HUANCAYO": 3245,
+    "CONCEPCION": 3286,
+    "CHANCHAMAYO": 775,
+    "JAUJA": 3389,
+    "JUNIN": 4113,
+    "SATIPO": 628,
+    "TARMA": 3059,
+    "YAULI": 3725,
+    "CHUPACA": 3281
+  },
+  "registros_sistema_creados": 0
+}

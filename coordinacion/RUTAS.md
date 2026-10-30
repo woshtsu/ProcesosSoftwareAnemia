@@ -1,10 +1,31 @@
 # Mapa canónico de rutas
 
-## Producción y CI/CD (ORQ-004)
+## Producción y CI/CD (ORQ-008)
 
 - `.github/workflows/ci.yml`: CI del monorepositorio y solicitud de despliegue de main en Render; reemplaza por traslado `pmv_fastapi/.github/workflows/ci.yml`.
 - `pmv_fastapi/docs/DESPLIEGUE.md`: instrucciones Supabase, GitHub Actions y Render.
 - `pmv_fastapi/db/02_supabase.sql`: protección del esquema frente a Data API; ejecutar después de `01_esquema_postgresql.sql`.
+
+## Contexto y coordinación compartida entre IA (ORQ-007)
+
+- Entrada común: `.claude/CLAUDE.md`.
+- Resumen vigente de continuidad: `.claude/CONTEXTO_ACTUAL.md`.
+- Canal de mensajes: `.claude/intercambios/README.md` y `.claude/intercambios/<T-###>_<autor>_<tema>.md`.
+- Plantilla de mensajes: `.claude/plantillas/INTERCAMBIO.md`.
+- Los estados de tareas, rutas, solicitudes formales e informes siguen en `coordinacion/`; el protocolo admite el canal adicional de intercambios.
+
+## Autenticación Supabase (ORQ-006)
+
+Previsualizaciones temporales del login: `diagramas/_build/auth/` (ignoradas por Git).
+
+Modelo `pmv_fastapi/app/domain/model/autenticacion.py`; puertos `pmv_fastapi/app/ports/inbound/sesiones.py` y `pmv_fastapi/app/ports/outbound/proveedor_identidad.py`; servicio `pmv_fastapi/app/application/servicio_sesion.py`; proveedor `pmv_fastapi/app/adapters/outbound/supabase_auth.py`; HTTP `pmv_fastapi/app/adapters/inbound/http/autenticacion.py`; cliente `pmv_fastapi/app/web/auth.js`; configuración `pmv_fastapi/.env.example`; pruebas `pmv_fastapi/tests/integracion/test_autenticacion.py` y `pmv_fastapi/tests/e2e/test_login.py`; decisión `pmv_fastapi/docs/adr/ADR-011-supabase-auth.md`.
+
+## Síntesis para feria de proyectos (ORQ-005)
+
+- Fuente vigente: `entregables/feria/Proyecto_Feria_Anemia_Junin.md`.
+- PDF de participación: `exportados/feria/Proyecto_Feria_Anemia_Junin.pdf`.
+- Generador reproducible: `herramientas/conversion/exportar_feria.py`.
+- Previsualizaciones y revisión visual: `diagramas/_build/feria/` (ignorado por Git).
 
 Fuente única de verdad sobre **dónde vive cada cosa**. Todas las rutas son relativas a la raíz del repositorio.
 Si un agente necesita crear una ruta nueva, lo pide al `orquestador` mediante una solicitud (`coordinacion/solicitudes/ORQ-###.md`); solo el orquestador edita este archivo.
@@ -107,6 +128,8 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 
 ## Rutas de la Semana 9 (ORQ-003)
 
+Figura heredada del avance 1.5, conservada al resolver el merge (ORQ-004): `diagramas/src/72_s9_hexagonal_v15.dot`, `diagramas/png/72_s9_hexagonal_v15.png` y `diagramas/svg/72_s9_hexagonal_v15.svg`. La figura vigente del Incremento 2 completo sigue siendo `72_s9_hexagonal_v20`.
+
 | Contenido | Ruta |
 | --- | --- |
 | Guía S9 | `guias/S9-PSW-GUÍA DE TRABAJO.md` |
@@ -117,5 +140,7 @@ Checklists de cumplimiento del revisor: `entregables/semana-XX/CHECKLIST_CUMPLIM
 | Scripts de medición GQM | `herramientas/gqm/` |
 | Conversión MD → DOCX/PDF | `herramientas/conversion/exportar_s9.py` |
 | Exportados | `exportados/semana-09/Entregable_Semana9_Anemia_Junin.docx` y `.pdf` |
-| Diagramas S9 | `diagramas/{src,png,svg}/70_s9_cadena_trazabilidad`, `71_s9_arbol_gqm`, `72_s9_hexagonal_v15` |
+| Diagramas S9 | `diagramas/{src,png,svg}/70_s9_cadena_trazabilidad`, `71_s9_arbol_gqm`, `72_s9_hexagonal_v20` |
 | Avance del Inc. 2 (v1.5.0-inc2-avance) | `pmv_fastapi/` (estructura `app/domain/{model,service}`, `app/ports/{inbound,outbound}`, `app/application`, `app/adapters/{inbound,outbound}`), `pmv_fastapi/CHANGELOG.md`, `pmv_fastapi/docs/adr/ADR-007*`, `ADR-008*`, `pmv_fastapi/docs/evidencias/registro_defectos_inc2.md`, `pmv_fastapi/docs/evidencias/inc2/` |
+
+| Dataset DIRESA Junín (insumo, anonimizado en origen) | `Dataset/` (CSV y diccionario); importador `pmv_fastapi/scripts/importar_dataset_diresa.py`; análisis `herramientas/dataset/analisis_asis.py` |

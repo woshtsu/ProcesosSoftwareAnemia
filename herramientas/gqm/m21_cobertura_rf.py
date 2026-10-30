@@ -12,7 +12,7 @@ Los criterios DCE los redactó QA a partir de la descripción de cada RF (spec S
 entregable S5 y de ADR-007; la guía S5 no trae criterios DCE para el PMV FastAPI. Pueden sustituirse por los de las fichas
 de prueba sin cambiar el método.
 
-Uso:  python m21_cobertura_rf.py [--version v1.0|v1.5|ambas] [--sin-ejecutar]
+Uso:  python m21_cobertura_rf.py [--version v1.0|v1.5|v2.0|todas] [--sin-ejecutar]   (se conservan en el JSON las versiones no recalculadas)
 """
 
 from __future__ import annotations
@@ -41,6 +41,12 @@ UA = "tests/unitarias/test_agenda.py"
 UAL = "tests/unitarias/test_alertas.py"
 UC2 = "tests/unitarias/test_casos_uso_inc2.py"
 UR2 = "tests/unitarias/test_regresion_inc2.py"
+A3 = "tests/integracion/test_api_inc2_final.py"
+UAP = "tests/unitarias/test_agenda_personal.py"
+UAS = "tests/unitarias/test_asistencia.py"
+UC3 = "tests/unitarias/test_casos_uso_inc2_final.py"
+E3 = "tests/e2e/test_interfaz_inc2_final.py"
+UOD = "tests/unitarias/test_origen_dataset.py"
 
 
 def t(archivo: str, *nombres: str) -> list[str]:
@@ -134,6 +140,46 @@ INC2 = {
     ],
 }
 
+
+# Incremento 2 al 100 % (v2.0.0-inc2): RF-08 y RF-09 y complementos de los RF anteriores. Los criterios los redactó QA a partir de
+# la descripción de HIST-2.3 y HIST-2.4 (README de pmv_fastapi, sección Interfaz y API) y de los casos de prueba CP-123 a CP-186.
+INC2_FINAL = {
+    "RF-01": [("RF-01-C6", "Dado el registro desde la aplicación, cuando faltan datos personales o se intenta enviar un origen distinto, entonces el sistema sigue exigiendo todos los campos y fija el origen SISTEMA (los campos opcionales son solo para el dataset DIRESA, ADR-009).",
+               t(UOD, "test_cp117_el_registro_desde_el_sistema_sigue_exigiendo_todos_los_campos", "test_cp120_el_registro_desde_el_sistema_es_siempre_origen_sistema") + t(A3, "test_cp172_el_cliente_no_puede_elegir_el_origen_y_el_sistema_sigue_exigiendo_todo", "test_cp173_la_base_exige_los_datos_personales_solo_para_el_origen_sistema"))],
+    "RF-04": [("RF-04-C5", "Dado un registro del dataset DIRESA (sin DNI ni nombres), cuando se lista, se busca por su código (DJ-xxxxx) o se abre su expediente, entonces se muestra como «Registro DJ-xxxxx (dataset anonimizado)» con su origen y la severidad del HIS.",
+               t(A3, "test_cp170_listado_busqueda_y_expediente_de_un_registro_del_dataset") + t(UOD, "test_cp116_nombre_legible_de_un_registro_del_dataset", "test_cp122_listar_y_buscar_por_codigo_en_memoria") + t(E3, "test_cp185_dataset_aviso_de_fecha_de_referencia_y_registro_sin_nombre"))],
+    "RF-06": [("RF-06-C7", "Dado el servidor iniciado con FECHA_REFERENCIA, cuando se calcula la agenda, las alertas, el reporte o el CSV, entonces se usa esa fecha como «hoy» (y /api/salud la informa); sin ella se usa el reloj real de Perú.",
+               t(A3, "test_cp161_salud_expone_la_fecha_de_hoy_y_la_de_referencia_si_esta_fijada", "test_cp161_sin_fecha_de_referencia_se_usa_el_reloj_real_y_una_fecha_mal_escrita_se_rechaza", "test_cp171_agenda_alertas_reporte_y_csv_con_registros_del_dataset") + t(UC3, "test_cp142_contexto_con_y_sin_fecha_de_referencia") + t(E3, "test_cp186_dataset_agenda_y_alertas_usan_la_fecha_de_referencia"))],
+    "RF-08": [
+        ("RF-08-C1", "Dado el personal de salud, cuando consulta la agenda sin indicar fechas, entonces recibe la semana (lunes a domingo) de la fecha de referencia, con totales por día y del rango (cumplidos, pendientes, vencidos).",
+         t(A3, "test_cp162_agenda_del_personal_por_defecto_es_la_semana_de_la_fecha_de_referencia", "test_cp163_agenda_del_personal_campos_totales_y_orden_de_un_rango") + t(UC3, "test_cp137_rango_por_defecto_y_validacion", "test_cp138_agenda_por_dia_con_totales_estado_y_prioridad")),
+        ("RF-08-C2", "Dado un rango de fechas, cuando se consulta, entonces cada día lista sus controles (vencidos por prioridad primero, cumplidos al final), los días sin controles figuran en cero y no aparecen controles cerrados por recuperación ni niños con alta.",
+         t(UAP, "test_cp143_dentro_del_dia_primero_los_vencidos_por_prioridad_y_al_final_los_cumplidos", "test_cp144_los_controles_cerrados_por_recuperacion_no_se_listan_pero_si_los_pendientes", "test_cp145_los_dias_sin_controles_figuran_con_totales_en_cero_y_solo_cuentan_los_del_rango") + t(UC3, "test_cp139_incluye_pendientes_y_cumplidos_ordenados_y_excluye_cerrados_y_altas")),
+        ("RF-08-C3", "Dados filtros por establecimiento y/o comunidad, cuando se consulta, entonces solo se listan los controles de esos niños y se devuelven las opciones de filtro disponibles.",
+         t(A3, "test_cp164_agenda_del_personal_filtros_y_un_solo_extremo") + t(UC3, "test_cp139_filtros_por_establecimiento_y_comunidad_con_opciones_disponibles")),
+        ("RF-08-C4", "Dado un rango inválido (desde posterior a hasta, formato incorrecto o más de 31 días), cuando se consulta, entonces responde 422 con un mensaje claro.",
+         t(A3, "test_cp165_agenda_del_personal_rango_invalido_devuelve_422") + t(UC3, "test_cp137_rango_por_defecto_y_validacion")),
+        ("RF-08-C5", "Dada la agenda de un rango extenso, cuando se calcula, entonces se hace con una sola carga por lotes (sin patrón N+1).",
+         t(UC3, "test_cp141_la_agenda_del_personal_se_calcula_con_una_sola_consulta_por_lotes")),
+        ("RF-08-C6", "Dada la pestaña Agenda, cuando el personal elige el rango y los filtros, navega por semanas o escribe un rango inválido, entonces la interfaz muestra el resumen y la tabla por día, el mensaje de error y no desborda en vista móvil.",
+         t(E3, "test_cp180_rf08_pestana_agenda_semana_de_la_fecha_de_referencia_resumen_y_filtros", "test_cp181_rf08_rango_invalido_navegacion_por_semanas_y_fecha_de_hoy", "test_cp184_rf08_vista_movil_de_la_agenda_sin_desborde_horizontal")),
+    ],
+    "RF-09": [
+        ("RF-09-C1", "Dado un control pendiente o vencido, cuando se registra «Asistió» (POST .../asistencia), entonces responde 201, el control queda CUMPLIDO y deja de figurar en las alertas.",
+         t(UAS, "test_cp123_asistio_cumple_el_control_aunque_no_haya_evaluacion", "test_cp124_asistio_cumple_un_control_vencido_y_la_evaluacion_vinculada_se_le_asigna_a_el") + t(UC3, "test_cp131_registrar_asistio_guarda_usuario_y_fecha_y_cumple_el_control", "test_cp140_la_asistencia_se_refleja_en_la_agenda_del_personal") + t(A3, "test_cp166_registrar_asistencia_y_su_efecto_en_la_agenda_y_las_alertas")),
+        ("RF-09-C2", "Dado un control, cuando se registra «No asistió» con su motivo, entonces el control sigue pendiente o vencido con la marca «Inasistencia registrada» y la prioridad de su alerta sube un nivel.",
+         t(UAS, "test_cp125_no_asistio_no_cambia_el_estado_solo_lo_marca", "test_cp126_si_despues_una_evaluacion_cumple_el_control_deja_de_figurar_la_inasistencia", "test_cp128_la_inasistencia_registrada_sube_la_prioridad_un_nivel", "test_cp128_la_alerta_de_un_control_con_inasistencia_sube_de_prioridad") + t(UC3, "test_cp132_no_asistio_deja_el_control_vencido_con_marca_y_sube_la_prioridad_de_la_alerta")),
+        ("RF-09-C3", "Dado un control con asistencia ya registrada, cumplido o cerrado por recuperación, cuando se intenta registrar de nuevo (también en solicitudes simultáneas), entonces responde 409 y no se duplica.",
+         t(UC3, "test_cp133_no_se_registra_dos_veces_el_mismo_control") + t(UAS, "test_cp130_localizar_el_control_registrable_y_sus_conflictos", "test_cp130_un_control_cerrado_por_recuperacion_no_admite_asistencia", "test_cp189_el_repositorio_en_memoria_rechaza_una_asistencia_repetida_como_la_base") + t(A3, "test_cp167_no_se_registra_dos_veces_ni_con_fecha_futura_ni_con_datos_invalidos", "test_cp169_dos_registros_simultaneos_del_mismo_control_dan_un_201_y_el_resto_409", "test_cp174_restricciones_de_la_asistencia_y_borrado_en_cascada")),
+        ("RF-09-C4", "Dados datos inválidos (fecha programada futura, «No asistió» sin motivo) o un niño o control inexistente, cuando se registra, entonces responde 422 o 404 con mensaje claro y no se guarda nada.",
+         t(UAS, "test_cp127_una_asistencia_que_no_corresponde_a_ningun_control_se_ignora", "test_cp129_validacion_de_los_datos_de_la_asistencia", "test_cp129_la_fecha_programada_de_hoy_se_acepta") + t(UC3, "test_cp134_errores_de_registro_404_409_y_422")),
+        ("RF-09-C5", "Dado un «Asistió» con la evaluación del día vinculada, cuando se registra, entonces la evaluación queda asociada al control y GET .../asistencias lista las asistencias del niño por fecha programada.",
+         t(UC3, "test_cp135_asistio_con_la_evaluacion_del_dia_vinculada", "test_cp136_listar_asistencias_ordenadas_por_fecha_programada") + t(A3, "test_cp168_asistio_con_la_evaluacion_vinculada_y_listado_de_asistencias")),
+        ("RF-09-C6", "Dado el expediente o la agenda del personal, cuando el personal pulsa «Asistió» o «No asistió» y confirma la ventana, entonces la interfaz actualiza el control (cumplido, o marca de inasistencia con la alerta elevada) y la insignia de vencidos.",
+         t(E3, "test_cp182_rf09_no_asistio_desde_el_expediente_marca_el_control_y_sube_la_prioridad", "test_cp183_rf09_asistio_desde_la_agenda_del_personal_cumple_el_control_y_lo_quita_de_las_alertas")),
+    ],
+}
+
 # Patrones para la verificación cruzada por búsqueda (grep) sobre el código fuente de cada prueba.
 PATRONES = {
     "RF-01": r'registrar_nino\(|cuerpo_registro|\.post\(\s*"/api/ninos"|validar_datos_nino|llenar_registro',
@@ -143,13 +189,16 @@ PATRONES = {
     "RF-05": r'reporte_periodo|/api/reportes/periodo|tab-reporte',
     "RF-06": r'generar_agenda|/agenda|ServicioAgenda|escenario\.agenda',
     "RF-07": r'/api/alertas|ServicioAlertas|alertas_de_nino|listar_controles_vencidos|resumen_alertas|tab-alertas',
+    "RF-08": r'/api/agenda|agenda_personal|AgendaPersonal|ServicioAgendaPersonal|tab-agenda',
+    "RF-09": r'/asistencia|asistencias|RegistrarAsistencia|ServicioAsistencia|btn-asistio|btn-no-asistio',
 }
 
 
 def criterios(version: str) -> dict:
     cr = {rf: list(v) for rf, v in COMUN.items()}
-    if version == "v1.5":
-        for rf, extra in INC2.items():
+    fuentes = {"v1.0": [], "v1.5": [INC2], "v2.0": [INC2, INC2_FINAL]}[version]
+    for fuente in fuentes:
+        for rf, extra in fuente.items():
             cr.setdefault(rf, [])
             cr[rf] += extra
     return cr
@@ -235,11 +284,11 @@ def evaluar(version: str, ejecutar_pruebas: bool) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", default="ambas", choices=["v1.0", "v1.5", "ambas"])
+    ap.add_argument("--version", default="todas", choices=["v1.0", "v1.5", "v2.0", "todas"])
     ap.add_argument("--sin-ejecutar", action="store_true")
     ap.add_argument("--json", default=str(c.DATOS / "m21_cobertura_rf.json"))
     a = ap.parse_args()
-    vs = ["v1.0", "v1.5"] if a.version == "ambas" else [a.version]
+    vs = c.VERSIONES if a.version == "todas" else [a.version]
     out = {v: evaluar(v, not a.sin_ejecutar) for v in vs}
     for v in vs:
         r = out[v]
@@ -250,8 +299,7 @@ def main() -> None:
         for rf, d in r["por_rf"].items():
             print(f"  {rf}: {d['n_pruebas']} pruebas (u={d['n_unitarias']} i={d['n_integracion']} e2e={d['n_e2e']}), "
                   f"criterios {d['pct_criterios_verificados']} %, menciones grep={d['menciones_grep']}")
-    Path(a.json).parent.mkdir(parents=True, exist_ok=True)
-    Path(a.json).write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    c.fusionar_json(Path(a.json), out)
     print("->", a.json)
 
 

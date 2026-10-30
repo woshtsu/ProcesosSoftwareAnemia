@@ -56,26 +56,35 @@ class EvaluacionSalida(BaseModel):
     altitud_m: float
     hemoglobina_ajustada: float
     clasificacion: str
-    peso_kg: float
-    talla_cm: float
+    clasificacion_origen: str | None = Field(
+        default=None, description="Severidad registrada por el HIS (LEV, MOD, SEV); solo en evaluaciones importadas"
+    )
+    peso_kg: float | None = Field(description="None en las evaluaciones importadas de un dataset (no las registra)")
+    talla_cm: float | None
     registrado_por: str
 
 
 class NinoSalida(BaseModel):
     id: str
-    dni: str
-    nombres: str
-    apellidos: str
-    sexo: str
+    dni: str | None = Field(description="None en los registros del dataset anonimizado")
+    nombres: str | None
+    apellidos: str | None
+    nombre_completo: str = Field(description="Nombre legible; sin nombres: «Registro DJ-00001 (dataset anonimizado)»")
+    sexo: str | None
     fecha_nacimiento: date
     edad_meses: int
     establecimiento: str
     distrito: str
     comunidad: str
     altitud_m: float
-    tutor_nombre: str
+    tutor_nombre: str | None
     tutor_celular: str | None
     estado: str
+    origen: str = Field(description="SISTEMA o DATASET_DIRESA_JUNIN")
+    codigo_origen: str | None = Field(description="Código seudónimo del dataset (p. ej. DJ-00001)")
+    red: str | None
+    microred: str | None
+    provincia: str | None
     registrado_por: str
     creado_en: datetime
     actualizado_en: datetime
@@ -87,7 +96,9 @@ class ExpedienteSalida(NinoSalida):
 
 class FilaSeguimiento(BaseModel):
     id: str
-    dni: str
+    dni: str | None
+    codigo_origen: str | None
+    origen: str
     nombre_completo: str
     edad_meses: int
     comunidad: str
@@ -129,6 +140,9 @@ class ControlSalida(BaseModel):
     dias_vencido: int | None = Field(description="Días desde la fecha límite (solo VENCIDO)")
     evaluacion_id: str | None = Field(description="Evaluación que cumplió el control (solo CUMPLIDO)")
     edad_meses_programada: int | None = Field(description="Edad objetivo en meses (solo controles por edad)")
+    inasistencia_registrada: bool = Field(description="El personal registró que el niño no asistió a este control")
+    motivo_inasistencia: str | None = None
+    cumplido_por_asistencia: bool = Field(description="CUMPLIDO porque el personal registró que el niño asistió")
 
 
 class ResumenAgendaSalida(BaseModel):
@@ -138,6 +152,7 @@ class ResumenAgendaSalida(BaseModel):
     vencidos: int
     cerrados: int
     proximos: int
+    inasistencias: int = Field(description="Controles sin cumplir con una inasistencia registrada")
     proximo_control: ControlSalida | None
 
 
@@ -153,7 +168,8 @@ class AgendaSalida(BaseModel):
 
 class AlertaNino(BaseModel):
     id: str
-    dni: str
+    dni: str | None
+    codigo_origen: str | None
     nombre_completo: str
     comunidad: str
     tutor_celular: str | None
@@ -163,7 +179,7 @@ class AlertaSalida(BaseModel):
     nino: AlertaNino
     control: ControlSalida
     ultima_clasificacion: str | None
-    prioridad: str = Field(description="ALTA, MEDIA o BAJA")
+    prioridad: str = Field(description="ALTA, MEDIA o BAJA (sube un nivel si hay una inasistencia registrada)")
 
 
 class ResumenAlertasSalida(BaseModel):
@@ -171,6 +187,83 @@ class ResumenAlertasSalida(BaseModel):
     por_prioridad: dict[str, int]
     ninos_con_vencidos: int
     proximos_7_dias: int
+
+
+class AsistenciaEntrada(BaseModel):
+    fecha_programada: date = Field(
+        description="Fecha programada del control (AAAA-MM-DD), tal como figura en la agenda"
+    )
+    estado: str = Field(description="ASISTIO o NO_ASISTIO")
+    motivo: str | None = Field(default=None, description="Obligatorio si no asistió (3 a 200 caracteres)")
+    evaluacion_id: str | None = Field(
+        default=None, description="Evaluación del día que acredita la asistencia (opcional)"
+    )
+
+
+class AsistenciaSalida(BaseModel):
+    id: str
+    nino_id: str
+    codigo_control: str
+    fecha_programada: date
+    estado: str
+    motivo: str | None
+    evaluacion_id: str | None
+    registrado_por: str
+    creado_en: datetime
+
+
+class ItemAgendaNino(BaseModel):
+    id: str
+    codigo_origen: str | None
+    dni: str | None
+    nombre_completo: str
+    establecimiento: str
+    comunidad: str
+
+
+class ItemAgendaPersonalSalida(BaseModel):
+    nino: ItemAgendaNino
+    control: ControlSalida
+    prioridad: str | None = Field(description="ALTA, MEDIA o BAJA; solo si el control está vencido")
+
+
+class DiaAgendaSalida(BaseModel):
+    fecha: date
+    total: int
+    cumplidos: int
+    pendientes: int
+    vencidos: int
+    con_inasistencia: int
+    items: list[ItemAgendaPersonalSalida]
+
+
+class ResumenAgendaPersonalSalida(BaseModel):
+    total: int
+    cumplidos: int
+    pendientes: int
+    vencidos: int
+    con_inasistencia: int
+    ninos: int
+
+
+class AgendaPersonalSalida(BaseModel):
+    desde: date
+    hasta: date
+    fecha_referencia: date = Field(description="«Hoy» según el reloj del sistema")
+    establecimiento: str | None
+    comunidad: str | None
+    resumen: ResumenAgendaPersonalSalida
+    dias: list[DiaAgendaSalida]
+    establecimientos_disponibles: list[str]
+    comunidades_disponibles: list[str]
+
+
+class SaludSalida(BaseModel):
+    estado: str
+    fecha_hoy: date = Field(description="«Hoy» según el reloj del sistema")
+    fecha_referencia: date | None = Field(
+        description="Fecha fija configurada con FECHA_REFERENCIA (p. ej. el corte del dataset); None con el reloj real"
+    )
 
 
 class ErrorDetalle(BaseModel):

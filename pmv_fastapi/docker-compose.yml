@@ -17,6 +17,10 @@ services:
     build: .
     environment:
       DATABASE_URL: postgresql+psycopg2://anemia:${POSTGRES_PASSWORD:-cambiar_en_staging}@db:5432/anemia
+      AUTH_MODE: ${AUTH_MODE:-supabase}
+      SUPABASE_URL: ${SUPABASE_URL:-}
+      SUPABASE_PUBLISHABLE_KEY: ${SUPABASE_PUBLISHABLE_KEY:-}
+      AUTH_COOKIE_SECURE: ${AUTH_COOKIE_SECURE:-true}
     ports:
       - "8000:8000"
     depends_on:

@@ -1,6 +1,8 @@
 # Producción de main: GitHub Actions, Render y Supabase
 
-Configuración preparada el 2026-10-30; pendiente ejecución remota. La API actual no implementa autenticación: esta publicación es una demostración con datos sintéticos. RLS en Supabase no protege los endpoints de FastAPI.
+Configuración preparada el 2026-10-30; pendiente ejecución remota. Tras integrar origin/main (49f07da), la versión 2.0 incorpora Supabase Auth. Configurar sus variables en Render y crear la primera cuenta según el README del PMV. Utilizar datos sintéticos en la demostración.
+
+Si ya ejecutaste el SQL de la versión anterior (antes de este pull), ejecutar una sola vez `db/02_migracion_v2_0.sql` y después volver a ejecutar `db/02_supabase.sql`. No basta volver a ejecutar CREATE TABLE IF NOT EXISTS: no actualiza columnas. Para un proyecto vacío siguen aplicando los pasos siguientes con el SQL actualizado.
 
 ## 1. Inicializar Supabase
 
@@ -30,7 +32,7 @@ Abrir **Connect → Session pooler**, puerto 5432, compatible con IPv4. Copiar h
 postgresql+psycopg2://postgres.PROJECT_REF:CONTRASENA_CODIFICADA@HOST_DEL_POOLER:5432/postgres?sslmode=require
 ```
 
-Codificar caracteres especiales de la contraseña como componente URL (`@` → `%40`, `#` → `%23`, `%` → `%25`). No guardar la cadena en git. Esta aplicación no consume SUPABASE_URL, anon key ni service role key.
+Codificar caracteres especiales de la contraseña como componente URL (`@` → `%40`, `#` → `%23`, `%` → `%25`). No guardar la cadena en git. DATABASE_URL es para PostgreSQL; SUPABASE_URL y SUPABASE_PUBLISHABLE_KEY son variables adicionales para el login incorporado en el pull. No usar service role key.
 
 ## 3. Configurar GitHub
 
@@ -64,6 +66,10 @@ El [workflow](../../.github/workflows/ci.yml) ejecuta Ruff, pruebas SQLite/Postg
 | Health Check Path | `/api/salud` |
 | Environment | `DATABASE_URL` = cadena PostgreSQL completa |
 | Environment | `PORT` = `8000` |
+| Environment | `AUTH_MODE` = `supabase` |
+| Environment | `SUPABASE_URL` = URL HTTPS del proyecto |
+| Environment | `SUPABASE_PUBLISHABLE_KEY` = clave publicable del proyecto |
+| Environment | `AUTH_COOKIE_SECURE` = `true` |
 | Auto-Deploy | `Off`; el workflow disparará el hook |
 
 Las rutas Docker son relativas al Root Directory. Elegir región cercana a Supabase y plan según presupuesto. Free se suspende tras 15 minutos sin tráfico y puede tardar aproximadamente un minuto en despertar.

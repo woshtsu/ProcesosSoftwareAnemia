@@ -129,6 +129,8 @@ jobs:
                   with conn.cursor() as cur:
                       cur.execute('SET LOCAL statement_timeout = 15000')
                       cur.execute('SELECT id FROM public.nino LIMIT 0')
+                      cur.execute('SELECT origen, codigo_origen FROM public.nino LIMIT 0')
+                      cur.execute('SELECT id FROM public.asistencia_control LIMIT 0')
                       cur.execute('SELECT id FROM public.evaluacion_hemoglobina LIMIT 0')
                       cur.execute('SELECT nino_id FROM public.v_ultimo_control LIMIT 0')
           except Exception:

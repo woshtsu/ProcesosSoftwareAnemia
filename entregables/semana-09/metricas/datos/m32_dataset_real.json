@@ -1,0 +1,249 @@
+{
+ "fecha_referencia": "2024-06-30",
+ "base": "muestra estratificada de 500 niños (Provincia x severidad HIS, semilla 2026) del dataset DIRESA Junín, importada con scripts.importar_dataset_diresa",
+ "poblacion": {
+  "registros_por_origen_y_estado": {
+   "DATASET_DIRESA_JUNIN|ACTIVO": 500,
+   "SISTEMA|ACTIVO": 3
+  },
+  "dataset_total": 500,
+  "dataset_activos": 500
+ },
+ "importacion": {
+  "filas_leidas": 12486,
+  "ninos_importados": 500,
+  "evaluaciones_importadas": {
+   "total": 1290,
+   "por_tipo": {
+    "CONTROL_1_MES": 309,
+    "CONTROL_3_MESES": 286,
+    "CONTROL_6_MESES": 242,
+    "DIAGNOSTICO": 453
+   }
+  },
+  "descartes_por_motivo": {
+   "control_1_mes_sin_hemoglobina": 26,
+   "control_3_meses_sin_hemoglobina": 18,
+   "control_6_meses_sin_hemoglobina": 15,
+   "diagnostico_sin_hemoglobina": 47
+  },
+  "concordancia_his_vs_sistema": {
+   "matriz_his_vs_sistema": {
+    "LEV": {
+     "SIN_ANEMIA": 74,
+     "LEVE": 186,
+     "MODERADA": 32,
+     "SEVERA": 0,
+     "NO_APLICA": 1
+    },
+    "MOD": {
+     "SIN_ANEMIA": 4,
+     "LEVE": 42,
+     "MODERADA": 101,
+     "SEVERA": 2,
+     "NO_APLICA": 5
+    },
+    "SEV": {
+     "SIN_ANEMIA": 0,
+     "LEVE": 0,
+     "MODERADA": 1,
+     "SEVERA": 1,
+     "NO_APLICA": 0
+    },
+    "SIN_DATO": {
+     "SIN_ANEMIA": 0,
+     "LEVE": 0,
+     "MODERADA": 0,
+     "SEVERA": 1,
+     "NO_APLICA": 3
+    }
+   },
+   "diagnosticos_con_severidad_his": 449,
+   "diagnosticos_sin_severidad_his": 4,
+   "de_acuerdo": 288,
+   "porcentaje_acuerdo": 64.1,
+   "sistema_sin_anemia": 84,
+   "porcentaje_sistema_sin_anemia": 18.7,
+   "porcentaje_acuerdo_entre_anemicos": 78.9,
+   "nota": "La severidad del HIS no coincide con el sistema cuando el HIS usa otra regla de ajuste por altitud o registra la hemoglobina sin ajustar; la altitud aquí es la de la capital de la provincia (aproximación)."
+  }
+ },
+ "V2_real_agenda_por_nino": {
+  "activos": 500,
+  "con_agenda_generada": 500,
+  "con_agenda_y_al_menos_un_control": 500,
+  "pct_agenda": 100.0,
+  "pct_agenda_con_controles": 100.0,
+  "codigos_http": {
+   "200": 500
+  },
+  "controles_por_estado_en_las_agendas": {
+   "CUMPLIDO": 1112,
+   "VENCIDO": 1638,
+   "PENDIENTE": 3263,
+   "CERRADO_RECUPERADO": 135,
+   "PENDIENTE+PROXIMO": 27
+  },
+  "formula": "% de niños ACTIVOS del dataset con GET /api/ninos/{id}/agenda = 200, aplica=true y >= 1 control; AS-IS = 0 (no existe agenda)"
+ },
+ "vencidos_detectados": {
+  "controles_vencidos": 1638,
+  "ninos_con_vencidos": 419,
+  "pct_ninos_con_vencidos": 83.8,
+  "por_prioridad": {
+   "ALTA": 1543,
+   "MEDIA": 71,
+   "BAJA": 24
+  },
+  "resumen_api_toda_la_base": {
+   "total_vencidos": 1638,
+   "por_prioridad": {
+    "ALTA": 1543,
+    "MEDIA": 71,
+    "BAJA": 24
+   },
+   "ninos_con_vencidos": 419,
+   "proximos_7_dias": 27
+  },
+  "nota": "El resumen de la API incluye también los registros de prueba del sistema si se crearon; las cifras de este bloque son solo del dataset."
+ },
+ "oraculo": {
+  "por_nino": {
+   "TP": 419,
+   "FP": 0,
+   "FN": 0,
+   "TN": 81,
+   "n": 500,
+   "precision": 1.0,
+   "sensibilidad": 1.0,
+   "exactitud": 1.0,
+   "F1": 1.0
+  },
+  "por_control": {
+   "controles_oraculo": 1638,
+   "controles_sistema": 1638,
+   "coinciden": 1638,
+   "solo_oraculo": [],
+   "solo_sistema": [],
+   "concordancia_pct": 100.0
+  },
+  "entrada_del_oraculo": "datos guardados por el sistema (API de expediente): nacimiento, altitud, estado, fecha y Hb observada de cada evaluación; el oráculo no importa la aplicación",
+  "alcance": "verifica el cálculo de la agenda sobre datos reales, no la importación del CSV"
+ },
+ "visibilidad_agenda_personal": {
+  "formula": "controles vencidos del oráculo que figuran como VENCIDO en GET /api/agenda ÷ controles vencidos del oráculo",
+  "controles_vencidos_oraculo": 1638,
+  "visibles_en_agenda_del_personal": 1638,
+  "pct_visibles": 100.0,
+  "visibles_en_lista_de_alertas": 1638,
+  "pct_visibles_en_alertas": 100.0,
+  "ventanas_de_31_dias_consultadas": 28,
+  "calendario_recorrido": [
+   "2022-02-28",
+   "2024-06-30"
+  ],
+  "items_en_agenda_del_personal": 2866,
+  "estados_en_agenda_del_personal": {
+   "VENCIDO": 1638,
+   "CUMPLIDO": 1104,
+   "PENDIENTE": 124
+  },
+  "controles_en_agendas_por_nino_sin_cerrados_en_el_calendario": 2866,
+  "coherencia_rf06_rf08": true
+ },
+ "vencidos_por_tipo": {
+  "CONTROL_TRATAMIENTO": 426,
+  "TAMIZAJE_EDAD": 1212,
+  "detalle_por_tipo_oraculo": {
+   "TAMIZAJE_EDAD": 1212,
+   "CONTROL_TRATAMIENTO": 426
+  },
+  "advertencia": "El extracto del HIS solo trae el diagnóstico y los dosajes al mes, 3 y 6 meses: un dosaje por edad (6, 9, 12 meses...) sin registro en el extracto se muestra como vencido aunque haya podido hacerse. «Vencido» significa «sin registro en la base importada», no «no realizado»."
+ },
+ "capacidad_del_sistema_controles_de_tratamiento": {
+  "por_control": {
+   "C1M": {
+    "ninos_con_el_control_programado": 416,
+    "pct_ninos_con_el_control_programado": 83.2,
+    "vencidos_oraculo": 182,
+    "vencidos_visibles_en_agenda_del_personal": 182,
+    "pct_vencidos_visibles": 100.0
+   },
+   "C3M": {
+    "ninos_con_el_control_programado": 416,
+    "pct_ninos_con_el_control_programado": 83.2,
+    "vencidos_oraculo": 152,
+    "vencidos_visibles_en_agenda_del_personal": 152,
+    "pct_vencidos_visibles": 100.0
+   },
+   "C6M": {
+    "ninos_con_el_control_programado": 416,
+    "pct_ninos_con_el_control_programado": 83.2,
+    "vencidos_oraculo": 92,
+    "vencidos_visibles_en_agenda_del_personal": 92,
+    "pct_vencidos_visibles": 100.0
+   }
+  },
+  "nota": "Un niño no tiene el control programado si su diagnóstico no es de anemia en la fecha de la evaluación (p. ej. el sistema clasifica «sin anemia» el 18,7 % de los diagnósticos HIS, por la altitud de la capital de provincia) o si el control caería a los 60 meses o más."
+ },
+ "contraste_controles_de_tratamiento_con_el_as_is": {
+  "por_control": {
+   "C1M": {
+    "cumplidos": 226,
+    "vencidos": 182,
+    "pendientes_aun_en_plazo": 24,
+    "pct_cumplidos_entre_los_ya_exigibles": 55.4
+   },
+   "C3M": {
+    "cumplidos": 201,
+    "vencidos": 152,
+    "pendientes_aun_en_plazo": 53,
+    "pct_cumplidos_entre_los_ya_exigibles": 56.9
+   },
+   "C6M": {
+    "cumplidos": 143,
+    "vencidos": 92,
+    "pendientes_aun_en_plazo": 103,
+    "pct_cumplidos_entre_los_ya_exigibles": 60.9
+   }
+  },
+  "referencia_as_is_con_seguimiento_posible_pct": {
+   "C1M": 70.2,
+   "C3M": 63.8,
+   "C6M": 66.1
+  },
+  "fuente_referencia": "datos/asis_dataset_diresa.json (dataset completo, 12 486 filas); la muestra de 500 es estratificada y la ventana del sistema (−15/+30 días del mes calendario) difiere de la del extracto: comparación orientativa, no una prueba"
+ },
+ "tiempos_respuesta_500_ninos_ms": {
+  "GET /api/agenda (semana de la fecha de referencia)": {
+   "n": 20,
+   "mediana_ms": 68.0,
+   "p95_ms": 73.6,
+   "max_ms": 74.0
+  },
+  "GET /api/agenda (31 días hasta el corte)": {
+   "n": 20,
+   "mediana_ms": 65.4,
+   "p95_ms": 68.1,
+   "max_ms": 72.3
+  },
+  "GET /api/alertas/controles-vencidos": {
+   "n": 20,
+   "mediana_ms": 87.6,
+   "p95_ms": 118.3,
+   "max_ms": 123.6
+  },
+  "GET /api/alertas/resumen": {
+   "n": 20,
+   "mediana_ms": 69.2,
+   "p95_ms": 79.2,
+   "max_ms": 88.1
+  },
+  "GET /api/ninos": {
+   "n": 20,
+   "mediana_ms": 64.6,
+   "p95_ms": 83.1,
+   "max_ms": 99.1
+  }
+ }
+}

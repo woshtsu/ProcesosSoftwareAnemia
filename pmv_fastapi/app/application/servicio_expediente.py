@@ -122,13 +122,15 @@ class ServicioExpediente(GestionarExpediente, ConsultarSeguimiento, GenerarRepor
             "tutor_celular": nino.tutor_celular,
         }
         propuesta.update({k: v for k, v in cambios.items() if k != "estado"})
-        errores = [e for e in validar_datos_nino(propuesta, self.reloj.hoy()) if e.campo != "fecha_nacimiento"]
+        errores = [
+            e for e in validar_datos_nino(propuesta, self.reloj.hoy(), nino.origen) if e.campo != "fecha_nacimiento"
+        ]
         if "estado" in cambios and cambios["estado"] not in ("ACTIVO", "ALTA"):
             errores.append(ErrorCampo("estado", "El estado debe ser ACTIVO o ALTA."))
         exigir(errores)
         for campo, valor in cambios.items():
-            if campo == "tutor_celular":
-                valor = valor or None
+            if campo == "tutor_celular" or (campo == "tutor_nombre" and nino.es_dataset):
+                valor = valor or None  # el celular siempre es opcional; el tutor solo en los registros del dataset
             setattr(nino, campo, valor)
         nino.actualizado_en = ahora()
         self.repo.actualizar(nino)

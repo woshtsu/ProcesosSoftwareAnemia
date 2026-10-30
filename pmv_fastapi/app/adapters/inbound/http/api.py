@@ -10,12 +10,17 @@ from fastapi.responses import JSONResponse, StreamingResponse
 
 from app.adapters.inbound.http import esquemas as s
 from app.domain.model.agenda import ControlProgramado
+from app.domain.model.agenda_personal import AgendaPersonal, ItemAgendaPersonal
 from app.domain.model.alertas import AlertaControl
+from app.domain.model.asistencia import AsistenciaControl
 from app.domain.model.entidades import Evaluacion, Nino
-from app.domain.model.errores import ErrorValidacion, NoEncontrado, RegistroDuplicado
+from app.domain.model.errores import ConflictoAsistencia, ErrorValidacion, NoEncontrado, RegistroDuplicado
 from app.domain.model.tiempo import edad_en_meses
 from app.ports.inbound.agenda import GenerarAgenda
+from app.ports.inbound.agenda_personal import ConsultarAgendaPersonal
 from app.ports.inbound.alertas import ConsultarControlesVencidos
+from app.ports.inbound.asistencia import RegistrarAsistencia
+from app.ports.inbound.contexto import ConsultarContexto
 from app.ports.inbound.expediente import GestionarExpediente
 from app.ports.inbound.reportes import GenerarReporte
 from app.ports.inbound.seguimiento import ConsultarSeguimiento
@@ -44,8 +49,22 @@ def alertas_uc(request: Request) -> ConsultarControlesVencidos:
     return request.app.state.alertas
 
 
-def usuario_actual(x_usuario: str | None = Header(default=None, alias="X-Usuario")) -> str:
-    # Autenticación real (roles por establecimiento) se incorpora en un incremento posterior.
+def agenda_personal_uc(request: Request) -> ConsultarAgendaPersonal:
+    return request.app.state.agenda_personal
+
+
+def asistencia_uc(request: Request) -> RegistrarAsistencia:
+    return request.app.state.asistencia
+
+
+def contexto_uc(request: Request) -> ConsultarContexto:
+    return request.app.state.contexto
+
+
+def usuario_actual(request: Request, x_usuario: str | None = Header(default=None, alias="X-Usuario")) -> str:
+    if request.app.state.auth_mode == "supabase":
+        return request.state.usuario.id
+    # Solo en el modo demo explícito se admite el selector de identidad sintética.
     return (x_usuario or "personal.posta").strip()[:60]
 
 
@@ -58,6 +77,7 @@ def _eval(e: Evaluacion) -> s.EvaluacionSalida:
         altitud_m=e.altitud_m,
         hemoglobina_ajustada=e.hemoglobina_ajustada,
         clasificacion=e.clasificacion.value,
+        clasificacion_origen=e.clasificacion_origen,
         peso_kg=e.peso_kg,
         talla_cm=e.talla_cm,
         registrado_por=e.registrado_por,
@@ -71,6 +91,7 @@ def _expediente(n: Nino, hoy: date) -> s.ExpedienteSalida:
         dni=n.dni,
         nombres=n.nombres,
         apellidos=n.apellidos,
+        nombre_completo=n.nombre_completo,
         sexo=n.sexo,
         fecha_nacimiento=n.fecha_nacimiento,
         edad_meses=edad_en_meses(n.fecha_nacimiento, hoy),
@@ -81,6 +102,11 @@ def _expediente(n: Nino, hoy: date) -> s.ExpedienteSalida:
         tutor_nombre=n.tutor_nombre,
         tutor_celular=n.tutor_celular,
         estado=n.estado,
+        origen=n.origen.value,
+        codigo_origen=n.codigo_origen,
+        red=n.red,
+        microred=n.microred,
+        provincia=n.provincia,
         registrado_por=n.registrado_por,
         creado_en=n.creado_en,
         actualizado_en=n.actualizado_en,
@@ -101,6 +127,9 @@ def _control(c: ControlProgramado) -> s.ControlSalida:
         dias_vencido=c.dias_vencido,
         evaluacion_id=c.evaluacion_id,
         edad_meses_programada=c.edad_meses_programada,
+        inasistencia_registrada=c.inasistencia_registrada,
+        motivo_inasistencia=c.motivo_inasistencia,
+        cumplido_por_asistencia=c.cumplido_por_asistencia,
     )
 
 
@@ -109,6 +138,7 @@ def _alerta(a: AlertaControl) -> s.AlertaSalida:
         nino=s.AlertaNino(
             id=a.nino_id,
             dni=a.dni,
+            codigo_origen=a.codigo_origen,
             nombre_completo=a.nombre_completo,
             comunidad=a.comunidad,
             tutor_celular=a.tutor_celular,
@@ -157,14 +187,22 @@ def registrar_manejadores(app) -> None:
             status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "dni", "mensaje": str(exc)}]}
         )
 
+    @app.exception_handler(ConflictoAsistencia)
+    async def _conflicto_asistencia(_, exc: ConflictoAsistencia):
+        return JSONResponse(
+            status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "codigo", "mensaje": str(exc)}]}
+        )
+
     @app.exception_handler(NoEncontrado)
     async def _no_encontrado(_, exc: NoEncontrado):
         return JSONResponse(status_code=404, content={"mensaje": str(exc), "errores": []})
 
 
-@router.get("/salud", tags=["Operación"])
-def salud():
-    return {"estado": "ok"}
+@router.get("/salud", response_model=s.SaludSalida, tags=["Operación"])
+def salud(svc: ConsultarContexto = Depends(contexto_uc)):
+    """Estado del servicio y fecha de hoy; ``fecha_referencia`` solo si se fijó FECHA_REFERENCIA (demo con dataset)."""
+    c = svc.contexto()
+    return s.SaludSalida(estado="ok", fecha_hoy=c.fecha_hoy, fecha_referencia=c.fecha_referencia)
 
 
 @router.post(
@@ -207,6 +245,8 @@ def listar(
         s.FilaSeguimiento(
             id=f["nino"].id,
             dni=f["nino"].dni,
+            codigo_origen=f["nino"].codigo_origen,
+            origen=f["nino"].origen.value,
             nombre_completo=f["nino"].nombre_completo,
             edad_meses=f["edad_meses"],
             comunidad=f["nino"].comunidad,
@@ -284,10 +324,117 @@ def agenda(nino_id: str, svc: GenerarAgenda = Depends(agenda_uc)):
             vencidos=r.vencidos,
             cerrados=r.cerrados,
             proximos=r.proximos,
+            inasistencias=r.inasistencias,
             proximo_control=_control(r.proximo_control) if r.proximo_control else None,
         ),
         controles=[_control(c) for c in ag.controles],
     )
+
+
+def _asistencia(a: AsistenciaControl) -> s.AsistenciaSalida:
+    return s.AsistenciaSalida(
+        id=a.id,
+        nino_id=a.nino_id,
+        codigo_control=a.codigo_control,
+        fecha_programada=a.fecha_programada,
+        estado=a.estado.value,
+        motivo=a.motivo,
+        evaluacion_id=a.evaluacion_id,
+        registrado_por=a.registrado_por,
+        creado_en=a.creado_en,
+    )
+
+
+@router.post(
+    "/ninos/{nino_id}/controles/{codigo}/asistencia",
+    status_code=201,
+    response_model=s.AsistenciaSalida,
+    tags=["HIST-2.4 Asistencia"],
+    responses={404: {"model": s.RespuestaError}, 409: {"model": s.RespuestaError}, 422: {"model": s.RespuestaError}},
+)
+def registrar_asistencia(
+    nino_id: str,
+    codigo: str,
+    datos: s.AsistenciaEntrada,
+    svc: RegistrarAsistencia = Depends(asistencia_uc),
+    usuario: str = Depends(usuario_actual),
+):
+    """Registra que el niño asistió (con la evaluación del día, opcional) o no asistió (con motivo) a un control.
+
+    409 si el control ya tiene una asistencia o ya está cumplido; 422 si la fecha programada es futura o faltan datos.
+    """
+    return _asistencia(svc.registrar_asistencia(nino_id, codigo, datos.model_dump(), usuario))
+
+
+@router.get(
+    "/ninos/{nino_id}/asistencias",
+    response_model=list[s.AsistenciaSalida],
+    tags=["HIST-2.4 Asistencia"],
+    responses={404: {"model": s.RespuestaError}},
+)
+def asistencias(nino_id: str, svc: RegistrarAsistencia = Depends(asistencia_uc)):
+    """Asistencias e inasistencias registradas para los controles del niño, por fecha programada."""
+    return [_asistencia(a) for a in svc.listar_asistencias(nino_id)]
+
+
+def _item_personal(i: ItemAgendaPersonal) -> s.ItemAgendaPersonalSalida:
+    return s.ItemAgendaPersonalSalida(
+        nino=s.ItemAgendaNino(
+            id=i.nino_id,
+            codigo_origen=i.codigo_origen,
+            dni=i.dni,
+            nombre_completo=i.nombre_completo,
+            establecimiento=i.establecimiento,
+            comunidad=i.comunidad,
+        ),
+        control=_control(i.control),
+        prioridad=i.prioridad.value if i.prioridad else None,
+    )
+
+
+def _agenda_personal(a: AgendaPersonal) -> s.AgendaPersonalSalida:
+    return s.AgendaPersonalSalida(
+        desde=a.desde,
+        hasta=a.hasta,
+        fecha_referencia=a.fecha_referencia,
+        establecimiento=a.establecimiento,
+        comunidad=a.comunidad,
+        resumen=s.ResumenAgendaPersonalSalida(**vars(a.resumen)),
+        dias=[
+            s.DiaAgendaSalida(
+                fecha=d.fecha,
+                total=d.total,
+                cumplidos=d.cumplidos,
+                pendientes=d.pendientes,
+                vencidos=d.vencidos,
+                con_inasistencia=d.con_inasistencia,
+                items=[_item_personal(i) for i in d.items],
+            )
+            for d in a.dias
+        ],
+        establecimientos_disponibles=a.establecimientos_disponibles,
+        comunidades_disponibles=a.comunidades_disponibles,
+    )
+
+
+@router.get(
+    "/agenda",
+    response_model=s.AgendaPersonalSalida,
+    tags=["HIST-2.3 Agenda del personal"],
+    responses={422: {"model": s.RespuestaError}},
+)
+def agenda_del_personal(
+    desde: date | None = None,
+    hasta: date | None = None,
+    establecimiento: str | None = None,
+    comunidad: str | None = None,
+    svc: ConsultarAgendaPersonal = Depends(agenda_personal_uc),
+):
+    """Controles programados por día en un rango de hasta 31 días (por defecto, la semana de la fecha de referencia).
+
+    Incluye cumplidos, pendientes y vencidos (con su prioridad); filtrable por establecimiento y comunidad.
+    """
+    return _agenda_personal(svc.agenda_personal(desde, hasta, establecimiento, comunidad))
 
 
 @router.get(

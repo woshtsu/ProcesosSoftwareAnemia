@@ -23,7 +23,7 @@ Hallazgos adicionales (no cambian el estado) se listan en 'observaciones' y se c
   ultra-estricta  el criterio (b) de adaptadores de salida exige además que TODOS los puertos de salida (incl. Reloj)
                   tengan su implementación dentro del paquete de adaptadores de salida.
 
-Uso:  python herramientas/gqm/m12_conformidad.py [--version v1.0|v1.5|ambas] [--json ruta]
+Uso:  python herramientas/gqm/m12_conformidad.py [--version v1.0|v1.5|v2.0|todas] [--json ruta]
 """
 
 from __future__ import annotations
@@ -235,7 +235,7 @@ def evaluar(version: str) -> dict:
     )
     return {
         "version": version,
-        "raiz": str(raiz),
+        "raiz": c.ruta_rel(raiz),
         "filas": filas,
         "conformes": conformes,
         "total": len(filas),
@@ -265,15 +265,14 @@ def imprimir(res: dict) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", default="ambas", choices=["v1.0", "v1.5", "ambas"])
+    ap.add_argument("--version", default="todas", choices=["v1.0", "v1.5", "v2.0", "todas"])
     ap.add_argument("--json", default=str(c.DATOS / "m12_conformidad.json"))
     a = ap.parse_args()
-    vs = ["v1.0", "v1.5"] if a.version == "ambas" else [a.version]
+    vs = c.VERSIONES if a.version == "todas" else [a.version]
     out = {v: evaluar(v) for v in vs}
     for v in vs:
         imprimir(out[v])
-    Path(a.json).parent.mkdir(parents=True, exist_ok=True)
-    Path(a.json).write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    c.fusionar_json(Path(a.json), out)
     print(f"\nJSON: {a.json}")
 
 

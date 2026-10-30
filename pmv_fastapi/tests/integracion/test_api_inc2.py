@@ -51,6 +51,7 @@ def test_cp89_agenda_de_un_nino(cliente, escenario):
         "vencidos": 3,
         "cerrados": 0,
         "proximos": 0,
+        "inasistencias": 0,
         "proximo_control": ag["resumen"]["proximo_control"],
     }
     assert ag["resumen"]["proximo_control"]["codigo"] == "DHc1"  # 18 meses, aún dentro de la ventana
@@ -74,6 +75,9 @@ def test_cp90_campos_de_cada_control(cliente, escenario):
         "dias_vencido": None,
         "evaluacion_id": cumplido["evaluacion_id"],
         "edad_meses_programada": 6,
+        "inasistencia_registrada": False,
+        "motivo_inasistencia": None,
+        "cumplido_por_asistencia": False,
     }
     assert cumplido["evaluacion_id"]
     assert (vencido["codigo"], vencido["estado"], vencido["dias_vencido"]) == ("DHc1", "VENCIDO", 262)
@@ -138,6 +142,7 @@ def test_cp95_controles_vencidos_ordenados_con_los_datos_del_nino(cliente, escen
         "nino": {
             "id": escenario["T"],
             "dni": "70000002",
+            "codigo_origen": None,
             "nombre_completo": "Luz Mery Quispe Rojas",
             "comunidad": "Llacuas",
             "tutor_celular": "987654321",
@@ -206,7 +211,7 @@ def test_cp100_listado_de_seguimiento_usa_los_controles_vencidos(cliente, escena
 
 def test_cp101_openapi_documenta_los_endpoints_nuevos(cliente):
     doc = cliente.get("/openapi.json").json()
-    assert doc["info"]["version"] == "1.5.0-inc2-avance"
+    assert doc["info"]["version"] == "2.0.0-inc2"
     for ruta in ("/api/ninos/{nino_id}/agenda", "/api/alertas/controles-vencidos", "/api/alertas/resumen"):
         assert ruta in doc["paths"]
     esquemas = doc["components"]["schemas"]

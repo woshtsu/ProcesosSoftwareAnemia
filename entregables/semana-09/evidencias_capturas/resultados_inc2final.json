@@ -1,0 +1,190 @@
+{
+  "modo": "inc2final",
+  "version": "v2.0.0-inc2",
+  "capturas": [
+    {
+      "archivo": "RF-08/RF08_inc2final_paso1_entrada.png",
+      "rf": "RF-08",
+      "incremento": "inc2final",
+      "paso": "Paso 1 · ENTRADA (rango y filtros de la agenda)",
+      "descripcion": "Pestaña «Agenda» (aviso «Fecha de referencia: 30/06/2024 (corte del dataset)» en la cabecera) con el rango escrito 2024-05-30 a 2024-06-02 (4 días; el máximo permitido es 31) y los filtros «Establecimiento» y «Comunidad» en «Todos/Todas», antes de pulsar «Consultar». Mientras no se consulta, la tabla inferior sigue mostrando la semana por defecto (24 al 30 de junio).",
+      "fecha_hora": "17/10/2026 20:55:17",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "Campos Desde = 2024-05-30 y Hasta = 2024-06-02; botones «Consultar», «Anterior» y «Siguiente» visibles; filtros sin aplicar.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "RF-08/RF08_inc2final_paso2_resultado.png",
+      "rf": "RF-08",
+      "incremento": "inc2final",
+      "paso": "Paso 2 · RESULTADO (agenda por día con totales)",
+      "descripcion": "Agenda del personal del 2024-05-30 al 2024-06-02: resumen del rango (programados, cumplidos, pendientes, vencidos, con inasistencia) y, por cada día, el total de controles y el desglose por estado, con la tabla de niños (código del registro, control, tipo, establecimiento, estado).",
+      "fecha_hora": "17/10/2026 20:55:17",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "19 controles de 17 niño(s) en 4 días; 7 cumplidos, 10 pendientes, 2 vencidos, 0 con inasistencia; UI: «19 programados», 19 filas; consulta en 133 ms.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "RF-08/RF08_inc2final_paso3_resultado_filtro_establecimiento.png",
+      "rf": "RF-08",
+      "incremento": "inc2final",
+      "paso": "Paso 3 · RESULTADO (filtro por establecimiento)",
+      "descripcion": "El mismo rango con el filtro «Establecimiento: LA ESPERANZA»: solo se listan los controles de ese establecimiento y los totales se recalculan.",
+      "fecha_hora": "17/10/2026 20:55:18",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "4 controles de 3 niño(s) (de 19 del rango completo); todas las filas son de LA ESPERANZA: True; filtro en 40 ms.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "datos_reales/DJ_expediente_DJ-04505.png",
+      "rf": "Datos reales",
+      "incremento": "inc2final",
+      "paso": "Expediente de un registro del dataset (DJ-04505)",
+      "descripcion": "Expediente del registro DJ-04505 de la muestra real de la DIRESA Junín: se presenta como «Registro DJ-04505 (dataset anonimizado)» (sin DNI, nombres ni tutor), con el origen «Dataset DIRESA Junín (anonimizado)», su código seudónimo, cada evaluación con la clasificación calculada por el sistema y, debajo, la severidad del HIS; la agenda de controles se calcula con la fecha de referencia 30/06/2024 y muestra los estados.",
+      "fecha_hora": "17/10/2026 20:55:19",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "Origen: «Origen de los datos Dataset DIRESA Junín (anonimizado)»; código DJ-04505; clasificación HIS por evaluación: HIS: Moderada; estados de la agenda: ['CUMPLIDO', 'PENDIENTE', 'VENCIDO'] (13 controles); aviso de cabecera: «Fecha de referencia: 30/06/2024 (corte del dataset)»; expediente en 202 ms.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "datos_reales/DJ_alertas_muestra_real.png",
+      "rf": "Datos reales",
+      "incremento": "inc2final",
+      "paso": "Pestaña Alertas con la muestra real",
+      "descripcion": "Pestaña «Alertas» sobre la muestra de 500 niños de la DIRESA Junín con fecha de referencia 30/06/2024: el resumen (vencidos, niños, prioridad alta/media/baja, por vencer en 7 días) y las primeras alertas ordenadas por prioridad; los registros del dataset aparecen por su código «Registro DJ-xxxxx (dataset anonimizado)». Se muestra la parte superior de la tabla (la lista completa es larga).",
+      "fecha_hora": "17/10/2026 20:55:20",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "1638 controles vencidos (419 niños; ALTA 1543, MEDIA 71, BAJA 24); 1638 filas en la tabla; primeras: ['Registro DJ-12447 (dataset anonimizado)\\nDJ-12447', 'Registro DJ-12425 (dataset anonimizado)\\nDJ-12425', 'Registro DJ-12472 (dataset anonimizado)\\nDJ-12472']; carga en 562 ms.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "datos_reales/SISTEMA_expediente_79000003.png",
+      "rf": "Datos reales",
+      "incremento": "inc2final",
+      "paso": "Expediente de un registro de prueba SISTEMA (DNI 79000003)",
+      "descripcion": "Contraste con el registro del dataset: expediente de un registro de prueba creado «desde el sistema» (origen SISTEMA), con DNI y nombre ficticios «PRUEBA DEL SISTEMA Registro 03»; no tiene la severidad del HIS y su agenda solo tiene controles futuros respecto de la fecha de referencia.",
+      "fecha_hora": "17/10/2026 20:55:21",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "Nombre «PRUEBA DEL SISTEMA Registro 03»; DNI 79000003; sin etiqueta de dataset anonimizado.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "RF-09/RF09_inc2final_paso1_entrada.png",
+      "rf": "RF-09",
+      "incremento": "inc2final",
+      "paso": "Paso 1 · ENTRADA (registrar asistencia)",
+      "descripcion": "Cuadro «Registrar asistencia» abierto desde la agenda del expediente de un registro del dataset anonimizado de la DIRESA Junín: muestra el niño, el control y la fecha programada, y permite vincular una evaluación (opcional, 1 disponible(s)) antes de confirmar.",
+      "fecha_hora": "17/10/2026 20:55:23",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "Detalle: «Registro DJ-00481 (dataset anonimizado) · Control de hemoglobina del tratamiento a 1 mes (C1M) · programado el 17/06/2024»; evaluación vinculada: «Sin evaluación vinculada»; estado del control antes: PENDIENTE.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "RF-09/RF09_inc2final_paso2_asistio.png",
+      "rf": "RF-09",
+      "incremento": "inc2final",
+      "paso": "Paso 2 · RESULTADO («Asistió»)",
+      "descripcion": "Tras confirmar, el control pasa a «Cumplido (asistió)», deja de ofrecer los botones de asistencia y el resumen de la agenda se actualiza; aparece el aviso «Asistencia registrada».",
+      "fecha_hora": "17/10/2026 20:55:23",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "Fila: «17/06/2024\tControl de hemoglobina del tratamiento a 1 mes (C1M)\tTratamiento\t02/06/2024 – 17/07/2024\tCumplido (asistió)\t». Estado antes: PENDIENTE; ahora CUMPLIDO; confirmación en 90 ms.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "RF-09/RF09_inc2final_paso3_no_asistio.png",
+      "rf": "RF-09",
+      "incremento": "inc2final",
+      "paso": "Paso 3 · RESULTADO («No asistió» con motivo)",
+      "descripcion": "Control vencido de un registro del dataset marcado como «No asistió» con el motivo «Enfermedad del niño: Fiebre desde hace 2 días»: la fila muestra la marca «Inasistencia registrada» (el motivo se ve al pasar el cursor) y el control sigue «Vencido» (no se da por cumplido).",
+      "fecha_hora": "17/10/2026 20:55:25",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "Marca con motivo «Enfermedad del niño: Fiebre desde hace 2 días»; el control sigue vencido: True; prioridad de la alerta BAJA → MEDIA; registro en 92 ms.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "RF-09/RF09_inc2final_paso3b_alerta_prioridad_elevada.png",
+      "rf": "RF-09",
+      "incremento": "inc2final",
+      "paso": "Paso 3b · RESULTADO (alerta con prioridad elevada)",
+      "descripcion": "Pestaña «Alertas» filtrada por prioridad MEDIA y comunidad RIO TAMBO: la alerta del control marcado como inasistencia aparece con la marca «Inasistencia registrada» y con la prioridad subida un nivel (BAJA → MEDIA).",
+      "fecha_hora": "17/10/2026 20:55:26",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "Alerta presente: True; con marca de inasistencia: True; prioridad BAJA → MEDIA; 11 alerta(s) con el filtro.",
+      "version": "v2.0.0-inc2"
+    },
+    {
+      "archivo": "RF-09/RF09_inc2final_paso4_409_segundo_registro.png",
+      "rf": "RF-09",
+      "incremento": "inc2final",
+      "paso": "Paso 4 · RESULTADO (409 en un segundo registro)",
+      "descripcion": "Dos personas del personal registran el mismo control: la segunda (esta pantalla) recibe el rechazo 409 con un mensaje claro dentro del cuadro, que sigue abierto; no se duplica el registro.",
+      "fecha_hora": "17/10/2026 20:55:27",
+      "url": "http://127.0.0.1:8103/",
+      "resultado_observado": "Primer registro (otra sesión): HTTP 201; mensaje visible en el cuadro: «El control DHx del 2024-05-24 ya tiene una asistencia registrada.»; respuesta en 54 ms.",
+      "version": "v2.0.0-inc2"
+    }
+  ],
+  "tiempos": [
+    {
+      "rf": "RF-08",
+      "accion": "clic en «Consultar» (rango 2024-05-30 a 2024-06-02) → agenda por día con totales",
+      "ms": 133,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-08",
+      "accion": "filtro «Establecimiento» → agenda filtrada",
+      "ms": 40,
+      "umbral_2s": true
+    },
+    {
+      "rf": "Datos reales",
+      "accion": "búsqueda por código DJ-04505 → expediente con agenda",
+      "ms": 202,
+      "umbral_2s": true
+    },
+    {
+      "rf": "Datos reales",
+      "accion": "clic en pestaña «Alertas» → resumen + tabla con la muestra real",
+      "ms": 562,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-09",
+      "accion": "«Asistió» → confirmar → control «Cumplido» en la agenda",
+      "ms": 90,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-09",
+      "accion": "«No asistió» + motivo → confirmar → marca de inasistencia en la agenda",
+      "ms": 92,
+      "umbral_2s": true
+    },
+    {
+      "rf": "RF-09",
+      "accion": "segundo registro del mismo control → mensaje 409",
+      "ms": 54,
+      "umbral_2s": true
+    }
+  ],
+  "criterios": {
+    "RF-08": {
+      "gwt": "Dado un conjunto de controles programados, cuando el personal consulta la agenda de un rango (máx. 31 días) y filtra por establecimiento o comunidad, entonces se listan los controles por día con el total y el desglose por estado, coherentes con la API, en < 2 s.",
+      "cumple": true,
+      "detalle": "Rango 2024-05-30 a 2024-06-02: UI = API (19 controles, 4 días, totales por día idénticos: True); filtro «LA ESPERANZA»: 4/19 filas, todas del establecimiento; consulta 133 ms y filtro 40 ms."
+    },
+    "Datos reales": {
+      "gwt": "Dado el dataset anonimizado de la DIRESA Junín importado (muestra de 500 niños) y la fecha de referencia del corte, cuando el personal abre un registro o la pestaña «Alertas», entonces ve el registro sin datos personales, con la severidad del HIS junto a la clasificación del sistema, su agenda con estados y los controles vencidos de la muestra, en < 2 s.",
+      "cumple": true,
+      "detalle": "DJ-04505: 2 evaluaciones, HIS ≠ sistema en 1; agenda ['CUMPLIDO', 'PENDIENTE', 'VENCIDO']; alertas UI = API (1638 vencidos, 1638 filas); expediente 202 ms y alertas 562 ms."
+    },
+    "RF-09": {
+      "gwt": "Dado un control programado (fecha <= hoy) sin registro, cuando el personal registra «Asistió» o «No asistió» con motivo, entonces el control queda cumplido o marcado como inasistencia (con la alerta elevada un nivel) y un segundo registro del mismo control se rechaza con 409 y un mensaje claro, en < 2 s.",
+      "cumple": true,
+      "detalle": "«Asistió»: estado PENDIENTE → CUMPLIDO por asistencia (90 ms; asistencia registrada en la API: True; sin alerta: True); «No asistió» con motivo: marca visible, control sigue vencido, prioridad BAJA → MEDIA (92 ms); segundo registro: 409 (mensaje «El control DHx del 2024-05-24 ya tiene una asistencia registrada.», 54 ms), un solo registro en la API (1); POST directo repetido: HTTP 409."
+    }
+  },
+  "hallazgos": [],
+  "generado": "17/10/2026 20:55:27"
+}

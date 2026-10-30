@@ -1,0 +1,100 @@
+{
+  "version": "2.0.0-inc2",
+  "archivo": "Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv",
+  "modo": "completo",
+  "semilla": null,
+  "muestra_solicitada": null,
+  "fecha_referencia": "2024-06-30",
+  "filas_leidas": 12486,
+  "filas_con_evaluacion_utilizable": 11686,
+  "filas_enviadas_a_importar": 12486,
+  "ninos_importados": 11686,
+  "ninos_omitidos": 800,
+  "ninos_con_alta_por_edad": 0,
+  "evaluaciones_importadas": {
+    "total": 29712,
+    "por_tipo": {
+      "CONTROL_1_MES": 7584,
+      "CONTROL_3_MESES": 6174,
+      "CONTROL_6_MESES": 5377,
+      "DIAGNOSTICO": 10577
+    }
+  },
+  "descartes_por_motivo": {
+    "control_1_mes_sin_hemoglobina": 794,
+    "control_3_meses_sin_hemoglobina": 662,
+    "control_6_meses_sin_hemoglobina": 405,
+    "diagnostico_sin_hemoglobina": 1909,
+    "evaluacion_con_hemoglobina_fuera_de_rango": 2,
+    "nino_sin_evaluaciones_validas": 800
+  },
+  "calidad_del_archivo_completo": {
+    "control_1_mes_sin_hemoglobina": 794,
+    "control_3_meses_sin_hemoglobina": 662,
+    "control_6_meses_sin_hemoglobina": 405,
+    "diagnostico_sin_hemoglobina": 1909
+  },
+  "concordancia_his_vs_sistema": {
+    "matriz_his_vs_sistema": {
+      "LEV": {
+        "SIN_ANEMIA": 1597,
+        "LEVE": 4567,
+        "MODERADA": 651,
+        "SEVERA": 10,
+        "NO_APLICA": 42
+      },
+      "MOD": {
+        "SIN_ANEMIA": 96,
+        "LEVE": 1065,
+        "MODERADA": 2328,
+        "SEVERA": 48,
+        "NO_APLICA": 42
+      },
+      "SEV": {
+        "SIN_ANEMIA": 1,
+        "LEVE": 4,
+        "MODERADA": 29,
+        "SEVERA": 21,
+        "NO_APLICA": 2
+      },
+      "SIN_DATO": {
+        "SIN_ANEMIA": 10,
+        "LEVE": 13,
+        "MODERADA": 19,
+        "SEVERA": 2,
+        "NO_APLICA": 30
+      }
+    },
+    "diagnosticos_con_severidad_his": 10503,
+    "diagnosticos_sin_severidad_his": 74,
+    "de_acuerdo": 6916,
+    "porcentaje_acuerdo": 65.8,
+    "sistema_sin_anemia": 1780,
+    "porcentaje_sistema_sin_anemia": 16.9,
+    "porcentaje_acuerdo_entre_anemicos": 79.3,
+    "nota": "La severidad del HIS no coincide con el sistema cuando el HIS usa otra regla de ajuste por altitud o registra la hemoglobina sin ajustar; la altitud aquí es la de la capital de la provincia (aproximación)."
+  },
+  "distribucion_por_provincia": {
+    "CHANCHAMAYO": 1777,
+    "CHUPACA": 631,
+    "CONCEPCION": 525,
+    "HUANCAYO": 3768,
+    "JAUJA": 560,
+    "JUNIN": 151,
+    "SATIPO": 3657,
+    "TARMA": 415,
+    "YAULI": 202
+  },
+  "altitud_por_provincia_m": {
+    "HUANCAYO": 3245,
+    "CONCEPCION": 3286,
+    "CHANCHAMAYO": 775,
+    "JAUJA": 3389,
+    "JUNIN": 4113,
+    "SATIPO": 628,
+    "TARMA": 3059,
+    "YAULI": 3725,
+    "CHUPACA": 3281
+  },
+  "registros_sistema_creados": 0
+}

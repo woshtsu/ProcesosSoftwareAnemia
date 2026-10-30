@@ -1,13 +1,42 @@
-# Anemia Junín — Incremento 2 (avance del 50 %)
+# Anemia Junín — Incremento 2 (100 %)
+
+## Inicio de sesión con Supabase Auth
+
+La aplicación exige iniciar sesión por defecto. Esta etapa integra **Auth**; `DATABASE_URL` sigue seleccionando la base actual (SQLite o PostgreSQL). No se han migrado tablas a Supabase.
+
+1. Crea el proyecto de Supabase. En **Connect**, copia Project URL y la clave **publishable** (también se admite la clave pública `anon` anterior). No utilices `service_role` ni claves secretas.
+2. En **Authentication**, habilita el proveedor Email y desactiva **Allow new users to sign up**. En **Users → Add user → Create new user**, crea las cuentas del personal con correo confirmado. Todos los usuarios confirmados de este proyecto tendrán acceso; en esta etapa no hay roles ni separación por establecimiento.
+3. En `pmv_fastapi/`, copia `.env.example` a `.env` y completa `SUPABASE_URL` y `SUPABASE_PUBLISHABLE_KEY`. El archivo real está ignorado por Git. La URL y clave proporcionadas por el usuario ya se configuraron localmente en la sesión T-015.
+4. Inicia desde esa carpeta, en PowerShell:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m uvicorn app.main:crear_app --factory --env-file .env --reload --port 8000
+```
+
+Abre `http://127.0.0.1:8000` e ingresa con la cuenta creada en Supabase. El formulario informa credenciales incorrectas, correo sin confirmar o problemas de conexión. Al recargar conserva la sesión y **Cerrar sesión** elimina las cookies. El usuario de auditoría es el UUID verificado, no el selector de la demostración.
+
+Para HTTP local: `AUTH_COOKIE_SECURE=false`; para HTTPS: `true` (valor predeterminado). Si faltan las variables de Supabase, el acceso clínico permanece bloqueado. El frontend y la API deben servirse desde el mismo origen.
+
+Los tokens se guardan en cookies HttpOnly y no se exponen al JavaScript. La API clínica verifica la identidad con Supabase, las respuestas no se cachean y los cambios requieren protección CSRF. Los borradores persistentes del formulario se reservan para el modo demo. Detalles y límites: [ADR-011](docs/adr/ADR-011-supabase-auth.md).
+
+Para reproducir las capturas y pruebas históricas sin autenticación, activa la demo explícitamente, solo en un entorno local con datos sintéticos:
+
+```powershell
+$env:AUTH_MODE = "demo"
+.\.venv\Scripts\python.exe -m uvicorn app.main:crear_app --factory --port 8000
+```
+
+Pruebas del login: `python -m pytest tests/integracion/test_autenticacion.py -q`; navegador: `python -m pytest tests/e2e/test_login.py -m e2e -q --no-cov` (requiere Chromium de Playwright). Estas pruebas simulan Supabase y no crean cuentas reales. Los endpoints son `GET /api/auth/config`, `POST /api/auth/login`, `GET /api/auth/session` y `POST /api/auth/logout`. Las mutaciones deben enviar `X-CSRF-Protection: 1`; el frontend lo incorpora automáticamente.
 
 Producción desde `main`: [guía paso a paso de Supabase, GitHub Actions y Render](docs/DESPLIEGUE.md). El workflow está en `../.github/workflows/ci.yml`, en la raíz del repositorio. Configuración remota pendiente; no implica despliegue verificado.
 
 **Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín**
-Procesos de Software (ASUC01702) · 2026-20 · Versión `v1.5.0-inc2-avance` (el PMV liberado es `v1.0-PMV`)
+Procesos de Software (ASUC01702) · 2026-20 · Versión `v2.0.0-inc2` (etiqueta prevista `v2.0-Inc2`; el PMV liberado es `v1.0-PMV` y el avance del 50 % fue `v1.5.0-inc2-avance`)
 
 El Incremento 1 resolvió el **triple registro manual** con un expediente digital único por niño y la hemoglobina ajustada por altitud y clasificada automáticamente. El Incremento 2 (S3-4, «Agenda automática y alertas») ataca la brecha B2: la agenda de controles se calculaba a mano, de modo que había controles fuera de la ventana normativa y citas olvidadas.
 
-El sistema es **referencial: programa y vigila fechas, no diagnostica ni prescribe**. Todos los datos incluidos son **sintéticos**.
+El sistema es **referencial: programa y vigila fechas, no diagnostica ni prescribe**. Los datos de `scripts/cargar_datos_prueba.py` y de las pruebas son **sintéticos**; además se puede cargar el **dataset real anonimizado de la DIRESA Junín** (`Dataset/`, sin DNI ni nombres) para la demostración (ADR-009).
 
 ## Incremento 1 (PMV, `v1.0-PMV`)
 
@@ -19,14 +48,14 @@ El sistema es **referencial: programa y vigila fechas, no diagnostica ni prescri
 | HU-04 | Listar niños en seguimiento con estado de control (desde la v1.5: «atrasado» = tiene al menos un control vencido) | ✅ |
 | HU-05 | Reporte del periodo (JSON y CSV) | ✅ |
 
-## Incremento 2 — avance del 50 % (10 de 18 SP más el habilitador de arquitectura)
+## Incremento 2 — 18 de 18 SP más el habilitador de arquitectura
 
 | Historia | Descripción | SP | Estado |
 |---|---|---|---|
 | HIST-2.1 | Generar agenda de controles según la normativa | 5 | ✅ |
 | HIST-2.2 | Identificar controles vencidos y alertas internas | 5 | ✅ |
-| HIST-2.3 | Visualizar agenda del personal | 5 | ⏳ |
-| HIST-2.4 | Registrar asistencia a control | 3 | ⏳ |
+| HIST-2.3 | Visualizar agenda del personal (RF-08) | 5 | ✅ |
+| HIST-2.4 | Registrar asistencia a control (RF-09) | 3 | ✅ |
 
 Habilitador: estructura de puertos y adaptadores explícita y verificada con pruebas de arquitectura (ADR-008).
 
@@ -37,12 +66,16 @@ Habilitador: estructura de puertos y adaptadores explícita y verificada con pru
 - **Cumplimiento**: hay una evaluación entre 15 días antes y 30 días después de la fecha programada; cada evaluación cumple a lo sumo un control (la más cercana).
 - **Estados**: `CUMPLIDO`, `PENDIENTE` (con `proximo` si vence en 7 días o menos) y `VENCIDO` (hoy > programada + 30 días y no cumplido). La agenda empieza cuando el niño entra al sistema (dosajes con fecha ≥ primera evaluación − 15 días). Solo niños `ACTIVO` y controles con el niño menor de 60 meses.
 - **Prioridad de la alerta**: `ALTA` si el control es de tratamiento, o la última clasificación es MODERADA/SEVERA, o el atraso supera 30 días; `MEDIA` de 8 a 30 días; `BAJA` hasta 7 días (el atraso se cuenta desde la fecha límite).
-- La agenda se calcula en línea desde el expediente: no hay tabla nueva.
+- La agenda se calcula en línea desde el expediente: no hay tabla de controles. Solo se persiste la asistencia (HIST-2.4, ADR-010): **asistió** deja el control cumplido; **no asistió** lo deja pendiente o vencido con la marca «Inasistencia registrada» y sube un nivel la prioridad de su alerta.
 
 ### Interfaz
 
 - **Expediente → «Agenda de controles»**: resumen con chips de estado (`data-testid="agenda-resumen"`) y tabla de controles (`agenda-tabla`).
 - **Pestaña «Alertas»** (`tab-alertas`): tarjetas de resumen, tabla filtrable por comunidad y prioridad (`alertas-tabla`), clic en un niño abre su expediente. La cabecera muestra el total de controles vencidos (`insignia-alertas`).
+- **Pestaña «Agenda»** (`tab-agenda`, HIST-2.3): rango de fechas (`agenda-desde`, `agenda-hasta`; por defecto la semana de la fecha de referencia, máximo 31 días), filtros por establecimiento y comunidad (`filtro-agenda-establecimiento`, `filtro-agenda-comunidad`), botones `agenda-consultar`, `agenda-anterior` y `agenda-siguiente`, resumen (`agenda-personal-resumen`) y tabla por día (`agenda-personal-tabla`) con los controles cumplidos atenuados.
+- **Registrar asistencia** (HIST-2.4): botones «Asistió» (`btn-asistio`) y «No asistió» (`btn-no-asistio`) en cada control pendiente o vencido, en el expediente y en la pestaña «Agenda». La ventana (`modal-asistencia`) pide el motivo de la inasistencia (`asistencia-motivo`, `asistencia-detalle`) o deja vincular una evaluación (`asistencia-evaluacion`); confirma con `asistencia-confirmar`. El control con inasistencia muestra «Inasistencia registrada» (`marca-inasistencia`).
+- **Registros del dataset**: sin DNI ni nombres se muestran como «Registro DJ-00002 (dataset anonimizado)» (`expediente-nombre`), con su código (`expediente-codigo`) y origen (`expediente-origen`), la severidad del HIS (`clasificacion-his`) y «no registrado» donde no hay peso ni talla (`sin-antropometria`). El buscador y la pestaña «Expediente» aceptan DNI o código.
+- **Aviso de fecha de referencia** (`aviso-fecha-referencia`): visible solo cuando el servidor se inicia con `FECHA_REFERENCIA`; las fechas por defecto de los formularios salen del servidor.
 
 ## Arquitectura
 
@@ -50,14 +83,14 @@ Arquitectura **hexagonal** en un monolito modular (ADR-001 y ADR-008). Las depen
 
 ```
 app/
-├── domain/model/        entidades y objetos de valor puros (Nino, Evaluacion, ControlProgramado, AlertaControl…)
-├── domain/service/      reglas clínicas, validaciones, agenda y alertas (funciones puras)
-├── ports/inbound/       casos de uso como typing.Protocol (GestionarExpediente, GenerarAgenda, ConsultarControlesVencidos…)
+├── domain/model/        entidades y objetos de valor puros (Nino, Evaluacion, ControlProgramado, AsistenciaControl, AgendaPersonal, OrigenDatos…)
+├── domain/service/      reglas clínicas, validaciones, agenda, agenda del personal, asistencia y alertas (funciones puras)
+├── ports/inbound/       casos de uso como typing.Protocol (GestionarExpediente, GenerarAgenda, ConsultarAgendaPersonal, RegistrarAsistencia, ImportarDataset…)
 ├── ports/outbound/      RepositorioNinos y Reloj
-├── application/         implementación de los casos de uso (servicio_expediente, servicio_agenda, servicio_alertas)
+├── application/         implementación de los casos de uso (servicio_expediente, servicio_agenda, servicio_agenda_personal, servicio_asistencia, servicio_alertas, servicio_importacion, servicio_contexto)
 ├── adapters/inbound/http/          FastAPI y DTO; depende solo de ports.inbound y domain.model
 ├── adapters/outbound/persistence/  SQLAlchemy (PostgreSQL/SQLite) y en memoria
-├── adapters/outbound/reloj_sistema.py   reloj en hora de Perú
+├── adapters/outbound/reloj_sistema.py   reloj en hora de Perú · reloj_fijo.py reloj con FECHA_REFERENCIA
 ├── web/                 cliente PWA (HTML/CSS/JS, service worker, Swagger UI local)
 └── main.py              raíz de composición (único módulo que conoce las implementaciones)
 tests/
@@ -65,7 +98,9 @@ tests/
 ├── integracion/         API + SQLAlchemy (SQLite; PostgreSQL con TEST_DATABASE_URL)
 ├── arquitectura/        reglas de dependencias por análisis AST de los import
 ├── e2e/                 Playwright con servidor real y datos sintéticos
-└── rendimiento/         Locust
+└── rendimiento/         Locust y micro-benchmark de latencia
+scripts/                 cargar_datos_prueba, importar_dataset_diresa (+ importador_diresa/), exportar_openapi
+db/                      esquema PostgreSQL 2.0 y migración 02_migracion_v2_0.sql
 ```
 
 ## API
@@ -74,7 +109,7 @@ Contrato completo en `docs/openapi.json` (se regenera con `python -m scripts.exp
 
 | Método y ruta | Descripción |
 |---|---|
-| `GET /api/salud` | Estado del servicio |
+| `GET /api/salud` | Estado del servicio; `fecha_hoy` y `fecha_referencia` (nula si no se fijó `FECHA_REFERENCIA`) |
 | `POST /api/validaciones/evaluacion` | Vista previa de la clasificación (HU-03) |
 | `POST /api/ninos` · `GET /api/ninos` | Registrar niño (HU-01) · listado de seguimiento (HU-04) |
 | `GET /api/ninos/{id}` · `GET /api/ninos/dni/{dni}` · `PATCH /api/ninos/{id}` | Expediente (HU-02) |
@@ -83,6 +118,11 @@ Contrato completo en `docs/openapi.json` (se regenera con `python -m scripts.exp
 | **`GET /api/ninos/{id}/agenda`** | **Nuevo (HIST-2.1)**: controles ordenados por fecha y resumen (total, cumplidos, pendientes, vencidos, próximo control); 404 si no existe |
 | **`GET /api/alertas/controles-vencidos?comunidad=&prioridad=`** | **Nuevo (HIST-2.2)**: controles vencidos de niños activos, por prioridad y días de atraso; 422 si la prioridad no es ALTA, MEDIA o BAJA |
 | **`GET /api/alertas/resumen`** | **Nuevo (HIST-2.2)**: `total_vencidos`, `por_prioridad`, `ninos_con_vencidos`, `proximos_7_dias` |
+| **`GET /api/agenda?desde=&hasta=&establecimiento=&comunidad=`** | **Nuevo (HIST-2.3)**: agenda del personal; por defecto la semana de la fecha de referencia; máximo 31 días (422 si `desde` > `hasta`, el formato es inválido o el rango supera 31 días); totales por día y del rango; controles cumplidos, pendientes y vencidos |
+| **`POST /api/ninos/{id}/controles/{codigo}/asistencia`** | **Nuevo (HIST-2.4)**: `{fecha_programada, estado: ASISTIO\|NO_ASISTIO, motivo?, evaluacion_id?}`; 201; 404 (niño o control inexistente); 409 (ya registrada, control cumplido o cerrado); 422 (fecha futura, motivo faltante) |
+| **`GET /api/ninos/{id}/asistencias`** | **Nuevo (HIST-2.4)**: asistencias registradas del niño |
+
+Cambios de contrato en la 2.0 (aditivos salvo lo indicado): `dni`, `nombres`, `apellidos`, `sexo`, `tutor_nombre` y `tutor_celular` pueden ser `null` (solo en niños del dataset); se agregan `nombre_completo`, `origen`, `codigo_origen`, `provincia`, `red` y `microred`; las evaluaciones agregan `clasificacion_origen` y su peso y talla pueden ser `null`. `POST /api/ninos` siempre crea el origen `SISTEMA` y exige todos los campos como antes.
 
 Cambio en `GET /api/ninos`: `control_atrasado` ahora significa «tiene al menos un control VENCIDO» (sustituye la heurística de 30 días) y se agrega `controles_vencidos` (entero).
 
@@ -101,6 +141,31 @@ uvicorn app.main:crear_app --factory --reload --port 8000
 - Sin `DATABASE_URL` se usa SQLite en `./datos/anemia.db`.
 
 El conjunto sintético (27 niños) conserva los 14 del Incremento 1 (DNI 71000001 a 71000014) y agrega los 71000015 a 71000027, definidos **respecto de la fecha de hoy**, de modo que siempre hay controles cumplidos, pendientes, próximos a vencer y vencidos (de edad y de tratamiento) en varias comunidades, un caso recuperado, uno con alta y uno en el borde de los 60 meses.
+
+## Demostración con el dataset real de la DIRESA Junín
+
+El dataset (`Dataset/Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv`, 12 486 filas, fuente HIS, diagnósticos del 14-01-2022 al 21-06-2024) se importa como niños de origen `DATASET_DIRESA_JUNIN`, sin DNI ni nombres (ADR-009). El «hoy» de la demostración es la fecha de corte, **30-06-2024**:
+
+```bash
+# 1) base de la demo: muestra estratificada de 500 niños (Provincia × severidad HIS, semilla 2026)
+DATABASE_URL=sqlite:///./datos/demo_dataset.db python -m scripts.importar_dataset_diresa --muestra 500 --reiniciar
+# 2) servidor con la fecha de referencia fija
+DATABASE_URL=sqlite:///./datos/demo_dataset.db FECHA_REFERENCIA=2024-06-30 uvicorn app.main:crear_app --factory --port 8000
+```
+
+Opciones del importador: `--completo` (todas las filas utilizables), `--reporte ruta.json`, `--semilla`, `--reiniciar`, `--fecha-referencia` y `--con-registros-sistema N` (agrega N niños «PRUEBA DEL SISTEMA», origen `SISTEMA`, con todos los campos). Si la base ya tiene niños importados y no se usa `--reiniciar`, termina con código 2. Resultados reales (reportes completos en `docs/evidencias/inc2/importacion_muestra500.json` e `importacion_completa.json`):
+
+| | Muestra de 500 | Dataset completo |
+|---|---|---|
+| Filas leídas / con evaluación utilizable | 12 486 / 11 686 | 12 486 / 11 686 |
+| Niños importados | 500 | 11 686 (800 omitidos por no tener ninguna evaluación válida) |
+| Evaluaciones importadas (diagnóstico, 1 mes, 3 meses, 6 meses) | 1 290 (453, 309, 286, 242) | 29 712 (10 577, 7 584, 6 174, 5 377) |
+| Evaluaciones descartadas por falta de hemoglobina | 106 | 3 770 |
+| Concordancia de la severidad HIS con la del sistema (diagnósticos con severidad HIS) | 64,1 % de 449 | 65,8 % de 10 503 |
+| Concordancia entre los niños con anemia según ambos | 78,9 % | 79,3 % |
+| El sistema clasifica «sin anemia» un diagnóstico HIS | 18,7 % | 16,9 % |
+
+La concordancia no es una medida de exactitud del sistema: la altitud es la de la **capital de la provincia** (INEI, *Perú: Compendio Estadístico 2014*, cuadro 1.12; Huancayo 3 245, Concepción 3 286, Chanchamayo 775, Jauja 3 389, Junín 4 113, Satipo 628, Tarma 3 059, Yauli 3 725 y Chupaca 3 281 m s. n. m.), no la del establecimiento, y el HIS puede usar otra regla de ajuste o registrar la hemoglobina sin ajustar. El dataset no trae peso ni talla: no se inventaron (el expediente muestra «no registrado»). Tampoco trae fechas fuera de ventana, por lo que las alertas son las que calcula el sistema respecto del 30-06-2024. Con la muestra de 500 niños las consultas responden en menos de 0,1 s; con el dataset completo la agenda del personal tarda ≈ 1,6 s y las alertas ≈ 2,5 s (`docs/evidencias/inc2/optimizacion_p95.md`).
 
 ## Entorno de staging (PostgreSQL)
 
@@ -121,7 +186,7 @@ python -m scripts.cargar_datos_prueba
 uvicorn app.main:crear_app --factory --host 0.0.0.0 --port 8000
 ```
 
-El Incremento 2 no cambia el esquema de la base de datos (la agenda no se persiste, ADR-007).
+La versión 2.0 **sí cambia el esquema** (origen de los datos, campos opcionales solo para el dataset y la tabla `asistencia_control`, ADR-009 y ADR-010). Una base nueva se crea con `db/01_esquema_postgresql.sql`; una base creada con la 1.x se migra con `psql -d anemia -f db/02_migracion_v2_0.sql`. En SQLite el esquema se crea solo, pero una base de la 1.x se rechaza con un mensaje claro: bórrela y vuelva a cargar los datos.
 
 ## Pruebas y calidad
 
@@ -135,19 +200,21 @@ locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 \
        --headless -u 50 -r 10 -t 60s --csv docs/evidencias/carga/carga          # carga
 ```
 
-Resultados de la versión `v1.5.0-inc2-avance` (salidas completas en `docs/evidencias/inc2/`):
+Resultados de la versión `v2.0.0-inc2` (salidas completas en `docs/evidencias/inc2/`):
 
 | Control | Resultado |
 |---|---|
-| ruff | 0 hallazgos; 64 archivos con formato correcto |
-| pytest (unitarias, integración, arquitectura) | **228 pruebas en verde**: 174 unitarias, 40 de integración y 14 de arquitectura |
-| Cobertura de `app/` | **100 %** (1 046 sentencias, 158 ramas); umbral configurado: 80 % |
-| E2E (Playwright, Chromium) | **8 en verde**: las 4 del PMV y 4 nuevas (agenda en el expediente, casos especiales, pestaña de alertas con filtros y vista móvil) |
-| Carga de humo (50 usuarios, 30 s, con las tareas nuevas) | 1 161 solicitudes, 0 fallos, p95 agregado 140 ms (alertas 140 ms, agenda 62 ms) |
+| ruff | 0 hallazgos; 95 archivos con formato correcto |
+| pytest (unitarias, integración, arquitectura) | **328 pruebas en verde**: 234 unitarias, 76 de integración (SQLite) y 18 de arquitectura |
+| Cobertura de `app/` | **100 %** (1 700 sentencias, 264 ramas); umbral configurado: 80 % |
+| E2E (Playwright, Chromium) | **15 en verde**: las 8 anteriores y 7 nuevas (agenda del personal, rango inválido y navegación, no asistió con alerta que sube de prioridad, asistió, vista móvil, y registro del dataset sin nombre con el aviso de fecha de referencia) |
+| Contrato OpenAPI | `docs/openapi.json` al día (`python -m scripts.exportar_openapi --verificar`) |
 
-La prueba de carga de humo se ejecutó en un contenedor de desarrollo con SQLite y pocos niños (de 27 a 139 durante la prueba); no reemplaza la prueba de carga formal con PostgreSQL. Los casos de prueba nuevos están numerados desde CP-37 en los docstrings (CP-01 a CP-36 son del Incremento 1).
+Las pruebas de integración también se pueden ejecutar contra PostgreSQL con `TEST_DATABASE_URL`. La prueba de carga de humo de la versión 1.5 (`docs/evidencias/inc2/carga/`) no se repitió con la 2.0; `tests/rendimiento/locustfile.py` incluye ahora tareas para la agenda del personal y las asistencias. Los casos de prueba nuevos están numerados desde CP-116 en los docstrings (CP-01 a CP-115 son anteriores). Los 20 registros reales de `tests/fixtures/dataset_muestra.csv` (con campos nulos) alimentan las pruebas del importador y de la API.
 
-Defectos hallados al explorar entradas límite de la API heredada y corregidos con prueba de regresión: **DEF-03** a **DEF-08** (ver `docs/evidencias/registro_defectos_inc2.md`). Los del Incremento 1 (DEF-01 y DEF-02) siguen en `docs/evidencias/registro_defectos.md`.
+Defectos hallados y corregidos con prueba de regresión: **DEF-03** a **DEF-08** (entradas límite de la API heredada) y **DEF-09** (carrera en las fechas de la pestaña «Agenda», hallada por las pruebas E2E); ver `docs/evidencias/registro_defectos_inc2.md`. Los del Incremento 1 (DEF-01 y DEF-02) siguen en `docs/evidencias/registro_defectos.md`.
+
+Optimización de la latencia (acción 1 del PDCA, `docs/evidencias/inc2/optimizacion_p95.md`): con 1 000 niños, p95 del listado de seguimiento de 159,6 a 128,2 ms y de las alertas de 185,7 a 155,3 ms (mediana de tres corridas intercaladas en la misma máquina; mejora de 12 a 21 %, con una dispersión entre corridas de ±15 %).
 
 El pipeline `.github/workflows/ci.yml` ejecuta lint, pruebas con cobertura (incluye arquitectura), verificación del contrato OpenAPI, integración contra PostgreSQL, E2E y (si existe el secreto `SONAR_TOKEN`) el análisis de SonarCloud.
 
@@ -157,11 +224,13 @@ El pipeline `.github/workflows/ci.yml` ejecuta lint, pruebas con cobertura (incl
 
 ## Limitaciones conocidas (backlog)
 
-- HIST-2.3 (visualizar la agenda del personal) y HIST-2.4 (registrar asistencia a control) no están implementados.
-- Un control vencido sigue vencido aunque el niño regrese después de su ventana; la reprogramación o justificación es alcance de HIST-2.4. Mientras tanto una alerta solo desaparece si el niño pasa a alta.
+- Un control vencido sigue vencido aunque el niño regrese después de su ventana; la alerta desaparece si el niño asiste (HIST-2.4), se evalúa dentro de la ventana o pasa a alta.
+- Una asistencia registrada por error no se puede anular ni corregir (backlog del Incremento 3, junto con la autenticación por roles).
+- Dataset DIRESA Junín: la altitud es la de la capital de la provincia (aproximación); no hay peso ni talla (no se inventaron); solo constan dosajes dentro de ventana; el sistema y el HIS coinciden en la severidad en 64 a 66 % de los diagnósticos (ver arriba). Con el dataset completo (11 686 niños, casi seis veces el criterio de 2 000 niños activos de ADR-007) las alertas tardan ≈ 2,5 s y devuelven 22 MiB sin paginar; la muestra de 500 niños responde en menos de 0,1 s.
+- La base de la versión 1.x no es compatible con la 2.0: se migra con `db/02_migracion_v2_0.sql` (PostgreSQL) o se recrea (SQLite).
 - Los parámetros de `ESQUEMA_AGENDA_V1` (meses de los dosajes, tolerancias de −15/+30 días, umbrales de prioridad) y los puntos de corte clínicos deben ser confirmados por la microred antes del uso clínico.
-- La agenda y las alertas se calculan en cada consulta (costo lineal en los niños activos: ≈ 185 ms con 1 000 niños en SQLite); se materializarán si se supera el criterio de ADR-007.
-- Sin autenticación: el usuario se identifica con el encabezado `X-Usuario` solo para auditoría. La autenticación por roles se incorpora antes de usar datos reales (Ley N.° 29733).
+- La agenda y las alertas se calculan en cada consulta (costo lineal en los niños activos: ≈ 120 a 155 ms con 1 000 niños en SQLite); se materializarán si se supera el criterio de ADR-007.
+- Supabase Auth implementado (ADR-011). Pendientes: roles y permisos por establecimiento; en modo demo el selector `X-Usuario` sigue siendo solo auditoría sintética.
 - El registro definitivo requiere conexión; la cola de sincronización offline es alcance del INC-3.
 - Los diagramas de `docs/diagramas/` corresponden a la versión `v1.0-PMV` y no se regeneraron para esta estructura.
 - Las fechas del sistema se interpretan en hora de Perú (UTC-5, sin horario de verano).

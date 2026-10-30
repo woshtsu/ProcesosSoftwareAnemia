@@ -4,12 +4,12 @@
     M1.1 = (n.º de importaciones de frameworks/librerías EXTERNAS en módulos de dominio)
            / (n.º total de clases de dominio) x 100
 
-Recorre por AST la capa de dominio de cada versión (v1.0: app/domain; v1.5: app/domain/model y app/domain/service),
+Recorre por AST la capa de dominio de cada versión (v1.0: app/domain; v1.5 y v2.0: app/domain/model y app/domain/service),
 cuenta clases (ClassDef, incluidas las anidadas) y clasifica TODAS las importaciones en stdlib / interno / externo.
 Cualquier módulo que no sea de la biblioteca estándar ni del propio paquete ``app`` cuenta como externo.
 Como dato complementario calcula el mismo índice para la capa de puertos/aplicación.
 
-Uso:  python herramientas/gqm/m11_contaminacion.py [--version v1.0|v1.5|ambas] [--json ruta]
+Uso:  python herramientas/gqm/m11_contaminacion.py [--version v1.0|v1.5|v2.0|todas] [--json ruta]
 """
 
 from __future__ import annotations
@@ -77,16 +77,15 @@ def imprimir(version: str, res: dict) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", default="ambas", choices=["v1.0", "v1.5", "ambas"])
+    ap.add_argument("--version", default="todas", choices=["v1.0", "v1.5", "v2.0", "todas"])
     ap.add_argument("--json", default=str(c.DATOS / "m11_contaminacion.json"))
     a = ap.parse_args()
-    versiones = ["v1.0", "v1.5"] if a.version == "ambas" else [a.version]
+    versiones = c.VERSIONES if a.version == "todas" else [a.version]
     salida = {}
     for v in versiones:
         salida[v] = medir(v)
         imprimir(v, salida[v])
-    Path(a.json).parent.mkdir(parents=True, exist_ok=True)
-    Path(a.json).write_text(json.dumps(salida, ensure_ascii=False, indent=2), encoding="utf-8")
+    c.fusionar_json(Path(a.json), salida)
     print(f"\nJSON: {a.json}")
 
 

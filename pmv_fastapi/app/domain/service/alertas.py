@@ -5,6 +5,8 @@ Prioridad (referencial, la confirma la microred):
   * MEDIA: de 8 a 30 días de atraso.
   * BAJA: hasta 7 días de atraso.
 Los días de atraso se cuentan desde la fecha límite del control (fin de su ventana de tolerancia).
+Si el personal registró una inasistencia para el control (HIST-2.4), la prioridad sube un nivel (BAJA a MEDIA, MEDIA a
+ALTA; ALTA se mantiene): la familia ya fue citada y no vino.
 """
 
 from app.domain.model.agenda import AgendaNino, ControlProgramado, EstadoControl, TipoControl
@@ -15,6 +17,7 @@ from app.domain.model.entidades import Nino
 DIAS_ATRASO_ALTA = 30  # más de 30 días: prioridad ALTA
 DIAS_ATRASO_BAJA = 7  # hasta 7 días: prioridad BAJA
 _ORDEN = {Prioridad.ALTA: 0, Prioridad.MEDIA: 1, Prioridad.BAJA: 2}
+_SUBE_UN_NIVEL = {Prioridad.BAJA: Prioridad.MEDIA, Prioridad.MEDIA: Prioridad.ALTA, Prioridad.ALTA: Prioridad.ALTA}
 
 
 def calcular_prioridad(control: ControlProgramado, ultima: Clasificacion | None) -> Prioridad:
@@ -24,8 +27,10 @@ def calcular_prioridad(control: ControlProgramado, ultima: Clasificacion | None)
         or ultima in (Clasificacion.MODERADA, Clasificacion.SEVERA)
         or dias > DIAS_ATRASO_ALTA
     ):
-        return Prioridad.ALTA
-    return Prioridad.BAJA if dias <= DIAS_ATRASO_BAJA else Prioridad.MEDIA
+        prioridad = Prioridad.ALTA
+    else:
+        prioridad = Prioridad.BAJA if dias <= DIAS_ATRASO_BAJA else Prioridad.MEDIA
+    return _SUBE_UN_NIVEL[prioridad] if control.inasistencia_registrada else prioridad
 
 
 def alertas_de_nino(nino: Nino, agenda: AgendaNino) -> list[AlertaControl]:
@@ -35,6 +40,7 @@ def alertas_de_nino(nino: Nino, agenda: AgendaNino) -> list[AlertaControl]:
         AlertaControl(
             nino_id=nino.id,
             dni=nino.dni,
+            codigo_origen=nino.codigo_origen,
             nombre_completo=nino.nombre_completo,
             comunidad=nino.comunidad,
             tutor_celular=nino.tutor_celular,

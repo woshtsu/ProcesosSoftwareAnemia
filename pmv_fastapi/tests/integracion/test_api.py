@@ -8,11 +8,11 @@ def registrar(cliente, **cambios):
 
 
 def test_salud_e_interfaz(cliente):
-    assert cliente.get("/api/salud").json() == {"estado": "ok"}
+    assert cliente.get("/api/salud").json() == {"estado": "ok", "fecha_hoy": "2026-09-28", "fecha_referencia": None}
     assert "Anemia Junín" in cliente.get("/").text
     assert cliente.get("/sw.js").status_code == 200
     assert "/static/vendor/swagger-ui-bundle.js" in cliente.get("/docs").text
-    assert cliente.get("/openapi.json").json()["info"]["version"] == "1.5.0-inc2-avance"
+    assert cliente.get("/openapi.json").json()["info"]["version"] == "2.0.0-inc2"
 
 
 def test_registro_exitoso_devuelve_expediente(cliente):

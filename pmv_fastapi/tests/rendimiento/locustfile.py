@@ -1,12 +1,12 @@
-"""Prueba de carga (Locust): PMV del Incremento 1 y avance del Incremento 2 (agenda y alertas).
+"""Prueba de carga (Locust): PMV del Incremento 1 y Incremento 2 (agenda, alertas, agenda del personal y asistencia).
 
 Ejecución:
   locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 \
          --headless -u 50 -r 10 -t 60s --csv docs/evidencias/carga
 Perfil: 50 usuarios concurrentes simulando personal de postas de una microred. Tareas y pesos:
 listar seguimiento 5, abrir expediente 4, agenda del niño 3 (HIST-2.1), vista previa 3, alertas de controles
-vencidos 2 y resumen de alertas 2 (HIST-2.2; el resumen alimenta la insignia de la cabecera), registrar niño 2,
-reporte 1. Conviene cargar antes los datos sintéticos: python -m scripts.cargar_datos_prueba
+vencidos 2 y resumen de alertas 2 (HIST-2.2; el resumen alimenta la insignia de la cabecera), agenda del personal 3
+(HIST-2.3), asistencias del niño 1 (HIST-2.4), registrar niño 2, reporte 1. Conviene cargar antes los datos sintéticos: python -m scripts.cargar_datos_prueba
 """
 
 import itertools
@@ -46,6 +46,18 @@ class PersonalPosta(HttpUser):
     @task(2)
     def resumen_alertas(self):
         self.client.get("/api/alertas/resumen", name="GET /api/alertas/resumen")
+
+    @task(3)
+    def agenda_del_personal(self):
+        filtros = random.choice(
+            ["", "?comunidad=Palmayoc", "?comunidad=Llacuas", "?establecimiento=P. S. Chongos Alto"]
+        )
+        self.client.get(f"/api/agenda{filtros}", name="GET /api/agenda")
+
+    @task(1)
+    def asistencias_del_nino(self):
+        if self.ids:
+            self.client.get(f"/api/ninos/{random.choice(self.ids)}/asistencias", name="GET /api/ninos/{id}/asistencias")
 
     @task(3)
     def vista_previa(self):

@@ -1,8 +1,8 @@
-# Informe de salida — desarrollador / orquestador — T-012
+# Informe de salida — desarrollador / orquestador — T-017
 
 - **Agente:** roles ejecutados secuencialmente
 - **Fecha:** 2026-10-30
-- **Tareas / solicitudes atendidas:** T-012, ORQ-004
+- **Tareas / solicitudes atendidas:** T-017, ORQ-008
 - **Estado final:** PARCIAL; tablero EN REVISIÓN
 
 ## Resumen
@@ -17,7 +17,7 @@ Se trasladó el workflow a la raíz y se adaptaron rutas de ejecución, caché, 
 | creado | `pmv_fastapi/db/02_supabase.sql` | RLS y revocación de grants de Data API |
 | creado | `pmv_fastapi/docs/DESPLIEGUE.md` | SQL inicial, prompt opcional y pasos Render/GitHub |
 | modificado | `pmv_fastapi/README.md` | Enlace de producción |
-| creado/modificado | `coordinacion/solicitudes/ORQ-004.md`, `coordinacion/RUTAS.md`, `coordinacion/TABLERO.md` | Registro de estructura y pendientes |
+| creado/modificado | `coordinacion/solicitudes/ORQ-008.md`, `coordinacion/RUTAS.md`, `coordinacion/TABLERO.md` | Registro de estructura y pendientes |
 
 ## Verificación realizada
 
@@ -40,4 +40,8 @@ Se trasladó el workflow a la raíz y se adaptaron rutas de ejecución, caché, 
 
 ## Solicitudes abiertas a otros agentes
 
-Ninguna adicional. ORQ-004 resuelta; configuración y evidencias remotas pendientes en T-012.
+Ninguna adicional. ORQ-008 resuelta; configuración y evidencias remotas pendientes en T-017.
+
+## Integración del pull 49f07da (2026-10-30)
+
+Resueltos los conflictos de RUTAS y ORQ-004 conservando ambas contribuciones. La solicitud local pasa a ORQ-008 y la tarea de despliegue a T-017; T-012 remoto permanece para Inc. 2. Informe trasladado con referencias actualizadas. Se conserva el código remoto de Auth/Inc. 2; se actualizan guía, protección RLS de asistencia_control y comprobación de esquema productivo. La advertencia anterior de falta de autenticación describe la revisión previa al pull y queda superada por el código remoto. Pendiente configurar Auth y migrar la base si ya se inicializó con el SQL antiguo. No se ejecutaron pruebas de aplicación ni despliegue remoto en esta resolución.

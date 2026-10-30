@@ -136,3 +136,53 @@ def test_el_verificador_detecta_importaciones_prohibidas(codigo, esperado):
 def test_el_prefijo_no_confunde_paquetes_con_nombre_parecido():
     assert not empieza_con("app.applications", {"app.application"})
     assert empieza_con("app.application.servicio_agenda", {"app.application"})
+
+
+# --- Reglas del incremento 2 final (ADR-009 y ADR-010) ---------------------------------------------------------------
+
+SCRIPTS = RAIZ / "scripts"
+
+
+def test_cp176_la_aplicacion_nunca_importa_scripts_ni_pruebas():
+    violaciones = [
+        f"{p.relative_to(APP)} -> {m}" for p in sorted(APP.rglob("*.py")) for m in prohibidos(p, {"scripts", "tests"})
+    ]
+    assert violaciones == []
+
+
+def test_cp177_los_modulos_nuevos_del_dominio_y_los_puertos_existen_y_quedan_cubiertos_por_las_reglas():
+    nuevos_dominio = {
+        "model/origen.py",
+        "model/asistencia.py",
+        "model/agenda_personal.py",
+        "model/contexto.py",
+        "model/importacion.py",
+        "service/asistencia.py",
+        "service/agenda_personal.py",
+    }
+    nuevos_puertos = {"agenda_personal", "asistencia", "contexto", "importacion"}
+    assert nuevos_dominio <= {p.relative_to(APP / "domain").as_posix() for p in modulos("domain")}
+    assert nuevos_puertos <= {p.stem for p in modulos("ports/inbound")}
+    for nombre in nuevos_dominio:  # sin frameworks ni capas externas (lo exige también CP-37, aquí se nombra el caso)
+        assert prohibidos(APP / "domain" / nombre, FRAMEWORKS | set(CAPAS_EXTERNAS)) == []
+
+
+def test_cp178_el_importador_no_toca_la_base_directamente():
+    """El importador entra por el servicio de importación (puerto de entrada); nada de SQL ni de frameworks propios."""
+    archivos = [SCRIPTS / "importar_dataset_diresa.py", *sorted((SCRIPTS / "importador_diresa").glob("*.py"))]
+    assert len(archivos) >= 5
+    violaciones = [
+        f"{a.relative_to(SCRIPTS)} -> {m}" for a in archivos for m in prohibidos(a, FRAMEWORKS | {"sqlite3"})
+    ]
+    assert violaciones == []
+    # El código SQL no aparece escrito en el importador (solo la persistencia lo conoce).
+    assert [a.name for a in archivos if "execute(" in a.read_text(encoding="utf-8")] == []
+
+
+def test_cp179_las_piezas_de_lectura_y_muestreo_solo_dependen_del_dominio_y_de_su_configuracion():
+    permitidos = ("app.domain.model", "scripts.importador_diresa")
+    for archivo in sorted((SCRIPTS / "importador_diresa").glob("*.py")):
+        if archivo.name == "__init__.py":
+            continue
+        internos = [m for m in importaciones(archivo) if m.split(".")[0] in {"app", "scripts"} or m.startswith(".")]
+        assert [m for m in internos if not empieza_con(m, permitidos)] == [], archivo.name

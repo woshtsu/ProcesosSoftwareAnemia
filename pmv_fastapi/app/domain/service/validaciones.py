@@ -4,6 +4,7 @@ import re
 from datetime import date
 
 from app.domain.model.errores import ErrorCampo, ErrorValidacion
+from app.domain.model.origen import OrigenDatos
 from app.domain.model.tiempo import edad_en_meses
 from app.domain.service import reglas_clinicas as rc
 
@@ -13,6 +14,7 @@ PATRON_CELULAR = re.compile(r"9[0-9]{8}")
 
 PERIODO_MIN = date(2000, 1, 1)
 PERIODO_MAX = date(2100, 12, 31)
+DIAS_MAX_AGENDA_PERSONAL = 31  # rango máximo de la agenda del personal (HIST-2.3), ambos extremos incluidos
 
 # Largo máximo de los textos: coincide con las columnas VARCHAR del esquema (DEF-06).
 LONGITUD_MAXIMA = {
@@ -25,7 +27,9 @@ LONGITUD_MAXIMA = {
 }
 
 
-def _texto(valor: str | None, campo: str, errores: list[ErrorCampo], minimo: int = 2) -> None:
+def _texto(valor: str | None, campo: str, errores: list[ErrorCampo], minimo: int = 2, obligatorio: bool = True) -> None:
+    if not obligatorio and (valor is None or not valor.strip()):
+        return  # campo opcional vacío (solo registros de un dataset, ADR-009)
     if valor is None or len(valor.strip()) < minimo:
         errores.append(ErrorCampo(campo, "Es obligatorio."))
     elif len(valor.strip()) > LONGITUD_MAXIMA[campo]:
@@ -51,28 +55,42 @@ def validar_fecha_nacimiento(fecha: date | None, hoy: date) -> list[ErrorCampo]:
     return []
 
 
-def validar_datos_nino(datos: dict, hoy: date) -> list[ErrorCampo]:
+def validar_datos_nino(datos: dict, hoy: date, origen: OrigenDatos = OrigenDatos.SISTEMA) -> list[ErrorCampo]:
+    """Valida los datos de un niño. Con origen SISTEMA todo es obligatorio; con origen DATASET los datos personales
+    (DNI, nombres, apellidos, sexo, tutor) pueden faltar, pero si vienen deben cumplir el mismo formato (ADR-009)."""
     errores: list[ErrorCampo] = []
+    obligatorio = origen == OrigenDatos.SISTEMA
     dni = (datos.get("dni") or "").strip()
-    if not PATRON_DNI.fullmatch(dni):
+    if (obligatorio or dni) and not PATRON_DNI.fullmatch(dni):
         errores.append(ErrorCampo("dni", "El DNI debe tener exactamente 8 dígitos."))
-    _texto(datos.get("nombres"), "nombres", errores)
-    _texto(datos.get("apellidos"), "apellidos", errores)
-    if datos.get("sexo") not in ("F", "M"):
+    _texto(datos.get("nombres"), "nombres", errores, obligatorio=obligatorio)
+    _texto(datos.get("apellidos"), "apellidos", errores, obligatorio=obligatorio)
+    if datos.get("sexo") not in ("F", "M") and (obligatorio or datos.get("sexo")):
         errores.append(ErrorCampo("sexo", "Seleccione F o M."))
     errores += validar_fecha_nacimiento(datos.get("fecha_nacimiento"), hoy)
     _texto(datos.get("establecimiento"), "establecimiento", errores)
     _texto(datos.get("distrito"), "distrito", errores)
     _texto(datos.get("comunidad"), "comunidad", errores)
     errores += validar_altitud(datos.get("altitud_m"))
-    _texto(datos.get("tutor_nombre"), "tutor_nombre", errores)
+    _texto(datos.get("tutor_nombre"), "tutor_nombre", errores, obligatorio=obligatorio)
     celular = datos.get("tutor_celular")
     if celular and not PATRON_CELULAR.fullmatch(celular):
         errores.append(ErrorCampo("tutor_celular", "El celular debe tener 9 dígitos y empezar con 9."))
     return errores
 
 
-def validar_datos_evaluacion(datos: dict, fecha_nacimiento: date | None, hoy: date) -> list[ErrorCampo]:
+def _fuera_de_rango(valor: float | None, minimo: float, maximo: float, obligatorio: bool) -> bool:
+    """True si falta un valor obligatorio o está fuera de rango (NaN e infinitos también cuentan como fuera)."""
+    if valor is None:
+        return obligatorio
+    return not (minimo <= valor <= maximo)
+
+
+def validar_datos_evaluacion(
+    datos: dict, fecha_nacimiento: date | None, hoy: date, antropometria_obligatoria: bool = True
+) -> list[ErrorCampo]:
+    """Valida una evaluación. Peso y talla son obligatorios salvo en la importación de un dataset que no los trae
+    (``antropometria_obligatoria=False``); si vienen, siempre se validan sus rangos."""
     errores: list[ErrorCampo] = []
     fecha = datos.get("fecha")
     if not isinstance(fecha, date):
@@ -91,11 +109,9 @@ def validar_datos_evaluacion(datos: dict, fecha_nacimiento: date | None, hoy: da
                 "Verifique la lectura.",
             )
         )
-    peso = datos.get("peso_kg")
-    if peso is None or not (rc.PESO_MIN_KG <= peso <= rc.PESO_MAX_KG):
+    if _fuera_de_rango(datos.get("peso_kg"), rc.PESO_MIN_KG, rc.PESO_MAX_KG, antropometria_obligatoria):
         errores.append(ErrorCampo("peso_kg", f"El peso debe estar entre {rc.PESO_MIN_KG} y {rc.PESO_MAX_KG} kg."))
-    talla = datos.get("talla_cm")
-    if talla is None or not (rc.TALLA_MIN_CM <= talla <= rc.TALLA_MAX_CM):
+    if _fuera_de_rango(datos.get("talla_cm"), rc.TALLA_MIN_CM, rc.TALLA_MAX_CM, antropometria_obligatoria):
         errores.append(ErrorCampo("talla_cm", f"La talla debe estar entre {rc.TALLA_MIN_CM} y {rc.TALLA_MAX_CM} cm."))
     return errores
 
@@ -108,6 +124,14 @@ def validar_periodo(desde: date, hasta: date) -> list[ErrorCampo]:
     for campo, valor in (("desde", desde), ("hasta", hasta)):
         if not (PERIODO_MIN <= valor <= PERIODO_MAX):
             errores.append(ErrorCampo(campo, f"La fecha debe estar entre {PERIODO_MIN.year} y {PERIODO_MAX.year}."))
+    return errores
+
+
+def validar_rango_agenda(desde: date, hasta: date) -> list[ErrorCampo]:
+    """Rango de la agenda del personal (HIST-2.3): ordenado, entre 2000 y 2100 y de 31 días como máximo."""
+    errores = validar_periodo(desde, hasta)
+    if not errores and (hasta - desde).days + 1 > DIAS_MAX_AGENDA_PERSONAL:
+        errores.append(ErrorCampo("hasta", f"El rango no puede superar {DIAS_MAX_AGENDA_PERSONAL} días."))
     return errores
 
 

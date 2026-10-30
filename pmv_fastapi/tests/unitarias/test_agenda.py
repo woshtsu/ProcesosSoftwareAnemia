@@ -52,6 +52,21 @@ def test_cp44_suma_segura_de_meses_calendario(origen, meses, esperado):
     assert agregar_meses(origen, meses) == esperado
 
 
+def test_cp187_la_suma_rapida_de_meses_equivale_a_la_version_con_calendar():
+    """La optimización de agregar_meses (tabla de días por mes) no cambió su resultado: se compara con calendar."""
+    import calendar
+
+    def referencia(fecha: date, meses: int) -> date:
+        anio, mes0 = divmod(fecha.year * 12 + (fecha.month - 1) + meses, 12)
+        return date(anio, mes0 + 1, min(fecha.day, calendar.monthrange(anio, mes0 + 1)[1]))
+
+    dia = date(1999, 12, 29)
+    while dia < date(2031, 1, 5):
+        for meses in (-13, -1, 0, 1, 3, 6, 15, 51, 60):
+            assert agregar_meses(dia, meses) == referencia(dia, meses), (dia, meses)
+        dia += timedelta(days=1)
+
+
 def test_cp45_esquema_v1_tiene_los_parametros_normativos():
     esq = ESQUEMA_AGENDA_V1
     assert esq.version == "AGENDA-V1"

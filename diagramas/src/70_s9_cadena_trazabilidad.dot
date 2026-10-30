@@ -23,7 +23,7 @@ digraph cadena {
   // Pilar 2: verde
   n5 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#2E6B4E" BGCOLOR="#FFFFFF">
     <TR><TD BGCOLOR="#C5E3D2" ALIGN="CENTER"><B>5. Pruebas Inc. 1 y Inc. 2</B><BR/><FONT POINT-SIZE="10" COLOR="#2E6B4E">PILAR 2 · G-02</FONT></TD></TR>
-    <TR><TD ALIGN="LEFT" BALIGN="LEFT">RF-01 a RF-07 con captura<BR/>228 + 8 pruebas; M2.1, M2.2</TD></TR></TABLE>>];
+    <TR><TD ALIGN="LEFT" BALIGN="LEFT">RF-01 a RF-09 con captura<BR/>328 + 15 pruebas; M2.1, M2.2</TD></TR></TABLE>>];
   // GQM: transversal
   n6 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#1F2D3D" BGCOLOR="#FFFFFF">
     <TR><TD BGCOLOR="#D5DBE1" ALIGN="CENTER"><B>6. Evaluación GQM</B><BR/><FONT POINT-SIZE="10" COLOR="#1F2D3D">MARCO DE MEDICIÓN (3 pilares)</FONT></TD></TR>
@@ -31,7 +31,7 @@ digraph cadena {
   // Pilar 3: arena
   n7 [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#B08A2E" BGCOLOR="#FFFFFF">
     <TR><TD BGCOLOR="#F3E2B3" ALIGN="CENTER"><B>7. Valor al usuario</B><BR/><FONT POINT-SIZE="10" COLOR="#7A5C12">PILAR 3 · G-03</FONT></TD></TR>
-    <TR><TD ALIGN="LEFT" BALIGN="LEFT">Indicadores V1 a V6<BR/>M3.1 (brechas), M3.2 (valor)</TD></TR></TABLE>>];
+    <TR><TD ALIGN="LEFT" BALIGN="LEFT">Indicadores V1 a V6; línea base real<BR/>M3.1 (brechas), M3.2 (valor)</TD></TR></TABLE>>];
 
   {rank=same; n1; n2; n3; n4}
   {rank=same; n5; n6; n7}

@@ -6,7 +6,7 @@ Estados: `PENDIENTE` · `EN CURSO` · `BLOQUEADA` · `EN REVISIÓN` · `HECHO`
 
 ## Tareas
 
-T-012 — Preparar producción de main con Render/Supabase y CI/CD. Responsable: orquestador + desarrollador (secuencial). EN REVISIÓN (2026-10-30). Solicitud ORQ-004. Workflow, SQL y guía preparados. Pendientes configuración remota, ejecución completa del CI y evidencia del primer despliegue. Informe: `coordinacion/informes/2026-10-30_desarrollador_T-012.md`.
+T-017 — Preparar producción de main con Render/Supabase y CI/CD. Responsable: orquestador + desarrollador (secuencial). EN REVISIÓN (2026-10-30). Solicitud ORQ-008. Workflow, SQL y guía preparados. Pendientes configuración remota, ejecución completa del CI y evidencia del primer despliegue. Informe: `coordinacion/informes/2026-10-30_desarrollador_T-017.md`.
 
 | ID | Tarea | Agente | Estado | Entradas | Salida esperada | Depende de | Notas / informe |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -21,11 +21,20 @@ T-012 — Preparar producción de main con Render/Supabase y CI/CD. Responsable:
 | T-009 | Convertir entregables finales a PDF/DOCX para el aula virtual | conversor-entregas | EN CURSO | `entregables/semana-XX/*.md` revisados | `exportados/semana-XX/*.pdf` y `*.docx` | T-002..T-006 | Pandoc **no instalado**; alternativa Python (ver README). |
 | T-010 | Revisar avance recibido, guías actualizadas y continuidad de estructura | orquestador | HECHO (2026-09-25) | commit b6c6db2, guias/, código y entregables | informe de revisión, rutas y tablero sincronizados | — | `coordinacion/informes/2026-09-25_orquestador_T-010.md`. Revisión completada; quedan tareas de implementación y entrega. |
 | T-011 | S9: avance 50 % del Inc. 2 (HIST-2.1 y HIST-2.2, v1.5.0-inc2-avance), métricas GQM reales, capturas por RF e informe técnico GQM por pilares | orquestador + desarrollador + revisor-documental | EN REVISIÓN (2026-10-16) | `guias/S9-PSW-GUÍA DE TRABAJO.md`, S1, S3-4, S6 (rama temp-s6), `pmv_fastapi/` | `entregables/semana-09/Entregable_Semana9_Anemia_Junin.md`, `CHECKLIST_CUMPLIMIENTO_S9.md`, `evidencias_capturas/`, `metricas/`, `exportados/semana-09/` | — | `coordinacion/informes/2026-10-16_orquestador_T-011.md`. Cumplimiento estricto 97,1 %. Pendientes del equipo: publicar rama/tag `v1.5.0-inc2-avance` y capturar GitHub, firmas QA, SUS, HIST-2.3/2.4 y tag `v2.0-Inc2`. |
+| T-012 | S9 v2: cierre del Inc. 2 (HIST-2.3 y HIST-2.4, v2.0.0-inc2), dataset DIRESA Junín (línea base AS-IS real, importación con seudónimos), métricas y capturas RF-08/RF-09, informe y README con historias de usuario | orquestador + desarrollador + revisor-documental | EN REVISIÓN (2026-10-18) | `Dataset/`, `guias/S9-PSW-GUÍA DE TRABAJO.md`, `pmv_fastapi/` | `pmv_fastapi/` v2.0.0-inc2, `entregables/semana-09/` actualizado, `exportados/semana-09/` | T-011 | Cumplimiento 100 % (auditoría del 18/10/2026; E-12 se cierra al publicar `v2.0-Inc2`). |
+| T-013 | Resolver merge y actualizar `main` local con `feature/inc2-agenda-alertas` | orquestador | HECHO (2026-10-23) | Merge en curso de `main` en feature | Inc. 2 completo conservado, merge cerrado y `main` local actualizado | — | `coordinacion/informes/2026-10-23_orquestador_T-013.md`. 328 pruebas aprobadas, cobertura 100 %, Ruff y OpenAPI conformes. Publicación remota pendiente del usuario. |
+| T-014 | Síntesis para feria: problemática, solución tecnológica, impacto y evidencias S9 | orquestador / revisor-documental / conversor-entregas (secuencial) | HECHO (2026-10-23) | Informe y capturas S9, verificación T-013 | `exportados/feria/Proyecto_Feria_Anemia_Junin.pdf` | — | Tres páginas, tres capturas; revisión visual completa. Informe: `coordinacion/informes/2026-10-23_conversor-entregas_T-014.md`. Subida a la feria a cargo del usuario. |
+| T-015 | Login con Supabase Auth, renovación, cierre y protección API | desarrollador / orquestador (secuencial) | EN REVISIÓN (2026-10-23) | Proyecto Supabase y petición del usuario; ORQ-006 | Login integrado con persistencia actual | — | Implementación local y pruebas aprobadas; primer usuario y desactivación de registro público diferidos por el usuario. Informe: `coordinacion/informes/2026-10-23_desarrollador_T-015.md`. |
+| T-016 | Contexto de últimos cambios y coordinación compartida entre IA en .claude | orquestador | HECHO (2026-10-23) | Informes T-013 a T-015 y solicitud del usuario | Entrada, contexto, intercambios y plantilla compartidos; protocolo enlazado | — | `coordinacion/informes/2026-10-23_orquestador_T-016.md`. ORQ-007 resuelta. Sin commits ni pushes. |
 
 ## Solicitudes abiertas
 
 | ID | Solicitante → Destino | Tema | Estado | Archivo |
 | --- | --- | --- | --- | --- |
+| ORQ-007 | orquestador → orquestador | Entrada y canal de coordinación compartida en .claude | RESUELTA | `coordinacion/solicitudes/ORQ-007.md` |
+| ORQ-006 | desarrollador → orquestador | Rutas de autenticación Supabase y pruebas | RESUELTA | `coordinacion/solicitudes/ORQ-006.md` |
+| ORQ-005 | revisor-documental → orquestador | Rutas de la síntesis y PDF para feria | RESUELTA | `coordinacion/solicitudes/ORQ-005.md` |
+| ORQ-004 | orquestador → orquestador | Conservar figura heredada 1.5 junto con la figura vigente 2.0 | RESUELTA | `coordinacion/solicitudes/ORQ-004.md` |
 | DIAG-001 | revisor-documental → diagramador | S1 proceso AS-IS por carriles (`10_s1_proceso_as_is`) | ABIERTA | `coordinacion/solicitudes/DIAG-001.md` |
 | DIAG-002 | revisor-documental → diagramador | S1 proceso TO-BE con mejoras M1-M6 (`11_s1_proceso_to_be`) | ABIERTA | `coordinacion/solicitudes/DIAG-002.md` |
 | DIAG-003 | revisor-documental → diagramador | S1 cadena de valor (`12_s1_cadena_valor`) | ABIERTA | `coordinacion/solicitudes/DIAG-003.md` |
@@ -51,3 +60,13 @@ T-012 — Preparar producción de main con Render/Supabase y CI/CD. Responsable:
 - 2026-09-25 — revisor-documental: revisión S3-4 (T-004); checklist, solicitudes DIAG-100..105 y DEV-100.
 - 2026-09-25 — orquestador (Codex), T-010: revisión del avance, rutas de guías actualizadas, pruebas reproducidas, defecto DEV-101 y continuidad mediante AGENTS.md. S1–S3/4 pasan a EN REVISIÓN por pendientes efectivos; el cierre histórico no equivale a aceptación final.
 - 2026-10-16 — orquestador, T-011: avance 50 % del Inc. 2 (v1.5.0-inc2-avance, 228 pruebas + 8 E2E, cobertura 100 %), DEF-03..DEF-08 corregidos, métricas GQM calculadas sobre v1.0-PMV y v1.5, 31 capturas por RF y entregable S9 con checklist (97,1 %). Sin commits ni tags.
+
+- 2026-10-18 — orquestador, T-012: Inc. 2 completo (328 pruebas + 15 E2E, cobertura 100 %), dataset DIRESA Junín incorporado (línea base AS-IS real), informe S9 y checklist actualizados. Pendiente del equipo: tag `v2.0-Inc2`.
+
+- 2026-10-23 — orquestador, T-013: 88 conflictos resueltos conservando el Inc. 2 completo; figura 1.5 heredada registrada en ORQ-004; CP-177 portable en Windows; 328 pruebas aprobadas, 100 % de cobertura, Ruff y OpenAPI conformes. Integración local de main; publicación remota pendiente.
+
+- 2026-10-23 — T-014: síntesis de feria generada en PDF A4 de tres páginas con tres capturas de S9; texto e imágenes revisados; impacto técnico y beneficios esperados diferenciados. ORQ-005 resuelta.
+
+- 2026-10-23 — T-015: login Supabase implementado; conexión real a configuración de Auth HTTP 200; 349 pruebas y 2 E2E de login aprobadas. El usuario difiere crear su primera cuenta y cerrar el registro público; EN REVISIÓN. BD sin migrar.
+
+- 2026-10-23 — T-016: contexto compartido de merge, feria y Auth en `.claude/`; canal de intercambios con plantilla por autor, enlazado a las fuentes canónicas. AGENTS.md, README y protocolo actualizados.

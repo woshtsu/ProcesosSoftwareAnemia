@@ -31,7 +31,7 @@ Desde un entregable en `entregables/semana-XX/` se enlaza así: `![Figura N. Ley
 | 09 | Secuencia de registro | `src/integrador/diagramas.py` | sí | sí | S6 |
 | 70 | S9 Cadena de trazabilidad integrada (problema → valor, por pilar) | `src/70_s9_cadena_trazabilidad.dot` (Graphviz) | sí | sí | S9 |
 | 71 | S9 Árbol GQM (G-01..G-03, Q1.1..Q3.2, M1.1..M3.2 y M1.3) | `src/71_s9_arbol_gqm.dot` (Graphviz) | sí | sí | S9 |
-| 72 | S9 Vista hexagonal de v1.5.0-inc2-avance (puertos y adaptadores reales) | `src/72_s9_hexagonal_v15.dot` (Graphviz) | sí | sí | S9 |
+| 72 | S9 Vista hexagonal de v2.0.0-inc2 (puertos y adaptadores reales) | `src/72_s9_hexagonal_v20.dot` (Graphviz) | sí | sí | S9 |
 
 Las figuras de S1 (`entregables/semana-01/img/image1..11.png`) y S2 (`entregables/semana-02/img/image1.png`) son imágenes raster sin fuente editable; si se rehacen, pasarán a este catálogo.
 
@@ -54,9 +54,11 @@ java -jar plantuml.jar -tpng -o ../png diagramas/src/*.puml
 
 Graphviz (diagramas 70 a 72, Semana 9; requiere `dot`):
 
+La fuente `src/72_s9_hexagonal_v15.dot` y sus derivados `png/72_s9_hexagonal_v15.png` y `svg/72_s9_hexagonal_v15.svg` se conservan como evidencia heredada del avance 1.5 (ORQ-004). La versión vigente del Incremento 2 completo es `72_s9_hexagonal_v20`.
+
 ```bash
 cd diagramas/src
-for n in 70_s9_cadena_trazabilidad 71_s9_arbol_gqm 72_s9_hexagonal_v15; do
+for n in 70_s9_cadena_trazabilidad 71_s9_arbol_gqm 72_s9_hexagonal_v20; do
   dot -Tpng -Gdpi=150 $n.dot -o ../png/$n.png && dot -Tsvg $n.dot -o ../svg/$n.svg
 done
 ```

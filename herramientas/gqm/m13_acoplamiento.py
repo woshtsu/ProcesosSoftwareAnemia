@@ -10,7 +10,7 @@ La raíz de composición (app/main.py) se excluye del cálculo de Ca y Ce de las
 conocer todas las implementaciones. También verifica la REGLA DE DEPENDENCIA hexagonal: aristas capa->capa no
 permitidas (hacia afuera del dominio).
 
-Uso:  python herramientas/gqm/m13_acoplamiento.py [--version v1.0|v1.5|ambas] [--json ruta]
+Uso:  python herramientas/gqm/m13_acoplamiento.py [--version v1.0|v1.5|v2.0|todas] [--json ruta]
 """
 
 from __future__ import annotations
@@ -101,15 +101,14 @@ def imprimir(r: dict) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", default="ambas", choices=["v1.0", "v1.5", "ambas"])
+    ap.add_argument("--version", default="todas", choices=["v1.0", "v1.5", "v2.0", "todas"])
     ap.add_argument("--json", default=str(c.DATOS / "m13_acoplamiento.json"))
     a = ap.parse_args()
-    vs = ["v1.0", "v1.5"] if a.version == "ambas" else [a.version]
+    vs = c.VERSIONES if a.version == "todas" else [a.version]
     out = {v: medir(v) for v in vs}
     for v in vs:
         imprimir(out[v])
-    Path(a.json).parent.mkdir(parents=True, exist_ok=True)
-    Path(a.json).write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    c.fusionar_json(Path(a.json), out)
     print(f"\nJSON: {a.json}")
 
 
