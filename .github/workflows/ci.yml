@@ -20,7 +20,7 @@ defaults:
 
 jobs:
   calidad-y-pruebas:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # Playwright 1.56 no soporta Ubuntu 26.04 (ubuntu-latest desde el 19/10/2026)
     timeout-minutes: 20
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -83,7 +83,7 @@ jobs:
 
   imagen:
     needs: calidad-y-pruebas
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # Playwright 1.56 no soporta Ubuntu 26.04 (ubuntu-latest desde el 19/10/2026)
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -93,7 +93,7 @@ jobs:
   produccion:
     needs: [calidad-y-pruebas, imagen]
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # Playwright 1.56 no soporta Ubuntu 26.04 (ubuntu-latest desde el 19/10/2026)
     timeout-minutes: 5
     steps:
       - uses: actions/setup-python@v5
