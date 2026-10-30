@@ -468,6 +468,7 @@ function llenarSelect(sel, opciones, vacio, actual) {
 
 async function cargarAgendaPersonal() {
   const mia = ++secuenciaAgenda;
+  $("#agenda-personal-resumen").dataset.cargando = "1"; // se quita al pintar la última consulta (pruebas E2E sin carreras)
   const enviado = { desde: $("#agenda-desde").value, hasta: $("#agenda-hasta").value };
   const p = new URLSearchParams();
   [["desde", "#agenda-desde"], ["hasta", "#agenda-hasta"], ["establecimiento", "#filtro-agenda-establecimiento"], ["comunidad", "#filtro-agenda-comunidad"]]
@@ -478,6 +479,7 @@ async function cargarAgendaPersonal() {
   catch (e) {
     if (mia !== secuenciaAgenda) return;
     aviso.textContent = (e.errores?.[0] || e).mensaje || "No se pudo consultar la agenda."; aviso.hidden = false;
+    delete $("#agenda-personal-resumen").dataset.cargando;
     return;
   }
   if (mia !== secuenciaAgenda) return; // llegó la respuesta de una consulta anterior: se descarta
@@ -510,6 +512,7 @@ async function cargarAgendaPersonal() {
     }).join("")).join("");
   $$("#cuerpo-agenda-personal .enlace-nino").forEach((x) => x.addEventListener("click", (ev) => { ev.preventDefault(); abrirExpediente(x.closest("tr").dataset.nino); }));
   $$("#cuerpo-agenda-personal [data-accion]").forEach((b) => b.addEventListener("click", () => abrirModalAsistencia(b.closest("tr"), b.dataset.accion, cargarAgendaPersonal)));
+  delete $("#agenda-personal-resumen").dataset.cargando;
 }
 $("#agenda-consultar").addEventListener("click", cargarAgendaPersonal);
 $("#filtro-agenda-establecimiento").addEventListener("change", cargarAgendaPersonal);
