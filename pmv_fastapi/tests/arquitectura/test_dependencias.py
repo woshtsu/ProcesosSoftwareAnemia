@@ -186,3 +186,37 @@ def test_cp179_las_piezas_de_lectura_y_muestreo_solo_dependen_del_dominio_y_de_s
             continue
         internos = [m for m in importaciones(archivo) if m.split(".")[0] in {"app", "scripts"} or m.startswith(".")]
         assert [m for m in internos if not empieza_con(m, permitidos)] == [], archivo.name
+
+
+# --- Reglas del incremento 3 (ADR-012 y ADR-013) ---------------------------------------------------------------------
+
+
+def test_cp294_los_modulos_nuevos_del_incremento_3_existen_y_respetan_la_regla_de_dependencias():
+    nuevos_dominio = {
+        "model/visita.py",
+        "model/sincronizacion.py",
+        "service/visitas.py",
+        "service/conflictos.py",
+        "service/operaciones.py",
+    }
+    assert nuevos_dominio <= {p.relative_to(APP / "domain").as_posix() for p in modulos("domain")}
+    assert {"sincronizacion", "visitas"} <= {p.stem for p in modulos("ports/inbound")}
+    assert {"repositorio_sincronizacion", "repositorio_visitas"} <= {p.stem for p in modulos("ports/outbound")}
+    assert {"servicio_sincronizacion", "servicio_visitas"} <= {p.stem for p in modulos("application")}
+    for nombre in nuevos_dominio:
+        assert prohibidos(APP / "domain" / nombre, FRAMEWORKS | set(CAPAS_EXTERNAS)) == []
+
+
+def test_cp295_la_sincronizacion_solo_conoce_puertos_y_dominio():
+    """El servicio que orquesta la cola sin conexión reutiliza los casos de uso por sus puertos de entrada: nunca
+    importa a los otros servicios ni a los adaptadores (el cableado lo hace main.py)."""
+    permitidos = ("app.domain", "app.ports")
+    for nombre in ("servicio_sincronizacion.py", "servicio_visitas.py"):
+        internos = [m for m in importaciones(APP / "application" / nombre) if m.startswith(("app.", "."))]
+        assert [m for m in internos if not empieza_con(m, permitidos)] == [], nombre
+
+
+def test_cp296_el_puntaje_de_visitas_y_las_reglas_de_conflicto_son_funciones_puras_sin_reloj_ni_entrada_salida():
+    for nombre in ("service/visitas.py", "service/conflictos.py", "service/operaciones.py"):
+        importados = importaciones(APP / "domain" / nombre)
+        assert not {m.split(".")[0] for m in importados} & {"os", "random", "sqlite3", "socket", "time"}, nombre

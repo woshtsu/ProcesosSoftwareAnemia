@@ -29,3 +29,11 @@ class NoEncontrado(Exception):
 
 class ConflictoAsistencia(Exception):
     """El control ya tiene una asistencia registrada o ya está cumplido (HIST-2.4)."""
+
+
+class ConflictoVisita(Exception):
+    """El niño ya tiene una visita domiciliaria registrada en esa fecha (VIS-3.5)."""
+
+
+class ConflictoYaResuelto(Exception):
+    """El conflicto de sincronización ya fue resuelto y no admite otra resolución (HIST-3.3)."""

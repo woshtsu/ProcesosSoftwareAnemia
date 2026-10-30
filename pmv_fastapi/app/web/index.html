@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1F4E79">
-  <title>Anemia Junín · Agenda y asistencia</title>
+  <title>Anemia Junín · Sin conexión y visitas</title>
   <link rel="manifest" href="/static/manifest.json">
   <link rel="icon" href="/static/icono.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/static/estilos.css">
@@ -34,10 +34,11 @@
       <img src="/static/icono.svg" alt="" width="32" height="32">
       <div>
         <strong>Anemia Junín</strong>
-        <span>Incremento 2 · v2.0</span>
+        <span>Incremento 3 · v3.0</span>
       </div>
     </div>
     <div class="usuario">
+      <button type="button" id="sync-indicador" class="sync-indicador al-dia" data-testid="indicador-sync" data-pendientes="0" title="Estado de la sincronización (abrir el panel)">Al día</button>
       <a href="#" id="insignia-alertas" class="insignia cero" data-testid="insignia-alertas" title="Controles vencidos (abrir Alertas)">0</a>
       <label id="usuario-demo-label" for="usuario">Usuario de demostración</label>
       <select id="usuario" data-testid="usuario">
@@ -52,12 +53,16 @@
 
   <div id="aviso-referencia" class="aviso-referencia" role="status" data-testid="aviso-fecha-referencia" hidden></div>
 
+  <div id="aviso-cache" class="aviso-referencia aviso-cache" role="status" data-testid="aviso-cache" hidden>Sin conexión con el servidor: se muestran los últimos datos guardados en este dispositivo.</div>
+
   <nav class="pestanas" role="tablist">
     <button class="pestana activa" data-vista="registro" data-testid="tab-registro">Registrar niño</button>
     <button class="pestana" data-vista="seguimiento" data-testid="tab-seguimiento">Seguimiento</button>
     <button class="pestana" data-vista="expediente" data-testid="tab-expediente">Expediente</button>
     <button class="pestana" data-vista="agenda" data-testid="tab-agenda">Agenda</button>
+    <button class="pestana" data-vista="visitas" data-testid="tab-visitas">Visitas</button>
     <button class="pestana" data-vista="alertas" data-testid="tab-alertas">Alertas</button>
+    <button class="pestana" data-vista="sincronizacion" data-testid="tab-sincronizacion">Sincronización</button>
     <button class="pestana" data-vista="reporte" data-testid="tab-reporte">Reporte</button>
   </nav>
 
@@ -180,6 +185,29 @@
       <p class="nota">Los controles cumplidos se muestran atenuados. Los cerrados por recuperación no se listan.</p>
     </section>
 
+    <!-- VIS-3.5 -->
+    <section id="vista-visitas" class="vista">
+      <div class="titulo"><h1>Visitas domiciliarias priorizadas</h1><span id="total-visitas" class="chip"></span></div>
+      <div class="filtros tarjeta">
+        <label>Establecimiento
+          <select id="filtro-visitas-establecimiento" data-testid="filtro-visitas-establecimiento"><option value="">Todos</option></select>
+        </label>
+        <label>Mostrar
+          <select id="filtro-visitas-limite" data-testid="filtro-visitas-limite"><option>10</option><option selected>20</option><option>50</option><option>100</option></select>
+        </label>
+        <button id="visitas-consultar" class="primario" data-testid="visitas-consultar">Actualizar</button>
+      </div>
+      <div id="visitas-error" class="alerta" hidden data-testid="visitas-error"></div>
+      <div class="tabla-envoltura tarjeta">
+        <table class="tabla completa" data-testid="visitas-tabla">
+          <thead><tr><th>#</th><th>Niño</th><th>Comunidad</th><th>Clasificación</th><th>Control vencido</th><th>Última visita</th><th>Puntaje</th><th>Visita</th></tr></thead>
+          <tbody id="cuerpo-visitas"></tbody>
+        </table>
+        <p id="sin-visitas" class="vacio" hidden data-testid="sin-visitas">No hay niños en tratamiento por visitar con el filtro elegido.</p>
+      </div>
+      <p class="nota">El puntaje (0 a 100) es una propuesta del equipo (ADR-013), no una norma del MINSA: apoya la decisión del personal, no la reemplaza. Pulse un puntaje para ver cómo se calculó.</p>
+    </section>
+
     <!-- HIST-2.2 -->
     <section id="vista-alertas" class="vista">
       <div class="titulo"><h1>Alertas de controles vencidos</h1><span id="total-alertas" class="chip"></span></div>
@@ -201,6 +229,27 @@
         </table>
         <p id="sin-alertas" class="vacio" hidden data-testid="sin-alertas">No hay controles vencidos con el filtro elegido.</p>
       </div>
+    </section>
+
+    <!-- HIST-3.4 -->
+    <section id="vista-sincronizacion" class="vista">
+      <div class="titulo"><h1>Sincronización</h1><span id="sync-resumen" class="chip" data-testid="sync-resumen"></span></div>
+      <div class="filtros tarjeta">
+        <button id="sync-ahora" class="primario" data-testid="sync-ahora">Sincronizar ahora</button>
+        <span id="sync-ultima" class="nota" data-testid="sync-ultima"></span>
+      </div>
+      <div id="sync-aviso" class="alerta" hidden data-testid="sync-aviso"></div>
+      <h2>Pendientes en este dispositivo</h2>
+      <div class="tabla-envoltura tarjeta">
+        <table class="tabla completa" data-testid="sync-tabla">
+          <thead><tr><th>Registro</th><th>Hora local</th><th>Estado</th><th>Último intento</th><th></th></tr></thead>
+          <tbody id="cuerpo-sync"></tbody>
+        </table>
+        <p id="sync-vacio" class="vacio" hidden data-testid="sync-vacio">No hay registros pendientes: todo está sincronizado.</p>
+      </div>
+      <h2 style="margin-top:18px">Conflictos con el servidor <span id="conflictos-total" class="chip" data-testid="conflictos-total"></span></h2>
+      <p class="nota" style="margin:0 0 8px">Un conflicto significa que el servidor ya tenía un dato distinto. Nada se sobrescribe sin que usted lo decida.</p>
+      <div id="conflictos" data-testid="conflictos"></div>
     </section>
 
     <!-- HU-05 -->
@@ -247,9 +296,35 @@
     </form>
   </div>
 
+  <!-- VIS-3.5: registro de una visita domiciliaria -->
+  <div id="modal-visita" class="modal" hidden data-testid="modal-visita">
+    <form id="form-visita" class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="visita-titulo" novalidate>
+      <h2 id="visita-titulo">Registrar visita domiciliaria</h2>
+      <p id="visita-detalle" class="nota"></p>
+      <div class="campo"><label for="visita-fecha">Fecha de la visita</label><input id="visita-fecha" name="fecha" type="date" data-testid="visita-fecha"></div>
+      <div class="campo"><label for="visita-resultado">Resultado</label>
+        <select id="visita-resultado" name="resultado" data-testid="visita-resultado">
+          <option value="REALIZADA">Realizada</option><option value="NO_ENCONTRADO">No se encontró a la familia</option><option value="RECHAZADA">La familia rechazó la visita</option>
+        </select></div>
+      <div class="campo" id="campo-suplemento"><label for="visita-suplemento">¿El niño consume el suplemento?</label>
+        <select id="visita-suplemento" name="consume_suplemento" data-testid="visita-suplemento">
+          <option value="DESCONOCIDO">No se sabe</option><option value="SI">Sí</option><option value="NO">No</option>
+        </select></div>
+      <div class="campo"><label for="visita-observaciones">Observaciones (opcional, hasta 500 caracteres)</label>
+        <input id="visita-observaciones" name="observaciones" maxlength="500" data-testid="visita-observaciones"></div>
+      <small id="visita-error" class="error" data-testid="visita-error"></small>
+      <div class="acciones">
+        <button type="button" id="visita-cancelar" class="secundario" data-testid="visita-cancelar">Cancelar</button>
+        <button type="submit" id="visita-confirmar" class="primario" data-testid="visita-confirmar">Registrar visita</button>
+      </div>
+    </form>
+  </div>
+
   <div id="toast" class="toast" hidden></div>
   </div>
   <script src="/static/auth.js"></script>
+  <script src="/static/cola.js"></script>
+  <script src="/static/sync.js"></script>
   <script src="/static/app.js"></script>
 </body>
 </html>

@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Sistema de Detección Temprana de Anemia Infantil — Junín",
-    "description": "API del Incremento 1 (registro nominal, expediente digital, validación clínica, seguimiento y reporte del periodo) y del Incremento 2 (agenda automática de controles, alertas de controles vencidos, agenda del personal y registro de asistencia a control).",
-    "version": "2.0.0-inc2"
+    "description": "API del Incremento 1 (registro nominal, expediente digital, validación clínica, seguimiento y reporte del periodo), del Incremento 2 (agenda automática de controles, alertas de controles vencidos, agenda del personal y registro de asistencia a control) y del Incremento 3 (sincronización de lo registrado sin conexión, resolución de conflictos y visita domiciliaria priorizada).",
+    "version": "3.0.0-inc3"
   },
   "paths": {
     "/api/salud": {
@@ -655,6 +655,419 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/ninos/{nino_id}/visitas": {
+      "post": {
+        "tags": [
+          "VIS-3.5 Visitas"
+        ],
+        "summary": "Registrar Visita",
+        "description": "Registra una visita domiciliaria (una por niño y por día; ``registrado_por`` sale de la sesión).\n\n409 si el niño ya tiene una visita ese día; 422 si la fecha es futura, el resultado o el consumo del suplemento\nson inválidos (solo una visita REALIZADA puede indicar SI o NO) o las observaciones superan 500 caracteres.",
+        "operationId": "registrar_visita_api_ninos__nino_id__visitas_post",
+        "parameters": [
+          {
+            "name": "nino_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Nino Id"
+            }
+          },
+          {
+            "name": "X-Usuario",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Usuario"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VisitaEntrada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VisitaSalida"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "VIS-3.5 Visitas"
+        ],
+        "summary": "Visitas Del Nino",
+        "description": "Visitas domiciliarias del niño, la más reciente primero.",
+        "operationId": "visitas_del_nino_api_ninos__nino_id__visitas_get",
+        "parameters": [
+          {
+            "name": "nino_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Nino Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VisitaSalida"
+                  },
+                  "title": "Response Visitas Del Nino Api Ninos  Nino Id  Visitas Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/visitas/priorizadas": {
+      "get": {
+        "tags": [
+          "VIS-3.5 Visitas"
+        ],
+        "summary": "Visitas Priorizadas",
+        "description": "Niños en tratamiento ordenados por un puntaje explicable (0 a 100) para planificar las visitas domiciliarias.\n\nComponentes: severidad de la última evaluación, días del control más vencido, inasistencias de los últimos 90 días\ny días desde la última visita. Los pesos son una propuesta del equipo (ADR-013), no una norma del MINSA.",
+        "operationId": "visitas_priorizadas_api_visitas_priorizadas_get",
+        "parameters": [
+          {
+            "name": "establecimiento",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Establecimiento"
+            }
+          },
+          {
+            "name": "limite",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "De 1 a 200",
+              "default": 20,
+              "title": "Limite"
+            },
+            "description": "De 1 a 200"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VisitaPriorizadaSalida"
+                  },
+                  "title": "Response Visitas Priorizadas Api Visitas Priorizadas Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        }
+      }
+    },
+    "/api/sincronizacion": {
+      "post": {
+        "tags": [
+          "HIST-3.2 Sincronización"
+        ],
+        "summary": "Sincronizar",
+        "description": "Aplica un lote (1 a 200) de operaciones registradas sin conexión, ordenadas por fecha local.\n\nDevuelve un resultado por operación, en el orden recibido: APLICADA (con el id del servidor y el mapeo\nid_cliente -> id), DUPLICADA (el ``id_operacion`` ya se procesó o el servidor ya tiene el mismo dato), CONFLICTO (el\nservidor tiene un dato distinto; queda pendiente de resolver) o RECHAZADA (error de validación del dominio, sin\nefecto). Reenviar el mismo lote no crea nada nuevo.",
+        "operationId": "sincronizar_api_sincronizacion_post",
+        "parameters": [
+          {
+            "name": "X-Usuario",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Usuario"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoteSincronizacionEntrada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SincronizacionSalida"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        }
+      }
+    },
+    "/api/sincronizacion/conflictos": {
+      "get": {
+        "tags": [
+          "HIST-3.3 Conflictos"
+        ],
+        "summary": "Conflictos",
+        "description": "Conflictos de sincronización (el más antiguo primero); ``estado`` = PENDIENTE o RESUELTO.",
+        "operationId": "conflictos_api_sincronizacion_conflictos_get",
+        "parameters": [
+          {
+            "name": "estado",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Estado"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConflictoSalida"
+                  },
+                  "title": "Response Conflictos Api Sincronizacion Conflictos Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        }
+      }
+    },
+    "/api/sincronizacion/conflictos/{conflicto_id}/resolver": {
+      "post": {
+        "tags": [
+          "HIST-3.3 Conflictos"
+        ],
+        "summary": "Resolver Conflicto",
+        "description": "Resuelve un conflicto. CONSERVAR_SERVIDOR: el dato del servidor gana (solo se agrega lo que no existía).\nAPLICAR_CLIENTE: el dato del dispositivo reemplaza al del servidor solo donde el dominio lo permite (campos\neditables del niño, la hemoglobina de una evaluación, una visita o una asistencia sin evaluación que la respalde;\nnunca los datos de identidad del niño: 422). DESCARTAR: se ignora la operación. 409 si ya estaba resuelto.",
+        "operationId": "resolver_conflicto_api_sincronizacion_conflictos__conflicto_id__resolver_post",
+        "parameters": [
+          {
+            "name": "conflicto_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Conflicto Id"
+            }
+          },
+          {
+            "name": "X-Usuario",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Usuario"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolucionEntrada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictoSalida"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespuestaError"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
           }
         }
       }
@@ -1435,6 +1848,146 @@
         ],
         "title": "AsistenciaSalida"
       },
+      "ComponentePuntajeSalida": {
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "title": "Codigo",
+            "description": "SEVERIDAD, CONTROL_VENCIDO, INASISTENCIAS o ULTIMA_VISITA"
+          },
+          "descripcion": {
+            "type": "string",
+            "title": "Descripcion"
+          },
+          "valor": {
+            "type": "string",
+            "title": "Valor",
+            "description": "Lo observado: «MODERADA», «45 días», «sin visitas»…"
+          },
+          "puntos": {
+            "type": "number",
+            "title": "Puntos"
+          },
+          "maximo": {
+            "type": "number",
+            "title": "Maximo"
+          }
+        },
+        "type": "object",
+        "required": [
+          "codigo",
+          "descripcion",
+          "valor",
+          "puntos",
+          "maximo"
+        ],
+        "title": "ComponentePuntajeSalida"
+      },
+      "ConflictoSalida": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "id_operacion": {
+            "type": "string",
+            "title": "Id Operacion"
+          },
+          "tipo": {
+            "type": "string",
+            "title": "Tipo"
+          },
+          "motivo": {
+            "type": "string",
+            "title": "Motivo"
+          },
+          "nino_id": {
+            "type": "string",
+            "title": "Nino Id"
+          },
+          "id_recurso": {
+            "type": "string",
+            "title": "Id Recurso"
+          },
+          "datos_cliente": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Datos Cliente"
+          },
+          "datos_servidor": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Datos Servidor"
+          },
+          "estado": {
+            "type": "string",
+            "title": "Estado",
+            "description": "PENDIENTE o RESUELTO"
+          },
+          "resolucion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolucion",
+            "description": "CONSERVAR_SERVIDOR, APLICAR_CLIENTE o DESCARTAR"
+          },
+          "registrado_por": {
+            "type": "string",
+            "title": "Registrado Por"
+          },
+          "creado_en": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Creado En"
+          },
+          "resuelto_en": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resuelto En"
+          },
+          "resuelto_por": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resuelto Por"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "id_operacion",
+          "tipo",
+          "motivo",
+          "nino_id",
+          "id_recurso",
+          "datos_cliente",
+          "datos_servidor",
+          "estado",
+          "resolucion",
+          "registrado_por",
+          "creado_en",
+          "resuelto_en",
+          "resuelto_por"
+        ],
+        "title": "ConflictoSalida"
+      },
       "ControlSalida": {
         "properties": {
           "codigo": {
@@ -2185,6 +2738,25 @@
         ],
         "title": "LoginEntrada"
       },
+      "LoteSincronizacionEntrada": {
+        "properties": {
+          "operaciones": {
+            "items": {
+              "$ref": "#/components/schemas/OperacionEntrada"
+            },
+            "type": "array",
+            "maxItems": 200,
+            "minItems": 1,
+            "title": "Operaciones",
+            "description": "De 1 a 200 operaciones"
+          }
+        },
+        "type": "object",
+        "required": [
+          "operaciones"
+        ],
+        "title": "LoteSincronizacionEntrada"
+      },
       "NinoEntrada": {
         "properties": {
           "dni": {
@@ -2258,6 +2830,150 @@
           "tutor_nombre"
         ],
         "title": "NinoEntrada"
+      },
+      "NinoRefEntrada": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id",
+            "description": "Id del niño en el servidor"
+          },
+          "id_cliente": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 60
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Cliente",
+            "description": "Id temporal de un niño registrado sin conexión en el dispositivo"
+          }
+        },
+        "type": "object",
+        "title": "NinoRefEntrada"
+      },
+      "NinoVisitaSalida": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "dni": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dni"
+          },
+          "codigo_origen": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Codigo Origen"
+          },
+          "nombre_completo": {
+            "type": "string",
+            "title": "Nombre Completo"
+          },
+          "comunidad": {
+            "type": "string",
+            "title": "Comunidad"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "dni",
+          "codigo_origen",
+          "nombre_completo",
+          "comunidad"
+        ],
+        "title": "NinoVisitaSalida"
+      },
+      "OperacionEntrada": {
+        "properties": {
+          "id_operacion": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "title": "Id Operacion",
+            "description": "UUID generado en el dispositivo; hace idempotente el reenvío"
+          },
+          "tipo": {
+            "type": "string",
+            "title": "Tipo",
+            "description": "REGISTRAR_NINO, REGISTRAR_EVALUACION, REGISTRAR_ASISTENCIA o REGISTRAR_VISITA"
+          },
+          "id_dispositivo": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1,
+            "title": "Id Dispositivo"
+          },
+          "fecha_local": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Fecha Local",
+            "description": "Fecha y hora local en que se registró (ISO 8601)"
+          },
+          "id_cliente": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 60
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Cliente",
+            "description": "Solo REGISTRAR_NINO: id temporal del niño"
+          },
+          "nino_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NinoRefEntrada"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Niño al que se refiere (no es REGISTRAR_NINO)"
+          },
+          "datos": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Datos",
+            "description": "REGISTRAR_NINO: {nino, evaluacion_inicial} como en POST /api/ninos; REGISTRAR_EVALUACION: {fecha, hemoglobina_observada, peso_kg, talla_cm}; REGISTRAR_ASISTENCIA: {codigo, fecha_programada, estado, motivo?}; REGISTRAR_VISITA: {fecha, resultado, consume_suplemento?, observaciones?}"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id_operacion",
+          "tipo",
+          "id_dispositivo",
+          "fecha_local",
+          "datos"
+        ],
+        "title": "OperacionEntrada"
       },
       "RegistroNinoEntrada": {
         "properties": {
@@ -2354,6 +3070,20 @@
         ],
         "title": "ReportePeriodo"
       },
+      "ResolucionEntrada": {
+        "properties": {
+          "resolucion": {
+            "type": "string",
+            "title": "Resolucion",
+            "description": "CONSERVAR_SERVIDOR, APLICAR_CLIENTE o DESCARTAR"
+          }
+        },
+        "type": "object",
+        "required": [
+          "resolucion"
+        ],
+        "title": "ResolucionEntrada"
+      },
       "RespuestaError": {
         "properties": {
           "mensaje": {
@@ -2374,6 +3104,102 @@
           "mensaje"
         ],
         "title": "RespuestaError"
+      },
+      "ResultadoOperacionSalida": {
+        "properties": {
+          "id_operacion": {
+            "type": "string",
+            "title": "Id Operacion"
+          },
+          "tipo": {
+            "type": "string",
+            "title": "Tipo"
+          },
+          "resultado": {
+            "type": "string",
+            "title": "Resultado",
+            "description": "APLICADA, DUPLICADA, CONFLICTO o RECHAZADA"
+          },
+          "id_recurso": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Recurso",
+            "description": "Id del servidor del recurso aplicado, existente o en conflicto"
+          },
+          "id_cliente": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Cliente",
+            "description": "Mapeo id_cliente -> id_recurso de un niño aplicado o ya existente"
+          },
+          "id_conflicto": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Conflicto"
+          },
+          "mensaje": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mensaje"
+          },
+          "errores": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetalle"
+            },
+            "type": "array",
+            "title": "Errores",
+            "description": "Errores de validación por campo (solo RECHAZADA)"
+          },
+          "resultado_original": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resultado Original",
+            "description": "Solo en DUPLICADA por reenvío: resultado de la primera vez que se procesó"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id_operacion",
+          "tipo",
+          "resultado",
+          "id_recurso",
+          "id_cliente",
+          "id_conflicto",
+          "mensaje",
+          "errores",
+          "resultado_original"
+        ],
+        "title": "ResultadoOperacionSalida"
       },
       "ResumenAgendaPersonalSalida": {
         "properties": {
@@ -2499,6 +3325,34 @@
         ],
         "title": "ResumenAlertasSalida"
       },
+      "ResumenSincronizacionSalida": {
+        "properties": {
+          "aplicadas": {
+            "type": "integer",
+            "title": "Aplicadas"
+          },
+          "duplicadas": {
+            "type": "integer",
+            "title": "Duplicadas"
+          },
+          "conflictos": {
+            "type": "integer",
+            "title": "Conflictos"
+          },
+          "rechazadas": {
+            "type": "integer",
+            "title": "Rechazadas"
+          }
+        },
+        "type": "object",
+        "required": [
+          "aplicadas",
+          "duplicadas",
+          "conflictos",
+          "rechazadas"
+        ],
+        "title": "ResumenSincronizacionSalida"
+      },
       "SaludSalida": {
         "properties": {
           "estado": {
@@ -2532,6 +3386,26 @@
           "fecha_referencia"
         ],
         "title": "SaludSalida"
+      },
+      "SincronizacionSalida": {
+        "properties": {
+          "resumen": {
+            "$ref": "#/components/schemas/ResumenSincronizacionSalida"
+          },
+          "resultados": {
+            "items": {
+              "$ref": "#/components/schemas/ResultadoOperacionSalida"
+            },
+            "type": "array",
+            "title": "Resultados"
+          }
+        },
+        "type": "object",
+        "required": [
+          "resumen",
+          "resultados"
+        ],
+        "title": "SincronizacionSalida"
       },
       "ValidationError": {
         "properties": {
@@ -2572,6 +3446,180 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "VisitaEntrada": {
+        "properties": {
+          "fecha": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha",
+            "description": "Fecha de la visita (AAAA-MM-DD); no puede ser futura"
+          },
+          "resultado": {
+            "type": "string",
+            "title": "Resultado",
+            "description": "REALIZADA, NO_ENCONTRADO o RECHAZADA"
+          },
+          "consume_suplemento": {
+            "type": "string",
+            "title": "Consume Suplemento",
+            "description": "SI, NO o DESCONOCIDO; solo una visita REALIZADA puede indicar SI o NO",
+            "default": "DESCONOCIDO"
+          },
+          "observaciones": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observaciones",
+            "description": "Hasta 500 caracteres"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fecha",
+          "resultado"
+        ],
+        "title": "VisitaEntrada"
+      },
+      "VisitaPriorizadaSalida": {
+        "properties": {
+          "posicion": {
+            "type": "integer",
+            "title": "Posicion",
+            "description": "Lugar en la lista priorizada (1 = visitar primero)"
+          },
+          "nino": {
+            "$ref": "#/components/schemas/NinoVisitaSalida"
+          },
+          "establecimiento": {
+            "type": "string",
+            "title": "Establecimiento"
+          },
+          "ultima_clasificacion": {
+            "type": "string",
+            "title": "Ultima Clasificacion"
+          },
+          "dias_control_vencido": {
+            "type": "integer",
+            "title": "Dias Control Vencido"
+          },
+          "inasistencias_recientes": {
+            "type": "integer",
+            "title": "Inasistencias Recientes",
+            "description": "Inasistencias (RF-09) de los últimos 90 días"
+          },
+          "ultima_visita": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ultima Visita"
+          },
+          "dias_desde_ultima_visita": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dias Desde Ultima Visita"
+          },
+          "puntaje": {
+            "type": "number",
+            "title": "Puntaje",
+            "description": "0 a 100: propuesta del equipo (ADR-013), no una norma del MINSA"
+          },
+          "componentes": {
+            "items": {
+              "$ref": "#/components/schemas/ComponentePuntajeSalida"
+            },
+            "type": "array",
+            "title": "Componentes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "posicion",
+          "nino",
+          "establecimiento",
+          "ultima_clasificacion",
+          "dias_control_vencido",
+          "inasistencias_recientes",
+          "ultima_visita",
+          "dias_desde_ultima_visita",
+          "puntaje",
+          "componentes"
+        ],
+        "title": "VisitaPriorizadaSalida"
+      },
+      "VisitaSalida": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "nino_id": {
+            "type": "string",
+            "title": "Nino Id"
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date",
+            "title": "Fecha"
+          },
+          "resultado": {
+            "type": "string",
+            "title": "Resultado"
+          },
+          "consume_suplemento": {
+            "type": "string",
+            "title": "Consume Suplemento"
+          },
+          "observaciones": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observaciones"
+          },
+          "registrado_por": {
+            "type": "string",
+            "title": "Registrado Por"
+          },
+          "creado_en": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Creado En"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "nino_id",
+          "fecha",
+          "resultado",
+          "consume_suplemento",
+          "observaciones",
+          "registrado_por",
+          "creado_en"
+        ],
+        "title": "VisitaSalida"
       },
       "VistaPreviaEntrada": {
         "properties": {

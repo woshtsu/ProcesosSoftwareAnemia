@@ -1,4 +1,5 @@
-/* Cliente web (PWA). Consume la API REST: Incremento 1 (PMV) e Incremento 2 (agenda, alertas, agenda del personal y asistencia). */
+/* Cliente web (PWA). Consume la API REST: Incremento 1 (PMV), Incremento 2 (agenda, alertas, asistencia) e Incremento 3
+   (registro sin conexión con cola en el dispositivo, sincronización, conflictos y visitas domiciliarias priorizadas). */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const ETIQUETA = { SIN_ANEMIA: "Sin anemia", LEVE: "Anemia leve", MODERADA: "Anemia moderada", SEVERA: "Anemia severa", NO_APLICA: "No aplica (< 6 m)" };
@@ -17,10 +18,14 @@ async function api(ruta, opciones = {}) {
     ...opciones,
     headers: { "Content-Type": "application/json", "X-Usuario": $("#usuario").value, ...(opciones.headers || {}) },
   });
+  if (!opciones.method || opciones.method === "GET") $("#aviso-cache").hidden = !r.headers.get("X-Desde-Cache");
   const cuerpo = r.headers.get("content-type")?.includes("json") ? await r.json() : null;
   if (!r.ok) throw { estado: r.status, ...(cuerpo || { mensaje: "Error de comunicación." }) };
   return cuerpo;
 }
+
+/* Una falla de red (no una respuesta del servidor): el registro se guarda en el dispositivo. */
+const sinConexion = (e) => !navigator.onLine || e instanceof TypeError;
 
 function toast(texto, ok = true) {
   const t = $("#toast");
@@ -31,6 +36,8 @@ function toast(texto, ok = true) {
 const badge = (c) => c ? `<span class="badge ${c}">${ETIQUETA[c]}</span>` : `<span class="badge NO_APLICA">Sin control</span>`;
 const edad = (m) => (m < 12 ? `${m} m` : `${Math.floor(m / 12)} a ${m % 12} m`);
 const fecha = (iso) => (iso ? iso.split("-").reverse().join("/") : "—");
+/* Iniciales en la lista de pendientes: identifica el registro sin repetir datos personales completos. */
+const etiquetaNino = (nombre) => (/\s/.test(nombre) ? nombre.split(/\s+/).filter(Boolean).map((p) => p[0].toUpperCase() + ".").join(" ") : nombre);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 /* ---------- navegación ---------- */
@@ -40,13 +47,18 @@ function mostrar(vista) {
   if (vista === "seguimiento") cargarSeguimiento();
   if (vista === "alertas") cargarAlertas();
   if (vista === "agenda") cargarAgendaPersonal();
+  if (vista === "visitas") cargarVisitas();
+  if (vista === "sincronizacion") cargarSincronizacion();
+  if (vista !== "expediente") expedienteActual = null;
   actualizarInsignia();
 }
 $$(".pestana").forEach((b) => b.addEventListener("click", () => mostrar(b.dataset.vista)));
 
-/* ---------- conectividad (indicador; la sincronización llega en INC-3) ---------- */
-function estadoRed() { $("#red").classList.toggle("fuera", !navigator.onLine); $("#red").title = navigator.onLine ? "En línea" : "Sin conexión: el borrador se conserva en el dispositivo"; }
-addEventListener("online", estadoRed); addEventListener("offline", estadoRed);
+/* ---------- conectividad ---------- */
+let expedienteActual = null; // {id} del servidor o {id_cliente} de un niño registrado sin conexión
+function estadoRed() { $("#red").classList.toggle("fuera", !navigator.onLine); $("#red").title = navigator.onLine ? "En línea" : "Sin conexión: los registros se guardan en este dispositivo"; }
+addEventListener("online", () => { estadoRed(); window.Sync.sincronizar(); });
+addEventListener("offline", () => { estadoRed(); actualizarSync(); });
 
 /* ---------- HU-01 / HU-03: registro ---------- */
 const form = $("#form-registro");
@@ -105,6 +117,7 @@ async function vistaPrevia() {
       <span>Hemoglobina ajustada</span><strong data-testid="hb-ajustada">${r.hemoglobina_ajustada.toFixed(1)} g/dL</strong>
       <span>Clasificación</span><span data-testid="clasificacion-previa">${badge(r.clasificacion)}</span></div>`;
   } catch (e) {
+    if (sinConexion(e)) { caja.innerHTML = '<span class="previa-vacia" data-testid="previa-sin-conexion">Sin conexión: la clasificación se calculará al sincronizar.</span>'; return; }
     const relevantes = (e.errores || []).filter((x) => x.campo !== "peso_kg" && x.campo !== "talla_cm");
     caja.innerHTML = relevantes.length ? `<span class="previa-error">${esc(relevantes[0].mensaje)}</span>` : '<span class="previa-vacia">Revise los datos.</span>';
   }
@@ -128,12 +141,34 @@ form.addEventListener("submit", async (ev) => {
     toast(`Registro guardado: ${exp.nombres} ${exp.apellidos}`);
     abrirExpediente(exp.id);
   } catch (e) {
+    if (sinConexion(e)) { await guardarNinoSinConexion(nino, evaluacion_inicial); return; }
     pintarErrores(e.errores || []);
     const alerta = $("#alerta-registro");
     alerta.textContent = e.estado === 409 ? e.mensaje : (e.mensaje || "No se pudo guardar.");
     alerta.hidden = false;
   }
 });
+/* HIST-3.1: sin conexión el registro queda en la cola del dispositivo con un id_cliente temporal. */
+const OBLIGATORIOS_LOCALES = { nombres: "Ingrese los nombres.", apellidos: "Ingrese los apellidos.", fecha_nacimiento: "Ingrese la fecha de nacimiento.",
+  comunidad: "Ingrese la comunidad.", fecha: "Ingrese la fecha del control.", hemoglobina_observada: "Ingrese la hemoglobina.",
+  peso_kg: "Ingrese el peso.", talla_cm: "Ingrese la talla." };
+async function guardarNinoSinConexion(nino, evaluacion_inicial) {
+  const faltan = Object.entries(OBLIGATORIOS_LOCALES).filter(([c]) => (c in nino ? nino[c] : evaluacion_inicial[c]) === null)
+    .map(([campo, mensaje]) => ({ campo, mensaje }));
+  if (faltan.length) {
+    pintarErrores(faltan);
+    const alerta = $("#alerta-registro");
+    alerta.textContent = "Sin conexión: complete los datos indicados para guardar el registro en el dispositivo."; alerta.hidden = false;
+    return;
+  }
+  const id_cliente = window.Cola.uuid();
+  await window.Cola.encolar("REGISTRAR_NINO", { nino, evaluacion_inicial }, { id_cliente,
+    resumen: `Registro de niño ${etiquetaNino(`${nino.nombres} ${nino.apellidos}`)} y evaluación inicial del ${fecha(evaluacion_inicial.fecha)}` });
+  borrarBorrador();
+  form.reset(); valoresPorDefecto(); vistaPrevia();
+  toast("Guardado en el dispositivo: se sincronizará al reconectar");
+  abrirExpediente("local:" + id_cliente);
+}
 function valoresPorDefecto() {
   form.elements.establecimiento.value = "P. S. Chongos Alto";
   form.elements.distrito.value = "Chongos Alto";
@@ -148,16 +183,37 @@ async function cargarSeguimiento() {
   const p = new URLSearchParams({ estado: $("#filtro-estado").value });
   if ($("#buscar").value.trim()) p.set("q", $("#buscar").value.trim());
   if ($("#filtro-clasificacion").value) p.set("clasificacion", $("#filtro-clasificacion").value);
-  const filas = await api("/api/ninos?" + p);
-  $("#total-seguimiento").textContent = `${filas.length} niño(s)`;
-  $("#sin-resultados").hidden = filas.length > 0;
-  $("#cuerpo-seguimiento").innerHTML = filas.map((f) => `
+  let filas = [];
+  try { filas = await api("/api/ninos?" + p); }
+  catch (e) { if (!sinConexion(e)) throw e; toast("Sin conexión: esta lista aún no se consultó en este dispositivo", false); }
+  const locales = await ninosLocales($("#buscar").value.trim(), $("#filtro-estado").value, $("#filtro-clasificacion").value);
+  $("#total-seguimiento").textContent = `${filas.length + locales.length} niño(s)`;
+  $("#sin-resultados").hidden = filas.length + locales.length > 0;
+  $("#cuerpo-seguimiento").innerHTML = locales.map((o) => {
+    const n = o.datos.nino, ev = o.datos.evaluacion_inicial;
+    return `<tr class="click" data-id="local:${o.id_cliente}" data-testid="fila-pendiente">
+      <td><strong>${esc(n.nombres)} ${esc(n.apellidos)}</strong></td><td>${esc(n.dni || "—")}</td><td>${edad(mesesEntre(n.fecha_nacimiento, HOY))}</td><td>${esc(n.comunidad)}</td>
+      <td>${fecha(ev.fecha)}</td><td>—</td><td><span class="ctrl ctrl-LOCAL">Pendiente de sincronizar</span></td></tr>`;
+  }).join("") + filas.map((f) => `
     <tr class="click" data-id="${f.id}">
       <td><strong>${esc(f.nombre_completo)}</strong></td><td>${esc(f.dni || f.codigo_origen || "—")}</td><td>${edad(f.edad_meses)}</td><td>${esc(f.comunidad)}</td>
       <td class="${f.control_atrasado ? "atrasado" : ""}">${fecha(f.ultima_fecha_control)}${f.dias_desde_ultimo_control !== null ? ` · ${f.dias_desde_ultimo_control} d` : ""}${f.controles_vencidos ? ` <span class="ctrl ctrl-VENCIDO" data-testid="vencidos-fila">${f.controles_vencidos} vencido(s)</span>` : ""}</td>
       <td>${f.ultima_hb_ajustada !== null ? f.ultima_hb_ajustada.toFixed(1) : "—"}</td><td>${badge(f.ultima_clasificacion)}</td>
     </tr>`).join("");
   $$("#cuerpo-seguimiento tr").forEach((tr) => tr.addEventListener("click", () => abrirExpediente(tr.dataset.id)));
+}
+/* Niños registrados sin conexión que todavía no llegaron al servidor, según los filtros de la lista. */
+const mesesEntre = (nac, hoy) => {
+  const [a1, m1, d1] = nac.split("-").map(Number), [a2, m2, d2] = hoy.split("-").map(Number);
+  return Math.max(0, (a2 - a1) * 12 + (m2 - m1) - (d2 < d1 ? 1 : 0));
+};
+async function ninosLocales(texto = "", estado = "ACTIVO", clasificacion = "") {
+  if (clasificacion || (estado && estado !== "ACTIVO")) return []; // aún no se conoce su clasificación; un niño nuevo está activo
+  const t = texto.toLowerCase();
+  return (await window.Cola.listar()).filter((o) => o.tipo === "REGISTRAR_NINO" && o.id_cliente).filter((o) => {
+    const n = o.datos.nino;
+    return !t || [`${n.nombres} ${n.apellidos}`, n.dni || "", n.comunidad || ""].some((c) => c.toLowerCase().includes(t));
+  });
 }
 $("#buscar").addEventListener("input", () => { clearTimeout(temporizadorBusqueda); temporizadorBusqueda = setTimeout(cargarSeguimiento, 250); });
 $("#filtro-clasificacion").addEventListener("change", cargarSeguimiento);
@@ -184,8 +240,17 @@ function grafico(evals) {
 }
 
 async function abrirExpediente(id) {
+  if (String(id).startsWith("local:")) return abrirExpedienteLocal(id.slice(6));
   mostrar("expediente");
-  const exp = await api("/api/ninos/" + id);
+  let exp;
+  try { exp = await api("/api/ninos/" + id); }
+  catch (e) {
+    if (!sinConexion(e)) throw e;
+    toast("Sin conexión: este expediente aún no se consultó en este dispositivo", false);
+    return;
+  }
+  expedienteActual = { id };
+  const pendientes = (await window.Cola.listar()).filter((o) => o.tipo === "REGISTRAR_EVALUACION" && o.nino_ref?.id === id);
   const u = exp.evaluaciones[0];
   $("#expediente").innerHTML = `
     <div class="tarjeta">
@@ -218,7 +283,7 @@ async function abrirExpediente(id) {
     <div class="bloques">
       <div class="tarjeta tabla-envoltura">
         <table class="tabla" data-testid="tabla-evaluaciones"><thead><tr><th>Fecha</th><th>Edad</th><th>Hb obs.</th><th>Hb ajust.</th><th>Clasificación</th><th>Peso / talla</th></tr></thead>
-        <tbody>${exp.evaluaciones.map((e) => `<tr><td>${fecha(e.fecha)}</td><td>${edad(e.edad_meses)}</td><td>${e.hemoglobina_observada.toFixed(1)}</td>
+        <tbody>${pendientes.map(filaEvaluacionPendiente).join("")}${exp.evaluaciones.map((e) => `<tr><td>${fecha(e.fecha)}</td><td>${edad(e.edad_meses)}</td><td>${e.hemoglobina_observada.toFixed(1)}</td>
           <td><strong>${e.hemoglobina_ajustada.toFixed(1)}</strong></td><td>${badge(e.clasificacion)}${e.clasificacion_origen ? `<br><small data-testid="clasificacion-his">HIS: ${SEVERIDAD_HIS[e.clasificacion_origen] || esc(e.clasificacion_origen)}</small>` : ""}</td>
           <td>${e.peso_kg === null || e.talla_cm === null ? '<span data-testid="sin-antropometria">no registrado</span>' : `${e.peso_kg} kg · ${e.talla_cm} cm`}</td></tr>`).join("")}</tbody></table>
       </div>
@@ -237,8 +302,10 @@ async function abrirExpediente(id) {
     <div class="tarjeta" style="margin-top:14px" data-testid="agenda-seccion">
       <h2>Agenda de controles</h2>
       <div id="agenda-contenido"><p class="vacio" style="padding:0">Calculando agenda…</p></div>
-    </div>`;
+    </div>
+    ${seccionVisitas()}`;
   cargarAgenda(id);
+  cargarVisitasNino({ id }, exp.nombre_completo);
   $("#btn-editar").addEventListener("click", () => ($("#form-editar").hidden = !$("#form-editar").hidden));
   $("#form-editar").addEventListener("submit", async (ev) => {
     ev.preventDefault();
@@ -246,16 +313,84 @@ async function abrirExpediente(id) {
     ["comunidad", "tutor_nombre", "tutor_celular", "estado"].forEach((c) => (cambios[c] = f.elements[c].value.trim()));
     cambios.altitud_m = Number(f.elements.altitud_m.value);
     try { await api("/api/ninos/" + id, { method: "PATCH", body: JSON.stringify(cambios) }); toast("Expediente actualizado"); abrirExpediente(id); }
-    catch (e) { pintarErrores(e.errores || [], f); }
+    catch (e) {
+      if (sinConexion(e)) { toast("Sin conexión: editar los datos del expediente requiere conexión", false); return; }
+      pintarErrores(e.errores || [], f);
+    }
   });
-  $("#form-control").addEventListener("submit", async (ev) => {
-    ev.preventDefault();
-    const f = ev.target; $$(".campo", f).forEach((c) => c.classList.remove("invalido")); $$(".error", f).forEach((x) => (x.textContent = ""));
-    const datos = { fecha: f.elements.fecha.value || null };
-    ["hemoglobina_observada", "peso_kg", "talla_cm"].forEach((c) => (datos[c] = f.elements[c].value === "" ? null : Number(f.elements[c].value)));
-    try { await api(`/api/ninos/${id}/evaluaciones`, { method: "POST", body: JSON.stringify(datos) }); toast("Control registrado"); abrirExpediente(id); }
-    catch (e) { pintarErrores(e.errores || [], f); }
-  });
+  $("#form-control").addEventListener("submit", (ev) => { ev.preventDefault(); registrarControl(ev.target, { id }, exp.nombre_completo, () => abrirExpediente(id)); });
+  $("#btn-visita-nino").addEventListener("click", () => abrirModalVisita({ ref: { id }, nombre: exp.nombre_completo, alTerminar: () => cargarVisitasNino({ id }, exp.nombre_completo) }));
+}
+const filaEvaluacionPendiente = (o) => `<tr class="atenuado" data-testid="evaluacion-pendiente"><td>${fecha(o.datos.fecha)}</td><td>—</td><td>${o.datos.hemoglobina_observada.toFixed(1)}</td>
+  <td>—</td><td><span class="ctrl ctrl-LOCAL">Pendiente de sincronizar</span></td>
+  <td>${o.datos.peso_kg === null || o.datos.talla_cm === null ? "no registrado" : `${o.datos.peso_kg} kg · ${o.datos.talla_cm} cm`}</td></tr>`;
+
+/* HIST-3.1: un control nuevo se envía en línea; sin conexión (o con un niño aún no sincronizado) queda en la cola. */
+async function registrarControl(f, ref, nombre, recargar) {
+  $$(".campo", f).forEach((c) => c.classList.remove("invalido")); $$(".error", f).forEach((x) => (x.textContent = ""));
+  const datos = { fecha: f.elements.fecha.value || null };
+  ["hemoglobina_observada", "peso_kg", "talla_cm"].forEach((c) => (datos[c] = f.elements[c].value === "" ? null : Number(f.elements[c].value)));
+  if (ref.id) {
+    try { await api(`/api/ninos/${ref.id}/evaluaciones`, { method: "POST", body: JSON.stringify(datos) }); toast("Control registrado"); recargar(); return; }
+    catch (e) { if (!sinConexion(e)) { pintarErrores(e.errores || [], f); return; } }
+  }
+  const faltan = [["fecha", "Ingrese la fecha del control."], ["hemoglobina_observada", "Ingrese la hemoglobina."], ["peso_kg", "Ingrese el peso."], ["talla_cm", "Ingrese la talla."]].filter(([c]) => datos[c] === null);
+  if (faltan.length) { pintarErrores(faltan.map(([campo, mensaje]) => ({ campo, mensaje })), f); return; }
+  await window.Cola.encolar("REGISTRAR_EVALUACION", datos, { nino_ref: ref, resumen: `Control de hemoglobina de ${etiquetaNino(nombre)} del ${fecha(datos.fecha)}` });
+  toast("Guardado en el dispositivo: se sincronizará al reconectar");
+  recargar();
+}
+
+/* HIST-3.1: expediente provisional de un niño registrado sin conexión (todavía no existe en el servidor). */
+async function abrirExpedienteLocal(idCliente) {
+  mostrar("expediente");
+  const cola = await window.Cola.listar();
+  const op = cola.find((o) => o.tipo === "REGISTRAR_NINO" && o.id_cliente === idCliente);
+  if (!op) { toast("Ese registro ya se sincronizó: búsquelo en Seguimiento"); mostrar("seguimiento"); return; }
+  expedienteActual = { id_cliente: idCliente };
+  const n = op.datos.nino, ev = op.datos.evaluacion_inicial, nombre = `${n.nombres} ${n.apellidos}`;
+  const nuevos = cola.filter((o) => o.tipo === "REGISTRAR_EVALUACION" && o.nino_ref?.id_cliente === idCliente);
+  const fila = (e, etiqueta) => `<tr class="atenuado" data-testid="evaluacion-pendiente"><td>${fecha(e.fecha)}</td><td>—</td><td>${e.hemoglobina_observada.toFixed(1)}</td><td>—</td>
+    <td><span class="ctrl ctrl-LOCAL">${etiqueta}</span></td><td>${e.peso_kg === null || e.talla_cm === null ? "no registrado" : `${e.peso_kg} kg · ${e.talla_cm} cm`}</td></tr>`;
+  $("#expediente").innerHTML = `
+    <div class="tarjeta">
+      <div class="cabecera-exp">
+        <div><h2 style="font-size:19px;margin:0" data-testid="expediente-nombre">${esc(nombre)}</h2>
+          <span class="chip" data-testid="expediente-pendiente">Pendiente de sincronizar</span></div>
+      </div>
+      <p class="nota">Este niño se registró sin conexión y está guardado solo en este dispositivo. El servidor validará los datos y calculará la clasificación y la agenda al sincronizar.</p>
+      <div class="datos">
+        <div><span>DNI</span><strong>${esc(n.dni || "No registrado")}</strong></div>
+        <div><span>Edad</span><strong>${edad(mesesEntre(n.fecha_nacimiento, HOY))}</strong></div>
+        <div><span>Nacimiento</span><strong>${fecha(n.fecha_nacimiento)}</strong></div>
+        <div><span>Sexo</span><strong>${esc(n.sexo || "No registrado")}</strong></div>
+        <div><span>Comunidad / distrito</span><strong>${esc(n.comunidad)} · ${esc(n.distrito)}</strong></div>
+        <div><span>Altitud</span><strong>${esc(n.altitud_m)} m s. n. m.</strong></div>
+        <div><span>Madre / tutor</span><strong>${esc(n.tutor_nombre || "No registrado")}</strong></div>
+        <div><span>Establecimiento</span><strong>${esc(n.establecimiento)}</strong></div>
+      </div>
+    </div>
+    <div class="bloques">
+      <div class="tarjeta tabla-envoltura">
+        <table class="tabla" data-testid="tabla-evaluaciones"><thead><tr><th>Fecha</th><th>Edad</th><th>Hb obs.</th><th>Hb ajust.</th><th>Clasificación</th><th>Peso / talla</th></tr></thead>
+        <tbody>${nuevos.map((o) => fila(o.datos, "Control pendiente")).join("")}${fila(ev, "Evaluación inicial pendiente")}</tbody></table>
+      </div>
+      <div class="tarjeta">
+        <h2>Registrar nuevo control</h2>
+        <form id="form-control" novalidate>
+          <div class="fila2"><div class="campo"><label>Fecha</label><input type="date" name="fecha" value="${HOY}"><small class="error"></small></div>
+          <div class="campo"><label>Hb observada (g/dL)</label><input type="number" step="0.1" name="hemoglobina_observada"><small class="error"></small></div></div>
+          <div class="fila2"><div class="campo"><label>Peso (kg)</label><input type="number" step="0.1" name="peso_kg"><small class="error"></small></div>
+          <div class="campo"><label>Talla (cm)</label><input type="number" step="0.1" name="talla_cm"><small class="error"></small></div></div>
+          <div class="acciones"><button class="primario" data-testid="guardar-control">Guardar control</button></div>
+        </form>
+      </div>
+    </div>
+    ${seccionVisitas()}`;
+  const ref = { id_cliente: idCliente };
+  cargarVisitasNino(ref, nombre);
+  $("#form-control").addEventListener("submit", (ev) => { ev.preventDefault(); registrarControl(ev.target, ref, nombre, () => abrirExpediente("local:" + idCliente)); });
+  $("#btn-visita-nino").addEventListener("click", () => abrirModalVisita({ ref, nombre, alTerminar: () => cargarVisitasNino(ref, nombre) }));
 }
 /* ---------- HIST-2.1: agenda de controles ---------- */
 const ESTADO_CTRL = { CUMPLIDO: "Cumplido", PENDIENTE: "Pendiente", PROXIMO: "Próximo a vencer", VENCIDO: "Vencido", CERRADO_RECUPERADO: "Cerrado por recuperación" };
@@ -270,7 +405,15 @@ const chipControl = (c) => {
 };
 /* HIST-2.4: solo se registra la asistencia de controles ya programados (fecha <= hoy) y todavía sin cumplir ni marcar. */
 const puedeRegistrarAsistencia = (c) => (c.estado === "PENDIENTE" || c.estado === "VENCIDO") && !c.inasistencia_registrada && c.fecha_programada <= HOY;
-const botonesAsistencia = (c) => puedeRegistrarAsistencia(c)
+/* Asistencias guardadas en el dispositivo y aún sin sincronizar: «nino|codigo|fecha_programada». */
+let asistenciasPendientes = new Set();
+async function refrescarAsistenciasPendientes() {
+  asistenciasPendientes = new Set((await window.Cola.listar()).filter((o) => o.tipo === "REGISTRAR_ASISTENCIA" && o.nino_ref?.id)
+    .map((o) => `${o.nino_ref.id}|${o.datos.codigo}|${o.datos.fecha_programada}`));
+}
+const botonesAsistencia = (c, ninoId) => asistenciasPendientes.has(`${ninoId}|${c.codigo}|${c.fecha_programada}`)
+  ? '<span class="ctrl ctrl-LOCAL" data-testid="asistencia-pendiente">Pendiente de sincronizar</span>'
+  : puedeRegistrarAsistencia(c)
   ? `<button type="button" class="mini" data-accion="ASISTIO" data-testid="btn-asistio">Asistió</button><button type="button" class="mini no" data-accion="NO_ASISTIO" data-testid="btn-no-asistio">No asistió</button>` : "";
 
 async function cargarAgenda(id) {
@@ -278,6 +421,7 @@ async function cargarAgenda(id) {
   const caja = $("#agenda-contenido");
   try {
     const a = await api(`/api/ninos/${id}/agenda`);
+    await refrescarAsistenciasPendientes();
     if (!a.aplica) { caja.innerHTML = `<p class="vacio" style="padding:0" data-testid="agenda-sin-agenda">${esc(a.motivo)}</p>`; return; }
     const r = a.resumen;
     caja.innerHTML = `
@@ -297,10 +441,10 @@ async function cargarAgenda(id) {
           <td>${fecha(c.fecha_programada)}</td><td>${esc(c.descripcion)}</td>
           <td>${c.tipo === "CONTROL_TRATAMIENTO" ? "Tratamiento" : "Por edad"}</td>
           <td>${fecha(c.fecha_inicio_ventana)} – ${fecha(c.fecha_limite)}</td><td>${chipControl(c)}</td>
-          <td class="celda-acciones">${botonesAsistencia(c)}</td></tr>`).join("")}</tbody></table></div>
+          <td class="celda-acciones">${botonesAsistencia(c, id)}</td></tr>`).join("")}</tbody></table></div>
       <p class="nota">Agenda referencial calculada con el esquema ${esc(a.version_esquema)} al ${fecha(a.fecha_referencia)}; la confirma la microred. No es un diagnóstico.</p>`;
     $$("[data-accion]", caja).forEach((b) => b.addEventListener("click", () => abrirModalAsistencia(b.closest("tr"), b.dataset.accion, () => cargarAgenda(id))));
-  } catch (e) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje || "No se pudo calcular la agenda.")}</p>`; }
+  } catch (e) { caja.innerHTML = `<p class="alerta">${esc(sinConexion(e) ? "Sin conexión: la agenda de este niño aún no se consultó en este dispositivo." : e.mensaje || "No se pudo calcular la agenda.")}</p>`; }
 }
 
 /* ---------- HIST-2.3: agenda del personal ---------- */
@@ -323,7 +467,7 @@ async function cargarAgendaPersonal() {
     .forEach(([k, id]) => { if ($(id).value) p.set(k, $(id).value); });
   const aviso = $("#agenda-error");
   let a;
-  try { a = await api("/api/agenda?" + p); }
+  try { a = await api("/api/agenda?" + p); await refrescarAsistenciasPendientes(); }
   catch (e) {
     if (mia !== secuenciaAgenda) return;
     aviso.textContent = (e.errores?.[0] || e).mensaje || "No se pudo consultar la agenda."; aviso.hidden = false;
@@ -355,7 +499,7 @@ async function cargarAgendaPersonal() {
         <td>${esc(c.descripcion)}</td><td>${c.tipo === "CONTROL_TRATAMIENTO" ? "Tratamiento" : "Por edad"}</td>
         <td>${esc(i.nino.establecimiento)}<br><small>${esc(i.nino.comunidad)}</small></td>
         <td>${chipControl(c)}${i.prioridad ? ` <span class="badge prio-${i.prioridad}" data-testid="prioridad">${i.prioridad}</span>` : ""}</td>
-        <td class="celda-acciones">${botonesAsistencia(c)}</td></tr>`;
+        <td class="celda-acciones">${botonesAsistencia(c, i.nino.id)}</td></tr>`;
     }).join("")).join("");
   $$("#cuerpo-agenda-personal .enlace-nino").forEach((x) => x.addEventListener("click", (ev) => { ev.preventDefault(); abrirExpediente(x.closest("tr").dataset.nino); }));
   $$("#cuerpo-agenda-personal [data-accion]").forEach((b) => b.addEventListener("click", () => abrirModalAsistencia(b.closest("tr"), b.dataset.accion, cargarAgendaPersonal)));
@@ -408,14 +552,22 @@ $("#form-asistencia").addEventListener("submit", async (ev) => {
     if (!opcion) { $("#asistencia-error").textContent = "Seleccione el motivo de la inasistencia."; return; }
     cuerpo.motivo = (detalle ? `${opcion}: ${detalle}` : opcion).slice(0, 200);
   } else if ($("#asistencia-evaluacion").value) cuerpo.evaluacion_id = $("#asistencia-evaluacion").value;
+  const alTerminar = modal.alTerminar;
   try {
     await api(`/api/ninos/${fila.dataset.nino}/controles/${encodeURIComponent(fila.dataset.codigo)}/asistencia`, { method: "POST", body: JSON.stringify(cuerpo) });
-    const alTerminar = modal.alTerminar;
     cerrarModalAsistencia();
     toast(accion === "ASISTIO" ? "Asistencia registrada" : "Inasistencia registrada");
     if (alTerminar) alTerminar();
     actualizarInsignia();
-  } catch (e) { $("#asistencia-error").textContent = (e.errores?.[0] || e).mensaje || "No se pudo registrar."; }
+  } catch (e) {
+    if (!sinConexion(e)) { $("#asistencia-error").textContent = (e.errores?.[0] || e).mensaje || "No se pudo registrar."; return; }
+    const nombre = fila.dataset.nombre || $("[data-testid=expediente-nombre]")?.textContent || "";
+    await window.Cola.encolar("REGISTRAR_ASISTENCIA", { codigo: fila.dataset.codigo, ...cuerpo }, { nino_ref: { id: fila.dataset.nino },
+      resumen: `${accion === "ASISTIO" ? "Asistencia" : "Inasistencia"} de ${etiquetaNino(nombre)} al control ${fila.dataset.desc} (${fecha(fila.dataset.programada)})` });
+    cerrarModalAsistencia();
+    toast("Guardado en el dispositivo: se sincronizará al reconectar");
+    if (alTerminar) alTerminar();
+  }
 });
 
 /* ---------- HIST-2.2: alertas de controles vencidos ---------- */
@@ -507,6 +659,230 @@ async function generarReporte() {
 }
 $("#btn-reporte").addEventListener("click", generarReporte);
 
+/* ---------- VIS-3.5: visitas domiciliarias ---------- */
+const RESULTADO_VISITA = { REALIZADA: "Realizada", NO_ENCONTRADO: "No se encontró a la familia", RECHAZADA: "La familia rechazó la visita" };
+const SUPLEMENTO = { SI: "Sí", NO: "No", DESCONOCIDO: "No se sabe" };
+const seccionVisitas = () => `
+    <div class="tarjeta" style="margin-top:14px" data-testid="visitas-seccion">
+      <div class="cabecera-exp"><h2>Visitas domiciliarias</h2>
+        <button type="button" class="secundario" id="btn-visita-nino" data-testid="btn-visita-nino">Registrar visita</button></div>
+      <div id="visitas-nino"><p class="vacio" style="padding:0">Cargando visitas…</p></div>
+    </div>`;
+const mismaRef = (a, b) => (a?.id && a.id === b?.id) || (a?.id_cliente && a.id_cliente === b?.id_cliente);
+
+async function cargarVisitasNino(ref, nombre) {
+  const caja = $("#visitas-nino");
+  let hechas = [], aviso = "";
+  if (ref.id) {
+    try { hechas = await api(`/api/ninos/${ref.id}/visitas`); }
+    catch (e) { if (!sinConexion(e)) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje || "No se pudieron consultar las visitas.")}</p>`; return; } aviso = "Sin conexión: las visitas ya sincronizadas aún no se consultaron en este dispositivo."; }
+  }
+  const pendientes = (await window.Cola.listar()).filter((o) => o.tipo === "REGISTRAR_VISITA" && mismaRef(o.nino_ref, ref));
+  if (!caja.isConnected) return;
+  const filas = pendientes.map((o) => `<tr class="atenuado" data-testid="visita-pendiente"><td>${fecha(o.datos.fecha)}</td><td>${RESULTADO_VISITA[o.datos.resultado]}</td>
+      <td>${SUPLEMENTO[o.datos.consume_suplemento]}</td><td>${esc(o.datos.observaciones || "—")}</td><td><span class="ctrl ctrl-LOCAL">Pendiente de sincronizar</span></td></tr>`)
+    .concat(hechas.map((v) => `<tr data-testid="visita-fila"><td>${fecha(v.fecha)}</td><td>${RESULTADO_VISITA[v.resultado] || esc(v.resultado)}</td><td>${SUPLEMENTO[v.consume_suplemento] || esc(v.consume_suplemento)}</td>
+      <td>${esc(v.observaciones || "—")}</td><td>${esc(v.registrado_por)}</td></tr>`));
+  caja.innerHTML = (aviso ? `<p class="nota">${esc(aviso)}</p>` : "") + (filas.length
+    ? `<div class="tabla-envoltura"><table class="tabla completa" data-testid="visitas-nino-tabla"><thead><tr><th>Fecha</th><th>Resultado</th><th>Consume el suplemento</th><th>Observaciones</th><th>Registrada por</th></tr></thead><tbody>${filas.join("")}</tbody></table></div>`
+    : '<p class="vacio" style="padding:0" data-testid="visitas-nino-vacio">Aún no se registraron visitas a este niño.</p>');
+}
+
+const modalVisita = { ref: null, nombre: "", alTerminar: null };
+function cerrarModalVisita() { $("#modal-visita").hidden = true; }
+function abrirModalVisita({ ref, nombre, alTerminar }) {
+  Object.assign(modalVisita, { ref, nombre, alTerminar });
+  $("#visita-detalle").textContent = nombre;
+  $("#visita-fecha").value = HOY; $("#visita-fecha").max = HOY;
+  $("#visita-resultado").value = "REALIZADA"; $("#visita-suplemento").value = "DESCONOCIDO"; $("#visita-suplemento").disabled = false;
+  $("#visita-observaciones").value = ""; $("#visita-error").textContent = "";
+  $("#modal-visita").hidden = false;
+  $("#visita-resultado").focus();
+}
+/* Solo una visita realizada informa si el niño consume el suplemento. */
+$("#visita-resultado").addEventListener("change", () => {
+  const realizada = $("#visita-resultado").value === "REALIZADA";
+  $("#visita-suplemento").disabled = !realizada;
+  if (!realizada) $("#visita-suplemento").value = "DESCONOCIDO";
+});
+$("#visita-cancelar").addEventListener("click", cerrarModalVisita);
+$("#modal-visita").addEventListener("click", (ev) => { if (ev.target.id === "modal-visita") cerrarModalVisita(); });
+addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !$("#modal-visita").hidden) cerrarModalVisita(); });
+$("#form-visita").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const { ref, nombre, alTerminar } = modalVisita;
+  const datos = { fecha: $("#visita-fecha").value, resultado: $("#visita-resultado").value, consume_suplemento: $("#visita-suplemento").value,
+    observaciones: $("#visita-observaciones").value.trim() || null };
+  if (!datos.fecha) { $("#visita-error").textContent = "Ingrese la fecha de la visita."; return; }
+  if (datos.fecha > HOY) { $("#visita-error").textContent = "La fecha de la visita no puede ser futura."; return; }
+  const terminar = (texto) => { cerrarModalVisita(); toast(texto); if (alTerminar) alTerminar(); };
+  if (ref.id) {
+    try { await api(`/api/ninos/${ref.id}/visitas`, { method: "POST", body: JSON.stringify(datos) }); terminar("Visita registrada"); return; }
+    catch (e) { if (!sinConexion(e)) { $("#visita-error").textContent = (e.errores?.[0] || e).mensaje || "No se pudo registrar la visita."; return; } }
+  }
+  await window.Cola.encolar("REGISTRAR_VISITA", datos, { nino_ref: ref, resumen: `Visita domiciliaria a ${etiquetaNino(nombre)} del ${fecha(datos.fecha)}` });
+  terminar("Guardado en el dispositivo: se sincronizará al reconectar");
+});
+
+const establecimientosVisitas = new Set();
+let secuenciaVisitas = 0;
+async function cargarVisitas() {
+  const mia = ++secuenciaVisitas;
+  const p = new URLSearchParams({ limite: $("#filtro-visitas-limite").value });
+  if ($("#filtro-visitas-establecimiento").value) p.set("establecimiento", $("#filtro-visitas-establecimiento").value);
+  const aviso = $("#visitas-error");
+  let filas;
+  try { filas = await api("/api/visitas/priorizadas?" + p); }
+  catch (e) {
+    if (mia !== secuenciaVisitas) return;
+    aviso.textContent = sinConexion(e) ? "Sin conexión: la lista priorizada aún no se consultó en este dispositivo." : (e.errores?.[0] || e).mensaje || "No se pudo consultar la lista.";
+    aviso.hidden = false;
+    return;
+  }
+  if (mia !== secuenciaVisitas) return;
+  aviso.hidden = true;
+  if (!$("#filtro-visitas-establecimiento").value) {
+    filas.forEach((f) => establecimientosVisitas.add(f.establecimiento));
+    const sel = $("#filtro-visitas-establecimiento"), actual = sel.value;
+    sel.innerHTML = '<option value="">Todos</option>' + [...establecimientosVisitas].sort().map((x) => `<option value="${esc(x)}">${esc(x)}</option>`).join("");
+    sel.value = actual;
+  }
+  const pendientes = new Set((await window.Cola.listar()).filter((o) => o.tipo === "REGISTRAR_VISITA" && o.nino_ref?.id).map((o) => o.nino_ref.id));
+  $("#total-visitas").textContent = `${filas.length} niño(s)`;
+  $("#sin-visitas").hidden = filas.length > 0;
+  $("#cuerpo-visitas").innerHTML = filas.map((f) => `
+    <tr data-nino="${f.nino.id}" data-nombre="${esc(f.nino.nombre_completo)}" data-testid="visita-priorizada">
+      <td><strong>${f.posicion}</strong></td>
+      <td><a href="#" class="enlace-nino">${esc(f.nino.nombre_completo)}</a><br><small>${f.nino.dni ? "DNI " + f.nino.dni : esc(f.nino.codigo_origen || "")}</small></td>
+      <td>${esc(f.nino.comunidad)}</td><td>${badge(f.ultima_clasificacion)}</td>
+      <td class="${f.dias_control_vencido ? "atrasado" : ""}">${f.dias_control_vencido ? f.dias_control_vencido + " d" : "—"}${f.inasistencias_recientes ? ` <span class="ctrl ctrl-INASISTENCIA">${f.inasistencias_recientes} inasist.</span>` : ""}</td>
+      <td>${f.ultima_visita ? `${fecha(f.ultima_visita)} · ${f.dias_desde_ultima_visita} d` : "Sin visitas"}</td>
+      <td><button type="button" class="puntaje" data-testid="puntaje" title="Ver cómo se calculó">${f.puntaje.toFixed(1)}</button></td>
+      <td class="celda-acciones">${pendientes.has(f.nino.id) ? '<span class="ctrl ctrl-LOCAL" data-testid="visita-pendiente-fila">Pendiente de sincronizar</span> ' : ""}<button type="button" class="mini" data-testid="btn-visitar">Registrar visita</button></td>
+    </tr>
+    <tr class="desglose" hidden data-testid="desglose"><td colspan="8"><ul>${f.componentes.map((c) =>
+      `<li><strong>${esc(c.descripcion)}</strong>: ${esc(c.valor)} → ${c.puntos.toFixed(1)} de ${c.maximo.toFixed(0)} puntos</li>`).join("")}</ul></td></tr>`).join("");
+  $$("#cuerpo-visitas .puntaje").forEach((b) => b.addEventListener("click", () => { const d = b.closest("tr").nextElementSibling; d.hidden = !d.hidden; }));
+  $$("#cuerpo-visitas .enlace-nino").forEach((x) => x.addEventListener("click", (ev) => { ev.preventDefault(); abrirExpediente(x.closest("tr").dataset.nino); }));
+  $$("#cuerpo-visitas [data-testid=btn-visitar]").forEach((b) => b.addEventListener("click", () => {
+    const tr = b.closest("tr");
+    abrirModalVisita({ ref: { id: tr.dataset.nino }, nombre: tr.dataset.nombre, alTerminar: cargarVisitas });
+  }));
+}
+$("#visitas-consultar").addEventListener("click", cargarVisitas);
+$("#filtro-visitas-establecimiento").addEventListener("change", cargarVisitas);
+$("#filtro-visitas-limite").addEventListener("change", cargarVisitas);
+
+/* ---------- HIST-3.2 a 3.4: indicador, pendientes y conflictos ---------- */
+const TIPO_OPERACION = { REGISTRAR_NINO: "Registro de niño", REGISTRAR_EVALUACION: "Control de hemoglobina", REGISTRAR_ASISTENCIA: "Asistencia a control", REGISTRAR_VISITA: "Visita domiciliaria" };
+const horaLocal = (iso) => (iso ? `${fecha(iso.slice(0, 10))} ${iso.slice(11, 16)}` : "—");
+let conflictosPendientes = 0;
+async function actualizarSync() {
+  const cola = await window.Cola.listar();
+  const n = cola.length, ind = $("#sync-indicador"), sincronizando = window.Sync.enCurso;
+  ind.dataset.pendientes = String(n);
+  ind.textContent = sincronizando ? "Sincronizando…" : n ? `${n} ${n === 1 ? "pendiente" : "pendientes"}` : conflictosPendientes ? `Al día · ${conflictosPendientes} ${conflictosPendientes === 1 ? "conflicto" : "conflictos"}` : "Al día";
+  ind.className = "sync-indicador " + (sincronizando ? "sincronizando" : n ? "con-pendientes" : conflictosPendientes ? "con-conflictos" : "al-dia");
+  ind.title = navigator.onLine ? "Estado de la sincronización (abrir el panel)" : "Sin conexión: los registros se envían al reconectar";
+  if ($("#vista-sincronizacion").classList.contains("activa")) pintarPendientes(cola);
+}
+document.addEventListener("cola:cambio", actualizarSync);
+document.addEventListener("sync:inicio", actualizarSync);
+$("#sync-indicador").addEventListener("click", () => mostrar("sincronizacion"));
+
+function pintarPendientes(cola) {
+  const rechazadas = cola.filter((o) => o.estado === "RECHAZADA").length;
+  $("#sync-resumen").textContent = cola.length ? `${cola.length} pendiente(s)${rechazadas ? ` · ${rechazadas} rechazado(s)` : ""}` : "Al día";
+  $("#sync-vacio").hidden = cola.length > 0;
+  $("#cuerpo-sync").innerHTML = cola.map((o) => `
+    <tr data-op="${o.id_operacion}" data-testid="pendiente">
+      <td><strong>${esc(TIPO_OPERACION[o.tipo] || o.tipo)}</strong><br><small>${esc(o.resumen)}</small></td>
+      <td>${horaLocal(o.fecha_local)}</td>
+      <td>${o.estado === "RECHAZADA" ? '<span class="ctrl ctrl-RECHAZADA">Rechazado por el servidor</span>' : '<span class="ctrl ctrl-LOCAL">Pendiente</span>'}</td>
+      <td>${o.ultimo_intento ? horaLocal(o.ultimo_intento) : "Aún no se intentó"}${o.ultimo_error ? `<br><small class="atrasado">${esc(o.ultimo_error)}</small>` : ""}</td>
+      <td class="celda-acciones">${o.estado === "RECHAZADA" ? '<button type="button" class="mini" data-act="reintentar">Reintentar</button><button type="button" class="mini no" data-act="descartar">Descartar</button>' : ""}</td>
+    </tr>`).join("");
+  $$("#cuerpo-sync [data-act]").forEach((b) => b.addEventListener("click", async () => {
+    const op = cola.find((o) => o.id_operacion === b.closest("tr").dataset.op);
+    if (b.dataset.act === "descartar") { await window.Cola.quitar(op.id_operacion); toast("Registro descartado de este dispositivo"); return; }
+    await window.Cola.actualizar({ ...op, estado: "PENDIENTE", ultimo_error: null });
+    window.Sync.sincronizar();
+  }));
+}
+
+const lineasDatos = (d) => Object.entries(d).filter(([k, v]) => k !== "id" && v !== null && v !== "")
+  .map(([k, v]) => `${k.replaceAll("_", " ")}: ${v}`).join("\n");
+async function cargarConflictos() {
+  const caja = $("#conflictos");
+  let lista;
+  try { lista = await api("/api/sincronizacion/conflictos?estado=PENDIENTE"); }
+  catch (e) {
+    caja.innerHTML = `<p class="vacio" data-testid="conflictos-sin-datos">${sinConexion(e) ? "Sin conexión: los conflictos se consultan al reconectar." : esc(e.mensaje || "No se pudieron consultar los conflictos.")}</p>`;
+    return;
+  }
+  conflictosPendientes = lista.length;
+  $("#conflictos-total").textContent = `${lista.length} pendiente(s)`;
+  caja.innerHTML = lista.length ? lista.map((c) => `
+    <div class="tarjeta conflicto" data-conflicto="${c.id}" data-testid="conflicto">
+      <strong>${esc(TIPO_OPERACION[c.tipo] || c.tipo)}</strong> · <span class="ctrl ctrl-RECHAZADA">Conflicto</span>
+      <p style="margin:6px 0 0">${esc(c.motivo)}</p>
+      <div class="comparar"><div><small>Lo registrado en este dispositivo</small><pre>${esc(lineasDatos(c.datos_cliente))}</pre></div>
+        <div><small>Lo que ya tiene el servidor</small><pre>${esc(lineasDatos(c.datos_servidor))}</pre></div></div>
+      <div class="acciones">
+        <button type="button" class="primario" data-res="CONSERVAR_SERVIDOR" data-testid="conflicto-conservar">Conservar el del servidor</button>
+        <button type="button" class="secundario" data-res="APLICAR_CLIENTE" data-testid="conflicto-aplicar">Aplicar el de este dispositivo</button>
+        <button type="button" class="secundario" data-res="DESCARTAR" data-testid="conflicto-descartar">Descartar</button>
+      </div>
+      <small class="error" data-testid="conflicto-error"></small>
+    </div>`).join("") : '<p class="vacio" data-testid="sin-conflictos">No hay conflictos pendientes.</p>';
+  $$("#conflictos [data-res]").forEach((b) => b.addEventListener("click", async () => {
+    const tarjeta = b.closest("[data-conflicto]");
+    try {
+      await api(`/api/sincronizacion/conflictos/${tarjeta.dataset.conflicto}/resolver`, { method: "POST", body: JSON.stringify({ resolucion: b.dataset.res }) });
+      toast("Conflicto resuelto");
+      await cargarConflictos();
+      actualizarSync();
+    } catch (e) { tarjeta.querySelector("[data-testid=conflicto-error]").textContent = sinConexion(e) ? "Sin conexión: inténtelo al reconectar." : (e.errores?.[0] || e).mensaje || "No se pudo resolver."; }
+  }));
+}
+async function cargarSincronizacion() {
+  const ultima = await window.Cola.meta("ultima_sincronizacion");
+  $("#sync-ultima").textContent = ultima ? `Última sincronización exitosa: ${horaLocal(ultima)}` : "Aún no hay una sincronización exitosa en este dispositivo.";
+  const aviso = $("#sync-aviso");
+  aviso.hidden = window.Cola.persistente;
+  aviso.textContent = "Este navegador no permite guardar datos en el dispositivo: lo pendiente se perderá al cerrar la pestaña. Sincronice antes de cerrarla.";
+  pintarPendientes(await window.Cola.listar());
+  cargarConflictos();
+}
+$("#sync-ahora").addEventListener("click", async () => {
+  if (!navigator.onLine) { toast("Sin conexión: se sincronizará al reconectar", false); return; }
+  if (!await window.Sync.sincronizar()) toast("No hay registros por enviar");
+});
+
+/* Al terminar una sincronización: aviso, indicador y refresco de la pantalla abierta. */
+document.addEventListener("sync:fin", async (ev) => {
+  const r = ev.detail;
+  await actualizarSync();
+  if (r.error) { toast(`No se pudo sincronizar: ${r.error}`, false); return; }
+  const partes = [];
+  if (r.aplicadas) partes.push(`${r.aplicadas} aplicado(s)`);
+  if (r.duplicadas) partes.push(`${r.duplicadas} ya existían`);
+  if (r.conflictos) partes.push(`${r.conflictos} en conflicto`);
+  if (r.rechazadas) partes.push(`${r.rechazadas} rechazado(s)`);
+  if (partes.length) toast(`Sincronización: ${partes.join(", ")}`, !r.rechazadas && !r.conflictos);
+  try { await refrescarConflictos(); } catch (_) { /* sin conflictos que mostrar */ }
+  const activa = $(".pestana.activa")?.dataset.vista;
+  if (activa === "expediente" && expedienteActual?.id_cliente && r.mapeos[expedienteActual.id_cliente]) abrirExpediente(r.mapeos[expedienteActual.id_cliente]);
+  else if (activa === "expediente" && expedienteActual?.id) abrirExpediente(expedienteActual.id);
+  else if (activa !== "expediente" && activa !== "registro") mostrar(activa);
+  else actualizarInsignia();
+});
+async function refrescarConflictos() {
+  const lista = await api("/api/sincronizacion/conflictos?estado=PENDIENTE");
+  conflictosPendientes = lista.length;
+  await actualizarSync();
+}
+
 /* ---------- inicio ---------- */
 const primeroDelMesAnterior = (iso) => { const [a, m] = iso.split("-").map(Number); return new Date(Date.UTC(a, m - 2, 1)).toISOString().slice(0, 10); };
 function fijarFechasPorDefecto() {
@@ -540,6 +916,10 @@ async function cargarContexto() {
   estadoRed();
   vistaPrevia();
   actualizarInsignia();
-  cargarContexto();
+  await cargarContexto();
+  await actualizarSync();
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
+  // HIST-3.2: la sincronización arranca sola al abrir la aplicación con pendientes y, como respaldo del evento «online», cada minuto.
+  if (navigator.onLine) { window.Sync.sincronizar(); refrescarConflictos().catch(() => {}); }
+  setInterval(async () => { if (navigator.onLine && (await window.Cola.listar()).some((o) => o.estado === "PENDIENTE")) window.Sync.sincronizar(); }, 60000);
 })();

@@ -211,7 +211,7 @@ def test_cp100_listado_de_seguimiento_usa_los_controles_vencidos(cliente, escena
 
 def test_cp101_openapi_documenta_los_endpoints_nuevos(cliente):
     doc = cliente.get("/openapi.json").json()
-    assert doc["info"]["version"] == "2.0.0-inc2"
+    assert doc["info"]["version"] == "3.0.0-inc3"
     for ruta in ("/api/ninos/{nino_id}/agenda", "/api/alertas/controles-vencidos", "/api/alertas/resumen"):
         assert ruta in doc["paths"]
     esquemas = doc["components"]["schemas"]

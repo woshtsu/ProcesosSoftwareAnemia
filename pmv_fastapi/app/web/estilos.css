@@ -125,3 +125,21 @@ button, .boton { font: inherit; font-weight: 600; border-radius: 8px; padding: 9
   .tabla:not(.completa) th:nth-child(2), .tabla:not(.completa) td:nth-child(2),
   .tabla:not(.completa) th:nth-child(4), .tabla:not(.completa) td:nth-child(4) { display: none; }
 }
+/* Incremento 3: sin conexión, sincronización y visitas */
+.sync-indicador { padding: 3px 12px; border-radius: 999px; font-size: 13px; border: 0; background: #fff; }
+.sync-indicador.al-dia { color: var(--verde); }
+.sync-indicador.con-pendientes { color: var(--naranja); background: var(--naranja-f); }
+.sync-indicador.con-conflictos { color: var(--rojo); background: var(--rojo-f); }
+.sync-indicador.sincronizando { color: var(--azul); background: var(--azul-claro); }
+.aviso-cache { background: var(--azul-claro); color: var(--azul); border-bottom-color: #A9C4E2; }
+.ctrl-LOCAL { background: var(--naranja-f); color: var(--naranja); }
+.ctrl-RECHAZADA { background: var(--rojo-f); color: var(--rojo); }
+.puntaje { font-weight: 800; color: var(--azul); background: none; border: 0; padding: 2px 6px; text-decoration: underline dotted; cursor: pointer; }
+.desglose td { background: var(--azul-claro); }
+.desglose ul { margin: 0; padding-left: 18px; font-size: 13px; }
+.conflicto { margin-bottom: 12px; }
+.conflicto .comparar { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 8px 0; }
+.conflicto pre { margin: 0; white-space: pre-wrap; background: #F7F9FC; border: 1px solid var(--borde); border-radius: 8px; padding: 8px; font-size: 12.5px; }
+.conflicto .acciones { justify-content: flex-start; flex-wrap: wrap; }
+@media (max-width: 760px) { .conflicto .comparar { grid-template-columns: 1fr; } }
+.chip:empty { display: none; }

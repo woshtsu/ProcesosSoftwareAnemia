@@ -1,4 +1,4 @@
-# Anemia Junín — Incremento 2 (100 %)
+# Anemia Junín — Incremento 3 (v3.0.0-inc3)
 
 ## Inicio de sesión con Supabase Auth
 
@@ -77,6 +77,22 @@ Habilitador: estructura de puertos y adaptadores explícita y verificada con pru
 - **Registros del dataset**: sin DNI ni nombres se muestran como «Registro DJ-00002 (dataset anonimizado)» (`expediente-nombre`), con su código (`expediente-codigo`) y origen (`expediente-origen`), la severidad del HIS (`clasificacion-his`) y «no registrado» donde no hay peso ni talla (`sin-antropometria`). El buscador y la pestaña «Expediente» aceptan DNI o código.
 - **Aviso de fecha de referencia** (`aviso-fecha-referencia`): visible solo cuando el servidor se inicia con `FECHA_REFERENCIA`; las fechas por defecto de los formularios salen del servidor.
 
+## Incremento 3 — Sin conexión, sincronización y visita priorizada
+
+| Historia | Descripción | Estado |
+|---|---|---|
+| HIST-3.1 | Registrar sin conexión (cola en IndexedDB, service worker) | ✅ |
+| HIST-3.2 | Sincronizar al reconectar (`POST /api/sincronizacion`, idempotente) | ✅ |
+| HIST-3.3 | Resolver conflictos sin sobrescribir a ciegas | ✅ |
+| HIST-3.4 | Ver lo pendiente y los conflictos (indicador y pestaña «Sincronización») | ✅ |
+| VIS-3.5 | Visita domiciliaria priorizada (pestaña «Visitas») | ✅ |
+
+- **Sin conexión (ADR-012)**: niño con evaluación inicial, evaluación, asistencia y visita se guardan en el dispositivo (`app/web/cola.js`) con `id_operacion` UUID, `id_dispositivo` y fecha local, y se envían solos al volver la red (`app/web/sync.js`) o con «Sincronizar ahora». El service worker (`app/web/sw.js`) precachea el shell y sirve las lecturas con red primero y caché de respaldo; la aplicación abre sin conexión. El caché de datos se borra al cerrar sesión.
+- **Resultados por operación**: `APLICADA`, `DUPLICADA` (reenviar no duplica), `CONFLICTO` (el servidor ya tenía un dato distinto; queda pendiente de resolver con `CONSERVAR_SERVIDOR`, `APLICAR_CLIENTE` o `DESCARTAR`) y `RECHAZADA` (error de validación; se corrige o se descarta). El servidor es la fuente de verdad.
+- **Visita priorizada (ADR-013)**: puntaje de 0 a 100 con severidad (hasta 40), control vencido (30), inasistencias de los últimos 90 días (15) y días desde la última visita (15; sin visita, el máximo). **Los pesos son una propuesta del equipo, no una norma del MINSA.**
+- **Qué SQL ejecutar**: ver `docs/DESPLIEGUE.md` (`db/03_migracion_v3_0.sql` migra una base 2.0).
+- **Interfaz** (`data-testid`): `indicador-sync` (con `data-pendientes`), pestañas `tab-visitas` y `tab-sincronizacion`, `visita-priorizada`, `puntaje`, `btn-visitar`, `modal-visita`, `pendiente`, `conflicto`, `aviso-cache`.
+
 ## Arquitectura
 
 Arquitectura **hexagonal** en un monolito modular (ADR-001 y ADR-008). Las dependencias apuntan siempre hacia el dominio y las verifican las pruebas de `tests/arquitectura/`.
@@ -100,7 +116,7 @@ tests/
 ├── e2e/                 Playwright con servidor real y datos sintéticos
 └── rendimiento/         Locust y micro-benchmark de latencia
 scripts/                 cargar_datos_prueba, importar_dataset_diresa (+ importador_diresa/), exportar_openapi
-db/                      esquema PostgreSQL 2.0 y migración 02_migracion_v2_0.sql
+db/                      esquema PostgreSQL 3.0 y migraciones 02_migracion_v2_0.sql y 03_migracion_v3_0.sql
 ```
 
 ## API
@@ -121,6 +137,11 @@ Contrato completo en `docs/openapi.json` (se regenera con `python -m scripts.exp
 | **`GET /api/agenda?desde=&hasta=&establecimiento=&comunidad=`** | **Nuevo (HIST-2.3)**: agenda del personal; por defecto la semana de la fecha de referencia; máximo 31 días (422 si `desde` > `hasta`, el formato es inválido o el rango supera 31 días); totales por día y del rango; controles cumplidos, pendientes y vencidos |
 | **`POST /api/ninos/{id}/controles/{codigo}/asistencia`** | **Nuevo (HIST-2.4)**: `{fecha_programada, estado: ASISTIO\|NO_ASISTIO, motivo?, evaluacion_id?}`; 201; 404 (niño o control inexistente); 409 (ya registrada, control cumplido o cerrado); 422 (fecha futura, motivo faltante) |
 | **`GET /api/ninos/{id}/asistencias`** | **Nuevo (HIST-2.4)**: asistencias registradas del niño |
+| **`POST /api/sincronizacion`** | **Nuevo (HIST-3.2)**: lote de 1 a 200 operaciones `{id_operacion, tipo, id_dispositivo, fecha_local, id_cliente?, nino_ref?, datos}`; devuelve el resultado por operación (`APLICADA`, `DUPLICADA`, `CONFLICTO`, `RECHAZADA`) y un resumen; 422 si el lote está vacío, supera 200 o una operación es inválida |
+| **`GET /api/sincronizacion/conflictos?estado=`** | **Nuevo (HIST-3.3)**: conflictos con `datos_cliente` y `datos_servidor`; `estado` PENDIENTE o RESUELTO |
+| **`POST /api/sincronizacion/conflictos/{id}/resolver`** | **Nuevo (HIST-3.3)**: `{resolucion: CONSERVAR_SERVIDOR\|APLICAR_CLIENTE\|DESCARTAR}`; 404; 409 si ya está resuelto; 422 si el dominio no permite aplicar el dato del dispositivo |
+| **`POST /api/ninos/{id}/visitas`** · **`GET /api/ninos/{id}/visitas`** | **Nuevo (VIS-3.5)**: registrar una visita `{fecha, resultado: REALIZADA\|NO_ENCONTRADO\|RECHAZADA, consume_suplemento?, observaciones?}` (201; 404; 409 si ya hay una ese día; 422) y listarlas |
+| **`GET /api/visitas/priorizadas?establecimiento=&limite=`** | **Nuevo (VIS-3.5)**: niños en tratamiento por puntaje con sus componentes; `limite` de 1 a 200 (20 por defecto) |
 
 Cambios de contrato en la 2.0 (aditivos salvo lo indicado): `dni`, `nombres`, `apellidos`, `sexo`, `tutor_nombre` y `tutor_celular` pueden ser `null` (solo en niños del dataset); se agregan `nombre_completo`, `origen`, `codigo_origen`, `provincia`, `red` y `microred`; las evaluaciones agregan `clasificacion_origen` y su peso y talla pueden ser `null`. `POST /api/ninos` siempre crea el origen `SISTEMA` y exige todos los campos como antes.
 
@@ -200,6 +221,16 @@ locust -f tests/rendimiento/locustfile.py --host http://127.0.0.1:8000 \
        --headless -u 50 -r 10 -t 60s --csv docs/evidencias/carga/carga          # carga
 ```
 
+Resultados de la versión `3.0.0-inc3` (reproducibles con los comandos de arriba; el E2E usa `pytest tests/e2e`):
+
+| Control | Resultado |
+|---|---|
+| ruff | 0 hallazgos; formato correcto |
+| pytest (unitarias, integración, arquitectura) | **499 pruebas en verde**: 331 unitarias, 147 de integración (SQLite; también en PostgreSQL 16) y 21 de arquitectura |
+| Cobertura de `app/` | **99,70 %**; 100 % en todo lo nuevo del Incremento 3 (quedan `autenticacion.py` con 94 % y `supabase_auth.py` con 97 %, anteriores) |
+| E2E (Playwright, Chromium) | **24 en verde**: 17 anteriores y 7 nuevas (registro y control sin conexión que sincronizan, recarga sin conexión desde caché, datos incompletos sin conexión, asistencia sin conexión, visita priorizada en línea y sin conexión, conflicto resuelto desde el panel) |
+| Contrato OpenAPI | `docs/openapi.json` al día |
+
 Resultados de la versión `v2.0.0-inc2` (salidas completas en `docs/evidencias/inc2/`):
 
 | Control | Resultado |
@@ -231,7 +262,8 @@ El pipeline `.github/workflows/ci.yml` ejecuta lint, pruebas con cobertura (incl
 - Los parámetros de `ESQUEMA_AGENDA_V1` (meses de los dosajes, tolerancias de −15/+30 días, umbrales de prioridad) y los puntos de corte clínicos deben ser confirmados por la microred antes del uso clínico.
 - La agenda y las alertas se calculan en cada consulta (costo lineal en los niños activos: ≈ 120 a 155 ms con 1 000 niños en SQLite); se materializarán si se supera el criterio de ADR-007.
 - Supabase Auth implementado (ADR-011). Pendientes: roles y permisos por establecimiento; en modo demo el selector `X-Usuario` sigue siendo solo auditoría sintética.
-- El registro definitivo requiere conexión; la cola de sincronización offline es alcance del INC-3.
+- Sin conexión solo se guardan en el dispositivo el registro de un niño con su evaluación inicial, las evaluaciones, las asistencias y las visitas (INC-3, ADR-012); editar un expediente y dar de alta requieren conexión. La clasificación de un niño registrado sin conexión aparece al sincronizar.
+- Los pesos del puntaje de visitas priorizadas (ADR-013) son una propuesta del equipo y deben validarse con la microred.
 - Los diagramas de `docs/diagramas/` corresponden a la versión `v1.0-PMV` y no se regeneraron para esta estructura.
 - Las fechas del sistema se interpretan en hora de Perú (UTC-5, sin horario de verano).
 

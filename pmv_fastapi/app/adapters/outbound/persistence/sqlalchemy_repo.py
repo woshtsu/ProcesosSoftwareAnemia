@@ -5,11 +5,13 @@ from datetime import UTC, date, datetime
 from pathlib import Path
 
 from sqlalchemy import (
+    JSON,
     CheckConstraint,
     Date,
     DateTime,
     Float,
     ForeignKey,
+    Index,
     Integer,
     String,
     UniqueConstraint,
@@ -20,6 +22,7 @@ from sqlalchemy import (
     inspect,
     or_,
     select,
+    update,
 )
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, sessionmaker
@@ -27,10 +30,20 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship,
 from app.domain.model.asistencia import AsistenciaControl, EstadoAsistencia
 from app.domain.model.clasificacion import Clasificacion
 from app.domain.model.entidades import Evaluacion, Nino
-from app.domain.model.errores import ConflictoAsistencia, RegistroDuplicado
+from app.domain.model.errores import ConflictoAsistencia, ConflictoVisita, RegistroDuplicado
 from app.domain.model.origen import OrigenDatos
+from app.domain.model.sincronizacion import (
+    ConflictoSincronizacion,
+    EstadoConflicto,
+    OperacionSincronizada,
+    ResolucionConflicto,
+    ResultadoOperacion,
+)
 from app.domain.model.tiempo import limites_utc
+from app.domain.model.visita import ConsumoSuplemento, ResultadoVisita, VisitaDomiciliaria
 from app.ports.outbound.repositorio_ninos import RepositorioNinos
+from app.ports.outbound.repositorio_sincronizacion import RepositorioSincronizacion
+from app.ports.outbound.repositorio_visitas import RepositorioVisitas
 
 
 class Base(DeclarativeBase):
@@ -113,9 +126,81 @@ class AsistenciaORM(Base):
     nino: Mapped[NinoORM] = relationship(back_populates="asistencias")
 
 
+class VisitaORM(Base):
+    """VIS-3.5 (ADR-013): a lo sumo una visita domiciliaria por niño y por día."""
+
+    __tablename__ = "visita_domiciliaria"
+    __table_args__ = (
+        UniqueConstraint("nino_id", "fecha", name="uq_visita_nino_fecha"),
+        CheckConstraint("resultado IN ('REALIZADA', 'NO_ENCONTRADO', 'RECHAZADA')", name="ck_visita_resultado"),
+        CheckConstraint("consume_suplemento IN ('SI', 'NO', 'DESCONOCIDO')", name="ck_visita_consumo"),
+        CheckConstraint("resultado = 'REALIZADA' OR consume_suplemento = 'DESCONOCIDO'", name="ck_visita_suplemento"),
+    )
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    nino_id: Mapped[str] = mapped_column(ForeignKey("nino.id", ondelete="CASCADE"), index=True)
+    fecha: Mapped[date] = mapped_column(Date)
+    resultado: Mapped[str] = mapped_column(String(14))
+    consume_suplemento: Mapped[str] = mapped_column(String(12))
+    observaciones: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    registrado_por: Mapped[str] = mapped_column(String(60))
+    creado_en: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+
+class OperacionSincronizadaORM(Base):
+    """HIST-3.2 (ADR-012): bitácora de operaciones ya procesadas; su clave primaria da la idempotencia."""
+
+    __tablename__ = "operacion_sincronizada"
+    __table_args__ = (
+        CheckConstraint(
+            "resultado IN ('APLICADA', 'DUPLICADA', 'CONFLICTO', 'RESUELTA')", name="ck_operacion_resultado"
+        ),
+        Index("ix_operacion_cliente", "id_dispositivo", "id_cliente"),
+    )
+    id_operacion: Mapped[str] = mapped_column(String(36), primary_key=True)
+    tipo: Mapped[str] = mapped_column(String(24))
+    id_dispositivo: Mapped[str] = mapped_column(String(60))
+    resultado: Mapped[str] = mapped_column(String(12))
+    id_recurso: Mapped[str | None] = mapped_column(String(36), nullable=True)
+    id_cliente: Mapped[str | None] = mapped_column(String(60), nullable=True)
+    fecha_local: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    recibida_en: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+
+class ConflictoORM(Base):
+    """HIST-3.3: operación que chocó con un dato distinto del servidor, a la espera de una decisión."""
+
+    __tablename__ = "conflicto_sincronizacion"
+    __table_args__ = (
+        CheckConstraint("estado IN ('PENDIENTE', 'RESUELTO')", name="ck_conflicto_estado"),
+        CheckConstraint(
+            "resolucion IS NULL OR resolucion IN ('CONSERVAR_SERVIDOR', 'APLICAR_CLIENTE', 'DESCARTAR')",
+            name="ck_conflicto_resolucion",
+        ),
+    )
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    id_operacion: Mapped[str] = mapped_column(
+        ForeignKey("operacion_sincronizada.id_operacion", ondelete="CASCADE"), unique=True
+    )
+    tipo: Mapped[str] = mapped_column(String(24))
+    motivo: Mapped[str] = mapped_column(String(400))
+    nino_id: Mapped[str] = mapped_column(ForeignKey("nino.id", ondelete="CASCADE"), index=True)
+    id_recurso: Mapped[str] = mapped_column(String(36))
+    datos_cliente: Mapped[dict] = mapped_column(JSON)
+    datos_servidor: Mapped[dict] = mapped_column(JSON)
+    estado: Mapped[str] = mapped_column(String(10), default="PENDIENTE", index=True)
+    resolucion: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    registrado_por: Mapped[str] = mapped_column(String(60))
+    creado_en: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    resuelto_en: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    resuelto_por: Mapped[str | None] = mapped_column(String(60), nullable=True)
+
+
 _NINO = NinoORM.__table__
 _EVAL = EvaluacionORM.__table__
 _ASIST = AsistenciaORM.__table__
+_VISITA = VisitaORM.__table__
+_OPERACION = OperacionSincronizadaORM.__table__
+_CONFLICTO = ConflictoORM.__table__
 
 
 def _patron_contiene(texto: str) -> str:
@@ -157,6 +242,51 @@ def _a_asistencia(r) -> AsistenciaControl:
         evaluacion_id=r.evaluacion_id,
         registrado_por=r.registrado_por,
         creado_en=_utc(r.creado_en),
+    )
+
+
+def _a_visita(r) -> VisitaDomiciliaria:
+    return VisitaDomiciliaria(
+        id=r.id,
+        nino_id=r.nino_id,
+        fecha=r.fecha,
+        resultado=ResultadoVisita(r.resultado),
+        consume_suplemento=ConsumoSuplemento(r.consume_suplemento),
+        observaciones=r.observaciones,
+        registrado_por=r.registrado_por,
+        creado_en=_utc(r.creado_en),
+    )
+
+
+def _a_operacion(r) -> OperacionSincronizada:
+    return OperacionSincronizada(
+        id_operacion=r.id_operacion,
+        tipo=r.tipo,
+        id_dispositivo=r.id_dispositivo,
+        resultado=ResultadoOperacion(r.resultado),
+        id_recurso=r.id_recurso,
+        id_cliente=r.id_cliente,
+        fecha_local=_utc(r.fecha_local) if r.fecha_local else None,
+        recibida_en=_utc(r.recibida_en),
+    )
+
+
+def _a_conflicto(r) -> ConflictoSincronizacion:
+    return ConflictoSincronizacion(
+        id=r.id,
+        id_operacion=r.id_operacion,
+        tipo=r.tipo,
+        motivo=r.motivo,
+        nino_id=r.nino_id,
+        id_recurso=r.id_recurso,
+        datos_cliente=r.datos_cliente,
+        datos_servidor=r.datos_servidor,
+        estado=EstadoConflicto(r.estado),
+        resolucion=ResolucionConflicto(r.resolucion) if r.resolucion else None,
+        registrado_por=r.registrado_por,
+        creado_en=_utc(r.creado_en),
+        resuelto_en=_utc(r.resuelto_en) if r.resuelto_en else None,
+        resuelto_por=r.resuelto_por,
     )
 
 
@@ -236,7 +366,7 @@ def _fila_evaluacion(e: Evaluacion) -> dict:
     return {**{c: getattr(e, c) for c in CAMPOS_EVALUACION}, "clasificacion": e.clasificacion.value}
 
 
-class RepositorioSQLAlchemy(RepositorioNinos):
+class RepositorioSQLAlchemy(RepositorioNinos, RepositorioVisitas, RepositorioSincronizacion):
     def __init__(self, url: str):
         argumentos = {"check_same_thread": False} if url.startswith("sqlite") else {}
         if url.startswith("sqlite:///") and ":memory:" not in url:
@@ -282,6 +412,8 @@ class RepositorioSQLAlchemy(RepositorioNinos):
     def eliminar_por_origen(self, origen: str) -> int:
         ids = select(_NINO.c.id).where(_NINO.c.origen == str(origen))
         with self.Sesion.begin() as s:
+            s.execute(delete(_CONFLICTO).where(_CONFLICTO.c.nino_id.in_(ids)))
+            s.execute(delete(_VISITA).where(_VISITA.c.nino_id.in_(ids)))
             s.execute(delete(_ASIST).where(_ASIST.c.nino_id.in_(ids)))
             s.execute(delete(_EVAL).where(_EVAL.c.nino_id.in_(ids)))
             return s.execute(delete(_NINO).where(_NINO.c.origen == str(origen))).rowcount
@@ -329,6 +461,166 @@ class RepositorioSQLAlchemy(RepositorioNinos):
                 ) from None
             raise
         return a
+
+    def actualizar_evaluacion(self, e: Evaluacion) -> Evaluacion:
+        valores = {c: getattr(e, c) for c in CAMPOS_EVALUACION if c not in ("id", "nino_id", "creado_en")}
+        with self.Sesion.begin() as s:
+            s.execute(update(_EVAL).where(_EVAL.c.id == e.id).values(**valores, clasificacion=e.clasificacion.value))
+        return e
+
+    def actualizar_asistencia(self, a: AsistenciaControl) -> AsistenciaControl:
+        with self.Sesion.begin() as s:
+            s.execute(
+                update(_ASIST)
+                .where(_ASIST.c.id == a.id)
+                .values(estado=a.estado.value, motivo=a.motivo, registrado_por=a.registrado_por)
+            )
+        return a
+
+    # --- Visitas domiciliarias (VIS-3.5) ----------------------------------------------------------------------------
+    def agregar_visita(self, v: VisitaDomiciliaria) -> VisitaDomiciliaria:
+        fila = {
+            "id": v.id,
+            "nino_id": v.nino_id,
+            "fecha": v.fecha,
+            "resultado": v.resultado.value,
+            "consume_suplemento": v.consume_suplemento.value,
+            "observaciones": v.observaciones,
+            "registrado_por": v.registrado_por,
+            "creado_en": v.creado_en,
+        }
+        try:
+            with self.Sesion.begin() as s:
+                s.execute(insert(_VISITA).values(**fila))
+        except IntegrityError:
+            # Dos solicitudes simultáneas pasan la comprobación previa; la restricción UNIQUE rechaza la segunda (409).
+            if self.obtener_visita_del_dia(v.nino_id, v.fecha):
+                raise ConflictoVisita(f"El niño ya tiene una visita registrada el {v.fecha.isoformat()}.") from None
+            raise
+        return v
+
+    def actualizar_visita(self, v: VisitaDomiciliaria) -> VisitaDomiciliaria:
+        with self.Sesion.begin() as s:
+            s.execute(
+                update(_VISITA)
+                .where(_VISITA.c.id == v.id)
+                .values(
+                    resultado=v.resultado.value,
+                    consume_suplemento=v.consume_suplemento.value,
+                    observaciones=v.observaciones,
+                    registrado_por=v.registrado_por,
+                )
+            )
+        return v
+
+    def obtener_visita_del_dia(self, nino_id: str, fecha: date) -> VisitaDomiciliaria | None:
+        with self.Sesion() as s:
+            r = s.execute(select(_VISITA).where(_VISITA.c.nino_id == nino_id, _VISITA.c.fecha == fecha)).first()
+        return _a_visita(r) if r else None
+
+    def listar_visitas(self, nino_id: str) -> list[VisitaDomiciliaria]:
+        q = select(_VISITA).where(_VISITA.c.nino_id == nino_id).order_by(_VISITA.c.fecha.desc(), _VISITA.c.creado_en)
+        with self.Sesion() as s:
+            return [_a_visita(r) for r in s.execute(q)]
+
+    def ultimas_visitas(self, nino_ids: set[str]) -> dict[str, date]:
+        # Una sola consulta agrupada: la tabla de visitas es pequeña frente a la de niños y evita listas IN enormes.
+        q = select(_VISITA.c.nino_id, func.max(_VISITA.c.fecha)).group_by(_VISITA.c.nino_id)
+        with self.Sesion() as s:
+            return {nino_id: fecha for nino_id, fecha in s.execute(q) if nino_id in nino_ids}
+
+    # --- Sincronización (HIST-3.2, HIST-3.3) -------------------------------------------------------------------------
+    def obtener_operacion(self, id_operacion: str) -> OperacionSincronizada | None:
+        with self.Sesion() as s:
+            r = s.execute(select(_OPERACION).where(_OPERACION.c.id_operacion == id_operacion)).first()
+        return _a_operacion(r) if r else None
+
+    def registrar_operacion(self, o: OperacionSincronizada) -> bool:
+        fila = {
+            "id_operacion": o.id_operacion,
+            "tipo": o.tipo,
+            "id_dispositivo": o.id_dispositivo,
+            "resultado": o.resultado.value,
+            "id_recurso": o.id_recurso,
+            "id_cliente": o.id_cliente,
+            "fecha_local": o.fecha_local,
+            "recibida_en": o.recibida_en,
+        }
+        try:
+            with self.Sesion.begin() as s:
+                s.execute(insert(_OPERACION).values(**fila))
+        except IntegrityError:
+            if self.obtener_operacion(o.id_operacion):
+                return False  # la restricción de clave primaria detuvo a la segunda de dos solicitudes simultáneas
+            raise
+        return True
+
+    def marcar_operacion_resuelta(self, id_operacion: str) -> None:
+        with self.Sesion.begin() as s:
+            s.execute(
+                update(_OPERACION)
+                .where(_OPERACION.c.id_operacion == id_operacion)
+                .values(resultado=ResultadoOperacion.RESUELTA.value)
+            )
+
+    def id_nino_de_cliente(self, id_dispositivo: str, id_cliente: str) -> str | None:
+        q = select(_OPERACION.c.id_recurso).where(
+            _OPERACION.c.id_dispositivo == id_dispositivo,
+            _OPERACION.c.id_cliente == id_cliente,
+            _OPERACION.c.resultado.in_(["APLICADA", "DUPLICADA", "RESUELTA"]),
+        )
+        with self.Sesion() as s:
+            return s.scalar(q)
+
+    def contar_operaciones(self) -> int:
+        with self.Sesion() as s:
+            return s.scalar(select(func.count()).select_from(_OPERACION))
+
+    def guardar_conflicto(self, c: ConflictoSincronizacion) -> ConflictoSincronizacion:
+        with self.Sesion.begin() as s:
+            s.execute(insert(_CONFLICTO).values(**self._fila_conflicto(c)))
+        return c
+
+    @staticmethod
+    def _fila_conflicto(c: ConflictoSincronizacion) -> dict:
+        return {
+            "id": c.id,
+            "id_operacion": c.id_operacion,
+            "tipo": c.tipo,
+            "motivo": c.motivo[:400],
+            "nino_id": c.nino_id,
+            "id_recurso": c.id_recurso,
+            "datos_cliente": c.datos_cliente,
+            "datos_servidor": c.datos_servidor,
+            "estado": c.estado.value,
+            "resolucion": c.resolucion.value if c.resolucion else None,
+            "registrado_por": c.registrado_por,
+            "creado_en": c.creado_en,
+            "resuelto_en": c.resuelto_en,
+            "resuelto_por": c.resuelto_por,
+        }
+
+    def _conflictos(self, *condiciones) -> list[ConflictoSincronizacion]:
+        q = select(_CONFLICTO).where(*condiciones).order_by(_CONFLICTO.c.creado_en, _CONFLICTO.c.id)
+        with self.Sesion() as s:
+            return [_a_conflicto(r) for r in s.execute(q)]
+
+    def obtener_conflicto(self, conflicto_id: str) -> ConflictoSincronizacion | None:
+        encontrados = self._conflictos(_CONFLICTO.c.id == conflicto_id)
+        return encontrados[0] if encontrados else None
+
+    def obtener_conflicto_de_operacion(self, id_operacion: str) -> ConflictoSincronizacion | None:
+        encontrados = self._conflictos(_CONFLICTO.c.id_operacion == id_operacion)
+        return encontrados[0] if encontrados else None
+
+    def listar_conflictos(self, estado: str | None = None) -> list[ConflictoSincronizacion]:
+        return self._conflictos(*([_CONFLICTO.c.estado == estado] if estado else []))
+
+    def actualizar_conflicto(self, c: ConflictoSincronizacion) -> ConflictoSincronizacion:
+        valores = self._fila_conflicto(c)
+        with self.Sesion.begin() as s:
+            s.execute(update(_CONFLICTO).where(_CONFLICTO.c.id == c.id).values(**valores))
+        return c
 
     def _cargar(self, condiciones: list) -> list[Nino]:
         """Niños que cumplen las condiciones con sus evaluaciones y asistencias, en tres consultas por lotes.

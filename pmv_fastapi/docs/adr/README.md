@@ -1,7 +1,9 @@
-# Registros de Decisiones Arquitectónicas (ADR) — Incrementos 1 y 2
+# Registros de Decisiones Arquitectónicas (ADR) — Incrementos 1, 2 y 3
 
 | ADR | Decisión | Atributo de calidad (NFR) principal | Estado |
 |---|---|---|---|
+| [ADR-012](ADR-012-sincronizacion-sin-conexion.md) | Sincronización sin conexión: cola en el dispositivo (IndexedDB), idempotencia por `id_operacion`, conflictos explícitos y servidor como fuente de verdad | Disponibilidad en campo, integridad del dato, trazabilidad | Aceptada |
+| [ADR-013](ADR-013-visita-domiciliaria-priorizada.md) | Visita domiciliaria priorizada con puntaje explicable (pesos propuestos por el equipo, no norma del MINSA) | Explicabilidad, utilidad operativa | Aceptada (pesos pendientes de validación por la microred) |
 | [ADR-011](ADR-011-supabase-auth.md) | Supabase Auth, cookies HttpOnly y protección de la API; persistencia actual conservada | Autenticación, trazabilidad, separación de responsabilidades | Implementado localmente; primer acceso remoto pendiente |
 | [ADR-001](ADR-001-arquitectura-hexagonal.md) | Arquitectura hexagonal (puertos y adaptadores) en un monolito modular | Mantenibilidad, capacidad de prueba, evolución por incrementos | Aceptada |
 | [ADR-002](ADR-002-pwa-web.md) | Cliente PWA web adaptable en lugar de app nativa | Portabilidad, facilidad de despliegue en postas | Aceptada |
@@ -14,4 +16,4 @@
 | [ADR-009](ADR-009-origen-de-datos-y-dataset-diresa.md) | Origen de los datos (`SISTEMA` / `DATASET_DIRESA_JUNIN`), registros seudónimos con campos opcionales solo para el dataset, altitud por capital de provincia con fuente y reloj de referencia fijo | Integridad del dato, privacidad, reproducibilidad de la demo | Aceptada (altitud aproximada) |
 | [ADR-010](ADR-010-asistencia-a-control-persistida.md) | Asistencia a un control como hecho persistido (`asistencia_control`) que la agenda calculada consulta | Trazabilidad, exactitud de las alertas | Aceptada |
 
-Nota: ADR-008 detalla y hace verificable lo decidido en ADR-001; ADR-010 complementa a ADR-007 (la agenda sigue calculándose).
+Nota: ADR-013 usa la agenda de ADR-007 y las inasistencias de ADR-010; ADR-012 hace llegar al servidor, sin duplicar, los registros de ADR-010 y ADR-013 hechos sin conexión. ADR-008 detalla y hace verificable lo decidido en ADR-001; ADR-010 complementa a ADR-007 (la agenda sigue calculándose).

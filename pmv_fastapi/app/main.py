@@ -23,8 +23,10 @@ from app.application.servicio_asistencia import ServicioAsistencia
 from app.application.servicio_contexto import ServicioContexto
 from app.application.servicio_expediente import ServicioExpediente
 from app.application.servicio_sesion import ServicioSesion
+from app.application.servicio_sincronizacion import ServicioSincronizacion
+from app.application.servicio_visitas import ServicioVisitas
 
-VERSION = "2.0.0-inc2"
+VERSION = "3.0.0-inc3"
 WEB = Path(__file__).parent / "web"
 
 
@@ -46,8 +48,9 @@ def crear_app(
         title="Sistema de Detección Temprana de Anemia Infantil — Junín",
         version=VERSION,
         description="API del Incremento 1 (registro nominal, expediente digital, validación clínica, seguimiento "
-        "y reporte del periodo) y del Incremento 2 (agenda automática de controles, alertas de controles vencidos, "
-        "agenda del personal y registro de asistencia a control).",
+        "y reporte del periodo), del Incremento 2 (agenda automática de controles, alertas de controles vencidos, "
+        "agenda del personal y registro de asistencia a control) y del Incremento 3 (sincronización de lo registrado "
+        "sin conexión, resolución de conflictos y visita domiciliaria priorizada).",
         docs_url=None,
         redoc_url=None,
     )
@@ -60,6 +63,10 @@ def crear_app(
     app.state.alertas = ServicioAlertas(repo, reloj)
     app.state.agenda_personal = ServicioAgendaPersonal(repo, reloj)
     app.state.asistencia = ServicioAsistencia(repo, reloj)
+    app.state.visitas = ServicioVisitas(repo, repo, reloj)
+    app.state.sincronizacion = ServicioSincronizacion(
+        repo, repo, repo, expediente, app.state.asistencia, app.state.visitas, reloj
+    )
     app.state.contexto = ServicioContexto(reloj, fecha_referencia)
     proveedor = SupabaseAuth(os.getenv("SUPABASE_URL", ""), os.getenv("SUPABASE_PUBLISHABLE_KEY", ""))
     app.state.sesiones = ServicioSesion(proveedor)
@@ -81,7 +88,7 @@ def crear_app(
         # Recursos servidos localmente: la documentación funciona sin acceso a CDN (entorno rural).
         return get_swagger_ui_html(
             openapi_url="/openapi.json",
-            title="API — Anemia Junín (Incremento 2)",
+            title="API — Anemia Junín (Incremento 3)",
             swagger_js_url="/static/vendor/swagger-ui-bundle.js",
             swagger_css_url="/static/vendor/swagger-ui.css",
         )

@@ -2,6 +2,7 @@
 
 import csv
 import io
+from collections import Counter
 from datetime import date
 
 from fastapi import APIRouter, Depends, Header, Query, Request
@@ -14,8 +15,22 @@ from app.domain.model.agenda_personal import AgendaPersonal, ItemAgendaPersonal
 from app.domain.model.alertas import AlertaControl
 from app.domain.model.asistencia import AsistenciaControl
 from app.domain.model.entidades import Evaluacion, Nino
-from app.domain.model.errores import ConflictoAsistencia, ErrorValidacion, NoEncontrado, RegistroDuplicado
+from app.domain.model.errores import (
+    ConflictoAsistencia,
+    ConflictoVisita,
+    ConflictoYaResuelto,
+    ErrorValidacion,
+    NoEncontrado,
+    RegistroDuplicado,
+)
+from app.domain.model.sincronizacion import (
+    ConflictoSincronizacion,
+    OperacionEntrante,
+    ResultadoOperacion,
+    ResultadoSincronizacion,
+)
 from app.domain.model.tiempo import edad_en_meses
+from app.domain.model.visita import LIMITE_PREDETERMINADO, NinoPriorizado, VisitaDomiciliaria
 from app.ports.inbound.agenda import GenerarAgenda
 from app.ports.inbound.agenda_personal import ConsultarAgendaPersonal
 from app.ports.inbound.alertas import ConsultarControlesVencidos
@@ -24,6 +39,8 @@ from app.ports.inbound.contexto import ConsultarContexto
 from app.ports.inbound.expediente import GestionarExpediente
 from app.ports.inbound.reportes import GenerarReporte
 from app.ports.inbound.seguimiento import ConsultarSeguimiento
+from app.ports.inbound.sincronizacion import GestionarConflictos, SincronizarOperaciones
+from app.ports.inbound.visitas import ConsultarVisitasPriorizadas, GestionarVisitas
 
 router = APIRouter(prefix="/api")
 
@@ -59,6 +76,22 @@ def asistencia_uc(request: Request) -> RegistrarAsistencia:
 
 def contexto_uc(request: Request) -> ConsultarContexto:
     return request.app.state.contexto
+
+
+def visitas_uc(request: Request) -> GestionarVisitas:
+    return request.app.state.visitas
+
+
+def priorizadas_uc(request: Request) -> ConsultarVisitasPriorizadas:
+    return request.app.state.visitas
+
+
+def sincronizacion_uc(request: Request) -> SincronizarOperaciones:
+    return request.app.state.sincronizacion
+
+
+def conflictos_uc(request: Request) -> GestionarConflictos:
+    return request.app.state.sincronizacion
 
 
 def usuario_actual(request: Request, x_usuario: str | None = Header(default=None, alias="X-Usuario")) -> str:
@@ -158,6 +191,9 @@ MENSAJES_TIPO = {
     "date_parsing": "Fecha inválida (use AAAA-MM-DD).",
     "date_type": "Fecha inválida (use AAAA-MM-DD).",
     "string_type": "Debe ser texto.",
+    "string_pattern_mismatch": "Formato inválido.",
+    "too_long": "Supera el largo o la cantidad máxima permitida.",
+    "too_short": "No alcanza el largo o la cantidad mínima requerida.",
 }
 
 
@@ -191,6 +227,18 @@ def registrar_manejadores(app) -> None:
     async def _conflicto_asistencia(_, exc: ConflictoAsistencia):
         return JSONResponse(
             status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "codigo", "mensaje": str(exc)}]}
+        )
+
+    @app.exception_handler(ConflictoVisita)
+    async def _conflicto_visita(_, exc: ConflictoVisita):
+        return JSONResponse(
+            status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "fecha", "mensaje": str(exc)}]}
+        )
+
+    @app.exception_handler(ConflictoYaResuelto)
+    async def _conflicto_resuelto(_, exc: ConflictoYaResuelto):
+        return JSONResponse(
+            status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "estado", "mensaje": str(exc)}]}
         )
 
     @app.exception_handler(NoEncontrado)
@@ -375,6 +423,183 @@ def registrar_asistencia(
 def asistencias(nino_id: str, svc: RegistrarAsistencia = Depends(asistencia_uc)):
     """Asistencias e inasistencias registradas para los controles del niño, por fecha programada."""
     return [_asistencia(a) for a in svc.listar_asistencias(nino_id)]
+
+
+def _visita(v: VisitaDomiciliaria) -> s.VisitaSalida:
+    return s.VisitaSalida(
+        id=v.id,
+        nino_id=v.nino_id,
+        fecha=v.fecha,
+        resultado=v.resultado.value,
+        consume_suplemento=v.consume_suplemento.value,
+        observaciones=v.observaciones,
+        registrado_por=v.registrado_por,
+        creado_en=v.creado_en,
+    )
+
+
+@router.post(
+    "/ninos/{nino_id}/visitas",
+    status_code=201,
+    response_model=s.VisitaSalida,
+    tags=["VIS-3.5 Visitas"],
+    responses={404: {"model": s.RespuestaError}, 409: {"model": s.RespuestaError}, 422: {"model": s.RespuestaError}},
+)
+def registrar_visita(
+    nino_id: str,
+    datos: s.VisitaEntrada,
+    svc: GestionarVisitas = Depends(visitas_uc),
+    usuario: str = Depends(usuario_actual),
+):
+    """Registra una visita domiciliaria (una por niño y por día; ``registrado_por`` sale de la sesión).
+
+    409 si el niño ya tiene una visita ese día; 422 si la fecha es futura, el resultado o el consumo del suplemento
+    son inválidos (solo una visita REALIZADA puede indicar SI o NO) o las observaciones superan 500 caracteres.
+    """
+    return _visita(svc.registrar_visita(nino_id, datos.model_dump(), usuario))
+
+
+@router.get(
+    "/ninos/{nino_id}/visitas",
+    response_model=list[s.VisitaSalida],
+    tags=["VIS-3.5 Visitas"],
+    responses={404: {"model": s.RespuestaError}},
+)
+def visitas_del_nino(nino_id: str, svc: GestionarVisitas = Depends(visitas_uc)):
+    """Visitas domiciliarias del niño, la más reciente primero."""
+    return [_visita(v) for v in svc.listar_visitas(nino_id)]
+
+
+def _priorizado(posicion: int, p: NinoPriorizado) -> s.VisitaPriorizadaSalida:
+    return s.VisitaPriorizadaSalida(
+        posicion=posicion,
+        nino=s.NinoVisitaSalida(
+            id=p.nino_id,
+            dni=p.dni,
+            codigo_origen=p.codigo_origen,
+            nombre_completo=p.nombre_completo,
+            comunidad=p.comunidad,
+        ),
+        establecimiento=p.establecimiento,
+        ultima_clasificacion=p.ultima_clasificacion.value,
+        dias_control_vencido=p.dias_control_vencido,
+        inasistencias_recientes=p.inasistencias_recientes,
+        ultima_visita=p.ultima_visita,
+        dias_desde_ultima_visita=p.dias_desde_ultima_visita,
+        puntaje=p.puntaje,
+        componentes=[s.ComponentePuntajeSalida(**vars(c)) for c in p.componentes],
+    )
+
+
+@router.get(
+    "/visitas/priorizadas",
+    response_model=list[s.VisitaPriorizadaSalida],
+    tags=["VIS-3.5 Visitas"],
+    responses={422: {"model": s.RespuestaError}},
+)
+def visitas_priorizadas(
+    establecimiento: str | None = None,
+    limite: int = Query(LIMITE_PREDETERMINADO, description="De 1 a 200"),
+    svc: ConsultarVisitasPriorizadas = Depends(priorizadas_uc),
+):
+    """Niños en tratamiento ordenados por un puntaje explicable (0 a 100) para planificar las visitas domiciliarias.
+
+    Componentes: severidad de la última evaluación, días del control más vencido, inasistencias de los últimos 90 días
+    y días desde la última visita. Los pesos son una propuesta del equipo (ADR-013), no una norma del MINSA.
+    """
+    return [_priorizado(i, p) for i, p in enumerate(svc.visitas_priorizadas(establecimiento, limite), start=1)]
+
+
+def _resultado_operacion(r: ResultadoSincronizacion) -> s.ResultadoOperacionSalida:
+    return s.ResultadoOperacionSalida(
+        id_operacion=r.id_operacion,
+        tipo=r.tipo,
+        resultado=r.resultado.value,
+        id_recurso=r.id_recurso,
+        id_cliente=r.id_cliente,
+        id_conflicto=r.id_conflicto,
+        mensaje=r.mensaje,
+        errores=[s.ErrorDetalle(campo=e.campo, mensaje=e.mensaje) for e in r.errores],
+        resultado_original=r.resultado_original.value if r.resultado_original else None,
+    )
+
+
+@router.post(
+    "/sincronizacion",
+    response_model=s.SincronizacionSalida,
+    tags=["HIST-3.2 Sincronización"],
+    responses={422: {"model": s.RespuestaError}},
+)
+def sincronizar(
+    lote: s.LoteSincronizacionEntrada,
+    svc: SincronizarOperaciones = Depends(sincronizacion_uc),
+    usuario: str = Depends(usuario_actual),
+):
+    """Aplica un lote (1 a 200) de operaciones registradas sin conexión, ordenadas por fecha local.
+
+    Devuelve un resultado por operación, en el orden recibido: APLICADA (con el id del servidor y el mapeo
+    id_cliente -> id), DUPLICADA (el ``id_operacion`` ya se procesó o el servidor ya tiene el mismo dato), CONFLICTO (el
+    servidor tiene un dato distinto; queda pendiente de resolver) o RECHAZADA (error de validación del dominio, sin
+    efecto). Reenviar el mismo lote no crea nada nuevo.
+    """
+    operaciones = [
+        OperacionEntrante(
+            id_operacion=o.id_operacion,
+            tipo=o.tipo,
+            id_dispositivo=o.id_dispositivo,
+            fecha_local=o.fecha_local,
+            datos=o.datos,
+            id_cliente=o.id_cliente,
+            nino_id=o.nino_ref.id if o.nino_ref else None,
+            nino_id_cliente=o.nino_ref.id_cliente if o.nino_ref else None,
+        )
+        for o in lote.operaciones
+    ]
+    resultados = svc.sincronizar(operaciones, usuario)
+    cuenta = Counter(r.resultado for r in resultados)
+    return s.SincronizacionSalida(
+        resumen=s.ResumenSincronizacionSalida(
+            aplicadas=cuenta[ResultadoOperacion.APLICADA],
+            duplicadas=cuenta[ResultadoOperacion.DUPLICADA],
+            conflictos=cuenta[ResultadoOperacion.CONFLICTO],
+            rechazadas=cuenta[ResultadoOperacion.RECHAZADA],
+        ),
+        resultados=[_resultado_operacion(r) for r in resultados],
+    )
+
+
+def _conflicto(c: ConflictoSincronizacion) -> s.ConflictoSalida:
+    return s.ConflictoSalida(**{**vars(c), "estado": c.estado.value, "resolucion": c.resolucion and c.resolucion.value})
+
+
+@router.get(
+    "/sincronizacion/conflictos",
+    response_model=list[s.ConflictoSalida],
+    tags=["HIST-3.3 Conflictos"],
+    responses={422: {"model": s.RespuestaError}},
+)
+def conflictos(estado: str | None = None, svc: GestionarConflictos = Depends(conflictos_uc)):
+    """Conflictos de sincronización (el más antiguo primero); ``estado`` = PENDIENTE o RESUELTO."""
+    return [_conflicto(c) for c in svc.listar_conflictos(estado)]
+
+
+@router.post(
+    "/sincronizacion/conflictos/{conflicto_id}/resolver",
+    response_model=s.ConflictoSalida,
+    tags=["HIST-3.3 Conflictos"],
+    responses={404: {"model": s.RespuestaError}, 409: {"model": s.RespuestaError}, 422: {"model": s.RespuestaError}},
+)
+def resolver_conflicto(
+    conflicto_id: str,
+    datos: s.ResolucionEntrada,
+    svc: GestionarConflictos = Depends(conflictos_uc),
+    usuario: str = Depends(usuario_actual),
+):
+    """Resuelve un conflicto. CONSERVAR_SERVIDOR: el dato del servidor gana (solo se agrega lo que no existía).
+    APLICAR_CLIENTE: el dato del dispositivo reemplaza al del servidor solo donde el dominio lo permite (campos
+    editables del niño, la hemoglobina de una evaluación, una visita o una asistencia sin evaluación que la respalde;
+    nunca los datos de identidad del niño: 422). DESCARTAR: se ignora la operación. 409 si ya estaba resuelto."""
+    return _conflicto(svc.resolver_conflicto(conflicto_id, datos.resolucion, usuario))
 
 
 def _item_personal(i: ItemAgendaPersonal) -> s.ItemAgendaPersonalSalida:

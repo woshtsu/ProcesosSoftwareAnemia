@@ -4,6 +4,19 @@ Configuración preparada el 2026-10-30; pendiente ejecución remota. Tras integr
 
 Si ya ejecutaste el SQL de la versión anterior (antes de este pull), ejecutar una sola vez `db/02_migracion_v2_0.sql` y después volver a ejecutar `db/02_supabase.sql`. No basta volver a ejecutar CREATE TABLE IF NOT EXISTS: no actualiza columnas. Para un proyecto vacío siguen aplicando los pasos siguientes con el SQL actualizado.
 
+### Versión 3.0 (sin conexión, sincronización y visitas): qué SQL ejecutar
+
+La versión 3.0.0-inc3 agrega tres tablas (`visita_domiciliaria`, `operacion_sincronizada` y `conflicto_sincronizacion`); no cambia ni elimina columnas de las tablas existentes.
+
+- **Proyecto vacío (nuevo):** ejecutar `db/01_esquema_postgresql.sql` y después `db/02_supabase.sql`, como en el paso 1. El esquema 3.0 ya incluye las tablas nuevas; **no** hay que ejecutar las migraciones.
+- **Base que ya está en 2.0** (esquema 2.0 con Supabase ya configurado): ejecutar una sola vez `db/03_migracion_v3_0.sql` y después volver a ejecutar `db/02_supabase.sql`, que activa RLS y revoca el acceso de `anon` y `authenticated` sobre las tablas nuevas. La migración usa `IF NOT EXISTS`, está en una transacción y puede repetirse sin efecto.
+- **Base que todavía está en 1.x:** ejecutar primero `db/02_migracion_v2_0.sql`, luego `db/03_migracion_v3_0.sql` y por último `db/02_supabase.sql`.
+- **SQLite de desarrollo:** `crear_esquema()` crea las tablas nuevas al arrancar; no requiere migración.
+
+Comprobación posterior: `select to_regclass('public.visita_domiciliaria'), to_regclass('public.operacion_sincronizada'), to_regclass('public.conflicto_sincronizacion');` debe devolver los tres nombres.
+
+Después de desplegar, cada dispositivo instala el nuevo service worker al abrir la aplicación con conexión (actualiza solo, `skipWaiting`); la cola de registros sin conexión vive en el navegador de cada equipo y se envía sola al reconectar.
+
 ## 1. Inicializar Supabase
 
 En el proyecto vacío, abrir **SQL Editor → New query**. Allí se ejecuta SQL:

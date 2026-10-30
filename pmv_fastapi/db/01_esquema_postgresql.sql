@@ -1,5 +1,5 @@
 -- =====================================================================
--- Esquema de datos — PostgreSQL 14+ (versión 2.0.0-inc2)
+-- Esquema de datos — PostgreSQL 14+ (versión 3.0.0-inc3)
 -- Sistema de Detección Temprana de Anemia Infantil — Junín
 -- Las restricciones CHECK repiten las reglas de plausibilidad del dominio
 -- (defensa en profundidad: la base rechaza datos imposibles aunque se
@@ -10,7 +10,7 @@
 -- dataset anonimizado de la DIRESA Junín ('DATASET_DIRESA_JUNIN') son
 -- seudónimos con código propio y esos campos pueden ser NULL. UNIQUE(dni)
 -- admite varios NULL en PostgreSQL, por lo que solo se valida el DNI cuando existe.
--- Para actualizar una base 1.x existente use db/02_migracion_v2_0.sql.
+-- Para actualizar una base 1.x existente use db/02_migracion_v2_0.sql; desde la 2.0 use db/03_migracion_v3_0.sql.
 -- =====================================================================
 
 CREATE TABLE IF NOT EXISTS nino (
@@ -85,6 +85,61 @@ CREATE TABLE IF NOT EXISTS asistencia_control (
 );
 
 CREATE INDEX IF NOT EXISTS ix_asistencia_nino ON asistencia_control (nino_id);
+
+-- VIS-3.5: a lo sumo una visita por niño y por día; solo una visita REALIZADA puede decir si consume el suplemento.
+CREATE TABLE IF NOT EXISTS visita_domiciliaria (
+    id                 VARCHAR(36) PRIMARY KEY,
+    nino_id            VARCHAR(36) NOT NULL REFERENCES nino (id) ON DELETE CASCADE,
+    fecha              DATE        NOT NULL,
+    resultado          VARCHAR(14) NOT NULL
+                       CONSTRAINT ck_visita_resultado CHECK (resultado IN ('REALIZADA', 'NO_ENCONTRADO', 'RECHAZADA')),
+    consume_suplemento VARCHAR(12) NOT NULL
+                       CONSTRAINT ck_visita_consumo CHECK (consume_suplemento IN ('SI', 'NO', 'DESCONOCIDO')),
+    observaciones      VARCHAR(500),
+    registrado_por     VARCHAR(60) NOT NULL,
+    creado_en          TIMESTAMPTZ NOT NULL,
+    CONSTRAINT uq_visita_nino_fecha UNIQUE (nino_id, fecha),
+    CONSTRAINT ck_visita_suplemento CHECK (resultado = 'REALIZADA' OR consume_suplemento = 'DESCONOCIDO')
+);
+CREATE INDEX IF NOT EXISTS ix_visita_domiciliaria_nino_id ON visita_domiciliaria (nino_id);
+
+-- HIST-3.2: la clave primaria id_operacion (UUID generado en el dispositivo) hace idempotente la sincronización.
+-- id_cliente guarda el id temporal de un niño registrado sin conexión para resolver las operaciones posteriores.
+CREATE TABLE IF NOT EXISTS operacion_sincronizada (
+    id_operacion   VARCHAR(36) PRIMARY KEY,
+    tipo           VARCHAR(24) NOT NULL,
+    id_dispositivo VARCHAR(60) NOT NULL,
+    resultado      VARCHAR(12) NOT NULL
+                   CONSTRAINT ck_operacion_resultado CHECK (resultado IN ('APLICADA', 'DUPLICADA', 'CONFLICTO', 'RESUELTA')),
+    id_recurso     VARCHAR(36),
+    id_cliente     VARCHAR(60),
+    fecha_local    TIMESTAMPTZ,
+    recibida_en    TIMESTAMPTZ NOT NULL
+);
+CREATE INDEX IF NOT EXISTS ix_operacion_cliente ON operacion_sincronizada (id_dispositivo, id_cliente);
+
+-- HIST-3.3: operación que chocó con un dato distinto del servidor; nunca se sobrescribe a ciegas.
+CREATE TABLE IF NOT EXISTS conflicto_sincronizacion (
+    id              VARCHAR(36) PRIMARY KEY,
+    id_operacion    VARCHAR(36) NOT NULL UNIQUE REFERENCES operacion_sincronizada (id_operacion) ON DELETE CASCADE,
+    tipo            VARCHAR(24) NOT NULL,
+    motivo          VARCHAR(400) NOT NULL,
+    nino_id         VARCHAR(36) NOT NULL REFERENCES nino (id) ON DELETE CASCADE,
+    id_recurso      VARCHAR(36) NOT NULL,
+    datos_cliente   JSONB       NOT NULL,
+    datos_servidor  JSONB       NOT NULL,
+    estado          VARCHAR(10) NOT NULL DEFAULT 'PENDIENTE'
+                    CONSTRAINT ck_conflicto_estado CHECK (estado IN ('PENDIENTE', 'RESUELTO')),
+    resolucion      VARCHAR(20)
+                    CONSTRAINT ck_conflicto_resolucion CHECK (
+                        resolucion IS NULL OR resolucion IN ('CONSERVAR_SERVIDOR', 'APLICAR_CLIENTE', 'DESCARTAR')),
+    registrado_por  VARCHAR(60) NOT NULL,
+    creado_en       TIMESTAMPTZ NOT NULL,
+    resuelto_en     TIMESTAMPTZ,
+    resuelto_por    VARCHAR(60)
+);
+CREATE INDEX IF NOT EXISTS ix_conflicto_sincronizacion_nino_id ON conflicto_sincronizacion (nino_id);
+CREATE INDEX IF NOT EXISTS ix_conflicto_sincronizacion_estado ON conflicto_sincronizacion (estado);
 
 -- Vista de apoyo para el seguimiento (HU-04): último control por niño.
 CREATE OR REPLACE VIEW v_ultimo_control AS
