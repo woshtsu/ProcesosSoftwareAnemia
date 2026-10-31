@@ -1,0 +1,147 @@
+{
+  "v3.0": {
+    "codigo_evaluado": "pmv_fastapi en el commit e920820 (3.0.0-inc3)",
+    "puntos": {
+      "B1": 1.0,
+      "B2": 0.5,
+      "B3": 0.0,
+      "B4": 1.0,
+      "B5": 0.0,
+      "B6": 0.5
+    },
+    "principal": {
+      "suma": 3.0,
+      "de_6": 6,
+      "pct": 50.0
+    },
+    "complementaria": {
+      "brechas": [
+        "B1",
+        "B2",
+        "B4",
+        "B6"
+      ],
+      "puntos": 3.0,
+      "pct": 75.0
+    },
+    "estricta": {
+      "brechas_con_1": 2,
+      "pct": 33.3
+    },
+    "sensibilidades_pct": {
+      "B6_igual_0": 41.7,
+      "B2_a_0_5_si_se_exige_envio_real_probado": null,
+      "B5_a_0_5_si_la_visita_priorizada_cuenta_como_busqueda_activa": 58.3
+    },
+    "rutas_clave_presentes": {
+      "B2": {
+        "POST /recordatorios/generar": false,
+        "GET /recordatorios": false,
+        "POST /recordatorios/{recordatorio_id}/respuesta": false,
+        "POST /notificaciones/whatsapp/webhook": false
+      },
+      "B3": {
+        "POST /ninos/{nino_id}/barreras": false,
+        "GET /ninos/{nino_id}/barreras": false,
+        "GET /alertas/barreras": false
+      },
+      "B4": {
+        "POST /ninos/{nino_id}/visitas": true,
+        "GET /ninos/{nino_id}/visitas": true,
+        "GET /visitas/priorizadas": true
+      },
+      "B6": {
+        "POST /sincronizacion": true,
+        "GET /sincronizacion/conflictos": true,
+        "POST /sincronizacion/conflictos/{conflicto_id}/resolver": true
+      }
+    },
+    "archivos_sin_conexion": {
+      "cola.js": true,
+      "sync.js": true
+    },
+    "ocurrencias_palabras_en_app": {
+      "recordatorio": 0,
+      "barrera": 0,
+      "riesgo": 0,
+      "abandono": 0,
+      "sms": 0,
+      "whatsapp": 0,
+      "push": 4
+    },
+    "n_rutas_http": 21
+  },
+  "v4.0": {
+    "codigo_evaluado": "pmv_fastapi en el commit e6886e2 (4.0.0-inc4)",
+    "puntos": {
+      "B1": 1.0,
+      "B2": 1.0,
+      "B3": 1.0,
+      "B4": 1.0,
+      "B5": 0.0,
+      "B6": 0.5
+    },
+    "principal": {
+      "suma": 4.5,
+      "de_6": 6,
+      "pct": 75.0
+    },
+    "complementaria": {
+      "brechas": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B6"
+      ],
+      "puntos": 4.5,
+      "pct": 90.0
+    },
+    "estricta": {
+      "brechas_con_1": 4,
+      "pct": 66.7
+    },
+    "sensibilidades_pct": {
+      "B6_igual_0": 66.7,
+      "B2_a_0_5_si_se_exige_envio_real_probado": 66.7,
+      "B5_a_0_5_si_la_visita_priorizada_cuenta_como_busqueda_activa": 83.3
+    },
+    "rutas_clave_presentes": {
+      "B2": {
+        "POST /recordatorios/generar": true,
+        "GET /recordatorios": true,
+        "POST /recordatorios/{recordatorio_id}/respuesta": true,
+        "POST /notificaciones/whatsapp/webhook": true
+      },
+      "B3": {
+        "POST /ninos/{nino_id}/barreras": true,
+        "GET /ninos/{nino_id}/barreras": true,
+        "GET /alertas/barreras": true
+      },
+      "B4": {
+        "POST /ninos/{nino_id}/visitas": true,
+        "GET /ninos/{nino_id}/visitas": true,
+        "GET /visitas/priorizadas": true
+      },
+      "B6": {
+        "POST /sincronizacion": true,
+        "GET /sincronizacion/conflictos": true,
+        "POST /sincronizacion/conflictos/{conflicto_id}/resolver": true
+      }
+    },
+    "archivos_sin_conexion": {
+      "cola.js": true,
+      "sync.js": true
+    },
+    "ocurrencias_palabras_en_app": {
+      "recordatorio": 216,
+      "barrera": 302,
+      "riesgo": 2,
+      "abandono": 0,
+      "sms": 22,
+      "whatsapp": 63,
+      "push": 4
+    },
+    "n_rutas_http": 30
+  }
+}

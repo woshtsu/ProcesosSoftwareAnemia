@@ -1,0 +1,149 @@
+{
+ "nota": "Una sola corrida de Locust (50 usuarios, 10/s, 60 s, mix comun, SQLite nueva, B150, AUTH_MODE=demo, FECHA_REFERENCIA=2026-10-16) de la version actual (4.0.0-inc4); sin repeticion ni control de v1.0 en la misma sesion",
+ "escenario": {
+  "version": "v2.0",
+  "locustfile": "locust_comun.py",
+  "sesion_de_referencia": "2026-10-17",
+  "corridas": {
+   "r1": {
+    "GET /api/ninos": {
+     "solicitudes": 669,
+     "fallos": 0,
+     "pct_fallos": 0.0,
+     "mediana_ms": 250.0,
+     "promedio_ms": 385.6,
+     "p95_ms": 1200.0,
+     "p99_ms": 2000.0,
+     "max_ms": 2325.246837999998,
+     "rps": 11.33
+    },
+    "GET /api/ninos/{id}": {
+     "solicitudes": 519,
+     "fallos": 0,
+     "pct_fallos": 0.0,
+     "mediana_ms": 59.0,
+     "promedio_ms": 184.9,
+     "p95_ms": 870.0,
+     "p99_ms": 1600.0,
+     "max_ms": 2287.72419500001,
+     "rps": 8.79
+    },
+    "GET /api/reportes/periodo": {
+     "solicitudes": 141,
+     "fallos": 0,
+     "pct_fallos": 0.0,
+     "mediana_ms": 150.0,
+     "promedio_ms": 309.4,
+     "p95_ms": 1200.0,
+     "p99_ms": 2200.0,
+     "max_ms": 2362.6186879999977,
+     "rps": 2.39
+    },
+    "POST /api/ninos": {
+     "solicitudes": 266,
+     "fallos": 0,
+     "pct_fallos": 0.0,
+     "mediana_ms": 130.0,
+     "promedio_ms": 328.0,
+     "p95_ms": 1300.0,
+     "p99_ms": 2300.0,
+     "max_ms": 2897.085715000003,
+     "rps": 4.51
+    },
+    "POST /api/validaciones/evaluacion": {
+     "solicitudes": 365,
+     "fallos": 0,
+     "pct_fallos": 0.0,
+     "mediana_ms": 24.0,
+     "promedio_ms": 54.4,
+     "p95_ms": 210.0,
+     "p99_ms": 310.0,
+     "max_ms": 334.03078599997116,
+     "rps": 6.18
+    },
+    "AGREGADO": {
+     "solicitudes": 1960,
+     "fallos": 0,
+     "pct_fallos": 0.0,
+     "mediana_ms": 120.0,
+     "promedio_ms": 257.5,
+     "p95_ms": 1100.0,
+     "p99_ms": 1800.0,
+     "max_ms": 2897.085715000003,
+     "rps": 33.2
+    }
+   }
+  },
+  "sesion_de_cada_corrida": {
+   "r1": "2026-10-17"
+  },
+  "promedio": {
+   "GET /api/ninos": {
+    "solicitudes": 669,
+    "fallos": 0,
+    "pct_fallos": 0.0,
+    "mediana_ms": 250.0,
+    "promedio_ms": 385.6,
+    "p95_ms": 1200.0,
+    "p99_ms": 2000.0,
+    "max_ms": 2325.25,
+    "rps": 11.33
+   },
+   "GET /api/ninos/{id}": {
+    "solicitudes": 519,
+    "fallos": 0,
+    "pct_fallos": 0.0,
+    "mediana_ms": 59.0,
+    "promedio_ms": 184.9,
+    "p95_ms": 870.0,
+    "p99_ms": 1600.0,
+    "max_ms": 2287.72,
+    "rps": 8.79
+   },
+   "GET /api/reportes/periodo": {
+    "solicitudes": 141,
+    "fallos": 0,
+    "pct_fallos": 0.0,
+    "mediana_ms": 150.0,
+    "promedio_ms": 309.4,
+    "p95_ms": 1200.0,
+    "p99_ms": 2200.0,
+    "max_ms": 2362.62,
+    "rps": 2.39
+   },
+   "POST /api/ninos": {
+    "solicitudes": 266,
+    "fallos": 0,
+    "pct_fallos": 0.0,
+    "mediana_ms": 130.0,
+    "promedio_ms": 328.0,
+    "p95_ms": 1300.0,
+    "p99_ms": 2300.0,
+    "max_ms": 2897.09,
+    "rps": 4.51
+   },
+   "POST /api/validaciones/evaluacion": {
+    "solicitudes": 365,
+    "fallos": 0,
+    "pct_fallos": 0.0,
+    "mediana_ms": 24.0,
+    "promedio_ms": 54.4,
+    "p95_ms": 210.0,
+    "p99_ms": 310.0,
+    "max_ms": 334.03,
+    "rps": 6.18
+   },
+   "AGREGADO": {
+    "solicitudes": 1960,
+    "fallos": 0,
+    "pct_fallos": 0.0,
+    "mediana_ms": 120.0,
+    "promedio_ms": 257.5,
+    "p95_ms": 1100.0,
+    "p99_ms": 1800.0,
+    "max_ms": 2897.09,
+    "rps": 33.2
+   }
+  }
+ }
+}

@@ -1,0 +1,12 @@
+# Pruebas de la version actual (4.0.0-inc4, commit e6886e2), 30/10/2026. Extracto de pytest --cov=app (unitarias, integracion, arquitectura) y de pytest tests/e2e
+# Comando: cd pmv_fastapi && python -m pytest tests/unitarias tests/integracion tests/arquitectura --cov=app --cov-report=term-missing
+Name                                                     Stmts   Miss Branch BrPart  Cover   Missing
+TOTAL                                                     4030      5    680      5    99%
+660 passed, 1 warning in 43.07s
+# Cobertura total (cobertura.xml: 4025+675 de 4030+680 lineas y ramas) = 99,79 %
+# Archivos de app/ con cobertura < 100 %
+app/adapters/inbound/http/autenticacion.py                 100      4     26      4    94%   96, 110, 120, 136->143, 140
+app/adapters/outbound/supabase_auth.py                      54      1     14      1    97%   64
+# E2E: python -m pytest tests/e2e -m e2e --no-cov  (segunda corrida, sin otra carga en la maquina): 28 passed. La primera corrida, hecha mientras se median otras cosas en una maquina de 2 CPU, tuvo 1 fallo por tiempo de espera (test_cp110_hist21_agenda_casos_especiales) que pasa aislado y en la repeticion.
+# Recoleccion: unitarias 416, integracion 219, arquitectura 25 (total 660); E2E 28
+# ruff check: sin hallazgos; ruff format --check: 142 archivos correctos; exportar_openapi --verificar: al dia (Python 3.13)
