@@ -28,7 +28,7 @@ INTEGRANTES DEL EQUIPO DE PROYECTO:
 
 FECHA DE ENTREGA: [pendiente: DD/MM/AAAA]
 PERIODO ACADÉMICO: 2026-20
-CORTE DE EVIDENCIAS: 30/10/2026 (código en la etiqueta v4.0-Inc4)
+CORTE DE EVIDENCIAS: 30/10/2026 (código en la etiqueta v4.0-Inc4); producción verificada el 31/10/2026
 ========================================================================================================
 ```
 
@@ -85,6 +85,7 @@ Los datos <mark>[pendiente: código de sección / NRC]</mark> y <mark>[pendiente
   - ANEXO A: Enlace del Video Demostrativo del Software
   - ANEXO B: Enlace del Repositorio de Código en GitHub
   - ANEXO C: GUIÓN TÉCNICO Y NARRATIVO DEL VIDEO DE DEMOSTRACIÓN DEL SOFTWARE
+  - ANEXO D: Cotejo de referencias
 - RÚBRICA DE EVALUACIÓN CUANTITATIVA POR NIVELES DE DESEMPEÑO (SOBRE 20 PUNTOS)
 
 ## ÍNDICE DE TABLAS
@@ -103,7 +104,7 @@ Los datos <mark>[pendiente: código de sección / NRC]</mark> y <mark>[pendiente
 - Tabla 12. Categoría normativa, actividad, producto de trabajo y responsables (R: ejecuta, Rv: revisa, A: aprueba; S3-4, Tabla 6; S11, Tabla 12).
 - Tabla 13. Verificación de la DoD en `v4.0-Inc4`.
 - Tabla 14. Descomposición por incremento con estimación, prioridad y resultado al 30/10/2026 (S3-4, Tablas 10, 17 y 19; S11, Tabla 5a).
-- Tabla 15. Plan frente a real por incremento. El porcentaje es el desvío en días sobre la duración planificada del sprint (cálculo propio); las fechas reales son las del commit...
+- Tabla 15. Plan frente a real por incremento. El porcentaje es el desvío en días sobre la duración planificada del sprint (cálculo propio); las fechas reales son las del...
 - Tabla 16. Historias del Incremento 1 con su criterio de aceptación y el resultado medido en `v4.0-Inc4` (S3-4, S10 Tabla 6).
 - Tabla 17. Resultado del Incremento 1 (`v1.0-PMV`) según las métricas GQM de S9 y la adenda.
 - Tabla 18. Evolución del producto por incremento (adenda S9, sección 4; S11, Tabla 5a). Las pruebas son unitarias, de integración y de arquitectura; los E2E se cuentan aparte.
@@ -114,51 +115,33 @@ Los datos <mark>[pendiente: código de sección / NRC]</mark> y <mark>[pendiente
 - Tabla 23. Puntaje de M3.1 por brecha e incremento (1 = mecanismo completo, operativo y probado; 0,5 = parcial; 0 = no; adenda S9, sección 3).
 - Tabla 24. Pruebas automáticas del repositorio en `v4.0-Inc4`, re-ejecutadas el 30/10/2026 (adenda S9, sección 4; S10, Tabla 8).
 - Tabla 25. Resumen de las fichas por incremento (S10, Tabla 7).
-- Tabla 26. Ficha de prueba funcional RF-01.
-- Tabla 27. Ficha de prueba funcional RF-02.
-- Tabla 28. Ficha de prueba funcional RF-03.
-- Tabla 29. Ficha de prueba funcional RF-04.
-- Tabla 30. Ficha de prueba funcional RF-05.
-- Tabla 31. Ficha de prueba funcional RF-06.
-- Tabla 32. Ficha de prueba funcional RF-07.
-- Tabla 33. Ficha de prueba funcional RF-08.
-- Tabla 34. Ficha de prueba funcional RF-09.
-- Tabla 35. Ficha de prueba funcional HIST-3.1.
-- Tabla 36. Ficha de prueba funcional HIST-3.1b.
-- Tabla 37. Ficha de prueba funcional HIST-3.2.
-- Tabla 38. Ficha de prueba funcional HIST-3.3.
-- Tabla 39. Ficha de prueba funcional HIST-3.4.
-- Tabla 40. Ficha de prueba funcional VIS-3.5.
-- Tabla 41. Ficha de prueba funcional HIST-4.1.
-- Tabla 42. Ficha de prueba funcional HIST-4.2.
-- Tabla 43. Ficha de prueba funcional HIST-4.3.
-- Tabla 44. Ficha de prueba funcional HIST-4.4.
-- Tabla 45. Ficha de prueba funcional de la autenticación.
-- Tabla 46. Índice FURPS+ por factor (S10, Tabla 5).
-- Tabla 47. Paleta real de la interfaz (`pmv_fastapi/app/web/estilos.css`), significado en salud infantil y contraste medido (S10, Tabla 9).
-- Tabla 48. Criterios WCAG evaluados con axe-core 4.14.0, Playwright y cálculo propio (S10, Tabla 11).
-- Tabla 49. Confiabilidad y rendimiento medidos (S10, Tablas 14 y 15; adenda S9, nota 4).
-- Tabla 50. Estado por categoría OWASP Top 10:2025 en `v4.0-Inc4` (S10, Tabla 21).
-- Tabla 51. Análisis estático y de dependencias (S10, Tablas 22 y 23).
-- Tabla 52. Hallazgos de seguridad H-1 a H-12 con su acción propuesta (S10, Tabla 24). Ninguna acción está aplicada en el código; las acciones 12 a 18 del plan de mejora CMMI...
-- Tabla 53. Nivel de capacidad por área de práctica al 30/10/2026 (S11, Tabla 6).
-- Tabla 54. Hallazgos de la evaluación con su causa raíz de proceso y estado al 30/10/2026 (S11, Tabla 10).
-- Tabla 55. Cinco porqués de H2 y H6 (S11, Tabla 11).
-- Tabla 56. Plan de mejora continua: acciones con mayor efecto esperado y estado al 30/10/2026 (S11, Tabla 12; 19 acciones en total).
-- Tabla 57. Etiquetas de versión del repositorio (S11, Anexo C y Figura 50).
-- Tabla 58. Guion técnico minuto a minuto.
-- Tabla 59. Autoevaluación frente a los cuatro criterios de la rúbrica.
+- Tabla 26. Índice FURPS+ por factor (S10, Tabla 5).
+- Tabla 27. Paleta real de la interfaz (`pmv_fastapi/app/web/estilos.css`), significado en salud infantil y contraste medido (S10, Tabla 9).
+- Tabla 28. Criterios WCAG evaluados con axe-core 4.14.0, Playwright y cálculo propio (S10, Tabla 11).
+- Tabla 29. Confiabilidad y rendimiento medidos (S10, Tablas 14 y 15; adenda S9, nota 4).
+- Tabla 30. Estado por categoría OWASP Top 10:2025 en `v4.0-Inc4` (S10, Tabla 21).
+- Tabla 31. Análisis estático y de dependencias (S10, Tablas 22 y 23).
+- Tabla 32. Hallazgos de seguridad H-1 a H-12 con su acción propuesta (S10, Tabla 24). Ninguna acción está aplicada en el código; las acciones 12 a 18 del plan de mejora CMMI...
+- Tabla 33. Nivel de capacidad por área de práctica al 30/10/2026 (S11, Tabla 6).
+- Tabla 34. Hallazgos de la evaluación con su causa raíz de proceso y estado al 30/10/2026 (S11, Tabla 10).
+- Tabla 35. Cinco porqués de H2 y H6 (S11, Tabla 11).
+- Tabla 36. Plan de mejora continua: acciones con mayor efecto esperado y estado al 30/10/2026 (S11, Tabla 12; 19 acciones en total).
+- Tabla 37. Etiquetas de versión del repositorio (S11, Anexo C y Figura 50).
+- Tabla 38. Guion técnico minuto a minuto, por incremento.
+- Tabla 39. Cotejo de referencias: referencia y secciones donde se cita.
+- Tabla 40. Autoevaluación frente a los cuatro criterios de la rúbrica.
+- Tabla 41. Resumen de evaluación en el formato de la plantilla (los puntajes los asigna el docente).
 
 ## ÍNDICE DE FIGURAS
 
 - Figura 1. Cascada de seguimiento del AS-IS (dataset DIRESA Junín, corte 30/06/2024), sobre todos los diagnosticados y con seguimiento posible.
 - Figura 2. Proceso AS-IS por carriles de actor con las notas de problema de cada actividad (S1).
 - Figura 3. Proceso TO-BE con el carril «Sistema» y las mejoras M1 a M6 (S1). Las decisiones clínicas siguen siendo humanas.
-- Figura 4. PR #8 (incrementos 3 y 4) en estado «Merged» con 6 verificaciones aprobadas; la línea de tiempo no muestra ninguna revisión «Approved» (captura de GitHub, 30/10/2026).
+- Figura 4. PR #8 (incrementos 3 y 4) en estado «Merged» con 6 verificaciones aprobadas; la línea de tiempo no muestra ninguna revisión «Approved» (captura de GitHub...
 - Figura 5. WBS: Proyecto, entregables E1 a E3, incrementos INC-1 a INC-6, épicas, historias y tareas del Incremento 1 (S3-4).
 - Figura 6. Cronograma planificado de ocho sprints con incrementos e hitos H0 a H7 (S3-4).
 - Figura 7. Hitos H2 a H4, plan frente a real (elaboración propia a partir de S3-4 y de los commits).
-- Figura 8. Carpeta `pmv_fastapi/app/` en GitHub con la etiqueta `v4.0-Inc4` seleccionada: `adapters`, `application`, `domain`, `ports` y `web`, y `main.py` (captura del 30/10/2026).
+- Figura 8. Carpeta `pmv_fastapi/app/` en GitHub con la etiqueta `v4.0-Inc4` seleccionada: `adapters`, `application`, `domain`, `ports` y `web`, y `main.py` (captura del...
 - Figura 9. Árbol real de `pmv_fastapi/app/` generado recorriendo el sistema de archivos.
 - Figura 10. Importaciones de una entidad del dominio: solo biblioteca estándar y módulos propios (GitHub, `v4.0-Inc4`).
 - Figura 11. Ejemplo de puerto de salida (`Notificador`), implementado por cuatro adaptadores (simulado, WhatsApp Cloud, SMS y respaldo).
@@ -169,68 +152,69 @@ Los datos <mark>[pendiente: código de sección / NRC]</mark> y <mark>[pendiente
 - Figura 16. pytest con cobertura: 660 pruebas aprobadas y 99,79 % de cobertura (S10, 30/10/2026).
 - Figura 17. 28 pruebas E2E con Playwright aprobadas.
 - Figura 18. Ejecución #14 del CI en la rama de los incrementos 3 y 4: `calidad-y-pruebas` (2 min 27 s) e `imagen` (22 s) en verde; `produccion` se omite fuera de `main`.
-- Figura 19. RF-01, captura 1. Formulario de registro con datos sintéticos válidos.
-- Figura 20. RF-01, captura 2. Confirmación y expediente creado tras «Guardar registro» (130 ms).
-- Figura 21. RF-02, captura 1. Expediente consultado.
-- Figura 22. RF-02, captura 2. Nuevo control agregado: el historial pasa de 2 a 3 evaluaciones.
-- Figura 23. RF-03, captura 1. Vista previa de Hb ajustada por altitud y clasificación.
-- Figura 24. RF-03, captura 2. Datos inválidos rechazados con mensajes por campo.
-- Figura 25. RF-04, captura 1. Listado de seguimiento (27 niños).
-- Figura 26. RF-04, captura 2. Filtro por clasificación «Moderada» (6 niños).
-- Figura 27. RF-05, captura 1. Reporte del periodo con indicadores y descarga CSV (86 ms).
-- Figura 28. RF-05, captura 2. Reporte en móvil (390x844).
-- Figura 29. RF-06, captura 1. Agenda normativa de 13 controles en el expediente.
-- Figura 30. RF-06, captura 2. Agenda del expediente en móvil.
-- Figura 31. RF-07, captura 1. Alertas de controles vencidos priorizadas (9 vencidos).
-- Figura 32. RF-07, captura 2. Filtro por prioridad MEDIA.
-- Figura 33. RF-08, captura 1. Agenda de 30 días (17 controles, 14 niños).
-- Figura 34. RF-08, captura 2. Rango mayor de 31 días rechazado.
-- Figura 35. RF-09, captura 1. Modal «No asistió» con motivo.
-- Figura 36. RF-09, captura 2. Inasistencia registrada y prioridad actualizada.
-- Figura 37. HIST-3.1, captura 1. Aplicación en línea antes de perder la conexión.
-- Figura 38. HIST-3.1, captura 2. Sin conexión: 2 operaciones pendientes en el dispositivo; el servidor no las tiene.
-- Figura 39. HIST-3.1b, captura 1. Recarga con el servidor detenido: la aplicación abre desde el caché con aviso.
-- Figura 40. HIST-3.2, captura 1. Panel de sincronización con pendientes, antes de enviar.
-- Figura 41. HIST-3.2, captura 2. Operaciones aplicadas; el reenvío se marca DUPLICADA y no duplica datos.
-- Figura 42. HIST-3.3, captura 1. Conflicto pendiente: dato distinto en el servidor.
-- Figura 43. HIST-3.3, captura 2. Conflicto resuelto conservando el dato del servidor.
-- Figura 44. HIST-3.4, captura 1. Cantidad de pendientes y desde cuándo.
-- Figura 45. HIST-3.4, captura 2. Panel «al día» sin pendientes.
-- Figura 46. VIS-3.5, captura 1. Visitas ordenadas por puntaje con desglose por componente.
-- Figura 47. VIS-3.5, captura 2. Registro de la visita domiciliaria.
-- Figura 48. HIST-4.1, captura 1. Recordatorios antes de generarlos.
-- Figura 49. HIST-4.1, captura 2. 24 recordatorios rotulados SIMULADO.
-- Figura 50. HIST-4.2, captura 1. Modal de respuesta del tutor (1 confirmo, 2 no puedo, 3 reprogramar).
-- Figura 51. HIST-4.2, captura 2. Estado tras el webhook con firma válida (en modo simulado el mensaje se ignora).
-- Figura 52. HIST-4.3, captura 1. Modal de barrera de acceso al tratamiento.
-- Figura 53. HIST-4.3, captura 2. Barrera sincronizada en el expediente.
-- Figura 54. HIST-4.4, captura 1. Alertas de barreras críticas.
-- Figura 55. HIST-4.4, captura 2. Visita priorizada con el componente BARRERA_CRITICA (puntaje 40,0).
-- Figura 56. AUTH. Pantalla de inicio de sesión, escritorio (axe: 0 violaciones).
-- Figura 57. AUTH. Pantalla de inicio de sesión, móvil (axe: 0 violaciones).
-- Figura 58. Salida de `furps_calculo.py` con el índice primario y el conservador (pie con comando, fecha y commit).
-- Figura 59. Paleta real con muestras, hexadecimales, contraste y significado.
-- Figura 60. Semáforo de severidad bajo simulación de deuteranopía, protanopía y escala de grises: los tonos moderada y severa se acercan, por eso el texto de cada estado acompaña...
-- Figura 61. Resumen de axe-core por pantalla y vista (14 pantallas, 4 modales y el inicio de sesión).
-- Figura 62. Foco visible al recorrer las pestañas con Tab.
-- Figura 63. Locust, 20 usuarios, 60 s, incrementos 3 y 4 (sincronización, visitas y recordatorios): p95 de 98 ms.
-- Figura 64. Locust, 100 usuarios, 60 s, incrementos 1 y 2: p95 de 2 000 ms, por encima del umbral de 800 ms.
-- Figura 65. Caos con PostgreSQL 16 temporal: 25 de 26 peticiones respondieron 500 durante la caída y la aplicación se recuperó a los 0,2 s.
-- Figura 66. semgrep: 554 reglas sobre 97 archivos, 151 hallazgos clasificados manualmente.
-- Figura 67. Pruebas dinámicas T01 a T32 contra el servidor local (sesión, CSRF, cookies, cabeceras, inyección, webhook y errores).
-- Figura 68. Comprobaciones estáticas E01 a E30 con su estado (CUMPLE, HALLAZGO, NO MEDIDO).
-- Figura 69. XSS dinámico: cargas inyectadas en cuatro campos y revisadas en seis pantallas (0 ejecuciones).
-- Figura 70. Manejador del webhook que responde 503 sin secreto y 403 con firma ausente o inválida, corregido en la revisión independiente (GitHub, `v4.0-Inc4`).
-- Figura 71. Sesión en cookies `HttpOnly` con protección CSRF (GitHub, `v4.0-Inc4`).
-- Figura 72. Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con `=`, `+`, `-` o `@` (GitHub, `v4.0-Inc4`).
-- Figura 73. Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez.
-- Figura 74. Ejecuciones del flujo «CI y producción» en `main`: la #16 (`c870a7e`, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026).
-- Figura 75. Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `coordinacion/TABLERO.md` (GitHub, 30/10/2026).
-- Figura 76. `settings/branches` devuelve 404 para la cuenta que tomó la captura: la protección de `main` no es verificable (GitHub, 30/10/2026).
-- Figura 77. Artefactos de proceso en el repositorio: la plantilla de PR, el *hook* de pre-commit, la convención de commits, `CODEOWNERS` y Dependabot no existen; SonarCloud sin...
-- Figura 78. Pruebas de regresión de la revisión independiente: 6 aprobadas (CP-357, CP-264b, CP-382b, CP-391b, CP-396 y CP-405).
-- Figura 79. Etiquetas del repositorio en GitHub: `v4.0-Inc4`, `v3.0-Inc3`, `v2.0-Inc2`, `v1.5.0-inc2-avance` y `v1.0-PMV`.
-- Figura 80. Flujo de CI/CD (`.github/workflows/ci.yml`) en `v4.0-Inc4`: tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`) sobre `ubuntu-24.04` y Python 3.11.
+- Figura 19. RF-01, captura 1. Formulario de registro con los datos sintéticos cargados antes de «Guardar registro»; la vista previa ya muestra Hb ajustada 9,1 g/dL y «Anemia...
+- Figura 20. RF-01, captura 2. Confirmación y expediente creado tras «Guardar registro» (130 ms); el DNI repetido respondió HTTP 409.
+- Figura 21. RF-02, captura 1. Expediente del DNI 71000001 recién consultado, con su historial de 2 evaluaciones y el formulario de nuevo control.
+- Figura 22. RF-02, captura 2. Nuevo control agregado: el historial pasa de 2 a 3 evaluaciones (la edición de datos se registró en `RF02_inc1_2_edicion_escritorio.png`).
+- Figura 23. RF-03, captura 1. Formulario con Hb 11,6 g/dL a 3 720 m: la vista previa muestra Hb ajustada 9,1 g/dL y «Anemia moderada».
+- Figura 24. RF-03, captura 2. Datos inválidos (DNI «123», Hb 25 g/dL) rechazados con mensajes por campo (HTTP 422); no se guardó nada.
+- Figura 25. RF-04, captura 1. Pestaña «Seguimiento» con el listado completo de niños, sin filtro.
+- Figura 26. RF-04, captura 2. Filtro por clasificación «Moderada» aplicado: 6 niños de 27.
+- Figura 27. RF-05, captura 1. Pestaña «Reporte» con el periodo cargado antes de pulsar «Generar» (captura de S9, `v1.0-PMV`; el pie de la imagen indica versión y fecha).
+- Figura 28. RF-05, captura 2. Reporte generado: 15 niños registrados, 15 evaluaciones, 13 evaluados y 77 % con anemia. En `v4.0-Inc4` el mismo flujo dio 28 registrados y un CSV...
+- Figura 29. RF-06, captura 1. Búsqueda del DNI 71000022 en «Seguimiento»: 1 niño con 2 controles vencidos (captura de S9, hito `v1.5.0-inc2-avance`).
+- Figura 30. RF-06, captura 2. Expediente con la agenda de 13 controles (2 cumplidos, 9 pendientes, 2 vencidos) en `v4.0-Inc4`.
+- Figura 31. RF-07, captura 1. Pestaña «Alertas» con los 9 controles vencidos priorizados (7 ALTA, 1 MEDIA, 1 BAJA).
+- Figura 32. RF-07, captura 2. Lista filtrada por prioridad MEDIA.
+- Figura 33. RF-08, captura 1. Pestaña «Agenda» con el rango de la semana cargado.
+- Figura 34. RF-08, captura 2. Agenda de 30 días: 17 controles de 14 niños; el rango mayor de 31 días se rechaza (`RF08_inc2_3_rango_invalido_escritorio.png`).
+- Figura 35. RF-09, captura 1. Modal «No asistió» con el motivo cargado antes de confirmar.
+- Figura 36. RF-09, captura 2. Inasistencia registrada y prioridad actualizada; los vencidos sin registro pasan de 9 a 8.
+- Figura 37. HIST-3.1, captura 1. Aplicación en línea (indicador «Al día») antes de cortar la conexión; los datos se digitan ya sin red.
+- Figura 38. HIST-3.1, captura 2. Sin conexión: 2 operaciones pendientes en el dispositivo; el servidor responde 404 para ese DNI.
+- Figura 39. HIST-3.1b, captura 1. Estado previo: aplicación en línea con el servidor activo, antes de detenerlo.
+- Figura 40. HIST-3.1b, captura 2. Recarga con el servidor detenido: la aplicación abre desde el caché con el aviso de «sin conexión» y 30 de 30 filas servidas desde el caché.
+- Figura 41. HIST-3.2, captura 1. Pestaña «Sincronización» con las operaciones pendientes, antes de volver la red.
+- Figura 42. HIST-3.2, captura 2. Red restablecida: operaciones aplicadas, indicador «Al día»; el reenvío se marca DUPLICADA y no duplica datos.
+- Figura 43. HIST-3.3, captura 1. Conflicto pendiente en «Sincronización»: el servidor tiene un dato distinto al del dispositivo.
+- Figura 44. HIST-3.3, captura 2. Conflicto resuelto conservando el dato del servidor; aparece «sin conflictos».
+- Figura 45. HIST-3.4, captura 1. Panel con «1 pendiente(s)» y desde cuándo, con el dispositivo sin conexión.
+- Figura 46. HIST-3.4, captura 2. Tras reconectar y sincronizar, el panel queda «al día» sin pendientes.
+- Figura 47. VIS-3.5, captura 1. Pestaña «Visitas»: 18 filas ordenadas por puntaje de 49,5 a 25,0, con desglose por componente.
+- Figura 48. VIS-3.5, captura 2. Modal de registro de la visita con el resultado, el suplemento y las observaciones cargados; tras confirmar, el niño sale del primer lugar de la...
+- Figura 49. HIST-4.1, captura 1. Pestaña «Recordatorios» antes de generar.
+- Figura 50. HIST-4.1, captura 2. 24 recordatorios rotulados SIMULADO («no se envió»); repetir la generación no duplica.
+- Figura 51. HIST-4.2, captura 1. Modal «Registrar respuesta» del tutor (1 confirmo, 2 no puedo, 3 reprogramar) con la opción cargada.
+- Figura 52. HIST-4.2, captura 2. Respuesta «No puede asistir» registrada por el personal. El webhook sin firma o con firma inválida respondió 403 y con firma válida 200, pero...
+- Figura 53. HIST-4.3, captura 1. Modal «Registrar barrera» con el tipo y el detalle cargados.
+- Figura 54. HIST-4.3, captura 2. Barrera sincronizada y visible en el expediente (antes de reconectar figuraba como pendiente...
+- Figura 55. HIST-4.4, captura 1. Pestaña «Alertas» con las alertas de barreras críticas.
+- Figura 56. HIST-4.4, captura 2. Visita priorizada con el componente BARRERA_CRITICA (40,0 puntos) y alerta ALTA.
+- Figura 57. AUTH, captura 1. Pantalla de acceso con el correo y la contraseña de prueba cargados antes de «Iniciar sesión» (axe: 0 violaciones).
+- Figura 58. AUTH, captura 2. Acceso en móvil (390x844). No hay captura de la aplicación tras el ingreso: ese resultado se verificó por aserciones (aplicación visible, correo en...
+- Figura 59. Salida de `furps_calculo.py` con el índice primario y el conservador (pie con comando, fecha y commit).
+- Figura 60. Paleta real con muestras, hexadecimales, contraste y significado.
+- Figura 61. Semáforo de severidad bajo simulación de deuteranopía, protanopía y escala de grises: los tonos moderada y severa se acercan, por eso el texto de cada estado...
+- Figura 62. Resumen de axe-core por pantalla y vista (14 pantallas, 4 modales y el inicio de sesión).
+- Figura 63. Foco visible al recorrer las pestañas con Tab.
+- Figura 64. Locust, 20 usuarios, 60 s, incrementos 3 y 4 (sincronización, visitas y recordatorios): p95 de 98 ms.
+- Figura 65. Locust, 100 usuarios, 60 s, incrementos 1 y 2: p95 de 2 000 ms, por encima del umbral de 800 ms.
+- Figura 66. Caos con PostgreSQL 16 temporal: 25 de 26 peticiones respondieron 500 durante la caída y la aplicación se recuperó a los 0,2 s.
+- Figura 67. semgrep: 554 reglas sobre 97 archivos, 151 hallazgos clasificados manualmente.
+- Figura 68. Pruebas dinámicas T01 a T32 contra el servidor local (sesión, CSRF, cookies, cabeceras, inyección, webhook y errores).
+- Figura 69. Comprobaciones estáticas E01 a E30 con su estado (CUMPLE, HALLAZGO, NO MEDIDO).
+- Figura 70. XSS dinámico: cargas inyectadas en cuatro campos y revisadas en seis pantallas (0 ejecuciones).
+- Figura 71. Manejador del webhook que responde 503 sin secreto y 403 con firma ausente o inválida, corregido en la revisión independiente (GitHub, `v4.0-Inc4`).
+- Figura 72. Sesión en cookies `HttpOnly` con protección CSRF (GitHub, `v4.0-Inc4`).
+- Figura 73. Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con `=`, `+`, `-` o `@` (GitHub, `v4.0-Inc4`).
+- Figura 74. Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez.
+- Figura 75. Ejecuciones del flujo «CI y producción» en `main`: la #16 (`c870a7e`, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026).
+- Figura 76. Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `coordinacion/TABLERO.md` (GitHub, 30/10/2026).
+- Figura 77. `settings/branches` devuelve 404 para la cuenta que tomó la captura: la protección de `main` no es verificable (GitHub, 30/10/2026).
+- Figura 78. Artefactos de proceso en el repositorio: la plantilla de PR, el *hook* de pre-commit, la convención de commits, `CODEOWNERS` y Dependabot no existen; SonarCloud sin...
+- Figura 79. Pruebas de regresión de la revisión independiente: 6 aprobadas (CP-357, CP-264b, CP-382b, CP-391b, CP-396 y CP-405).
+- Figura 80. Etiquetas del repositorio en GitHub: `v4.0-Inc4`, `v3.0-Inc3`, `v2.0-Inc2`, `v1.5.0-inc2-avance` y `v1.0-PMV`.
+- Figura 81. Flujo de CI/CD (`.github/workflows/ci.yml`) en `v4.0-Inc4`: tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`) sobre `ubuntu-24.04` y Python 3.11.
 
 ---
 
@@ -250,7 +234,7 @@ Los datos <mark>[pendiente: código de sección / NRC]</mark> y <mark>[pendiente
 
 ### 1.1 Antecedentes del Proyecto
 
-La anemia infantil es un problema de salud pública en Junín: la ENDES 2025 estimó en 39,0 % la anemia en niñas y niños de 6 a 35 meses de la región (INEI, 2026; cifra de contexto, no atribuible al sistema). La NTS N.° 213-MINSA/DGIESP-2024 (aprobada por la RM N.° 251-2024-MINSA y modificada por la RM N.° 429-2024-MINSA) exige tamizaje y controles de hemoglobina en fechas definidas, y el personal de las postas rurales debe cumplirlos con registros en papel y digitación posterior en el HIS.
+La anemia infantil es un problema de salud pública en Junín: la ENDES 2025 estimó en 39,0 % la anemia en niñas y niños de 6 a 35 meses de la región (INEI, 2026; cifra de contexto, no atribuible al sistema). La NTS N.° 213-MINSA/DGIESP-2024 (aprobada por la RM N.° 251-2024-MINSA y modificada por la RM N.° 429-2024-MINSA; Ministerio de Salud del Perú [MINSA], 2024) exige tamizaje y controles de hemoglobina en fechas definidas, y el personal de las postas rurales debe cumplirlos con registros en papel y digitación posterior en el HIS.
 
 El proyecto se desarrolló en el curso Procesos de Software (ASUC01702, 2026-20) siguiendo la secuencia de guías que se resume en la Tabla 2. El producto vigente es `pmv_fastapi/` (FastAPI, interfaz PWA en HTML/CSS/JS, SQLite en desarrollo y PostgreSQL en producción). El prototipo Flask de S5 y S6 (`anemia_junin/`: 266 pruebas, 96,69 % de cobertura) se conserva como antecedente; el PMV etiquetado `v1.0-PMV` (30/09/2026) ya es el producto FastAPI actual.
 
@@ -268,7 +252,7 @@ El proyecto se desarrolló en el curso Procesos de Software (ASUC01702, 2026-20)
 
 ### 1.2 Definición del Problema Organizacional
 
-El problema no es la falta de software sino que una oportunidad de dosaje, control o tratamiento no se convierta en seguimiento oportuno. El extracto de la DIRESA Junín (HIS; 12 486 diagnósticos del 14/01/2022 al 21/06/2024; corte 30/06/2024) cuantifica el AS-IS:
+El problema no es la falta de software sino que una oportunidad de dosaje, control o tratamiento no se convierta en seguimiento oportuno. El extracto de la DIRESA Junín (Dirección Regional de Salud Junín [DIRESA Junín], 2024; HIS; 12 486 diagnósticos del 14/01/2022 al 21/06/2024; corte 30/06/2024) cuantifica el AS-IS:
 
 **Tabla 3.** Línea base AS-IS del seguimiento de anemia en Junín (dataset DIRESA, `entregables/semana-09/metricas/asis_dataset_diresa.md`).
 
@@ -311,15 +295,15 @@ El triple registro (historia clínica, tarjeta de control y HIS), la agenda calc
 
 El enfoque de procesos exige analizar primero el proceso de la organización (AS-IS), identificar sus brechas y diseñar el TO-BE; solo entonces se define cómo el software soporta cada actividad. Justificar una solución solo con «usaremos IA o microservicios» invierte esa regla (Universidad Continental, 2026a). La relación que guía el diseño es *actividad mejorada → mejor resultado → valor organizacional*, expresada como cadena Entrada → Actividad → Resultado → Decisión → Acción → Valor y medida con cuatro tipos de indicador: de **proceso** (p. ej. tiempos), de **producto** (p. ej. disponibilidad, precisión), de **resultado** y de **valor organizacional** (reducción de pérdidas o riesgos).
 
-Sommerville (2011) caracteriza un proceso por su comprensión, estandarización, visibilidad, mensurabilidad, soportabilidad, aceptabilidad, fiabilidad, robustez, mantenibilidad y rapidez, y describe el ciclo de mejora como medición, análisis y cambio. Ese ciclo ordena la segunda mitad del informe (GQM, FURPS+, CMMI).
+Sommerville (2016) define la mejora de procesos como comprender los procesos existentes y cambiarlos para elevar la calidad del producto o reducir costos y tiempos de desarrollo. Ese enfoque ordena la segunda mitad del informe (GQM, FURPS+, CMMI).
 
 ### 2.2 Modelos de Ciclo de Vida y Sastrería de Procesos (Tailoring)
 
-El SWEBOK (IEEE Computer Society, 2014) organiza el área de procesos en definición, ciclos de vida, evaluación y mejora, medición y herramientas, e incluye la **adaptación del proceso** (*process adaptation*) como práctica explícita: el modelo se ajusta a los factores reales del proyecto en lugar de adoptarse por moda o por la herramienta disponible (Universidad Continental, 2026a). El modelo incremental entrega en cada incremento una funcionalidad operativa con las actividades de comunicación, planeación, modelado, construcción y despliegue (Pressman y Maxim, 2021). Sommerville (2011) distingue dos enfoques de mejora: el de **madurez** (buenas prácticas técnicas y de gestión, orientado a calidad y previsibilidad) y el **ágil** (entrega rápida de funcionalidad y respuesta al cambio). El proyecto combina ambos: iterativo-incremental como ciclo de vida, Scrum como marco de gestión y DevOps como prácticas de ingeniería (Schwaber y Sutherland, 2020; Kim et al., 2016).
+El SWEBOK (IEEE Computer Society, 2014) organiza el área de procesos en definición, ciclos de vida, evaluación y mejora, medición y herramientas, e incluye la **adaptación del proceso** (*process adaptation*) como práctica explícita: el modelo se ajusta a los factores reales del proyecto en lugar de adoptarse por moda o por la herramienta disponible (Universidad Continental, 2026a). El modelo incremental entrega en cada incremento una funcionalidad operativa con las actividades de comunicación, planeación, modelado, construcción y despliegue (Pressman y Maxim, 2021). Los modelos clásicos (cascada, espiral, desarrollo rápido y ágil) son alternativas entre las que se elige según el proyecto (O'Regan, 2017). Sommerville (2016) distingue dos enfoques de mejora: el de **madurez** (buenas prácticas técnicas y de gestión, orientado a calidad y previsibilidad) y el **ágil** (entrega rápida de funcionalidad y respuesta al cambio). El proyecto combina ambos: iterativo-incremental como ciclo de vida, Scrum como marco de gestión y DevOps como prácticas de ingeniería (Schwaber y Sutherland, 2020; Kim et al., 2016).
 
 ### 2.3 Categorización Normativa de Procesos de Software
 
-La ISO/IEC/IEEE 12207 (2017) agrupa los procesos del ciclo de vida del software en procesos de contrato, organizacionales, de proyecto y técnicos, además de procesos de implementación y soporte. El curso los simplifica en tres categorías que este informe adopta con fines pedagógicos, sin afirmar conformidad con la norma:
+La norma ISO/IEC/IEEE 12207 (ISO/IEC/IEEE, 2017) agrupa los procesos del ciclo de vida del software en procesos de contrato, organizacionales, de proyecto y técnicos, además de procesos de implementación y soporte. El curso los simplifica en tres categorías que este informe adopta con fines pedagógicos, sin afirmar conformidad con la norma:
 
 - **Principales:** requisitos, análisis y diseño, implementación, integración y pruebas, despliegue.
 - **De soporte:** gestión de configuración, aseguramiento de calidad, verificación y validación.
@@ -341,7 +325,7 @@ Cockburn (2005) propone aislar la lógica de aplicación de sus actores externos
 | **FURPS+** | Funcionalidad, Usabilidad, Confiabilidad (*Reliability*), Rendimiento (*Performance*) y Soportabilidad, más restricciones de implementación, interfaz, operaciones, empaquetamiento y legales (Grady y Caswell, 1987; Larman, 2003) | Índice ponderado F 30 %, U 15 %, R 15 %, P 15 %, S 10 %, + 15 %; variables medidas con scripts |
 | **WCAG 2.1 AA** | Contraste mínimo de 4,5:1 para texto (1.4.3) y 3:1 para componentes (1.4.11); el color no es el único canal (1.4.1); operable por teclado (2.1.1) (W3C, 2018) | Axe-core por pantalla y cálculo propio de contraste (factor U) |
 | **OWASP Top 10:2025** | Diez categorías de riesgo de aplicaciones web, A01 Broken Access Control a A10 Mishandling of Exceptional Conditions (OWASP Foundation, 2025) | 30 comprobaciones estáticas, 32 dinámicas, SAST y SCA (factor +) |
-| **CMMI-DEV** | Áreas de práctica agrupadas en gestión de procesos, gestión de proyectos, ingeniería y soporte (PP, PMC, REQM, CM, PPQA, VER, VAL, CAR…); niveles de madurez 1 a 5 en la representación escalonada (Sommerville, 2011) y niveles de capacidad por área en la continua (CMMI Institute, 2018) | Representación continua con niveles 0 a 3 por área: ESTIM, PLAN, PQA, CM, VER, VAL y CAR |
+| **CMMI-DEV** | Áreas de práctica agrupadas en gestión de procesos, gestión de proyectos, ingeniería y soporte (PP, PMC, REQM, CM, PPQA, VER, VAL, CAR…); niveles de madurez 1 a 5 en la representación escalonada (O'Regan, 2017) y niveles de capacidad por área en la continua (CMMI Institute, 2018) | Representación continua con niveles 0 a 3 por área: ESTIM, PLAN, PQA, CM, VER, VAL y CAR |
 
 
 ---
@@ -453,7 +437,7 @@ Se compararon siete enfoques con seis criterios (escala 1 a 5): Cascada 8, Incre
 | --- | --- | --- | --- |
 | Entrega incremental | 6 incrementos, 133 puntos de historia (SP) | 4 incrementos entregados (INC-1 a INC-4), 76 de 133 SP (57,1 %); cada uno con etiqueta (`v1.0-PMV`, `v2.0-Inc2`, `v3.0-Inc3`, `v4.0-Inc4`) | INC-5 (modelo predictivo) e INC-6 (tablero) sin construir |
 | Scrum | Sprints de 2 semanas, backlog con estimación, revisión con la posta, retrospectiva | Backlog estimado con SP (S3-4); seguimiento en `coordinacion/TABLERO.md` | Sin actas de revisión con el personal de salud; sin tablero de GitHub Projects («No projects found»); sin horas reales registradas |
-| DevOps | Integración continua, pruebas automáticas, despliegue automatizado | GitHub Actions con tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`); 660 pruebas y 28 E2E; despliegue a Render y Supabase desde `main` | SAST y auditoría de dependencias fuera del CI; protección de `main` no verificable |
+| DevOps | Integración continua, pruebas automáticas, despliegue automatizado | GitHub Actions con tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`); 660 pruebas y 28 E2E; despliegue a Render y Supabase desde `main`; producción verificada el 31/10/2026: `/openapi.json` declara `4.0.0-inc4` con 29 rutas | SAST y auditoría de dependencias fuera del CI; protección de `main` no verificable |
 | MLOps | Pipeline de datos, experimentación y monitoreo del modelo | No ejecutado | Depende del INC-5 |
 
 ---
@@ -463,7 +447,7 @@ Se compararon siete enfoques con seis criterios (escala 1 a 5): Cascada 8, Incre
 
 **Matriz 3.3.1: Categorización normativa, productos de trabajo y responsables RAE**
 
-La categorización es la simplificación del curso (sección 2.3), sin afirmar conformidad con la ISO/IEC/IEEE 12207. Los roles de la plantilla se asignan según la Tabla 1. La aprobación del Product Owner corresponde a un rol que el equipo **simuló**: no hubo un representante de la posta que aprobara historias ni incrementos.
+La categorización es la simplificación del curso (sección 2.3), sin afirmar conformidad con la ISO/IEC/IEEE 12207 (ISO/IEC/IEEE, 2017). Los roles de la plantilla se asignan según la Tabla 1. La aprobación del Product Owner corresponde a un rol que el equipo **simuló**: no hubo un representante de la posta que aprobara historias ni incrementos.
 
 **Tabla 12.** Categoría normativa, actividad, producto de trabajo y responsables (R: ejecuta, Rv: revisa, A: aprueba; S3-4, Tabla 6; S11, Tabla 12).
 
@@ -473,7 +457,7 @@ La categorización es la simplificación del curso (sección 2.3), sin afirmar c
 | Proceso principal | Diseño de la arquitectura hexagonal | 14 ADR, contrato OpenAPI (29 rutas), diagramas | Auqui H. | Huamani R. | Porras V. | `pmv_fastapi/docs/adr/`, `docs/openapi.json` |
 | Proceso principal | Construcción del código | Módulos ejecutables en `pmv_fastapi/app/` (142 archivos Python) | Auqui H. | Huamani R. | Huamani R. | Repositorio, etiqueta `v4.0-Inc4` |
 | Proceso principal | Pruebas | 660 pruebas pytest y 28 E2E con Playwright | Huamani R. | Porras V. | Huamani R. | `pmv_fastapi/tests/` |
-| Proceso principal | Despliegue | Imagen Docker, Render y Supabase | Auqui H. | Huamani R. | Porras V. | `Dockerfile`, trabajo `produccion` de `ci.yml` |
+| Proceso principal | Despliegue | Imagen Docker, Render y Supabase | Auqui H. | Huamani R. | Porras V. | `Dockerfile`, trabajo `produccion` de `ci.yml`; producción verificada el 31/10/2026 (Anexo B) |
 | Proceso de soporte | Gestión de configuración | Repositorio Git con 5 etiquetas y ramas `feature/*` | Auqui H. | no definido en S3-4 | no definido en S3-4 | Etiquetas `v1.0-PMV` a `v4.0-Inc4` (Anexo B) |
 | Proceso de soporte | Aseguramiento de calidad (PQA) | Ruff, informe de revisión independiente, defectos DEF-01 a DEF-09 | Huamani R. | Porras V. | Huamani R. | `registro_defectos*.md`, informe T-020 |
 | Proceso de soporte | Verificación y validación | 19 fichas de prueba con capturas | Huamani R. | Auqui H. | firma pendiente | Sección 3.6.4 |
@@ -508,6 +492,26 @@ La DoD mide cuánto código se ejecuta y no la variedad de entradas: con 99,79 %
 ### 3.4 EJE 4: Planificación, WBS, Priorización Valor/Riesgo y Control de Desviaciones
 
 **Estructura de descomposición del trabajo (WBS)**
+
+```text
+PROYECTO ANEMIA JUNÍN
+├── INC-1 PMV · Registro nominal y expediente (21 SP) ........ v1.0-PMV
+│   ├── HIST-1.1 / RF-01 Registro con evaluación inicial
+│   ├── HIST-1.2 / RF-02 Expediente y nuevo control
+│   ├── HIST-1.3 / RF-03 Validación con reglas clínicas
+│   ├── HIST-1.4 / RF-04 Listado de seguimiento
+│   └── HIST-1.5 / RF-05 Reporte del periodo
+├── INC-2 Agenda automática y alertas (18 SP) ................ v2.0-Inc2
+│   ├── HIST-2.1 / RF-06 Agenda normativa     ├── HIST-2.2 / RF-07 Alertas priorizadas
+│   └── HIST-2.3 / RF-08 Agenda del personal  └── HIST-2.4 / RF-09 Asistencia a controles
+├── INC-3 Sin conexión y sincronización (21 SP) .............. v3.0-Inc3
+│   ├── HIST-3.1 a HIST-3.4 Cola local, sincronización, conflictos, pendientes
+│   └── VIS-3.5 Visita domiciliaria priorizada
+├── INC-4 WhatsApp y barreras (16 SP) ........................ v4.0-Inc4
+│   └── HIST-4.1 a HIST-4.4 Recordatorios, respuesta del tutor, barreras, alertas críticas
+├── INC-5 Modelo predictivo (34 SP) .......................... no implementado
+└── INC-6 Tablero territorial (15 SP) ........................ no implementado
+```
 
 ![WBS del proyecto y tareas del Incremento 1.](../../diagramas/png/31_s34_wbs_proyecto.png)
 
@@ -674,7 +678,7 @@ Tres hallazgos honestos de la auditoría: (1) la conformidad **ultra estricta** 
 
 #### 3.6.2 Evaluación GQM de arquitectura, pruebas y valor
 
-Las tres metas se formularon con la plantilla de Basili (objeto, propósito, enfoque de calidad, punto de vista y contexto) y se midieron para los cuatro incrementos con los scripts de `herramientas/gqm/`.
+Las tres metas se formularon con la plantilla de Basili et al. (1994) (objeto, propósito, enfoque de calidad, punto de vista y contexto) y se midieron para los cuatro incrementos con los scripts de `herramientas/gqm/`.
 
 **Tabla 21.** Metas, preguntas y métricas GQM (S9, Tablas 8 y 12).
 
@@ -749,12 +753,14 @@ La meta acumulada propuesta en S9 (16,7 %, 33,3 %, 50,0 % y 66,7 % hasta INC-4) 
 
 **Figura 18.** Ejecución #14 del CI en la rama de los incrementos 3 y 4: `calidad-y-pruebas` (2 min 27 s) e `imagen` (22 s) en verde; `produccion` se omite fuera de `main`. Archivo: `../semana-10/evidencias/github/GH_actions_ejecucion_verde.png`.
 
+**Despliegue en producción.** El trabajo `produccion` publica `main` en Render con Supabase. El 31/10/2026 se verificó la URL pública (<https://softwareanemia.onrender.com>): `GET /api/salud` respondió `{"estado":"ok","fecha_hoy":"2024-06-30","fecha_referencia":"2024-06-30"}` y `GET /openapi.json` declara la versión `4.0.0-inc4` con 29 rutas, igual que el contrato de `v4.0-Inc4`. La aplicación desplegada usa un reloj fijo al corte del dataset (30/06/2024): sus agendas y vencimientos se calculan a esa fecha y no a la real. Las capturas de producción por incremento están marcadas en la sección 3.6.4 y en el Anexo B.
+
 La cobertura alta no garantizó ausencia de defectos: seis de los siete defectos del Incremento 1 y cinco de los incrementos 3 y 4 escaparon a las pruebas, porque estas verificaban casos válidos y no entradas hostiles ni concurrencia. La revisión independiente (commit `d2ab78b`) corrigió cinco defectos: el webhook de WhatsApp aceptaba cuerpos sin firma si faltaba el secreto (alta), el reenvío simultáneo de una operación duplicaba una evaluación (media), dos generaciones simultáneas de recordatorios enviaban el mensaje dos veces (media) y dos defectos de interfaz (baja; la adenda S9 los cuenta como uno). Cada corrección tiene prueba de regresión salvo los dos de interfaz.
 
 
 #### 3.6.4 Fichas de prueba funcional con evidencia fotográfica
 
-Cada ficha corresponde a un requerimiento o historia. Las capturas son del software en ejecución sobre `v4.0-Inc4` (Playwright con Chromium; escritorio 1366x768; datos sintéticos, `AUTH_MODE=demo`, 30/10/2026), producidas por `entregables/semana-10/metricas/capturar_software.py`; cada escenario incluye aserciones y, si una falla, queda «Rechazado». Las vistas móviles (390x844) de cada requerimiento están en `../semana-10/evidencias/software/`. El evaluador es el QA Lead y la firma manuscrita está pendiente.
+Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidencia Fotográfica» de la plantilla: encabezado, proyecto, incremento, requerimiento, caso de prueba, dato de entrada, resultado esperado, dos capturas (datos de entrada cargados y confirmación o resultado) y evaluación. Hay 20 fichas: los 19 escenarios de aceptación de los cuatro incrementos y la autenticación. Las capturas son del software en ejecución sobre `v4.0-Inc4` (Playwright con Chromium; escritorio 1366x768; datos sintéticos, `AUTH_MODE=demo`, 30/10/2026), producidas por `entregables/semana-10/metricas/capturar_software.py`; cada escenario incluye aserciones y, si una falla, queda «Rechazado». Excepciones: la captura 1 de RF-05 y de RF-06 y la captura 2 de RF-05 son de S9 sobre `v1.0-PMV` y sobre el hito `v1.5.0-inc2-avance` (el pie de la imagen indica versión y fecha). Los identificadores `CP-RF0X-01` son los de S9; los demás siguen la misma convención. Las vistas móviles (390x844) están en `../semana-10/evidencias/software/`. El evaluador es el QA Lead; la firma manuscrita está pendiente. Cada incremento cierra con el marcador de su captura en producción (<https://softwareanemia.onrender.com>); la aplicación desplegada usa un reloj fijo al 30/06/2024, por lo que sus fechas difieren de las de las capturas locales.
 
 **Tabla 25.** Resumen de las fichas por incremento (S10, Tabla 7).
 
@@ -764,467 +770,643 @@ Cada ficha corresponde a un requerimiento o historia. Las capturas son del softw
 | Inc. 2 (`v2.0-Inc2`) | RF-06 a RF-09 | 4/4 | 13 |
 | Inc. 3 (`v3.0-Inc3`) | HIST-3.1, HIST-3.1b, HIST-3.2, HIST-3.3, HIST-3.4, VIS-3.5 | 6/6 | 13 |
 | Inc. 4 (`v4.0-Inc4`) | HIST-4.1 a HIST-4.4 | 4/4 | 13 |
-| **Total** | **19 escenarios** | **19/19** | **54** |
+| **Total** | **19 escenarios** (más la ficha AUTH) | **19/19** | **54** |
 
+---
 
-**Ficha RF-01: Registro del niño con evaluación inicial (Inc. 1)**
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (RF-01)**
 
-**Tabla 26.** Ficha de prueba funcional RF-01.
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 1 (PMV), etiqueta `v1.0-PMV`
+- **REQUERIMIENTO:** RF-01 / HU-01 - Registro del niño con evaluación inicial (`POST /api/ninos`)
+- **CASO DE PRUEBA:** CP-RF01-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/integracion/test_api.py` y `tests/unitarias/test_casos_uso.py`)
+- **DATO DE ENTRADA:** { dni: "72000001", sexo: "F", fecha_nacimiento: "09/10/2025", altitud_m: 3720, hemoglobina_observada: 11.6, peso_kg: 8.4, talla_cm: 71 } (datos sintéticos); segundo envío con el mismo DNI
+- **RESULTADO ESPERADO:** Registro persistido, confirmación visible y expediente abierto en menos de 2 s; el DNI repetido se rechaza con HTTP 409.
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | RF-01 Registro del niño con evaluación inicial; `POST /api/ninos` |
-| Criterio de aceptación | Dado un formulario con datos válidos, cuando se pulsa «Guardar registro», entonces se confirma y se abre el expediente en menos de 2 s; con un DNI ya registrado la API responde 409. |
-| Dato de entrada | DNI sintético 72000001, Hb 11,6 g/dL, 3 720 m s. n. m. |
-| Resultado esperado | Registro persistido, confirmación visible y expediente abierto; DNI repetido rechazado. |
-| Resultado observado | Confirmación y expediente en 130 ms; DNI repetido: HTTP 409. |
-| Pruebas automáticas | `tests/integracion/test_api.py`, `tests/unitarias/test_casos_uso.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 19.** RF-01, captura 1. Formulario de registro con los datos sintéticos cargados antes de «Guardar registro»; la vista previa ya muestra Hb ajustada 9,1 g/dL y «Anemia moderada».
 
 ![RF-01, captura 1.](../semana-10/evidencias/software/RF01_inc1_1_entrada_escritorio.png)
 
-**Figura 19.** RF-01, captura 1. Formulario de registro con datos sintéticos válidos. Archivo: `../semana-10/evidencias/software/RF01_inc1_1_entrada_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF01_inc1_1_entrada_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 20.** RF-01, captura 2. Confirmación y expediente creado tras «Guardar registro» (130 ms); el DNI repetido respondió HTTP 409.
 
 ![RF-01, captura 2.](../semana-10/evidencias/software/RF01_inc1_2_resultado_escritorio.png)
 
-**Figura 20.** RF-01, captura 2. Confirmación y expediente creado tras «Guardar registro» (130 ms). Archivo: `../semana-10/evidencias/software/RF01_inc1_2_resultado_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF01_inc1_2_resultado_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha RF-02: Consulta y actualización del expediente; nuevo control (Inc. 1)**
+---
 
-**Tabla 27.** Ficha de prueba funcional RF-02.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (RF-02)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | RF-02 Consulta y actualización del expediente; nuevo control; `GET /api/ninos/dni/{dni}`, `PATCH /api/ninos/{id}`, `POST /api/ninos/{id}/evaluaciones` |
-| Criterio de aceptación | Dado un expediente existente, cuando se consulta, se edita un campo permitido y se agrega un control, entonces los cambios persisten y el historial pasa de 2 a 3 evaluaciones. |
-| Dato de entrada | DNI sintético 71000001; edición de un campo permitido; nuevo control con Hb válida. |
-| Resultado esperado | Cambios persistidos e historial con una evaluación más. |
-| Resultado observado | Historial de 2 a 3 evaluaciones. |
-| Pruebas automáticas | `tests/integracion/test_api.py`, `tests/unitarias/test_entidades.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 1 (PMV), etiqueta `v1.0-PMV`
+- **REQUERIMIENTO:** RF-02 / HU-02 - Consulta y actualización del expediente; nuevo control (`GET /api/ninos/dni/{dni}`, `PATCH /api/ninos/{id}`, `POST /api/ninos/{id}/evaluaciones`)
+- **CASO DE PRUEBA:** CP-RF02-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/integracion/test_api.py` y `tests/unitarias/test_entidades.py`)
+- **DATO DE ENTRADA:** { dni: "71000001", edición: { comunidad: "Llacuas", tutor_celular: "987654322" }, nuevo_control: { hemoglobina_observada: 11.5, peso_kg: 8.2, talla_cm: 69 } }
+- **RESULTADO ESPERADO:** Expediente consultado, campos permitidos actualizados y nuevo control persistido: el historial pasa de 2 a 3 evaluaciones.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 21.** RF-02, captura 1. Expediente del DNI 71000001 recién consultado, con su historial de 2 evaluaciones y el formulario de nuevo control.
 
 ![RF-02, captura 1.](../semana-10/evidencias/software/RF02_inc1_1_expediente_escritorio.png)
 
-**Figura 21.** RF-02, captura 1. Expediente consultado. Archivo: `../semana-10/evidencias/software/RF02_inc1_1_expediente_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF02_inc1_1_expediente_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 22.** RF-02, captura 2. Nuevo control agregado: el historial pasa de 2 a 3 evaluaciones (la edición de datos se registró en `RF02_inc1_2_edicion_escritorio.png`).
 
 ![RF-02, captura 2.](../semana-10/evidencias/software/RF02_inc1_3_nuevo_control_escritorio.png)
 
-**Figura 22.** RF-02, captura 2. Nuevo control agregado: el historial pasa de 2 a 3 evaluaciones. Archivo: `../semana-10/evidencias/software/RF02_inc1_3_nuevo_control_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF02_inc1_3_nuevo_control_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha RF-03: Validación con reglas clínicas (Inc. 1)**
+---
 
-**Tabla 28.** Ficha de prueba funcional RF-03.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (RF-03)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | RF-03 Validación con reglas clínicas; `POST /api/validaciones/evaluacion` |
-| Criterio de aceptación | Dado un formulario clínico, cuando se digita la Hb, entonces se muestran la Hb ajustada por altitud y la clasificación; con datos inválidos se rechaza con mensajes por campo (HTTP 422). |
-| Dato de entrada | Hb 11,6 g/dL a 3 720 m; datos inválidos: DNI «123» y Hb 25 g/dL. |
-| Resultado esperado | Vista previa con Hb ajustada y clasificación; rechazo sin guardar nada. |
-| Resultado observado | Hb ajustada 9,1 g/dL y «Anemia moderada»; rechazo con mensajes por campo (HTTP 422). |
-| Pruebas automáticas | `tests/unitarias/test_reglas_clinicas.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 1 (PMV), etiqueta `v1.0-PMV`
+- **REQUERIMIENTO:** RF-03 / HU-03 - Validación con reglas clínicas (`POST /api/validaciones/evaluacion`)
+- **CASO DE PRUEBA:** CP-RF03-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_reglas_clinicas.py`)
+- **DATO DE ENTRADA:** Válido: { hemoglobina_observada: 11.6, altitud_m: 3720 }. Inválido: { dni: "123", hemoglobina_observada: 25 }
+- **RESULTADO ESPERADO:** Con datos válidos, vista previa con Hb ajustada por altitud y clasificación; con datos inválidos, rechazo por campo (HTTP 422) sin guardar nada.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 23.** RF-03, captura 1. Formulario con Hb 11,6 g/dL a 3 720 m: la vista previa muestra Hb ajustada 9,1 g/dL y «Anemia moderada».
 
 ![RF-03, captura 1.](../semana-10/evidencias/software/RF03_inc1_1_vista_previa_escritorio.png)
 
-**Figura 23.** RF-03, captura 1. Vista previa de Hb ajustada por altitud y clasificación. Archivo: `../semana-10/evidencias/software/RF03_inc1_1_vista_previa_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF03_inc1_1_vista_previa_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 24.** RF-03, captura 2. Datos inválidos (DNI «123», Hb 25 g/dL) rechazados con mensajes por campo (HTTP 422); no se guardó nada.
 
 ![RF-03, captura 2.](../semana-10/evidencias/software/RF03_inc1_2_rechazo_escritorio.png)
 
-**Figura 24.** RF-03, captura 2. Datos inválidos rechazados con mensajes por campo. Archivo: `../semana-10/evidencias/software/RF03_inc1_2_rechazo_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF03_inc1_2_rechazo_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha RF-04: Listado de niños en seguimiento (Inc. 1)**
+---
 
-**Tabla 29.** Ficha de prueba funcional RF-04.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (RF-04)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | RF-04 Listado de niños en seguimiento; `GET /api/ninos` |
-| Criterio de aceptación | Dado un conjunto de niños, cuando se filtra por clasificación o se busca por comunidad, entonces el listado respeta el filtro. |
-| Dato de entrada | Base sintética de 27 niños; filtro «Moderada». |
-| Resultado esperado | Listado filtrado por clasificación. |
-| Resultado observado | 27 niños; 6 con «Moderada». |
-| Pruebas automáticas | `tests/integracion/test_api.py`, `tests/e2e/test_interfaz.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 1 (PMV), etiqueta `v1.0-PMV`
+- **REQUERIMIENTO:** RF-04 / HU-04 - Listado de niños en seguimiento (`GET /api/ninos`)
+- **CASO DE PRUEBA:** CP-RF04-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/integracion/test_api.py` y `tests/e2e/test_interfaz.py`)
+- **DATO DE ENTRADA:** Base sintética de 27 niños; filtro de clasificación «Moderada»
+- **RESULTADO ESPERADO:** Listado de seguimiento que respeta el filtro por clasificación.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 25.** RF-04, captura 1. Pestaña «Seguimiento» con el listado completo de niños, sin filtro.
 
 ![RF-04, captura 1.](../semana-10/evidencias/software/RF04_inc1_1_seguimiento_escritorio.png)
 
-**Figura 25.** RF-04, captura 1. Listado de seguimiento (27 niños). Archivo: `../semana-10/evidencias/software/RF04_inc1_1_seguimiento_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF04_inc1_1_seguimiento_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 26.** RF-04, captura 2. Filtro por clasificación «Moderada» aplicado: 6 niños de 27.
 
 ![RF-04, captura 2.](../semana-10/evidencias/software/RF04_inc1_2_filtro_moderada_escritorio.png)
 
-**Figura 26.** RF-04, captura 2. Filtro por clasificación «Moderada» (6 niños). Archivo: `../semana-10/evidencias/software/RF04_inc1_2_filtro_moderada_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF04_inc1_2_filtro_moderada_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha RF-05: Reporte del periodo en JSON y CSV (Inc. 1)**
+---
 
-**Tabla 30.** Ficha de prueba funcional RF-05.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (RF-05)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | RF-05 Reporte del periodo en JSON y CSV; `GET /api/reportes/periodo` |
-| Criterio de aceptación | Dado un periodo válido, cuando se pulsa «Generar», entonces se muestran los indicadores y se descarga el CSV en menos de 2 s. |
-| Dato de entrada | Periodo válido sobre la base sintética. |
-| Resultado esperado | Indicadores en pantalla y CSV descargable. |
-| Resultado observado | 28 registrados; CSV de 43 líneas en 86 ms. |
-| Pruebas automáticas | `tests/integracion/test_api.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 1 (PMV), etiqueta `v1.0-PMV`
+- **REQUERIMIENTO:** RF-05 / HU-05 - Reporte del periodo en JSON y CSV (`GET /api/reportes/periodo`)
+- **CASO DE PRUEBA:** CP-RF05-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/integracion/test_api.py`)
+- **DATO DE ENTRADA:** { desde: "01/09/2026", hasta: "16/10/2026" } sobre la base sintética (captura de S9 sobre `v1.0-PMV`)
+- **RESULTADO ESPERADO:** Indicadores del periodo en pantalla y CSV descargable en menos de 2 s.
 
-![RF-05, captura 1.](../semana-10/evidencias/software/RF05_inc1_1_reporte_escritorio.png)
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
 
-**Figura 27.** RF-05, captura 1. Reporte del periodo con indicadores y descarga CSV (86 ms). Archivo: `../semana-10/evidencias/software/RF05_inc1_1_reporte_escritorio.png`.
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-![RF-05, captura 2.](../semana-10/evidencias/software/RF05_inc1_2_reporte_movil.png)
+- **Descripción:** **Figura 27.** RF-05, captura 1. Pestaña «Reporte» con el periodo cargado antes de pulsar «Generar» (captura de S9, `v1.0-PMV`; el pie de la imagen indica versión y fecha).
 
-**Figura 28.** RF-05, captura 2. Reporte en móvil (390x844). Archivo: `../semana-10/evidencias/software/RF05_inc1_2_reporte_movil.png`.
+![RF-05, captura 1.](../semana-09/evidencias_capturas/RF-05/RF05_inc1_paso1_entrada.png)
 
+- **Archivo de Imagen:** `../semana-09/evidencias_capturas/RF-05/RF05_inc1_paso1_entrada.png`
 
-**Ficha RF-06: Agenda de controles según la normativa (Inc. 2)**
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-**Tabla 31.** Ficha de prueba funcional RF-06.
+- **Descripción:** **Figura 28.** RF-05, captura 2. Reporte generado: 15 niños registrados, 15 evaluaciones, 13 evaluados y 77 % con anemia. En `v4.0-Inc4` el mismo flujo dio 28 registrados y un CSV de 43 líneas en 86 ms (`RF05_inc1_1_reporte_escritorio.png`).
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | RF-06 Agenda de controles según la normativa; `GET /api/ninos/{id}/agenda` |
-| Criterio de aceptación | Dado un niño con anemia en tratamiento, cuando se abre su expediente, entonces se muestra la agenda normativa con estados cumplido, pendiente y vencido. |
-| Dato de entrada | DNI sintético 71000022 con anemia en tratamiento. |
-| Resultado esperado | Agenda normativa con estados por control. |
-| Resultado observado | Agenda de 13 controles con sus estados. |
-| Pruebas automáticas | `tests/unitarias/test_agenda.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+![RF-05, captura 2.](../semana-09/evidencias_capturas/RF-05/RF05_inc1_paso2_resultado.png)
 
-![RF-06, captura 1.](../semana-10/evidencias/software/RF06_inc2_1_agenda_expediente_escritorio.png)
+- **Archivo de Imagen:** `../semana-09/evidencias_capturas/RF-05/RF05_inc1_paso2_resultado.png`
 
-**Figura 29.** RF-06, captura 1. Agenda normativa de 13 controles en el expediente. Archivo: `../semana-10/evidencias/software/RF06_inc2_1_agenda_expediente_escritorio.png`.
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-![RF-06, captura 2.](../semana-10/evidencias/software/RF06_inc2_2_agenda_expediente_movil.png)
+**Captura en producción (PMV, Incremento 1):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando la pestaña «Registrar niño» con la vista previa de la clasificación (Hb 11,6 g/dL a 3 720 m: Hb ajustada 9,1 g/dL, «Anemia moderada») sin guardar el registro, y la pestaña «Reporte» del periodo>` (pendiente; archivo previsto `evidencias/produccion/PROD_01_inc1_registro_clasificacion.png`; ver `CAPTURAS_PENDIENTES.md`).
 
-**Figura 30.** RF-06, captura 2. Agenda del expediente en móvil. Archivo: `../semana-10/evidencias/software/RF06_inc2_2_agenda_expediente_movil.png`.
+---
 
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (RF-06)**
 
-**Ficha RF-07: Controles vencidos y alertas priorizadas (Inc. 2)**
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 2, etiqueta `v2.0-Inc2`
+- **REQUERIMIENTO:** RF-06 / HIST-2.1 - Agenda de controles según la normativa (`GET /api/ninos/{id}/agenda`)
+- **CASO DE PRUEBA:** CP-RF06-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_agenda.py`)
+- **DATO DE ENTRADA:** { dni: "71000022" } (niño con anemia leve en tratamiento)
+- **RESULTADO ESPERADO:** Agenda normativa en el expediente con estados cumplido, pendiente y vencido por control.
 
-**Tabla 32.** Ficha de prueba funcional RF-07.
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | RF-07 Controles vencidos y alertas priorizadas; `GET /api/alertas/controles-vencidos` |
-| Criterio de aceptación | Dado un conjunto de niños con controles, cuando se abre «Alertas» y se filtra por prioridad, entonces se listan los vencidos ordenados. |
-| Dato de entrada | Base sintética; filtro de prioridad MEDIA. |
-| Resultado esperado | Vencidos ordenados por prioridad, con filtro. |
-| Resultado observado | 9 vencidos: 7 ALTA, 1 MEDIA y 1 BAJA. |
-| Pruebas automáticas | `tests/unitarias/test_alertas.py`, `tests/integracion/test_api_inc2.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 29.** RF-06, captura 1. Búsqueda del DNI 71000022 en «Seguimiento»: 1 niño con 2 controles vencidos (captura de S9, hito `v1.5.0-inc2-avance`).
+
+![RF-06, captura 1.](../semana-09/evidencias_capturas/RF-06/RF06_inc2_paso1_entrada.png)
+
+- **Archivo de Imagen:** `../semana-09/evidencias_capturas/RF-06/RF06_inc2_paso1_entrada.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 30.** RF-06, captura 2. Expediente con la agenda de 13 controles (2 cumplidos, 9 pendientes, 2 vencidos) en `v4.0-Inc4`.
+
+![RF-06, captura 2.](../semana-10/evidencias/software/RF06_inc2_1_agenda_expediente_escritorio.png)
+
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF06_inc2_1_agenda_expediente_escritorio.png`
+
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+---
+
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (RF-07)**
+
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 2, etiqueta `v2.0-Inc2`
+- **REQUERIMIENTO:** RF-07 / HIST-2.2 - Controles vencidos y alertas priorizadas (`GET /api/alertas/controles-vencidos`)
+- **CASO DE PRUEBA:** CP-RF07-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_alertas.py` y `tests/integracion/test_api_inc2.py`)
+- **DATO DE ENTRADA:** Base sintética con 9 controles vencidos; filtro de prioridad MEDIA
+- **RESULTADO ESPERADO:** Controles vencidos ordenados por prioridad, con filtro por prioridad.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 31.** RF-07, captura 1. Pestaña «Alertas» con los 9 controles vencidos priorizados (7 ALTA, 1 MEDIA, 1 BAJA).
 
 ![RF-07, captura 1.](../semana-10/evidencias/software/RF07_inc2_1_alertas_escritorio.png)
 
-**Figura 31.** RF-07, captura 1. Alertas de controles vencidos priorizadas (9 vencidos). Archivo: `../semana-10/evidencias/software/RF07_inc2_1_alertas_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF07_inc2_1_alertas_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 32.** RF-07, captura 2. Lista filtrada por prioridad MEDIA.
 
 ![RF-07, captura 2.](../semana-10/evidencias/software/RF07_inc2_2_filtro_media_escritorio.png)
 
-**Figura 32.** RF-07, captura 2. Filtro por prioridad MEDIA. Archivo: `../semana-10/evidencias/software/RF07_inc2_2_filtro_media_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF07_inc2_2_filtro_media_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha RF-08: Agenda del personal por rango de fechas (Inc. 2)**
+---
 
-**Tabla 33.** Ficha de prueba funcional RF-08.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (RF-08)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | RF-08 Agenda del personal por rango de fechas; `GET /api/agenda` |
-| Criterio de aceptación | Dado el personal del establecimiento, cuando consulta un rango de hasta 31 días, entonces ve los controles por día; un rango mayor se rechaza. |
-| Dato de entrada | Rangos de 7 y 30 días; rango mayor de 31 días. |
-| Resultado esperado | Controles por día; rango excesivo rechazado. |
-| Resultado observado | 30 días: 17 controles de 14 niños; el rango mayor se rechaza. |
-| Pruebas automáticas | `tests/unitarias/test_agenda_personal.py`, `tests/e2e/test_interfaz_inc2_final.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 2, etiqueta `v2.0-Inc2`
+- **REQUERIMIENTO:** RF-08 / HIST-2.3 - Agenda del personal por rango de fechas (`GET /api/agenda`)
+- **CASO DE PRUEBA:** CP-RF08-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_agenda_personal.py` y `tests/e2e/test_interfaz_inc2_final.py`)
+- **DATO DE ENTRADA:** Rangos de 7 y 30 días; rango mayor de 31 días para la validación
+- **RESULTADO ESPERADO:** Controles agrupados por día para un rango de hasta 31 días; un rango mayor se rechaza.
 
-![RF-08, captura 1.](../semana-10/evidencias/software/RF08_inc2_2_agenda_30_dias_escritorio.png)
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
 
-**Figura 33.** RF-08, captura 1. Agenda de 30 días (17 controles, 14 niños). Archivo: `../semana-10/evidencias/software/RF08_inc2_2_agenda_30_dias_escritorio.png`.
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-![RF-08, captura 2.](../semana-10/evidencias/software/RF08_inc2_3_rango_invalido_escritorio.png)
+- **Descripción:** **Figura 33.** RF-08, captura 1. Pestaña «Agenda» con el rango de la semana cargado.
 
-**Figura 34.** RF-08, captura 2. Rango mayor de 31 días rechazado. Archivo: `../semana-10/evidencias/software/RF08_inc2_3_rango_invalido_escritorio.png`.
+![RF-08, captura 1.](../semana-10/evidencias/software/RF08_inc2_1_agenda_semana_escritorio.png)
 
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF08_inc2_1_agenda_semana_escritorio.png`
 
-**Ficha RF-09: Registro de asistencia a un control (Inc. 2)**
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-**Tabla 34.** Ficha de prueba funcional RF-09.
+- **Descripción:** **Figura 34.** RF-08, captura 2. Agenda de 30 días: 17 controles de 14 niños; el rango mayor de 31 días se rechaza (`RF08_inc2_3_rango_invalido_escritorio.png`).
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | RF-09 Registro de asistencia a un control; `POST /api/ninos/{id}/controles/{codigo}/asistencia` |
-| Criterio de aceptación | Dado un control programado, cuando se registra «No asistió» con motivo, entonces queda la marca de inasistencia y sube la prioridad. |
-| Dato de entrada | Control programado; «No asistió» con motivo. |
-| Resultado esperado | Marca de inasistencia y prioridad elevada. |
-| Resultado observado | Vencidos sin registro de 9 a 8; prioridad actualizada. |
-| Pruebas automáticas | `tests/unitarias/test_asistencia.py`, `tests/e2e/test_interfaz_inc2_final.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+![RF-08, captura 2.](../semana-10/evidencias/software/RF08_inc2_2_agenda_30_dias_escritorio.png)
+
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF08_inc2_2_agenda_30_dias_escritorio.png`
+
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+---
+
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (RF-09)**
+
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 2, etiqueta `v2.0-Inc2`
+- **REQUERIMIENTO:** RF-09 / HIST-2.4 - Registro de asistencia a un control (`POST /api/ninos/{id}/controles/{codigo}/asistencia`)
+- **CASO DE PRUEBA:** CP-RF09-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_asistencia.py` y `tests/e2e/test_interfaz_inc2_final.py`)
+- **DATO DE ENTRADA:** Control vencido de un niño sintético; «No asistió» con motivo
+- **RESULTADO ESPERADO:** Marca de inasistencia registrada y prioridad de la alerta actualizada.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 35.** RF-09, captura 1. Modal «No asistió» con el motivo cargado antes de confirmar.
 
 ![RF-09, captura 1.](../semana-10/evidencias/software/RF09_inc2_1_modal_inasistencia_escritorio.png)
 
-**Figura 35.** RF-09, captura 1. Modal «No asistió» con motivo. Archivo: `../semana-10/evidencias/software/RF09_inc2_1_modal_inasistencia_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF09_inc2_1_modal_inasistencia_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 36.** RF-09, captura 2. Inasistencia registrada y prioridad actualizada; los vencidos sin registro pasan de 9 a 8.
 
 ![RF-09, captura 2.](../semana-10/evidencias/software/RF09_inc2_2_inasistencia_registrada_escritorio.png)
 
-**Figura 36.** RF-09, captura 2. Inasistencia registrada y prioridad actualizada. Archivo: `../semana-10/evidencias/software/RF09_inc2_2_inasistencia_registrada_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/RF09_inc2_2_inasistencia_registrada_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha HIST-3.1: Registro sin conexión (cola en el dispositivo) (Inc. 3)**
+**Captura en producción (Incremento 2):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando las pestañas «Agenda» y «Alertas» (controles vencidos priorizados) con el aviso de fecha de referencia 30/06/2024 del reloj fijo del dataset>` (pendiente; archivo previsto `evidencias/produccion/PROD_02_inc2_agenda_alertas.png`; ver `CAPTURAS_PENDIENTES.md`).
 
-**Tabla 35.** Ficha de prueba funcional HIST-3.1.
+---
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | HIST-3.1 Registro sin conexión (cola en el dispositivo); cola IndexedDB (`cola.js`) y service worker (`sw.js`) |
-| Criterio de aceptación | Dado que no hay conexión, cuando se registra un niño, una evaluación y una visita, entonces quedan guardados en el dispositivo con indicador de pendientes y el servidor no los tiene. |
-| Dato de entrada | DNI sintético 72300001, Hb 9,4 g/dL, sin red. |
-| Resultado esperado | Operaciones en la cola local con indicador de pendientes. |
-| Resultado observado | 2 operaciones pendientes; el servidor responde 404 para ese DNI. |
-| Pruebas automáticas | `tests/e2e/test_inc3_sin_conexion.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (HIST-3.1)**
+
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 3, etiqueta `v3.0-Inc3`
+- **REQUERIMIENTO:** HIST-3.1 - Registro sin conexión (cola en el dispositivo); cola IndexedDB (`cola.js`) y service worker (`sw.js`)
+- **CASO DE PRUEBA:** CP-HIST31-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/e2e/test_inc3_sin_conexion.py`)
+- **DATO DE ENTRADA:** Sin red: { dni: "72300001", hemoglobina_observada: 9.4 } y un nuevo control { hemoglobina_observada: 10.1, peso_kg: 8.6, talla_cm: 72 }
+- **RESULTADO ESPERADO:** Las operaciones quedan en la cola local con indicador de pendientes y el servidor no las tiene.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 37.** HIST-3.1, captura 1. Aplicación en línea (indicador «Al día») antes de cortar la conexión; los datos se digitan ya sin red.
 
 ![HIST-3.1, captura 1.](../semana-10/evidencias/software/HIST31_inc3_1_en_linea_escritorio.png)
 
-**Figura 37.** HIST-3.1, captura 1. Aplicación en línea antes de perder la conexión. Archivo: `../semana-10/evidencias/software/HIST31_inc3_1_en_linea_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST31_inc3_1_en_linea_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 38.** HIST-3.1, captura 2. Sin conexión: 2 operaciones pendientes en el dispositivo; el servidor responde 404 para ese DNI.
 
 ![HIST-3.1, captura 2.](../semana-10/evidencias/software/HIST31_inc3_2_pendientes_sin_conexion_escritorio.png)
 
-**Figura 38.** HIST-3.1, captura 2. Sin conexión: 2 operaciones pendientes en el dispositivo; el servidor no las tiene. Archivo: `../semana-10/evidencias/software/HIST31_inc3_2_pendientes_sin_conexion_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST31_inc3_2_pendientes_sin_conexion_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha HIST-3.1b: Apertura sin conexión desde el caché (Inc. 3)**
+---
 
-**Tabla 36.** Ficha de prueba funcional HIST-3.1b.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (HIST-3.1b)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | HIST-3.1b Apertura sin conexión desde el caché; service worker (`sw.js`) |
-| Criterio de aceptación | Dado que no hay servidor ni red, cuando se recarga la aplicación, entonces el shell y las lecturas se sirven desde el service worker con aviso. |
-| Dato de entrada | Servidor detenido; recarga de la aplicación. |
-| Resultado esperado | Aplicación abierta desde el caché con aviso. |
-| Resultado observado | 30 de 30 filas servidas desde el caché. |
-| Pruebas automáticas | `tests/e2e/test_inc3_sin_conexion.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 3, etiqueta `v3.0-Inc3`
+- **REQUERIMIENTO:** HIST-3.1b - Apertura sin conexión desde el caché; service worker (`sw.js`)
+- **CASO DE PRUEBA:** CP-HIST31b-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/e2e/test_inc3_sin_conexion.py`)
+- **DATO DE ENTRADA:** Servidor detenido y red cortada; recarga de la aplicación
+- **RESULTADO ESPERADO:** La aplicación abre desde el caché con aviso y muestra las lecturas guardadas.
 
-![HIST-3.1b, captura 1.](../semana-10/evidencias/software/HIST31_inc3_3_recarga_sin_conexion_escritorio.png)
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
 
-**Figura 39.** HIST-3.1b, captura 1. Recarga con el servidor detenido: la aplicación abre desde el caché con aviso. Archivo: `../semana-10/evidencias/software/HIST31_inc3_3_recarga_sin_conexion_escritorio.png`.
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 39.** HIST-3.1b, captura 1. Estado previo: aplicación en línea con el servidor activo, antes de detenerlo.
+
+![HIST-3.1b, captura 1.](../semana-10/evidencias/software/HIST31_inc3_1_en_linea_escritorio.png)
+
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST31_inc3_1_en_linea_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 40.** HIST-3.1b, captura 2. Recarga con el servidor detenido: la aplicación abre desde el caché con el aviso de «sin conexión» y 30 de 30 filas servidas desde el caché.
+
+![HIST-3.1b, captura 2.](../semana-10/evidencias/software/HIST31_inc3_3_recarga_sin_conexion_escritorio.png)
+
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST31_inc3_3_recarga_sin_conexion_escritorio.png`
+
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
 `<captura de pantalla de un teléfono móvil real, con red intermitente, mostrando la cola de pendientes y la sincronización al recuperar la señal>` (pendiente: sin dispositivo real; ver `CAPTURAS_PENDIENTES.md`).
 
+---
 
-**Ficha HIST-3.2: Sincronización idempotente al reconectar (Inc. 3)**
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (HIST-3.2)**
 
-**Tabla 37.** Ficha de prueba funcional HIST-3.2.
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 3, etiqueta `v3.0-Inc3`
+- **REQUERIMIENTO:** HIST-3.2 - Sincronización idempotente al reconectar (`POST /api/sincronizacion`)
+- **CASO DE PRUEBA:** CP-HIST32-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_sincronizacion.py` y `tests/integracion/test_api_inc3.py`)
+- **DATO DE ENTRADA:** Operaciones pendientes de HIST-3.1; reenvío de la misma operación (mismo identificador)
+- **RESULTADO ESPERADO:** Cada operación se aplica una sola vez; el reenvío figura como DUPLICADA y no duplica datos.
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | HIST-3.2 Sincronización idempotente al reconectar; `POST /api/sincronizacion` |
-| Criterio de aceptación | Dado que hay pendientes, cuando vuelve la red, entonces cada operación se aplica una sola vez y reenviar la misma no duplica. |
-| Dato de entrada | Operaciones pendientes de HIST-3.1; reenvío de la misma operación. |
-| Resultado esperado | Operación APLICADA una vez; el reenvío figura como DUPLICADA. |
-| Resultado observado | Aplicadas sin duplicar datos; reenvío marcado DUPLICADA. |
-| Pruebas automáticas | `tests/unitarias/test_sincronizacion.py`, `tests/integracion/test_api_inc3.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 41.** HIST-3.2, captura 1. Pestaña «Sincronización» con las operaciones pendientes, antes de volver la red.
 
 ![HIST-3.2, captura 1.](../semana-10/evidencias/software/HIST32_inc3_1_panel_antes_de_sincronizar_escritorio.png)
 
-**Figura 40.** HIST-3.2, captura 1. Panel de sincronización con pendientes, antes de enviar. Archivo: `../semana-10/evidencias/software/HIST32_inc3_1_panel_antes_de_sincronizar_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST32_inc3_1_panel_antes_de_sincronizar_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 42.** HIST-3.2, captura 2. Red restablecida: operaciones aplicadas, indicador «Al día»; el reenvío se marca DUPLICADA y no duplica datos.
 
 ![HIST-3.2, captura 2.](../semana-10/evidencias/software/HIST32_inc3_2_sincronizado_escritorio.png)
 
-**Figura 41.** HIST-3.2, captura 2. Operaciones aplicadas; el reenvío se marca DUPLICADA y no duplica datos. Archivo: `../semana-10/evidencias/software/HIST32_inc3_2_sincronizado_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST32_inc3_2_sincronizado_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha HIST-3.3: Resolución de conflictos sin sobrescribir a ciegas (Inc. 3)**
+---
 
-**Tabla 38.** Ficha de prueba funcional HIST-3.3.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (HIST-3.3)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | HIST-3.3 Resolución de conflictos sin sobrescribir a ciegas; `GET /api/sincronizacion/conflictos`, `POST /api/sincronizacion/conflictos/{id}/resolver` |
-| Criterio de aceptación | Dado un dato distinto en el servidor, cuando se sincroniza, entonces queda un conflicto pendiente y el personal decide. |
-| Dato de entrada | DNI sintético 72300003 con dato distinto en el servidor. |
-| Resultado esperado | Conflicto pendiente; el personal decide. |
-| Resultado observado | 1 conflicto resuelto conservando el dato del servidor. |
-| Pruebas automáticas | `tests/unitarias/test_conflictos.py`, `tests/integracion/test_api_inc3.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 3, etiqueta `v3.0-Inc3`
+- **REQUERIMIENTO:** HIST-3.3 - Resolución de conflictos sin sobrescribir a ciegas (`GET /api/sincronizacion/conflictos`, `POST /api/sincronizacion/conflictos/{id}/resolver`)
+- **CASO DE PRUEBA:** CP-HIST33-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_conflictos.py` y `tests/integracion/test_api_inc3.py`)
+- **DATO DE ENTRADA:** { dni: "72300003" } con un dato distinto en el servidor; control registrado sin conexión; decisión «Conservar servidor»
+- **RESULTADO ESPERADO:** Queda un conflicto pendiente y el personal decide; no se sobrescribe a ciegas.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 43.** HIST-3.3, captura 1. Conflicto pendiente en «Sincronización»: el servidor tiene un dato distinto al del dispositivo.
 
 ![HIST-3.3, captura 1.](../semana-10/evidencias/software/HIST33_inc3_1_conflicto_escritorio.png)
 
-**Figura 42.** HIST-3.3, captura 1. Conflicto pendiente: dato distinto en el servidor. Archivo: `../semana-10/evidencias/software/HIST33_inc3_1_conflicto_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST33_inc3_1_conflicto_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 44.** HIST-3.3, captura 2. Conflicto resuelto conservando el dato del servidor; aparece «sin conflictos».
 
 ![HIST-3.3, captura 2.](../semana-10/evidencias/software/HIST33_inc3_2_conflicto_resuelto_escritorio.png)
 
-**Figura 43.** HIST-3.3, captura 2. Conflicto resuelto conservando el dato del servidor. Archivo: `../semana-10/evidencias/software/HIST33_inc3_2_conflicto_resuelto_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST33_inc3_2_conflicto_resuelto_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha HIST-3.4: Ver lo pendiente y desde cuándo (Inc. 3)**
+---
 
-**Tabla 39.** Ficha de prueba funcional HIST-3.4.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (HIST-3.4)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | HIST-3.4 Ver lo pendiente y desde cuándo; pestaña «Sincronización» |
-| Criterio de aceptación | Dado un dispositivo con pendientes, cuando se mira la cabecera o la pestaña «Sincronización», entonces se ve cuántos hay y desde cuándo. |
-| Dato de entrada | DNI sintético 72300004 registrado sin conexión. |
-| Resultado esperado | Contador y antigüedad de lo pendiente. |
-| Resultado observado | «1 pendiente(s)»; después de sincronizar, el panel queda al día. |
-| Pruebas automáticas | `tests/e2e/test_inc3_sin_conexion.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 3, etiqueta `v3.0-Inc3`
+- **REQUERIMIENTO:** HIST-3.4 - Ver lo pendiente y desde cuándo; pestaña «Sincronización»
+- **CASO DE PRUEBA:** CP-HIST34-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/e2e/test_inc3_sin_conexion.py`)
+- **DATO DE ENTRADA:** { dni: "72300004" } registrado sin conexión
+- **RESULTADO ESPERADO:** Contador de pendientes y antigüedad visibles en la cabecera y en la pestaña «Sincronización».
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 45.** HIST-3.4, captura 1. Panel con «1 pendiente(s)» y desde cuándo, con el dispositivo sin conexión.
 
 ![HIST-3.4, captura 1.](../semana-10/evidencias/software/HIST34_inc3_1_panel_pendientes_escritorio.png)
 
-**Figura 44.** HIST-3.4, captura 1. Cantidad de pendientes y desde cuándo. Archivo: `../semana-10/evidencias/software/HIST34_inc3_1_panel_pendientes_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST34_inc3_1_panel_pendientes_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 46.** HIST-3.4, captura 2. Tras reconectar y sincronizar, el panel queda «al día» sin pendientes.
 
 ![HIST-3.4, captura 2.](../semana-10/evidencias/software/HIST34_inc3_2_panel_al_dia_escritorio.png)
 
-**Figura 45.** HIST-3.4, captura 2. Panel «al día» sin pendientes. Archivo: `../semana-10/evidencias/software/HIST34_inc3_2_panel_al_dia_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST34_inc3_2_panel_al_dia_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha VIS-3.5: Visita domiciliaria priorizada (Inc. 3)**
+---
 
-**Tabla 40.** Ficha de prueba funcional VIS-3.5.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (VIS-3.5)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | VIS-3.5 Visita domiciliaria priorizada; `GET /api/visitas/priorizadas` |
-| Criterio de aceptación | Dado el conjunto de niños en tratamiento, cuando se abre «Visitas», entonces la lista va ordenada por puntaje con desglose y se puede registrar la visita. |
-| Dato de entrada | Base sintética con niños en tratamiento. |
-| Resultado esperado | Lista ordenada por puntaje explicable; registro de la visita. |
-| Resultado observado | 18 filas ordenadas de 49,5 a 25,0 con desglose por componente. |
-| Pruebas automáticas | `tests/unitarias/test_visitas.py`, `tests/integracion/test_api_inc3.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 3, etiqueta `v3.0-Inc3`
+- **REQUERIMIENTO:** VIS-3.5 - Visita domiciliaria priorizada (`GET /api/visitas/priorizadas`)
+- **CASO DE PRUEBA:** CP-VIS35-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_visitas.py` y `tests/integracion/test_api_inc3.py`)
+- **DATO DE ENTRADA:** Base sintética con niños en tratamiento; visita registrada con { resultado: "REALIZADA", suplemento: "SI", observaciones: "Familia receptiva" }
+- **RESULTADO ESPERADO:** Lista ordenada por puntaje explicable con desglose por componente; la visita se puede registrar.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 47.** VIS-3.5, captura 1. Pestaña «Visitas»: 18 filas ordenadas por puntaje de 49,5 a 25,0, con desglose por componente.
 
 ![VIS-3.5, captura 1.](../semana-10/evidencias/software/VIS35_inc3_1_visitas_desglose_escritorio.png)
 
-**Figura 46.** VIS-3.5, captura 1. Visitas ordenadas por puntaje con desglose por componente. Archivo: `../semana-10/evidencias/software/VIS35_inc3_1_visitas_desglose_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/VIS35_inc3_1_visitas_desglose_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 48.** VIS-3.5, captura 2. Modal de registro de la visita con el resultado, el suplemento y las observaciones cargados; tras confirmar, el niño sale del primer lugar de la lista.
 
 ![VIS-3.5, captura 2.](../semana-10/evidencias/software/VIS35_inc3_2_modal_visita_escritorio.png)
 
-**Figura 47.** VIS-3.5, captura 2. Registro de la visita domiciliaria. Archivo: `../semana-10/evidencias/software/VIS35_inc3_2_modal_visita_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/VIS35_inc3_2_modal_visita_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha HIST-4.1: Recordatorio de control (SIMULADO) (Inc. 4)**
+**Captura en producción (Incremento 3):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando la pestaña «Sincronización» (indicador «Al día», sin pendientes ni conflictos) y la pestaña «Visitas» con la lista priorizada, el puntaje y su desglose>` (pendiente; archivo previsto `evidencias/produccion/PROD_03_inc3_sincronizacion_visitas.png`; ver `CAPTURAS_PENDIENTES.md`).
 
-**Tabla 41.** Ficha de prueba funcional HIST-4.1.
+---
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | HIST-4.1 Recordatorio de control (SIMULADO); `POST /api/recordatorios/generar` |
-| Criterio de aceptación | Dado niños con control próximo o vencido, cuando se generan recordatorios, entonces los mensajes salen rotulados SIMULADO y repetir la generación no duplica. |
-| Dato de entrada | Base sintética; generación de recordatorios dos veces. |
-| Resultado esperado | Mensajes rotulados SIMULADO, sin duplicados. |
-| Resultado observado | 24 mensajes SIMULADO; la repetición no duplica. |
-| Pruebas automáticas | `tests/unitarias/test_recordatorios.py`, `tests/integracion/test_api_inc4.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (HIST-4.1)**
+
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 4, etiqueta `v4.0-Inc4`
+- **REQUERIMIENTO:** HIST-4.1 - Recordatorio de control (SIMULADO) (`POST /api/recordatorios/generar`)
+- **CASO DE PRUEBA:** CP-HIST41-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_recordatorios.py` y `tests/integracion/test_api_inc4.py`)
+- **DATO DE ENTRADA:** Base sintética con niños con control próximo o vencido; «Generar recordatorios de hoy» dos veces
+- **RESULTADO ESPERADO:** Mensajes rotulados SIMULADO (sin envío real) y sin duplicados al repetir la generación.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 49.** HIST-4.1, captura 1. Pestaña «Recordatorios» antes de generar.
 
 ![HIST-4.1, captura 1.](../semana-10/evidencias/software/HIST41_inc4_1_recordatorios_antes_escritorio.png)
 
-**Figura 48.** HIST-4.1, captura 1. Recordatorios antes de generarlos. Archivo: `../semana-10/evidencias/software/HIST41_inc4_1_recordatorios_antes_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST41_inc4_1_recordatorios_antes_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 50.** HIST-4.1, captura 2. 24 recordatorios rotulados SIMULADO («no se envió»); repetir la generación no duplica.
 
 ![HIST-4.1, captura 2.](../semana-10/evidencias/software/HIST41_inc4_2_recordatorios_simulados_escritorio.png)
 
-**Figura 49.** HIST-4.1, captura 2. 24 recordatorios rotulados SIMULADO. Archivo: `../semana-10/evidencias/software/HIST41_inc4_2_recordatorios_simulados_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST41_inc4_2_recordatorios_simulados_escritorio.png`
+
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
 `<captura de pantalla del teléfono del tutor mostrando el recordatorio recibido por WhatsApp o SMS>` (pendiente: el envío real nunca se probó; ver `CAPTURAS_PENDIENTES.md`).
 
+---
 
-**Ficha HIST-4.2: Confirmación del tutor (personal y webhook firmado) (Inc. 4)**
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (HIST-4.2)**
 
-**Tabla 42.** Ficha de prueba funcional HIST-4.2.
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 4, etiqueta `v4.0-Inc4`
+- **REQUERIMIENTO:** HIST-4.2 - Confirmación del tutor (personal y webhook firmado) (`POST /api/recordatorios/{id}/respuesta` y webhook de WhatsApp)
+- **CASO DE PRUEBA:** CP-HIST42-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_recordatorios.py` y `tests/e2e/test_inc4_notificaciones.py`)
+- **DATO DE ENTRADA:** Respuesta 1, 2 o 3 registrada por el personal («No puede asistir» con barrera); webhook con firma válida, ausente e inválida
+- **RESULTADO ESPERADO:** Respuesta registrada; el webhook sin firma válida responde 403.
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | HIST-4.2 Confirmación del tutor (personal y webhook firmado); `POST /api/recordatorios/{id}/respuesta` y webhook de WhatsApp |
-| Criterio de aceptación | Dado un recordatorio enviado, cuando el tutor responde 1, 2 o 3 (personal o webhook con firma válida), entonces queda registrada; sin firma o con firma inválida el webhook responde 403. |
-| Dato de entrada | Respuesta 1, 2 o 3; webhook con firma válida, ausente e inválida. |
-| Resultado esperado | Respuesta registrada por el personal; webhook sin firma válida rechazado. |
-| Resultado observado | Respuesta «No puede asistir» con barrera registrada por el personal; webhook sin firma o con firma inválida: HTTP 403; con firma válida: HTTP 200, pero en modo simulado el mensaje se ignora (no hay canal real al que asociarlo). |
-| Pruebas automáticas | `tests/unitarias/test_recordatorios.py`, `tests/e2e/test_inc4_notificaciones.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 51.** HIST-4.2, captura 1. Modal «Registrar respuesta» del tutor (1 confirmo, 2 no puedo, 3 reprogramar) con la opción cargada.
 
 ![HIST-4.2, captura 1.](../semana-10/evidencias/software/HIST42_inc4_1_modal_respuesta_escritorio.png)
 
-**Figura 50.** HIST-4.2, captura 1. Modal de respuesta del tutor (1 confirmo, 2 no puedo, 3 reprogramar). Archivo: `../semana-10/evidencias/software/HIST42_inc4_1_modal_respuesta_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST42_inc4_1_modal_respuesta_escritorio.png`
 
-![HIST-4.2, captura 2.](../semana-10/evidencias/software/HIST42_inc4_3_tras_webhook_escritorio.png)
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-**Figura 51.** HIST-4.2, captura 2. Estado tras el webhook con firma válida (en modo simulado el mensaje se ignora). Archivo: `../semana-10/evidencias/software/HIST42_inc4_3_tras_webhook_escritorio.png`.
+- **Descripción:** **Figura 52.** HIST-4.2, captura 2. Respuesta «No puede asistir» registrada por el personal. El webhook sin firma o con firma inválida respondió 403 y con firma válida 200, pero en modo simulado el mensaje se ignora (sin canal real que asociar; `HIST42_inc4_3_tras_webhook_escritorio.png`).
 
+![HIST-4.2, captura 2.](../semana-10/evidencias/software/HIST42_inc4_2_respuesta_registrada_escritorio.png)
 
-**Ficha HIST-4.3: Barreras de acceso al tratamiento (Inc. 4)**
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST42_inc4_2_respuesta_registrada_escritorio.png`
 
-**Tabla 43.** Ficha de prueba funcional HIST-4.3.
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | HIST-4.3 Barreras de acceso al tratamiento; `POST/GET /api/ninos/{id}/barreras` |
-| Criterio de aceptación | Dado un niño, cuando se registra una barrera (tipo y detalle), también sin conexión, entonces queda en el expediente y se sincroniza. |
-| Dato de entrada | Barrera de un tipo con detalle, registrada sin conexión. |
-| Resultado esperado | Barrera pendiente de sincronizar y luego en el expediente. |
-| Resultado observado | Barrera registrada sin conexión y sincronizada al volver la red. |
-| Pruebas automáticas | `tests/unitarias/test_barreras.py`, `tests/integracion/test_api_inc4.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+---
+
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (HIST-4.3)**
+
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 4, etiqueta `v4.0-Inc4`
+- **REQUERIMIENTO:** HIST-4.3 - Barreras de acceso al tratamiento (`POST/GET /api/ninos/{id}/barreras`)
+- **CASO DE PRUEBA:** CP-HIST43-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_barreras.py` y `tests/integracion/test_api_inc4.py`)
+- **DATO DE ENTRADA:** Barrera «Falta de transporte» con detalle, registrada sin conexión
+- **RESULTADO ESPERADO:** Barrera pendiente de sincronizar y, al volver la red, en el expediente.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 53.** HIST-4.3, captura 1. Modal «Registrar barrera» con el tipo y el detalle cargados.
 
 ![HIST-4.3, captura 1.](../semana-10/evidencias/software/HIST43_inc4_1_modal_barrera_escritorio.png)
 
-**Figura 52.** HIST-4.3, captura 1. Modal de barrera de acceso al tratamiento. Archivo: `../semana-10/evidencias/software/HIST43_inc4_1_modal_barrera_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST43_inc4_1_modal_barrera_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 54.** HIST-4.3, captura 2. Barrera sincronizada y visible en el expediente (antes de reconectar figuraba como pendiente: `HIST43_inc4_2_barrera_pendiente_sin_conexion_escritorio.png`).
 
 ![HIST-4.3, captura 2.](../semana-10/evidencias/software/HIST43_inc4_3_barrera_sincronizada_escritorio.png)
 
-**Figura 53.** HIST-4.3, captura 2. Barrera sincronizada en el expediente. Archivo: `../semana-10/evidencias/software/HIST43_inc4_3_barrera_sincronizada_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST43_inc4_3_barrera_sincronizada_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha HIST-4.4: Alerta de barreras críticas y suma a la visita priorizada (Inc. 4)**
+---
 
-**Tabla 44.** Ficha de prueba funcional HIST-4.4.
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (HIST-4.4)**
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | HIST-4.4 Alerta de barreras críticas y suma a la visita priorizada; `GET /api/alertas/barreras` |
-| Criterio de aceptación | Dado un niño con rechazo o efectos adversos, o 2 o más barreras en 60 días, cuando se abre «Alertas» o «Visitas», entonces hay alerta ALTA y el componente BARRERA_CRITICA en el puntaje. |
-| Dato de entrada | Niño con barrera grave (rechazo o efectos adversos). |
-| Resultado esperado | Alerta ALTA y componente BARRERA_CRITICA en la visita. |
-| Resultado observado | Alerta ALTA; BARRERA_CRITICA con 40,0 puntos. |
-| Pruebas automáticas | `tests/unitarias/test_barreras.py`, `tests/integracion/test_api_inc4.py` |
-| Evaluación | **APROBADO** · 30/10/2026 · QA Lead (Huamani Rodriguez, Jean Piero); firma pendiente |
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Incremento 4, etiqueta `v4.0-Inc4`
+- **REQUERIMIENTO:** HIST-4.4 - Alerta de barreras críticas y suma a la visita priorizada (`GET /api/alertas/barreras`)
+- **CASO DE PRUEBA:** CP-HIST44-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/unitarias/test_barreras.py` y `tests/integracion/test_api_inc4.py`)
+- **DATO DE ENTRADA:** Niño con barrera grave (rechazo del tratamiento o efectos adversos), o 2 o más barreras en 60 días
+- **RESULTADO ESPERADO:** Alerta de prioridad ALTA y componente BARRERA_CRITICA en el puntaje de la visita.
+
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
+
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
+
+- **Descripción:** **Figura 55.** HIST-4.4, captura 1. Pestaña «Alertas» con las alertas de barreras críticas.
 
 ![HIST-4.4, captura 1.](../semana-10/evidencias/software/HIST44_inc4_1_alertas_barreras_criticas_escritorio.png)
 
-**Figura 54.** HIST-4.4, captura 1. Alertas de barreras críticas. Archivo: `../semana-10/evidencias/software/HIST44_inc4_1_alertas_barreras_criticas_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST44_inc4_1_alertas_barreras_criticas_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 56.** HIST-4.4, captura 2. Visita priorizada con el componente BARRERA_CRITICA (40,0 puntos) y alerta ALTA.
 
 ![HIST-4.4, captura 2.](../semana-10/evidencias/software/HIST44_inc4_2_visita_con_barrera_critica_escritorio.png)
 
-**Figura 55.** HIST-4.4, captura 2. Visita priorizada con el componente BARRERA_CRITICA (puntaje 40,0). Archivo: `../semana-10/evidencias/software/HIST44_inc4_2_visita_con_barrera_critica_escritorio.png`.
+- **Archivo de Imagen:** `../semana-10/evidencias/software/HIST44_inc4_2_visita_con_barrera_critica_escritorio.png`
 
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Ficha AUTH: Inicio de sesión con Supabase Auth (anterior al Inc. 3)**
+**Captura en producción (Incremento 4):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando la pestaña «Recordatorios» con los mensajes rotulados SIMULADO (o el estado real del canal, si está configurado) y la pestaña «Alertas» con las barreras críticas>` (pendiente; archivo previsto `evidencias/produccion/PROD_04_inc4_recordatorios_barreras.png`; ver `CAPTURAS_PENDIENTES.md`).
 
-**Tabla 45.** Ficha de prueba funcional de la autenticación.
+---
 
-| Campo | Detalle |
-| --- | --- |
-| Requerimiento | AUTH, inicio y cierre de sesión (ADR-011); sesión en cookies HttpOnly con protección CSRF |
-| Criterio de aceptación | Dado que hay un usuario de Supabase, cuando inicia sesión con correo y contraseña, entonces la sesión queda en cookies HttpOnly con protección CSRF, la API clínica rechaza las peticiones sin sesión y cerrar la sesión la invalida; una credencial errónea muestra un mensaje de error |
-| Resultado observado | 21 pruebas de integración con Supabase **simulado** y 2 E2E (escritorio y móvil) aprobadas; 27 de 27 operaciones no públicas del contrato responden 401 sin sesión; la pantalla de acceso tiene 0 violaciones de axe |
-| Pruebas automáticas | `tests/integracion/test_autenticacion.py`, `tests/e2e/test_login.py` |
-| Evaluación | **VERIFICADO; VALIDADO PARCIALMENTE**: no consta una prueba con una cuenta real de Supabase (captura pendiente, `CAPTURAS_PENDIENTES.md`) · 30/10/2026 · QA Lead; firma pendiente |
+**FICHA DE PRUEBA FUNCIONAL Y EVIDENCIA VISUAL POR REQUERIMIENTO (AUTH)**
 
-![AUTH.](../semana-10/evidencias/usabilidad/U_login_escritorio.png)
+- **PROYECTO:** Anemia Junín - Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
+- **INCREMENTO EVALUADO:** Autenticación con Supabase Auth (ADR-011), incorporada antes del Incremento 3 y vigente en `v4.0-Inc4`
+- **REQUERIMIENTO:** AUTH - Inicio y cierre de sesión; sesión en cookies HttpOnly con protección CSRF
+- **CASO DE PRUEBA:** CP-AUTH-01 (Prueba Funcional de UI / Aceptación; automatizada en `tests/integracion/test_autenticacion.py` y `tests/e2e/test_login.py`, con Supabase simulado)
+- **DATO DE ENTRADA:** { correo: "enfermeria@example.test", contraseña: (valor ficticio de la prueba) }; credencial errónea; petición de la API sin sesión
+- **RESULTADO ESPERADO:** Con una credencial válida, la sesión queda en cookies HttpOnly y se abre la aplicación; la API clínica rechaza (401) las peticiones sin sesión; cerrar la sesión la invalida; una credencial errónea muestra un mensaje de error.
 
-**Figura 56.** AUTH. Pantalla de inicio de sesión, escritorio (axe: 0 violaciones). Archivo: `../semana-10/evidencias/usabilidad/U_login_escritorio.png`.
+**EVIDENCIAS FOTOGRÁFICAS (CAPTURAS DE PANTALLA EN EJECUCIÓN):**
 
-![AUTH.](../semana-10/evidencias/usabilidad/U_login_movil.png)
+**[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-**Figura 57.** AUTH. Pantalla de inicio de sesión, móvil (axe: 0 violaciones). Archivo: `../semana-10/evidencias/usabilidad/U_login_movil.png`.
+- **Descripción:** **Figura 57.** AUTH, captura 1. Pantalla de acceso con el correo y la contraseña de prueba cargados antes de «Iniciar sesión» (axe: 0 violaciones).
 
-`<captura de pantalla del inicio de sesión de la aplicación desplegada en Render mostrando el acceso con una cuenta real de Supabase autorizada>` (pendiente: solo se probó con Supabase simulado; ver `CAPTURAS_PENDIENTES.md`).
+![AUTH, captura 1.](../semana-10/evidencias/usabilidad/U_login_escritorio.png)
+
+- **Archivo de Imagen:** `../semana-10/evidencias/usabilidad/U_login_escritorio.png`
+
+**[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
+
+- **Descripción:** **Figura 58.** AUTH, captura 2. Acceso en móvil (390x844). No hay captura de la aplicación tras el ingreso: ese resultado se verificó por aserciones (aplicación visible, correo en la cabecera, sin token en `localStorage`, 27 de 27 operaciones no públicas con 401 sin sesión) y la prueba con una cuenta real de Supabase queda como captura en producción.
+
+![AUTH, captura 2.](../semana-10/evidencias/usabilidad/U_login_movil.png)
+
+- **Archivo de Imagen:** `../semana-10/evidencias/usabilidad/U_login_movil.png`
+
+**EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+*Nota de la evaluación:* Verificado con Supabase simulado (21 pruebas de integración y 2 E2E en escritorio y móvil); validación parcial: no consta una prueba con una cuenta real de Supabase..
+
+**Captura en producción (autenticación):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando la pantalla de inicio de sesión y la aplicación abierta con una cuenta de Supabase autorizada (ocultar el correo y cualquier token)>` (pendiente; archivo previsto `evidencias/produccion/PROD_05_auth_inicio_sesion.png`; ver `CAPTURAS_PENDIENTES.md`).
 
 
 ---
@@ -1236,7 +1418,7 @@ Cada ficha corresponde a un requerimiento o historia. Las capturas son del softw
 
 El índice pondera F 30 %, U 15 %, R 15 %, P 15 %, S 10 % y + 15 %. Se calculó con 30 de 35 criterios, medidos por scripts (`entregables/semana-10/metricas/`); cinco no se pudieron medir (lector de pantalla, staging, 500 usuarios, Docker en ejecución y política de contraseñas de Supabase). El índice primario excluye lo no medido y el conservador lo cuenta como 0 %.
 
-**Tabla 46.** Índice FURPS+ por factor (S10, Tabla 5).
+**Tabla 26.** Índice FURPS+ por factor (S10, Tabla 5).
 
 | Factor | Peso | Criterios medidos | % solo medidos | % conservador | Brecha principal |
 | --- | :---: | :---: | :---: | :---: | --- |
@@ -1250,13 +1432,15 @@ El índice pondera F 30 %, U 15 %, R 15 %, P 15 %, S 10 % y + 15 %. Se calculó 
 
 ![Salida del cálculo del índice FURPS+.](../semana-10/evidencias/terminal/FURPS01_calculo_indice.png)
 
-**Figura 58.** Salida de `furps_calculo.py` con el índice primario y el conservador (pie con comando, fecha y commit). Archivo: `../semana-10/evidencias/terminal/FURPS01_calculo_indice.png`.
+**Figura 59.** Salida de `furps_calculo.py` con el índice primario y el conservador (pie con comando, fecha y commit). Archivo: `../semana-10/evidencias/terminal/FURPS01_calculo_indice.png`.
 
 La diferencia de 9,24 puntos entre ambos índices cuantifica cuánto de la calidad declarada depende de mediciones que faltan.
 
 #### 3.7.2 Factor U: psicología de colores y accesibilidad WCAG 2.1 AA
 
-**Tabla 47.** Paleta real de la interfaz (`pmv_fastapi/app/web/estilos.css`), significado en salud infantil y contraste medido (S10, Tabla 9).
+Los criterios evaluados son los de las pautas WCAG 2.1, nivel AA (W3C, 2018).
+
+**Tabla 27.** Paleta real de la interfaz (`pmv_fastapi/app/web/estilos.css`), significado en salud infantil y contraste medido (S10, Tabla 9).
 
 | Rol | Hexadecimal | Significado | Contraste |
 | --- | --- | --- | --- |
@@ -1270,13 +1454,13 @@ De 54 pares texto y fondo medidos (23 combinaciones únicas), solo el naranja so
 
 ![Paleta real de la interfaz.](../semana-10/evidencias/usabilidad/U_paleta_colores.png)
 
-**Figura 59.** Paleta real con muestras, hexadecimales, contraste y significado. Archivo: `../semana-10/evidencias/usabilidad/U_paleta_colores.png`.
+**Figura 60.** Paleta real con muestras, hexadecimales, contraste y significado. Archivo: `../semana-10/evidencias/usabilidad/U_paleta_colores.png`.
 
 ![Semáforo de severidad con simulación de daltonismo.](../semana-10/evidencias/usabilidad/U_semaforo_severidad_daltonismo.png)
 
-**Figura 60.** Semáforo de severidad bajo simulación de deuteranopía, protanopía y escala de grises: los tonos moderada y severa se acercan, por eso el texto de cada estado acompaña siempre al color. Archivo: `../semana-10/evidencias/usabilidad/U_semaforo_severidad_daltonismo.png`.
+**Figura 61.** Semáforo de severidad bajo simulación de deuteranopía, protanopía y escala de grises: los tonos moderada y severa se acercan, por eso el texto de cada estado acompaña siempre al color. Archivo: `../semana-10/evidencias/usabilidad/U_semaforo_severidad_daltonismo.png`.
 
-**Tabla 48.** Criterios WCAG evaluados con axe-core 4.14.0, Playwright y cálculo propio (S10, Tabla 11).
+**Tabla 28.** Criterios WCAG evaluados con axe-core 4.14.0, Playwright y cálculo propio (S10, Tabla 11).
 
 | Criterio | Resultado medido | Estado |
 | --- | --- | --- |
@@ -1294,17 +1478,17 @@ axe-core halló 22 reglas violadas (52 nodos) en escritorio y 36 (68 nodos) en m
 
 ![Resumen de axe-core por pantalla y vista.](../semana-10/evidencias/usabilidad/U_axe_resumen_pantallas.png)
 
-**Figura 61.** Resumen de axe-core por pantalla y vista (14 pantallas, 4 modales y el inicio de sesión). Archivo: `../semana-10/evidencias/usabilidad/U_axe_resumen_pantallas.png`.
+**Figura 62.** Resumen de axe-core por pantalla y vista (14 pantallas, 4 modales y el inicio de sesión). Archivo: `../semana-10/evidencias/usabilidad/U_axe_resumen_pantallas.png`.
 
 ![Foco visible al recorrer las pestañas con Tab.](../semana-10/evidencias/usabilidad/U_teclado_foco_pestana.png)
 
-**Figura 62.** Foco visible al recorrer las pestañas con Tab. Archivo: `../semana-10/evidencias/usabilidad/U_teclado_foco_pestana.png`.
+**Figura 63.** Foco visible al recorrer las pestañas con Tab. Archivo: `../semana-10/evidencias/usabilidad/U_teclado_foco_pestana.png`.
 
 #### 3.7.3 Factores R y P: confiabilidad y rendimiento
 
 Las mediciones son de una máquina virtual con un proceso uvicorn y datos sintéticos; sirven para detectar brechas, no como capacidad de producción.
 
-**Tabla 49.** Confiabilidad y rendimiento medidos (S10, Tablas 14 y 15; adenda S9, nota 4).
+**Tabla 29.** Confiabilidad y rendimiento medidos (S10, Tablas 14 y 15; adenda S9, nota 4).
 
 | Atributo | Meta | Valor medido | Estado |
 | --- | --- | --- | --- |
@@ -1322,23 +1506,23 @@ Las mediciones son de una máquina virtual con un proceso uvicorn y datos sinté
 
 ![Locust con 20 usuarios, Inc. 3 y 4.](../semana-10/evidencias/rendimiento/P_locust_B_inc3_inc4_20u.png)
 
-**Figura 63.** Locust, 20 usuarios, 60 s, incrementos 3 y 4 (sincronización, visitas y recordatorios): p95 de 98 ms. Archivo: `../semana-10/evidencias/rendimiento/P_locust_B_inc3_inc4_20u.png`.
+**Figura 64.** Locust, 20 usuarios, 60 s, incrementos 3 y 4 (sincronización, visitas y recordatorios): p95 de 98 ms. Archivo: `../semana-10/evidencias/rendimiento/P_locust_B_inc3_inc4_20u.png`.
 
 ![Locust con 100 usuarios, Inc. 1 y 2.](../semana-10/evidencias/rendimiento/P_locust_C_inc1_inc2_100u.png)
 
-**Figura 64.** Locust, 100 usuarios, 60 s, incrementos 1 y 2: p95 de 2 000 ms, por encima del umbral de 800 ms. Archivo: `../semana-10/evidencias/rendimiento/P_locust_C_inc1_inc2_100u.png`.
+**Figura 65.** Locust, 100 usuarios, 60 s, incrementos 1 y 2: p95 de 2 000 ms, por encima del umbral de 800 ms. Archivo: `../semana-10/evidencias/rendimiento/P_locust_C_inc1_inc2_100u.png`.
 
 ![Prueba de caos con PostgreSQL.](../semana-10/evidencias/terminal/R13_caos_postgres.png)
 
-**Figura 65.** Caos con PostgreSQL 16 temporal: 25 de 26 peticiones respondieron 500 durante la caída y la aplicación se recuperó a los 0,2 s. Archivo: `../semana-10/evidencias/terminal/R13_caos_postgres.png`.
+**Figura 66.** Caos con PostgreSQL 16 temporal: 25 de 26 peticiones respondieron 500 durante la caída y la aplicación se recuperó a los 0,2 s. Archivo: `../semana-10/evidencias/terminal/R13_caos_postgres.png`.
 
 La causa probable del aumento del p95 con la carga es un único proceso con una base compartida; no se perfiló el código. La adenda de S9 no pudo repetir `v1.0` en la misma sesión como control, de modo que no se sabe si el aumento de 815 a 1 100 ms viene del código nuevo, de la autenticación o de la máquina. **El p95 es el riesgo de rendimiento abierto del producto** (acción 16 del plan de mejora).
 
 #### 3.7.4 Factor +: auditoría de seguridad OWASP Top 10:2025
 
-La auditoría combinó 30 comprobaciones estáticas (16 cumplen, 13 hallazgos, 1 no medida), 32 pruebas dinámicas contra un servidor local con Supabase simulado (25 cumplen, 7 hallazgos), una prueba de XSS con cuatro cargas en seis pantallas y SAST y SCA con bandit, pip-audit y semgrep. No se ejecutó OWASP ZAP ni se probó un proyecto de Supabase real. La edición 2025 reordenó la lista de la plantilla (SSRF pasó a A01 y apareció A10); se evalúa la lista 2025.
+La auditoría combinó 30 comprobaciones estáticas (16 cumplen, 13 hallazgos, 1 no medida), 32 pruebas dinámicas contra un servidor local con Supabase simulado (25 cumplen, 7 hallazgos), una prueba de XSS con cuatro cargas en seis pantallas y SAST y SCA con bandit, pip-audit y semgrep. No se ejecutó OWASP ZAP ni se probó un proyecto de Supabase real. La edición 2025 reordenó la lista de la plantilla (SSRF pasó a A01 y apareció A10); se evalúa la lista 2025 (OWASP Foundation, 2025).
 
-**Tabla 50.** Estado por categoría OWASP Top 10:2025 en `v4.0-Inc4` (S10, Tabla 21).
+**Tabla 30.** Estado por categoría OWASP Top 10:2025 en `v4.0-Inc4` (S10, Tabla 21).
 
 | Código | Categoría | Estado | Mecanismo implementado | Hallazgo abierto |
 | --- | --- | --- | --- | --- |
@@ -1353,9 +1537,11 @@ La auditoría combinó 30 comprobaciones estáticas (16 cumplen, 13 hallazgos, 1
 | A09 | Security Logging and Alerting Failures | **No mitigado** | Cada registro guarda su autor verificado | H-5: 0 usos de logging; sin registro de logins fallidos ni alertas |
 | A10 | Mishandling of Exceptional Conditions | **Parcial** | 11 manejadores de errores de dominio (409, 422, 403, 503, 404); JSON malformado devuelve 422 sin traza | H-6: sin manejador global; caída de la base responde 500 |
 
+**Controles de la plantilla que el proyecto no tiene.** La plantilla ejemplifica RBAC con tokens JWT validados en cada petición, cifrado AES-256 en reposo y hash Argon2id. El proyecto valida la sesión de Supabase en cada petición, pero no distingue roles (H-1); no cifra datos en el código (el cifrado en reposo es el del proveedor y no se midió); y no guarda contraseñas, de modo que no usa Argon2id: la autenticación se delega a Supabase Auth. Los controles de inyección (consultas con parámetros), diseño (arquitectura hexagonal) y configuración (secretos fuera del código) sí existen y figuran en la tabla.
+
 Resumen: 1 categoría mitigada, 7 parciales y 2 no mitigadas. Las protecciones de sesión y CSRF solo operan con `AUTH_MODE=supabase` (valor por defecto); con `demo` la API es pública, modo que existe solo para pruebas y capturas.
 
-**Tabla 51.** Análisis estático y de dependencias (S10, Tablas 22 y 23).
+**Tabla 31.** Análisis estático y de dependencias (S10, Tablas 22 y 23).
 
 | Herramienta | Resultado | Lectura |
 | --- | --- | --- |
@@ -1365,35 +1551,35 @@ Resumen: 1 categoría mitigada, 7 parciales y 2 no mitigadas. Las protecciones d
 
 ![semgrep: 554 reglas sobre 97 archivos.](../semana-10/evidencias/terminal/O01_semgrep.png)
 
-**Figura 66.** semgrep: 554 reglas sobre 97 archivos, 151 hallazgos clasificados manualmente. Archivo: `../semana-10/evidencias/terminal/O01_semgrep.png`.
+**Figura 67.** semgrep: 554 reglas sobre 97 archivos, 151 hallazgos clasificados manualmente. Archivo: `../semana-10/evidencias/terminal/O01_semgrep.png`.
 
 ![Pruebas dinámicas de seguridad T01 a T32.](../semana-10/evidencias/terminal/O02_pruebas_http_owasp.png)
 
-**Figura 67.** Pruebas dinámicas T01 a T32 contra el servidor local (sesión, CSRF, cookies, cabeceras, inyección, webhook y errores). Archivo: `../semana-10/evidencias/terminal/O02_pruebas_http_owasp.png`.
+**Figura 68.** Pruebas dinámicas T01 a T32 contra el servidor local (sesión, CSRF, cookies, cabeceras, inyección, webhook y errores). Archivo: `../semana-10/evidencias/terminal/O02_pruebas_http_owasp.png`.
 
 ![Comprobaciones estáticas E01 a E30.](../semana-10/evidencias/terminal/O04_estatico_owasp.png)
 
-**Figura 68.** Comprobaciones estáticas E01 a E30 con su estado (CUMPLE, HALLAZGO, NO MEDIDO). Archivo: `../semana-10/evidencias/terminal/O04_estatico_owasp.png`.
+**Figura 69.** Comprobaciones estáticas E01 a E30 con su estado (CUMPLE, HALLAZGO, NO MEDIDO). Archivo: `../semana-10/evidencias/terminal/O04_estatico_owasp.png`.
 
 ![Prueba dinámica de XSS en seis pantallas.](../semana-10/evidencias/terminal/O03_xss_dinamico.png)
 
-**Figura 69.** XSS dinámico: cargas inyectadas en cuatro campos y revisadas en seis pantallas (0 ejecuciones). Archivo: `../semana-10/evidencias/terminal/O03_xss_dinamico.png`.
+**Figura 70.** XSS dinámico: cargas inyectadas en cuatro campos y revisadas en seis pantallas (0 ejecuciones). Archivo: `../semana-10/evidencias/terminal/O03_xss_dinamico.png`.
 
 ![Webhook de WhatsApp que falla cerrado.](../semana-10/evidencias/github/GH_webhook_falla_cerrado.png)
 
-**Figura 70.** Manejador del webhook que responde 503 sin secreto y 403 con firma ausente o inválida, corregido en la revisión independiente (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_webhook_falla_cerrado.png`.
+**Figura 71.** Manejador del webhook que responde 503 sin secreto y 403 con firma ausente o inválida, corregido en la revisión independiente (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_webhook_falla_cerrado.png`.
 
 ![Sesión en cookies con CSRF en GitHub.](../semana-10/evidencias/github/GH_sesion_cookies_csrf.png)
 
-**Figura 71.** Sesión en cookies `HttpOnly` con protección CSRF (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_sesion_cookies_csrf.png`.
+**Figura 72.** Sesión en cookies `HttpOnly` con protección CSRF (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_sesion_cookies_csrf.png`.
 
 ![Código afectado por el hallazgo H-3 (CSV).](../semana-10/evidencias/github/GH_csv_reporte_hallazgo.png)
 
-**Figura 72.** Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con `=`, `+`, `-` o `@` (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_csv_reporte_hallazgo.png`.
+**Figura 73.** Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con `=`, `+`, `-` o `@` (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_csv_reporte_hallazgo.png`.
 
 **Conteo de vulnerabilidades.** Las herramientas SAST y SCA no confirman ninguna vulnerabilidad alta o crítica, pero la revisión manual y dinámica sí: 1 hallazgo de severidad alta (H-1) y seis de severidad media. **No se afirma ausencia de vulnerabilidades**; el criterio «0 vulnerabilidades críticas o altas» de la plantilla no se cumple.
 
-**Tabla 52.** Hallazgos de seguridad H-1 a H-12 con su acción propuesta (S10, Tabla 24). Ninguna acción está aplicada en el código; las acciones 12 a 18 del plan de mejora CMMI (sección 3.8) las programan.
+**Tabla 32.** Hallazgos de seguridad H-1 a H-12 con su acción propuesta (S10, Tabla 24). Ninguna acción está aplicada en el código; las acciones 12 a 18 del plan de mejora CMMI (sección 3.8) las programan.
 
 | N.° | OWASP | Hallazgo | Severidad | Acción propuesta |
 | --- | --- | --- | --- | --- |
@@ -1417,11 +1603,11 @@ Resumen: 1 categoría mitigada, 7 parciales y 2 no mitigadas. Las protecciones d
 
 ### 3.8 EJE 8: Evaluación de Capacidad del Proceso según CMMI-DEV y Mejora Continua
 
-La evaluación usa la representación continua con niveles de capacidad 0 a 3 por área de práctica y una regla estricta: **el nivel de un área es el de su práctica más débil**. Nivel 1 (Ejecutado) significa que la práctica se realiza y deja producto, pero sin registro sistemático ni contraste con lo planificado; Nivel 2 (Gestionado), que además está planificada, tiene responsables, se contrasta con lo real y sus productos se revisan con evidencia verificable; Nivel 3 (Definido), que existe un estándar documentado y automatizado que se aplica en todos los incrementos (S11, Tabla 4). La autoevaluación la hizo el propio equipo, sin evaluador externo.
+La evaluación usa la representación continua con niveles de capacidad 0 a 3 por área de práctica (CMMI Institute, 2018) y una regla estricta: **el nivel de un área es el de su práctica más débil**. Nivel 1 (Ejecutado) significa que la práctica se realiza y deja producto, pero sin registro sistemático ni contraste con lo planificado; Nivel 2 (Gestionado), que además está planificada, tiene responsables, se contrasta con lo real y sus productos se revisan con evidencia verificable; Nivel 3 (Definido), que existe un estándar documentado y automatizado que se aplica en todos los incrementos (S11, Tabla 4). La autoevaluación la hizo el propio equipo, sin evaluador externo.
 
 **Diagnóstico de nivel de capacidad CMMI (0 a 3)**
 
-**Tabla 53.** Nivel de capacidad por área de práctica al 30/10/2026 (S11, Tabla 6).
+**Tabla 33.** Nivel de capacidad por área de práctica al 30/10/2026 (S11, Tabla 6).
 
 | Área | Nivel S11 | Nivel 30/10 | Evidencia que sostiene el nivel | Qué impide el nivel siguiente |
 | --- | :---: | :---: | --- | --- |
@@ -1435,29 +1621,29 @@ La evaluación usa la representación continua con niveles de capacidad 0 a 3 po
 
 ![Nivel de capacidad CMMI por área, S11 frente a 30/10/2026.](../semana-11/evidencias/CMMI01_niveles_antes_despues.png)
 
-**Figura 73.** Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez. Archivo: `../semana-11/evidencias/CMMI01_niveles_antes_despues.png`.
+**Figura 74.** Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez. Archivo: `../semana-11/evidencias/CMMI01_niveles_antes_despues.png`.
 
 El perfil es de tres áreas en Nivel 2 (PLAN, CM y VER) y cuatro en Nivel 1 (ESTIM, PQA, VAL y CAR). No se adoptaron los niveles del ejemplo de la plantilla (CM en Nivel 3, ESTIM y CAR en Nivel 2) porque la evidencia no los sostiene: no hay un estándar de configuración documentado y exigible, no hay horas reales para contrastar la estimación y ninguna mejora tiene aún el efecto medido. La ingeniería (VER y CM) está respaldada por automatización y etiquetas; la gestión, la aceptación del usuario y el aseguramiento de calidad siguen dependiendo del criterio individual.
 
 ![Ejecuciones del CI en main: la #16 en verde y las anteriores en rojo.](../semana-11/evidencias/github/GH_actions_run16_main.png)
 
-**Figura 74.** Ejecuciones del flujo «CI y producción» en `main`: la #16 (`c870a7e`, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_actions_run16_main.png`.
+**Figura 75.** Ejecuciones del flujo «CI y producción» en `main`: la #16 (`c870a7e`, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_actions_run16_main.png`.
 
 ![El repositorio no tiene tableros de GitHub Projects.](../semana-11/evidencias/github/GH_projects.png)
 
-**Figura 75.** Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `coordinacion/TABLERO.md` (GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_projects.png`.
+**Figura 76.** Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `coordinacion/TABLERO.md` (GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_projects.png`.
 
 ![La protección de main no es verificable.](../semana-11/evidencias/github/GH_proteccion_main.png)
 
-**Figura 76.** `settings/branches` devuelve 404 para la cuenta que tomó la captura: la protección de `main` no es verificable (GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_proteccion_main.png`.
+**Figura 77.** `settings/branches` devuelve 404 para la cuenta que tomó la captura: la protección de `main` no es verificable (GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_proteccion_main.png`.
 
 ![Artefactos de proceso presentes y ausentes en el repositorio.](../semana-11/evidencias/CMMI03_higiene_repositorio.png)
 
-**Figura 77.** Artefactos de proceso en el repositorio: la plantilla de PR, el *hook* de pre-commit, la convención de commits, `CODEOWNERS` y Dependabot no existen; SonarCloud sin organización. Archivo: `../semana-11/evidencias/CMMI03_higiene_repositorio.png`.
+**Figura 78.** Artefactos de proceso en el repositorio: la plantilla de PR, el *hook* de pre-commit, la convención de commits, `CODEOWNERS` y Dependabot no existen; SonarCloud sin organización. Archivo: `../semana-11/evidencias/CMMI03_higiene_repositorio.png`.
 
 **Análisis de causa raíz y plan de mejora continua**
 
-**Tabla 54.** Hallazgos de la evaluación con su causa raíz de proceso y estado al 30/10/2026 (S11, Tabla 10).
+**Tabla 34.** Hallazgos de la evaluación con su causa raíz de proceso y estado al 30/10/2026 (S11, Tabla 10).
 
 | ID | Área | Hallazgo | Causa raíz | Estado |
 | --- | --- | --- | --- | --- |
@@ -1473,7 +1659,7 @@ El perfil es de tres áreas en Nivel 2 (PLAN, CM y VER) y cuatro en Nivel 1 (EST
 
 La causa raíz se atribuye siempre al último eslabón de los cinco porqués, una condición del proceso y no a las personas. Dos ejemplos:
 
-**Tabla 55.** Cinco porqués de H2 y H6 (S11, Tabla 11).
+**Tabla 35.** Cinco porqués de H2 y H6 (S11, Tabla 11).
 
 | Hallazgo | Porqué 1 | Porqué 2 | Porqué 3 | Porqué 4 | Porqué 5 (causa raíz) |
 | --- | --- | --- | --- | --- | --- |
@@ -1482,9 +1668,9 @@ La causa raíz se atribuye siempre al último eslabón de los cinco porqués, un
 
 ![Regresión de la revisión independiente.](../semana-11/evidencias/CMMI04_regresion_revision_independiente.png)
 
-**Figura 78.** Pruebas de regresión de la revisión independiente: 6 aprobadas (CP-357, CP-264b, CP-382b, CP-391b, CP-396 y CP-405). Archivo: `../semana-11/evidencias/CMMI04_regresion_revision_independiente.png`.
+**Figura 79.** Pruebas de regresión de la revisión independiente: 6 aprobadas (CP-357, CP-264b, CP-382b, CP-391b, CP-396 y CP-405). Archivo: `../semana-11/evidencias/CMMI04_regresion_revision_independiente.png`.
 
-**Tabla 56.** Plan de mejora continua: acciones con mayor efecto esperado y estado al 30/10/2026 (S11, Tabla 12; 19 acciones en total).
+**Tabla 36.** Plan de mejora continua: acciones con mayor efecto esperado y estado al 30/10/2026 (S11, Tabla 12; 19 acciones en total).
 
 | N.° | Área | Acción de mejora | Métrica de verificación | Responsable | Fecha objetivo | Estado |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -1526,21 +1712,24 @@ Estado del plan: 19 acciones (7 de S11 y 12 nuevas), **1 cumplida, 4 parciales y
 
 ## REFERENCIAS BIBLIOGRÁFICAS
 
-- Basili, V. R., Caldiera, G., & Rombach, H. D. (1994). The goal question metric approach. En J. J. Marciniak (Ed.), *Encyclopedia of software engineering* (pp. 528-532). John Wiley & Sons.
-- CMMI Institute. (2018). *CMMI Development V2.0*. ISACA.
+Lista en orden alfabético (APA 7). Las cinco referencias de la plantilla del curso (Pressman y Maxim, 2021; Sommerville, 2016; O'Regan, 2017; CMMI Institute, 2018; OWASP Foundation, 2025) se copian tal cual, con el enlace o DOI cuando existen.
+
+- Basili, V. R., Caldiera, G. y Rombach, H. D. (1994). The goal question metric approach. En J. J. Marciniak (Ed.), *Encyclopedia of software engineering* (pp. 528-532). John Wiley & Sons.
+- CMMI Institute. (2018). *CMMI for Development, Version 2.0*. Software Engineering Institute.
 - Cockburn, A. (2005). *Hexagonal architecture*. https://alistair.cockburn.us/hexagonal-architecture/
-- Dirección Regional de Salud Junín. (2024). *Niños menores de 36 meses con diagnóstico de anemia en la Región Junín* [Extracto del HIS, 12 486 diagnósticos del 14/01/2022 al 21/06/2024; conjunto de datos anonimizado en origen].
-- Grady, R. B., & Caswell, D. L. (1987). *Software metrics: Establishing a company-wide program*. Prentice Hall.
+- Dirección Regional de Salud Junín. (2024). *Niños menores de 36 meses con diagnóstico de anemia en la Región Junín* [Extracto del HIS, 12 486 diagnósticos del 14/01/2022 al 21/06/2024; conjunto de datos anonimizado en origen]. Dirección Regional de Salud Junín.
+- Grady, R. B. y Caswell, D. L. (1987). *Software metrics: Establishing a company-wide program*. Prentice Hall.
+- IEEE Computer Society. (2014). *Guide to the software engineering body of knowledge (SWEBOK Guide)* (Versión 3.0; P. Bourque y R. E. Fairley, Eds.). IEEE Computer Society.
 - Instituto Nacional de Estadística e Informática. (2026). *ENDES 2025: Indicadores de resultados de los programas presupuestales*. https://proyectos.inei.gob.pe/endes/2025/ppr/Informe_Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2025.pdf
-- IEEE Computer Society. (2014). *Guide to the software engineering body of knowledge (SWEBOK Guide)* (Versión 3.0; P. Bourque & R. E. Fairley, Eds.). IEEE Computer Society.
-- ISO/IEC/IEEE. (2017). *Systems and software engineering: Software life cycle processes* (ISO/IEC/IEEE 12207:2017).
-- Kim, G., Humble, J., Debois, P., & Willis, J. (2016). *The DevOps handbook: How to create world-class agility, reliability, and security in technology organizations*. IT Revolution Press.
+- ISO/IEC/IEEE. (2017). *Systems and software engineering: Software life cycle processes* (ISO/IEC/IEEE 12207:2017). https://www.iso.org/standard/63712.html
+- Kim, G., Humble, J., Debois, P. y Willis, J. (2016). *The DevOps handbook: How to create world-class agility, reliability, and security in technology organizations*. IT Revolution Press.
 - Larman, C. (2003). *UML y patrones: Una introducción al análisis y diseño orientado a objetos y al proceso unificado* (2.ª ed.). Prentice Hall.
 - Ministerio de Salud del Perú. (2024). *Resolución Ministerial N.° 251-2024/MINSA: Aprueba la NTS N.° 213-MINSA/DGIESP-2024, Norma técnica de salud para el manejo terapéutico y preventivo de la anemia* (modificada por la Resolución Ministerial N.° 429-2024/MINSA). https://www.gob.pe/institucion/minsa/normas-legales/5440166-251-2024-minsa
-- OWASP Foundation. (2025). *OWASP Top 10:2025: The ten most critical web application security risks*.
-- Pressman, R. S., & Maxim, B. R. (2021). *Ingeniería de software: Un enfoque práctico* (9.ª ed.). McGraw-Hill.
-- Schwaber, K., & Sutherland, J. (2020). *The Scrum guide*. Scrum.org.
-- Sommerville, I. (2011). *Ingeniería de software* (9.ª ed.). Pearson Educación.
+- O'Regan, G. (2017). *Concise guide to software engineering: from fundamentals to application methods*. Springer. https://doi.org/10.1007/978-3-319-57750-0
+- OWASP Foundation. (2025). *OWASP Top 10:2025 The Ten Most Critical Web Application Security Risks*. https://owasp.org/Top10/2025/
+- Pressman, R. S. y Maxim, B. R. (2021). *Ingeniería de software: un enfoque práctico* (9.ª ed.). McGraw-Hill.
+- Schwaber, K. y Sutherland, J. (2020). *The Scrum guide*. Scrum.org. https://scrumguides.org/scrum-guide.html
+- Sommerville, I. (2016). *Software engineering* (10.ª ed.). Pearson Educación.
 - Universidad Continental. (2026a). *Guías de trabajo de las semanas 1, 2, 3-4, 9, 10, 11 y 12* [Material del curso]. Procesos de Software (ASUC01702).
 - Universidad Continental. (2026b). *Roles claves del equipo de proyecto* [Material complementario del curso]. Procesos de Software (ASUC01702).
 - World Wide Web Consortium. (2018). *Web content accessibility guidelines (WCAG) 2.1*. https://www.w3.org/TR/WCAG21/
@@ -1552,17 +1741,22 @@ Estado del plan: 19 acciones (7 de S11 y 12 nuevas), **1 cumplida, 4 parciales y
 ### ANEXO A: Enlace del Video Demostrativo del Software
 
 - **URL del video demostrativo (Drive):** <mark>[pendiente: enlace de Drive]</mark>
-- **Grabación local de respaldo:** `entregables/semana-12/video/demo_anemia_junin_v4.webm`, generada con Playwright sobre el código de `v4.0-Inc4` y datos sintéticos. El archivo lo produce un proceso aparte; si no está en la carpeta al entregar el informe, el enlace de Drive es la única copia.
-- **Guion ejecutable:** `entregables/semana-12/video/GUION_DEMO.md` (pestaña, datos sintéticos, acción y resultado esperado por escena). Duración: 5 min 00 s.
+- **Grabación local de respaldo:** `entregables/semana-12/video/demo_anemia_junin_v4.mp4`, generada con Playwright sobre el código de `v4.0-Inc4` y datos sintéticos. Si el archivo no está en la carpeta al entregar el informe, el enlace de Drive es la única copia.
+- **Contenido:** el video no muestra este informe; va directo al software y rotula en pantalla cada parte («PMV · Incremento 1», «Incremento 2», «Incremento 3», «Incremento 4»), con una portada de 15 s y un cierre de calidad y arquitectura (Anexo C). Duración: 5 min 00 s.
+- **Guion ejecutable:** `entregables/semana-12/video/GUION_DEMO.md` (pestaña, datos sintéticos, acción y resultado esperado por escena).
 
 ### ANEXO B: Enlace del Repositorio de Código en GitHub
 
 - **URL del repositorio:** <https://github.com/woshtsu/ProcesosSoftwareAnemia>
 - **Código del producto en la etiqueta evaluada:** <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app>
-- **Producción (Render con Supabase):** <https://softwareanemia.onrender.com/> (`/api/salud` respondió HTTP 200 el 30/10/2026 sobre la versión anterior; la comprobación con `v4.0-Inc4` está pendiente).
-- **Integración:** la PR #8 (incrementos 3 y 4) está fusionada en `main` con el CI #16 en verde y solicitud de despliegue a Render; la PR #9 (documentación) permanece abierta.
+- **Producción (Render con Supabase):** <https://softwareanemia.onrender.com/>. Verificada el 31/10/2026: `GET /api/salud` responde `{"estado":"ok","fecha_hoy":"2024-06-30","fecha_referencia":"2024-06-30"}` (reloj fijo del dataset: la aplicación desplegada calcula agendas y vencimientos al 30/06/2024) y `GET /openapi.json` declara la versión `4.0.0-inc4` con 29 rutas, la misma del contrato de `v4.0-Inc4`.
+- **Integración:** la PR #8 (incrementos 3 y 4) está fusionada en `main` con el CI #16 en verde; la PR #9 (documentación) permanece abierta al 30/10/2026.
 
-**Tabla 57.** Etiquetas de versión del repositorio (S11, Anexo C y Figura 50).
+`<captura de pantalla en https://softwareanemia.onrender.com/api/salud y en https://softwareanemia.onrender.com/openapi.json mostrando el estado «ok» con la fecha de referencia 30/06/2024 y la versión 4.0.0-inc4 con 29 rutas>` (pendiente; archivo previsto `evidencias/produccion/PROD_06_salud_openapi.png`; ver `CAPTURAS_PENDIENTES.md`).
+
+`<captura de pantalla del panel de Render con el servicio en estado «Live» y el despliegue de v4.0-Inc4>` (pendiente; archivo previsto `evidencias/produccion/PROD_07_render_panel_live.png`; requiere acceso al panel de Render).
+
+**Tabla 37.** Etiquetas de versión del repositorio (S11, Anexo C y Figura 50).
 
 | Etiqueta | Commit | Fecha | Incremento | Contenido | Enlace |
 | --- | --- | --- | --- | --- | --- |
@@ -1576,28 +1770,54 @@ Estado del plan: 19 acciones (7 de S11 y 12 nuevas), **1 cumplida, 4 parciales y
 
 ![Etiquetas del repositorio en GitHub.](../semana-10/evidencias/github/GH_etiquetas.png)
 
-**Figura 79.** Etiquetas del repositorio en GitHub: `v4.0-Inc4`, `v3.0-Inc3`, `v2.0-Inc2`, `v1.5.0-inc2-avance` y `v1.0-PMV`. Archivo: `../semana-10/evidencias/github/GH_etiquetas.png`.
+**Figura 80.** Etiquetas del repositorio en GitHub: `v4.0-Inc4`, `v3.0-Inc3`, `v2.0-Inc2`, `v1.5.0-inc2-avance` y `v1.0-PMV`. Archivo: `../semana-10/evidencias/github/GH_etiquetas.png`.
 
 ![Flujo de CI/CD en la etiqueta v4.0-Inc4.](../semana-10/evidencias/github/GH_ci_workflow.png)
 
-**Figura 80.** Flujo de CI/CD (`.github/workflows/ci.yml`) en `v4.0-Inc4`: tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`) sobre `ubuntu-24.04` y Python 3.11. Archivo: `../semana-10/evidencias/github/GH_ci_workflow.png`.
+**Figura 81.** Flujo de CI/CD (`.github/workflows/ci.yml`) en `v4.0-Inc4`: tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`) sobre `ubuntu-24.04` y Python 3.11. Archivo: `../semana-10/evidencias/github/GH_ci_workflow.png`.
 
 ### ANEXO C: GUIÓN TÉCNICO Y NARRATIVO DEL VIDEO DE DEMOSTRACIÓN DEL SOFTWARE
 
-**Duración total:** 05 minutos 00 segundos. **Formato:** grabación de pantalla con voz en off del equipo sobre el software en ejecución (aplicación local con datos sintéticos y proveedor de identidad simulado; el envío de recordatorios es simulado). Pasos ejecutables detallados: `entregables/semana-12/video/GUION_DEMO.md`.
+**Duración total:** 05 minutos 00 segundos. **Formato:** grabación de pantalla con voz en off del equipo, directamente sobre el software y sin mostrar este informe; un rótulo superpuesto indica qué parte se demuestra (PMV · Incremento 1, Incremento 2, Incremento 3 o Incremento 4). Aplicación local en `v4.0-Inc4` con datos sintéticos, proveedor de identidad simulado (modo demo) y recordatorios simulados; la producción no se usa para grabar, para no escribir datos en ella (sus capturas están en el Anexo B y en 3.6.4). Pasos ejecutables: `entregables/semana-12/video/GUION_DEMO.md`.
 
-**Tabla 58.** Guion técnico minuto a minuto.
+**Tabla 38.** Guion técnico minuto a minuto, por incremento.
 
-| Tiempo | Escena / pantalla mostrada | Locución / explicación técnica | Criterio / RF verificado |
+| Tiempo | Pantalla mostrada | Locución / explicación técnica | Criterio / RF verificado |
 | :---: | --- | --- | --- |
-| **00:00 - 00:30** | Pantalla de inicio de sesión y entrada a la aplicación | «Presentamos Anemia Junín, un sistema web progresivo que ayuda a las postas de Junín a dar seguimiento a la anemia infantil. Iniciamos sesión: la sesión viaja en cookies HttpOnly con protección CSRF y la API rechaza cualquier petición sin sesión. En esta grabación el proveedor de identidad es el simulado de pruebas.» | AUTH: sesión con cookies HttpOnly y CSRF (27 de 27 operaciones no públicas responden 401 sin sesión) |
-| **00:30 - 01:15** | «Registrar niño»: datos sintéticos (DNI 72000001, Hb 11,6 g/dL, 3 720 m); vista previa; guardar; intento con datos inválidos | «Al digitar la hemoglobina, el servidor la ajusta por altitud y la clasifica: 9,1 g/dL ajustada, anemia moderada. Un DNI inválido o una Hb de 25 se rechazan con mensajes por campo. Al guardar, el expediente se abre en menos de 2 segundos y un DNI repetido responde 409.» | RF-01 y RF-03: 130 ms; HTTP 409 y 422 |
-| **01:15 - 02:00** | «Seguimiento», agenda del expediente y «Alertas» con filtro de prioridad | «El listado ordena por severidad y filtra por clasificación. En el expediente aparece la agenda normativa de 13 controles con su estado, y «Alertas» lista los controles vencidos por prioridad: 9 vencidos, 7 de prioridad alta. La agenda del personal muestra los controles por día.» | RF-04, RF-06, RF-07, RF-08 |
-| **02:00 - 02:50** | Se corta la conexión: registro de un niño y una visita; indicador de pendientes; reconexión y sincronización; conflicto | «Sin conexión, los registros quedan en una cola del dispositivo y la cabecera muestra cuántos hay pendientes y desde cuándo. Al volver la red cada operación se aplica una sola vez; reenviarla se marca DUPLICADA. Si el servidor tiene un dato distinto, se crea un conflicto y el personal decide.» | HIST-3.1 a HIST-3.4 |
-| **02:50 - 03:20** | «Visitas»: lista priorizada con desglose; registro de una visita | «Para el agente comunitario, la lista de visitas se ordena por un puntaje explicable de 0 a 115: controles vencidos, inasistencias y barreras. Los pesos son una propuesta del equipo y falta validarlos con la microred.» | VIS-3.5 |
-| **03:20 - 04:00** | «Recordatorios» rotulados SIMULADO; respuesta del tutor; registro de barrera; «Alertas» de barreras críticas | «Generamos 24 recordatorios; todos salen rotulados SIMULADO porque el envío real por WhatsApp no se ha probado. Registramos la respuesta del tutor y una barrera grave, que dispara una alerta alta y suma al puntaje de la visita.» | HIST-4.1 a HIST-4.4 |
-| **04:00 - 04:15** | «Reporte» del periodo | «El reporte del periodo muestra los indicadores y se descarga en CSV en menos de 2 segundos.» | RF-05 |
-| **04:15 - 05:00** | GitHub en `v4.0-Inc4`: `pmv_fastapi/app`, pruebas de arquitectura y ejecución verde de GitHub Actions | «El dominio importa 0 bibliotecas de terceros en 86 clases y 25 pruebas de arquitectura lo verifican. El CI ejecuta 660 pruebas y 28 E2E con 99,79 % de cobertura. También mostramos lo que falta: 12 hallazgos de seguridad, un p95 de 1 100 ms y la validación en una posta real. Gracias.» | Arquitectura hexagonal, CI/CD, OWASP 2025 (hallazgos H-1 a H-12) |
+| **00:00 - 00:15** | **Portada del video**: tarjeta con el nombre, la versión `v4.0-Inc4` y los cuatro rótulos (PMV, Incremento 2, 3 y 4) sobre la aplicación | «Presentamos Anemia Junín, un sistema web progresivo que apoya a las postas de Junín en el seguimiento de la anemia infantil. Vamos directo al software: veremos el PMV y los incrementos 2, 3 y 4, cada uno rotulado en pantalla. Los datos son sintéticos.» | Alcance: `v1.0-PMV` a `v4.0-Inc4` |
+| **00:15 - 01:15** | **Rótulo «PMV · Incremento 1»**<br>00:15: «Registrar niño» (DNI 72000001, Hb 11,6 g/dL, 3 720 m), vista previa, guardar; intento con DNI «123» y Hb 25<br>00:40: «Expediente» del DNI 71000001 y nuevo control<br>00:55: «Seguimiento» filtrado por «Moderada»<br>01:05: «Reporte» del periodo | «Al digitar la hemoglobina, el servidor la ajusta por altitud y la clasifica: 9,1 g/dL ajustada, anemia moderada; el sistema clasifica, no diagnostica ni prescribe. Un DNI inválido o una Hb de 25 se rechazan por campo y un DNI repetido responde 409. Al agregar un control, el historial pasa de 2 a 3 evaluaciones. El listado filtra por clasificación y el reporte del periodo se genera en pantalla y en CSV.» | RF-01 (130 ms; 409), RF-03 (Hb ajustada 9,1 g/dL; 422), RF-02 (2 a 3 evaluaciones), RF-04 (27 niños; 6 «Moderada»), RF-05 (indicadores y CSV en menos de 2 s) |
+| **01:15 - 02:10** | **Rótulo «Incremento 2»**<br>01:15: expediente 71000022 con su agenda normativa<br>01:30: «Alertas» con prioridad ALTA<br>01:45: «Agenda» del personal a 30 días<br>02:00: «No asistió» con motivo en un control vencido | «El expediente muestra la agenda normativa de 13 controles con su estado: cumplido, pendiente o vencido. «Alertas» lista los 9 controles vencidos por prioridad, 7 de ellos altos. La agenda del personal muestra los controles por día: 17 en 30 días. Al registrar una inasistencia con su motivo, queda la marca y sube la prioridad.» | RF-06 (13 controles), RF-07 (9 vencidos; 7 ALTA), RF-08 (17 controles de 14 niños), RF-09 (inasistencia registrada) |
+| **02:10 - 03:20** | **Rótulo «Incremento 3»**<br>02:10: sin conexión, registro de un niño y un control<br>02:30: pestaña «Sincronización» con los pendientes y su antigüedad<br>02:40: reconexión y sincronización<br>02:55: conflicto y «Conservar servidor»<br>03:05: «Visitas» priorizadas con desglose; registro de una visita | «Sin conexión, los registros quedan en una cola del dispositivo; la cabecera cuenta los pendientes y la pestaña «Sincronización» indica desde cuándo. Al volver la red, cada operación se aplica una sola vez y reenviarla se marca DUPLICADA. Si el servidor tiene un dato distinto, se crea un conflicto y el personal decide. Para el agente comunitario, «Visitas» ordena por un puntaje explicable con su desglose; los pesos son una propuesta del equipo, sin validar con la microred.» | HIST-3.1 (2 pendientes), HIST-3.4, HIST-3.2 (idempotente), HIST-3.3 (conflicto resuelto), VIS-3.5 (18 visitas, 49,5 a 25,0) |
+| **03:20 - 04:30** | **Rótulo «Incremento 4»**<br>03:20: «Recordatorios», generar<br>03:40: respuesta del tutor «No puede asistir»<br>03:55: barrera de acceso, también sin conexión<br>04:10: «Alertas» de barreras críticas y «Visitas» con BARRERA_CRITICA | «Generamos 24 recordatorios; todos salen rotulados SIMULADO porque el envío real por WhatsApp no se ha probado. Registramos la respuesta del tutor desde la interfaz: el webhook exige firma y, en modo simulado, no registra respuestas. Una barrera grave se guarda, incluso sin conexión, y dispara una alerta alta que suma 40 puntos a la visita priorizada.» | HIST-4.1 (24 SIMULADO), HIST-4.2 (respuesta; webhook 403 sin firma), HIST-4.3 (barrera sincronizada), HIST-4.4 (alerta ALTA; BARRERA_CRITICA 40,0) |
+| **04:30 - 05:00** | **Calidad y arquitectura**<br>04:30: GitHub, `pmv_fastapi/app` en `v4.0-Inc4` (`domain`, `ports`, `adapters`, `application`, `main.py`)<br>04:42: pestaña Actions con el CI en verde<br>04:52: página de etiquetas | «La arquitectura es hexagonal: el dominio importa 0 bibliotecas de terceros en 86 clases y 25 pruebas lo verifican. El CI ejecuta 660 pruebas y 28 E2E con 99,79 % de cobertura y está en verde. Cada incremento tiene su etiqueta: `v1.0-PMV`, `v2.0-Inc2`, `v3.0-Inc3` y `v4.0-Inc4`. Falta validar con una posta real; quedan 12 hallazgos de seguridad abiertos y un p95 de 1 100 ms por vigilar. Gracias.» | Arquitectura hexagonal y SCM (etiquetas), CI/CD, OWASP 2025 (H-1 a H-12) |
+
+### ANEXO D: Cotejo de referencias
+
+Cada referencia de la lista figura en el texto al menos una vez y cada cita del texto figura en la lista. La columna «Origen» distingue las cinco referencias de la plantilla del curso de las agregadas por el proyecto.
+
+**Tabla 39.** Cotejo de referencias: referencia y secciones donde se cita.
+
+| Referencia | Origen | Secciones donde se cita |
+| --- | --- | --- |
+| Basili, Caldiera y Rombach (1994) | Proyecto | 2.5, 3.6.2 |
+| CMMI Institute (2018) | Plantilla | 2.5, 3.8 |
+| Cockburn (2005) | Proyecto | 2.4 |
+| Dirección Regional de Salud Junín (2024) | Proyecto | 1.2 |
+| Grady y Caswell (1987) | Proyecto | 2.5 |
+| IEEE Computer Society (2014) | Proyecto | 2.2 |
+| INEI (2026) | Proyecto | 1.1 |
+| ISO/IEC/IEEE (2017) | Proyecto | 2.3, 3.3 |
+| Kim et al. (2016) | Proyecto | 2.2 |
+| Larman (2003) | Proyecto | 2.5 |
+| MINSA (2024) | Proyecto | 1.1 |
+| O'Regan (2017) | Plantilla | 2.2, 2.5 |
+| OWASP Foundation (2025) | Plantilla | 2.5, 3.7.4 |
+| Pressman y Maxim (2021) | Plantilla | 2.2 |
+| Schwaber y Sutherland (2020) | Proyecto | 2.2 |
+| Sommerville (2016) | Plantilla | 2.1, 2.2 |
+| Universidad Continental (2026a) | Proyecto | 2.1, 2.2 |
+| Universidad Continental (2026b) | Proyecto | 2.3 |
+| W3C (2018) | Proyecto | 2.5, 3.7.2 |
 
 ---
 
@@ -1605,11 +1825,21 @@ Estado del plan: 19 acciones (7 de S11 y 12 nuevas), **1 cumplida, 4 parciales y
 
 **Asignatura:** Procesos de Software (ASUC01702). **Objeto de evaluación:** proceso de software, producto en GitHub (arquitectura hexagonal) y video demostrativo. **Escala:** 0 a 20 puntos. El puntaje lo asigna el docente; la tabla siguiente es la autoevaluación del equipo.
 
-**Tabla 59.** Autoevaluación frente a los cuatro criterios de la rúbrica.
+**Tabla 40.** Autoevaluación frente a los cuatro criterios de la rúbrica.
 
 | Criterio (puntaje máximo) | Evidencia en el informe | Nivel esperado | Riesgo |
 | --- | --- | --- | --- |
 | 1. Evaluación del proceso de software: *tailoring*, WBS, RAE, DoD y CMMI (5,0) | Secciones 3.1 a 3.4 y 3.8: factores y matriz ponderada (4,75 de 5), WBS con 133 SP, matriz RAE, DoD verificada, desviaciones medidas, CMMI en 7 áreas y plan de 19 acciones | Excelente en rigor; Bueno si el docente pondera los niveles de capacidad | CMMI queda en Nivel 1 en 4 de 7 áreas; sin horas reales, sin GitHub Projects y sin actas de revisión |
 | 2. Producto en GitHub y arquitectura hexagonal (6,0) | Sección 3.6.1 y Anexo B: estructura `domain`, `ports`, `adapters` con enlaces a `v4.0-Inc4`, 0 importaciones de terceros en 86 clases, 25 pruebas de arquitectura y 5 etiquetas | Excelente | La ruta es `pmv_fastapi/app/` y no `/src/`; el PMV nació con 40 % de conformidad; `v1.0-PMV` está fuera del historial de `main`; conformidad ultra estricta de 80 % |
 | 3. Pruebas, FURPS+ y seguridad OWASP 2025 (4,0) | Secciones 3.6.3, 3.6.4 y 3.7: 19 de 19 fichas con capturas, FURPS+ 87,7 % (78,4 % conservador), WCAG con 22 de 23 pares de texto, OWASP con 12 hallazgos | Bueno | La rúbrica premia «0 vulnerabilidades» y el informe reporta 1 hallazgo alto y 6 medios; accesibilidad sin lector de pantalla; SonarCloud no ejecutado |
-| 4. Video demostrativo y guion técnico (5,0) | Anexo C y `video/GUION_DEMO.md`: guion de 5:00 minuto a minuto con criterio verificado por escena; Anexo A | Bueno, condicionado a adjuntar el video | El enlace de Drive está pendiente; la grabación usa datos sintéticos, proveedor de identidad simulado y envío simulado; el despliegue en Render no se verificó con `v4.0-Inc4` |
+| 4. Video demostrativo y guion técnico (5,0) | Anexo C y `video/GUION_DEMO.md`: guion de 5:00 minuto a minuto con criterio verificado por escena; Anexo A | Bueno, condicionado a adjuntar el video | El enlace de Drive está pendiente; la grabación usa datos sintéticos, proveedor de identidad simulado y envío simulado; la producción corre con reloj fijo (30/06/2024) y sus capturas por incremento están pendientes |
+
+**Tabla 41.** Resumen de evaluación en el formato de la plantilla (los puntajes los asigna el docente).
+
+| Criterio evaluado | Puntaje máximo | Puntaje obtenido | Observaciones |
+| --- | :---: | :---: | --- |
+| 1. Evaluación del proceso de software (*tailoring*, WBS, RAE, CMMI) | 5,0 | ______ | ______ |
+| 2. Producto de software en GitHub y arquitectura hexagonal | 6,0 | ______ | ______ |
+| 3. Estrategia de pruebas, FURPS+ y seguridad OWASP 2025 | 4,0 | ______ | ______ |
+| 4. Video demostrativo y guion técnico del software | 5,0 | ______ | ______ |
+| **NOTA FINAL CONSOLIDADA** | **20,0** | ______ | ______ |
