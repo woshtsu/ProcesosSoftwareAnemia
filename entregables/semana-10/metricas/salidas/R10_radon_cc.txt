@@ -1,0 +1,99 @@
+app/main.py
+    F 38:0 crear_app - B (10)
+app/application/servicio_barreras.py
+    M 53:4 ServicioBarreras.alertas_barreras - C (11)
+app/application/servicio_alertas.py
+    M 30:4 ServicioAlertas.listar_controles_vencidos - B (10)
+app/application/servicio_sincronizacion.py
+    M 320:4 ServicioSincronizacion._aplicar_cliente - C (14)
+    M 298:4 ServicioSincronizacion._resolver - B (10)
+    M 358:4 ServicioSincronizacion._asegurar_evaluacion - B (7)
+    M 110:4 ServicioSincronizacion._aplicar - B (6)
+    M 145:4 ServicioSincronizacion._nino - B (6)
+    M 167:4 ServicioSincronizacion._evaluacion - B (6)
+app/application/servicio_agenda_personal.py
+    M 27:4 ServicioAgendaPersonal.agenda_personal - C (12)
+    C 22:0 ServicioAgendaPersonal - B (8)
+app/application/servicio_importacion.py
+    M 69:4 ServicioImportacion.importar - C (12)
+    M 103:4 ServicioImportacion._construir - B (8)
+app/application/servicio_expediente.py
+    M 106:4 ServicioExpediente.actualizar_datos - C (16)
+    M 177:4 ServicioExpediente.reporte_periodo - B (9)
+    M 146:4 ServicioExpediente.listar_seguimiento - B (8)
+app/application/servicio_recordatorios.py
+    M 102:4 ServicioRecordatorios._generar - C (12)
+    M 250:4 ServicioRecordatorios._aplicar_eventos - C (11)
+    M 132:4 ServicioRecordatorios._enviar - B (7)
+    M 168:4 ServicioRecordatorios.listar_recordatorios - B (7)
+    M 191:4 ServicioRecordatorios._responder - B (7)
+app/application/servicio_visitas.py
+    M 57:4 ServicioVisitas.visitas_priorizadas - B (10)
+app/domain/service/conflictos.py
+    F 197:0 decidir_visita - B (8)
+    F 223:0 motivo_no_aplicable - B (8)
+    F 128:0 decidir_evaluacion - B (7)
+    F 174:0 decidir_asistencia - B (6)
+app/domain/service/visitas.py
+    F 81:0 validar_datos_visita - C (14)
+    F 139:0 priorizar_nino - C (13)
+app/domain/service/agenda.py
+    F 283:0 _resumir - C (14)
+    F 235:0 _resolver - C (12)
+    F 186:0 _asignar_evaluaciones - C (11)
+    F 144:0 _episodios_de_anemia - B (9)
+    F 122:0 _previstos_por_edad - B (6)
+    F 222:0 _vinculadas - B (6)
+app/domain/service/alertas.py
+    F 23:0 calcular_prioridad - B (7)
+app/domain/service/validaciones.py
+    F 58:0 validar_datos_nino - B (10)
+    F 89:0 validar_datos_evaluacion - B (9)
+    F 30:0 _texto - B (7)
+app/domain/service/barreras.py
+    F 71:0 validar_datos_barrera - C (16)
+    F 117:0 _razones - C (13)
+    F 140:0 evaluar_barreras_nino - C (12)
+    F 100:0 crear_barrera - B (6)
+app/domain/service/operaciones.py
+    F 50:0 _convertir - B (8)
+app/domain/service/reglas_clinicas.py
+    F 58:0 clasificar_anemia - B (6)
+app/domain/service/asistencia.py
+    F 44:0 localizar_control_registrable - C (15)
+    F 22:0 validar_datos_asistencia - C (11)
+app/domain/service/notificaciones.py
+    F 252:0 extraer_eventos - C (17)
+    F 294:0 _contar - C (17)
+    F 139:0 validar_respuesta - C (11)
+    F 237:0 _texto_del_mensaje - B (9)
+    F 176:0 interpretar_respuesta - B (6)
+app/domain/service/agenda_personal.py
+    F 90:0 construir_agenda_personal - C (13)
+    F 49:0 _items_de_nino - B (6)
+app/adapters/outbound/supabase_auth.py
+    M 12:4 SupabaseAuth.__init__ - B (7)
+    M 27:4 SupabaseAuth._peticion - B (7)
+    M 52:4 SupabaseAuth._sesion - B (7)
+    M 45:4 SupabaseAuth._usuario - B (6)
+app/adapters/outbound/notificaciones/sms.py
+    M 32:4 NotificadorSMS.enviar - B (9)
+app/adapters/outbound/notificaciones/__init__.py
+    F 22:0 crear_notificador - B (7)
+app/adapters/outbound/notificaciones/whatsapp_cloud.py
+    M 46:4 NotificadorWhatsAppCloud.enviar - B (10)
+app/adapters/outbound/persistence/memoria.py
+    M 234:4 RepositorioEnMemoria.listar_recordatorios - C (12)
+    M 100:4 RepositorioEnMemoria.listar - C (11)
+    M 219:4 RepositorioEnMemoria.buscar_para_respuesta - B (10)
+    M 48:4 RepositorioEnMemoria.eliminar_por_origen - B (8)
+app/adapters/outbound/persistence/sqlalchemy_repo.py
+    M 557:4 RepositorioSQLAlchemy.guardar_varios - B (6)
+app/adapters/inbound/http/autenticacion.py
+    F 108:0 session - B (7)
+app/adapters/inbound/http/api.py
+    F 344:0 listar - B (6)
+    F 593:0 sincronizar - B (6)
+
+68 blocks (classes, functions, methods) analyzed.
+Average complexity: B (9.397058823529411)

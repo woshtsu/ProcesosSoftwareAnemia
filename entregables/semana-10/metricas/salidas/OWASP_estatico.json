@@ -1,0 +1,248 @@
+{
+  "comprobaciones": 30,
+  "cumple": 16,
+  "hallazgos": 13,
+  "no_medidos": 1,
+  "resultados": [
+    {
+      "id": "E01",
+      "owasp": "A01",
+      "control": "Control de acceso por rol/establecimiento (RBAC)",
+      "metodo": "grep de roles/permisos en api.py, autenticacion.py y main.py",
+      "estado": "HALLAZGO",
+      "detalle": "0 referencias; el README declara «no hay roles ni separación por establecimiento»: todo usuario confirmado tiene acceso total"
+    },
+    {
+      "id": "E02",
+      "owasp": "A01",
+      "control": "SSRF: las peticiones salientes no usan URL de la solicitud del usuario",
+      "metodo": "httpx solo se importa en adapters/outbound; los destinos son constantes o variables de entorno",
+      "estado": "CUMPLE",
+      "detalle": "httpx fuera de adaptadores de salida: 0; URL literales en adaptadores: ['app/adapters/outbound/notificaciones/whatsapp_cloud.py:12']; SMS_API_URL, SUPABASE_URL y WHATSAPP_* vienen del entorno"
+    },
+    {
+      "id": "E03",
+      "owasp": "A02",
+      "control": "Sin credenciales en el codigo del repositorio",
+      "metodo": "regex de claves (sb_secret, JWT, AKIA, llaves privadas, service_role) sobre pmv_fastapi/",
+      "estado": "CUMPLE",
+      "detalle": "192 archivos revisados; coincidencias: 0"
+    },
+    {
+      "id": "E04",
+      "owasp": "A02",
+      "control": ".env ignorado por Git y .env.example solo con marcadores",
+      "metodo": "git check-ignore + lectura de .env.example",
+      "estado": "CUMPLE",
+      "detalle": ".env ignorado: True"
+    },
+    {
+      "id": "E05",
+      "owasp": "A02",
+      "control": "docker-compose sin contraseña predeterminada debil",
+      "metodo": "grep de POSTGRES_PASSWORD",
+      "estado": "HALLAZGO",
+      "detalle": "docker-compose.yml usa `${POSTGRES_PASSWORD:-cambiar_en_staging}` como valor por defecto (solo para staging local)"
+    },
+    {
+      "id": "E06",
+      "owasp": "A02",
+      "control": "Imagen Docker: usuario no root, base slim y HEALTHCHECK",
+      "metodo": "lectura del Dockerfile",
+      "estado": "CUMPLE",
+      "detalle": "USER appuser, python:3.11-slim, HEALTHCHECK cada 30 s"
+    },
+    {
+      "id": "E07",
+      "owasp": "A02",
+      "control": "Cabeceras de seguridad definidas en la aplicacion",
+      "metodo": "grep en app/",
+      "estado": "HALLAZGO",
+      "detalle": "0 referencias"
+    },
+    {
+      "id": "E08",
+      "owasp": "A03",
+      "control": "Dependencias de produccion con version exacta",
+      "metodo": "requirements.txt",
+      "estado": "CUMPLE",
+      "detalle": "5 de 5 con =="
+    },
+    {
+      "id": "E09",
+      "owasp": "A03",
+      "control": "Hashes de integridad en dependencias (pip --require-hashes)",
+      "metodo": "grep de --hash en requirements*.txt",
+      "estado": "HALLAZGO",
+      "detalle": "sin hashes ni archivo de bloqueo"
+    },
+    {
+      "id": "E10",
+      "owasp": "A03",
+      "control": "Actualizacion automatica de dependencias (Dependabot/Renovate)",
+      "metodo": "existencia de .github/dependabot.yml",
+      "estado": "HALLAZGO",
+      "detalle": "solo existe .github/workflows/ci.yml"
+    },
+    {
+      "id": "E11",
+      "owasp": "A03",
+      "control": "CI ejecuta analisis de seguridad (SAST/auditoria de dependencias)",
+      "metodo": "busqueda de bandit/semgrep/codeql/pip-audit en ci.yml",
+      "estado": "HALLAZGO",
+      "detalle": "el CI ejecuta ruff, pytest, OpenAPI, PostgreSQL, E2E y SonarCloud opcional (solo con SONAR_TOKEN)"
+    },
+    {
+      "id": "E12",
+      "owasp": "A03",
+      "control": "Acciones de GitHub fijadas por SHA de commit",
+      "metodo": "regex en ci.yml",
+      "estado": "HALLAZGO",
+      "detalle": "6 acciones fijadas por etiqueta (@v4/@v5), no por SHA"
+    },
+    {
+      "id": "E13",
+      "owasp": "A04",
+      "control": "Sin algoritmos de hash debiles",
+      "metodo": "grep md5/sha1 en app/",
+      "estado": "CUMPLE",
+      "detalle": "0 coincidencias"
+    },
+    {
+      "id": "E14",
+      "owasp": "A04",
+      "control": "Comparacion en tiempo constante de firma y token del webhook",
+      "metodo": "grep compare_digest",
+      "estado": "CUMPLE",
+      "detalle": "2 usos (firma y token de verificacion)"
+    },
+    {
+      "id": "E15",
+      "owasp": "A04",
+      "control": "La aplicacion no almacena ni procesa contrasenas (se delegan a Supabase Auth)",
+      "metodo": "grep password fuera de login/sesion",
+      "estado": "CUMPLE",
+      "detalle": "0 coincidencias fuera de los modulos de sesion"
+    },
+    {
+      "id": "E16",
+      "owasp": "A05",
+      "control": "Sin SQL construido por concatenacion o f-strings",
+      "metodo": "regex en app/ (execute/text con f-string, format, %)",
+      "estado": "CUMPLE",
+      "detalle": "0 coincidencias; el repositorio usa SQLAlchemy Core con parametros"
+    },
+    {
+      "id": "E17",
+      "owasp": "A05",
+      "control": "Sin eval/exec/pickle/os.system/subprocess en el codigo de la aplicacion",
+      "metodo": "grep en app/",
+      "estado": "CUMPLE",
+      "detalle": "0 coincidencias"
+    },
+    {
+      "id": "E18",
+      "owasp": "A05",
+      "control": "El cliente escapa el texto libre antes de insertarlo con innerHTML (esc())",
+      "metodo": "conteo de esc( y de innerHTML en app.js",
+      "estado": "CUMPLE",
+      "detalle": "106 usos de esc() frente a 33 asignaciones a innerHTML"
+    },
+    {
+      "id": "E19",
+      "owasp": "A06",
+      "control": "Decisiones de diseno de seguridad documentadas (ADR-011 sesion, ADR-014 webhook)",
+      "metodo": "existencia de ADR",
+      "estado": "CUMPLE",
+      "detalle": "14 ADR en total"
+    },
+    {
+      "id": "E20",
+      "owasp": "A06",
+      "control": "Limitacion de tasa (rate limiting) en la aplicacion",
+      "metodo": "grep slowapi/rate_limit/429 en app/",
+      "estado": "HALLAZGO",
+      "detalle": "0 referencias; sin limite propio en login ni en la API"
+    },
+    {
+      "id": "E21",
+      "owasp": "A06",
+      "control": "Cerrojos de concurrencia con pruebas (sincronizacion y recordatorios)",
+      "metodo": "grep cp264b/cp382b en tests/",
+      "estado": "CUMPLE",
+      "detalle": "2 pruebas"
+    },
+    {
+      "id": "E22",
+      "owasp": "A06",
+      "control": "Modelo de amenazas documentado (STRIDE o equivalente) en el repositorio del producto",
+      "metodo": "grep amenaza/STRIDE en pmv_fastapi/docs",
+      "estado": "HALLAZGO",
+      "detalle": "no hay un documento de modelo de amenazas en pmv_fastapi/docs"
+    },
+    {
+      "id": "E23",
+      "owasp": "A07",
+      "control": "Politica de contrasenas, MFA y bloqueo por intentos (Supabase Auth)",
+      "metodo": "no verificable desde el repositorio",
+      "estado": "NO_MEDIDO",
+      "detalle": "se configura en el panel de Supabase; no se pudo medir aqui (no se cuenta como cumplido)"
+    },
+    {
+      "id": "E24",
+      "owasp": "A08",
+      "control": "Sin deserializacion insegura",
+      "metodo": "grep pickle/marshal/yaml.load",
+      "estado": "CUMPLE",
+      "detalle": "0 coincidencias"
+    },
+    {
+      "id": "E25",
+      "owasp": "A08",
+      "control": "Artefactos de CI firmados o con procedencia (attestations/cosign)",
+      "metodo": "grep attest/cosign/provenance en ci.yml",
+      "estado": "HALLAZGO",
+      "detalle": "el CI construye la imagen pero no la firma"
+    },
+    {
+      "id": "E26",
+      "owasp": "A09",
+      "control": "La aplicacion registra eventos de seguridad (login fallido, 401/403, firma invalida)",
+      "metodo": "grep logging en app/",
+      "estado": "HALLAZGO",
+      "detalle": "0 usos de logging; solo hay los logs de acceso de uvicorn"
+    },
+    {
+      "id": "E27",
+      "owasp": "A09",
+      "control": "Trazabilidad del autor de cada registro (registrado_por)",
+      "metodo": "grep registrado_por en el esquema SQL",
+      "estado": "CUMPLE",
+      "detalle": "6 columnas registrado_por; en modo supabase es el UUID verificado"
+    },
+    {
+      "id": "E28",
+      "owasp": "A09",
+      "control": "Alertas/monitoreo de seguridad automatizados",
+      "metodo": "no hay modulo de alertas de seguridad ni integracion de monitoreo",
+      "estado": "HALLAZGO",
+      "detalle": "no se encontro configuracion de alertas; HEALTHCHECK solo verifica disponibilidad"
+    },
+    {
+      "id": "E29",
+      "owasp": "A10",
+      "control": "Manejador global de excepciones (respuesta controlada ante errores no previstos)",
+      "metodo": "grep exception_handler(Exception)",
+      "estado": "HALLAZGO",
+      "detalle": "solo hay manejadores de excepciones de dominio (409/422/403/503/404); una falla de BD responde 500 generico (ver R13)"
+    },
+    {
+      "id": "E30",
+      "owasp": "A10",
+      "control": "Errores de dominio mapeados a respuestas HTTP controladas",
+      "metodo": "conteo de manejadores",
+      "estado": "CUMPLE",
+      "detalle": "11 manejadores registrados"
+    }
+  ]
+}

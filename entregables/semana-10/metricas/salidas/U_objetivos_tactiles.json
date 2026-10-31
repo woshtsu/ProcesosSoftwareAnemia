@@ -1,0 +1,1112 @@
+{
+  "escritorio": {
+    "Registrar niño": {
+      "total": 29,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 20
+    },
+    "Seguimiento": {
+      "total": 15,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 6
+    },
+    "Expediente": {
+      "total": 26,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 17
+    },
+    "Agenda": {
+      "total": 34,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        },
+        {
+          "t": "a[agenda-personal-nino]",
+          "w": 118,
+          "h": 17
+        },
+        {
+          "t": "a[agenda-personal-nino]",
+          "w": 102,
+          "h": 17
+        },
+        {
+          "t": "a[agenda-personal-nino]",
+          "w": 141,
+          "h": 17
+        },
+        {
+          "t": "a[agenda-personal-nino]",
+          "w": 113,
+          "h": 17
+        }
+      ],
+      "menores_44": 25
+    },
+    "Visitas": {
+      "total": 57,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        },
+        {
+          "t": "a",
+          "w": 139,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 183,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 42,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 173,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 127,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 142,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 158,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 118,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 175,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 131,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 102,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 115,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 152,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 141,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 113,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        }
+      ],
+      "menores_44": 48
+    },
+    "Recordatorios": {
+      "total": 65,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        },
+        {
+          "t": "a",
+          "w": 141,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 141,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 118,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 147,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 122,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 122,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 115,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 127,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 139,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 139,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 139,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 131,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 146,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 102,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 102,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 113,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 113,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 162,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 173,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 183,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 183,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 183,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 136,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 175,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 136,
+          "h": 17
+        }
+      ],
+      "menores_44": 56
+    },
+    "Alertas": {
+      "total": 14,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 5
+    },
+    "Sincronización": {
+      "total": 13,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 4
+    },
+    "Reporte": {
+      "total": 16,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 7
+    },
+    "Modal asistencia": {
+      "total": 31,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 22
+    },
+    "Modal visita": {
+      "total": 63,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        },
+        {
+          "t": "a",
+          "w": 139,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 183,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 42,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 173,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 127,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 142,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 158,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 118,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 175,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 131,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 102,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 115,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 152,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 141,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "a",
+          "w": 113,
+          "h": 17
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        }
+      ],
+      "menores_44": 54
+    },
+    "Modal respuesta del tutor": {
+      "total": 68,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        },
+        {
+          "t": "a",
+          "w": 141,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 141,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 118,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 147,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 122,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 122,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 115,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 127,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 139,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 139,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 139,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 131,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 146,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 102,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 102,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 113,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 113,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 162,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 173,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 183,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 183,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 183,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 136,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 175,
+          "h": 17
+        },
+        {
+          "t": "a",
+          "w": 136,
+          "h": 17
+        }
+      ],
+      "menores_44": 59
+    },
+    "Modal barrera": {
+      "total": 31,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 22
+    }
+  },
+  "movil": {
+    "Registrar niño": {
+      "total": 29,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 20
+    },
+    "Seguimiento": {
+      "total": 15,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 6
+    },
+    "Expediente": {
+      "total": 26,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 17
+    },
+    "Agenda": {
+      "total": 34,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 23
+    },
+    "Visitas": {
+      "total": 57,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 42,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        }
+      ],
+      "menores_44": 44
+    },
+    "Recordatorios": {
+      "total": 65,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 49
+    },
+    "Alertas": {
+      "total": 14,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 5
+    },
+    "Sincronización": {
+      "total": 13,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 4
+    },
+    "Reporte": {
+      "total": 16,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 7
+    },
+    "Modal asistencia": {
+      "total": 31,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 22
+    },
+    "Modal visita": {
+      "total": 63,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 42,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 45,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        },
+        {
+          "t": "button[puntaje]",
+          "w": 44,
+          "h": 21
+        }
+      ],
+      "menores_44": 50
+    },
+    "Modal respuesta del tutor": {
+      "total": 68,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 52
+    },
+    "Modal barrera": {
+      "total": 31,
+      "menores_24": [
+        {
+          "t": "button#sync-indicador",
+          "w": 59,
+          "h": 22
+        },
+        {
+          "t": "a#insignia-alertas",
+          "w": 31,
+          "h": 20
+        }
+      ],
+      "menores_44": 22
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "paradas_tab_en_60_pulsaciones": 56,
+  "elementos_distintos": 29,
+  "ciclo_completo": true,
+  "elementos_sin_indicador_de_foco": [],
+  "indicadores": [
+    "solid 2px rgb(156, 195, 234)",
+    "auto 1px rgb(16, 16, 16)"
+  ],
+  "registro_con_teclado_enter_en_guardar": true,
+  "modal_abre_con_enter": true,
+  "modal_foco_inicial_dentro": true,
+  "modal_cierra_con_esc": true,
+  "foco_tras_cerrar_modal": "body",
+  "modal_tab_escapa_del_dialogo_veces_en_14": 10
+}

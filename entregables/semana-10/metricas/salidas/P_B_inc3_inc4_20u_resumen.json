@@ -1,0 +1,112 @@
+{
+  "corrida": "B_inc3_inc4_20u",
+  "locustfile": "entregables/semana-10/metricas/locustfile_inc3_inc4.py",
+  "usuarios": 20,
+  "segundos": 60,
+  "peticiones": 934,
+  "fallos": 0,
+  "tasa_error_pct": 0.0,
+  "p50_ms": 9.0,
+  "p95_ms": 98.0,
+  "p99_ms": 300.0,
+  "max_ms": 630.8079030000044,
+  "rps": 15.84,
+  "sondeos_salud": 120,
+  "sondeos_fallidos": 0,
+  "disponibilidad_pct": 100.0,
+  "salud_p95_ms": 12.1,
+  "rss_mb_min": 88.1,
+  "rss_mb_max": 93.6,
+  "por_endpoint": [
+    {
+      "endpoint": "GET /api/alertas/barreras",
+      "peticiones": 129,
+      "fallos": 0,
+      "p50_ms": 8.0,
+      "p95_ms": 54.0,
+      "p99_ms": 240.0,
+      "rps": 2.19
+    },
+    {
+      "endpoint": "GET /api/ninos",
+      "peticiones": 20,
+      "fallos": 0,
+      "p50_ms": 160.0,
+      "p95_ms": 300.0,
+      "p99_ms": 300.0,
+      "rps": 0.34
+    },
+    {
+      "endpoint": "GET /api/ninos/{id}/barreras",
+      "peticiones": 69,
+      "fallos": 0,
+      "p50_ms": 5.0,
+      "p95_ms": 46.0,
+      "p99_ms": 340.0,
+      "rps": 1.17
+    },
+    {
+      "endpoint": "GET /api/ninos/{id}/visitas",
+      "peticiones": 83,
+      "fallos": 0,
+      "p50_ms": 5.0,
+      "p95_ms": 57.0,
+      "p99_ms": 230.0,
+      "rps": 1.41
+    },
+    {
+      "endpoint": "GET /api/recordatorios",
+      "peticiones": 135,
+      "fallos": 0,
+      "p50_ms": 6.0,
+      "p95_ms": 21.0,
+      "p99_ms": 190.0,
+      "rps": 2.29
+    },
+    {
+      "endpoint": "GET /api/recordatorios/metricas",
+      "peticiones": 81,
+      "fallos": 0,
+      "p50_ms": 5.0,
+      "p95_ms": 18.0,
+      "p99_ms": 85.0,
+      "rps": 1.37
+    },
+    {
+      "endpoint": "GET /api/sincronizacion/conflictos",
+      "peticiones": 78,
+      "fallos": 0,
+      "p50_ms": 4.0,
+      "p95_ms": 60.0,
+      "p99_ms": 240.0,
+      "rps": 1.32
+    },
+    {
+      "endpoint": "GET /api/visitas/priorizadas",
+      "peticiones": 236,
+      "fallos": 0,
+      "p50_ms": 21.0,
+      "p95_ms": 61.0,
+      "p99_ms": 310.0,
+      "rps": 4.0
+    },
+    {
+      "endpoint": "POST /api/recordatorios/generar",
+      "peticiones": 27,
+      "fallos": 0,
+      "p50_ms": 22.0,
+      "p95_ms": 240.0,
+      "p99_ms": 300.0,
+      "rps": 0.46
+    },
+    {
+      "endpoint": "POST /api/sincronizacion",
+      "peticiones": 76,
+      "fallos": 0,
+      "p50_ms": 13.0,
+      "p95_ms": 170.0,
+      "p99_ms": 450.0,
+      "rps": 1.29
+    }
+  ]
+}

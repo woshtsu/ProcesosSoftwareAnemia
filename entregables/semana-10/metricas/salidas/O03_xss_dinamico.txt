@@ -1,0 +1,7 @@
+Seguimiento                      window.__xss=None  nodos inyectados=0  texto literal visible=True
+Expediente                       window.__xss=None  nodos inyectados=0  texto literal visible=True
+Alertas                          window.__xss=None  nodos inyectados=0  texto literal visible=True
+Visitas                          window.__xss=None  nodos inyectados=0  texto literal visible=True
+Recordatorios                    window.__xss=None  nodos inyectados=0  texto literal visible=True
+Registro (toast y expediente)    window.__xss=None  nodos inyectados=0  texto literal visible=True
+Dialogos JavaScript: [] | estado: CUMPLE

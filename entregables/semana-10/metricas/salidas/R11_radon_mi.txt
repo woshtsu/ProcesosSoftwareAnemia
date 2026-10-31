@@ -1,0 +1,2 @@
+app/adapters/outbound/persistence/memoria.py - B (18.10)
+app/adapters/outbound/persistence/sqlalchemy_repo.py - C (8.27)

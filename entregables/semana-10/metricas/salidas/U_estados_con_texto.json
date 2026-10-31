@@ -1,0 +1,110 @@
+{
+  "escritorio": {
+    "Registrar niño": {
+      "total": 2,
+      "sin_texto": 0
+    },
+    "Seguimiento": {
+      "total": 36,
+      "sin_texto": 0
+    },
+    "Expediente": {
+      "total": 24,
+      "sin_texto": 0
+    },
+    "Agenda": {
+      "total": 13,
+      "sin_texto": 0
+    },
+    "Visitas": {
+      "total": 17,
+      "sin_texto": 0
+    },
+    "Recordatorios": {
+      "total": 28,
+      "sin_texto": 0
+    },
+    "Alertas": {
+      "total": 22,
+      "sin_texto": 0
+    },
+    "Sincronización": {
+      "total": 4,
+      "sin_texto": 0
+    },
+    "Reporte": {
+      "total": 2,
+      "sin_texto": 0
+    },
+    "Modal asistencia": {
+      "total": 24,
+      "sin_texto": 0
+    },
+    "Modal visita": {
+      "total": 17,
+      "sin_texto": 0
+    },
+    "Modal respuesta del tutor": {
+      "total": 28,
+      "sin_texto": 0
+    },
+    "Modal barrera": {
+      "total": 24,
+      "sin_texto": 0
+    }
+  },
+  "movil": {
+    "Registrar niño": {
+      "total": 2,
+      "sin_texto": 0
+    },
+    "Seguimiento": {
+      "total": 36,
+      "sin_texto": 0
+    },
+    "Expediente": {
+      "total": 24,
+      "sin_texto": 0
+    },
+    "Agenda": {
+      "total": 13,
+      "sin_texto": 0
+    },
+    "Visitas": {
+      "total": 17,
+      "sin_texto": 0
+    },
+    "Recordatorios": {
+      "total": 28,
+      "sin_texto": 0
+    },
+    "Alertas": {
+      "total": 22,
+      "sin_texto": 0
+    },
+    "Sincronización": {
+      "total": 4,
+      "sin_texto": 0
+    },
+    "Reporte": {
+      "total": 2,
+      "sin_texto": 0
+    },
+    "Modal asistencia": {
+      "total": 24,
+      "sin_texto": 0
+    },
+    "Modal visita": {
+      "total": 17,
+      "sin_texto": 0
+    },
+    "Modal respuesta del tutor": {
+      "total": 28,
+      "sin_texto": 0
+    },
+    "Modal barrera": {
+      "total": 24,
+      "sin_texto": 0
+    }
+  }
+}

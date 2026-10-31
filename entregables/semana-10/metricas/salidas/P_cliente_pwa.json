@@ -1,0 +1,21 @@
+{
+  "perfil": "movil 390x844, CPU x4, 1.6 Mbps, 150 ms",
+  "repeticiones": 5,
+  "primera_carga": {
+    "fcp": 468,
+    "lcp": 468,
+    "dcl": 969.4,
+    "load": 969.4,
+    "bytes": 142228,
+    "recursos": 11
+  },
+  "segunda_carga_con_service_worker": {
+    "fcp": 84,
+    "lcp": 84,
+    "dcl": 98.8,
+    "load": 101,
+    "bytes": 302,
+    "recursos": 11
+  },
+  "umbral_lcp_ms": 2500
+}

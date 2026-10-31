@@ -1,0 +1,21 @@
+{
+  "axe": {
+    "escritorio": {
+      "pantallas": 14,
+      "reglas_axe_aprobadas_total": 310,
+      "violaciones_nodos": 52,
+      "pantallas_sin_violaciones": 1,
+      "buenas_practicas_nodos": 7
+    },
+    "movil": {
+      "pantallas": 14,
+      "reglas_axe_aprobadas_total": 316,
+      "violaciones_nodos": 68,
+      "pantallas_sin_violaciones": 1,
+      "buenas_practicas_nodos": 7
+    }
+  },
+  "reflow_pantallas": 13,
+  "reflow_con_desborde": [],
+  "axe_version": "4.14.0"
+}

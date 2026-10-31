@@ -1,0 +1,1856 @@
+                     
+                     
+┌───────────────────┐
+│ 151 Code Findings │
+└───────────────────┘
+                                    
+    app/adapters/inbound/http/api.py
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `_formato` is defined inside a function but never used
+                                                                         
+          245┆ @app.exception_handler(RequestValidationError)
+          246┆ async def _formato(_, exc: RequestValidationError):
+          247┆     errores = []
+          248┆     for err in exc.errors():
+          249┆         ubicacion = [str(x) for x in err.get("loc", []) if x not in ("body", "query",
+               "path")]                                                                             
+          250┆         campo = ubicacion[-1] if ubicacion else "solicitud"
+          251┆         errores.append({"campo": campo, "mensaje": MENSAJES_TIPO.get(err.get("type"),
+               "Valor inválido.")})                                                                 
+          252┆     return JSONResponse(status_code=422, content={"mensaje": "Revise los datos marcados.",
+               "errores": errores})                                                                      
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `_validacion` is defined inside a function but never used
+                                                                            
+          254┆ @app.exception_handler(ErrorValidacion)
+          255┆ async def _validacion(_, exc: ErrorValidacion):
+          256┆     return JSONResponse(
+          257┆         status_code=422,
+          258┆         content={
+          259┆             "mensaje": "Revise los datos marcados.",
+          260┆             "errores": [{"campo": e.campo, "mensaje": e.mensaje} for e in exc.errores],
+          261┆         },
+          262┆     )
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `_duplicado` is defined inside a function but never used
+                                                                           
+          264┆ @app.exception_handler(RegistroDuplicado)
+          265┆ async def _duplicado(_, exc: RegistroDuplicado):
+          266┆     return JSONResponse(
+          267┆         status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "dni",
+               "mensaje": str(exc)}]}                                                             
+          268┆     )
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `_conflicto_asistencia` is defined inside a function but never used
+                                                                                      
+          270┆ @app.exception_handler(ConflictoAsistencia)
+          271┆ async def _conflicto_asistencia(_, exc: ConflictoAsistencia):
+          272┆     return JSONResponse(
+          273┆         status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "codigo",
+               "mensaje": str(exc)}]}                                                                
+          274┆     )
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `_conflicto_visita` is defined inside a function but never used
+                                                                                  
+          276┆ @app.exception_handler(ConflictoVisita)
+          277┆ async def _conflicto_visita(_, exc: ConflictoVisita):
+          278┆     return JSONResponse(
+          279┆         status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "fecha",
+               "mensaje": str(exc)}]}                                                               
+          280┆     )
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `_conflicto_resuelto` is defined inside a function but never used
+                                                                                    
+          282┆ @app.exception_handler(ConflictoYaResuelto)
+          283┆ async def _conflicto_resuelto(_, exc: ConflictoYaResuelto):
+          284┆     return JSONResponse(
+          285┆         status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "estado",
+               "mensaje": str(exc)}]}                                                                
+          286┆     )
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `_conflicto_barrera` is defined inside a function but never used
+                                                                                   
+          288┆ @app.exception_handler(ConflictoBarrera)
+          289┆ async def _conflicto_barrera(_, exc: ConflictoBarrera):
+          290┆     return JSONResponse(
+          291┆         status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "tipo",
+               "mensaje": str(exc)}]}                                                              
+          292┆     )
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `_conflicto_respuesta` is defined inside a function but never used
+                                                                                     
+          294┆ @app.exception_handler(ConflictoRespuesta)
+          295┆ async def _conflicto_respuesta(_, exc: ConflictoRespuesta):
+          296┆     return JSONResponse(
+          297┆         status_code=409, content={"mensaje": str(exc), "errores": [{"campo": "respuesta",
+               "mensaje": str(exc)}]}                                                                   
+          298┆     )
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `_no_encontrado` is defined inside a function but never used
+                                                                               
+          303┆ @app.exception_handler(NoEncontrado)
+          304┆ async def _no_encontrado(_, exc: NoEncontrado):
+          305┆     return JSONResponse(status_code=404, content={"mensaje": str(exc), "errores": []})
+   
+     ❱ tmp.semgrep-rules.python.lang.security.use-defusedcsv
+          ❰❰ Blocking ❱❱
+          Detected the generation of a CSV file using the built-in `csv` module. If user data is used to      
+          generate the data in this file, it is possible that an attacker could inject a formula when the CSV 
+          is imported into a spreadsheet application that runs an attacker script, which could steal data from
+          the importing user or, at worst, install malware on the user's computer. `defusedcsv` is a drop-in  
+          replacement with the same API that will attempt to mitigate formula injection attempts. You can use 
+          `defusedcsv` instead of `csv` to safely generate CSVs.                                              
+                                                                                                              
+           ▶▶┆ Autofix ▶ defusedcsv.writer(buffer)
+          754┆ w = csv.writer(buffer)
+                                              
+    app/adapters/inbound/http/autenticacion.py
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `seguridad` is defined inside a function but never used
+                                                                          
+           60┆ @app.middleware("http")
+           61┆ async def seguridad(request: Request, call_next):
+           62┆     path = request.url.path.rstrip("/")
+           63┆     if app.state.auth_mode == "supabase" and path.startswith("/api/"):
+           64┆         # El encabezado personalizado exige una petición del mismo origen en navegadores.
+           65┆         if request.method not in {"GET", "HEAD", "OPTIONS"} and path != WEBHOOK_WHATSAPP:
+           66┆             origin = request.headers.get("origin")
+           67┆             esperado = str(request.base_url).rstrip("/")
+           68┆             if request.headers.get("X-CSRF-Protection") != "1" or (origin and origin !=
+               esperado):                                                                             
+           69┆                 return error(403, "Solicitud no permitida. Recargue la página e inténtelo
+               de nuevo.")                                                                              
+             [hid 14 additional lines, adjust with --max-lines-per-finding] 
+                                               
+    app/adapters/outbound/notificaciones/sms.py
+    ❯❱ tmp.semgrep-rules.python.lang.maintainability.is-function-without-parentheses
+          ❰❰ Blocking ❱❱
+          Is "is_success" a function or an attribute? If it is a function, you may have meant r.is_success()
+          because r.is_success is always true.                                                              
+                                                                                                            
+           41┆ if not r.is_success:
+                                                          
+    app/adapters/outbound/notificaciones/whatsapp_cloud.py
+    ❯❱ tmp.semgrep-rules.python.lang.maintainability.is-function-without-parentheses
+          ❰❰ Blocking ❱❱
+          Is "is_success" a function or an attribute? If it is a function, you may have meant r.is_success()
+          because r.is_success is always true.                                                              
+                                                                                                            
+           57┆ if r.is_success:
+                                          
+    app/adapters/outbound/supabase_auth.py
+    ❯❱ tmp.semgrep-rules.python.lang.maintainability.is-function-without-parentheses
+          ❰❰ Blocking ❱❱
+          Is "is_success" a function or an attribute? If it is a function, you may have meant
+          response.is_success() because response.is_success is always true.                  
+                                                                                             
+           38┆ if not response.is_success:
+                                  
+    app/domain/model/asistencia.py
+    ❯❱ tmp.semgrep-rules.python.lang.maintainability.return-not-in-function
+          ❰❰ Blocking ❱❱
+          `return` only makes sense inside a function
+                                                     
+           31┆ id: str = field(default_factory=lambda: str(uuid.uuid4()))
+                               
+    app/domain/model/barrera.py
+    ❯❱ tmp.semgrep-rules.python.lang.maintainability.return-not-in-function
+          ❰❰ Blocking ❱❱
+          `return` only makes sense inside a function
+                                                     
+           48┆ id: str = field(default_factory=lambda: str(uuid.uuid4()))
+                                 
+    app/domain/model/entidades.py
+    ❯❱ tmp.semgrep-rules.python.lang.maintainability.return-not-in-function
+          ❰❰ Blocking ❱❱
+          `return` only makes sense inside a function
+                                                     
+           28┆ id: str = field(default_factory=lambda: str(uuid.uuid4()))
+            ⋮┆----------------------------------------
+           69┆ id: str = field(default_factory=lambda: str(uuid.uuid4()))
+                                    
+    app/domain/model/notificacion.py
+    ❯❱ tmp.semgrep-rules.python.lang.maintainability.return-not-in-function
+          ❰❰ Blocking ❱❱
+          `return` only makes sense inside a function
+                                                     
+           84┆ id: str = field(default_factory=lambda: str(uuid.uuid4()))
+                                      
+    app/domain/model/sincronizacion.py
+    ❯❱ tmp.semgrep-rules.python.lang.maintainability.return-not-in-function
+          ❰❰ Blocking ❱❱
+          `return` only makes sense inside a function
+                                                     
+           81┆ id: str = field(default_factory=lambda: str(uuid.uuid4()))
+                              
+    app/domain/model/visita.py
+    ❯❱ tmp.semgrep-rules.python.lang.maintainability.return-not-in-function
+          ❰❰ Blocking ❱❱
+          `return` only makes sense inside a function
+                                                     
+           37┆ id: str = field(default_factory=lambda: str(uuid.uuid4()))
+               
+    app/main.py
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `inicio` is defined inside a function but never used
+                                                                       
+          104┆ @app.get("/", include_in_schema=False)
+          105┆ def inicio():
+          106┆     return FileResponse(WEB / "index.html")
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `documentacion` is defined inside a function but never used
+                                                                              
+          108┆ @app.get("/docs", include_in_schema=False)
+          109┆ def documentacion():
+          110┆     # Recursos servidos localmente: la documentación funciona sin acceso a CDN (entorno
+               rural).                                                                                
+          111┆     return get_swagger_ui_html(
+          112┆         openapi_url="/openapi.json",
+          113┆         title="API — Anemia Junín (Incremento 4)",
+          114┆         swagger_js_url="/static/vendor/swagger-ui-bundle.js",
+          115┆         swagger_css_url="/static/vendor/swagger-ui.css",
+          116┆     )
+            ⋮┆----------------------------------------
+   ❯❯❱ tmp.semgrep-rules.python.lang.maintainability.useless-inner-function
+          ❰❰ Blocking ❱❱
+          function `service_worker` is defined inside a function but never used
+                                                                               
+          118┆ @app.get("/sw.js", include_in_schema=False)
+          119┆ def service_worker():
+          120┆     return FileResponse(WEB / "sw.js", media_type="application/javascript")
+                  
+    app/web/app.js
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+           36┆ const badge = (c) => c ? `<span class="badge ${c}">${ETIQUETA[c]}</span>` : `<span
+               class="badge NO_APLICA">Sin control</span>`;                                      
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          115┆ caja.innerHTML = `<strong>Validación clínica (vista previa)</strong>
+          116┆   <div class="kv"><span>Edad al control</span><strong>${edad(r.edad_meses)}</strong>
+          117┆   <span>Ajuste por altitud (${r.altitud_m} m)</span><strong>−${(r.hemoglobina_observada -
+               r.hemoglobina_ajustada).toFixed(1)} g/dL</strong>                                        
+          118┆   <span>Hemoglobina ajustada</span><strong data-testid="hb- 
+               ajustada">${r.hemoglobina_ajustada.toFixed(1)} g/dL</strong>
+          119┆   <span>Clasificación</span><span data-testid="clasificacion-
+               previa">${badge(r.clasificacion)}</span></div>`;             
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          115┆ caja.innerHTML = `<strong>Validación clínica (vista previa)</strong>
+          116┆   <div class="kv"><span>Edad al control</span><strong>${edad(r.edad_meses)}</strong>
+          117┆   <span>Ajuste por altitud (${r.altitud_m} m)</span><strong>−${(r.hemoglobina_observada -
+               r.hemoglobina_ajustada).toFixed(1)} g/dL</strong>                                        
+          118┆   <span>Hemoglobina ajustada</span><strong data-testid="hb- 
+               ajustada">${r.hemoglobina_ajustada.toFixed(1)} g/dL</strong>
+          119┆   <span>Clasificación</span><span data-testid="clasificacion-
+               previa">${badge(r.clasificacion)}</span></div>`;             
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          115┆ caja.innerHTML = `<strong>Validación clínica (vista previa)</strong>
+          116┆   <div class="kv"><span>Edad al control</span><strong>${edad(r.edad_meses)}</strong>
+          117┆   <span>Ajuste por altitud (${r.altitud_m} m)</span><strong>−${(r.hemoglobina_observada -
+               r.hemoglobina_ajustada).toFixed(1)} g/dL</strong>                                        
+          118┆   <span>Hemoglobina ajustada</span><strong data-testid="hb- 
+               ajustada">${r.hemoglobina_ajustada.toFixed(1)} g/dL</strong>
+          119┆   <span>Clasificación</span><span data-testid="clasificacion-
+               previa">${badge(r.clasificacion)}</span></div>`;             
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          123┆ caja.innerHTML = relevantes.length ? `<span class="previa-                           
+               error">${esc(relevantes[0].mensaje)}</span>` : '<span class="previa-vacia">Revise los
+               datos.</span>';                                                                      
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          123┆ caja.innerHTML = relevantes.length ? `<span class="previa-                           
+               error">${esc(relevantes[0].mensaje)}</span>` : '<span class="previa-vacia">Revise los
+               datos.</span>';                                                                      
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          123┆ caja.innerHTML = relevantes.length ? `<span class="previa-                           
+               error">${esc(relevantes[0].mensaje)}</span>` : '<span class="previa-vacia">Revise los
+               datos.</span>';                                                                      
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          193┆ $("#cuerpo-seguimiento").innerHTML = locales.map((o) => {
+          194┆   const n = o.datos.nino, ev = o.datos.evaluacion_inicial;
+          195┆   return `<tr class="click" data-id="local:${o.id_cliente}" data-testid="fila-pendiente">
+          196┆     <td><strong>${esc(n.nombres)} ${esc(n.apellidos)}</strong></td><td>${esc(n.dni ||      
+               "—")}</td><td>${edad(mesesEntre(n.fecha_nacimiento, HOY))}</td><td>${esc(n.comunidad)}</td>
+          197┆     <td>${fecha(ev.fecha)}</td><td>—</td><td><span class="ctrl ctrl-LOCAL">Pendiente de
+               sincronizar</span></td></tr>`;                                                         
+          198┆ }).join("") + filas.map((f) => `
+          199┆   <tr class="click" data-id="${f.id}">
+          200┆     <td><strong>${esc(f.nombre_completo)}</strong></td><td>${esc(f.dni || f.codigo_origen
+               || "—")}</td><td>${edad(f.edad_meses)}</td><td>${esc(f.comunidad)}</td>                  
+          201┆     <td class="${f.control_atrasado ? "atrasado" :                                        
+               ""}">${fecha(f.ultima_fecha_control)}${f.dias_desde_ultimo_control !== null ? ` ·         
+               ${f.dias_desde_ultimo_control} d` : ""}${f.controles_vencidos ? ` <span class="ctrl ctrl- 
+               VENCIDO" data-testid="vencidos-fila">${f.controles_vencidos} vencido(s)</span>` : ""}</td>
+          202┆     <td>${f.ultima_hb_ajustada !== null ? f.ultima_hb_ajustada.toFixed(1) :
+               "—"}</td><td>${badge(f.ultima_clasificacion)}</td>                         
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#cuerpo-seguimiento").innerHTML` is an anti-pattern that can lead to
+          XSS vulnerabilities                                                                               
+                                                                                                            
+          193┆ $("#cuerpo-seguimiento").innerHTML = locales.map((o) => {
+          194┆   const n = o.datos.nino, ev = o.datos.evaluacion_inicial;
+          195┆   return `<tr class="click" data-id="local:${o.id_cliente}" data-testid="fila-pendiente">
+          196┆     <td><strong>${esc(n.nombres)} ${esc(n.apellidos)}</strong></td><td>${esc(n.dni ||      
+               "—")}</td><td>${edad(mesesEntre(n.fecha_nacimiento, HOY))}</td><td>${esc(n.comunidad)}</td>
+          197┆     <td>${fecha(ev.fecha)}</td><td>—</td><td><span class="ctrl ctrl-LOCAL">Pendiente de
+               sincronizar</span></td></tr>`;                                                         
+          198┆ }).join("") + filas.map((f) => `
+          199┆   <tr class="click" data-id="${f.id}">
+          200┆     <td><strong>${esc(f.nombre_completo)}</strong></td><td>${esc(f.dni || f.codigo_origen
+               || "—")}</td><td>${edad(f.edad_meses)}</td><td>${esc(f.comunidad)}</td>                  
+          201┆     <td class="${f.control_atrasado ? "atrasado" :                                        
+               ""}">${fecha(f.ultima_fecha_control)}${f.dias_desde_ultimo_control !== null ? ` ·         
+               ${f.dias_desde_ultimo_control} d` : ""}${f.controles_vencidos ? ` <span class="ctrl ctrl- 
+               VENCIDO" data-testid="vencidos-fila">${f.controles_vencidos} vencido(s)</span>` : ""}</td>
+          202┆     <td>${f.ultima_hb_ajustada !== null ? f.ultima_hb_ajustada.toFixed(1) :
+               "—"}</td><td>${badge(f.ultima_clasificacion)}</td>                         
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          195┆ return `<tr class="click" data-id="local:${o.id_cliente}" data-testid="fila-pendiente">
+          196┆   <td><strong>${esc(n.nombres)} ${esc(n.apellidos)}</strong></td><td>${esc(n.dni ||        
+               "—")}</td><td>${edad(mesesEntre(n.fecha_nacimiento, HOY))}</td><td>${esc(n.comunidad)}</td>
+          197┆   <td>${fecha(ev.fecha)}</td><td>—</td><td><span class="ctrl ctrl-LOCAL">Pendiente de
+               sincronizar</span></td></tr>`;                                                       
+            ⋮┆----------------------------------------
+          198┆ }).join("") + filas.map((f) => `
+          199┆   <tr class="click" data-id="${f.id}">
+          200┆     <td><strong>${esc(f.nombre_completo)}</strong></td><td>${esc(f.dni || f.codigo_origen
+               || "—")}</td><td>${edad(f.edad_meses)}</td><td>${esc(f.comunidad)}</td>                  
+          201┆     <td class="${f.control_atrasado ? "atrasado" :                                        
+               ""}">${fecha(f.ultima_fecha_control)}${f.dias_desde_ultimo_control !== null ? ` ·         
+               ${f.dias_desde_ultimo_control} d` : ""}${f.controles_vencidos ? ` <span class="ctrl ctrl- 
+               VENCIDO" data-testid="vencidos-fila">${f.controles_vencidos} vencido(s)</span>` : ""}</td>
+          202┆     <td>${f.ultima_hb_ajustada !== null ? f.ultima_hb_ajustada.toFixed(1) :
+               "—"}</td><td>${badge(f.ultima_clasificacion)}</td>                         
+          203┆   </tr>`).join("");
+            ⋮┆----------------------------------------
+          201┆ <td class="${f.control_atrasado ? "atrasado" :                                            
+               ""}">${fecha(f.ultima_fecha_control)}${f.dias_desde_ultimo_control !== null ? ` ·         
+               ${f.dias_desde_ultimo_control} d` : ""}${f.controles_vencidos ? ` <span class="ctrl ctrl- 
+               VENCIDO" data-testid="vencidos-fila">${f.controles_vencidos} vencido(s)</span>` : ""}</td>
+            ⋮┆----------------------------------------
+          234┆ return `<svg viewBox="0 0 ${w} ${h}" width="100%" role="img" aria-label="Evolución de
+               hemoglobina ajustada">                                                               
+          235┆   <line x1="${pad}" x2="${w - pad}" y1="${y(umbral)}" y2="${y(umbral)}" stroke="#B0222B"
+               stroke-dasharray="4 4"/>                                                                
+          236┆   <text x="${w - pad}" y="${y(umbral) - 4}" font-size="10" text-anchor="end"
+               fill="#B0222B">umbral ${umbral}</text>                                      
+          237┆   <polyline points="${linea}" fill="none" stroke="#1F4E79" stroke-width="2.5"/>
+          238┆   ${puntos.map((e, i) => `<circle cx="${x(i)}" cy="${y(e.hemoglobina_ajustada)}" r="4"
+               fill="${COLOR[e.clasificacion]}"/>                                                    
+          239┆     <text x="${x(i)}" y="${h - 4}" font-size="9.5" text-anchor="middle"
+               fill="#5E6E7E">${fecha(e.fecha).slice(0, 5)}</text>`).join("")}        
+          240┆ </svg>`;
+            ⋮┆----------------------------------------
+          238┆ ${puntos.map((e, i) => `<circle cx="${x(i)}" cy="${y(e.hemoglobina_ajustada)}" r="4"
+               fill="${COLOR[e.clasificacion]}"/>                                                  
+          239┆   <text x="${x(i)}" y="${h - 4}" font-size="9.5" text-anchor="middle"
+               fill="#5E6E7E">${fecha(e.fecha).slice(0, 5)}</text>`).join("")}      
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          256┆ $("#expediente").innerHTML = `
+          257┆   <div class="tarjeta">
+          258┆     <div class="cabecera-exp">
+          259┆       <div><h2 style="font-size:19px;margin:0" data-testid="expediente-
+               nombre">${esc(exp.nombre_completo)}</h2>                               
+          260┆         <span class="chip">${exp.estado === "ACTIVO" ? "Seguimiento activo" :
+               "Alta"}</span> ${u ? badge(u.clasificacion) : ""}</div>                      
+          261┆       <div><button class="secundario" id="btn-editar">Editar datos</button></div>
+          262┆     </div>
+          263┆     <div class="datos">
+          264┆       <div><span>DNI</span><strong>${exp.dni || "No registrado"}</strong></div>
+          265┆       <div><span>Edad</span><strong>${edad(exp.edad_meses)}</strong></div>
+             [hid 43 additional lines, adjust with --max-lines-per-finding] 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#expediente").innerHTML` is an anti-pattern that can lead to XSS
+          vulnerabilities                                                                               
+                                                                                                        
+          256┆ $("#expediente").innerHTML = `
+          257┆   <div class="tarjeta">
+          258┆     <div class="cabecera-exp">
+          259┆       <div><h2 style="font-size:19px;margin:0" data-testid="expediente-
+               nombre">${esc(exp.nombre_completo)}</h2>                               
+          260┆         <span class="chip">${exp.estado === "ACTIVO" ? "Seguimiento activo" :
+               "Alta"}</span> ${u ? badge(u.clasificacion) : ""}</div>                      
+          261┆       <div><button class="secundario" id="btn-editar">Editar datos</button></div>
+          262┆     </div>
+          263┆     <div class="datos">
+          264┆       <div><span>DNI</span><strong>${exp.dni || "No registrado"}</strong></div>
+          265┆       <div><span>Edad</span><strong>${edad(exp.edad_meses)}</strong></div>
+             [hid 43 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          273┆ ${exp.origen !== "SISTEMA" ? `<div data-testid="expediente-origen"><span>Origen de los
+               datos</span><strong>Dataset DIRESA Junín (anonimizado)</strong></div>                 
+          274┆ <div><span>Código</span><strong data-testid="expediente-
+               codigo">${esc(exp.codigo_origen)}</strong></div>        
+          275┆ <div><span>Provincia · red · microred</span><strong>${esc(exp.provincia || "—")} ·
+               ${esc(exp.red || "—")} · ${esc(exp.microred || "—")}</strong></div>` : ""}        
+            ⋮┆----------------------------------------
+          279┆ `<div class="campo"><label>${l}</label><input name="${c}" value="${esc(exp[c] ??
+               "")}"><small class="error"></small></div>`).join("")}                           
+            ⋮┆----------------------------------------
+          287┆ <tbody>${pendientes.map(filaEvaluacionPendiente).join("")}${exp.evaluaciones.map((e) => `<t
+               r><td>${fecha(e.fecha)}</td><td>${edad(e.edad_meses)}</td><td>${e.hemoglobina_observada.toF
+               ixed(1)}</td>                                                                              
+          288┆   <td><strong>${e.hemoglobina_ajustada.toFixed(1)}</strong></td><td>${badge(e.clasificacion
+               )}${e.clasificacion_origen ? `<br><small data-testid="clasificacion-his">HIS:              
+               ${SEVERIDAD_HIS[e.clasificacion_origen] || esc(e.clasificacion_origen)}</small>` : ""}</td>
+          289┆   <td>${e.peso_kg === null || e.talla_cm === null ? '<span data-testid="sin-
+               antropometria">no registrado</span>' : `${e.peso_kg} kg · ${e.talla_cm}     
+               cm`}</td></tr>`).join("")}</tbody></table>                                  
+            ⋮┆----------------------------------------
+          288┆ <td><strong>${e.hemoglobina_ajustada.toFixed(1)}</strong></td><td>${badge(e.clasificacion)}
+               ${e.clasificacion_origen ? `<br><small data-testid="clasificacion-his">HIS:                
+               ${SEVERIDAD_HIS[e.clasificacion_origen] || esc(e.clasificacion_origen)}</small>` : ""}</td>
+            ⋮┆----------------------------------------
+          328┆ const filaEvaluacionPendiente = (o) => `<tr class="atenuado" data-testid="evaluacion-pendie
+               nte"><td>${fecha(o.datos.fecha)}</td><td>—</td><td>${o.datos.hemoglobina_observada.toFixed(
+               1)}</td>                                                                                   
+          329┆   <td>—</td><td><span class="ctrl ctrl-LOCAL">Pendiente de sincronizar</span></td>
+          330┆   <td>${o.datos.peso_kg === null || o.datos.talla_cm === null ? "no registrado" :
+               `${o.datos.peso_kg} kg · ${o.datos.talla_cm} cm`}</td></tr>`;                    
+            ⋮┆----------------------------------------
+          357┆ const fila = (e, etiqueta) => `<tr class="atenuado" data-testid="evaluacion-pendiente"><td>
+               ${fecha(e.fecha)}</td><td>—</td><td>${e.hemoglobina_observada.toFixed(1)}</td><td>—</td>   
+          358┆   <td><span class="ctrl ctrl-LOCAL">${etiqueta}</span></td><td>${e.peso_kg === null ||   
+               e.talla_cm === null ? "no registrado" : `${e.peso_kg} kg · ${e.talla_cm} cm`}</td></tr>`;
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          359┆ $("#expediente").innerHTML = `
+          360┆   <div class="tarjeta">
+          361┆     <div class="cabecera-exp">
+          362┆       <div><h2 style="font-size:19px;margin:0" data-testid="expediente-
+               nombre">${esc(nombre)}</h2>                                            
+          363┆         <span class="chip" data-testid="expediente-pendiente">Pendiente de
+               sincronizar</span></div>                                                  
+          364┆     </div>
+          365┆     <p class="nota">Este niño se registró sin conexión y está guardado solo en este    
+               dispositivo. El servidor validará los datos y calculará la clasificación y la agenda al
+               sincronizar.</p>                                                                       
+          366┆     <div class="datos">
+          367┆       <div><span>DNI</span><strong>${esc(n.dni || "No registrado")}</strong></div>
+          368┆       <div><span>Edad</span><strong>${edad(mesesEntre(n.fecha_nacimiento,
+               HOY))}</strong></div>                                                    
+             [hid 26 additional lines, adjust with --max-lines-per-finding] 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#expediente").innerHTML` is an anti-pattern that can lead to XSS
+          vulnerabilities                                                                               
+                                                                                                        
+          359┆ $("#expediente").innerHTML = `
+          360┆   <div class="tarjeta">
+          361┆     <div class="cabecera-exp">
+          362┆       <div><h2 style="font-size:19px;margin:0" data-testid="expediente-
+               nombre">${esc(nombre)}</h2>                                            
+          363┆         <span class="chip" data-testid="expediente-pendiente">Pendiente de
+               sincronizar</span></div>                                                  
+          364┆     </div>
+          365┆     <p class="nota">Este niño se registró sin conexión y está guardado solo en este    
+               dispositivo. El servidor validará los datos y calculará la clasificación y la agenda al
+               sincronizar.</p>                                                                       
+          366┆     <div class="datos">
+          367┆       <div><span>DNI</span><strong>${esc(n.dni || "No registrado")}</strong></div>
+          368┆       <div><span>Edad</span><strong>${edad(mesesEntre(n.fecha_nacimiento,
+               HOY))}</strong></div>                                                    
+             [hid 26 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          410┆ ? ` <span class="ctrl ctrl-INASISTENCIA" data-testid="marca-inasistencia"  
+               title="${esc(c.motivo_inasistencia)}">Inasistencia registrada</span>` : "";
+            ⋮┆----------------------------------------
+          411┆ return `<span class="ctrl ctrl-${v}" data-testid="estado-control" data-
+               estado="${v}">${ESTADO_CTRL[v]}${extra}${asistio}</span>${marca}`;     
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          432┆ if (!a.aplica) { caja.innerHTML = `<p class="vacio" style="padding:0" data-testid="agenda-
+               sin-agenda">${esc(a.motivo)}</p>`; return; }                                              
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          432┆ if (!a.aplica) { caja.innerHTML = `<p class="vacio" style="padding:0" data-testid="agenda-
+               sin-agenda">${esc(a.motivo)}</p>`; return; }                                              
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          432┆ if (!a.aplica) { caja.innerHTML = `<p class="vacio" style="padding:0" data-testid="agenda-
+               sin-agenda">${esc(a.motivo)}</p>`; return; }                                              
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          434┆ caja.innerHTML = `
+          435┆   <div class="resumen-agenda" data-testid="agenda-resumen">
+          436┆     <span class="chip" data-testid="agenda-total">${r.total} controles</span>
+          437┆     <span class="ctrl ctrl-CUMPLIDO" data-testid="agenda-cumplidos">${r.cumplidos}
+               cumplidos</span>                                                                  
+          438┆     <span class="ctrl ctrl-PENDIENTE" data-testid="agenda-pendientes">${r.pendientes}
+               pendientes</span>                                                                    
+          439┆     <span class="ctrl ctrl-PROXIMO" data-testid="agenda-proximos">${r.proximos} por
+               vencer</span>                                                                      
+          440┆     <span class="ctrl ctrl-VENCIDO" data-testid="agenda-vencidos">${r.vencidos}
+               vencidos</span>                                                                
+          441┆     ${r.cerrados ? `<span class="ctrl ctrl-CERRADO_RECUPERADO">${r.cerrados} cerrados por
+               recuperación</span>` : ""}                                                               
+          442┆     ${r.inasistencias ? `<span class="ctrl ctrl-INASISTENCIA" data-testid="agenda-
+               inasistencias">${r.inasistencias} con inasistencia</span>` : ""}                  
+          443┆     <span class="proximo" data-testid="agenda-proximo-control">${r.proximo_control ?
+               `Próximo control: ${esc(r.proximo_control.codigo)} el                               
+               ${fecha(r.proximo_control.fecha_programada)}` : "Sin controles pendientes"}</span>  
+             [hid 9 additional lines, adjust with --max-lines-per-finding] 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          434┆ caja.innerHTML = `
+          435┆   <div class="resumen-agenda" data-testid="agenda-resumen">
+          436┆     <span class="chip" data-testid="agenda-total">${r.total} controles</span>
+          437┆     <span class="ctrl ctrl-CUMPLIDO" data-testid="agenda-cumplidos">${r.cumplidos}
+               cumplidos</span>                                                                  
+          438┆     <span class="ctrl ctrl-PENDIENTE" data-testid="agenda-pendientes">${r.pendientes}
+               pendientes</span>                                                                    
+          439┆     <span class="ctrl ctrl-PROXIMO" data-testid="agenda-proximos">${r.proximos} por
+               vencer</span>                                                                      
+          440┆     <span class="ctrl ctrl-VENCIDO" data-testid="agenda-vencidos">${r.vencidos}
+               vencidos</span>                                                                
+          441┆     ${r.cerrados ? `<span class="ctrl ctrl-CERRADO_RECUPERADO">${r.cerrados} cerrados por
+               recuperación</span>` : ""}                                                               
+          442┆     ${r.inasistencias ? `<span class="ctrl ctrl-INASISTENCIA" data-testid="agenda-
+               inasistencias">${r.inasistencias} con inasistencia</span>` : ""}                  
+          443┆     <span class="proximo" data-testid="agenda-proximo-control">${r.proximo_control ?
+               `Próximo control: ${esc(r.proximo_control.codigo)} el                               
+               ${fecha(r.proximo_control.fecha_programada)}` : "Sin controles pendientes"}</span>  
+             [hid 9 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          434┆ caja.innerHTML = `
+          435┆   <div class="resumen-agenda" data-testid="agenda-resumen">
+          436┆     <span class="chip" data-testid="agenda-total">${r.total} controles</span>
+          437┆     <span class="ctrl ctrl-CUMPLIDO" data-testid="agenda-cumplidos">${r.cumplidos}
+               cumplidos</span>                                                                  
+          438┆     <span class="ctrl ctrl-PENDIENTE" data-testid="agenda-pendientes">${r.pendientes}
+               pendientes</span>                                                                    
+          439┆     <span class="ctrl ctrl-PROXIMO" data-testid="agenda-proximos">${r.proximos} por
+               vencer</span>                                                                      
+          440┆     <span class="ctrl ctrl-VENCIDO" data-testid="agenda-vencidos">${r.vencidos}
+               vencidos</span>                                                                
+          441┆     ${r.cerrados ? `<span class="ctrl ctrl-CERRADO_RECUPERADO">${r.cerrados} cerrados por
+               recuperación</span>` : ""}                                                               
+          442┆     ${r.inasistencias ? `<span class="ctrl ctrl-INASISTENCIA" data-testid="agenda-
+               inasistencias">${r.inasistencias} con inasistencia</span>` : ""}                  
+          443┆     <span class="proximo" data-testid="agenda-proximo-control">${r.proximo_control ?
+               `Próximo control: ${esc(r.proximo_control.codigo)} el                               
+               ${fecha(r.proximo_control.fecha_programada)}` : "Sin controles pendientes"}</span>  
+             [hid 9 additional lines, adjust with --max-lines-per-finding] 
+          441┆ ${r.cerrados ? `<span class="ctrl ctrl-CERRADO_RECUPERADO">${r.cerrados} cerrados por
+               recuperación</span>` : ""}                                                           
+            ⋮┆----------------------------------------
+          442┆ ${r.inasistencias ? `<span class="ctrl ctrl-INASISTENCIA" data-testid="agenda-
+               inasistencias">${r.inasistencias} con inasistencia</span>` : ""}              
+            ⋮┆----------------------------------------
+          447┆ <tbody>${a.controles.map((c) => `<tr data-estado="${estadoVisual(c)}" data-         
+               codigo="${c.codigo}" data-programada="${c.fecha_programada}" data-nino="${id}" data-
+               desc="${esc(c.descripcion)}">                                                       
+          448┆   <td>${fecha(c.fecha_programada)}</td><td>${esc(c.descripcion)}</td>
+          449┆   <td>${c.tipo === "CONTROL_TRATAMIENTO" ? "Tratamiento" : "Por edad"}</td>
+          450┆   <td>${fecha(c.fecha_inicio_ventana)} –               
+               ${fecha(c.fecha_limite)}</td><td>${chipControl(c)}</td>
+          451┆   <td class="celda-acciones">${botonesAsistencia(c,
+               id)}</td></tr>`).join("")}</tbody></table></div>   
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          454┆ } catch (e) { caja.innerHTML = `<p class="alerta">${esc(sinConexion(e) ? "Sin conexión: la
+               agenda de este niño aún no se consultó en este dispositivo." : e.mensaje || "No se pudo   
+               calcular la agenda.")}</p>`; }                                                            
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          454┆ } catch (e) { caja.innerHTML = `<p class="alerta">${esc(sinConexion(e) ? "Sin conexión: la
+               agenda de este niño aún no se consultó en este dispositivo." : e.mensaje || "No se pudo   
+               calcular la agenda.")}</p>`; }                                                            
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          454┆ } catch (e) { caja.innerHTML = `<p class="alerta">${esc(sinConexion(e) ? "Sin conexión: la
+               agenda de este niño aún no se consultó en este dispositivo." : e.mensaje || "No se pudo   
+               calcular la agenda.")}</p>`; }                                                            
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          465┆ sel.innerHTML = `<option value="">${vacio}</option>` + opciones.map((o) => `<option
+               value="${esc(o)}">${esc(o)}</option>`).join("");                                   
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `sel.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                           
+          465┆ sel.innerHTML = `<option value="">${vacio}</option>` + opciones.map((o) => `<option
+               value="${esc(o)}">${esc(o)}</option>`).join("");                                   
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          465┆ sel.innerHTML = `<option value="">${vacio}</option>` + opciones.map((o) => `<option
+               value="${esc(o)}">${esc(o)}</option>`).join("");                                   
+            ⋮┆----------------------------------------
+          465┆ sel.innerHTML = `<option value="">${vacio}</option>` + opciones.map((o) => `<option
+               value="${esc(o)}">${esc(o)}</option>`).join("");                                   
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          494┆ $("#agenda-personal-resumen").innerHTML = `
+          495┆   <span class="chip" data-testid="agenda-personal-total">${r.total} programados</span>
+          496┆   <span class="ctrl ctrl-CUMPLIDO" data-testid="agenda-personal-cumplidos">${r.cumplidos}
+               cumplidos</span>                                                                         
+          497┆   <span class="ctrl ctrl-PENDIENTE" data-testid="agenda-personal-
+               pendientes">${r.pendientes} pendientes</span>                    
+          498┆   <span class="ctrl ctrl-VENCIDO" data-testid="agenda-personal-vencidos">${r.vencidos}
+               vencidos</span>                                                                       
+          499┆   <span class="ctrl ctrl-INASISTENCIA" data-testid="agenda-personal-
+               inasistencias">${r.con_inasistencia} con inasistencia</span>        
+          500┆   <span class="proximo">Del ${fecha(a.desde)} al ${fecha(a.hasta)} · fecha de referencia
+               ${fecha(a.fecha_referencia)}</span>`;                                                   
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#agenda-personal-resumen").innerHTML` is an anti-pattern that can lead
+          to XSS vulnerabilities                                                                              
+                                                                                                              
+          494┆ $("#agenda-personal-resumen").innerHTML = `
+          495┆   <span class="chip" data-testid="agenda-personal-total">${r.total} programados</span>
+          496┆   <span class="ctrl ctrl-CUMPLIDO" data-testid="agenda-personal-cumplidos">${r.cumplidos}
+               cumplidos</span>                                                                         
+          497┆   <span class="ctrl ctrl-PENDIENTE" data-testid="agenda-personal-
+               pendientes">${r.pendientes} pendientes</span>                    
+          498┆   <span class="ctrl ctrl-VENCIDO" data-testid="agenda-personal-vencidos">${r.vencidos}
+               vencidos</span>                                                                       
+          499┆   <span class="ctrl ctrl-INASISTENCIA" data-testid="agenda-personal-
+               inasistencias">${r.con_inasistencia} con inasistencia</span>        
+          500┆   <span class="proximo">Del ${fecha(a.desde)} al ${fecha(a.hasta)} · fecha de referencia
+               ${fecha(a.fecha_referencia)}</span>`;                                                   
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          494┆ $("#agenda-personal-resumen").innerHTML = `
+          495┆   <span class="chip" data-testid="agenda-personal-total">${r.total} programados</span>
+          496┆   <span class="ctrl ctrl-CUMPLIDO" data-testid="agenda-personal-cumplidos">${r.cumplidos}
+               cumplidos</span>                                                                         
+          497┆   <span class="ctrl ctrl-PENDIENTE" data-testid="agenda-personal-
+               pendientes">${r.pendientes} pendientes</span>                    
+          498┆   <span class="ctrl ctrl-VENCIDO" data-testid="agenda-personal-vencidos">${r.vencidos}
+               vencidos</span>                                                                       
+          499┆   <span class="ctrl ctrl-INASISTENCIA" data-testid="agenda-personal-
+               inasistencias">${r.con_inasistencia} con inasistencia</span>        
+          500┆   <span class="proximo">Del ${fecha(a.desde)} al ${fecha(a.hasta)} · fecha de referencia
+               ${fecha(a.fecha_referencia)}</span>`;                                                   
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          501┆ $("#cuerpo-agenda-personal").innerHTML = a.dias.map((d) => `
+          502┆   <tr class="dia${d.total ? "" : " sin-controles"}" data-fecha="${d.fecha}" data-
+               testid="agenda-personal-dia">                                                    
+          503┆     <td colspan="6">${diaSemana(d.fecha)} ${fecha(d.fecha)}<small data-testid="agenda-
+               personal-dia-total">${d.total} control(es)${d.total ? ` · ${d.cumplidos} cumplidos ·  
+               ${d.pendientes} pendientes · ${d.vencidos} vencidos` : ""}</small></td>               
+          504┆   </tr>` + d.items.map((i) => {
+          505┆     const c = i.control, v = estadoVisual(c);
+          506┆     return `<tr class="${c.estado === "CUMPLIDO" ? "atenuado" : ""}" data-estado="${v}"   
+               data-codigo="${c.codigo}" data-programada="${c.fecha_programada}" data-nino="${i.nino.id}"
+               data-nombre="${esc(i.nino.nombre_completo)}" data-desc="${esc(c.descripcion)}">           
+          507┆       <td><a href="#" class="enlace-nino" data-testid="agenda-personal-                
+               nino">${esc(i.nino.nombre_completo)}</a><br><small>${i.nino.dni ? "DNI " + i.nino.dni :
+               esc(i.nino.codigo_origen || "")}</small></td>                                          
+          508┆       <td>${esc(c.descripcion)}</td><td>${c.tipo === "CONTROL_TRATAMIENTO" ? "Tratamiento"
+               : "Por edad"}</td>                                                                        
+          509┆       <td>${esc(i.nino.establecimiento)}<br><small>${esc(i.nino.comunidad)}</small></td>
+          510┆       <td>${chipControl(c)}${i.prioridad ? ` <span class="badge prio-${i.prioridad}" data-
+               testid="prioridad">${i.prioridad}</span>` : ""}</td>                                      
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#cuerpo-agenda-personal").innerHTML` is an anti-pattern that can lead
+          to XSS vulnerabilities                                                                             
+                                                                                                             
+          501┆ $("#cuerpo-agenda-personal").innerHTML = a.dias.map((d) => `
+          502┆   <tr class="dia${d.total ? "" : " sin-controles"}" data-fecha="${d.fecha}" data-
+               testid="agenda-personal-dia">                                                    
+          503┆     <td colspan="6">${diaSemana(d.fecha)} ${fecha(d.fecha)}<small data-testid="agenda-
+               personal-dia-total">${d.total} control(es)${d.total ? ` · ${d.cumplidos} cumplidos ·  
+               ${d.pendientes} pendientes · ${d.vencidos} vencidos` : ""}</small></td>               
+          504┆   </tr>` + d.items.map((i) => {
+          505┆     const c = i.control, v = estadoVisual(c);
+          506┆     return `<tr class="${c.estado === "CUMPLIDO" ? "atenuado" : ""}" data-estado="${v}"   
+               data-codigo="${c.codigo}" data-programada="${c.fecha_programada}" data-nino="${i.nino.id}"
+               data-nombre="${esc(i.nino.nombre_completo)}" data-desc="${esc(c.descripcion)}">           
+          507┆       <td><a href="#" class="enlace-nino" data-testid="agenda-personal-                
+               nino">${esc(i.nino.nombre_completo)}</a><br><small>${i.nino.dni ? "DNI " + i.nino.dni :
+               esc(i.nino.codigo_origen || "")}</small></td>                                          
+          508┆       <td>${esc(c.descripcion)}</td><td>${c.tipo === "CONTROL_TRATAMIENTO" ? "Tratamiento"
+               : "Por edad"}</td>                                                                        
+          509┆       <td>${esc(i.nino.establecimiento)}<br><small>${esc(i.nino.comunidad)}</small></td>
+          510┆       <td>${chipControl(c)}${i.prioridad ? ` <span class="badge prio-${i.prioridad}" data-
+               testid="prioridad">${i.prioridad}</span>` : ""}</td>                                      
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          501┆ $("#cuerpo-agenda-personal").innerHTML = a.dias.map((d) => `
+          502┆   <tr class="dia${d.total ? "" : " sin-controles"}" data-fecha="${d.fecha}" data-
+               testid="agenda-personal-dia">                                                    
+          503┆     <td colspan="6">${diaSemana(d.fecha)} ${fecha(d.fecha)}<small data-testid="agenda-
+               personal-dia-total">${d.total} control(es)${d.total ? ` · ${d.cumplidos} cumplidos ·  
+               ${d.pendientes} pendientes · ${d.vencidos} vencidos` : ""}</small></td>               
+          504┆   </tr>` + d.items.map((i) => {
+            ⋮┆----------------------------------------
+          506┆ return `<tr class="${c.estado === "CUMPLIDO" ? "atenuado" : ""}" data-estado="${v}" data-  
+               codigo="${c.codigo}" data-programada="${c.fecha_programada}" data-nino="${i.nino.id}" data-
+               nombre="${esc(i.nino.nombre_completo)}" data-desc="${esc(c.descripcion)}">                 
+          507┆   <td><a href="#" class="enlace-nino" data-testid="agenda-personal-                    
+               nino">${esc(i.nino.nombre_completo)}</a><br><small>${i.nino.dni ? "DNI " + i.nino.dni :
+               esc(i.nino.codigo_origen || "")}</small></td>                                          
+          508┆   <td>${esc(c.descripcion)}</td><td>${c.tipo === "CONTROL_TRATAMIENTO" ? "Tratamiento" :
+               "Por edad"}</td>                                                                        
+          509┆   <td>${esc(i.nino.establecimiento)}<br><small>${esc(i.nino.comunidad)}</small></td>
+          510┆   <td>${chipControl(c)}${i.prioridad ? ` <span class="badge prio-${i.prioridad}" data-
+               testid="prioridad">${i.prioridad}</span>` : ""}</td>                                  
+          511┆   <td class="celda-acciones">${botonesAsistencia(c, i.nino.id)}</td></tr>`;
+            ⋮┆----------------------------------------
+          510┆ <td>${chipControl(c)}${i.prioridad ? ` <span class="badge prio-${i.prioridad}" data-
+               testid="prioridad">${i.prioridad}</span>` : ""}</td>                                
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          549┆ $("#asistencia-evaluacion").innerHTML += exp.evaluaciones.map((e) => `<option       
+               value="${e.id}">${fecha(e.fecha)} · Hb ajustada ${e.hemoglobina_ajustada.toFixed(1)}
+               g/dL</option>`).join("");                                                           
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#asistencia-evaluacion").innerHTML` is an anti-pattern that can lead
+          to XSS vulnerabilities                                                                            
+                                                                                                            
+          549┆ $("#asistencia-evaluacion").innerHTML += exp.evaluaciones.map((e) => `<option       
+               value="${e.id}">${fecha(e.fecha)} · Hb ajustada ${e.hemoglobina_ajustada.toFixed(1)}
+               g/dL</option>`).join("");                                                           
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          549┆ $("#asistencia-evaluacion").innerHTML += exp.evaluaciones.map((e) => `<option       
+               value="${e.id}">${fecha(e.fecha)} · Hb ajustada ${e.hemoglobina_ajustada.toFixed(1)}
+               g/dL</option>`).join("");                                                           
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          614┆ $("#alertas-resumen").innerHTML = `
+          615┆   <div class="tarjeta kpi"><strong data-testid="kpi-                       
+               vencidos">${r.total_vencidos}</strong><span>controles vencidos</span></div>
+          616┆   <div class="tarjeta kpi"><strong data-testid="kpi-ninos-                               
+               vencidos">${r.ninos_con_vencidos}</strong><span>niños con controles vencidos</span></div>
+          617┆   <div class="tarjeta kpi"><strong data-testid="kpi-                   
+               alta">${r.por_prioridad.ALTA}</strong><span>prioridad alta</span></div>
+          618┆   <div class="tarjeta kpi"><strong data-testid="kpi-                      
+               media">${r.por_prioridad.MEDIA}</strong><span>prioridad media</span></div>
+          619┆   <div class="tarjeta kpi"><strong data-testid="kpi-                   
+               baja">${r.por_prioridad.BAJA}</strong><span>prioridad baja</span></div>
+          620┆   <div class="tarjeta kpi"><strong data-testid="kpi-                                      
+               proximos">${r.proximos_7_dias}</strong><span>controles por vencer en 7 días</span></div>`;
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#alertas-resumen").innerHTML` is an anti-pattern that can lead to XSS
+          vulnerabilities                                                                                    
+                                                                                                             
+          614┆ $("#alertas-resumen").innerHTML = `
+          615┆   <div class="tarjeta kpi"><strong data-testid="kpi-                       
+               vencidos">${r.total_vencidos}</strong><span>controles vencidos</span></div>
+          616┆   <div class="tarjeta kpi"><strong data-testid="kpi-ninos-                               
+               vencidos">${r.ninos_con_vencidos}</strong><span>niños con controles vencidos</span></div>
+          617┆   <div class="tarjeta kpi"><strong data-testid="kpi-                   
+               alta">${r.por_prioridad.ALTA}</strong><span>prioridad alta</span></div>
+          618┆   <div class="tarjeta kpi"><strong data-testid="kpi-                      
+               media">${r.por_prioridad.MEDIA}</strong><span>prioridad media</span></div>
+          619┆   <div class="tarjeta kpi"><strong data-testid="kpi-                   
+               baja">${r.por_prioridad.BAJA}</strong><span>prioridad baja</span></div>
+          620┆   <div class="tarjeta kpi"><strong data-testid="kpi-                                      
+               proximos">${r.proximos_7_dias}</strong><span>controles por vencer en 7 días</span></div>`;
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          614┆ $("#alertas-resumen").innerHTML = `
+          615┆   <div class="tarjeta kpi"><strong data-testid="kpi-                       
+               vencidos">${r.total_vencidos}</strong><span>controles vencidos</span></div>
+          616┆   <div class="tarjeta kpi"><strong data-testid="kpi-ninos-                               
+               vencidos">${r.ninos_con_vencidos}</strong><span>niños con controles vencidos</span></div>
+          617┆   <div class="tarjeta kpi"><strong data-testid="kpi-                   
+               alta">${r.por_prioridad.ALTA}</strong><span>prioridad alta</span></div>
+          618┆   <div class="tarjeta kpi"><strong data-testid="kpi-                      
+               media">${r.por_prioridad.MEDIA}</strong><span>prioridad media</span></div>
+          619┆   <div class="tarjeta kpi"><strong data-testid="kpi-                   
+               baja">${r.por_prioridad.BAJA}</strong><span>prioridad baja</span></div>
+          620┆   <div class="tarjeta kpi"><strong data-testid="kpi-                                      
+               proximos">${r.proximos_7_dias}</strong><span>controles por vencer en 7 días</span></div>`;
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          624┆ sel.innerHTML = '<option value="">Todas</option>' + [...comunidadesAlerta].sort().map((c)
+               => `<option value="${esc(c)}">${esc(c)}</option>`).join("");                             
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `sel.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                           
+          624┆ sel.innerHTML = '<option value="">Todas</option>' + [...comunidadesAlerta].sort().map((c)
+               => `<option value="${esc(c)}">${esc(c)}</option>`).join("");                             
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          624┆ sel.innerHTML = '<option value="">Todas</option>' + [...comunidadesAlerta].sort().map((c)
+               => `<option value="${esc(c)}">${esc(c)}</option>`).join("");                             
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          628┆ $("#cuerpo-alertas").innerHTML = filas.map((f) => `
+          629┆   <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-
+               codigo="${f.control.codigo}">                                                   
+          630┆     <td><span class="badge prio-${f.prioridad}" data-
+               testid="prioridad">${f.prioridad}</span></td>        
+          631┆     <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " +
+               f.nino.dni : esc(f.nino.codigo_origen || "")}</small></td>                               
+          632┆     <td>${esc(f.control.descripcion)}${f.control.inasistencia_registrada ? ` <span
+               class="ctrl ctrl-INASISTENCIA" data-testid="marca-inasistencia"                   
+               title="${esc(f.control.motivo_inasistencia)}">Inasistencia registrada</span>` :   
+               ""}</td><td>${fecha(f.control.fecha_programada)}</td>                             
+          633┆     <td class="atrasado">${f.control.dias_vencido} d</td><td>${esc(f.nino.comunidad)}</td>
+          634┆     <td>${f.nino.tutor_celular ||                                  
+               "—"}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#cuerpo-alertas").innerHTML` is an anti-pattern that can lead to XSS
+          vulnerabilities                                                                                   
+                                                                                                            
+          628┆ $("#cuerpo-alertas").innerHTML = filas.map((f) => `
+          629┆   <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-
+               codigo="${f.control.codigo}">                                                   
+          630┆     <td><span class="badge prio-${f.prioridad}" data-
+               testid="prioridad">${f.prioridad}</span></td>        
+          631┆     <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " +
+               f.nino.dni : esc(f.nino.codigo_origen || "")}</small></td>                               
+          632┆     <td>${esc(f.control.descripcion)}${f.control.inasistencia_registrada ? ` <span
+               class="ctrl ctrl-INASISTENCIA" data-testid="marca-inasistencia"                   
+               title="${esc(f.control.motivo_inasistencia)}">Inasistencia registrada</span>` :   
+               ""}</td><td>${fecha(f.control.fecha_programada)}</td>                             
+          633┆     <td class="atrasado">${f.control.dias_vencido} d</td><td>${esc(f.nino.comunidad)}</td>
+          634┆     <td>${f.nino.tutor_celular ||                                  
+               "—"}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          628┆ $("#cuerpo-alertas").innerHTML = filas.map((f) => `
+          629┆   <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-
+               codigo="${f.control.codigo}">                                                   
+          630┆     <td><span class="badge prio-${f.prioridad}" data-
+               testid="prioridad">${f.prioridad}</span></td>        
+          631┆     <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " +
+               f.nino.dni : esc(f.nino.codigo_origen || "")}</small></td>                               
+          632┆     <td>${esc(f.control.descripcion)}${f.control.inasistencia_registrada ? ` <span
+               class="ctrl ctrl-INASISTENCIA" data-testid="marca-inasistencia"                   
+               title="${esc(f.control.motivo_inasistencia)}">Inasistencia registrada</span>` :   
+               ""}</td><td>${fecha(f.control.fecha_programada)}</td>                             
+          633┆     <td class="atrasado">${f.control.dias_vencido} d</td><td>${esc(f.nino.comunidad)}</td>
+          634┆     <td>${f.nino.tutor_celular ||                                  
+               "—"}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");
+            ⋮┆----------------------------------------
+          632┆ <td>${esc(f.control.descripcion)}${f.control.inasistencia_registrada ? ` <span class="ctrl
+               ctrl-INASISTENCIA" data-testid="marca-inasistencia"                                       
+               title="${esc(f.control.motivo_inasistencia)}">Inasistencia registrada</span>` :           
+               ""}</td><td>${fecha(f.control.fecha_programada)}</td>                                     
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          658┆ $("#cuerpo-alertas-barreras").innerHTML = filas.map((f) => `
+          659┆   <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-
+               testid="alerta-barrera">                                                        
+          660┆     <td><span class="badge prio-${f.prioridad}" data-testid="prioridad-
+               barrera">${f.prioridad}</span></td>                                    
+          661┆     <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " +
+               esc(f.nino.dni) : esc(f.nino.codigo_origen || "")}</small></td>                          
+          662┆     <td><ul class="lista-barreras" data-testid="razones-barrera">${f.razones.map((r) =>
+               `<li>${esc(r.descripcion)}</li>`).join("")}</ul></td>                                  
+          663┆     <td><ul class="lista-barreras">${f.barreras.slice(0, 3).map((b) =>                     
+               `<li>${esc(TIPOS_BARRERA[b.tipo] || b.tipo)} · ${fecha(b.fecha)}</li>`).join("")}</ul></td>
+          664┆     <td>${esc(f.nino.comunidad)}</td><td>${esc(f.nino.tutor_celular ||
+               "—")}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");  
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#cuerpo-alertas-barreras").innerHTML` is an anti-pattern that can lead
+          to XSS vulnerabilities                                                                              
+                                                                                                              
+          658┆ $("#cuerpo-alertas-barreras").innerHTML = filas.map((f) => `
+          659┆   <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-
+               testid="alerta-barrera">                                                        
+          660┆     <td><span class="badge prio-${f.prioridad}" data-testid="prioridad-
+               barrera">${f.prioridad}</span></td>                                    
+          661┆     <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " +
+               esc(f.nino.dni) : esc(f.nino.codigo_origen || "")}</small></td>                          
+          662┆     <td><ul class="lista-barreras" data-testid="razones-barrera">${f.razones.map((r) =>
+               `<li>${esc(r.descripcion)}</li>`).join("")}</ul></td>                                  
+          663┆     <td><ul class="lista-barreras">${f.barreras.slice(0, 3).map((b) =>                     
+               `<li>${esc(TIPOS_BARRERA[b.tipo] || b.tipo)} · ${fecha(b.fecha)}</li>`).join("")}</ul></td>
+          664┆     <td>${esc(f.nino.comunidad)}</td><td>${esc(f.nino.tutor_celular ||
+               "—")}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");  
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          658┆ $("#cuerpo-alertas-barreras").innerHTML = filas.map((f) => `
+          659┆   <tr class="click" data-id="${f.nino.id}" data-prioridad="${f.prioridad}" data-
+               testid="alerta-barrera">                                                        
+          660┆     <td><span class="badge prio-${f.prioridad}" data-testid="prioridad-
+               barrera">${f.prioridad}</span></td>                                    
+          661┆     <td><strong>${esc(f.nino.nombre_completo)}</strong><br><small>${f.nino.dni ? "DNI " +
+               esc(f.nino.dni) : esc(f.nino.codigo_origen || "")}</small></td>                          
+          662┆     <td><ul class="lista-barreras" data-testid="razones-barrera">${f.razones.map((r) =>
+               `<li>${esc(r.descripcion)}</li>`).join("")}</ul></td>                                  
+          663┆     <td><ul class="lista-barreras">${f.barreras.slice(0, 3).map((b) =>                     
+               `<li>${esc(TIPOS_BARRERA[b.tipo] || b.tipo)} · ${fecha(b.fecha)}</li>`).join("")}</ul></td>
+          664┆     <td>${esc(f.nino.comunidad)}</td><td>${esc(f.nino.tutor_celular ||
+               "—")}</td><td>${badge(f.ultima_clasificacion)}</td></tr>`).join("");  
+            ⋮┆----------------------------------------
+          662┆ <td><ul class="lista-barreras" data-testid="razones-barrera">${f.razones.map((r) =>
+               `<li>${esc(r.descripcion)}</li>`).join("")}</ul></td>                              
+            ⋮┆----------------------------------------
+          663┆ <td><ul class="lista-barreras">${f.barreras.slice(0, 3).map((b) =>                         
+               `<li>${esc(TIPOS_BARRERA[b.tipo] || b.tipo)} · ${fecha(b.fecha)}</li>`).join("")}</ul></td>
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          692┆ $("#reporte").innerHTML = `
+          693┆   <div class="kpis">
+          694┆     <div class="tarjeta kpi"><strong data-testid="kpi-                   
+               registrados">${r.ninos_registrados}</strong><span>niños registrados en el
+               periodo</span></div>                                                     
+          695┆     <div class="tarjeta                                                
+               kpi"><strong>${r.evaluaciones_realizadas}</strong><span>evaluaciones de
+               hemoglobina</span></div>                                               
+          696┆     <div class="tarjeta kpi"><strong>${r.ninos_evaluados}</strong><span>niños
+               evaluados</span></div>                                                       
+          697┆     <div class="tarjeta kpi"><strong>${pct}%</strong><span>evaluados con anemia
+               (${r.ninos_con_anemia})</span></div>                                           
+          698┆   </div>
+          699┆   <div class="bloques">
+          700┆     <div class="tarjeta barras"><h2>Evaluaciones por clasificación</h2>
+          701┆       ${["SIN_ANEMIA", "LEVE", "MODERADA", "SEVERA"].map((c) => `<div
+               class="fila"><span>${ETIQUETA[c]}</span>                             
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#reporte").innerHTML` is an anti-pattern that can lead to XSS
+          vulnerabilities                                                                            
+                                                                                                     
+          692┆ $("#reporte").innerHTML = `
+          693┆   <div class="kpis">
+          694┆     <div class="tarjeta kpi"><strong data-testid="kpi-                   
+               registrados">${r.ninos_registrados}</strong><span>niños registrados en el
+               periodo</span></div>                                                     
+          695┆     <div class="tarjeta                                                
+               kpi"><strong>${r.evaluaciones_realizadas}</strong><span>evaluaciones de
+               hemoglobina</span></div>                                               
+          696┆     <div class="tarjeta kpi"><strong>${r.ninos_evaluados}</strong><span>niños
+               evaluados</span></div>                                                       
+          697┆     <div class="tarjeta kpi"><strong>${pct}%</strong><span>evaluados con anemia
+               (${r.ninos_con_anemia})</span></div>                                           
+          698┆   </div>
+          699┆   <div class="bloques">
+          700┆     <div class="tarjeta barras"><h2>Evaluaciones por clasificación</h2>
+          701┆       ${["SIN_ANEMIA", "LEVE", "MODERADA", "SEVERA"].map((c) => `<div
+               class="fila"><span>${ETIQUETA[c]}</span>                             
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          692┆ $("#reporte").innerHTML = `
+          693┆   <div class="kpis">
+          694┆     <div class="tarjeta kpi"><strong data-testid="kpi-                   
+               registrados">${r.ninos_registrados}</strong><span>niños registrados en el
+               periodo</span></div>                                                     
+          695┆     <div class="tarjeta                                                
+               kpi"><strong>${r.evaluaciones_realizadas}</strong><span>evaluaciones de
+               hemoglobina</span></div>                                               
+          696┆     <div class="tarjeta kpi"><strong>${r.ninos_evaluados}</strong><span>niños
+               evaluados</span></div>                                                       
+          697┆     <div class="tarjeta kpi"><strong>${pct}%</strong><span>evaluados con anemia
+               (${r.ninos_con_anemia})</span></div>                                           
+          698┆   </div>
+          699┆   <div class="bloques">
+          700┆     <div class="tarjeta barras"><h2>Evaluaciones por clasificación</h2>
+          701┆       ${["SIN_ANEMIA", "LEVE", "MODERADA", "SEVERA"].map((c) => `<div
+               class="fila"><span>${ETIQUETA[c]}</span>                             
+             [hid 5 additional lines, adjust with --max-lines-per-finding] 
+          701┆ ${["SIN_ANEMIA", "LEVE", "MODERADA", "SEVERA"].map((c) => `<div
+               class="fila"><span>${ETIQUETA[c]}</span>                       
+          702┆   <div class="pista"><div class="relleno" style="width:${(100 * r.por_clasificacion[c]) / t
+               otal}%;background:${COLOR[c]}"></div></div><strong>${r.por_clasificacion[c]}</strong></div>
+               `).join("")}                                                                               
+            ⋮┆----------------------------------------
+          705┆ <tbody>${r.por_comunidad.map((c) => `<tr><td>${esc(c.comunidad)}</td><td>${c.evaluaciones}<
+               /td><td>${c.con_anemia}</td></tr>`).join("") || '<tr><td colspan="3">Sin                   
+               datos</td></tr>'}</tbody></table></div>                                                    
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          707┆ } catch (e) { $("#reporte").innerHTML = `<p class="alerta">${esc((e.errores?.[0] ||
+               e).mensaje)}</p>`; }                                                               
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#reporte").innerHTML` is an anti-pattern that can lead to XSS
+          vulnerabilities                                                                            
+                                                                                                     
+          707┆ } catch (e) { $("#reporte").innerHTML = `<p class="alerta">${esc((e.errores?.[0] ||
+               e).mensaje)}</p>`; }                                                               
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          707┆ } catch (e) { $("#reporte").innerHTML = `<p class="alerta">${esc((e.errores?.[0] ||
+               e).mensaje)}</p>`; }                                                               
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          727┆ catch (e) { if (!sinConexion(e)) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje ||
+               "No se pudieron consultar las visitas.")}</p>`; return; } aviso = "Sin conexión: las     
+               visitas ya sincronizadas aún no se consultaron en este dispositivo."; }                  
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          727┆ catch (e) { if (!sinConexion(e)) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje ||
+               "No se pudieron consultar las visitas.")}</p>`; return; } aviso = "Sin conexión: las     
+               visitas ya sincronizadas aún no se consultaron en este dispositivo."; }                  
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          727┆ catch (e) { if (!sinConexion(e)) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje ||
+               "No se pudieron consultar las visitas.")}</p>`; return; } aviso = "Sin conexión: las     
+               visitas ya sincronizadas aún no se consultaron en este dispositivo."; }                  
+            ⋮┆----------------------------------------
+          731┆ const filas = pendientes.map((o) => `<tr class="atenuado" data-testid="visita-            
+               pendiente"><td>${fecha(o.datos.fecha)}</td><td>${RESULTADO_VISITA[o.datos.resultado]}</td>
+          732┆     <td>${SUPLEMENTO[o.datos.consume_suplemento]}</td><td>${esc(o.datos.observaciones ||
+               "—")}</td><td><span class="ctrl ctrl-LOCAL">Pendiente de sincronizar</span></td></tr>`) 
+            ⋮┆----------------------------------------
+          733┆ .concat(hechas.map((v) => `<tr data-testid="visita-                   
+               fila"><td>${fecha(v.fecha)}</td><td>${RESULTADO_VISITA[v.resultado] ||
+               esc(v.resultado)}</td><td>${SUPLEMENTO[v.consume_suplemento] ||       
+               esc(v.consume_suplemento)}</td>                                       
+          734┆   <td>${esc(v.observaciones || "—")}</td><td>${esc(v.registrado_por)}</td></tr>`));
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          735┆ caja.innerHTML = (aviso ? `<p class="nota">${esc(aviso)}</p>` : "") + (filas.length
+          736┆   ? `<div class="tabla-envoltura"><table class="tabla completa" data-testid="visitas-nino-
+               tabla"><thead><tr><th>Fecha</th><th>Resultado</th><th>Consume el                          
+               suplemento</th><th>Observaciones</th><th>Registrada                                       
+               por</th></tr></thead><tbody>${filas.join("")}</tbody></table></div>`                      
+          737┆   : '<p class="vacio" style="padding:0" data-testid="visitas-nino-vacio">Aún no se
+               registraron visitas a este niño.</p>');                                           
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          735┆ caja.innerHTML = (aviso ? `<p class="nota">${esc(aviso)}</p>` : "") + (filas.length
+          736┆   ? `<div class="tabla-envoltura"><table class="tabla completa" data-testid="visitas-nino-
+               tabla"><thead><tr><th>Fecha</th><th>Resultado</th><th>Consume el                          
+               suplemento</th><th>Observaciones</th><th>Registrada                                       
+               por</th></tr></thead><tbody>${filas.join("")}</tbody></table></div>`                      
+          737┆   : '<p class="vacio" style="padding:0" data-testid="visitas-nino-vacio">Aún no se
+               registraron visitas a este niño.</p>');                                           
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          735┆ caja.innerHTML = (aviso ? `<p class="nota">${esc(aviso)}</p>` : "") + (filas.length
+            ⋮┆----------------------------------------
+          736┆ ? `<div class="tabla-envoltura"><table class="tabla completa" data-testid="visitas-nino-
+               tabla"><thead><tr><th>Fecha</th><th>Resultado</th><th>Consume el                        
+               suplemento</th><th>Observaciones</th><th>Registrada                                     
+               por</th></tr></thead><tbody>${filas.join("")}</tbody></table></div>`                    
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          805┆ sel.innerHTML = '<option value="">Todos</option>' +    
+               [...establecimientosVisitas].sort().map((x) => `<option
+               value="${esc(x)}">${esc(x)}</option>`).join("");       
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `sel.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                           
+          805┆ sel.innerHTML = '<option value="">Todos</option>' +    
+               [...establecimientosVisitas].sort().map((x) => `<option
+               value="${esc(x)}">${esc(x)}</option>`).join("");       
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          805┆ sel.innerHTML = '<option value="">Todos</option>' +    
+               [...establecimientosVisitas].sort().map((x) => `<option
+               value="${esc(x)}">${esc(x)}</option>`).join("");       
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          811┆ $("#cuerpo-visitas").innerHTML = filas.map((f) => `
+          812┆   <tr data-nino="${f.nino.id}" data-nombre="${esc(f.nino.nombre_completo)}" data-
+               testid="visita-priorizada">                                                      
+          813┆     <td><strong>${f.posicion}</strong></td>
+          814┆     <td><a href="#" class="enlace-                                                        
+               nino">${esc(f.nino.nombre_completo)}</a><br><small>${f.nino.dni ? "DNI " + esc(f.nino.dni)
+               : esc(f.nino.codigo_origen || "")}</small></td>                                           
+          815┆     <td>${esc(f.nino.comunidad)}</td><td>${badge(f.ultima_clasificacion)}</td>
+          816┆     <td class="${f.dias_control_vencido ? "atrasado" : ""}">${f.dias_control_vencido ?     
+               f.dias_control_vencido + " d" : "—"}${f.inasistencias_recientes ? ` <span class="ctrl ctrl-
+               INASISTENCIA">${f.inasistencias_recientes} inasist.</span>` : ""}</td>                     
+          817┆     <td>${f.ultima_visita ? `${fecha(f.ultima_visita)} · ${f.dias_desde_ultima_visita} d` :
+               "Sin visitas"}</td>                                                                        
+          818┆     <td><button type="button" class="puntaje" data-testid="puntaje" title="Ver cómo se
+               calculó">${f.puntaje.toFixed(1)}</button></td>                                        
+          819┆     <td class="celda-acciones">${pendientes.has(f.nino.id) ? '<span class="ctrl ctrl-LOCAL"
+               data-testid="visita-pendiente-fila">Pendiente de sincronizar</span> ' : ""}<button         
+               type="button" class="mini" data-testid="btn-visitar">Registrar visita</button></td>        
+          820┆   </tr>
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#cuerpo-visitas").innerHTML` is an anti-pattern that can lead to XSS
+          vulnerabilities                                                                                   
+                                                                                                            
+          811┆ $("#cuerpo-visitas").innerHTML = filas.map((f) => `
+          812┆   <tr data-nino="${f.nino.id}" data-nombre="${esc(f.nino.nombre_completo)}" data-
+               testid="visita-priorizada">                                                      
+          813┆     <td><strong>${f.posicion}</strong></td>
+          814┆     <td><a href="#" class="enlace-                                                        
+               nino">${esc(f.nino.nombre_completo)}</a><br><small>${f.nino.dni ? "DNI " + esc(f.nino.dni)
+               : esc(f.nino.codigo_origen || "")}</small></td>                                           
+          815┆     <td>${esc(f.nino.comunidad)}</td><td>${badge(f.ultima_clasificacion)}</td>
+          816┆     <td class="${f.dias_control_vencido ? "atrasado" : ""}">${f.dias_control_vencido ?     
+               f.dias_control_vencido + " d" : "—"}${f.inasistencias_recientes ? ` <span class="ctrl ctrl-
+               INASISTENCIA">${f.inasistencias_recientes} inasist.</span>` : ""}</td>                     
+          817┆     <td>${f.ultima_visita ? `${fecha(f.ultima_visita)} · ${f.dias_desde_ultima_visita} d` :
+               "Sin visitas"}</td>                                                                        
+          818┆     <td><button type="button" class="puntaje" data-testid="puntaje" title="Ver cómo se
+               calculó">${f.puntaje.toFixed(1)}</button></td>                                        
+          819┆     <td class="celda-acciones">${pendientes.has(f.nino.id) ? '<span class="ctrl ctrl-LOCAL"
+               data-testid="visita-pendiente-fila">Pendiente de sincronizar</span> ' : ""}<button         
+               type="button" class="mini" data-testid="btn-visitar">Registrar visita</button></td>        
+          820┆   </tr>
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          811┆ $("#cuerpo-visitas").innerHTML = filas.map((f) => `
+          812┆   <tr data-nino="${f.nino.id}" data-nombre="${esc(f.nino.nombre_completo)}" data-
+               testid="visita-priorizada">                                                      
+          813┆     <td><strong>${f.posicion}</strong></td>
+          814┆     <td><a href="#" class="enlace-                                                        
+               nino">${esc(f.nino.nombre_completo)}</a><br><small>${f.nino.dni ? "DNI " + esc(f.nino.dni)
+               : esc(f.nino.codigo_origen || "")}</small></td>                                           
+          815┆     <td>${esc(f.nino.comunidad)}</td><td>${badge(f.ultima_clasificacion)}</td>
+          816┆     <td class="${f.dias_control_vencido ? "atrasado" : ""}">${f.dias_control_vencido ?     
+               f.dias_control_vencido + " d" : "—"}${f.inasistencias_recientes ? ` <span class="ctrl ctrl-
+               INASISTENCIA">${f.inasistencias_recientes} inasist.</span>` : ""}</td>                     
+          817┆     <td>${f.ultima_visita ? `${fecha(f.ultima_visita)} · ${f.dias_desde_ultima_visita} d` :
+               "Sin visitas"}</td>                                                                        
+          818┆     <td><button type="button" class="puntaje" data-testid="puntaje" title="Ver cómo se
+               calculó">${f.puntaje.toFixed(1)}</button></td>                                        
+          819┆     <td class="celda-acciones">${pendientes.has(f.nino.id) ? '<span class="ctrl ctrl-LOCAL"
+               data-testid="visita-pendiente-fila">Pendiente de sincronizar</span> ' : ""}<button         
+               type="button" class="mini" data-testid="btn-visitar">Registrar visita</button></td>        
+          820┆   </tr>
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+          816┆ <td class="${f.dias_control_vencido ? "atrasado" : ""}">${f.dias_control_vencido ?         
+               f.dias_control_vencido + " d" : "—"}${f.inasistencias_recientes ? ` <span class="ctrl ctrl-
+               INASISTENCIA">${f.inasistencias_recientes} inasist.</span>` : ""}</td>                     
+            ⋮┆----------------------------------------
+          822┆ `<li><strong>${esc(c.descripcion)}</strong>: ${esc(c.valor)} → ${c.puntos.toFixed(1)} de
+               ${c.maximo.toFixed(0)} puntos</li>`).join("")}</ul></td></tr>`).join("");               
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          842┆ s.innerHTML = `<option value="">${esc(s.dataset.vacio)}</option>` +
+               Object.entries(TIPOS_BARRERA).map(([k, v]) => `<option             
+               value="${k}">${esc(v)}</option>`).join("");                        
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `s.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                         
+          842┆ s.innerHTML = `<option value="">${esc(s.dataset.vacio)}</option>` +
+               Object.entries(TIPOS_BARRERA).map(([k, v]) => `<option             
+               value="${k}">${esc(v)}</option>`).join("");                        
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          842┆ s.innerHTML = `<option value="">${esc(s.dataset.vacio)}</option>` +
+               Object.entries(TIPOS_BARRERA).map(([k, v]) => `<option             
+               value="${k}">${esc(v)}</option>`).join("");                        
+            ⋮┆----------------------------------------
+          842┆ s.innerHTML = `<option value="">${esc(s.dataset.vacio)}</option>` +
+               Object.entries(TIPOS_BARRERA).map(([k, v]) => `<option             
+               value="${k}">${esc(v)}</option>`).join("");                        
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          876┆ catch (e) { if (!sinConexion(e)) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje ||
+               "No se pudieron consultar las barreras.")}</p>`; return; } aviso = "Sin conexión: las    
+               barreras ya sincronizadas aún no se consultaron en este dispositivo."; }                 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          876┆ catch (e) { if (!sinConexion(e)) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje ||
+               "No se pudieron consultar las barreras.")}</p>`; return; } aviso = "Sin conexión: las    
+               barreras ya sincronizadas aún no se consultaron en este dispositivo."; }                 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          876┆ catch (e) { if (!sinConexion(e)) { caja.innerHTML = `<p class="alerta">${esc(e.mensaje ||
+               "No se pudieron consultar las barreras.")}</p>`; return; } aviso = "Sin conexión: las    
+               barreras ya sincronizadas aún no se consultaron en este dispositivo."; }                 
+            ⋮┆----------------------------------------
+          880┆ const filas = pendientes.map((o) => `<tr class="atenuado" data-testid="barrera-    
+               pendiente"><td>${fecha(o.datos.fecha)}</td><td>${esc(TIPOS_BARRERA[o.datos.tipo] ||
+               o.datos.tipo)}</td>                                                                
+          881┆     <td>${esc(o.datos.detalle || "—")}</td><td>${esc(FUENTE_BARRERA[o.datos.fuente] ||
+               o.datos.fuente)}</td><td><span class="ctrl ctrl-LOCAL">Pendiente de                   
+               sincronizar</span></td></tr>`)                                                        
+            ⋮┆----------------------------------------
+          882┆ .concat(hechas.map((b) => `<tr data-testid="barrera-              
+               fila"><td>${fecha(b.fecha)}</td><td>${esc(TIPOS_BARRERA[b.tipo] ||
+               b.tipo)}</td><td>${esc(b.detalle || "—")}</td>                    
+          883┆   <td>${esc(FUENTE_BARRERA[b.fuente] ||                  
+               b.fuente)}</td><td>${esc(b.registrado_por)}</td></tr>`));
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          884┆ caja.innerHTML = (aviso ? `<p class="nota">${esc(aviso)}</p>` : "") + (filas.length
+          885┆   ? `<div class="tabla-envoltura"><table class="tabla completa" data-testid="barreras-nino-
+               tabla"><thead><tr><th>Fecha</th><th>Barrera</th><th>Detalle</th><th>Origen</th><th>Registra
+               da por</th></tr></thead><tbody>${filas.join("")}</tbody></table></div>`                    
+          886┆   : '<p class="vacio" style="padding:0" data-testid="barreras-nino-vacio">No se registraron
+               barreras de acceso para este niño.</p>');                                                  
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          884┆ caja.innerHTML = (aviso ? `<p class="nota">${esc(aviso)}</p>` : "") + (filas.length
+          885┆   ? `<div class="tabla-envoltura"><table class="tabla completa" data-testid="barreras-nino-
+               tabla"><thead><tr><th>Fecha</th><th>Barrera</th><th>Detalle</th><th>Origen</th><th>Registra
+               da por</th></tr></thead><tbody>${filas.join("")}</tbody></table></div>`                    
+          886┆   : '<p class="vacio" style="padding:0" data-testid="barreras-nino-vacio">No se registraron
+               barreras de acceso para este niño.</p>');                                                  
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          884┆ caja.innerHTML = (aviso ? `<p class="nota">${esc(aviso)}</p>` : "") + (filas.length
+            ⋮┆----------------------------------------
+          885┆ ? `<div class="tabla-envoltura"><table class="tabla completa" data-testid="barreras-nino-  
+               tabla"><thead><tr><th>Fecha</th><th>Barrera</th><th>Detalle</th><th>Origen</th><th>Registra
+               da por</th></tr></thead><tbody>${filas.join("")}</tbody></table></div>`                    
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          927┆ $("#recordatorios-metricas").innerHTML = `
+          928┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-            
+               total">${m.total}</strong><span>recordatorios generados</span></div>
+          929┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                              
+               enviados">${m.enviados}</strong><span>enviados (${m.simulados} simulados)</span></div>
+          930┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-   
+               fallidos">${m.fallidos}</strong><span>fallidos</span></div>
+          931┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                                  
+               entrega">${pct(m.tasa_entrega)}</strong><span>tasa de entrega (envíos reales)</span></div>
+          932┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                         
+               respuestas">${m.con_respuesta}</strong><span>con respuesta del tutor</span></div>
+          933┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                                   
+               confirmacion">${pct(m.tasa_confirmacion)}</strong><span>tasa de confirmación</span></div>`;
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#recordatorios-metricas").innerHTML` is an anti-pattern that can lead
+          to XSS vulnerabilities                                                                             
+                                                                                                             
+          927┆ $("#recordatorios-metricas").innerHTML = `
+          928┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-            
+               total">${m.total}</strong><span>recordatorios generados</span></div>
+          929┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                              
+               enviados">${m.enviados}</strong><span>enviados (${m.simulados} simulados)</span></div>
+          930┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-   
+               fallidos">${m.fallidos}</strong><span>fallidos</span></div>
+          931┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                                  
+               entrega">${pct(m.tasa_entrega)}</strong><span>tasa de entrega (envíos reales)</span></div>
+          932┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                         
+               respuestas">${m.con_respuesta}</strong><span>con respuesta del tutor</span></div>
+          933┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                                   
+               confirmacion">${pct(m.tasa_confirmacion)}</strong><span>tasa de confirmación</span></div>`;
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          927┆ $("#recordatorios-metricas").innerHTML = `
+          928┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-            
+               total">${m.total}</strong><span>recordatorios generados</span></div>
+          929┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                              
+               enviados">${m.enviados}</strong><span>enviados (${m.simulados} simulados)</span></div>
+          930┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-   
+               fallidos">${m.fallidos}</strong><span>fallidos</span></div>
+          931┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                                  
+               entrega">${pct(m.tasa_entrega)}</strong><span>tasa de entrega (envíos reales)</span></div>
+          932┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                         
+               respuestas">${m.con_respuesta}</strong><span>con respuesta del tutor</span></div>
+          933┆   <div class="tarjeta kpi"><strong data-testid="kpi-rec-                                   
+               confirmacion">${pct(m.tasa_confirmacion)}</strong><span>tasa de confirmación</span></div>`;
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          955┆ $("#cuerpo-recordatorios").innerHTML = filas.map((r) => `
+          956┆   <tr data-id="${r.id}" data-nombre="${esc(r.nino.nombre_completo)}" data-      
+               control="${esc(r.codigo_control)}" data-programada="${r.fecha_programada}" data-
+               testid="recordatorio">                                                          
+          957┆     <td><a href="#" class="enlace-nino" data-nino="${r.nino.id}">${esc(r.nino.nombre_comple
+               to)}</a><br><small>${esc(r.nino.comunidad)}</small></td>                                   
+          958┆     <td>${esc(r.codigo_control)}<br><small>${fecha(r.fecha_programada)}</small></td>
+          959┆     <td>${esc(TIPO_RECORDATORIO[r.tipo] || r.tipo)}</td>
+          960┆     <td>${r.simulado ? '<span class="ctrl ctrl-SIMULADO" data-testid="marca-simulado"
+               title="No salió ningún mensaje real">SIMULADO</span> ' : `<span class="ctrl          
+               ctrl-${r.estado}">${esc(CANAL[r.canal] || r.canal)}</span> `}                        
+          961┆       <span data-testid="estado-recordatorio">${esc(ESTADO_RECORDATORIO[r.estado] ||
+               r.estado)}</span>${r.detalle ? `<br><small>${esc(r.detalle)}</small>` : ""}</td>    
+          962┆     <td>${esc(r.destino)}</td>
+          963┆     <td data-testid="respuesta-recordatorio">${r.respuesta ?                               
+               `${esc(textoRespuesta(r))}<br><small>${r.origen_respuesta === "WHATSAPP" ? "por WhatsApp" :
+               "registrada por " + esc(r.respondido_por || "")}</small>` : '<span class="nota">Sin        
+               respuesta</span>'}</td>                                                                    
+          964┆     <td class="celda-acciones">${r.respuesta || r.estado === "FALLIDO" ? "" : '<button    
+               type="button" class="mini" data-testid="btn-responder">Registrar respuesta</button>'}</td>
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#cuerpo-recordatorios").innerHTML` is an anti-pattern that can lead to
+          XSS vulnerabilities                                                                                 
+                                                                                                              
+          955┆ $("#cuerpo-recordatorios").innerHTML = filas.map((r) => `
+          956┆   <tr data-id="${r.id}" data-nombre="${esc(r.nino.nombre_completo)}" data-      
+               control="${esc(r.codigo_control)}" data-programada="${r.fecha_programada}" data-
+               testid="recordatorio">                                                          
+          957┆     <td><a href="#" class="enlace-nino" data-nino="${r.nino.id}">${esc(r.nino.nombre_comple
+               to)}</a><br><small>${esc(r.nino.comunidad)}</small></td>                                   
+          958┆     <td>${esc(r.codigo_control)}<br><small>${fecha(r.fecha_programada)}</small></td>
+          959┆     <td>${esc(TIPO_RECORDATORIO[r.tipo] || r.tipo)}</td>
+          960┆     <td>${r.simulado ? '<span class="ctrl ctrl-SIMULADO" data-testid="marca-simulado"
+               title="No salió ningún mensaje real">SIMULADO</span> ' : `<span class="ctrl          
+               ctrl-${r.estado}">${esc(CANAL[r.canal] || r.canal)}</span> `}                        
+          961┆       <span data-testid="estado-recordatorio">${esc(ESTADO_RECORDATORIO[r.estado] ||
+               r.estado)}</span>${r.detalle ? `<br><small>${esc(r.detalle)}</small>` : ""}</td>    
+          962┆     <td>${esc(r.destino)}</td>
+          963┆     <td data-testid="respuesta-recordatorio">${r.respuesta ?                               
+               `${esc(textoRespuesta(r))}<br><small>${r.origen_respuesta === "WHATSAPP" ? "por WhatsApp" :
+               "registrada por " + esc(r.respondido_por || "")}</small>` : '<span class="nota">Sin        
+               respuesta</span>'}</td>                                                                    
+          964┆     <td class="celda-acciones">${r.respuesta || r.estado === "FALLIDO" ? "" : '<button    
+               type="button" class="mini" data-testid="btn-responder">Registrar respuesta</button>'}</td>
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          955┆ $("#cuerpo-recordatorios").innerHTML = filas.map((r) => `
+          956┆   <tr data-id="${r.id}" data-nombre="${esc(r.nino.nombre_completo)}" data-      
+               control="${esc(r.codigo_control)}" data-programada="${r.fecha_programada}" data-
+               testid="recordatorio">                                                          
+          957┆     <td><a href="#" class="enlace-nino" data-nino="${r.nino.id}">${esc(r.nino.nombre_comple
+               to)}</a><br><small>${esc(r.nino.comunidad)}</small></td>                                   
+          958┆     <td>${esc(r.codigo_control)}<br><small>${fecha(r.fecha_programada)}</small></td>
+          959┆     <td>${esc(TIPO_RECORDATORIO[r.tipo] || r.tipo)}</td>
+          960┆     <td>${r.simulado ? '<span class="ctrl ctrl-SIMULADO" data-testid="marca-simulado"
+               title="No salió ningún mensaje real">SIMULADO</span> ' : `<span class="ctrl          
+               ctrl-${r.estado}">${esc(CANAL[r.canal] || r.canal)}</span> `}                        
+          961┆       <span data-testid="estado-recordatorio">${esc(ESTADO_RECORDATORIO[r.estado] ||
+               r.estado)}</span>${r.detalle ? `<br><small>${esc(r.detalle)}</small>` : ""}</td>    
+          962┆     <td>${esc(r.destino)}</td>
+          963┆     <td data-testid="respuesta-recordatorio">${r.respuesta ?                               
+               `${esc(textoRespuesta(r))}<br><small>${r.origen_respuesta === "WHATSAPP" ? "por WhatsApp" :
+               "registrada por " + esc(r.respondido_por || "")}</small>` : '<span class="nota">Sin        
+               respuesta</span>'}</td>                                                                    
+          964┆     <td class="celda-acciones">${r.respuesta || r.estado === "FALLIDO" ? "" : '<button    
+               type="button" class="mini" data-testid="btn-responder">Registrar respuesta</button>'}</td>
+             [hid 1 additional lines, adjust with --max-lines-per-finding] 
+          960┆ <td>${r.simulado ? '<span class="ctrl ctrl-SIMULADO" data-testid="marca-simulado" title="No
+               salió ningún mensaje real">SIMULADO</span> ' : `<span class="ctrl                          
+               ctrl-${r.estado}">${esc(CANAL[r.canal] || r.canal)}</span> `}                              
+            ⋮┆----------------------------------------
+          961┆ <span data-testid="estado-recordatorio">${esc(ESTADO_RECORDATORIO[r.estado] ||  
+               r.estado)}</span>${r.detalle ? `<br><small>${esc(r.detalle)}</small>` : ""}</td>
+            ⋮┆----------------------------------------
+          963┆ <td data-testid="respuesta-recordatorio">${r.respuesta ?                                   
+               `${esc(textoRespuesta(r))}<br><small>${r.origen_respuesta === "WHATSAPP" ? "por WhatsApp" :
+               "registrada por " + esc(r.respondido_por || "")}</small>` : '<span class="nota">Sin        
+               respuesta</span>'}</td>                                                                    
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          1052┆ $("#cuerpo-sync").innerHTML = cola.map((o) => `
+          1053┆   <tr data-op="${o.id_operacion}" data-testid="pendiente">
+          1054┆     <td><strong>${esc(TIPO_OPERACION[o.tipo] ||          
+               o.tipo)}</strong><br><small>${esc(o.resumen)}</small></td>
+          1055┆     <td>${horaLocal(o.fecha_local)}</td>
+          1056┆     <td>${o.estado === "RECHAZADA" ? '<span class="ctrl ctrl-RECHAZADA">Rechazado por el
+               servidor</span>' : '<span class="ctrl ctrl-LOCAL">Pendiente</span>'}</td>                
+          1057┆     <td>${o.ultimo_intento ? horaLocal(o.ultimo_intento) : "Aún no se                    
+               intentó"}${o.ultimo_error ? `<br><small class="atrasado">${esc(o.ultimo_error)}</small>` :
+               ""}</td>                                                                                  
+          1058┆     <td class="celda-acciones">${o.estado === "RECHAZADA" ? '<button type="button"        
+               class="mini" data-act="reintentar">Reintentar</button><button type="button" class="mini no"
+               data-act="descartar">Descartar</button>' : ""}</td>                                        
+          1059┆   </tr>`).join("");
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `$("#cuerpo-sync").innerHTML` is an anti-pattern that can lead to XSS
+          vulnerabilities                                                                                
+                                                                                                         
+          1052┆ $("#cuerpo-sync").innerHTML = cola.map((o) => `
+          1053┆   <tr data-op="${o.id_operacion}" data-testid="pendiente">
+          1054┆     <td><strong>${esc(TIPO_OPERACION[o.tipo] ||          
+               o.tipo)}</strong><br><small>${esc(o.resumen)}</small></td>
+          1055┆     <td>${horaLocal(o.fecha_local)}</td>
+          1056┆     <td>${o.estado === "RECHAZADA" ? '<span class="ctrl ctrl-RECHAZADA">Rechazado por el
+               servidor</span>' : '<span class="ctrl ctrl-LOCAL">Pendiente</span>'}</td>                
+          1057┆     <td>${o.ultimo_intento ? horaLocal(o.ultimo_intento) : "Aún no se                    
+               intentó"}${o.ultimo_error ? `<br><small class="atrasado">${esc(o.ultimo_error)}</small>` :
+               ""}</td>                                                                                  
+          1058┆     <td class="celda-acciones">${o.estado === "RECHAZADA" ? '<button type="button"        
+               class="mini" data-act="reintentar">Reintentar</button><button type="button" class="mini no"
+               data-act="descartar">Descartar</button>' : ""}</td>                                        
+          1059┆   </tr>`).join("");
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          1052┆ $("#cuerpo-sync").innerHTML = cola.map((o) => `
+          1053┆   <tr data-op="${o.id_operacion}" data-testid="pendiente">
+          1054┆     <td><strong>${esc(TIPO_OPERACION[o.tipo] ||          
+               o.tipo)}</strong><br><small>${esc(o.resumen)}</small></td>
+          1055┆     <td>${horaLocal(o.fecha_local)}</td>
+          1056┆     <td>${o.estado === "RECHAZADA" ? '<span class="ctrl ctrl-RECHAZADA">Rechazado por el
+               servidor</span>' : '<span class="ctrl ctrl-LOCAL">Pendiente</span>'}</td>                
+          1057┆     <td>${o.ultimo_intento ? horaLocal(o.ultimo_intento) : "Aún no se                    
+               intentó"}${o.ultimo_error ? `<br><small class="atrasado">${esc(o.ultimo_error)}</small>` :
+               ""}</td>                                                                                  
+          1058┆     <td class="celda-acciones">${o.estado === "RECHAZADA" ? '<button type="button"        
+               class="mini" data-act="reintentar">Reintentar</button><button type="button" class="mini no"
+               data-act="descartar">Descartar</button>' : ""}</td>                                        
+          1059┆   </tr>`).join("");
+            ⋮┆----------------------------------------
+          1057┆ <td>${o.ultimo_intento ? horaLocal(o.ultimo_intento) : "Aún no se                        
+               intentó"}${o.ultimo_error ? `<br><small class="atrasado">${esc(o.ultimo_error)}</small>` :
+               ""}</td>                                                                                  
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.correctness.no-replaceall
+          ❰❰ Blocking ❱❱
+          The string method replaceAll is not supported in all versions of javascript, and is not supported by
+          older browser versions. Consider using replace() with a regex as the first argument instead like    
+          mystring.replace(/bad/g, "good") instead of mystring.replaceAll("bad", "good")                      
+          (https://discourse.threejs.org/t/replaceall-is-not-a-function/14585)                                
+                                                                                                              
+          1069┆ .map(([k, v]) => `${k.replaceAll("_", " ")}: ${v}`).join("\n");
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          1075┆ caja.innerHTML = `<p class="vacio" data-testid="conflictos-sin-datos">${sinConexion(e) ?
+               "Sin conexión: los conflictos se consultan al reconectar." : esc(e.mensaje || "No se     
+               pudieron consultar los conflictos.")}</p>`;                                              
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          1075┆ caja.innerHTML = `<p class="vacio" data-testid="conflictos-sin-datos">${sinConexion(e) ?
+               "Sin conexión: los conflictos se consultan al reconectar." : esc(e.mensaje || "No se     
+               pudieron consultar los conflictos.")}</p>`;                                              
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          1075┆ caja.innerHTML = `<p class="vacio" data-testid="conflictos-sin-datos">${sinConexion(e) ?
+               "Sin conexión: los conflictos se consultan al reconectar." : esc(e.mensaje || "No se     
+               pudieron consultar los conflictos.")}</p>`;                                              
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-document-method
+          ❰❰ Blocking ❱❱
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+                                                                                                              
+          1080┆ caja.innerHTML = lista.length ? lista.map((c) => `
+          1081┆   <div class="tarjeta conflicto" data-conflicto="${c.id}" data-testid="conflicto">
+          1082┆     <strong>${esc(TIPO_OPERACION[c.tipo] || c.tipo)}</strong> · <span class="ctrl ctrl-
+               RECHAZADA">Conflicto</span>                                                             
+          1083┆     <p style="margin:6px 0 0">${esc(c.motivo)}</p>
+          1084┆     <div class="comparar"><div><small>Lo registrado en este            
+               dispositivo</small><pre>${esc(lineasDatos(c.datos_cliente))}</pre></div>
+          1085┆       <div><small>Lo que ya tiene el                                       
+               servidor</small><pre>${esc(lineasDatos(c.datos_servidor))}</pre></div></div>
+          1086┆     <div class="acciones">
+          1087┆       <button type="button" class="primario" data-res="CONSERVAR_SERVIDOR" data-
+               testid="conflicto-conservar">Conservar el del servidor</button>                  
+          1088┆       <button type="button" class="secundario" data-res="APLICAR_CLIENTE" data-
+               testid="conflicto-aplicar">Aplicar el de este dispositivo</button>              
+          1089┆       <button type="button" class="secundario" data-res="DESCARTAR" data-
+               testid="conflicto-descartar">Descartar</button>                           
+             [hid 3 additional lines, adjust with --max-lines-per-finding] 
+   
+   ❯❯❱ tmp.semgrep-rules.javascript.browser.security.insecure-innerhtml
+          ❰❰ Blocking ❱❱
+          User controlled data in a `caja.innerHTML` is an anti-pattern that can lead to XSS vulnerabilities
+                                                                                                            
+          1080┆ caja.innerHTML = lista.length ? lista.map((c) => `
+          1081┆   <div class="tarjeta conflicto" data-conflicto="${c.id}" data-testid="conflicto">
+          1082┆     <strong>${esc(TIPO_OPERACION[c.tipo] || c.tipo)}</strong> · <span class="ctrl ctrl-
+               RECHAZADA">Conflicto</span>                                                             
+          1083┆     <p style="margin:6px 0 0">${esc(c.motivo)}</p>
+          1084┆     <div class="comparar"><div><small>Lo registrado en este            
+               dispositivo</small><pre>${esc(lineasDatos(c.datos_cliente))}</pre></div>
+          1085┆       <div><small>Lo que ya tiene el                                       
+               servidor</small><pre>${esc(lineasDatos(c.datos_servidor))}</pre></div></div>
+          1086┆     <div class="acciones">
+          1087┆       <button type="button" class="primario" data-res="CONSERVAR_SERVIDOR" data-
+               testid="conflicto-conservar">Conservar el del servidor</button>                  
+          1088┆       <button type="button" class="secundario" data-res="APLICAR_CLIENTE" data-
+               testid="conflicto-aplicar">Aplicar el de este dispositivo</button>              
+          1089┆       <button type="button" class="secundario" data-res="DESCARTAR" data-
+               testid="conflicto-descartar">Descartar</button>                           
+             [hid 3 additional lines, adjust with --max-lines-per-finding] 
+   
+    ❯❱ tmp.semgrep-rules.javascript.lang.security.html-in-template-string
+          ❰❰ Blocking ❱❱
+          This template literal looks like HTML and has interpolated variables. These variables are not HTML-
+          encoded by default. If the variables contain HTML tags, these may be interpreted by the browser,   
+          resulting in cross-site scripting (XSS).                                                           
+                                                                                                             
+          1080┆ caja.innerHTML = lista.length ? lista.map((c) => `
+          1081┆   <div class="tarjeta conflicto" data-conflicto="${c.id}" data-testid="conflicto">
+          1082┆     <strong>${esc(TIPO_OPERACION[c.tipo] || c.tipo)}</strong> · <span class="ctrl ctrl-
+               RECHAZADA">Conflicto</span>                                                             
+          1083┆     <p style="margin:6px 0 0">${esc(c.motivo)}</p>
+          1084┆     <div class="comparar"><div><small>Lo registrado en este            
+               dispositivo</small><pre>${esc(lineasDatos(c.datos_cliente))}</pre></div>
+          1085┆       <div><small>Lo que ya tiene el                                       
+               servidor</small><pre>${esc(lineasDatos(c.datos_servidor))}</pre></div></div>
+          1086┆     <div class="acciones">
+          1087┆       <button type="button" class="primario" data-res="CONSERVAR_SERVIDOR" data-
+               testid="conflicto-conservar">Conservar el del servidor</button>                  
+          1088┆       <button type="button" class="secundario" data-res="APLICAR_CLIENTE" data-
+               testid="conflicto-aplicar">Aplicar el de este dispositivo</button>              
+          1089┆       <button type="button" class="secundario" data-res="DESCARTAR" data-
+               testid="conflicto-descartar">Descartar</button>                           
+             [hid 3 additional lines, adjust with --max-lines-per-finding] 
+                   
+    app/web/auth.js
+    ❯❱ tmp.semgrep-rules.javascript.lang.best-practice.javascript-alert
+          ❰❰ Blocking ❱❱
+          found alert() call; should this be in production code?
+                                                                
+           69┆ } catch (e) { alert(e.message || "Sin conexión. No se pudo cerrar la sesión."); $("#cerrar-
+               sesion").disabled = false; }                                                               
+
+
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 97 files tracked by git with 560 Code rules:
+                                                                                                                        
+  Language      Rules   Files          Origin   Rules                                                                   
+ ─────────────────────────────        ────────────────                                                                  
+  <multilang>      16      97          Custom     560                                                                   
+  python          368      88                                                                                           
+  js              170       5                                                                                           
+                                                                                                                        
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 151 (151 blocking)
+ • Rules run: 554
+ • Targets scanned: 97
+ • Parsed lines: ~100.0%
+ • Scan skipped: 
+   ◦ Matching --exclude patterns: 3
+ • Scan was limited to files tracked by git
+ • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
+Ran 554 rules on 97 files: 151 findings.

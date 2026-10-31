@@ -1,0 +1,10 @@
+{
+  "id": "F01_aceptacion_software",
+  "titulo": "Criterios de aceptacion de los 4 incrementos con Playwright (capturar_software.py)",
+  "comando": "python ../entregables/semana-10/metricas/capturar_software.py",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 20:14:57",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 28.3
+}

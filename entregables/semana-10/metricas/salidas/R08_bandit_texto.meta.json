@@ -1,0 +1,10 @@
+{
+  "id": "R08_bandit_texto",
+  "titulo": "bandit -r app (SAST Python)",
+  "comando": "<venv>/bin/bandit -r app -q --exclude app/web",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:51:45",
+  "commit": "ada827f",
+  "codigo_salida": 1,
+  "duracion_s": 0.9
+}

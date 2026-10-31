@@ -1,0 +1,297 @@
+{
+  "comprobaciones": 32,
+  "cumple": 25,
+  "hallazgos": 7,
+  "resultados": [
+    {
+      "id": "T01",
+      "owasp": "A01",
+      "control": "API clinica sin sesion",
+      "esperado": "401",
+      "observado": 401,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T02",
+      "owasp": "A01",
+      "control": "Alertas sin sesion",
+      "esperado": "401",
+      "observado": 401,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T03",
+      "owasp": "A01",
+      "control": "POST sin cabecera CSRF ni sesion",
+      "esperado": "403",
+      "observado": 403,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T03b",
+      "owasp": "A01",
+      "control": "Las 27 operaciones del contrato OpenAPI que no son publicas responden 401 sin sesion",
+      "esperado": "401 en todas",
+      "observado": "27 de 27; excepciones: []",
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T04",
+      "owasp": "A07",
+      "control": "Mensaje de login incorrecto no revela si el correo existe",
+      "esperado": "401 generico",
+      "observado": "401 Correo o contraseña incorrectos, o correo sin confirmar.",
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T05",
+      "owasp": "A07",
+      "control": "Cookie de sesion HttpOnly",
+      "esperado": "HttpOnly",
+      "observado": true,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T06",
+      "owasp": "A07",
+      "control": "Cookie de sesion SameSite=Strict",
+      "esperado": "SameSite=strict",
+      "observado": true,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T07",
+      "owasp": "A04",
+      "control": "Cookie de sesion Secure (AUTH_COOKIE_SECURE por defecto true)",
+      "esperado": "Secure",
+      "observado": true,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T08",
+      "owasp": "A07",
+      "control": "Cookie con alcance Path=/api (no se envia a /static)",
+      "esperado": "Path=/api",
+      "observado": true,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T09",
+      "owasp": "A01",
+      "control": "Con sesion valida la API responde",
+      "esperado": "200",
+      "observado": 200,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T10",
+      "owasp": "A02",
+      "control": "Respuestas de la API con Cache-Control: no-store",
+      "esperado": "no-store",
+      "observado": "no-store",
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T11",
+      "owasp": "A01",
+      "control": "POST con sesion pero sin X-CSRF-Protection (CSRF)",
+      "esperado": "403",
+      "observado": 403,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T12",
+      "owasp": "A01",
+      "control": "POST con origen ajeno",
+      "esperado": "403",
+      "observado": 403,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T13",
+      "owasp": "A01",
+      "control": "POST del mismo origen con CSRF llega a la validacion",
+      "esperado": "422",
+      "observado": 422,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T14",
+      "owasp": "A07",
+      "control": "Token de sesion falso",
+      "esperado": "401",
+      "observado": 401,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T15",
+      "owasp": "A02",
+      "control": "CORS: sin Access-Control-Allow-Origin para origen ajeno",
+      "esperado": "ausente",
+      "observado": null,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T16",
+      "owasp": "A05",
+      "control": "Inyeccion SQL en la busqueda de texto (q)",
+      "esperado": "0 filas o 422",
+      "observado": "200, 0 filas",
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T17",
+      "owasp": "A05",
+      "control": "Inyeccion SQL en ruta /dni/",
+      "esperado": "404/422",
+      "observado": 404,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T18",
+      "owasp": "A05",
+      "control": "La tabla sigue existente tras `DROP TABLE` en parametro",
+      "esperado": "200 y mismas filas",
+      "observado": "200, 26 filas (antes 26)",
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T32",
+      "owasp": "A05",
+      "control": "Reporte CSV neutraliza celdas que empiezan con = + - @ (inyeccion de formulas, CWE-1236)",
+      "esperado": "celda con prefijo seguro",
+      "observado": "registro HTTP 201; fila CSV: 2026-10-30,72777001,\"=HYPERLINK(\"\"http://sitio-malicioso.example\"\",\"\"clic\"\") +Prueba\",@SUM(1+1),13,11.6,3720.0",
+      "estado": "HALLAZGO",
+      "nota": "El CSV escribe nombre y comunidad tal como se registraron: al abrirlo en Excel/LibreOffice una celda con = o @ se evalua como formula."
+    },
+    {
+      "id": "T19",
+      "owasp": "A02",
+      "control": "Cabeceras de seguridad HTTP en /",
+      "esperado": "6 de 6 presentes",
+      "observado": "0 de 6; faltan: CSP, nosniff, DENY/SAMEORIGIN o frame-ancestors, Referrer-Policy, HSTS, Permissions-Policy",
+      "estado": "HALLAZGO",
+      "nota": "La aplicacion no define estas cabeceras; deben agregarse en la aplicacion o en el proxy (Render)."
+    },
+    {
+      "id": "T20",
+      "owasp": "A02",
+      "control": "Cabeceras de seguridad HTTP en /api/salud",
+      "esperado": "6 de 6 presentes",
+      "observado": "0 de 6; faltan: CSP, nosniff, DENY/SAMEORIGIN o frame-ancestors, Referrer-Policy, HSTS, Permissions-Policy",
+      "estado": "HALLAZGO",
+      "nota": "La aplicacion no define estas cabeceras; deben agregarse en la aplicacion o en el proxy (Render)."
+    },
+    {
+      "id": "T21",
+      "owasp": "A02",
+      "control": "Cabecera Server no revela version",
+      "esperado": "sin Server o generica",
+      "observado": "uvicorn",
+      "estado": "HALLAZGO",
+      "nota": "uvicorn identifica el servidor; es informativo."
+    },
+    {
+      "id": "T22",
+      "owasp": "A02",
+      "control": "Documentacion /docs sin sesion",
+      "esperado": "401 o 404",
+      "observado": 200,
+      "estado": "HALLAZGO",
+      "nota": "Swagger UI y /openapi.json son publicos: exponen el contrato (no datos)."
+    },
+    {
+      "id": "T23",
+      "owasp": "A02",
+      "control": "/openapi.json sin sesion",
+      "esperado": "401 o 404",
+      "observado": 200,
+      "estado": "HALLAZGO",
+      "nota": ""
+    },
+    {
+      "id": "T24",
+      "owasp": "A08",
+      "control": "Webhook sin WHATSAPP_APP_SECRET falla cerrado",
+      "esperado": "503",
+      "observado": 503,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T25",
+      "owasp": "A08",
+      "control": "Verificacion del webhook con token vacio",
+      "esperado": "403",
+      "observado": 403,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T26",
+      "owasp": "A07",
+      "control": "Limite de intentos de login en la aplicacion (15 intentos fallidos seguidos)",
+      "esperado": "algun 429/bloqueo",
+      "observado": [
+        401
+      ],
+      "estado": "HALLAZGO",
+      "nota": "No hay bloqueo propio; el limite lo aplica el proveedor (Supabase Auth) y no se pudo medir aqui."
+    },
+    {
+      "id": "T27",
+      "owasp": "A10",
+      "control": "JSON malformado responde 422 sin traza",
+      "esperado": "422 sin 'Traceback'",
+      "observado": "422, traza=False",
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T28",
+      "owasp": "A10",
+      "control": "Recurso inexistente responde 404 con mensaje controlado",
+      "esperado": "404",
+      "observado": "404 {\"mensaje\":\"No existe el expediente solicitado.\",\"errores\":[",
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T29",
+      "owasp": "A10",
+      "control": "Parametro invalido no produce 500",
+      "esperado": "!= 500",
+      "observado": 404,
+      "estado": "CUMPLE",
+      "nota": ""
+    },
+    {
+      "id": "T30",
+      "owasp": "A07",
+      "control": "Cerrar sesion elimina las cookies",
+      "esperado": "2 cookies expiradas",
+      "observado": 2,
+      "estado": "CUMPLE",
+      "nota": ""
+    }
+  ]
+}

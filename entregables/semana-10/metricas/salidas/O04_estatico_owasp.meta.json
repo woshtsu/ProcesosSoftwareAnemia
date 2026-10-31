@@ -1,0 +1,10 @@
+{
+  "id": "O04_estatico_owasp",
+  "titulo": "Comprobaciones estaticas OWASP Top 10:2025 (owasp_estatico.py)",
+  "comando": "python entregables/semana-10/metricas/owasp_estatico.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 20:12:48",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 0.2
+}

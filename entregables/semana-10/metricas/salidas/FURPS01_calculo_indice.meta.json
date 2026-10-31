@@ -1,0 +1,10 @@
+{
+  "id": "FURPS01_calculo_indice",
+  "titulo": "Cálculo del índice FURPS+ desde las salidas medidas",
+  "comando": "python entregables/semana-10/metricas/furps_calculo.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 20:21:10",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 0.1
+}

@@ -1,0 +1,112 @@
+{
+  "corrida": "C_inc1_inc2_100u",
+  "locustfile": "pmv_fastapi/tests/rendimiento/locustfile.py",
+  "usuarios": 100,
+  "segundos": 60,
+  "peticiones": 2904,
+  "fallos": 1,
+  "tasa_error_pct": 0.034,
+  "p50_ms": 780.0,
+  "p95_ms": 2000.0,
+  "p99_ms": 2600.0,
+  "max_ms": 3821.0027650002303,
+  "rps": 49.29,
+  "sondeos_salud": 91,
+  "sondeos_fallidos": 0,
+  "disponibilidad_pct": 100.0,
+  "salud_p95_ms": 654.0,
+  "rss_mb_min": 93.6,
+  "rss_mb_max": 117.8,
+  "por_endpoint": [
+    {
+      "endpoint": "GET /api/agenda",
+      "peticiones": 300,
+      "fallos": 0,
+      "p50_ms": 1000.0,
+      "p95_ms": 2000.0,
+      "p99_ms": 3000.0,
+      "rps": 5.09
+    },
+    {
+      "endpoint": "GET /api/alertas/controles-vencidos",
+      "peticiones": 208,
+      "fallos": 0,
+      "p50_ms": 1000.0,
+      "p95_ms": 2000.0,
+      "p99_ms": 2300.0,
+      "rps": 3.53
+    },
+    {
+      "endpoint": "GET /api/alertas/resumen",
+      "peticiones": 224,
+      "fallos": 0,
+      "p50_ms": 1000.0,
+      "p95_ms": 2000.0,
+      "p99_ms": 2600.0,
+      "rps": 3.8
+    },
+    {
+      "endpoint": "GET /api/ninos",
+      "peticiones": 593,
+      "fallos": 0,
+      "p50_ms": 1100.0,
+      "p95_ms": 2200.0,
+      "p99_ms": 2700.0,
+      "rps": 10.07
+    },
+    {
+      "endpoint": "GET /api/ninos/{id}",
+      "peticiones": 427,
+      "fallos": 0,
+      "p50_ms": 710.0,
+      "p95_ms": 1800.0,
+      "p99_ms": 2300.0,
+      "rps": 7.25
+    },
+    {
+      "endpoint": "GET /api/ninos/{id}/agenda",
+      "peticiones": 347,
+      "fallos": 0,
+      "p50_ms": 600.0,
+      "p95_ms": 1600.0,
+      "p99_ms": 2700.0,
+      "rps": 5.89
+    },
+    {
+      "endpoint": "GET /api/ninos/{id}/asistencias",
+      "peticiones": 98,
+      "fallos": 0,
+      "p50_ms": 680.0,
+      "p95_ms": 1500.0,
+      "p99_ms": 2300.0,
+      "rps": 1.66
+    },
+    {
+      "endpoint": "GET /api/reportes/periodo",
+      "peticiones": 120,
+      "fallos": 0,
+      "p50_ms": 1100.0,
+      "p95_ms": 2200.0,
+      "p99_ms": 2400.0,
+      "rps": 2.04
+    },
+    {
+      "endpoint": "POST /api/ninos",
+      "peticiones": 217,
+      "fallos": 1,
+      "p50_ms": 950.0,
+      "p95_ms": 2500.0,
+      "p99_ms": 3000.0,
+      "rps": 3.68
+    },
+    {
+      "endpoint": "POST /api/validaciones/evaluacion",
+      "peticiones": 370,
+      "fallos": 0,
+      "p50_ms": 89.0,
+      "p95_ms": 740.0,
+      "p99_ms": 920.0,
+      "rps": 6.28
+    }
+  ]
+}

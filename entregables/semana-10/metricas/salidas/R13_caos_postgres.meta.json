@@ -1,0 +1,10 @@
+{
+  "id": "R13_caos_postgres",
+  "titulo": "Prueba de caos: kill -9 del cluster PostgreSQL 16 temporal y reconexion del pool",
+  "comando": "python entregables/semana-10/metricas/caos_postgres.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 20:08:50",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 15.2
+}

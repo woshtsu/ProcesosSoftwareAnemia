@@ -1,0 +1,10 @@
+{
+  "id": "S01_auditoria_hexagonal",
+  "titulo": "Auditoría de la arquitectura hexagonal por análisis AST de import",
+  "comando": "python entregables/semana-10/metricas/auditoria_hexagonal.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 20:22:59",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 0.2
+}

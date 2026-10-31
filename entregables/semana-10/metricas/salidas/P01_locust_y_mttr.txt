@@ -1,0 +1,16 @@
+A_inc1_inc2_20u: 20 usuarios/60s: 953 peticiones, fallos 0, p50 10.0 ms, p95 29.0 ms, p99 91.0 ms, 16.16 req/s, disp. 100.0 %, RSS 81.4-88.1 MB
+   GET /api/ninos                               n=192   p95=91.0 ms
+   GET /api/alertas/resumen                     n=78    p95=31.0 ms
+   GET /api/reportes/periodo                    n=27    p95=29.0 ms
+   GET /api/alertas/controles-vencidos          n=90    p95=26.0 ms
+B_inc3_inc4_20u: 20 usuarios/60s: 934 peticiones, fallos 0, p50 9.0 ms, p95 98.0 ms, p99 300.0 ms, 15.84 req/s, disp. 100.0 %, RSS 88.1-93.6 MB
+   GET /api/ninos                               n=20    p95=300.0 ms
+   POST /api/recordatorios/generar              n=27    p95=240.0 ms
+   POST /api/sincronizacion                     n=76    p95=170.0 ms
+   GET /api/visitas/priorizadas                 n=236   p95=61.0 ms
+C_inc1_inc2_100u: 100 usuarios/60s: 2904 peticiones, fallos 1, p50 780.0 ms, p95 2000.0 ms, p99 2600.0 ms, 49.29 req/s, disp. 100.0 %, RSS 93.6-117.8 MB
+   POST /api/ninos                              n=217   p95=2500.0 ms
+   GET /api/ninos                               n=593   p95=2200.0 ms
+   GET /api/reportes/periodo                    n=120   p95=2200.0 ms
+   GET /api/agenda                              n=300   p95=2000.0 ms
+MTTR/reinicio: {"servicio_caido_tras_kill": true, "segundos_hasta_salud_200": 0.85, "ninos_antes": 329, "ninos_despues": 329, "datos_integros": true, "nota": "Reinicio manual con el mismo comando; en Render/Docker lo hace el orquestador (HEALTHCHECK cada 30 s en el Dockerfile). No se midio la recuperacion automatica."}

@@ -1,0 +1,10 @@
+{
+  "id": "R03_e2e_playwright",
+  "titulo": "pytest E2E (Playwright, Chromium)",
+  "comando": "python -m pytest tests/e2e -m e2e -v --no-cov -p no:cacheprovider --junitxml=<tmp>/junit_e2e.xml",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:40:55",
+  "commit": "e6886e2",
+  "codigo_salida": 0,
+  "duracion_s": 67.6
+}

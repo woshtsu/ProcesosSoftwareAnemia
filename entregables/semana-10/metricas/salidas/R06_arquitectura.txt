@@ -1,0 +1,40 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0 -- <venv>/bin/python
+rootdir: <repo>/pmv_fastapi
+configfile: pyproject.toml
+plugins: platformdirs-4.14.0, locust-2.46.6, anyio-4.15.1, cov-7.1.0
+collecting ... collected 25 items
+
+tests/arquitectura/test_dependencias.py::test_cp37_el_dominio_no_depende_de_frameworks_ni_de_otras_capas PASSED [  4%]
+tests/arquitectura/test_dependencias.py::test_cp38_los_puertos_solo_importan_dominio_stdlib_y_typing PASSED [  8%]
+tests/arquitectura/test_dependencias.py::test_cp39_la_aplicacion_no_importa_adaptadores_ni_frameworks PASSED [ 12%]
+tests/arquitectura/test_dependencias.py::test_cp40_el_adaptador_de_entrada_no_importa_aplicacion_ni_adaptadores_de_salida PASSED [ 16%]
+tests/arquitectura/test_dependencias.py::test_cp41_el_adaptador_de_salida_no_importa_aplicacion_ni_adaptadores_de_entrada PASSED [ 20%]
+tests/arquitectura/test_dependencias.py::test_cp42_solo_main_conoce_a_la_vez_aplicacion_y_adaptadores PASSED [ 24%]
+tests/arquitectura/test_dependencias.py::test_cp43_no_quedan_modulos_puente_en_las_rutas_anteriores PASSED [ 28%]
+tests/arquitectura/test_dependencias.py::test_el_verificador_detecta_importaciones_prohibidas[import fastapi-esperado0] PASSED [ 32%]
+tests/arquitectura/test_dependencias.py::test_el_verificador_detecta_importaciones_prohibidas[from sqlalchemy.orm import Session-esperado1] PASSED [ 36%]
+tests/arquitectura/test_dependencias.py::test_el_verificador_detecta_importaciones_prohibidas[from app.adapters.outbound import x-esperado2] PASSED [ 40%]
+tests/arquitectura/test_dependencias.py::test_el_verificador_detecta_importaciones_prohibidas[def f():\n    import psycopg2-esperado3] PASSED [ 44%]
+tests/arquitectura/test_dependencias.py::test_el_verificador_detecta_importaciones_prohibidas[from . import hermano-esperado4] PASSED [ 48%]
+tests/arquitectura/test_dependencias.py::test_el_verificador_detecta_importaciones_prohibidas[import json\nfrom app.domain.model import x-esperado5] PASSED [ 52%]
+tests/arquitectura/test_dependencias.py::test_el_prefijo_no_confunde_paquetes_con_nombre_parecido PASSED [ 56%]
+tests/arquitectura/test_dependencias.py::test_cp176_la_aplicacion_nunca_importa_scripts_ni_pruebas PASSED [ 60%]
+tests/arquitectura/test_dependencias.py::test_cp177_los_modulos_nuevos_del_dominio_y_los_puertos_existen_y_quedan_cubiertos_por_las_reglas PASSED [ 64%]
+tests/arquitectura/test_dependencias.py::test_cp178_el_importador_no_toca_la_base_directamente PASSED [ 68%]
+tests/arquitectura/test_dependencias.py::test_cp179_las_piezas_de_lectura_y_muestreo_solo_dependen_del_dominio_y_de_su_configuracion PASSED [ 72%]
+tests/arquitectura/test_dependencias.py::test_cp294_los_modulos_nuevos_del_incremento_3_existen_y_respetan_la_regla_de_dependencias PASSED [ 76%]
+tests/arquitectura/test_dependencias.py::test_cp295_la_sincronizacion_solo_conoce_puertos_y_dominio PASSED [ 80%]
+tests/arquitectura/test_dependencias.py::test_cp296_el_puntaje_de_visitas_y_las_reglas_de_conflicto_son_funciones_puras_sin_reloj_ni_entrada_salida PASSED [ 84%]
+tests/arquitectura/test_dependencias.py::test_cp398_los_modulos_nuevos_del_incremento_4_existen_y_respetan_la_regla_de_dependencias PASSED [ 88%]
+tests/arquitectura/test_dependencias.py::test_cp399_los_servicios_del_incremento_4_solo_conocen_puertos_y_dominio PASSED [ 92%]
+tests/arquitectura/test_dependencias.py::test_cp400_solo_los_adaptadores_de_salida_hablan_http_con_proveedores_externos PASSED [ 96%]
+tests/arquitectura/test_dependencias.py::test_cp401_las_reglas_de_barreras_y_recordatorios_son_funciones_puras_sin_reloj_ni_entrada_salida PASSED [100%]
+
+=============================== warnings summary ===============================
+..<venv>/lib/python3.13/site-packages/fastapi/testclient.py:1
+  <venv>/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 25 passed, 1 warning in 0.55s =========================

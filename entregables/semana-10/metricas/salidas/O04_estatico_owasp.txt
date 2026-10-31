@@ -1,0 +1,32 @@
+E01  A01  HALLAZGO  Control de acceso por rol/establecimiento (RBAC): 0 referencias; el README declara «no hay roles ni separación por establecimiento»: todo usuario confirmado tiene acceso total
+E02  A01  CUMPLE    SSRF: las peticiones salientes no usan URL de la solicitud del usuario: httpx fuera de adaptadores de salida: 0; URL literales en adaptadores: ['app/adapters/outbound/notificaciones/whatsapp_cloud.py:12']; SMS_API_URL, SUPABASE_URL y WHATSAPP_* vienen del entorno
+E03  A02  CUMPLE    Sin credenciales en el codigo del repositorio: 192 archivos revisados; coincidencias: 0
+E04  A02  CUMPLE    .env ignorado por Git y .env.example solo con marcadores: .env ignorado: True
+E05  A02  HALLAZGO  docker-compose sin contraseña predeterminada debil: docker-compose.yml usa `${POSTGRES_PASSWORD:-cambiar_en_staging}` como valor por defecto (solo para staging local)
+E06  A02  CUMPLE    Imagen Docker: usuario no root, base slim y HEALTHCHECK: USER appuser, python:3.11-slim, HEALTHCHECK cada 30 s
+E07  A02  HALLAZGO  Cabeceras de seguridad definidas en la aplicacion: 0 referencias
+E08  A03  CUMPLE    Dependencias de produccion con version exacta: 5 de 5 con ==
+E09  A03  HALLAZGO  Hashes de integridad en dependencias (pip --require-hashes): sin hashes ni archivo de bloqueo
+E10  A03  HALLAZGO  Actualizacion automatica de dependencias (Dependabot/Renovate): solo existe .github/workflows/ci.yml
+E11  A03  HALLAZGO  CI ejecuta analisis de seguridad (SAST/auditoria de dependencias): el CI ejecuta ruff, pytest, OpenAPI, PostgreSQL, E2E y SonarCloud opcional (solo con SONAR_TOKEN)
+E12  A03  HALLAZGO  Acciones de GitHub fijadas por SHA de commit: 6 acciones fijadas por etiqueta (@v4/@v5), no por SHA
+E13  A04  CUMPLE    Sin algoritmos de hash debiles: 0 coincidencias
+E14  A04  CUMPLE    Comparacion en tiempo constante de firma y token del webhook: 2 usos (firma y token de verificacion)
+E15  A04  CUMPLE    La aplicacion no almacena ni procesa contrasenas (se delegan a Supabase Auth): 0 coincidencias fuera de los modulos de sesion
+E16  A05  CUMPLE    Sin SQL construido por concatenacion o f-strings: 0 coincidencias; el repositorio usa SQLAlchemy Core con parametros
+E17  A05  CUMPLE    Sin eval/exec/pickle/os.system/subprocess en el codigo de la aplicacion: 0 coincidencias
+E18  A05  CUMPLE    El cliente escapa el texto libre antes de insertarlo con innerHTML (esc()): 106 usos de esc() frente a 33 asignaciones a innerHTML
+E19  A06  CUMPLE    Decisiones de diseno de seguridad documentadas (ADR-011 sesion, ADR-014 webhook): 14 ADR en total
+E20  A06  HALLAZGO  Limitacion de tasa (rate limiting) en la aplicacion: 0 referencias; sin limite propio en login ni en la API
+E21  A06  CUMPLE    Cerrojos de concurrencia con pruebas (sincronizacion y recordatorios): 2 pruebas
+E22  A06  HALLAZGO  Modelo de amenazas documentado (STRIDE o equivalente) en el repositorio del producto: no hay un documento de modelo de amenazas en pmv_fastapi/docs
+E23  A07  NO_MEDIDO Politica de contrasenas, MFA y bloqueo por intentos (Supabase Auth): se configura en el panel de Supabase; no se pudo medir aqui (no se cuenta como cumplido)
+E24  A08  CUMPLE    Sin deserializacion insegura: 0 coincidencias
+E25  A08  HALLAZGO  Artefactos de CI firmados o con procedencia (attestations/cosign): el CI construye la imagen pero no la firma
+E26  A09  HALLAZGO  La aplicacion registra eventos de seguridad (login fallido, 401/403, firma invalida): 0 usos de logging; solo hay los logs de acceso de uvicorn
+E27  A09  CUMPLE    Trazabilidad del autor de cada registro (registrado_por): 6 columnas registrado_por; en modo supabase es el UUID verificado
+E28  A09  HALLAZGO  Alertas/monitoreo de seguridad automatizados: no se encontro configuracion de alertas; HEALTHCHECK solo verifica disponibilidad
+E29  A10  HALLAZGO  Manejador global de excepciones (respuesta controlada ante errores no previstos): solo hay manejadores de excepciones de dominio (409/422/403/503/404); una falla de BD responde 500 generico (ver R13)
+E30  A10  CUMPLE    Errores de dominio mapeados a respuestas HTTP controladas: 11 manejadores registrados
+
+16/30 CUMPLE; 13 HALLAZGO; 1 NO_MEDIDO

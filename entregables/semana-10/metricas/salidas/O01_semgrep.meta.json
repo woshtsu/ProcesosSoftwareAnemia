@@ -1,0 +1,10 @@
+{
+  "id": "O01_semgrep",
+  "titulo": "semgrep (reglas python + javascript + generic del repositorio semgrep-rules)",
+  "comando": "<venv>/bin/semgrep scan --config <tmp>/semgrep-rules/python --config <tmp>/semgrep-rules/javascript --metrics=off --disable-version-check --exclude vendor --exclude tests --json-output=<tmp>/semgrep.json --text app",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:55:27",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 41.8
+}

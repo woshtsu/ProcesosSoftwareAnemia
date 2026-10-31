@@ -1,0 +1,41 @@
+Run started:2026-10-31 00:51:45.877680+00:00
+
+Test results:
+>> Issue: [B107:hardcoded_password_default] Possible hardcoded password: ''
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b107_hardcoded_password_default.html
+   Location: app/adapters/outbound/notificaciones/sms.py:16:4
+15	class NotificadorSMS:
+16	    def __init__(
+17	        self,
+18	        url: str = "",
+19	        token: str = "",
+20	        remitente: str = "",
+21	        cliente: httpx.Client | None = None,
+22	    ):
+23	        self.url = url
+24	        self.token = token
+25	        self.remitente = remitente
+26	        self.cliente = cliente or httpx.Client(timeout=10.0)
+27	
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 6723
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 1
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 1
+		High: 0
+Files skipped (0):

@@ -1,0 +1,10 @@
+{
+  "id": "U01_paleta_contraste",
+  "titulo": "Contraste de la paleta (WCAG 1.4.3 y 1.4.11)",
+  "comando": "python entregables/semana-10/metricas/paleta_colores.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 20:06:17",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 1.0
+}

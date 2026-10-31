@@ -1,0 +1,10 @@
+{
+  "id": "R05_ruff_format",
+  "titulo": "ruff format --check .",
+  "comando": "<venv>/bin/ruff format --check . --no-cache",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:51:39",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 0.1
+}

@@ -1,0 +1,2170 @@
+{
+  "escritorio": {
+    "Registrar niño": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        }
+      ],
+      "pasadas": 18,
+      "inaplicables": 44,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Seguimiento": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": ".click:nth-child(1) > td:nth-child(7) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".click:nth-child(2) > td:nth-child(7) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".click:nth-child(3) > td:nth-child(7) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#filtro-clasificacion",
+              "html": "<select id=\"filtro-clasificacion\" data-testid=\"filtro-clasificacion\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": "#filtro-estado",
+              "html": "<select id=\"filtro-estado\">\n          <option value=\"ACTIVO\">Seguimiento activo</option>\n          <option value=\"ALTA\">Con alta</option>\n  ",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            }
+          ]
+        }
+      ],
+      "pasadas": 20,
+      "inaplicables": 42,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Expediente": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "label",
+          "impacto": "critical",
+          "ayuda": "Form elements must have labels",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "input[value=\"2026-10-30\"]",
+              "html": "<input type=\"date\" name=\"fecha\" value=\"2026-10-30\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".campo:nth-child(2) > input[name=\"hemoglobina_observada\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"hemoglobina_observada\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".fila2:nth-child(2) > .campo:nth-child(1) > input[name=\"peso_kg\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"peso_kg\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            }
+          ]
+        }
+      ],
+      "pasadas": 28,
+      "inaplicables": 34,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 16,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "text[y=\"57\"]",
+              "html": "<text x=\"298\" y=\"57\" font-size=\"10\" text-anchor=\"end\" fill=\"#B0222B\">umbral 10.5</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "selector": "text[x=\"22\"]",
+              "html": "<text x=\"22\" y=\"106\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#5E6E7E\">27/05</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Agenda": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 11,
+          "ejemplo": [
+            {
+              "selector": ".ctrl-INASISTENCIA",
+              "html": "<span class=\"ctrl ctrl-INASISTENCIA\" data-testid=\"agenda-personal-inasistencias\">0 con inasistencia</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-fecha=\"2026-10-26\"] > td[colspan=\"6\"]",
+              "html": "<td colspan=\"6\">lunes 26/10/2026<small data-testid=\"agenda-personal-dia-total\">0 control(es)</small></td>",
+              "detalle": "Element has insufficient color contrast of 3.25 (foreground color: #6d8ca8, background color: #f1f7fc, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-fecha=\"2026-10-26\"] > td[colspan=\"6\"] > small[data-testid=\"agenda-personal-dia-total\"]",
+              "html": "<small data-testid=\"agenda-personal-dia-total\">0 control(es)</small>",
+              "detalle": "Element has insufficient color contrast of 2.43 (foreground color: #96a1ab, background color: #f1f7fc, font size: 8.8pt (11.6667px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "pasadas": 20,
+      "inaplicables": 42,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Visitas": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "tr[data-nombre=\"Dayana Orihuela Pari\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-nombre=\"Jhon Kevin Huamán Poma\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-nombre=\"Josué Pari Condori\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "pasadas": 19,
+      "inaplicables": 43,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Recordatorios": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        }
+      ],
+      "pasadas": 19,
+      "inaplicables": 43,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "empty-table-header",
+          "impacto": "minor",
+          "ayuda": "Table header text should not be empty",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"recordatorios-tabla\"] > thead > tr > th:nth-child(7)",
+              "html": "<th></th>",
+              "detalle": "Element does not have text that is visible to screen readers"
+            }
+          ]
+        }
+      ]
+    },
+    "Alertas": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "td:nth-child(8) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".prio-MEDIA",
+              "html": "<span class=\"badge prio-MEDIA\" data-testid=\"prioridad\">MEDIA</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "pasadas": 20,
+      "inaplicables": 42,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        },
+        {
+          "id": "th-has-data-cells",
+          "impacto": "serious",
+          "ayuda": "Table headers in a data table must refer to data cells",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"alertas-barreras-tabla\"]",
+              "html": "<table class=\"tabla completa\" data-testid=\"alertas-barreras-tabla\">",
+              "detalle": "Table data cells are missing or empty"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Sincronización": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        }
+      ],
+      "pasadas": 19,
+      "inaplicables": 42,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        },
+        {
+          "id": "th-has-data-cells",
+          "impacto": "serious",
+          "ayuda": "Table headers in a data table must refer to data cells",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"sync-tabla\"]",
+              "html": "<table class=\"tabla completa\" data-testid=\"sync-tabla\">\n          <thead><tr><th>Registro</th><th>Hora local</th><th>Estado</th><th>Último i",
+              "detalle": "Table data cells are missing or empty"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "empty-table-header",
+          "impacto": "minor",
+          "ayuda": "Table header text should not be empty",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"sync-tabla\"] > thead > tr > th:nth-child(5)",
+              "html": "<th></th>",
+              "detalle": "Element does not have text that is visible to screen readers"
+            }
+          ]
+        }
+      ]
+    },
+    "Reporte": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        }
+      ],
+      "pasadas": 20,
+      "inaplicables": 42,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Modal asistencia": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "label",
+          "impacto": "critical",
+          "ayuda": "Form elements must have labels",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "input[value=\"2026-10-30\"]",
+              "html": "<input type=\"date\" name=\"fecha\" value=\"2026-10-30\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".campo:nth-child(2) > input[name=\"hemoglobina_observada\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"hemoglobina_observada\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".fila2:nth-child(2) > .campo:nth-child(1) > input[name=\"peso_kg\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"peso_kg\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            }
+          ]
+        }
+      ],
+      "pasadas": 28,
+      "inaplicables": 34,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 16,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "text[y=\"57\"]",
+              "html": "<text x=\"298\" y=\"57\" font-size=\"10\" text-anchor=\"end\" fill=\"#B0222B\">umbral 10.5</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "selector": "text[x=\"22\"]",
+              "html": "<text x=\"22\" y=\"106\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#5E6E7E\">27/05</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "aria-allowed-role",
+          "impacto": "minor",
+          "ayuda": "ARIA role should be appropriate for the element",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#form-asistencia",
+              "html": "<form id=\"form-asistencia\" class=\"modal-caja\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-titulo\" novalidate=\"\">",
+              "detalle": "ARIA role dialog is not allowed for given element"
+            }
+          ]
+        }
+      ]
+    },
+    "Modal visita": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "tr[data-nombre=\"Dayana Orihuela Pari\"][data-testid=\"visita-priorizada\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-nombre=\"Jhon Kevin Huamán Poma\"][data-testid=\"visita-priorizada\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-nombre=\"Josué Pari Condori\"][data-testid=\"visita-priorizada\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "pasadas": 25,
+      "inaplicables": 37,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "aria-allowed-role",
+          "impacto": "minor",
+          "ayuda": "ARIA role should be appropriate for the element",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#form-visita",
+              "html": "<form id=\"form-visita\" class=\"modal-caja\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"visita-titulo\" novalidate=\"\">",
+              "detalle": "ARIA role dialog is not allowed for given element"
+            }
+          ]
+        }
+      ]
+    },
+    "Modal respuesta del tutor": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        }
+      ],
+      "pasadas": 24,
+      "inaplicables": 38,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "aria-allowed-role",
+          "impacto": "minor",
+          "ayuda": "ARIA role should be appropriate for the element",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#form-respuesta",
+              "html": "<form id=\"form-respuesta\" class=\"modal-caja\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"respuesta-titulo\" novalidate=\"\">",
+              "detalle": "ARIA role dialog is not allowed for given element"
+            }
+          ]
+        },
+        {
+          "id": "empty-table-header",
+          "impacto": "minor",
+          "ayuda": "Table header text should not be empty",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"recordatorios-tabla\"] > thead > tr > th:nth-child(7)",
+              "html": "<th></th>",
+              "detalle": "Element does not have text that is visible to screen readers"
+            }
+          ]
+        }
+      ]
+    },
+    "Modal barrera": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "label",
+          "impacto": "critical",
+          "ayuda": "Form elements must have labels",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "input[value=\"2026-10-30\"]",
+              "html": "<input type=\"date\" name=\"fecha\" value=\"2026-10-30\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".campo:nth-child(2) > input[name=\"hemoglobina_observada\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"hemoglobina_observada\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".fila2:nth-child(2) > .campo:nth-child(1) > input[name=\"peso_kg\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"peso_kg\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            }
+          ]
+        }
+      ],
+      "pasadas": 28,
+      "inaplicables": 34,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 16,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "text[y=\"57\"]",
+              "html": "<text x=\"298\" y=\"57\" font-size=\"10\" text-anchor=\"end\" fill=\"#B0222B\">umbral 10.5</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "selector": "text[x=\"22\"]",
+              "html": "<text x=\"22\" y=\"106\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#5E6E7E\">27/05</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "aria-allowed-role",
+          "impacto": "minor",
+          "ayuda": "ARIA role should be appropriate for the element",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#form-barrera",
+              "html": "<form id=\"form-barrera\" class=\"modal-caja\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"barrera-titulo\" novalidate=\"\">",
+              "detalle": "ARIA role dialog is not allowed for given element"
+            }
+          ]
+        }
+      ]
+    },
+    "Inicio de sesión": {
+      "version": "4.14.0",
+      "violaciones": [],
+      "pasadas": 22,
+      "inaplicables": 41,
+      "incompletas": [],
+      "buenas_practicas": []
+    }
+  },
+  "movil": {
+    "Registrar niño": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 19,
+      "inaplicables": 43,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Seguimiento": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": ".click:nth-child(1) > td:nth-child(7) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".click:nth-child(2) > td:nth-child(7) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".click:nth-child(3) > td:nth-child(7) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impacto": "serious",
+          "ayuda": "Scrollable region must have keyboard access",
+          "wcag": [
+            "wcag211",
+            "wcag213"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#vista-seguimiento > .tabla-envoltura.tarjeta",
+              "html": "<div class=\"tabla-envoltura tarjeta\">",
+              "detalle": "Element should have focusable content"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 3,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            },
+            {
+              "selector": "#filtro-clasificacion",
+              "html": "<select id=\"filtro-clasificacion\" data-testid=\"filtro-clasificacion\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": "#filtro-estado",
+              "html": "<select id=\"filtro-estado\">\n          <option value=\"ACTIVO\">Seguimiento activo</option>\n          <option value=\"ALTA\">Con alta</option>\n  ",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            }
+          ]
+        }
+      ],
+      "pasadas": 20,
+      "inaplicables": 41,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Expediente": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "label",
+          "impacto": "critical",
+          "ayuda": "Form elements must have labels",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "input[value=\"2026-10-30\"]",
+              "html": "<input type=\"date\" name=\"fecha\" value=\"2026-10-30\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".campo:nth-child(2) > input[name=\"hemoglobina_observada\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"hemoglobina_observada\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".fila2:nth-child(2) > .campo:nth-child(1) > input[name=\"peso_kg\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"peso_kg\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 27,
+      "inaplicables": 34,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 26,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "text[y=\"57\"]",
+              "html": "<text x=\"298\" y=\"57\" font-size=\"10\" text-anchor=\"end\" fill=\"#B0222B\">umbral 10.5</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "selector": "text[x=\"22\"]",
+              "html": "<text x=\"22\" y=\"106\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#5E6E7E\">27/05</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Agenda": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 11,
+          "ejemplo": [
+            {
+              "selector": ".ctrl-INASISTENCIA",
+              "html": "<span class=\"ctrl ctrl-INASISTENCIA\" data-testid=\"agenda-personal-inasistencias\">0 con inasistencia</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-fecha=\"2026-10-26\"] > td[colspan=\"6\"]",
+              "html": "<td colspan=\"6\">lunes 26/10/2026<small data-testid=\"agenda-personal-dia-total\">0 control(es)</small></td>",
+              "detalle": "Element has insufficient color contrast of 3.25 (foreground color: #6d8ca8, background color: #f1f7fc, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-fecha=\"2026-10-26\"] > td[colspan=\"6\"] > small[data-testid=\"agenda-personal-dia-total\"]",
+              "html": "<small data-testid=\"agenda-personal-dia-total\">0 control(es)</small>",
+              "detalle": "Element has insufficient color contrast of 2.43 (foreground color: #96a1ab, background color: #f1f7fc, font size: 8.8pt (11.6667px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 21,
+      "inaplicables": 41,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "button[data-vista=\"seguimiento\"]",
+              "html": "<button class=\"pestana\" data-vista=\"seguimiento\" data-testid=\"tab-seguimiento\">Seguimiento</button>",
+              "detalle": "Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Visitas": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "tr[data-nombre=\"Dayana Orihuela Pari\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-nombre=\"Jhon Kevin Huamán Poma\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-nombre=\"Josué Pari Condori\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 20,
+      "inaplicables": 42,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "button[data-vista=\"seguimiento\"]",
+              "html": "<button class=\"pestana\" data-vista=\"seguimiento\" data-testid=\"tab-seguimiento\">Seguimiento</button>",
+              "detalle": "Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Recordatorios": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 20,
+      "inaplicables": 42,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "button[data-vista=\"expediente\"]",
+              "html": "<button class=\"pestana\" data-vista=\"expediente\" data-testid=\"tab-expediente\">Expediente</button>",
+              "detalle": "Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "empty-table-header",
+          "impacto": "minor",
+          "ayuda": "Table header text should not be empty",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"recordatorios-tabla\"] > thead > tr > th:nth-child(7)",
+              "html": "<th></th>",
+              "detalle": "Element does not have text that is visible to screen readers"
+            }
+          ]
+        }
+      ]
+    },
+    "Alertas": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "td:nth-child(8) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": ".prio-MEDIA",
+              "html": "<span class=\"badge prio-MEDIA\" data-testid=\"prioridad\">MEDIA</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impacto": "serious",
+          "ayuda": "Scrollable region must have keyboard access",
+          "wcag": [
+            "wcag211",
+            "wcag213"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#vista-alertas > .tabla-envoltura.tarjeta:nth-child(4)",
+              "html": "<div class=\"tabla-envoltura tarjeta\">",
+              "detalle": "Element should have focusable content"
+            },
+            {
+              "selector": ".tabla-envoltura.tarjeta:nth-child(8)",
+              "html": "<div class=\"tabla-envoltura tarjeta\">",
+              "detalle": "Element should have focusable content"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 21,
+      "inaplicables": 41,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "button[data-vista=\"visitas\"]",
+              "html": "<button class=\"pestana\" data-vista=\"visitas\" data-testid=\"tab-visitas\">Visitas</button>",
+              "detalle": "Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        },
+        {
+          "id": "th-has-data-cells",
+          "impacto": "serious",
+          "ayuda": "Table headers in a data table must refer to data cells",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"alertas-barreras-tabla\"]",
+              "html": "<table class=\"tabla completa\" data-testid=\"alertas-barreras-tabla\">",
+              "detalle": "Table data cells are missing or empty"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Sincronización": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 19,
+      "inaplicables": 41,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "button[data-vista=\"visitas\"]",
+              "html": "<button class=\"pestana\" data-vista=\"visitas\" data-testid=\"tab-visitas\">Visitas</button>",
+              "detalle": "Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        },
+        {
+          "id": "th-has-data-cells",
+          "impacto": "serious",
+          "ayuda": "Table headers in a data table must refer to data cells",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"sync-tabla\"]",
+              "html": "<table class=\"tabla completa\" data-testid=\"sync-tabla\">\n          <thead><tr><th>Registro</th><th>Hora local</th><th>Estado</th><th>Último i",
+              "detalle": "Table data cells are missing or empty"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "empty-table-header",
+          "impacto": "minor",
+          "ayuda": "Table header text should not be empty",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"sync-tabla\"] > thead > tr > th:nth-child(5)",
+              "html": "<th></th>",
+              "detalle": "Element does not have text that is visible to screen readers"
+            }
+          ]
+        }
+      ]
+    },
+    "Reporte": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 20,
+      "inaplicables": 41,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "button[data-vista=\"recordatorios\"]",
+              "html": "<button class=\"pestana\" data-vista=\"recordatorios\" data-testid=\"tab-recordatorios\">Recordatorios</button>",
+              "detalle": "Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": []
+    },
+    "Modal asistencia": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "label",
+          "impacto": "critical",
+          "ayuda": "Form elements must have labels",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "input[value=\"2026-10-30\"]",
+              "html": "<input type=\"date\" name=\"fecha\" value=\"2026-10-30\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".campo:nth-child(2) > input[name=\"hemoglobina_observada\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"hemoglobina_observada\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".fila2:nth-child(2) > .campo:nth-child(1) > input[name=\"peso_kg\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"peso_kg\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 28,
+      "inaplicables": 34,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 11,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "text[y=\"57\"]",
+              "html": "<text x=\"298\" y=\"57\" font-size=\"10\" text-anchor=\"end\" fill=\"#B0222B\">umbral 10.5</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "selector": "text[x=\"22\"]",
+              "html": "<text x=\"22\" y=\"106\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#5E6E7E\">27/05</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "aria-allowed-role",
+          "impacto": "minor",
+          "ayuda": "ARIA role should be appropriate for the element",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#form-asistencia",
+              "html": "<form id=\"form-asistencia\" class=\"modal-caja\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-titulo\" novalidate=\"\">",
+              "detalle": "ARIA role dialog is not allowed for given element"
+            }
+          ]
+        }
+      ]
+    },
+    "Modal visita": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "tr[data-nombre=\"Dayana Orihuela Pari\"][data-testid=\"visita-priorizada\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-nombre=\"Jhon Kevin Huamán Poma\"][data-testid=\"visita-priorizada\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "selector": "tr[data-nombre=\"Josué Pari Condori\"][data-testid=\"visita-priorizada\"] > td:nth-child(4) > .MODERADA.badge",
+              "html": "<span class=\"badge MODERADA\">Anemia moderada</span>",
+              "detalle": "Element has insufficient color contrast of 4.23 (foreground color: #b4530b, background color: #fde8d7, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 26,
+      "inaplicables": 36,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "button[data-vista=\"expediente\"]",
+              "html": "<button class=\"pestana\" data-vista=\"expediente\" data-testid=\"tab-expediente\">Expediente</button>",
+              "detalle": "Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "aria-allowed-role",
+          "impacto": "minor",
+          "ayuda": "ARIA role should be appropriate for the element",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#form-visita",
+              "html": "<form id=\"form-visita\" class=\"modal-caja\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"visita-titulo\" novalidate=\"\">",
+              "detalle": "ARIA role dialog is not allowed for given element"
+            }
+          ]
+        }
+      ]
+    },
+    "Modal respuesta del tutor": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 25,
+      "inaplicables": 37,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 2,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "button[data-vista=\"expediente\"]",
+              "html": "<button class=\"pestana\" data-vista=\"expediente\" data-testid=\"tab-expediente\">Expediente</button>",
+              "detalle": "Element's background color could not be determined because it's partially obscured by another element"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "aria-allowed-role",
+          "impacto": "minor",
+          "ayuda": "ARIA role should be appropriate for the element",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#form-respuesta",
+              "html": "<form id=\"form-respuesta\" class=\"modal-caja\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"respuesta-titulo\" novalidate=\"\">",
+              "detalle": "ARIA role dialog is not allowed for given element"
+            }
+          ]
+        },
+        {
+          "id": "empty-table-header",
+          "impacto": "minor",
+          "ayuda": "Table header text should not be empty",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "table[data-testid=\"recordatorios-tabla\"] > thead > tr > th:nth-child(7)",
+              "html": "<th></th>",
+              "detalle": "Element does not have text that is visible to screen readers"
+            }
+          ]
+        }
+      ]
+    },
+    "Modal barrera": {
+      "version": "4.14.0",
+      "violaciones": [
+        {
+          "id": "aria-required-children",
+          "impacto": "critical",
+          "ayuda": "Certain ARIA roles must contain particular children",
+          "wcag": [
+            "wcag131"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "nav",
+              "html": "<nav class=\"pestanas\" role=\"tablist\">",
+              "detalle": "Element has children which are not allowed: button"
+            }
+          ]
+        },
+        {
+          "id": "label",
+          "impacto": "critical",
+          "ayuda": "Form elements must have labels",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 4,
+          "ejemplo": [
+            {
+              "selector": "input[value=\"2026-10-30\"]",
+              "html": "<input type=\"date\" name=\"fecha\" value=\"2026-10-30\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".campo:nth-child(2) > input[name=\"hemoglobina_observada\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"hemoglobina_observada\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            },
+            {
+              "selector": ".fila2:nth-child(2) > .campo:nth-child(1) > input[name=\"peso_kg\"][step=\"0.1\"][type=\"number\"]",
+              "html": "<input type=\"number\" step=\"0.1\" name=\"peso_kg\">",
+              "detalle": "Element does not have an implicit (wrapped) <label>"
+            }
+          ]
+        },
+        {
+          "id": "select-name",
+          "impacto": "critical",
+          "ayuda": "Select element must have an accessible name",
+          "wcag": [
+            "wcag412"
+          ],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#usuario",
+              "html": "<select id=\"usuario\" data-testid=\"usuario\">\n        <option value=\"enf.rosa.quispe\">Enf. Rosa Quispe</option>\n        <option value=\"tec.jua",
+              "detalle": "Form element has explicit <label> that is hidden"
+            }
+          ]
+        }
+      ],
+      "pasadas": 28,
+      "inaplicables": 34,
+      "incompletas": [
+        {
+          "id": "color-contrast",
+          "impacto": "serious",
+          "ayuda": "Elements must meet minimum color contrast ratio thresholds",
+          "wcag": [
+            "wcag143"
+          ],
+          "nodos": 27,
+          "ejemplo": [
+            {
+              "selector": "#red",
+              "html": "<span id=\"red\" class=\"red\" title=\"En línea\">●</span>",
+              "detalle": "Element content contains only non-text characters"
+            },
+            {
+              "selector": "text[y=\"57\"]",
+              "html": "<text x=\"298\" y=\"57\" font-size=\"10\" text-anchor=\"end\" fill=\"#B0222B\">umbral 10.5</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            },
+            {
+              "selector": "text[x=\"22\"]",
+              "html": "<text x=\"22\" y=\"106\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#5E6E7E\">27/05</text>",
+              "detalle": "Element's background color could not be determined because element contains an image node"
+            }
+          ]
+        }
+      ],
+      "buenas_practicas": [
+        {
+          "id": "aria-allowed-role",
+          "impacto": "minor",
+          "ayuda": "ARIA role should be appropriate for the element",
+          "wcag": [],
+          "nodos": 1,
+          "ejemplo": [
+            {
+              "selector": "#form-barrera",
+              "html": "<form id=\"form-barrera\" class=\"modal-caja\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"barrera-titulo\" novalidate=\"\">",
+              "detalle": "ARIA role dialog is not allowed for given element"
+            }
+          ]
+        }
+      ]
+    },
+    "Inicio de sesión": {
+      "version": "4.14.0",
+      "violaciones": [],
+      "pasadas": 22,
+      "inaplicables": 41,
+      "incompletas": [],
+      "buenas_practicas": []
+    }
+  }
+}
