@@ -1,83 +1,115 @@
-# pytest --cov=app --cov-report=term-missing · 30/10/2026 · main 72e7025 · Python 3.14.6
-# Nota: en la advertencia se sustituyó la ruta local del entorno virtual por «<entorno-virtual>»; el resto es la salida original.
-........................................................................ [ 20%]
-........................................................................ [ 41%]
-........................................................................ [ 61%]
-........................................................................ [ 82%]
-.............................................................            [100%]
-============================== warnings summary ===============================
-<entorno-virtual>\Lib\site-packages\fastapi\testclient.py:1
-  <entorno-virtual>\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+# pytest --cov=app --cov-report=term-missing (unitarias, integración y arquitectura) · 30/10/2026 · código v4.0-Inc4 (commit e6886e2; pmv_fastapi/ y .github/ sin cambios hasta 51ca4fc) · Python 3.13.16
+# Nota: se sustituyeron las rutas locales del entorno virtual por «<entorno-virtual>»; el resto es la salida original.
+........................................................................ [ 10%]
+........................................................................ [ 21%]
+........................................................................ [ 32%]
+........................................................................ [ 43%]
+........................................................................ [ 54%]
+........................................................................ [ 65%]
+........................................................................ [ 76%]
+........................................................................ [ 87%]
+........................................................................ [ 98%]
+............                                                             [100%]
+=============================== warnings summary ===============================
+<entorno-virtual>/lib/python3.13/site-packages/fastapi/testclient.py:1
+  <entorno-virtual>/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
     from starlette.testclient import TestClient as TestClient  # noqa
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-=============================== tests coverage ================================
-_______________ coverage: platform win32, python 3.14.6-final-0 _______________
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.13.16-final-0 _______________
 
-Name                                                   Stmts   Miss Branch BrPart  Cover   Missing
---------------------------------------------------------------------------------------------------
-app\__init__.py                                            0      0      0      0   100%
-app\adapters\__init__.py                                   0      0      0      0   100%
-app\adapters\inbound\__init__.py                           0      0      0      0   100%
-app\adapters\inbound\http\__init__.py                      0      0      0      0   100%
-app\adapters\inbound\http\api.py                         144      0      8      0   100%
-app\adapters\inbound\http\autenticacion.py                99      4     26      4    94%   86, 100, 110, 126->133, 130
-app\adapters\inbound\http\esquemas.py                     73      0      0      0   100%
-app\adapters\outbound\__init__.py                          0      0      0      0   100%
-app\adapters\outbound\persistence\__init__.py              0      0      0      0   100%
-app\adapters\outbound\persistence\memoria.py              65      0     18      0   100%
-app\adapters\outbound\persistence\sqlalchemy_repo.py     193      0     24      0   100%
-app\adapters\outbound\reloj_fijo.py                       13      0      0      0   100%
-app\adapters\outbound\reloj_sistema.py                     8      0      0      0   100%
-app\adapters\outbound\supabase_auth.py                    54      1     14      1    97%   64
-app\application\__init__.py                                0      0      0      0   100%
-app\application\servicio_agenda.py                        15      0      2      0   100%
-app\application\servicio_agenda_personal.py               24      0      0      0   100%
-app\application\servicio_alertas.py                       36      0     12      0   100%
-app\application\servicio_asistencia.py                    30      0      2      0   100%
-app\application\servicio_contexto.py                      10      0      0      0   100%
-app\application\servicio_expediente.py                   105      0     20      0   100%
-app\application\servicio_importacion.py                  105      0     28      0   100%
-app\application\servicio_sesion.py                        14      0      0      0   100%
-app\domain\__init__.py                                     0      0      0      0   100%
-app\domain\model\__init__.py                               0      0      0      0   100%
-app\domain\model\agenda.py                                34      0      0      0   100%
-app\domain\model\agenda_personal.py                       27      0      0      0   100%
-app\domain\model\alertas.py                               17      0      0      0   100%
-app\domain\model\asistencia.py                            14      0      0      0   100%
-app\domain\model\autenticacion.py                         10      0      0      0   100%
-app\domain\model\clasificacion.py                          7      0      0      0   100%
-app\domain\model\contexto.py                               4      0      0      0   100%
-app\domain\model\entidades.py                             46      0      4      0   100%
-app\domain\model\errores.py                               11      0      0      0   100%
-app\domain\model\importacion.py                           28      0      0      0   100%
-app\domain\model\origen.py                                 4      0      0      0   100%
-app\domain\model\tiempo.py                                17      0      4      0   100%
-app\domain\service\__init__.py                             0      0      0      0   100%
-app\domain\service\agenda.py                             124      0     46      0   100%
-app\domain\service\agenda_personal.py                     38      0     10      0   100%
-app\domain\service\alertas.py                             21      0      2      0   100%
-app\domain\service\asistencia.py                          43      0     26      0   100%
-app\domain\service\reglas_clinicas.py                     36      0     12      0   100%
-app\domain\service\validaciones.py                        88      0     44      0   100%
-app\main.py                                               63      0      6      0   100%
-app\ports\__init__.py                                      0      0      0      0   100%
-app\ports\inbound\__init__.py                              0      0      0      0   100%
-app\ports\inbound\agenda.py                                3      0      0      0   100%
-app\ports\inbound\agenda_personal.py                       5      0      0      0   100%
-app\ports\inbound\alertas.py                               3      0      0      0   100%
-app\ports\inbound\asistencia.py                            4      0      0      0   100%
-app\ports\inbound\contexto.py                              3      0      0      0   100%
-app\ports\inbound\expediente.py                            5      0      0      0   100%
-app\ports\inbound\importacion.py                           7      0      0      0   100%
-app\ports\inbound\reportes.py                              3      0      0      0   100%
-app\ports\inbound\seguimiento.py                           3      0      0      0   100%
-app\ports\inbound\sesiones.py                              3      0      0      0   100%
-app\ports\outbound\__init__.py                             0      0      0      0   100%
-app\ports\outbound\proveedor_identidad.py                  3      0      0      0   100%
-app\ports\outbound\reloj.py                                4      0      0      0   100%
-app\ports\outbound\repositorio_ninos.py                    9      0      0      0   100%
---------------------------------------------------------------------------------------------------
-TOTAL                                                   1675      5    308      5    99%
-Required test coverage of 80.0% reached. Total coverage: 99.50%
-349 passed, 1 warning in 9.34s
+Name                                                     Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------------------------------------------
+app/__init__.py                                              0      0      0      0   100%
+app/adapters/__init__.py                                     0      0      0      0   100%
+app/adapters/inbound/__init__.py                             0      0      0      0   100%
+app/adapters/inbound/http/__init__.py                        0      0      0      0   100%
+app/adapters/inbound/http/api.py                           261      0     10      0   100%
+app/adapters/inbound/http/autenticacion.py                 100      4     26      4    94%   96, 110, 120, 136->143, 140
+app/adapters/inbound/http/esquemas.py                      406      0      0      0   100%
+app/adapters/outbound/__init__.py                            0      0      0      0   100%
+app/adapters/outbound/notificaciones/__init__.py            19      0      4      0   100%
+app/adapters/outbound/notificaciones/respaldo.py            15      0      2      0   100%
+app/adapters/outbound/notificaciones/simulado.py             5      0      0      0   100%
+app/adapters/outbound/notificaciones/sms.py                 32      0      4      0   100%
+app/adapters/outbound/notificaciones/whatsapp_cloud.py      33      0      4      0   100%
+app/adapters/outbound/persistence/__init__.py                0      0      0      0   100%
+app/adapters/outbound/persistence/memoria.py               189      0     58      0   100%
+app/adapters/outbound/persistence/sqlalchemy_repo.py       450      0     48      0   100%
+app/adapters/outbound/reloj_fijo.py                         14      0      0      0   100%
+app/adapters/outbound/reloj_sistema.py                       8      0      0      0   100%
+app/adapters/outbound/supabase_auth.py                      54      1     14      1    97%   64
+app/application/__init__.py                                  0      0      0      0   100%
+app/application/servicio_agenda.py                          15      0      2      0   100%
+app/application/servicio_agenda_personal.py                 24      0      0      0   100%
+app/application/servicio_alertas.py                         36      0     12      0   100%
+app/application/servicio_asistencia.py                      30      0      2      0   100%
+app/application/servicio_barreras.py                        45      0     12      0   100%
+app/application/servicio_contexto.py                        10      0      0      0   100%
+app/application/servicio_expediente.py                     105      0     20      0   100%
+app/application/servicio_importacion.py                    105      0     28      0   100%
+app/application/servicio_recordatorios.py                  163      0     48      0   100%
+app/application/servicio_sesion.py                          14      0      0      0   100%
+app/application/servicio_sincronizacion.py                 217      0     68      0   100%
+app/application/servicio_visitas.py                         43      0      6      0   100%
+app/domain/__init__.py                                       0      0      0      0   100%
+app/domain/model/__init__.py                                 0      0      0      0   100%
+app/domain/model/agenda.py                                  47      0      0      0   100%
+app/domain/model/agenda_personal.py                         42      0      0      0   100%
+app/domain/model/alertas.py                                 25      0      0      0   100%
+app/domain/model/asistencia.py                              19      0      0      0   100%
+app/domain/model/autenticacion.py                           13      0      0      0   100%
+app/domain/model/barrera.py                                 54      0      0      0   100%
+app/domain/model/clasificacion.py                            7      0      0      0   100%
+app/domain/model/contexto.py                                 6      0      0      0   100%
+app/domain/model/entidades.py                               64      0      4      0   100%
+app/domain/model/errores.py                                 23      0      0      0   100%
+app/domain/model/importacion.py                             37      0      0      0   100%
+app/domain/model/notificacion.py                           141      0      0      0   100%
+app/domain/model/origen.py                                   4      0      0      0   100%
+app/domain/model/sincronizacion.py                          79      0      0      0   100%
+app/domain/model/tiempo.py                                  17      0      4      0   100%
+app/domain/model/visita.py                                  48      0      0      0   100%
+app/domain/service/__init__.py                               0      0      0      0   100%
+app/domain/service/agenda.py                               133      0     46      0   100%
+app/domain/service/agenda_personal.py                       38      0     10      0   100%
+app/domain/service/alertas.py                               21      0      2      0   100%
+app/domain/service/asistencia.py                            43      0     26      0   100%
+app/domain/service/barreras.py                              82      0     26      0   100%
+app/domain/service/conflictos.py                            88      0     30      0   100%
+app/domain/service/notificaciones.py                       163      0     62      0   100%
+app/domain/service/operaciones.py                           47      0     20      0   100%
+app/domain/service/reglas_clinicas.py                       41      0     12      0   100%
+app/domain/service/validaciones.py                          88      0     44      0   100%
+app/domain/service/visitas.py                               75      0     20      0   100%
+app/main.py                                                 74      0      6      0   100%
+app/ports/__init__.py                                        0      0      0      0   100%
+app/ports/inbound/__init__.py                                0      0      0      0   100%
+app/ports/inbound/agenda.py                                  3      0      0      0   100%
+app/ports/inbound/agenda_personal.py                         5      0      0      0   100%
+app/ports/inbound/alertas.py                                 3      0      0      0   100%
+app/ports/inbound/asistencia.py                              4      0      0      0   100%
+app/ports/inbound/barreras.py                                5      0      0      0   100%
+app/ports/inbound/contexto.py                                3      0      0      0   100%
+app/ports/inbound/expediente.py                              5      0      0      0   100%
+app/ports/inbound/importacion.py                             7      0      0      0   100%
+app/ports/inbound/notificaciones.py                         12      0      0      0   100%
+app/ports/inbound/reportes.py                                3      0      0      0   100%
+app/ports/inbound/seguimiento.py                             3      0      0      0   100%
+app/ports/inbound/sesiones.py                                3      0      0      0   100%
+app/ports/inbound/sincronizacion.py                          5      0      0      0   100%
+app/ports/inbound/visitas.py                                 5      0      0      0   100%
+app/ports/outbound/__init__.py                               0      0      0      0   100%
+app/ports/outbound/notificador.py                            3      0      0      0   100%
+app/ports/outbound/proveedor_identidad.py                    3      0      0      0   100%
+app/ports/outbound/reloj.py                                  4      0      0      0   100%
+app/ports/outbound/repositorio_barreras.py                   7      0      0      0   100%
+app/ports/outbound/repositorio_ninos.py                     11      0      0      0   100%
+app/ports/outbound/repositorio_recordatorios.py              9      0      0      0   100%
+app/ports/outbound/repositorio_sincronizacion.py             7      0      0      0   100%
+app/ports/outbound/repositorio_visitas.py                    8      0      0      0   100%
+----------------------------------------------------------------------------------------------------
+TOTAL                                                     4030      5    680      5    99%
+Required test coverage of 80.0% reached. Total coverage: 99.79%
+660 passed, 1 warning in 28.70s
