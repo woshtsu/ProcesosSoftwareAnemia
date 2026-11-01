@@ -1,4 +1,6 @@
-# Ruff · 30/10/2026 · estado de main 72e7025
+# ruff check . · ruff format --check . · exportar_openapi --verificar · 30/10/2026 · código v4.0-Inc4 (commit e6886e2; pmv_fastapi/ y .github/ sin cambios hasta 51ca4fc) · Python 3.13.16
+# Nota: se sustituyeron las rutas locales del entorno virtual por «<entorno-virtual>»; el resto es la salida original.
 All checks passed!
-103 files already formatted
+142 files already formatted
 ruff 0.15.11
+python -m scripts.exportar_openapi --verificar -> docs/openapi.json está al día.

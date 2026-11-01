@@ -1,0 +1,23 @@
+{
+  "procesos_terminados_con_kill_9": 7,
+  "bd_reiniciada_ok": true,
+  "t_kill_s": 2.0,
+  "bd_aceptando_conexiones_en_s": 7.33,
+  "peticiones_antes": 10,
+  "antes_200": 10,
+  "peticiones_durante_caida": 26,
+  "codigos_durante_caida": {
+    "200": 1,
+    "500": 25
+  },
+  "salud_durante_caida_200": 26,
+  "codigos_salud_durante_caida": {
+    "200": 26
+  },
+  "aplicacion_viva_tras_caida": true,
+  "segundos_hasta_primer_200_tras_volver_la_bd": 0.2,
+  "peticiones_despues": 19,
+  "despues_200": 19,
+  "reinicio_de_la_aplicacion_necesario": false,
+  "nota": "La BD se reinicio manualmente a los 5 s; no se mide la recuperacion automatica de la propia BD (la gestiona el proveedor)."
+}

@@ -1,0 +1,610 @@
+{
+  "criterios": [
+    {
+      "factor": "F",
+      "id": "F1",
+      "criterio": "Escenarios de aceptación aprobados (Inc. 1-4)",
+      "tipo": "ratio",
+      "medido": [
+        19,
+        19
+      ],
+      "meta": null,
+      "medido_txt": "19/19",
+      "meta_txt": "100 %",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/F_resultados_aceptacion.json"
+    },
+    {
+      "factor": "F",
+      "id": "F2",
+      "criterio": "Pruebas automatizadas aprobadas (unitarias+integración+arquitectura y E2E)",
+      "tipo": "ratio",
+      "medido": [
+        688,
+        688
+      ],
+      "meta": null,
+      "medido_txt": "688/688",
+      "meta_txt": "100 %",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/R02_junit_unit.xml, R03_junit_e2e.xml"
+    },
+    {
+      "factor": "F",
+      "id": "F3",
+      "criterio": "Tiempo de RF-01 (guardar) y RF-05 (reporte), peor caso",
+      "tipo": "menor",
+      "medido": 0.13,
+      "meta": 2.0,
+      "medido_txt": "130 ms",
+      "meta_txt": "< 2 s",
+      "pct": 100,
+      "medible": true,
+      "fuente": "salidas/F_resultados_aceptacion.json"
+    },
+    {
+      "factor": "U",
+      "id": "U1",
+      "criterio": "axe-core WCAG 2.1 A/AA: reglas aprobadas sobre evaluadas (14 pantallas x 2 vistas)",
+      "tipo": "ratio",
+      "medido": [
+        626,
+        684
+      ],
+      "meta": null,
+      "medido_txt": "626/684 reglas; 2/28 pantallas sin violaciones",
+      "meta_txt": "100 % (0 violaciones)",
+      "pct": 91.5,
+      "medible": true,
+      "fuente": "salidas/U_axe_por_pantalla.json"
+    },
+    {
+      "factor": "U",
+      "id": "U2",
+      "criterio": "Contraste de texto ≥ 4,5:1 (1.4.3), pares de color únicos",
+      "tipo": "ratio",
+      "medido": [
+        22,
+        23
+      ],
+      "meta": null,
+      "medido_txt": "22/23 pares",
+      "meta_txt": "100 %",
+      "pct": 95.7,
+      "medible": true,
+      "fuente": "salidas/U_contraste_paleta.json"
+    },
+    {
+      "factor": "U",
+      "id": "U3",
+      "criterio": "Contraste de componentes ≥ 3:1 (1.4.11): bordes, foco y barras",
+      "tipo": "ratio",
+      "medido": [
+        3,
+        8
+      ],
+      "meta": null,
+      "medido_txt": "3/8",
+      "meta_txt": "100 %",
+      "pct": 37.5,
+      "medible": true,
+      "fuente": "salidas/U_contraste_paleta.json"
+    },
+    {
+      "factor": "U",
+      "id": "U4",
+      "criterio": "Teclado (2.1.1/2.4.3): ciclo, indicador de foco, registro, abrir/cerrar modal, foco contenido y devuelto",
+      "tipo": "ratio",
+      "medido": [
+        6,
+        8
+      ],
+      "meta": null,
+      "medido_txt": "6/8 comprobaciones",
+      "meta_txt": "100 %",
+      "pct": 75.0,
+      "medible": true,
+      "fuente": "salidas/U_teclado.json"
+    },
+    {
+      "factor": "U",
+      "id": "U5",
+      "criterio": "Objetivos táctiles ≥ 24x24 px (2.5.8, WCAG 2.2)",
+      "tipo": "ratio",
+      "medido": [
+        734,
+        924
+      ],
+      "meta": null,
+      "medido_txt": "734/924 (escritorio+móvil)",
+      "meta_txt": "100 %",
+      "pct": 79.4,
+      "medible": true,
+      "fuente": "salidas/U_objetivos_tactiles.json"
+    },
+    {
+      "factor": "U",
+      "id": "U6",
+      "criterio": "Reflujo a 320 px sin desplazamiento horizontal (1.4.10)",
+      "tipo": "ratio",
+      "medido": [
+        13,
+        13
+      ],
+      "meta": null,
+      "medido_txt": "13/13 pantallas",
+      "meta_txt": "100 %",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/U_reflow_320px.json"
+    },
+    {
+      "factor": "U",
+      "id": "U7",
+      "criterio": "Estados de color con texto asociado (1.4.1, no solo color)",
+      "tipo": "ratio",
+      "medido": [
+        482,
+        482
+      ],
+      "meta": null,
+      "medido_txt": "482/482 insignias",
+      "meta_txt": "100 %",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/U_estados_con_texto.json"
+    },
+    {
+      "factor": "U",
+      "id": "U8",
+      "criterio": "Lector de pantalla NVDA/TalkBack (4.1.2)",
+      "tipo": "ratio",
+      "medido": [
+        0,
+        1
+      ],
+      "meta": null,
+      "medido_txt": "no medido (sin lector instalado)",
+      "meta_txt": "100 %",
+      "pct": null,
+      "medible": false,
+      "fuente": "-"
+    },
+    {
+      "factor": "R",
+      "id": "R1",
+      "criterio": "Disponibilidad de /api/salud durante las 3 corridas de carga",
+      "tipo": "mayor",
+      "medido": 100.0,
+      "meta": 99.5,
+      "medido_txt": "100.0 % (332 sondeos, 0 fallidos)",
+      "meta_txt": "≥ 99,5 %",
+      "pct": 100,
+      "medible": true,
+      "fuente": "salidas/P_resumen.json"
+    },
+    {
+      "factor": "R",
+      "id": "R2",
+      "criterio": "MTTR: kill -9 del servidor y reinicio hasta /api/salud 200",
+      "tipo": "menor",
+      "medido": 0.85,
+      "meta": 300,
+      "medido_txt": "0.85 s (datos íntegros: True)",
+      "meta_txt": "< 5 min",
+      "pct": 100,
+      "medible": true,
+      "fuente": "salidas/R_mttr_reinicio.json"
+    },
+    {
+      "factor": "R",
+      "id": "R3",
+      "criterio": "Caos PostgreSQL (kill -9): el pool se reconecta sin reiniciar la aplicación",
+      "tipo": "ratio",
+      "medido": [
+        1,
+        1
+      ],
+      "meta": null,
+      "medido_txt": "sí, 0.2 s tras volver la BD",
+      "meta_txt": "sin reinicio",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/R_caos_postgres.json"
+    },
+    {
+      "factor": "R",
+      "id": "R4",
+      "criterio": "Caos PostgreSQL: peticiones durante la caída respondidas sin error 500",
+      "tipo": "ratio",
+      "medido": [
+        1,
+        26
+      ],
+      "meta": null,
+      "medido_txt": "1/26 (500: 25)",
+      "meta_txt": "respuesta controlada (503), 0 x 500",
+      "pct": 3.8,
+      "medible": true,
+      "fuente": "salidas/R_caos_postgres.json"
+    },
+    {
+      "factor": "R",
+      "id": "R5",
+      "criterio": "Tasa de error con carga nominal (20 usuarios, 2 corridas)",
+      "tipo": "menor",
+      "medido": 0.0,
+      "meta": 1.0,
+      "medido_txt": "0/1887 fallos",
+      "meta_txt": "≤ 1 %",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/P_resumen.json"
+    },
+    {
+      "factor": "R",
+      "id": "R6",
+      "criterio": "Lecturas servidas desde el caché del service worker con el servidor detenido",
+      "tipo": "ratio",
+      "medido": [
+        30,
+        30
+      ],
+      "meta": null,
+      "medido_txt": "30/30 filas",
+      "meta_txt": "100 %",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/F_resultados_aceptacion.json"
+    },
+    {
+      "factor": "R",
+      "id": "R7",
+      "criterio": "Disponibilidad en staging (Render/AWS) y recuperación automática de la BD gestionada",
+      "tipo": "ratio",
+      "medido": [
+        0,
+        1
+      ],
+      "meta": null,
+      "medido_txt": "no medido (no hay entorno de staging)",
+      "meta_txt": "≥ 99,5 %",
+      "pct": null,
+      "medible": false,
+      "fuente": "-"
+    },
+    {
+      "factor": "P",
+      "id": "P1",
+      "criterio": "Latencia p95, 20 usuarios (peor de Inc. 1-2 e Inc. 3-4)",
+      "tipo": "menor",
+      "medido": 98.0,
+      "meta": 800,
+      "medido_txt": "98 ms (p50 10/9 ms)",
+      "meta_txt": "< 800 ms",
+      "pct": 100,
+      "medible": true,
+      "fuente": "salidas/P_resumen.json"
+    },
+    {
+      "factor": "P",
+      "id": "P2",
+      "criterio": "Latencia p95, 100 usuarios (Inc. 1-2)",
+      "tipo": "menor",
+      "medido": 2000.0,
+      "meta": 800,
+      "medido_txt": "2000 ms (p50 780 ms)",
+      "meta_txt": "< 800 ms",
+      "pct": 40.0,
+      "medible": true,
+      "fuente": "salidas/P_resumen.json"
+    },
+    {
+      "factor": "P",
+      "id": "P3",
+      "criterio": "Latencia p95, 500 usuarios (meta de la guía)",
+      "tipo": "menor",
+      "medido": 0,
+      "meta": 800,
+      "medido_txt": "no medido (máximo probado: 100)",
+      "meta_txt": "< 800 ms",
+      "pct": null,
+      "medible": false,
+      "fuente": "-"
+    },
+    {
+      "factor": "P",
+      "id": "P4",
+      "criterio": "Tasa de error a 100 usuarios",
+      "tipo": "menor",
+      "medido": 0.034,
+      "meta": 1.0,
+      "medido_txt": "0.034 % (1 de 2904: DNI duplicado generado por el script)",
+      "meta_txt": "≤ 1 %",
+      "pct": 100,
+      "medible": true,
+      "fuente": "salidas/P_resumen.json"
+    },
+    {
+      "factor": "P",
+      "id": "P5",
+      "criterio": "LCP de la primera carga móvil (390x844, CPU x4, 1,6 Mbps, 150 ms)",
+      "tipo": "menor",
+      "medido": 468,
+      "meta": 2500,
+      "medido_txt": "468 ms (con service worker: 84 ms)",
+      "meta_txt": "< 2500 ms",
+      "pct": 100,
+      "medible": true,
+      "fuente": "salidas/P_cliente_pwa.json"
+    },
+    {
+      "factor": "S",
+      "id": "S1",
+      "criterio": "Importaciones de frameworks/terceros en el dominio (archivos limpios sobre archivos)",
+      "tipo": "ratio",
+      "medido": [
+        29,
+        29
+      ],
+      "meta": null,
+      "medido_txt": "0 importaciones en 29 archivos",
+      "meta_txt": "0",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/S_hexagonal.json"
+    },
+    {
+      "factor": "S",
+      "id": "S2",
+      "criterio": "Pruebas de arquitectura (regla de dependencias) aprobadas",
+      "tipo": "ratio",
+      "medido": [
+        25,
+        25
+      ],
+      "meta": null,
+      "medido_txt": "25/25",
+      "meta_txt": "100 %",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/R02_junit_unit.xml"
+    },
+    {
+      "factor": "S",
+      "id": "S3",
+      "criterio": "Cobertura de líneas y ramas (pytest-cov)",
+      "tipo": "mayor",
+      "medido": 99.78768577494692,
+      "meta": 80.0,
+      "medido_txt": "99.79 %",
+      "meta_txt": "≥ 80 % (umbral del proyecto)",
+      "pct": 100,
+      "medible": true,
+      "fuente": "salidas/R01_cobertura.json"
+    },
+    {
+      "factor": "S",
+      "id": "S4",
+      "criterio": "Ruff (E,F,W,I,B,UP,S,C90): errores",
+      "tipo": "menor",
+      "medido": 0,
+      "meta": 0,
+      "medido_txt": "0 errores",
+      "meta_txt": "0",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/R04_ruff_check.txt"
+    },
+    {
+      "factor": "S",
+      "id": "S5",
+      "criterio": "Bloques con complejidad ciclomática ≤ 10 (radon)",
+      "tipo": "ratio",
+      "medido": [
+        646,
+        669
+      ],
+      "meta": null,
+      "medido_txt": "646/669 (máx. 17)",
+      "meta_txt": "100 %",
+      "pct": 96.6,
+      "medible": true,
+      "fuente": "salidas/S_radon_resumen.json"
+    },
+    {
+      "factor": "S",
+      "id": "S6",
+      "criterio": "Archivos con índice de mantenibilidad rango A (radon mi)",
+      "tipo": "ratio",
+      "medido": [
+        73,
+        75
+      ],
+      "meta": null,
+      "medido_txt": "73/75",
+      "meta_txt": "100 %",
+      "pct": 97.3,
+      "medible": true,
+      "fuente": "salidas/S_radon_resumen.json"
+    },
+    {
+      "factor": "+",
+      "id": "+1",
+      "criterio": "Comprobaciones OWASP 2025 que cumplen (estáticas E01-E30 y dinámicas T01-T32)",
+      "tipo": "ratio",
+      "medido": [
+        41,
+        61
+      ],
+      "meta": null,
+      "medido_txt": "41/61 (+1 no medida)",
+      "meta_txt": "100 %",
+      "pct": 67.2,
+      "medible": true,
+      "fuente": "salidas/OWASP_estatico.json, OWASP_pruebas_http.json"
+    },
+    {
+      "factor": "+",
+      "id": "+2",
+      "criterio": "Vulnerabilidades Alta/Crítica por SAST y SCA (bandit, pip-audit)",
+      "tipo": "menor",
+      "medido": 0,
+      "meta": 0,
+      "medido_txt": "0 (bandit: 0 altas, 1 baja; pip-audit: 0)",
+      "meta_txt": "0",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/O05_bandit.json, R09_pip_audit.txt"
+    },
+    {
+      "factor": "+",
+      "id": "+3",
+      "criterio": "Hallazgos Alta/Crítica confirmados por revisión manual y dinámica (A01: sin RBAC)",
+      "tipo": "menor",
+      "medido": 1,
+      "meta": 0,
+      "medido_txt": "1 (falta de roles/segmentación)",
+      "meta_txt": "0",
+      "pct": 0.0,
+      "medible": true,
+      "fuente": "salidas/OWASP_estatico.json (E01)"
+    },
+    {
+      "factor": "+",
+      "id": "+4",
+      "criterio": "Restricciones técnicas verificadas por ejecución (diseño, implementación, interfaz)",
+      "tipo": "ratio",
+      "medido": [
+        3,
+        3
+      ],
+      "meta": null,
+      "medido_txt": "3/3 (Docker: sin daemon, no ejecutado)",
+      "meta_txt": "100 %",
+      "pct": 100.0,
+      "medible": true,
+      "fuente": "salidas/R06, R04, R07"
+    },
+    {
+      "factor": "+",
+      "id": "+5",
+      "criterio": "Restricción de despliegue Docker verificada por ejecución (build/up)",
+      "tipo": "ratio",
+      "medido": [
+        0,
+        1
+      ],
+      "meta": null,
+      "medido_txt": "no medido (sin daemon Docker)",
+      "meta_txt": "100 %",
+      "pct": null,
+      "medible": false,
+      "fuente": "-"
+    },
+    {
+      "factor": "+",
+      "id": "+6",
+      "criterio": "Política de contraseñas, MFA y bloqueo por intentos (Supabase Auth, A07)",
+      "tipo": "ratio",
+      "medido": [
+        0,
+        1
+      ],
+      "meta": null,
+      "medido_txt": "no medido (se configura en el panel de Supabase)",
+      "meta_txt": "100 %",
+      "pct": null,
+      "medible": false,
+      "fuente": "salidas/OWASP_estatico.json (E23)"
+    }
+  ],
+  "primario": {
+    "F": {
+      "pct": 100.0,
+      "peso": 30,
+      "ponderado": 30.0,
+      "criterios": 3
+    },
+    "U": {
+      "pct": 82.7,
+      "peso": 15,
+      "ponderado": 12.41,
+      "criterios": 7
+    },
+    "R": {
+      "pct": 84.0,
+      "peso": 15,
+      "ponderado": 12.6,
+      "criterios": 6
+    },
+    "P": {
+      "pct": 85.0,
+      "peso": 15,
+      "ponderado": 12.75,
+      "criterios": 4
+    },
+    "S": {
+      "pct": 99.0,
+      "peso": 10,
+      "ponderado": 9.9,
+      "criterios": 6
+    },
+    "+": {
+      "pct": 66.8,
+      "peso": 15,
+      "ponderado": 10.02,
+      "criterios": 4
+    }
+  },
+  "indice_primario": 87.67,
+  "conservador": {
+    "F": {
+      "pct": 100.0,
+      "peso": 30,
+      "ponderado": 30.0,
+      "criterios": 3
+    },
+    "U": {
+      "pct": 72.4,
+      "peso": 15,
+      "ponderado": 10.86,
+      "criterios": 8
+    },
+    "R": {
+      "pct": 72.0,
+      "peso": 15,
+      "ponderado": 10.8,
+      "criterios": 7
+    },
+    "P": {
+      "pct": 68.0,
+      "peso": 15,
+      "ponderado": 10.2,
+      "criterios": 5
+    },
+    "S": {
+      "pct": 99.0,
+      "peso": 10,
+      "ponderado": 9.9,
+      "criterios": 6
+    },
+    "+": {
+      "pct": 44.5,
+      "peso": 15,
+      "ponderado": 6.68,
+      "criterios": 6
+    }
+  },
+  "indice_conservador": 78.43,
+  "no_medidos": [
+    "U8",
+    "R7",
+    "P3",
+    "+5",
+    "+6"
+  ]
+}

@@ -1,5 +1,7 @@
 # INFORME TÉCNICO: EVALUACIÓN GQM DE ARQUITECTURA, PRUEBAS Y VALOR AL USUARIO — Semana 9
 
+> **Nota.** Este documento corresponde a la entrega de la semana 9 y conserva sin cambios las métricas de `v1.0-PMV` (Inc. 1) y `v2.0-Inc2` (Inc. 2). Los valores recalculados para la versión actual (Inc. 3 e Inc. 4, `v4.0-Inc4`) están en la [adenda v4.0 de referencia para la semana 12](ADENDA_v4_REFERENCIA_S12.md).
+
 ## 1. CARÁTULA E INTEGRANTES DEL EQUIPO (Noveno Ciclo)
 
 La Tabla 1 identifica el entregable y la Tabla 2 al equipo.

@@ -1,0 +1,45 @@
+ID        %  medido                                                  meta
+F1    100.0  19/19                                                   100 %
+F2    100.0  688/688                                                 100 %
+F3    100.0  130 ms                                                  < 2 s
+U1     91.5  626/684 reglas; 2/28 pantallas sin violaciones          100 % (0 violaciones)
+U2     95.7  22/23 pares                                             100 %
+U3     37.5  3/8                                                     100 %
+U4     75.0  6/8 comprobaciones                                      100 %
+U5     79.4  734/924 (escritorio+móvil)                              100 %
+U6    100.0  13/13 pantallas                                         100 %
+U7    100.0  482/482 insignias                                       100 %
+U8      N/M  no medido (sin lector instalado)                        100 %
+R1    100.0  100.0 % (332 sondeos, 0 fallidos)                       ≥ 99,5 %
+R2    100.0  0.85 s (datos íntegros: True)                           < 5 min
+R3    100.0  sí, 0.2 s tras volver la BD                             sin reinicio
+R4      3.8  1/26 (500: 25)                                          respuesta controlada (503), 0 x 500
+R5    100.0  0/1887 fallos                                           ≤ 1 %
+R6    100.0  30/30 filas                                             100 %
+R7      N/M  no medido (no hay entorno de staging)                   ≥ 99,5 %
+P1    100.0  98 ms (p50 10/9 ms)                                     < 800 ms
+P2     40.0  2000 ms (p50 780 ms)                                    < 800 ms
+P3      N/M  no medido (máximo probado: 100)                         < 800 ms
+P4    100.0  0.034 % (1 de 2904: DNI duplicado generado por el scrip ≤ 1 %
+P5    100.0  468 ms (con service worker: 84 ms)                      < 2500 ms
+S1    100.0  0 importaciones en 29 archivos                          0
+S2    100.0  25/25                                                   100 %
+S3    100.0  99.79 %                                                 ≥ 80 % (umbral del proyecto)
+S4    100.0  0 errores                                               0
+S5     96.6  646/669 (máx. 17)                                       100 %
+S6     97.3  73/75                                                   100 %
++1     67.2  41/61 (+1 no medida)                                    100 %
++2    100.0  0 (bandit: 0 altas, 1 baja; pip-audit: 0)               0
++3      0.0  1 (falta de roles/segmentación)                         0
++4    100.0  3/3 (Docker: sin daemon, no ejecutado)                  100 %
++5      N/M  no medido (sin daemon Docker)                           100 %
++6      N/M  no medido (se configura en el panel de Supabase)        100 %
+
+Factor  Peso  Prim.%  Pond.  Cons.%  Pond.
+F         30   100.0   30.0   100.0   30.0
+U         15    82.7  12.41    72.4  10.86
+R         15    84.0   12.6    72.0   10.8
+P         15    85.0  12.75    68.0   10.2
+S         10    99.0    9.9    99.0    9.9
++         15    66.8  10.02    44.5   6.68
+GLOBAL primario (solo medidos): 87.67 %   conservador (no medidos = 0): 78.43 %

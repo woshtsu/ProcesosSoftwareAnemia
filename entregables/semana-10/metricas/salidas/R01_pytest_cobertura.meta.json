@@ -1,0 +1,10 @@
+{
+  "id": "R01_pytest_cobertura",
+  "titulo": "pytest: unitarias + integracion + arquitectura con cobertura",
+  "comando": "python -m pytest --cov=app --cov-report=term-missing --cov-report=json:<tmp>/cov.json -q -p no:cacheprovider",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:38:52",
+  "commit": "e6886e2",
+  "codigo_salida": 0,
+  "duracion_s": 52.1
+}

@@ -1,0 +1,10 @@
+{
+  "id": "R04_ruff_check",
+  "titulo": "ruff check . (reglas E,F,W,I,B,UP,S,C90; complejidad maxima 12)",
+  "comando": "<venv>/bin/ruff check . --no-cache",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:51:38",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 0.0
+}

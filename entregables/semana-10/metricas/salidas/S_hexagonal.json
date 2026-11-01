@@ -1,0 +1,75 @@
+{
+  "archivos_por_capa": {
+    "domain.model": 17,
+    "domain.service": 12,
+    "ports.inbound": 15,
+    "ports.outbound": 9,
+    "application": 13,
+    "adapters.inbound": 5,
+    "adapters.outbound": 12
+  },
+  "loc_por_capa": {
+    "domain.model": 699,
+    "domain.service": 1593,
+    "ports.inbound": 156,
+    "ports.outbound": 143,
+    "application": 1227,
+    "adapters.inbound": 1437,
+    "adapters.outbound": 1359
+  },
+  "matriz_importaciones": {
+    "domain.model": {
+      "stdlib": 40,
+      "domain.model": 17
+    },
+    "domain.service": {
+      "stdlib": 23,
+      "domain.model": 47,
+      "domain.service": 3
+    },
+    "ports.inbound": {
+      "stdlib": 19,
+      "domain.model": 12
+    },
+    "ports.outbound": {
+      "stdlib": 13,
+      "domain.model": 8
+    },
+    "application": {
+      "domain.model": 32,
+      "domain.service": 31,
+      "ports.inbound": 19,
+      "ports.outbound": 29,
+      "stdlib": 14
+    },
+    "adapters.inbound": {
+      "stdlib": 7,
+      "tercero": 8,
+      "adapters.inbound": 1,
+      "domain.model": 12,
+      "ports.inbound": 13
+    },
+    "adapters.outbound": {
+      "stdlib": 14,
+      "tercero": 7,
+      "adapters.outbound": 4,
+      "ports.outbound": 15,
+      "domain.model": 24
+    }
+  },
+  "terceros_por_capa": {
+    "adapters.inbound": [
+      "fastapi",
+      "pydantic"
+    ],
+    "adapters.outbound": [
+      "httpx",
+      "sqlalchemy"
+    ]
+  },
+  "violaciones": [],
+  "modulos_que_conocen_aplicacion_y_adaptadores": [
+    "main.py"
+  ],
+  "importaciones_de_frameworks_en_dominio": []
+}

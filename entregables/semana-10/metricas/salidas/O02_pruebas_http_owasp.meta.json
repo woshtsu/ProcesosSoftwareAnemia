@@ -1,0 +1,10 @@
+{
+  "id": "O02_pruebas_http_owasp",
+  "titulo": "Pruebas HTTP de seguridad contra el servidor local (OWASP Top 10:2025)",
+  "comando": "python ../entregables/semana-10/metricas/seguridad_http.py",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 20:13:47",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 2.3
+}

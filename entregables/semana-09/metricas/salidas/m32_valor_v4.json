@@ -1,0 +1,131 @@
+{
+ "V2": {
+  "activos": 140,
+  "con_agenda_generada": 140,
+  "con_agenda_y_al_menos_un_control": 135,
+  "pct_agenda": 100.0,
+  "pct_agenda_con_controles": 96.4,
+  "codigos_http_agenda": {
+   "200": 140
+  }
+ },
+ "V3": {
+  "hoy": "2026-10-16",
+  "n_dataset": 150,
+  "n_activos_evaluados": 140,
+  "n_alta_excluidos": 10,
+  "no_encontrados": [],
+  "prevalencia_oraculo": 0.664,
+  "control_atrasado_api_ninos": {
+   "TP": 93,
+   "FP": 0,
+   "FN": 0,
+   "TN": 47,
+   "n": 140,
+   "precision": 1.0,
+   "sensibilidad": 1.0,
+   "exactitud": 1.0,
+   "F1": 1.0,
+   "especificidad": 1.0
+  },
+  "bootstrap95_F1_control_atrasado": [
+   1.0,
+   1.0
+  ],
+  "discrepancias_ninos": [],
+  "alta_marcados_atrasado_api": 0,
+  "alta_total": 10,
+  "alertas_controles_vencidos": {
+   "TP": 93,
+   "FP": 0,
+   "FN": 0,
+   "TN": 47,
+   "n": 140,
+   "precision": 1.0,
+   "sensibilidad": 1.0,
+   "exactitud": 1.0,
+   "F1": 1.0,
+   "especificidad": 1.0
+  },
+  "nivel_control": {
+   "controles_oraculo": 476,
+   "controles_api": 476,
+   "coinciden": 476,
+   "solo_oraculo": [],
+   "solo_api": []
+  },
+  "resumen_api": {
+   "total_vencidos": 476,
+   "por_prioridad": {
+    "ALTA": 450,
+    "MEDIA": 17,
+    "BAJA": 9
+   },
+   "ninos_con_vencidos": 93,
+   "proximos_7_dias": 10
+  },
+  "resumen_coherente_con_alertas": true
+ },
+ "V6": {
+  "n_ninos": 150,
+  "calentamiento_descartado": 3,
+  "GET /api/ninos": {
+   "n": 30,
+   "mediana_ms": 35.3,
+   "min_ms": 26.9,
+   "p95_ms": 64.7,
+   "max_ms": 83.0,
+   "media_ms": 40.2
+  },
+  "GET /api/alertas/controles-vencidos": {
+   "n": 30,
+   "mediana_ms": 41.9,
+   "min_ms": 33.9,
+   "p95_ms": 79.0,
+   "max_ms": 95.3,
+   "media_ms": 46.9
+  },
+  "GET /api/alertas/resumen": {
+   "n": 30,
+   "mediana_ms": 32.8,
+   "min_ms": 28.4,
+   "p95_ms": 51.9,
+   "max_ms": 101.7,
+   "media_ms": 38.5
+  },
+  "GET /api/agenda (semana de la fecha de referencia)": {
+   "n": 30,
+   "mediana_ms": 32.2,
+   "min_ms": 26.1,
+   "p95_ms": 46.4,
+   "max_ms": 49.1,
+   "media_ms": 33.9
+  }
+ },
+ "V1": {
+  "escrituras_para_registrar_nino_con_evaluacion": 1,
+  "escrituras_para_agregar_un_control": 1,
+  "registros_por_evaluacion": 1,
+  "filas_bd_antes": [
+   148,
+   804
+  ],
+  "filas_bd_despues_registro": [
+   149,
+   805
+  ],
+  "delta_nino_y_evaluacion": [
+   1,
+   1
+  ],
+  "status_control": 201,
+  "evaluaciones_tras_control": 2,
+  "vistas_que_reflejan_el_registro": {
+   "expediente_con_1_evaluacion": true,
+   "seguimiento_lista_al_nino": true,
+   "reporte_cuenta_la_evaluacion": true,
+   "agenda_sin_digitacion_adicional": true
+  },
+  "nota": "Se creó el niño 69999991 (sintético) en la base de prueba; no se reutiliza."
+ }
+}

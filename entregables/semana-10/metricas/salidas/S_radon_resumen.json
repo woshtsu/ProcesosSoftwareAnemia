@@ -1,0 +1,67 @@
+{
+  "bloques_analizados": 669,
+  "cc_promedio": 2.5,
+  "cc_maximo": 17,
+  "bloques_cc_gt_10": 23,
+  "rangos_cc": {
+    "A": 601,
+    "B": 45,
+    "C": 23
+  },
+  "peores_bloques": [
+    {
+      "archivo": "domain/service/notificaciones.py",
+      "bloque": "extraer_eventos",
+      "cc": 17
+    },
+    {
+      "archivo": "domain/service/notificaciones.py",
+      "bloque": "_contar",
+      "cc": 17
+    },
+    {
+      "archivo": "application/servicio_expediente.py",
+      "bloque": "actualizar_datos",
+      "cc": 16
+    },
+    {
+      "archivo": "domain/service/barreras.py",
+      "bloque": "validar_datos_barrera",
+      "cc": 16
+    },
+    {
+      "archivo": "domain/service/asistencia.py",
+      "bloque": "localizar_control_registrable",
+      "cc": 15
+    }
+  ],
+  "archivos_analizados": 75,
+  "mi_promedio": 75.54,
+  "rangos_mi": {
+    "A": 73,
+    "B": 1,
+    "C": 1
+  },
+  "menor_mi": [
+    {
+      "archivo": "adapters/outbound/persistence/sqlalchemy_repo.py",
+      "mi": 8.3
+    },
+    {
+      "archivo": "adapters/outbound/persistence/memoria.py",
+      "mi": 18.1
+    },
+    {
+      "archivo": "adapters/inbound/http/esquemas.py",
+      "mi": 22.1
+    },
+    {
+      "archivo": "application/servicio_sincronizacion.py",
+      "mi": 29.2
+    },
+    {
+      "archivo": "domain/service/notificaciones.py",
+      "mi": 33.8
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+escritorio Registrar niño               violaciones WCAG 2.1 A/AA:   1 nodos en 1 reglas; objetivos<24px: 2/29
+escritorio Seguimiento                  violaciones WCAG 2.1 A/AA:   7 nodos en 3 reglas; objetivos<24px: 2/15
+escritorio Expediente                   violaciones WCAG 2.1 A/AA:   5 nodos en 2 reglas; objetivos<24px: 2/26
+escritorio Agenda                       violaciones WCAG 2.1 A/AA:  12 nodos en 2 reglas; objetivos<24px: 6/34
+escritorio Visitas                      violaciones WCAG 2.1 A/AA:   5 nodos en 2 reglas; objetivos<24px: 30/57
+escritorio Recordatorios                violaciones WCAG 2.1 A/AA:   1 nodos en 1 reglas; objetivos<24px: 27/65
+escritorio Alertas                      violaciones WCAG 2.1 A/AA:   3 nodos en 2 reglas; objetivos<24px: 2/14
+escritorio Sincronización               violaciones WCAG 2.1 A/AA:   1 nodos en 1 reglas; objetivos<24px: 2/13
+escritorio Reporte                      violaciones WCAG 2.1 A/AA:   1 nodos en 1 reglas; objetivos<24px: 2/16
+escritorio Modal asistencia             violaciones WCAG 2.1 A/AA:   5 nodos en 2 reglas; objetivos<24px: 2/31
+escritorio Modal visita                 violaciones WCAG 2.1 A/AA:   5 nodos en 2 reglas; objetivos<24px: 30/63
+escritorio Modal respuesta del tutor    violaciones WCAG 2.1 A/AA:   1 nodos en 1 reglas; objetivos<24px: 27/68
+escritorio Modal barrera                violaciones WCAG 2.1 A/AA:   5 nodos en 2 reglas; objetivos<24px: 2/31
+movil      Registrar niño               violaciones WCAG 2.1 A/AA:   2 nodos en 2 reglas; objetivos<24px: 2/29
+movil      Seguimiento                  violaciones WCAG 2.1 A/AA:   9 nodos en 4 reglas; objetivos<24px: 2/15
+movil      Expediente                   violaciones WCAG 2.1 A/AA:   6 nodos en 3 reglas; objetivos<24px: 2/26
+movil      Agenda                       violaciones WCAG 2.1 A/AA:  13 nodos en 3 reglas; objetivos<24px: 2/34
+movil      Visitas                      violaciones WCAG 2.1 A/AA:   6 nodos en 3 reglas; objetivos<24px: 16/57
+movil      Recordatorios                violaciones WCAG 2.1 A/AA:   2 nodos en 2 reglas; objetivos<24px: 2/65
+movil      Alertas                      violaciones WCAG 2.1 A/AA:   6 nodos en 4 reglas; objetivos<24px: 2/14
+movil      Sincronización               violaciones WCAG 2.1 A/AA:   2 nodos en 2 reglas; objetivos<24px: 2/13
+movil      Reporte                      violaciones WCAG 2.1 A/AA:   2 nodos en 2 reglas; objetivos<24px: 2/16
+movil      Modal asistencia             violaciones WCAG 2.1 A/AA:   6 nodos en 3 reglas; objetivos<24px: 2/31
+movil      Modal visita                 violaciones WCAG 2.1 A/AA:   6 nodos en 3 reglas; objetivos<24px: 16/63
+movil      Modal respuesta del tutor    violaciones WCAG 2.1 A/AA:   2 nodos en 2 reglas; objetivos<24px: 2/68
+movil      Modal barrera                violaciones WCAG 2.1 A/AA:   6 nodos en 3 reglas; objetivos<24px: 2/31
+Inicio de sesion: violaciones [('escritorio', 0), ('movil', 0)]
+{"escritorio": {"pantallas": 14, "reglas_axe_aprobadas_total": 310, "violaciones_nodos": 52, "pantallas_sin_violaciones": 1, "buenas_practicas_nodos": 7}, "movil": {"pantallas": 14, "reglas_axe_aprobadas_total": 316, "violaciones_nodos": 68, "pantallas_sin_violaciones": 1, "buenas_practicas_nodos": 7}}
+reflow 320px con desborde: []
+teclado: {"paradas_tab_en_60_pulsaciones": 56, "elementos_distintos": 29, "ciclo_completo": true, "elementos_sin_indicador_de_foco": [], "indicadores": ["solid 2px rgb(156, 195, 234)", "auto 1px rgb(16, 16, 16)"], "registro_con_teclado_enter_en_guardar": true, "modal_abre_con_enter": true, "modal_foco_inicial_dentro": true, "modal_cierra_con_esc": true, "foco_tras_cerrar_modal": "body", "modal_tab_escapa_del_dialogo_veces_en_14": 10}

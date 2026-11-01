@@ -1,0 +1,8 @@
+{
+  "servicio_caido_tras_kill": true,
+  "segundos_hasta_salud_200": 0.85,
+  "ninos_antes": 329,
+  "ninos_despues": 329,
+  "datos_integros": true,
+  "nota": "Reinicio manual con el mismo comando; en Render/Docker lo hace el orquestador (HEALTHCHECK cada 30 s en el Dockerfile). No se midio la recuperacion automatica."
+}

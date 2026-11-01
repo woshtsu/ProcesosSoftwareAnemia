@@ -1,0 +1,20 @@
+{
+ "nota": "Sonda GET /api/salud cada 1 s durante la corrida de carga de la version actual",
+ "durante_carga": {
+  "version": "v2.0",
+  "modalidad": "sonda GET /api/salud cada 1 s durante la prueba de carga",
+  "corridas": {
+   "r1": {
+    "sondas": 64,
+    "disponibles": 64,
+    "disponibilidad_pct": 100.0,
+    "latencia_mediana_ms": 21.0,
+    "latencia_p95_ms": 211.8,
+    "latencia_max_ms": 315.1
+   }
+  },
+  "sondas_total": 64,
+  "disponibles_total": 64,
+  "disponibilidad_pct_global": 100.0
+ }
+}

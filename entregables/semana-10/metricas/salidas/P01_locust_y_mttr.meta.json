@@ -1,0 +1,10 @@
+{
+  "id": "P01_locust_y_mttr",
+  "titulo": "Carga con Locust (20 y 100 usuarios, 60 s), disponibilidad, memoria y reinicio",
+  "comando": "python entregables/semana-10/metricas/rendimiento.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 20:12:04",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 187.6
+}

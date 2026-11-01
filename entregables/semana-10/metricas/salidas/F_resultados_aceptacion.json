@@ -1,0 +1,369 @@
+{
+  "fecha": "2026-10-30 20:14:30",
+  "commit": "ada827f",
+  "servidor": "uvicorn 127.0.0.1:8765, AUTH_MODE=demo, SQLite temporal + scripts.cargar_datos_prueba, WhatsApp simulado",
+  "escenarios": 19,
+  "aprobados": 19,
+  "capturas": 54,
+  "resultados": [
+    {
+      "codigo": "RF-01",
+      "nombre": "Registrar nino con evaluacion inicial",
+      "incremento": "Inc. 1",
+      "criterio": "Guardar registro valido -> confirmacion y expediente en < 2 s; DNI repetido -> 409",
+      "estado": "APROBADO",
+      "detalle": {
+        "tiempo_guardar_ms": 130,
+        "dni_repetido_http": 409
+      },
+      "capturas": [
+        "RF01_inc1_1_entrada_escritorio",
+        "RF01_inc1_2_resultado_escritorio",
+        "RF01_inc1_3_entrada_movil"
+      ],
+      "duracion_escenario_s": 1.6
+    },
+    {
+      "codigo": "RF-02",
+      "nombre": "Consultar y actualizar el expediente; nuevo control",
+      "incremento": "Inc. 1",
+      "criterio": "Consulta, actualizacion de campos permitidos y nuevo control persisten; historial 2 -> 3",
+      "estado": "APROBADO",
+      "detalle": {
+        "consulta_ms": 82,
+        "patch_ms": 139,
+        "control_ms": 161,
+        "evaluaciones": "2->3"
+      },
+      "capturas": [
+        "RF02_inc1_1_expediente_escritorio",
+        "RF02_inc1_2_edicion_escritorio",
+        "RF02_inc1_3_nuevo_control_escritorio",
+        "RF02_inc1_4_expediente_movil"
+      ],
+      "duracion_escenario_s": 1.7
+    },
+    {
+      "codigo": "RF-03",
+      "nombre": "Validar datos con reglas clinicas (vista previa y rechazo)",
+      "incremento": "Inc. 1",
+      "criterio": "Hb digitada -> Hb ajustada y clasificacion; datos invalidos -> mensajes por campo",
+      "estado": "APROBADO",
+      "detalle": {
+        "api_validacion_http": 422
+      },
+      "capturas": [
+        "RF03_inc1_1_vista_previa_escritorio",
+        "RF03_inc1_2_rechazo_escritorio",
+        "RF03_inc1_3_rechazo_movil"
+      ],
+      "duracion_escenario_s": 2.0
+    },
+    {
+      "codigo": "RF-04",
+      "nombre": "Listar ninos en seguimiento con estado de control",
+      "incremento": "Inc. 1",
+      "criterio": "Filtrar por clasificacion o buscar por comunidad -> listado respeta el filtro",
+      "estado": "APROBADO",
+      "detalle": {
+        "total": 27,
+        "filtro_moderada": 6
+      },
+      "capturas": [
+        "RF04_inc1_1_seguimiento_escritorio",
+        "RF04_inc1_2_filtro_moderada_escritorio",
+        "RF04_inc1_3_seguimiento_movil"
+      ],
+      "duracion_escenario_s": 1.2
+    },
+    {
+      "codigo": "RF-05",
+      "nombre": "Reporte del periodo en JSON y CSV",
+      "incremento": "Inc. 1",
+      "criterio": "Generar reporte -> indicadores del periodo y CSV descargable en < 2 s",
+      "estado": "APROBADO",
+      "detalle": {
+        "tiempo_ms": 86,
+        "registrados": 28,
+        "csv_lineas": 43
+      },
+      "capturas": [
+        "RF05_inc1_1_reporte_escritorio",
+        "RF05_inc1_2_reporte_movil"
+      ],
+      "duracion_escenario_s": 0.8
+    },
+    {
+      "codigo": "RF-06",
+      "nombre": "Generar la agenda de controles segun la normativa",
+      "incremento": "Inc. 2",
+      "criterio": "Abrir expediente -> agenda normativa con estados cumplido/pendiente/vencido",
+      "estado": "APROBADO",
+      "detalle": {
+        "controles": 13,
+        "C1M/C3M/C6M": [
+          "CUMPLIDO",
+          "VENCIDO",
+          "PENDIENTE"
+        ]
+      },
+      "capturas": [
+        "RF06_inc2_1_agenda_expediente_escritorio",
+        "RF06_inc2_2_agenda_expediente_movil"
+      ],
+      "duracion_escenario_s": 1.7
+    },
+    {
+      "codigo": "RF-07",
+      "nombre": "Controles vencidos y alertas priorizadas",
+      "incremento": "Inc. 2",
+      "criterio": "Abrir Alertas y filtrar -> controles vencidos ordenados por prioridad",
+      "estado": "APROBADO",
+      "detalle": {
+        "vencidos": 9,
+        "por_prioridad": {
+          "ALTA": 7,
+          "MEDIA": 1,
+          "BAJA": 1
+        }
+      },
+      "capturas": [
+        "RF07_inc2_1_alertas_escritorio",
+        "RF07_inc2_2_filtro_media_escritorio",
+        "RF07_inc2_3_alertas_movil"
+      ],
+      "duracion_escenario_s": 1.0
+    },
+    {
+      "codigo": "RF-08",
+      "nombre": "Agenda del personal por rango de fechas",
+      "incremento": "Inc. 2",
+      "criterio": "Consultar rango (maximo 31 dias) con filtros -> controles por dia",
+      "estado": "APROBADO",
+      "detalle": {
+        "resumen_30d": {
+          "total": 17,
+          "cumplidos": 5,
+          "pendientes": 12,
+          "vencidos": 0,
+          "con_inasistencia": 0,
+          "ninos": 14
+        }
+      },
+      "capturas": [
+        "RF08_inc2_1_agenda_semana_escritorio",
+        "RF08_inc2_2_agenda_30_dias_escritorio",
+        "RF08_inc2_3_rango_invalido_escritorio",
+        "RF08_inc2_4_agenda_movil"
+      ],
+      "duracion_escenario_s": 1.4
+    },
+    {
+      "codigo": "RF-09",
+      "nombre": "Registrar asistencia a un control",
+      "incremento": "Inc. 2",
+      "criterio": "Registrar 'No asistio' con motivo -> marca de inasistencia y sube la prioridad",
+      "estado": "APROBADO",
+      "detalle": {
+        "vencidos_antes": 9,
+        "vencidos_despues": 8
+      },
+      "capturas": [
+        "RF09_inc2_1_modal_inasistencia_escritorio",
+        "RF09_inc2_2_inasistencia_registrada_escritorio",
+        "RF09_inc2_3_asistio_desde_agenda_escritorio",
+        "RF09_inc2_4_agenda_movil"
+      ],
+      "duracion_escenario_s": 1.8
+    },
+    {
+      "codigo": "HIST-3.1",
+      "nombre": "Registrar sin conexion (cola en el dispositivo)",
+      "incremento": "Inc. 3",
+      "criterio": "Sin conexion, registrar nino, evaluacion y visita -> queda guardado en el dispositivo con indicador de pendientes",
+      "estado": "APROBADO",
+      "detalle": {
+        "pendientes": 2,
+        "servidor_sin_registro": true
+      },
+      "capturas": [
+        "HIST31_inc3_1_en_linea_escritorio",
+        "HIST31_inc3_2_pendientes_sin_conexion_escritorio"
+      ],
+      "duracion_escenario_s": 1.1
+    },
+    {
+      "codigo": "HIST-3.2",
+      "nombre": "Sincronizar al reconectar (idempotente)",
+      "incremento": "Inc. 3",
+      "criterio": "Al volver la red, cada pendiente se aplica una sola vez; reenviar no duplica",
+      "estado": "APROBADO",
+      "detalle": {
+        "primer_envio": [
+          "APLICADA"
+        ],
+        "segundo_envio": [
+          "DUPLICADA"
+        ],
+        "evaluaciones_tras_reenvio": 3
+      },
+      "capturas": [
+        "HIST32_inc3_1_panel_antes_de_sincronizar_escritorio",
+        "HIST32_inc3_2_sincronizado_escritorio"
+      ],
+      "duracion_escenario_s": 0.4
+    },
+    {
+      "codigo": "HIST-3.3",
+      "nombre": "Resolver conflictos sin sobrescribir a ciegas",
+      "incremento": "Inc. 3",
+      "criterio": "Dato distinto en el servidor -> CONFLICTO pendiente; el personal decide (conservar servidor)",
+      "estado": "APROBADO",
+      "detalle": {
+        "conflictos_resueltos": 1
+      },
+      "capturas": [
+        "HIST33_inc3_1_conflicto_escritorio",
+        "HIST33_inc3_2_conflicto_resuelto_escritorio",
+        "HIST33_inc3_3_panel_movil"
+      ],
+      "duracion_escenario_s": 1.4
+    },
+    {
+      "codigo": "HIST-3.4",
+      "nombre": "Ver lo pendiente y desde cuando",
+      "incremento": "Inc. 3",
+      "criterio": "Con pendientes, la cabecera y la pestana Sincronizacion muestran cuantos y desde cuando",
+      "estado": "APROBADO",
+      "detalle": {
+        "resumen_con_pendientes": "1 pendiente(s)"
+      },
+      "capturas": [
+        "HIST34_inc3_1_panel_pendientes_escritorio",
+        "HIST34_inc3_2_panel_al_dia_escritorio"
+      ],
+      "duracion_escenario_s": 0.8
+    },
+    {
+      "codigo": "VIS-3.5",
+      "nombre": "Visita domiciliaria priorizada",
+      "incremento": "Inc. 3",
+      "criterio": "Abrir Visitas -> lista ordenada por puntaje 0-100 con desglose; registrar visita",
+      "estado": "APROBADO",
+      "detalle": {
+        "filas": 18,
+        "puntaje_max": 49.5,
+        "puntaje_min": 25.0
+      },
+      "capturas": [
+        "VIS35_inc3_1_visitas_desglose_escritorio",
+        "VIS35_inc3_2_modal_visita_escritorio",
+        "VIS35_inc3_3_visitas_movil"
+      ],
+      "duracion_escenario_s": 1.4
+    },
+    {
+      "codigo": "HIST-4.1",
+      "nombre": "Enviar recordatorio de control (SIMULADO)",
+      "incremento": "Inc. 4",
+      "criterio": "Generar recordatorios -> mensajes rotulados SIMULADO; repetir no duplica",
+      "estado": "APROBADO",
+      "detalle": {
+        "recordatorios": 24,
+        "todos_simulados": true,
+        "segunda_generacion_duplica": false
+      },
+      "capturas": [
+        "HIST41_inc4_1_recordatorios_antes_escritorio",
+        "HIST41_inc4_2_recordatorios_simulados_escritorio",
+        "HIST41_inc4_3_recordatorios_movil"
+      ],
+      "duracion_escenario_s": 1.4
+    },
+    {
+      "codigo": "HIST-4.2",
+      "nombre": "Registrar la confirmacion del tutor (personal y webhook firmado)",
+      "incremento": "Inc. 4",
+      "criterio": "Respuesta 1/2/3 por personal o por webhook con firma valida -> queda registrada",
+      "estado": "APROBADO",
+      "detalle": {
+        "webhook_sin_firma": 403,
+        "webhook_firma_invalida": 403,
+        "webhook_firma_valida": 200,
+        "webhook_respuesta": {
+          "estados_aplicados": 0,
+          "respuestas_registradas": 0,
+          "ignorados": 1
+        },
+        "verificacion_get": "777"
+      },
+      "capturas": [
+        "HIST42_inc4_1_modal_respuesta_escritorio",
+        "HIST42_inc4_2_respuesta_registrada_escritorio",
+        "HIST42_inc4_3_tras_webhook_escritorio"
+      ],
+      "duracion_escenario_s": 2.1
+    },
+    {
+      "codigo": "HIST-4.3",
+      "nombre": "Registrar barreras de acceso al tratamiento",
+      "incremento": "Inc. 4",
+      "criterio": "Registrar barrera (tipo, detalle) en el expediente, tambien sin conexion -> queda en el expediente y se sincroniza",
+      "estado": "APROBADO",
+      "detalle": {
+        "barreras": [
+          [
+            "TRANSPORTE",
+            "PERSONAL"
+          ]
+        ]
+      },
+      "capturas": [
+        "HIST43_inc4_1_modal_barrera_escritorio",
+        "HIST43_inc4_2_barrera_pendiente_sin_conexion_escritorio",
+        "HIST43_inc4_3_barrera_sincronizada_escritorio",
+        "HIST43_inc4_4_barrera_movil"
+      ],
+      "duracion_escenario_s": 1.9
+    },
+    {
+      "codigo": "HIST-4.4",
+      "nombre": "Alertar barreras criticas y sumarlas a la visita priorizada",
+      "incremento": "Inc. 4",
+      "criterio": "Rechazo/efectos adversos o 2+ barreras en 60 dias -> alerta ALTA y componente BARRERA_CRITICA en la visita",
+      "estado": "APROBADO",
+      "detalle": {
+        "componentes": [
+          "SEVERIDAD",
+          "CONTROL_VENCIDO",
+          "INASISTENCIAS",
+          "ULTIMA_VISITA",
+          "BARRERA_CRITICA"
+        ],
+        "puntaje": 40.0
+      },
+      "capturas": [
+        "HIST44_inc4_1_alertas_barreras_criticas_escritorio",
+        "HIST44_inc4_2_visita_con_barrera_critica_escritorio",
+        "HIST44_inc4_3_alertas_barreras_movil"
+      ],
+      "duracion_escenario_s": 1.3
+    },
+    {
+      "codigo": "HIST-3.1b",
+      "nombre": "La aplicacion abre sin conexion desde el cache (servidor detenido)",
+      "incremento": "Inc. 3",
+      "criterio": "Sin servidor ni red, recargar -> el shell y las lecturas se sirven desde el service worker con aviso",
+      "estado": "APROBADO",
+      "detalle": {
+        "filas_en_linea": 30,
+        "filas_desde_cache": 30,
+        "servidor_detenido": true
+      },
+      "capturas": [
+        "HIST31_inc3_3_recarga_sin_conexion_escritorio"
+      ],
+      "duracion_escenario_s": 0.8
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "R12_radon_raw",
+  "titulo": "radon raw app -s (LOC)",
+  "comando": "<venv>/bin/radon raw app -s",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:52:13",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 0.3
+}

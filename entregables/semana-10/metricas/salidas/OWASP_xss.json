@@ -1,0 +1,50 @@
+{
+  "cargas": {
+    "nombres": "<img src=x onerror=\"window.__xss=1\">",
+    "apellidos": "<script>window.__xss=2</script>",
+    "comunidad": "<b>Palm</b>",
+    "tutor_nombre": "<svg onload=window.__xss=3>"
+  },
+  "pantallas": [
+    {
+      "pantalla": "Seguimiento",
+      "window___xss": null,
+      "elementos_inyectados_en_dom": 0,
+      "texto_literal_visible": true
+    },
+    {
+      "pantalla": "Expediente",
+      "window___xss": null,
+      "elementos_inyectados_en_dom": 0,
+      "texto_literal_visible": true
+    },
+    {
+      "pantalla": "Alertas",
+      "window___xss": null,
+      "elementos_inyectados_en_dom": 0,
+      "texto_literal_visible": true
+    },
+    {
+      "pantalla": "Visitas",
+      "window___xss": null,
+      "elementos_inyectados_en_dom": 0,
+      "texto_literal_visible": true
+    },
+    {
+      "pantalla": "Recordatorios",
+      "window___xss": null,
+      "elementos_inyectados_en_dom": 0,
+      "texto_literal_visible": true
+    },
+    {
+      "pantalla": "Registro (toast y expediente)",
+      "window___xss": null,
+      "elementos_inyectados_en_dom": 0,
+      "texto_literal_visible": true
+    }
+  ],
+  "registro_api_http": 201,
+  "dialogos_javascript": [],
+  "ejecucion_de_codigo": false,
+  "estado": "CUMPLE"
+}

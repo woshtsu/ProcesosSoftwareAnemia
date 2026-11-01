@@ -1,0 +1,10 @@
+{
+  "id": "O03_xss_dinamico",
+  "titulo": "Prueba dinamica de XSS: cargas HTML/JS en datos del nino (Playwright)",
+  "comando": "python entregables/semana-10/metricas/seguridad_xss.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 20:12:47",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 8.6
+}

@@ -1,0 +1,1 @@
+<repo>/pmv_fastapi/docs/openapi.json está al día.

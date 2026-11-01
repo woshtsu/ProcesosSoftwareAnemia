@@ -1,0 +1,10 @@
+{
+  "id": "R06_arquitectura",
+  "titulo": "pytest tests/arquitectura -v (reglas de dependencias hexagonales)",
+  "comando": "python -m pytest tests/arquitectura -v --no-cov -p no:cacheprovider",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:51:42",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 1.9
+}

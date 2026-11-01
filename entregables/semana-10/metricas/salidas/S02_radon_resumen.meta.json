@@ -1,0 +1,10 @@
+{
+  "id": "S02_radon_resumen",
+  "titulo": "Complejidad ciclomatica y mantenibilidad (resumen_calidad.py)",
+  "comando": "python entregables/semana-10/metricas/resumen_calidad.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 19:52:48",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 0.5
+}

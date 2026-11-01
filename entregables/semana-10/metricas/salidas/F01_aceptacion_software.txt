@@ -1,0 +1,20 @@
+RF-01: APROBADO {'tiempo_guardar_ms': 130, 'dni_repetido_http': 409}
+RF-02: APROBADO {'consulta_ms': 82, 'patch_ms': 139, 'control_ms': 161, 'evaluaciones': '2->3'}
+RF-03: APROBADO {'api_validacion_http': 422}
+RF-04: APROBADO {'total': 27, 'filtro_moderada': 6}
+RF-05: APROBADO {'tiempo_ms': 86, 'registrados': 28, 'csv_lineas': 43}
+RF-06: APROBADO {'controles': 13, 'C1M/C3M/C6M': ['CUMPLIDO', 'VENCIDO', 'PENDIENTE']}
+RF-07: APROBADO {'vencidos': 9, 'por_prioridad': {'ALTA': 7, 'MEDIA': 1, 'BAJA': 1}}
+RF-08: APROBADO {'resumen_30d': {'total': 17, 'cumplidos': 5, 'pendientes': 12, 'vencidos': 0, 'con_inasistencia': 0, 'ninos': 14}}
+RF-09: APROBADO {'vencidos_antes': 9, 'vencidos_despues': 8}
+HIST-3.1: APROBADO {'pendientes': 2, 'servidor_sin_registro': True}
+HIST-3.2: APROBADO {'primer_envio': ['APLICADA'], 'segundo_envio': ['DUPLICADA'], 'evaluaciones_tras_reenvio': 3}
+HIST-3.3: APROBADO {'conflictos_resueltos': 1}
+HIST-3.4: APROBADO {'resumen_con_pendientes': '1 pendiente(s)'}
+VIS-3.5: APROBADO {'filas': 18, 'puntaje_max': 49.5, 'puntaje_min': 25.0}
+HIST-4.1: APROBADO {'recordatorios': 24, 'todos_simulados': True, 'segunda_generacion_duplica': False}
+HIST-4.2: APROBADO {'webhook_sin_firma': 403, 'webhook_firma_invalida': 403, 'webhook_firma_valida': 200, 'webhook_respuesta': {'estados_aplicados': 0, 'respuestas_registradas': 0, 'ignorados': 1}, 'verificacion_get': '777'}
+HIST-4.3: APROBADO {'barreras': [('TRANSPORTE', 'PERSONAL')]}
+HIST-4.4: APROBADO {'componentes': ['SEVERIDAD', 'CONTROL_VENCIDO', 'INASISTENCIAS', 'ULTIMA_VISITA', 'BARRERA_CRITICA'], 'puntaje': 40.0}
+HIST-3.1b: APROBADO {'filas_en_linea': 30, 'filas_desde_cache': 30, 'servidor_detenido': True}
+19/19 escenarios aprobados; 54 capturas

@@ -1,0 +1,34 @@
+T01  A01     CUMPLE   API clinica sin sesion | esperado: 401 | observado: 401
+T02  A01     CUMPLE   Alertas sin sesion | esperado: 401 | observado: 401
+T03  A01     CUMPLE   POST sin cabecera CSRF ni sesion | esperado: 403 | observado: 403
+T03b A01     CUMPLE   Las 27 operaciones del contrato OpenAPI que no son publicas responden 401 sin sesion | esperado: 401 en todas | observado: 27 de 27; excepciones: []
+T04  A07     CUMPLE   Mensaje de login incorrecto no revela si el correo existe | esperado: 401 generico | observado: 401 Correo o contraseña incorrectos, o correo sin confirmar.
+T05  A07     CUMPLE   Cookie de sesion HttpOnly | esperado: HttpOnly | observado: True
+T06  A07     CUMPLE   Cookie de sesion SameSite=Strict | esperado: SameSite=strict | observado: True
+T07  A04     CUMPLE   Cookie de sesion Secure (AUTH_COOKIE_SECURE por defecto true) | esperado: Secure | observado: True
+T08  A07     CUMPLE   Cookie con alcance Path=/api (no se envia a /static) | esperado: Path=/api | observado: True
+T09  A01     CUMPLE   Con sesion valida la API responde | esperado: 200 | observado: 200
+T10  A02     CUMPLE   Respuestas de la API con Cache-Control: no-store | esperado: no-store | observado: no-store
+T11  A01     CUMPLE   POST con sesion pero sin X-CSRF-Protection (CSRF) | esperado: 403 | observado: 403
+T12  A01     CUMPLE   POST con origen ajeno | esperado: 403 | observado: 403
+T13  A01     CUMPLE   POST del mismo origen con CSRF llega a la validacion | esperado: 422 | observado: 422
+T14  A07     CUMPLE   Token de sesion falso | esperado: 401 | observado: 401
+T15  A02     CUMPLE   CORS: sin Access-Control-Allow-Origin para origen ajeno | esperado: ausente | observado: None
+T16  A05     CUMPLE   Inyeccion SQL en la busqueda de texto (q) | esperado: 0 filas o 422 | observado: 200, 0 filas
+T17  A05     CUMPLE   Inyeccion SQL en ruta /dni/ | esperado: 404/422 | observado: 404
+T18  A05     CUMPLE   La tabla sigue existente tras `DROP TABLE` en parametro | esperado: 200 y mismas filas | observado: 200, 26 filas (antes 26)
+T32  A05     HALLAZGO Reporte CSV neutraliza celdas que empiezan con = + - @ (inyeccion de formulas, CWE-1236) | esperado: celda con prefijo seguro | observado: registro HTTP 201; fila CSV: 2026-10-30,72777001,"=HYPERLINK(""http://sitio-malicioso.example"",""clic"") +Prueba",@SUM(1+1),13,11.6,3720.0
+T19  A02     HALLAZGO Cabeceras de seguridad HTTP en / | esperado: 6 de 6 presentes | observado: 0 de 6; faltan: CSP, nosniff, DENY/SAMEORIGIN o frame-ancestors, Referrer-Policy, HSTS, Permissions-Policy
+T20  A02     HALLAZGO Cabeceras de seguridad HTTP en /api/salud | esperado: 6 de 6 presentes | observado: 0 de 6; faltan: CSP, nosniff, DENY/SAMEORIGIN o frame-ancestors, Referrer-Policy, HSTS, Permissions-Policy
+T21  A02     HALLAZGO Cabecera Server no revela version | esperado: sin Server o generica | observado: uvicorn
+T22  A02     HALLAZGO Documentacion /docs sin sesion | esperado: 401 o 404 | observado: 200
+T23  A02     HALLAZGO /openapi.json sin sesion | esperado: 401 o 404 | observado: 200
+T24  A08     CUMPLE   Webhook sin WHATSAPP_APP_SECRET falla cerrado | esperado: 503 | observado: 503
+T25  A08     CUMPLE   Verificacion del webhook con token vacio | esperado: 403 | observado: 403
+T26  A07     HALLAZGO Limite de intentos de login en la aplicacion (15 intentos fallidos seguidos) | esperado: algun 429/bloqueo | observado: [401]
+T27  A10     CUMPLE   JSON malformado responde 422 sin traza | esperado: 422 sin 'Traceback' | observado: 422, traza=False
+T28  A10     CUMPLE   Recurso inexistente responde 404 con mensaje controlado | esperado: 404 | observado: 404 {"mensaje":"No existe el expediente solicitado.","errores":[
+T29  A10     CUMPLE   Parametro invalido no produce 500 | esperado: != 500 | observado: 404
+T30  A07     CUMPLE   Cerrar sesion elimina las cookies | esperado: 2 cookies expiradas | observado: 2
+
+25/32 comprobaciones CUMPLE; 7 HALLAZGO

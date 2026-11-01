@@ -1,0 +1,527 @@
+{
+  "variables": {
+    "azul": "#1F4E79",
+    "azul-2": "#2E5C8A",
+    "azul-claro": "#EAF2FB",
+    "fondo": "#F4F7FB",
+    "texto": "#1B2B3A",
+    "gris": "#5E6E7E",
+    "borde": "#D7E0EA",
+    "blanco": "#fff",
+    "verde": "#1F7A3D",
+    "verde-f": "#E3F4E8",
+    "ambar": "#8A6200",
+    "ambar-f": "#FFF4D1",
+    "naranja": "#B4530B",
+    "naranja-f": "#FDE8D7",
+    "rojo": "#B0222B",
+    "rojo-f": "#FBE1E3"
+  },
+  "colores_del_grafico_en_app_js": "{ SIN_ANEMIA: \"#1F7A3D\", LEVE: \"#C99200\", MODERADA: \"#D26A1B\", SEVERA: \"#B0222B\", NO_APLICA: \"#8C99A6\" }",
+  "pares_texto": [
+    {
+      "elemento": ".MODERADA",
+      "texto": "#B4530B",
+      "fondo": "#FDE8D7",
+      "razon": 4.23,
+      "umbral": 4.5,
+      "cumple_1_4_3": false
+    },
+    {
+      "elemento": ".ctrl-INASISTENCIA",
+      "texto": "#B4530B",
+      "fondo": "#FDE8D7",
+      "razon": 4.23,
+      "umbral": 4.5,
+      "cumple_1_4_3": false
+    },
+    {
+      "elemento": ".prio-MEDIA",
+      "texto": "#B4530B",
+      "fondo": "#FDE8D7",
+      "razon": 4.23,
+      "umbral": 4.5,
+      "cumple_1_4_3": false
+    },
+    {
+      "elemento": ".sync-indicador.con-pendientes",
+      "texto": "#B4530B",
+      "fondo": "#FDE8D7",
+      "razon": 4.23,
+      "umbral": 4.5,
+      "cumple_1_4_3": false
+    },
+    {
+      "elemento": ".ctrl-LOCAL",
+      "texto": "#B4530B",
+      "fondo": "#FDE8D7",
+      "razon": 4.23,
+      "umbral": 4.5,
+      "cumple_1_4_3": false
+    },
+    {
+      "elemento": ".ctrl-BARRERA",
+      "texto": "#B4530B",
+      "fondo": "#FDE8D7",
+      "razon": 4.23,
+      "umbral": 4.5,
+      "cumple_1_4_3": false
+    },
+    {
+      "elemento": ".chip.gris",
+      "texto": "#5E6E7E",
+      "fondo": "#EEF1F4",
+      "razon": 4.62,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".NO_APLICA",
+      "texto": "#5E6E7E",
+      "fondo": "#EEF1F4",
+      "razon": 4.62,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".ctrl-PENDIENTE",
+      "texto": "#5E6E7E",
+      "fondo": "#EEF1F4",
+      "razon": 4.62,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "naranja sobre fondo de pagina",
+      "texto": "#B4530B",
+      "fondo": "#F4F7FB",
+      "razon": 4.67,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".SIN_ANEMIA",
+      "texto": "#1F7A3D",
+      "fondo": "#E3F4E8",
+      "razon": 4.7,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".ctrl-CUMPLIDO",
+      "texto": "#1F7A3D",
+      "fondo": "#E3F4E8",
+      "razon": 4.7,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".alerta.aviso-ok",
+      "texto": "#1F7A3D",
+      "fondo": "#E3F4E8",
+      "razon": 4.7,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".ctrl-ENVIADO, .ctrl-ENTREGADO, .ctrl-LEIDO",
+      "texto": "#1F7A3D",
+      "fondo": "#E3F4E8",
+      "razon": 4.7,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "gris (secundario) sobre fondo de pagina",
+      "texto": "#5E6E7E",
+      "fondo": "#F4F7FB",
+      "razon": 4.88,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".aviso-referencia",
+      "texto": "#8A6200",
+      "fondo": "#FFF4D1",
+      "razon": 4.99,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".LEVE",
+      "texto": "#8A6200",
+      "fondo": "#FFF4D1",
+      "razon": 4.99,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".ctrl-PROXIMO",
+      "texto": "#8A6200",
+      "fondo": "#FFF4D1",
+      "razon": 4.99,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".prio-BAJA",
+      "texto": "#8A6200",
+      "fondo": "#FFF4D1",
+      "razon": 4.99,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".ctrl-SIMULADO",
+      "texto": "#8A6200",
+      "fondo": "#FFF4D1",
+      "razon": 4.99,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "verde sobre fondo de pagina",
+      "texto": "#1F7A3D",
+      "fondo": "#F4F7FB",
+      "razon": 5.0,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "naranja sobre tarjeta blanca",
+      "texto": "#B4530B",
+      "fondo": "#FFFFFF",
+      "razon": 5.02,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "ambar sobre fondo de pagina",
+      "texto": "#8A6200",
+      "fondo": "#F4F7FB",
+      "razon": 5.11,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "gris (secundario) sobre tarjeta blanca",
+      "texto": "#5E6E7E",
+      "fondo": "#FFFFFF",
+      "razon": 5.24,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "verde sobre tarjeta blanca",
+      "texto": "#1F7A3D",
+      "fondo": "#FFFFFF",
+      "razon": 5.37,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".alerta",
+      "texto": "#B0222B",
+      "fondo": "#FBE1E3",
+      "razon": 5.46,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".SEVERA",
+      "texto": "#B0222B",
+      "fondo": "#FBE1E3",
+      "razon": 5.46,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".ctrl-VENCIDO",
+      "texto": "#B0222B",
+      "fondo": "#FBE1E3",
+      "razon": 5.46,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".prio-ALTA",
+      "texto": "#B0222B",
+      "fondo": "#FBE1E3",
+      "razon": 5.46,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".sync-indicador.con-conflictos",
+      "texto": "#B0222B",
+      "fondo": "#FBE1E3",
+      "razon": 5.46,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".ctrl-RECHAZADA",
+      "texto": "#B0222B",
+      "fondo": "#FBE1E3",
+      "razon": 5.46,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".ctrl-FALLIDO",
+      "texto": "#B0222B",
+      "fondo": "#FBE1E3",
+      "razon": 5.46,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "ambar sobre tarjeta blanca",
+      "texto": "#8A6200",
+      "fondo": "#FFFFFF",
+      "razon": 5.49,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "rojo (errores) sobre fondo de pagina",
+      "texto": "#B0222B",
+      "fondo": "#F4F7FB",
+      "razon": 6.28,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "azul-2 (h2) sobre fondo de pagina",
+      "texto": "#2E5C8A",
+      "fondo": "#F4F7FB",
+      "razon": 6.48,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".insignia",
+      "texto": "#B0222B",
+      "fondo": "#FFF",
+      "razon": 6.75,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "rojo (errores) sobre tarjeta blanca",
+      "texto": "#B0222B",
+      "fondo": "#FFFFFF",
+      "razon": 6.75,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "azul-2 (h2) sobre tarjeta blanca",
+      "texto": "#2E5C8A",
+      "fondo": "#FFFFFF",
+      "razon": 6.97,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".chip",
+      "texto": "#1F4E79",
+      "fondo": "#EAF2FB",
+      "razon": 7.67,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".ctrl-CERRADO_RECUPERADO",
+      "texto": "#1F4E79",
+      "fondo": "#EAF2FB",
+      "razon": 7.67,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".dia td",
+      "texto": "#1F4E79",
+      "fondo": "#EAF2FB",
+      "razon": 7.67,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".sync-indicador.sincronizando",
+      "texto": "#1F4E79",
+      "fondo": "#EAF2FB",
+      "razon": 7.67,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".aviso-cache",
+      "texto": "#1F4E79",
+      "fondo": "#EAF2FB",
+      "razon": 7.67,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "azul (titulos, enlaces) sobre fondo de pagina",
+      "texto": "#1F4E79",
+      "fondo": "#F4F7FB",
+      "razon": 8.06,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".barra",
+      "texto": "#FFF",
+      "fondo": "#1F4E79",
+      "razon": 8.66,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".primario",
+      "texto": "#FFF",
+      "fondo": "#1F4E79",
+      "razon": 8.66,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".secundario",
+      "texto": "#1F4E79",
+      "fondo": "#FFF",
+      "razon": 8.66,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".tabla th",
+      "texto": "#FFF",
+      "fondo": "#1F4E79",
+      "razon": 8.66,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".mini",
+      "texto": "#1F4E79",
+      "fondo": "#FFF",
+      "razon": 8.66,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "azul (titulos, enlaces) sobre tarjeta blanca",
+      "texto": "#1F4E79",
+      "fondo": "#FFFFFF",
+      "razon": 8.66,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": ".toast",
+      "texto": "#FFF",
+      "fondo": "#173E61",
+      "razon": 11.06,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "body",
+      "texto": "#1B2B3A",
+      "fondo": "#F4F7FB",
+      "razon": 13.45,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "texto sobre fondo de pagina",
+      "texto": "#1B2B3A",
+      "fondo": "#F4F7FB",
+      "razon": 13.45,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    },
+    {
+      "elemento": "texto sobre tarjeta blanca",
+      "texto": "#1B2B3A",
+      "fondo": "#FFFFFF",
+      "razon": 14.45,
+      "umbral": 4.5,
+      "cumple_1_4_3": true
+    }
+  ],
+  "pares_texto_total": 54,
+  "pares_texto_cumplen": 48,
+  "razon_minima_texto": 4.23,
+  "razon_maxima_texto": 14.45,
+  "componentes": [
+    {
+      "componente": "borde de campos (--borde) sobre blanco",
+      "color": "#D7E0EA",
+      "fondo": "#FFFFFF",
+      "razon": 1.33,
+      "umbral": 3.0,
+      "cumple_1_4_11": false
+    },
+    {
+      "componente": "borde de boton secundario (#A9C4E2) sobre blanco",
+      "color": "#A9C4E2",
+      "fondo": "#FFFFFF",
+      "razon": 1.8,
+      "umbral": 3.0,
+      "cumple_1_4_11": false
+    },
+    {
+      "componente": "contorno de foco de campos (#9CC3EA) sobre blanco",
+      "color": "#9CC3EA",
+      "fondo": "#FFFFFF",
+      "razon": 1.84,
+      "umbral": 3.0,
+      "cumple_1_4_11": false
+    },
+    {
+      "componente": "barra SIN_ANEMIA del grafico",
+      "color": "#1F7A3D",
+      "fondo": "#EEF2F6",
+      "razon": 4.77,
+      "umbral": 3.0,
+      "cumple_1_4_11": true
+    },
+    {
+      "componente": "barra LEVE del grafico (#C99200)",
+      "color": "#C99200",
+      "fondo": "#EEF2F6",
+      "razon": 2.46,
+      "umbral": 3.0,
+      "cumple_1_4_11": false
+    },
+    {
+      "componente": "barra MODERADA del grafico (#D26A1B)",
+      "color": "#D26A1B",
+      "fondo": "#EEF2F6",
+      "razon": 3.21,
+      "umbral": 3.0,
+      "cumple_1_4_11": true
+    },
+    {
+      "componente": "barra SEVERA del grafico",
+      "color": "#B0222B",
+      "fondo": "#EEF2F6",
+      "razon": 6.0,
+      "umbral": 3.0,
+      "cumple_1_4_11": true
+    },
+    {
+      "componente": "barra NO_APLICA del grafico (#8C99A6)",
+      "color": "#8C99A6",
+      "fondo": "#EEF2F6",
+      "razon": 2.58,
+      "umbral": 3.0,
+      "cumple_1_4_11": false
+    }
+  ],
+  "componentes_total": 8,
+  "componentes_cumplen": 3
+}

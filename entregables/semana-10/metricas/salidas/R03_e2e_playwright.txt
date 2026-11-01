@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0 -- <venv>/bin/python
+rootdir: <repo>/pmv_fastapi
+configfile: pyproject.toml
+plugins: platformdirs-4.14.0, locust-2.46.6, anyio-4.15.1, cov-7.1.0
+collecting ... collected 28 items
+
+tests/e2e/test_inc3_sin_conexion.py::test_cp297_registrar_nino_y_control_sin_conexion_sincroniza_al_reconectar PASSED [  3%]
+tests/e2e/test_inc3_sin_conexion.py::test_cp298_recargar_sin_conexion_abre_desde_cache PASSED [  7%]
+tests/e2e/test_inc3_sin_conexion.py::test_cp299_registro_sin_conexion_con_datos_incompletos_no_se_guarda PASSED [ 10%]
+tests/e2e/test_inc3_sin_conexion.py::test_cp300_asistencia_sin_conexion_queda_pendiente_y_se_sincroniza PASSED [ 14%]
+tests/e2e/test_inc3_sin_conexion.py::test_cp301_visita_priorizada_en_linea_con_desglose_del_puntaje PASSED [ 17%]
+tests/e2e/test_inc3_sin_conexion.py::test_cp302_visita_sin_conexion_desde_la_lista_se_sincroniza PASSED [ 21%]
+tests/e2e/test_inc3_sin_conexion.py::test_cp303_conflicto_de_evaluacion_se_resuelve_desde_el_panel PASSED [ 25%]
+tests/e2e/test_inc4_notificaciones.py::test_cp402_generar_recordatorios_simulados_y_registrar_no_puede_con_barrera_genera_alerta PASSED [ 28%]
+tests/e2e/test_inc4_notificaciones.py::test_cp403_registrar_barrera_sin_conexion_se_sincroniza_al_reconectar PASSED [ 32%]
+tests/e2e/test_inc4_notificaciones.py::test_cp404_la_barrera_asociada_a_una_inasistencia_se_registra_con_su_fuente PASSED [ 35%]
+tests/e2e/test_inc4_notificaciones.py::test_cp405_la_barrera_de_una_visita_no_lograda_se_registra_y_suma_al_puntaje PASSED [ 39%]
+tests/e2e/test_interfaz.py::test_hu01_hu03_registro_con_vista_previa_y_expediente PASSED [ 42%]
+tests/e2e/test_interfaz.py::test_hu03_datos_invalidos_muestran_mensaje_comprensible PASSED [ 46%]
+tests/e2e/test_interfaz.py::test_hu04_seguimiento_y_busqueda PASSED      [ 50%]
+tests/e2e/test_interfaz.py::test_hu05_reporte_del_periodo PASSED         [ 53%]
+tests/e2e/test_interfaz.py::test_cp109_hist21_agenda_de_controles_en_el_expediente PASSED [ 57%]
+tests/e2e/test_interfaz.py::test_cp110_hist21_agenda_casos_especiales PASSED [ 60%]
+tests/e2e/test_interfaz.py::test_cp111_hist22_pestana_de_alertas_resumen_filtros_y_navegacion PASSED [ 64%]
+tests/e2e/test_interfaz.py::test_cp112_hist22_vista_movil_sin_desborde_horizontal PASSED [ 67%]
+tests/e2e/test_interfaz_inc2_final.py::test_cp180_rf08_pestana_agenda_semana_de_la_fecha_de_referencia_resumen_y_filtros PASSED [ 71%]
+tests/e2e/test_interfaz_inc2_final.py::test_cp181_rf08_rango_invalido_navegacion_por_semanas_y_fecha_de_hoy PASSED [ 75%]
+tests/e2e/test_interfaz_inc2_final.py::test_cp182_rf09_no_asistio_desde_el_expediente_marca_el_control_y_sube_la_prioridad PASSED [ 78%]
+tests/e2e/test_interfaz_inc2_final.py::test_cp183_rf09_asistio_desde_la_agenda_del_personal_cumple_el_control_y_lo_quita_de_las_alertas PASSED [ 82%]
+tests/e2e/test_interfaz_inc2_final.py::test_cp184_rf08_vista_movil_de_la_agenda_sin_desborde_horizontal PASSED [ 85%]
+tests/e2e/test_interfaz_inc2_final.py::test_cp185_dataset_aviso_de_fecha_de_referencia_y_registro_sin_nombre PASSED [ 89%]
+tests/e2e/test_interfaz_inc2_final.py::test_cp186_dataset_agenda_y_alertas_usan_la_fecha_de_referencia PASSED [ 92%]
+tests/e2e/test_login.py::test_login_error_acceso_recarga_y_cierre[viewport0] PASSED [ 96%]
+tests/e2e/test_login.py::test_login_error_acceso_recarga_y_cierre[viewport1] PASSED [100%]
+
+=============================== warnings summary ===============================
+..<venv>/lib/python3.13/site-packages/fastapi/testclient.py:1
+  <venv>/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/e2e/test_login.py::test_login_error_acceso_recarga_y_cierre[viewport0]
+  <venv>/lib/python3.13/site-packages/websockets/legacy/__init__.py:6: DeprecationWarning: websockets.legacy is deprecated; see https://websockets.readthedocs.io/en/stable/howto/upgrade.html for upgrade instructions
+    warnings.warn(  # deprecated in 14.0 - 2024-11-09
+
+tests/e2e/test_login.py::test_login_error_acceso_recarga_y_cierre[viewport0]
+  <venv>/lib/python3.13/site-packages/uvicorn/protocols/websockets/websockets_impl.py:17: DeprecationWarning: websockets.server.WebSocketServerProtocol is deprecated
+    from websockets.server import WebSocketServerProtocol
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+-------------------- generated xml file: <tmp>/junit_e2e.xml --------------------
+================== 28 passed, 3 warnings in 66.33s (0:01:06) ===================

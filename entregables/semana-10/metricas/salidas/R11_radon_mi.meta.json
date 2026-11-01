@@ -1,0 +1,10 @@
+{
+  "id": "R11_radon_mi",
+  "titulo": "radon mi app -s (indice de mantenibilidad)",
+  "comando": "<venv>/bin/radon mi app -s -n B",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:52:12",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 0.4
+}

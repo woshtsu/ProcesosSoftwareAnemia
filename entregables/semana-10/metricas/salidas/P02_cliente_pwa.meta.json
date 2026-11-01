@@ -1,0 +1,10 @@
+{
+  "id": "P02_cliente_pwa",
+  "titulo": "Rendimiento del cliente PWA: FCP/LCP con CPU x4 y red 4G lenta",
+  "comando": "python entregables/semana-10/metricas/rendimiento_cliente.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 20:13:24",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 33.4
+}

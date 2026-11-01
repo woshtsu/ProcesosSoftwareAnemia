@@ -1,0 +1,67 @@
+{
+  "Registrar niño": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Seguimiento": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Expediente": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Agenda": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Visitas": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Recordatorios": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Alertas": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Sincronización": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Reporte": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Modal asistencia": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Modal visita": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Modal respuesta del tutor": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  },
+  "Modal barrera": {
+    "ancho": 320,
+    "ventana": 320,
+    "desborde": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "R10_radon_cc",
+  "titulo": "radon cc app -a -s (complejidad ciclomatica)",
+  "comando": "<venv>/bin/radon cc app -a -s -nb",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:52:11",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 0.3
+}

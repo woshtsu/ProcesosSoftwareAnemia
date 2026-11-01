@@ -1,0 +1,141 @@
+{
+  "v2.0": {
+    "version": "v2.0",
+    "raiz": "pmv_fastapi",
+    "filas": [
+      {
+        "componente": "Núcleo de dominio",
+        "clave": "dominio",
+        "ruta_guia": "/src/domain/model/",
+        "ruta_real": "app/domain/model, app/domain/service",
+        "criterio_a": true,
+        "detalle_a": "app/domain/model/: paquete propio; app/domain/service/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "0 importaciones externas; 0 importaciones de otras capas.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "Sin importaciones externas (130 importaciones: stdlib e internas de dominio)"
+        ]
+      },
+      {
+        "componente": "Puertos de entrada",
+        "clave": "puertos_entrada",
+        "ruta_guia": "/src/ports/inbound/",
+        "ruta_real": "app/ports/inbound",
+        "criterio_a": true,
+        "detalle_a": "app/ports/inbound/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "20 interfaces; violaciones de pureza: 0; importaciones de infraestructura/otras capas: 0.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/ports/inbound/agenda.py:8 GenerarAgenda(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/agenda_personal.py:9 ConsultarAgendaPersonal(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/alertas.py:8 ConsultarControlesVencidos(Protocol): 2 métodos sin lógica",
+          "app/ports/inbound/asistencia.py:8 RegistrarAsistencia(Protocol): 2 métodos sin lógica",
+          "app/ports/inbound/barreras.py:8 GestionarBarreras(Protocol): 2 métodos sin lógica",
+          "app/ports/inbound/barreras.py:16 ConsultarAlertasBarreras(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/contexto.py:8 ConsultarContexto(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/expediente.py:9 GestionarExpediente(Protocol): 7 métodos sin lógica",
+          "app/ports/inbound/importacion.py:9 ImportarDataset(Protocol): 3 métodos sin lógica",
+          "app/ports/inbound/notificaciones.py:16 GenerarRecordatorios(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/notificaciones.py:22 ConsultarRecordatorios(Protocol): 2 métodos sin lógica",
+          "app/ports/inbound/notificaciones.py:30 RegistrarRespuestaRecordatorio(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/notificaciones.py:36 ProcesarNotificacionesWhatsApp(Protocol): 3 métodos sin lógica",
+          "app/ports/inbound/reportes.py:7 GenerarReporte(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/seguimiento.py:6 ConsultarSeguimiento(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/sesiones.py:8 GestionarSesiones(Protocol): 4 métodos sin lógica",
+          "app/ports/inbound/sincronizacion.py:8 SincronizarOperaciones(Protocol): 1 métodos sin lógica",
+          "app/ports/inbound/sincronizacion.py:14 GestionarConflictos(Protocol): 2 métodos sin lógica",
+          "app/ports/inbound/visitas.py:8 GestionarVisitas(Protocol): 2 métodos sin lógica",
+          "app/ports/inbound/visitas.py:16 ConsultarVisitasPriorizadas(Protocol): 1 métodos sin lógica"
+        ]
+      },
+      {
+        "componente": "Puertos de salida",
+        "clave": "puertos_salida",
+        "ruta_guia": "/src/ports/outbound/",
+        "ruta_real": "app/ports/outbound",
+        "criterio_a": true,
+        "detalle_a": "app/ports/outbound/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "8 interfaces; violaciones de pureza: 0; importaciones de infraestructura/otras capas: 0.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/ports/outbound/notificador.py:12 Notificador(Protocol): 1 métodos sin lógica",
+          "app/ports/outbound/proveedor_identidad.py:8 ProveedorIdentidad(Protocol): 4 métodos sin lógica",
+          "app/ports/outbound/reloj.py:7 Reloj(Protocol): 1 métodos sin lógica",
+          "app/ports/outbound/repositorio_barreras.py:9 RepositorioBarreras(Protocol): 4 métodos sin lógica",
+          "app/ports/outbound/repositorio_ninos.py:14 RepositorioNinos(Protocol): 15 métodos sin lógica",
+          "app/ports/outbound/repositorio_recordatorios.py:9 RepositorioRecordatorios(Protocol): 6 métodos sin lógica",
+          "app/ports/outbound/repositorio_sincronizacion.py:8 RepositorioSincronizacion(Protocol): 10 métodos sin lógica",
+          "app/ports/outbound/repositorio_visitas.py:9 RepositorioVisitas(Protocol): 5 métodos sin lógica"
+        ]
+      },
+      {
+        "componente": "Adaptadores de entrada",
+        "clave": "adaptadores_entrada",
+        "ruta_guia": "/src/adapters/inbound/rest/",
+        "ruta_real": "app/adapters/inbound",
+        "criterio_a": true,
+        "detalle_a": "app/adapters/inbound/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "Importa 13 puerto(s) de entrada; importa 0 módulo(s) de aplicación (clases concretas); 0 de adaptadores de salida.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/adapters/inbound/http/api.py:41 from app.ports.inbound.agenda import GenerarAgenda",
+          "app/adapters/inbound/http/api.py:42 from app.ports.inbound.agenda_personal import ConsultarAgendaPersonal",
+          "app/adapters/inbound/http/api.py:43 from app.ports.inbound.alertas import ConsultarControlesVencidos",
+          "app/adapters/inbound/http/api.py:44 from app.ports.inbound.asistencia import RegistrarAsistencia",
+          "app/adapters/inbound/http/api.py:45 from app.ports.inbound.barreras import ConsultarAlertasBarreras, GestionarBarreras",
+          "app/adapters/inbound/http/api.py:46 from app.ports.inbound.contexto import ConsultarContexto",
+          "app/adapters/inbound/http/api.py:47 from app.ports.inbound.expediente import GestionarExpediente",
+          "app/adapters/inbound/http/api.py:48 from app.ports.inbound.notificaciones import (",
+          "app/adapters/inbound/http/api.py:54 from app.ports.inbound.reportes import GenerarReporte",
+          "app/adapters/inbound/http/api.py:55 from app.ports.inbound.seguimiento import ConsultarSeguimiento",
+          "app/adapters/inbound/http/api.py:56 from app.ports.inbound.sincronizacion import GestionarConflictos, SincronizarOperaciones",
+          "app/adapters/inbound/http/api.py:57 from app.ports.inbound.visitas import ConsultarVisitasPriorizadas, GestionarVisitas",
+          "app/adapters/inbound/http/autenticacion.py:10 from app.ports.inbound.sesiones import GestionarSesiones"
+        ]
+      },
+      {
+        "componente": "Adaptadores de salida",
+        "clave": "adaptadores_salida",
+        "ruta_guia": "/src/adapters/outbound/persistence/",
+        "ruta_real": "app/adapters/outbound",
+        "criterio_a": true,
+        "detalle_a": "app/adapters/outbound/: paquete propio",
+        "criterio_a_laxo": true,
+        "criterio_b": true,
+        "detalle_b": "2 clase(s) implementan RepositorioNinos; 3 importaciones de SQLAlchemy; 0 importaciones de aplicación/adaptadores de entrada.",
+        "estado": "CONFORME",
+        "estado_laxo": "CONFORME",
+        "evidencia": [
+          "app/adapters/outbound/persistence/memoria.py:25 RepositorioEnMemoria (hereda RepositorioNinos)",
+          "app/adapters/outbound/persistence/sqlalchemy_repo.py:526 RepositorioSQLAlchemy (hereda RepositorioNinos)",
+          "app/adapters/outbound/persistence/sqlalchemy_repo.py:7 from sqlalchemy import (",
+          "app/adapters/outbound/persistence/sqlalchemy_repo.py:27 from sqlalchemy.exc import IntegrityError",
+          "app/adapters/outbound/persistence/sqlalchemy_repo.py:28 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, sessionmaker"
+        ]
+      }
+    ],
+    "conformes": 5,
+    "total": 5,
+    "m12_pct": 100.0,
+    "sensibilidad": {
+      "laxa_pct": 100.0,
+      "estricta_pct": 100.0,
+      "ultra_estricta_pct": 80.0
+    },
+    "observaciones": [
+      "Implementación de un puerto de salida fuera de adaptadores de salida: app/application/servicio_sesion.py:8 ServicioSesion implementa el puerto ProveedorIdentidad"
+    ]
+  }
+}

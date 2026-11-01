@@ -1,0 +1,10 @@
+{
+  "id": "R07_openapi",
+  "titulo": "scripts.exportar_openapi --verificar (contrato OpenAPI al dia)",
+  "comando": "python -m scripts.exportar_openapi --verificar",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:51:44",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 1.1
+}

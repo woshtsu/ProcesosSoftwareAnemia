@@ -133,8 +133,11 @@ jobs:
                       cur.execute('SELECT id FROM public.asistencia_control LIMIT 0')
                       cur.execute('SELECT id FROM public.evaluacion_hemoglobina LIMIT 0')
                       cur.execute('SELECT nino_id FROM public.v_ultimo_control LIMIT 0')
+                      # Esquema 3.0 (sin conexión y visitas) y 4.0 (recordatorios y barreras)
+                      for tabla in ('visita_domiciliaria', 'operacion_sincronizada', 'conflicto_sincronizacion', 'recordatorio', 'barrera'):
+                          cur.execute(f'SELECT 1 FROM public.{tabla} LIMIT 0')
           except Exception:
-              sys.exit('No se pudo verificar PostgreSQL. Revisar conexión y SQL inicial; credenciales omitidas.')
+              sys.exit('No se pudo verificar PostgreSQL (esquema 4.0). Revisar conexión y ejecutar db/03, db/04 y db/02_supabase.sql; credenciales omitidas.')
           query = dict(urllib.parse.parse_qsl(parts.query))
           query['ref'] = os.environ['GITHUB_SHA']
           url = urllib.parse.urlunsplit(parts._replace(query=urllib.parse.urlencode(query)))

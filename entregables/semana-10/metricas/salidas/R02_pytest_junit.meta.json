@@ -1,0 +1,10 @@
+{
+  "id": "R02_pytest_junit",
+  "titulo": "pytest con informe JUnit (mapa RF a pruebas)",
+  "comando": "python -m pytest -q --no-cov -p no:cacheprovider --junitxml=<tmp>/junit_unit.xml -rA",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:39:46",
+  "commit": "e6886e2",
+  "codigo_salida": 0,
+  "duracion_s": 34.8
+}

@@ -1,0 +1,10 @@
+{
+  "id": "R09_pip_audit",
+  "titulo": "pip-audit -r requirements.txt (dependencias con CVE conocidos)",
+  "comando": "<venv>/bin/pip-audit -r requirements.txt --progress-spinner off",
+  "cwd": "pmv_fastapi",
+  "fecha": "2026-10-30 19:52:10",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 23.3
+}

@@ -1,0 +1,10 @@
+{
+  "id": "U02_accesibilidad",
+  "titulo": "Accesibilidad WCAG 2.1 AA: axe-core por pantalla, teclado, objetivos tactiles y reflow",
+  "comando": "AXE_JS=<tmp>/axe/node_modules/axe-core/axe.min.js python entregables/semana-10/metricas/accesibilidad.py",
+  "cwd": ".",
+  "fecha": "2026-10-30 20:15:50",
+  "commit": "ada827f",
+  "codigo_salida": 0,
+  "duracion_s": 35.0
+}
