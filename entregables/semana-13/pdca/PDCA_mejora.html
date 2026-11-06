@@ -8,7 +8,7 @@
   :root { --azul: #1F3864; --azul2: #2E75B6; --gris: #f2f4f7; --borde: #9aa5b5; }
   body { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 8.4pt; color: #111; margin: 0; }
   h1 { font-size: 14pt; color: var(--azul); margin: 0 0 2mm; }
-  h2 { font-size: 11pt; color: var(--azul); margin: 5mm 0 2mm; border-bottom: 1.5px solid var(--azul2); padding-bottom: 1mm; }
+  h2 { font-size: 11pt; color: var(--azul); margin: 5mm 0 2mm; border-bottom: 1.5px solid var(--azul2); padding-bottom: 1mm; page-break-after: avoid; }
   p { margin: 1.2mm 0; line-height: 1.35; }
   .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; font-size: 8.6pt; margin-bottom: 2mm; }
   .meta div { padding: .6mm 0; }
@@ -19,12 +19,10 @@
   thead th small { font-weight: normal; display: block; opacity: .9; }
   tbody tr:nth-child(even) td { background: var(--gris); }
   td.n { text-align: center; font-weight: bold; width: 4mm; }
-  td.dom { font-weight: bold; }
+  td.dom { font-weight: bold; overflow-wrap: normal; hyphens: auto; }
   table.pdca { table-layout: fixed; }
-  h2 { page-break-after: avoid; }
   .bloque { page-break-inside: avoid; }
   td.f { text-align: center; overflow-wrap: normal; white-space: nowrap; font-size: 7.6pt; }
-  td.dom { overflow-wrap: normal; hyphens: auto; }
   .est { display: inline-block; padding: .4mm 1.6mm; border-radius: 2mm; font-weight: bold; font-size: 7.4pt; color: #fff; margin-top: 1mm; }
   .Abierto { background: #b42318; } .EnProceso { background: #b54708; } .Verificado { background: #1f7a3a; } .Cerrado { background: #344054; }
   code { font-family: "DejaVu Sans Mono", monospace; font-size: 7.2pt; overflow-wrap: anywhere; }
@@ -214,6 +212,7 @@
 
 <div class="bloque"><h2>4. Escala de seguimiento</h2>
 <table class="escala">
+<thead><tr><th>Estado</th><th>Descripción</th></tr></thead>
 <tbody>
 <tr><td><span class="est Abierto">Abierto</span></td><td>Se identificó el hallazgo y aún no se inicia la acción correctiva (dominios 7 y 9).</td></tr>
 <tr><td><span class="est EnProceso">En proceso</span></td><td>La acción correctiva está siendo ejecutada (dominios 2, 5, 6, 8 y 11).</td></tr>
