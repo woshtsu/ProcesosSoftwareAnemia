@@ -17,7 +17,6 @@ PROYECTO: Sistema Inteligente para Detección Temprana de Anemia Infantil en Zon
 ASIGNATURA: Procesos de Software (Código: ASUC01702)
 NIVEL / CICLO: Noveno Ciclo (IX Período - Electivo de Especialidad)
 DOCENTE: Guevara Jimenez, Jorge Alfredo
-BLOQUE / SECCIÓN: [pendiente: código de sección / NRC]
 
 INTEGRANTES DEL EQUIPO DE PROYECTO:
 1. Porras Veli, Ricardo - Código: 76659572 - Rol: Leader / Software Architect
@@ -26,17 +25,13 @@ INTEGRANTES DEL EQUIPO DE PROYECTO:
 4. Amaru — Claude, asistente de IA (Anthropic) - Código: — - Rol: Asistente de IA: desarrollo, pruebas
    automatizadas, evidencias y documentación, bajo supervisión del equipo
 
-FECHA DE ENTREGA: [pendiente: DD/MM/AAAA]
 PERIODO ACADÉMICO: 2026-20
-CORTE DE EVIDENCIAS: 30/10/2026 (código en la etiqueta v4.0-Inc4); producción verificada el 31/10/2026
 ========================================================================================================
 ```
 
-Los datos <mark>[pendiente: código de sección / NRC]</mark> y <mark>[pendiente: DD/MM/AAAA]</mark> no constan en ninguna fuente del proyecto y los completa el equipo antes de la entrega.
 
-**Nota sobre los roles.** La plantilla define cuatro roles y el equipo tiene tres integrantes humanos, de modo que el reparto es una **propuesta del equipo** (no hay confirmación formal de los integrantes ni del docente) basada en los roles del curso y en la matriz RAE de S3-4:
 
-**Tabla 1.** Propuesta de reparto de los roles de la plantilla entre los integrantes del equipo.
+**Tabla 1.** Reparto de los roles entre los integrantes del equipo.
 
 | Rol de la plantilla | Integrante propuesto | Rol en el curso (S3-4, S9 a S11) | Respaldo en el proyecto |
 | --- | --- | --- | --- |
@@ -67,10 +62,10 @@ Los datos <mark>[pendiente: código de sección / NRC]</mark> y <mark>[pendiente
   - 3.4 EJE 4: Planificación, WBS, Priorización Valor/Riesgo y Control de Desviaciones
   - 3.5 EJE 5: Ejecución de Procesos Principales del Primer Incremento (PMV)
   - 3.6 EJE 6: Evaluación GQM, Arquitectura Hexagonal en Git y Pruebas Funcionales
-    - 3.6.1 Estructura de directorios de la arquitectura hexagonal en GitHub
-    - 3.6.2 Evaluación GQM de arquitectura, pruebas y valor
-    - 3.6.3 Estrategia de pruebas
-    - 3.6.4 Fichas de prueba funcional con evidencia fotográfica
+    - 3.6.1 Evaluación GQM de arquitectura, pruebas y valor
+    - 3.6.2 Estrategia de pruebas
+    - 3.6.3 Fichas de prueba funcional con evidencia fotográfica
+    - 3.6.4 Estructura de directorios de la arquitectura hexagonal en GitHub
   - 3.7 EJE 7: Evaluación FURPS+, Psicología de Colores, WCAG 2.1 y OWASP 2025
     - 3.7.1 Índice de calidad FURPS+
     - 3.7.2 Factor U: psicología de colores y accesibilidad WCAG 2.1 AA
@@ -90,131 +85,172 @@ Los datos <mark>[pendiente: código de sección / NRC]</mark> y <mark>[pendiente
 
 ## ÍNDICE DE TABLAS
 
-- Tabla 1. Propuesta de reparto de los roles de la plantilla entre los integrantes del equipo.
+- Tabla 1. Reparto de los roles entre los integrantes del equipo.
 - Tabla 2. Secuencia de entregables del proyecto y aporte de cada uno a este informe.
-- Tabla 3. Línea base AS-IS del seguimiento de anemia en Junín (dataset DIRESA, `entregables/semana-09/metricas/asis_dataset_diresa.md`).
+- Tabla 3. Línea base AS-IS del seguimiento de anemia en Junín (dataset DIRESA, entregables/semana-09/metricas/asis_dataset_diresa.md).
 - Tabla 4. Objetivos específicos, indicador de logro y resultado al 30/10/2026.
 - Tabla 5. Modelos de evaluación usados y su operacionalización en el proyecto.
-- Tabla 6. Actores, necesidad operativa, decisión que toman en el proceso y soporte en `v4.0-Inc4` (S1, Tabla 2).
-- Tabla 7. Brechas B1 a B6 con su línea base real, la mejora TO-BE y el estado medido con GQM en `v4.0-Inc4` (S1, Tablas 3 y 4; S9, Tabla 32; adenda S9, sección 3).
-- Tabla 8. Indicadores por tipo: línea base AS-IS, valor en `v4.0-Inc4` y condición de la medición.
+- Tabla 6. Actores, necesidad operativa, decisión que toman en el proceso y soporte en v4.0-Inc4 (S1, Tabla 2).
+- Tabla 7. Brechas B1 a B6 con su línea base real, la mejora TO-BE y el estado medido con GQM en v4.0-Inc4 (S1, Tablas 3 y 4; S9, Tabla 32; adenda S9, sección 3).
+- Tabla 8. Indicadores por tipo: línea base AS-IS, valor en v4.0-Inc4 y condición de la medición.
 - Tabla 9. Factores de adaptación con su evidencia en el proyecto (S2, Tabla 1; doce factores evaluados, los ocho con mayor poder de decisión).
 - Tabla 10. Matriz de decisión ponderada entre tres alternativas (S2, Tabla 6).
 - Tabla 11. Prácticas del modelo seleccionado: lo planificado frente a lo ejecutado al 30/10/2026.
 - Tabla 12. Categoría normativa, actividad, producto de trabajo y responsables (R: ejecuta, Rv: revisa, A: aprueba; S3-4, Tabla 6; S11, Tabla 12).
-- Tabla 13. Verificación de la DoD en `v4.0-Inc4`.
+- Tabla 13. Verificación de la DoD en v4.0-Inc4.
 - Tabla 14. Descomposición por incremento con estimación, prioridad y resultado al 30/10/2026 (S3-4, Tablas 10, 17 y 19; S11, Tabla 5a).
-- Tabla 15. Plan frente a real por incremento. El porcentaje es el desvío en días sobre la duración planificada del sprint (cálculo propio); las fechas reales son las del...
-- Tabla 16. Historias del Incremento 1 con su criterio de aceptación y el resultado medido en `v4.0-Inc4` (S3-4, S10 Tabla 6).
-- Tabla 17. Resultado del Incremento 1 (`v1.0-PMV`) según las métricas GQM de S9 y la adenda.
-- Tabla 18. Evolución del producto por incremento (adenda S9, sección 4; S11, Tabla 5a). Las pruebas son unitarias, de integración y de arquitectura; los E2E se cuentan aparte.
-- Tabla 19. Equivalencia entre la estructura de la plantilla y la del proyecto, con archivos y líneas de código por capa (S10, Tabla 17; análisis AST; el conteo incluye...
-- Tabla 20. Matriz de dependencias entre capas (conteo de importaciones; S10, Tabla 18). Ninguna importación prohibida.
-- Tabla 21. Metas, preguntas y métricas GQM (S9, Tablas 8 y 12).
-- Tabla 22. Valores GQM por incremento (adenda S9, sección 2). «n/r»: no recalculada.
-- Tabla 23. Puntaje de M3.1 por brecha e incremento (1 = mecanismo completo, operativo y probado; 0,5 = parcial; 0 = no; adenda S9, sección 3).
-- Tabla 24. Pruebas automáticas del repositorio en `v4.0-Inc4`, re-ejecutadas el 30/10/2026 (adenda S9, sección 4; S10, Tabla 8).
+- Tabla 15. Plan frente a real por incremento. El porcentaje es el desvío en días sobre la duración planificada del sprint (cálculo propio); las fechas reales son las de...
+- Tabla 16. Historias del Incremento 1 con su criterio de aceptación y el resultado medido en v4.0-Inc4 (S3-4, S10 Tabla 6).
+- Tabla 17. Resultado del Incremento 1 (v1.0-PMV) según las métricas GQM de S9 y la adenda.
+- Tabla 18. Evolución del producto por incremento (adenda S9, sección 4; S11, Tabla 5a). Las pruebas son unitarias, de integración y de arquitectura; los E2E se cuentan...
+- Tabla 19. Metas, preguntas y métricas GQM (S9, Tablas 8 y 12).
+- Tabla 20. Valores GQM por incremento (adenda S9, sección 2). «n/r»: no recalculada.
+- Tabla 21. Puntaje de M3.1 por brecha e incremento (1 = mecanismo completo, operativo y probado; 0,5 = parcial; 0 = no; adenda S9, sección 3).
+- Tabla 22. Trazabilidad de cada métrica GQM con su evidencia (valores de v4.0-Inc4).
+- Tabla 23. Requisitos de cada incremento y ficha del apartado 3.6.3 que los evidencia.
+- Tabla 24. Pruebas automáticas del repositorio en v4.0-Inc4, re-ejecutadas el 30/10/2026 (adenda S9, sección 4; S10, Tabla 8).
 - Tabla 25. Resumen de las fichas por incremento (S10, Tabla 7).
-- Tabla 26. Índice FURPS+ por factor (S10, Tabla 5).
-- Tabla 27. Paleta real de la interfaz (`pmv_fastapi/app/web/estilos.css`), significado en salud infantil y contraste medido (S10, Tabla 9).
-- Tabla 28. Criterios WCAG evaluados con axe-core 4.14.0, Playwright y cálculo propio (S10, Tabla 11).
-- Tabla 29. Confiabilidad y rendimiento medidos (S10, Tablas 14 y 15; adenda S9, nota 4).
-- Tabla 30. Estado por categoría OWASP Top 10:2025 en `v4.0-Inc4` (S10, Tabla 21).
-- Tabla 31. Análisis estático y de dependencias (S10, Tablas 22 y 23).
-- Tabla 32. Hallazgos de seguridad H-1 a H-12 con su acción propuesta (S10, Tabla 24). Ninguna acción está aplicada en el código; las acciones 12 a 18 del plan de mejora CMMI...
-- Tabla 33. Nivel de capacidad por área de práctica al 30/10/2026 (S11, Tabla 6).
-- Tabla 34. Hallazgos de la evaluación con su causa raíz de proceso y estado al 30/10/2026 (S11, Tabla 10).
-- Tabla 35. Cinco porqués de H2 y H6 (S11, Tabla 11).
-- Tabla 36. Plan de mejora continua: acciones con mayor efecto esperado y estado al 30/10/2026 (S11, Tabla 12; 19 acciones en total).
-- Tabla 37. Etiquetas de versión del repositorio (S11, Anexo C y Figura 50).
-- Tabla 38. Guion técnico minuto a minuto, por incremento.
-- Tabla 39. Cotejo de referencias: referencia y secciones donde se cita.
-- Tabla 40. Autoevaluación frente a los cuatro criterios de la rúbrica.
-- Tabla 41. Resumen de evaluación en el formato de la plantilla (los puntajes los asigna el docente).
+- Tabla 26. Equivalencia entre la estructura de la plantilla y la del proyecto, con archivos y líneas de código por capa (S10, Tabla 17; análisis AST; el conteo incluye...
+- Tabla 27. Matriz de dependencias entre capas (conteo de importaciones; S10, Tabla 18). Ninguna importación prohibida.
+- Tabla 28. Índice FURPS+ por factor (S10, Tabla 5).
+- Tabla 29. Paleta real de la interfaz (pmv_fastapi/app/web/estilos.css), significado en salud infantil y contraste medido (S10, Tabla 9).
+- Tabla 30. Criterios WCAG evaluados con axe-core 4.14.0, Playwright y cálculo propio (S10, Tabla 11).
+- Tabla 31. Confiabilidad y rendimiento medidos (S10, Tablas 14 y 15; adenda S9, nota 4).
+- Tabla 32. Estado por categoría OWASP Top 10:2025 en v4.0-Inc4 (S10, Tabla 21).
+- Tabla 33. Análisis estático y de dependencias (S10, Tablas 22 y 23).
+- Tabla 34. Hallazgos de seguridad H-1 a H-12 con su acción propuesta (S10, Tabla 24). Ninguna acción está aplicada en el código; las acciones 12 a 18 del plan de mejora...
+- Tabla 35. Nivel de capacidad por área de práctica al 30/10/2026 (S11, Tabla 6).
+- Tabla 36. Artefactos del proceso que sostienen el nivel de cada área de práctica.
+- Tabla 37. Hallazgos de la evaluación con su causa raíz de proceso y estado al 30/10/2026 (S11, Tabla 10).
+- Tabla 38. Cinco porqués de H2 y H6 (S11, Tabla 11).
+- Tabla 39. Plan de mejora continua: acciones con mayor efecto esperado y estado al 30/10/2026 (S11, Tabla 12; 19 acciones en total).
+- Tabla 40. Etiquetas de versión del repositorio (S11, Anexo C y Figura 50).
+- Tabla 41. Guion técnico minuto a minuto, por incremento.
+- Tabla 42. Cotejo de referencias: número, fuente y secciones donde se cita.
+- Tabla 43. Autoevaluación frente a los cuatro criterios de la rúbrica.
+- Tabla 44. Resumen de evaluación en el formato de la plantilla (los puntajes los asigna el docente).
 
 ## ÍNDICE DE FIGURAS
 
 - Figura 1. Cascada de seguimiento del AS-IS (dataset DIRESA Junín, corte 30/06/2024), sobre todos los diagnosticados y con seguimiento posible.
 - Figura 2. Proceso AS-IS por carriles de actor con las notas de problema de cada actividad (S1).
 - Figura 3. Proceso TO-BE con el carril «Sistema» y las mejoras M1 a M6 (S1). Las decisiones clínicas siguen siendo humanas.
-- Figura 4. PR #8 (incrementos 3 y 4) en estado «Merged» con 6 verificaciones aprobadas; la línea de tiempo no muestra ninguna revisión «Approved» (captura de GitHub...
+- Figura 4. PR #8 (incrementos 3 y 4) en estado «Merged» con 6 verificaciones aprobadas; la línea de tiempo no muestra ninguna revisión «Approved» (captura de GitHub, 30...
 - Figura 5. WBS: Proyecto, entregables E1 a E3, incrementos INC-1 a INC-6, épicas, historias y tareas del Incremento 1 (S3-4).
 - Figura 6. Cronograma planificado de ocho sprints con incrementos e hitos H0 a H7 (S3-4).
 - Figura 7. Hitos H2 a H4, plan frente a real (elaboración propia a partir de S3-4 y de los commits).
-- Figura 8. Carpeta `pmv_fastapi/app/` en GitHub con la etiqueta `v4.0-Inc4` seleccionada: `adapters`, `application`, `domain`, `ports` y `web`, y `main.py` (captura del...
-- Figura 9. Árbol real de `pmv_fastapi/app/` generado recorriendo el sistema de archivos.
-- Figura 10. Importaciones de una entidad del dominio: solo biblioteca estándar y módulos propios (GitHub, `v4.0-Inc4`).
-- Figura 11. Ejemplo de puerto de salida (`Notificador`), implementado por cuatro adaptadores (simulado, WhatsApp Cloud, SMS y respaldo).
-- Figura 12. `main.py` como única raíz de composición (GitHub, `v4.0-Inc4`).
-- Figura 13. Matriz de importaciones por capa; no hay celdas de violación.
-- Figura 14. Las 25 pruebas de arquitectura (`tests/arquitectura`) validan la regla de dependencia en cada ejecución del CI: todas aprobadas.
-- Figura 15. Evolución de M3.1 frente a la meta acumulada propuesta en S9 (izquierda; no aprobada) y de las pruebas automáticas y la cobertura por incremento (derecha)....
-- Figura 16. pytest con cobertura: 660 pruebas aprobadas y 99,79 % de cobertura (S10, 30/10/2026).
-- Figura 17. 28 pruebas E2E con Playwright aprobadas.
-- Figura 18. Ejecución #14 del CI en la rama de los incrementos 3 y 4: `calidad-y-pruebas` (2 min 27 s) e `imagen` (22 s) en verde; `produccion` se omite fuera de `main`.
-- Figura 19. RF-01, captura 1. Formulario de registro con los datos sintéticos cargados antes de «Guardar registro»; la vista previa ya muestra Hb ajustada 9,1 g/dL y «Anemia...
-- Figura 20. RF-01, captura 2. Confirmación y expediente creado tras «Guardar registro» (130 ms); el DNI repetido respondió HTTP 409.
-- Figura 21. RF-02, captura 1. Expediente del DNI 71000001 recién consultado, con su historial de 2 evaluaciones y el formulario de nuevo control.
-- Figura 22. RF-02, captura 2. Nuevo control agregado: el historial pasa de 2 a 3 evaluaciones (la edición de datos se registró en `RF02_inc1_2_edicion_escritorio.png`).
-- Figura 23. RF-03, captura 1. Formulario con Hb 11,6 g/dL a 3 720 m: la vista previa muestra Hb ajustada 9,1 g/dL y «Anemia moderada».
-- Figura 24. RF-03, captura 2. Datos inválidos (DNI «123», Hb 25 g/dL) rechazados con mensajes por campo (HTTP 422); no se guardó nada.
-- Figura 25. RF-04, captura 1. Pestaña «Seguimiento» con el listado completo de niños, sin filtro.
-- Figura 26. RF-04, captura 2. Filtro por clasificación «Moderada» aplicado: 6 niños de 27.
-- Figura 27. RF-05, captura 1. Pestaña «Reporte» con el periodo cargado antes de pulsar «Generar» (captura de S9, `v1.0-PMV`; el pie de la imagen indica versión y fecha).
-- Figura 28. RF-05, captura 2. Reporte generado: 15 niños registrados, 15 evaluaciones, 13 evaluados y 77 % con anemia. En `v4.0-Inc4` el mismo flujo dio 28 registrados y un CSV...
-- Figura 29. RF-06, captura 1. Búsqueda del DNI 71000022 en «Seguimiento»: 1 niño con 2 controles vencidos (captura de S9, hito `v1.5.0-inc2-avance`).
-- Figura 30. RF-06, captura 2. Expediente con la agenda de 13 controles (2 cumplidos, 9 pendientes, 2 vencidos) en `v4.0-Inc4`.
-- Figura 31. RF-07, captura 1. Pestaña «Alertas» con los 9 controles vencidos priorizados (7 ALTA, 1 MEDIA, 1 BAJA).
-- Figura 32. RF-07, captura 2. Lista filtrada por prioridad MEDIA.
-- Figura 33. RF-08, captura 1. Pestaña «Agenda» con el rango de la semana cargado.
-- Figura 34. RF-08, captura 2. Agenda de 30 días: 17 controles de 14 niños; el rango mayor de 31 días se rechaza (`RF08_inc2_3_rango_invalido_escritorio.png`).
-- Figura 35. RF-09, captura 1. Modal «No asistió» con el motivo cargado antes de confirmar.
-- Figura 36. RF-09, captura 2. Inasistencia registrada y prioridad actualizada; los vencidos sin registro pasan de 9 a 8.
-- Figura 37. HIST-3.1, captura 1. Aplicación en línea (indicador «Al día») antes de cortar la conexión; los datos se digitan ya sin red.
-- Figura 38. HIST-3.1, captura 2. Sin conexión: 2 operaciones pendientes en el dispositivo; el servidor responde 404 para ese DNI.
-- Figura 39. HIST-3.1b, captura 1. Estado previo: aplicación en línea con el servidor activo, antes de detenerlo.
-- Figura 40. HIST-3.1b, captura 2. Recarga con el servidor detenido: la aplicación abre desde el caché con el aviso de «sin conexión» y 30 de 30 filas servidas desde el caché.
-- Figura 41. HIST-3.2, captura 1. Pestaña «Sincronización» con las operaciones pendientes, antes de volver la red.
-- Figura 42. HIST-3.2, captura 2. Red restablecida: operaciones aplicadas, indicador «Al día»; el reenvío se marca DUPLICADA y no duplica datos.
-- Figura 43. HIST-3.3, captura 1. Conflicto pendiente en «Sincronización»: el servidor tiene un dato distinto al del dispositivo.
-- Figura 44. HIST-3.3, captura 2. Conflicto resuelto conservando el dato del servidor; aparece «sin conflictos».
-- Figura 45. HIST-3.4, captura 1. Panel con «1 pendiente(s)» y desde cuándo, con el dispositivo sin conexión.
-- Figura 46. HIST-3.4, captura 2. Tras reconectar y sincronizar, el panel queda «al día» sin pendientes.
-- Figura 47. VIS-3.5, captura 1. Pestaña «Visitas»: 18 filas ordenadas por puntaje de 49,5 a 25,0, con desglose por componente.
-- Figura 48. VIS-3.5, captura 2. Modal de registro de la visita con el resultado, el suplemento y las observaciones cargados; tras confirmar, el niño sale del primer lugar de la...
-- Figura 49. HIST-4.1, captura 1. Pestaña «Recordatorios» antes de generar.
-- Figura 50. HIST-4.1, captura 2. 24 recordatorios rotulados SIMULADO («no se envió»); repetir la generación no duplica.
-- Figura 51. HIST-4.2, captura 1. Modal «Registrar respuesta» del tutor (1 confirmo, 2 no puedo, 3 reprogramar) con la opción cargada.
-- Figura 52. HIST-4.2, captura 2. Respuesta «No puede asistir» registrada por el personal. El webhook sin firma o con firma inválida respondió 403 y con firma válida 200, pero...
-- Figura 53. HIST-4.3, captura 1. Modal «Registrar barrera» con el tipo y el detalle cargados.
-- Figura 54. HIST-4.3, captura 2. Barrera sincronizada y visible en el expediente (antes de reconectar figuraba como pendiente...
-- Figura 55. HIST-4.4, captura 1. Pestaña «Alertas» con las alertas de barreras críticas.
-- Figura 56. HIST-4.4, captura 2. Visita priorizada con el componente BARRERA_CRITICA (40,0 puntos) y alerta ALTA.
-- Figura 57. AUTH, captura 1. Pantalla de acceso con el correo y la contraseña de prueba cargados antes de «Iniciar sesión» (axe: 0 violaciones).
-- Figura 58. AUTH, captura 2. Acceso en móvil (390x844). No hay captura de la aplicación tras el ingreso: ese resultado se verificó por aserciones (aplicación visible, correo en...
-- Figura 59. Salida de `furps_calculo.py` con el índice primario y el conservador (pie con comando, fecha y commit).
-- Figura 60. Paleta real con muestras, hexadecimales, contraste y significado.
-- Figura 61. Semáforo de severidad bajo simulación de deuteranopía, protanopía y escala de grises: los tonos moderada y severa se acercan, por eso el texto de cada estado...
-- Figura 62. Resumen de axe-core por pantalla y vista (14 pantallas, 4 modales y el inicio de sesión).
-- Figura 63. Foco visible al recorrer las pestañas con Tab.
-- Figura 64. Locust, 20 usuarios, 60 s, incrementos 3 y 4 (sincronización, visitas y recordatorios): p95 de 98 ms.
-- Figura 65. Locust, 100 usuarios, 60 s, incrementos 1 y 2: p95 de 2 000 ms, por encima del umbral de 800 ms.
-- Figura 66. Caos con PostgreSQL 16 temporal: 25 de 26 peticiones respondieron 500 durante la caída y la aplicación se recuperó a los 0,2 s.
-- Figura 67. semgrep: 554 reglas sobre 97 archivos, 151 hallazgos clasificados manualmente.
-- Figura 68. Pruebas dinámicas T01 a T32 contra el servidor local (sesión, CSRF, cookies, cabeceras, inyección, webhook y errores).
-- Figura 69. Comprobaciones estáticas E01 a E30 con su estado (CUMPLE, HALLAZGO, NO MEDIDO).
-- Figura 70. XSS dinámico: cargas inyectadas en cuatro campos y revisadas en seis pantallas (0 ejecuciones).
-- Figura 71. Manejador del webhook que responde 503 sin secreto y 403 con firma ausente o inválida, corregido en la revisión independiente (GitHub, `v4.0-Inc4`).
-- Figura 72. Sesión en cookies `HttpOnly` con protección CSRF (GitHub, `v4.0-Inc4`).
-- Figura 73. Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con `=`, `+`, `-` o `@` (GitHub, `v4.0-Inc4`).
-- Figura 74. Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez.
-- Figura 75. Ejecuciones del flujo «CI y producción» en `main`: la #16 (`c870a7e`, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026).
-- Figura 76. Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `coordinacion/TABLERO.md` (GitHub, 30/10/2026).
-- Figura 77. `settings/branches` devuelve 404 para la cuenta que tomó la captura: la protección de `main` no es verificable (GitHub, 30/10/2026).
-- Figura 78. Artefactos de proceso en el repositorio: la plantilla de PR, el *hook* de pre-commit, la convención de commits, `CODEOWNERS` y Dependabot no existen; SonarCloud sin...
-- Figura 79. Pruebas de regresión de la revisión independiente: 6 aprobadas (CP-357, CP-264b, CP-382b, CP-391b, CP-396 y CP-405).
-- Figura 80. Etiquetas del repositorio en GitHub: `v4.0-Inc4`, `v3.0-Inc3`, `v2.0-Inc2`, `v1.5.0-inc2-avance` y `v1.0-PMV`.
-- Figura 81. Flujo de CI/CD (`.github/workflows/ci.yml`) en `v4.0-Inc4`: tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`) sobre `ubuntu-24.04` y Python 3.11.
+- Figura 8. Evolución de M3.1 frente a la meta acumulada propuesta en S9 (izquierda; no aprobada) y de las pruebas automáticas y la cobertura por incremento (derecha). E...
+- Figura 9. Código del modelo de dominio (app/domain/model/entidades.py): las entidades del niño y de la evaluación solo importan la biblioteca estándar y otros módulos...
+- Figura 10. Ejecución de m11_contaminacion.py del 06/11/2026 sobre el código actual: 0 importaciones externas en las 86 clases del dominio. El rótulo «v2.0» es la clave...
+- Figura 11. Matriz de importaciones entre capas del análisis AST: ninguna celda roja. El dominio no importa ninguna otra capa y cada adaptador solo depende de su puerto.
+- Figura 12. Ejecución de m12_conformidad.py del 06/11/2026: los 5 componentes son CONFORMES (M1.2 = 100 %), con la observación de la lectura ultra estricta.
+- Figura 13. Pruebas de arquitectura (tests/arquitectura/test_dependencias.py) que hacen cumplir la regla en cada ejecución del CI: si el dominio importara un framework o...
+- Figura 14. Ejecución de m13_acoplamiento.py del 06/11/2026: el núcleo de dominio tiene Ce = 0 e I = 0,00, y hay 0 violaciones de la regla de dependencia.
+- Figura 15. Las 28 pruebas E2E en el navegador (Playwright), ejecutadas el 06/11/2026: 28 aprobadas. Automatizan los escenarios de las fichas de los cuatro incrementos (...
+- Figura 16. Defectos por requisito e incremento (DEF-01 a DEF-09 de los incrementos 1 y 2), según su tipo y momento de detección. Fuente: registro de defectos pmv_fastap...
+- Figura 17. Pruebas de regresión de los defectos de Inc. 3 e Inc. 4 hallados en la revisión independiente, todas aprobadas: CP-357 (webhook falla cerrado), CP-264b (sinc...
+- Figura 18. Producción: formulario «Registrar niño y evaluación inicial» con la validación clínica en vista previa antes de guardar (Hb ajustada por altitud y clasificac...
+- Figura 19. Producción: «Niños en seguimiento» con los registros del dataset DIRESA anonimizado. Es la misma información, sin volver a digitarla.
+- Figura 20. Producción: agenda del personal con los controles programados por la norma para cada niño.
+- Figura 21. Recordatorios generados para los controles próximos, con estado SIMULADO: no sale ningún mensaje real hasta que Meta apruebe la plantilla de WhatsApp.
+- Figura 22. Alertas: la tabla «Barreras críticas» muestra a los niños cuyas barreras de acceso ponen en riesgo su tratamiento, según REGLAS_BARRERAS_V1.
+- Figura 23. Producción: «Visitas domiciliarias priorizadas» con puntaje explicable. Los niños con anemia severa y el control más vencido aparecen primero. A la derecha,...
+- Figura 24. Producción, en un celular: sin conexión a internet, el registro de un niño queda «Pendiente de sincronizar» y guardado en el dispositivo.
+- Figura 25. Producción, en el mismo celular: al volver la conexión, «De nuevo en línea», el indicador pasa a «Al día» y aparece «Sincronización: 1 aplicado(s)».
+- Figura 26. Ejecución de m31_brechas_v4.py del 06/11/2026 y el detalle de su archivo de salida.
+- Figura 27. V1: producción, «Reporte del periodo». Cuenta los niños registrados y las evaluaciones del periodo (762 niños y 2 630 evaluaciones) a partir del registro úni...
+- Figura 28. V2: la agenda normativa se genera sola para cada niño activo. Expediente con sus controles cumplidos, pendientes y vencidos.
+- Figura 29. V3: producción, «Alertas de controles vencidos» sobre el dataset DIRESA anonimizado, con prioridad, días de atraso y comunidad.
+- Figura 30. Resultado de m32_valor.py, corrida de la adenda S9 del 30/10/2026 sobre v4.0-Inc4. Muestra V1 (1 escritura; 4 vistas que reflejan el registro), V2 (140/140)...
+- Figura 31. Carga con Locust sobre las pantallas de los incrementos 3 y 4 (20 usuarios). La curva p95 queda por debajo del umbral de 800 ms con 20 usuarios. Con 50 usuar...
+- Figura 32. Producción: GET /api/salud responde «ok» y /openapi.json declara la versión 4.0.0-inc4.
+- Figura 33. Corrida de carga de la adenda v4 (50 usuarios, 60 s): p95 por endpoint y agregado de 1 100 ms.
+- Figura 34. Sonda de disponibilidad GET /api/salud cada segundo durante la carga: 64 de 64 respuestas, 100 %.
+- Figura 35. pytest con cobertura: 660 pruebas aprobadas y 99,79 % de cobertura (S10, 30/10/2026).
+- Figura 36. 28 pruebas E2E con Playwright aprobadas.
+- Figura 37. Ejecución #14 del CI en la rama de los incrementos 3 y 4: calidad-y-pruebas (2 min 27 s) e imagen (22 s) en verde; produccion se omite fuera de main.
+- Figura 38. RF-01, captura 1. Formulario de registro con los datos sintéticos cargados antes de «Guardar registro»; la vista previa ya muestra Hb ajustada 9,1 g/dL y «An...
+- Figura 39. RF-01, captura 2. Confirmación y expediente creado tras «Guardar registro» (130 ms); el DNI repetido respondió HTTP 409.
+- Figura 40. RF-02, captura 1. Expediente del DNI 71000001 recién consultado, con su historial de 2 evaluaciones y el formulario de nuevo control.
+- Figura 41. RF-02, captura 2. Nuevo control agregado: el historial pasa de 2 a 3 evaluaciones (la edición de datos se registró en RF02_inc1_2_edicion_escritorio.png).
+- Figura 42. RF-03, captura 1. Formulario con Hb 11,6 g/dL a 3 720 m: la vista previa muestra Hb ajustada 9,1 g/dL y «Anemia moderada».
+- Figura 43. RF-03, captura 2. Datos inválidos (DNI «123», Hb 25 g/dL) rechazados con mensajes por campo (HTTP 422); no se guardó nada.
+- Figura 44. RF-04, captura 1. Pestaña «Seguimiento» con el listado completo de niños, sin filtro.
+- Figura 45. RF-04, captura 2. Filtro por clasificación «Moderada» aplicado: 6 niños de 27.
+- Figura 46. RF-05, captura 1. Pestaña «Reporte» con el periodo cargado antes de pulsar «Generar» (captura de S9, v1.0-PMV; el pie de la imagen indica versión y fecha).
+- Figura 47. RF-05, captura 2. Reporte generado: 15 niños registrados, 15 evaluaciones, 13 evaluados y 77 % con anemia. En v4.0-Inc4 el mismo flujo dio 28 registrados y u...
+- Figura 48. RF-06, captura 1. Búsqueda del DNI 71000022 en «Seguimiento»: 1 niño con 2 controles vencidos (captura de S9, hito v1.5.0-inc2-avance).
+- Figura 49. RF-06, captura 2. Expediente con la agenda de 13 controles (2 cumplidos, 9 pendientes, 2 vencidos) en v4.0-Inc4.
+- Figura 50. RF-07, captura 1. Pestaña «Alertas» con los 9 controles vencidos priorizados (7 ALTA, 1 MEDIA, 1 BAJA).
+- Figura 51. RF-07, captura 2. Lista filtrada por prioridad MEDIA.
+- Figura 52. RF-08, captura 1. Pestaña «Agenda» con el rango de la semana cargado.
+- Figura 53. RF-08, captura 2. Agenda de 30 días: 17 controles de 14 niños; el rango mayor de 31 días se rechaza (RF08_inc2_3_rango_invalido_escritorio.png).
+- Figura 54. RF-09, captura 1. Modal «No asistió» con el motivo cargado antes de confirmar.
+- Figura 55. RF-09, captura 2. Inasistencia registrada y prioridad actualizada; los vencidos sin registro pasan de 9 a 8.
+- Figura 56. HIST-3.1, captura 1. Aplicación en línea (indicador «Al día») antes de cortar la conexión; los datos se digitan ya sin red.
+- Figura 57. HIST-3.1, captura 2. Sin conexión: 2 operaciones pendientes en el dispositivo; el servidor responde 404 para ese DNI.
+- Figura 58. HIST-3.1b, captura 1. Estado previo: aplicación en línea con el servidor activo, antes de detenerlo.
+- Figura 59. HIST-3.1b, captura 2. Recarga con el servidor detenido: la aplicación abre desde el caché con el aviso de «sin conexión» y 30 de 30 filas servidas desde el c...
+- Figura 60. HIST-3.2, captura 1. Pestaña «Sincronización» con las operaciones pendientes, antes de volver la red.
+- Figura 61. HIST-3.2, captura 2. Red restablecida: operaciones aplicadas, indicador «Al día»; el reenvío se marca DUPLICADA y no duplica datos.
+- Figura 62. HIST-3.3, captura 1. Conflicto pendiente en «Sincronización»: el servidor tiene un dato distinto al del dispositivo.
+- Figura 63. HIST-3.3, captura 2. Conflicto resuelto conservando el dato del servidor; aparece «sin conflictos».
+- Figura 64. HIST-3.4, captura 1. Panel con «1 pendiente(s)» y desde cuándo, con el dispositivo sin conexión.
+- Figura 65. HIST-3.4, captura 2. Tras reconectar y sincronizar, el panel queda «al día» sin pendientes.
+- Figura 66. VIS-3.5, captura 1. Pestaña «Visitas»: 18 filas ordenadas por puntaje de 49,5 a 25,0, con desglose por componente.
+- Figura 67. VIS-3.5, captura 2. Modal de registro de la visita con el resultado, el suplemento y las observaciones cargados; tras confirmar, el niño sale del primer luga...
+- Figura 68. HIST-4.1, captura 1. Pestaña «Recordatorios» antes de generar.
+- Figura 69. HIST-4.1, captura 2. 24 recordatorios rotulados SIMULADO («no se envió»); repetir la generación no duplica.
+- Figura 70. HIST-4.2, captura 1. Modal «Registrar respuesta» del tutor (1 confirmo, 2 no puedo, 3 reprogramar) con la opción cargada.
+- Figura 71. HIST-4.2, captura 2. Respuesta «No puede asistir» registrada por el personal. El webhook sin firma o con firma inválida respondió 403 y con firma válida 200,...
+- Figura 72. HIST-4.3, captura 1. Modal «Registrar barrera» con el tipo y el detalle cargados.
+- Figura 73. HIST-4.3, captura 2. Barrera sincronizada y visible en el expediente (antes de reconectar figuraba como pendiente: HIST43_inc4_2_barrera_pendiente_sin_conexi...
+- Figura 74. HIST-4.4, captura 1. Pestaña «Alertas» con las alertas de barreras críticas.
+- Figura 75. HIST-4.4, captura 2. Visita priorizada con el componente BARRERA_CRITICA (40,0 puntos) y alerta ALTA.
+- Figura 76. AUTH, captura 1. Pantalla de acceso con el correo y la contraseña de prueba cargados antes de «Iniciar sesión» (axe: 0 violaciones).
+- Figura 77. AUTH, captura 2. Acceso en móvil (390x844). No hay captura de la aplicación tras el ingreso: ese resultado se verificó por aserciones (aplicación visible, co...
+- Figura 78. Carpeta pmv_fastapi/app/ en GitHub con la etiqueta v4.0-Inc4 seleccionada: adapters, application, domain, ports y web, y main.py (captura del 30/10/2026).
+- Figura 79. Árbol real de pmv_fastapi/app/ generado recorriendo el sistema de archivos.
+- Figura 80. Ejemplo de puerto de salida (Notificador), implementado por cuatro adaptadores (simulado, WhatsApp Cloud, SMS y respaldo).
+- Figura 81. main.py como única raíz de composición (GitHub, v4.0-Inc4).
+- Figura 82. Las 25 pruebas de arquitectura (tests/arquitectura) validan la regla de dependencia en cada ejecución del CI: todas aprobadas.
+- Figura 83. Salida de furps_calculo.py con el índice primario y el conservador (pie con comando, fecha y commit).
+- Figura 84. Paleta real con muestras, hexadecimales, contraste y significado.
+- Figura 85. Semáforo de severidad bajo simulación de deuteranopía, protanopía y escala de grises: los tonos moderada y severa se acercan, por eso el texto de cada estado...
+- Figura 86. Resumen de axe-core por pantalla y vista (14 pantallas, 4 modales y el inicio de sesión).
+- Figura 87. Foco visible al recorrer las pestañas con Tab.
+- Figura 88. Locust, 20 usuarios, 60 s, incrementos 3 y 4 (sincronización, visitas y recordatorios): p95 de 98 ms.
+- Figura 89. Locust, 100 usuarios, 60 s, incrementos 1 y 2: p95 de 2 000 ms, por encima del umbral de 800 ms.
+- Figura 90. Caos con PostgreSQL 16 temporal: 25 de 26 peticiones respondieron 500 durante la caída y la aplicación se recuperó a los 0,2 s.
+- Figura 91. semgrep: 554 reglas sobre 97 archivos, 151 hallazgos clasificados manualmente.
+- Figura 92. Pruebas dinámicas T01 a T32 contra el servidor local (sesión, CSRF, cookies, cabeceras, inyección, webhook y errores).
+- Figura 93. Comprobaciones estáticas E01 a E30 con su estado (CUMPLE, HALLAZGO, NO MEDIDO).
+- Figura 94. XSS dinámico: cargas inyectadas en cuatro campos y revisadas en seis pantallas (0 ejecuciones).
+- Figura 95. Manejador del webhook que responde 503 sin secreto y 403 con firma ausente o inválida, corregido en la revisión independiente (GitHub, v4.0-Inc4).
+- Figura 96. Sesión en cookies HttpOnly con protección CSRF (GitHub, v4.0-Inc4).
+- Figura 97. Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con =, +, - o @ (GitHub, v4.0-Inc4).
+- Figura 98. Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez.
+- Figura 99. Ejecuciones del flujo «CI y producción» en main: la #16 (c870a7e, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026).
+- Figura 100. Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en coordinacion/TABLERO.md (GitHub, 30/10/2026).
+- Figura 101. settings/branches devuelve 404 para la cuenta que tomó la captura: la protección de main no es verificable (GitHub, 30/10/2026).
+- Figura 102. Artefactos de proceso en el repositorio: la plantilla de PR, el hook de pre-commit, la convención de commits, CODEOWNERS y Dependabot no existen; SonarCloud...
+- Figura 103. Estimación del backlog en puntos de historia: 21 SP del INC-1 y 133 SP en total, con complejidad e incertidumbre por elemento. Fuente: entregable S3-4, secci...
+- Figura 104. Diagrama de Gantt del Incremento 1: actividades A01 a A21 con su duración estimada, responsable y dependencias (28 días, igual a la ruta crítica).
+- Figura 105. Cronograma de los sprints 1 a 8 y de los hitos H0 a H7, del 01/09 al 21/12/2026.
+- Figura 106. Hitos del plan frente a la fecha real del commit: H2 (+5 días), H3 (+4 días) y H4 (−10 días, se adelantó la entrega para recuperar el plan original).
+- Figura 107. Índice de los 14 ADR con su fecha de creación: cada incremento agregó las decisiones que lo justifican, por ejemplo la sincronización sin conexión (ADR-012),...
+- Figura 108. Diagrama C4 de contenedores del PMV: PWA, API FastAPI y base PostgreSQL.
+- Figura 109. Modelo hexagonal del Incremento 2: dominio, puertos de entrada y salida, y adaptadores.
+- Figura 110. 660 pruebas unitarias, de integración y de arquitectura aprobadas en 33 s, con 99,79 % de cobertura de líneas y ramas. Solo dos archivos de autenticación que...
+- Figura 111. Análisis estático con Ruff: «All checks passed!» y 142 archivos con el formato correcto.
+- Figura 112. Primer análisis de SonarCloud del repositorio, del 05/11/2026: Quality Gate aprobado sobre el código nuevo y 129 hallazgos sobre el código completo.
+- Figura 113. Producción: inicio de sesión del personal en softwareanemia.onrender.com.
+- Figura 114. Panel de Render: el servicio SoftwareAnemia está en estado «Live» con el commit 9b71b6e de main. El historial muestra los despliegues disparados por el CI («...
+- Figura 115. Etiquetas del repositorio: v1.0-PMV, v1.5.0-inc2-avance, v2.0-Inc2, v3.0-Inc3 y v4.0-Inc4.
+- Figura 116. Pull requests cerradas: cada incremento y cada entregable entró a main por una PR desde su rama.
+- Figura 117. PR #8 (incrementos 3 y 4) con sus verificaciones del CI en verde antes de integrarse.
+- Figura 118. La revisión independiente encontró cinco defectos. Las pruebas de regresión de los corregidos están aprobadas (seis casos).
+- Figura 119. Flujo de CI/CD (.github/workflows/ci.yml) en v4.0-Inc4: tres trabajos (calidad-y-pruebas, imagen, produccion) sobre ubuntu-24.04 y Python 3.11.
 
 ---
 
@@ -234,7 +270,7 @@ Los datos <mark>[pendiente: código de sección / NRC]</mark> y <mark>[pendiente
 
 ### 1.1 Antecedentes del Proyecto
 
-La anemia infantil es un problema de salud pública en Junín: la ENDES 2025 estimó en 39,0 % la anemia en niñas y niños de 6 a 35 meses de la región (INEI, 2026; cifra de contexto, no atribuible al sistema). La NTS N.° 213-MINSA/DGIESP-2024 (aprobada por la RM N.° 251-2024-MINSA y modificada por la RM N.° 429-2024-MINSA; Ministerio de Salud del Perú [MINSA], 2024) exige tamizaje y controles de hemoglobina en fechas definidas, y el personal de las postas rurales debe cumplirlos con registros en papel y digitación posterior en el HIS.
+La anemia infantil es un problema de salud pública en Junín: la ENDES 2025 estimó en 39,0 % la anemia en niñas y niños de 6 a 35 meses de la región [1] (cifra de contexto, no atribuible al sistema). La NTS N.° 213-MINSA/DGIESP-2024 (aprobada por la RM N.° 251-2024-MINSA y modificada por la RM N.° 429-2024-MINSA) [2] exige tamizaje y controles de hemoglobina en fechas definidas, y el personal de las postas rurales debe cumplirlos con registros en papel y digitación posterior en el HIS.
 
 El proyecto se desarrolló en el curso Procesos de Software (ASUC01702, 2026-20) siguiendo la secuencia de guías que se resume en la Tabla 2. El producto vigente es `pmv_fastapi/` (FastAPI, interfaz PWA en HTML/CSS/JS, SQLite en desarrollo y PostgreSQL en producción). El prototipo Flask de S5 y S6 (`anemia_junin/`: 266 pruebas, 96,69 % de cobertura) se conserva como antecedente; el PMV etiquetado `v1.0-PMV` (30/09/2026) ya es el producto FastAPI actual.
 
@@ -252,7 +288,7 @@ El proyecto se desarrolló en el curso Procesos de Software (ASUC01702, 2026-20)
 
 ### 1.2 Definición del Problema Organizacional
 
-El problema no es la falta de software sino que una oportunidad de dosaje, control o tratamiento no se convierta en seguimiento oportuno. El extracto de la DIRESA Junín (Dirección Regional de Salud Junín [DIRESA Junín], 2024; HIS; 12 486 diagnósticos del 14/01/2022 al 21/06/2024; corte 30/06/2024) cuantifica el AS-IS:
+El problema no es la falta de software sino que una oportunidad de dosaje, control o tratamiento no se convierta en seguimiento oportuno. El extracto de la DIRESA Junín [3] (HIS; 12 486 diagnósticos del 14/01/2022 al 21/06/2024; corte 30/06/2024) cuantifica el AS-IS:
 
 **Tabla 3.** Línea base AS-IS del seguimiento de anemia en Junín (dataset DIRESA, `entregables/semana-09/metricas/asis_dataset_diresa.md`).
 
@@ -268,7 +304,7 @@ El problema no es la falta de software sino que una oportunidad de dosaje, contr
 
 ![Cascada de seguimiento del AS-IS: del diagnóstico a la recuperación documentada.](../semana-09/metricas/graficos/g7_asis_cascada_seguimiento.png)
 
-**Figura 1.** Cascada de seguimiento del AS-IS (dataset DIRESA Junín, corte 30/06/2024), sobre todos los diagnosticados y con seguimiento posible. Archivo: `../semana-09/metricas/graficos/g7_asis_cascada_seguimiento.png`.
+**Figura 1.** Cascada de seguimiento del AS-IS (dataset DIRESA Junín, corte 30/06/2024), sobre todos los diagnosticados y con seguimiento posible.
 
 El triple registro (historia clínica, tarjeta de control y HIS), la agenda calculada a mano, las barreras familiares invisibles hasta el abandono, la visita domiciliaria en papel, la identificación tardía del riesgo y la conectividad intermitente son las seis brechas B1 a B6 que guían el resto del informe (sección 3.1).
 
@@ -293,27 +329,27 @@ El triple registro (historia clínica, tarjeta de control y HIS), la agenda calc
 
 ### 2.1 Enfoque de Procesos Organizacionales (AS-IS y TO-BE)
 
-El enfoque de procesos exige analizar primero el proceso de la organización (AS-IS), identificar sus brechas y diseñar el TO-BE; solo entonces se define cómo el software soporta cada actividad. Justificar una solución solo con «usaremos IA o microservicios» invierte esa regla (Universidad Continental, 2026a). La relación que guía el diseño es *actividad mejorada → mejor resultado → valor organizacional*, expresada como cadena Entrada → Actividad → Resultado → Decisión → Acción → Valor y medida con cuatro tipos de indicador: de **proceso** (p. ej. tiempos), de **producto** (p. ej. disponibilidad, precisión), de **resultado** y de **valor organizacional** (reducción de pérdidas o riesgos).
+El enfoque de procesos exige analizar primero el proceso de la organización (AS-IS), identificar sus brechas y diseñar el TO-BE; solo entonces se define cómo el software soporta cada actividad. Justificar una solución solo con «usaremos IA o microservicios» invierte esa regla [4]. La relación que guía el diseño es *actividad mejorada → mejor resultado → valor organizacional*, expresada como cadena Entrada → Actividad → Resultado → Decisión → Acción → Valor y medida con cuatro tipos de indicador: de **proceso** (p. ej. tiempos), de **producto** (p. ej. disponibilidad, precisión), de **resultado** y de **valor organizacional** (reducción de pérdidas o riesgos).
 
-Sommerville (2016) define la mejora de procesos como comprender los procesos existentes y cambiarlos para elevar la calidad del producto o reducir costos y tiempos de desarrollo. Ese enfoque ordena la segunda mitad del informe (GQM, FURPS+, CMMI).
+Sommerville [5] define la mejora de procesos como comprender los procesos existentes y cambiarlos para elevar la calidad del producto o reducir costos y tiempos de desarrollo. Ese enfoque ordena la segunda mitad del informe (GQM, FURPS+, CMMI).
 
 ### 2.2 Modelos de Ciclo de Vida y Sastrería de Procesos (Tailoring)
 
-El SWEBOK (IEEE Computer Society, 2014) organiza el área de procesos en definición, ciclos de vida, evaluación y mejora, medición y herramientas, e incluye la **adaptación del proceso** (*process adaptation*) como práctica explícita: el modelo se ajusta a los factores reales del proyecto en lugar de adoptarse por moda o por la herramienta disponible (Universidad Continental, 2026a). El modelo incremental entrega en cada incremento una funcionalidad operativa con las actividades de comunicación, planeación, modelado, construcción y despliegue (Pressman y Maxim, 2021). Los modelos clásicos (cascada, espiral, desarrollo rápido y ágil) son alternativas entre las que se elige según el proyecto (O'Regan, 2017). Sommerville (2016) distingue dos enfoques de mejora: el de **madurez** (buenas prácticas técnicas y de gestión, orientado a calidad y previsibilidad) y el **ágil** (entrega rápida de funcionalidad y respuesta al cambio). El proyecto combina ambos: iterativo-incremental como ciclo de vida, Scrum como marco de gestión y DevOps como prácticas de ingeniería (Schwaber y Sutherland, 2020; Kim et al., 2016).
+El SWEBOK [6] organiza el área de procesos en definición, ciclos de vida, evaluación y mejora, medición y herramientas, e incluye la **adaptación del proceso** (*process adaptation*) como práctica explícita: el modelo se ajusta a los factores reales del proyecto en lugar de adoptarse por moda o por la herramienta disponible [4]. El modelo incremental entrega en cada incremento una funcionalidad operativa con las actividades de comunicación, planeación, modelado, construcción y despliegue [7]. Los modelos clásicos (cascada, espiral, desarrollo rápido y ágil) son alternativas entre las que se elige según el proyecto [8]. Sommerville [5] distingue dos enfoques de mejora: el de **madurez** (buenas prácticas técnicas y de gestión, orientado a calidad y previsibilidad) y el **ágil** (entrega rápida de funcionalidad y respuesta al cambio). El proyecto combina ambos: iterativo-incremental como ciclo de vida, Scrum como marco de gestión y DevOps como prácticas de ingeniería [9], [10].
 
 ### 2.3 Categorización Normativa de Procesos de Software
 
-La norma ISO/IEC/IEEE 12207 (ISO/IEC/IEEE, 2017) agrupa los procesos del ciclo de vida del software en procesos de contrato, organizacionales, de proyecto y técnicos, además de procesos de implementación y soporte. El curso los simplifica en tres categorías que este informe adopta con fines pedagógicos, sin afirmar conformidad con la norma:
+La norma ISO/IEC/IEEE 12207 [11] agrupa los procesos del ciclo de vida del software en procesos de contrato, organizacionales, de proyecto y técnicos, además de procesos de implementación y soporte. El curso los simplifica en tres categorías que este informe adopta con fines pedagógicos, sin afirmar conformidad con la norma:
 
 - **Principales:** requisitos, análisis y diseño, implementación, integración y pruebas, despliegue.
 - **De soporte:** gestión de configuración, aseguramiento de calidad, verificación y validación.
 - **De gestión y organizacionales:** planificación y seguimiento, gestión de riesgos, mejora continua.
 
-Para repartir responsabilidades se usa la matriz RAE (quién ejecuta, quién revisa, quién aprueba) y los tres roles del curso: Ingeniero de Proceso, de Desarrollo y Prototipado, y de Calidad y Mejora (Universidad Continental, 2026b).
+Para repartir responsabilidades se usa la matriz RAE (quién ejecuta, quién revisa, quién aprueba) y los tres roles del curso: Ingeniero de Proceso, de Desarrollo y Prototipado, y de Calidad y Mejora [12].
 
 ### 2.4 Arquitectura de Software Hexagonal (Puertos y Adaptadores)
 
-Cockburn (2005) propone aislar la lógica de aplicación de sus actores externos mediante **puertos** (interfaces que expresan lo que la aplicación ofrece o necesita) y **adaptadores** (implementaciones que traducen entre un puerto y una tecnología concreta). Las dependencias apuntan siempre hacia el dominio, que puede probarse sin interfaz de usuario ni base de datos. La Tabla 19 (sección 3.6) traduce esas piezas a las carpetas del repositorio.
+Cockburn [13] propone aislar la lógica de aplicación de sus actores externos mediante **puertos** (interfaces que expresan lo que la aplicación ofrece o necesita) y **adaptadores** (implementaciones que traducen entre un puerto y una tecnología concreta). Las dependencias apuntan siempre hacia el dominio, que puede probarse sin interfaz de usuario ni base de datos. La Tabla 26 (sección 3.6) traduce esas piezas a las carpetas del repositorio.
 
 ### 2.5 Modelos de Evaluación de Calidad y Procesos (GQM, FURPS+, OWASP 2025 y CMMI)
 
@@ -321,11 +357,11 @@ Cockburn (2005) propone aislar la lógica de aplicación de sus actores externos
 
 | Modelo | Definición (fuente) | Cómo se usa aquí |
 | --- | --- | --- |
-| **GQM** | Cada **meta** se refina en **preguntas** y cada pregunta en **métricas**; las metas se redactan con objeto, propósito, enfoque de calidad, punto de vista y contexto (Basili et al., 1994) | 3 metas (arquitectura, pruebas, valor), 6 métricas con script en `herramientas/gqm/`, recalculadas para Inc. 1 a Inc. 4 |
-| **FURPS+** | Funcionalidad, Usabilidad, Confiabilidad (*Reliability*), Rendimiento (*Performance*) y Soportabilidad, más restricciones de implementación, interfaz, operaciones, empaquetamiento y legales (Grady y Caswell, 1987; Larman, 2003) | Índice ponderado F 30 %, U 15 %, R 15 %, P 15 %, S 10 %, + 15 %; variables medidas con scripts |
-| **WCAG 2.1 AA** | Contraste mínimo de 4,5:1 para texto (1.4.3) y 3:1 para componentes (1.4.11); el color no es el único canal (1.4.1); operable por teclado (2.1.1) (W3C, 2018) | Axe-core por pantalla y cálculo propio de contraste (factor U) |
-| **OWASP Top 10:2025** | Diez categorías de riesgo de aplicaciones web, A01 Broken Access Control a A10 Mishandling of Exceptional Conditions (OWASP Foundation, 2025) | 30 comprobaciones estáticas, 32 dinámicas, SAST y SCA (factor +) |
-| **CMMI-DEV** | Áreas de práctica agrupadas en gestión de procesos, gestión de proyectos, ingeniería y soporte (PP, PMC, REQM, CM, PPQA, VER, VAL, CAR…); niveles de madurez 1 a 5 en la representación escalonada (O'Regan, 2017) y niveles de capacidad por área en la continua (CMMI Institute, 2018) | Representación continua con niveles 0 a 3 por área: ESTIM, PLAN, PQA, CM, VER, VAL y CAR |
+| **GQM** | Cada **meta** se refina en **preguntas** y cada pregunta en **métricas**; las metas se redactan con objeto, propósito, enfoque de calidad, punto de vista y contexto [14] | 3 metas (arquitectura, pruebas, valor), 6 métricas con script en `herramientas/gqm/`, recalculadas para Inc. 1 a Inc. 4 |
+| **FURPS+** | Funcionalidad, Usabilidad, Confiabilidad (*Reliability*), Rendimiento (*Performance*) y Soportabilidad, más restricciones de implementación, interfaz, operaciones, empaquetamiento y legales [15], [16] | Índice ponderado F 30 %, U 15 %, R 15 %, P 15 %, S 10 %, + 15 %; variables medidas con scripts |
+| **WCAG 2.1 AA** | Contraste mínimo de 4,5:1 para texto (1.4.3) y 3:1 para componentes (1.4.11); el color no es el único canal (1.4.1); operable por teclado (2.1.1) [17] | Axe-core por pantalla y cálculo propio de contraste (factor U) |
+| **OWASP Top 10:2025** | Diez categorías de riesgo de aplicaciones web, A01 Broken Access Control a A10 Mishandling of Exceptional Conditions [18] | 30 comprobaciones estáticas, 32 dinámicas, SAST y SCA (factor +) |
+| **CMMI-DEV** | Áreas de práctica agrupadas en gestión de procesos, gestión de proyectos, ingeniería y soporte (PP, PMC, REQM, CM, PPQA, VER, VAL, CAR…); niveles de madurez 1 a 5 en la representación escalonada [8] y niveles de capacidad por área en la continua [19] | Representación continua con niveles 0 a 3 por área: ESTIM, PLAN, PQA, CM, VER, VAL y CAR |
 
 
 ---
@@ -370,11 +406,11 @@ Resultado: **M3.1 = 4,5 / 6 = 75,0 %**. Cuatro brechas (B1 a B4) tienen mecanism
 
 ![Proceso AS-IS por carriles de actor.](../../diagramas/png/10_s1_proceso_as_is.png)
 
-**Figura 2.** Proceso AS-IS por carriles de actor con las notas de problema de cada actividad (S1). Archivo: `../../diagramas/png/10_s1_proceso_as_is.png`.
+**Figura 2.** Proceso AS-IS por carriles de actor con las notas de problema de cada actividad (S1).
 
 ![Proceso TO-BE por carriles de actor con el carril Sistema.](../../diagramas/png/11_s1_proceso_to_be.png)
 
-**Figura 3.** Proceso TO-BE con el carril «Sistema» y las mejoras M1 a M6 (S1). Las decisiones clínicas siguen siendo humanas. Archivo: `../../diagramas/png/11_s1_proceso_to_be.png`.
+**Figura 3.** Proceso TO-BE con el carril «Sistema» y las mejoras M1 a M6 (S1). Las decisiones clínicas siguen siendo humanas.
 
 **Sistema de indicadores de gestión del proceso**
 
@@ -447,7 +483,7 @@ Se compararon siete enfoques con seis criterios (escala 1 a 5): Cascada 8, Incre
 
 **Matriz 3.3.1: Categorización normativa, productos de trabajo y responsables RAE**
 
-La categorización es la simplificación del curso (sección 2.3), sin afirmar conformidad con la ISO/IEC/IEEE 12207 (ISO/IEC/IEEE, 2017). Los roles de la plantilla se asignan según la Tabla 1. La aprobación del Product Owner corresponde a un rol que el equipo **simuló**: no hubo un representante de la posta que aprobara historias ni incrementos.
+La categorización es la simplificación del curso (sección 2.3), sin afirmar conformidad con la ISO/IEC/IEEE 12207 [11]. Los roles de la plantilla se asignan según la Tabla 1. La aprobación del Product Owner corresponde a un rol que el equipo **simuló**: no hubo un representante de la posta que aprobara historias ni incrementos.
 
 **Tabla 12.** Categoría normativa, actividad, producto de trabajo y responsables (R: ejecuta, Rv: revisa, A: aprueba; S3-4, Tabla 6; S11, Tabla 12).
 
@@ -460,7 +496,7 @@ La categorización es la simplificación del curso (sección 2.3), sin afirmar c
 | Proceso principal | Despliegue | Imagen Docker, Render y Supabase | Auqui H. | Huamani R. | Porras V. | `Dockerfile`, trabajo `produccion` de `ci.yml`; producción verificada el 31/10/2026 (Anexo B) |
 | Proceso de soporte | Gestión de configuración | Repositorio Git con 5 etiquetas y ramas `feature/*` | Auqui H. | no definido en S3-4 | no definido en S3-4 | Etiquetas `v1.0-PMV` a `v4.0-Inc4` (Anexo B) |
 | Proceso de soporte | Aseguramiento de calidad (PQA) | Ruff, informe de revisión independiente, defectos DEF-01 a DEF-09 | Huamani R. | Porras V. | Huamani R. | `registro_defectos*.md`, informe T-020 |
-| Proceso de soporte | Verificación y validación | 19 fichas de prueba con capturas | Huamani R. | Auqui H. | firma pendiente | Sección 3.6.4 |
+| Proceso de soporte | Verificación y validación | 19 fichas de prueba con capturas | Huamani R. | Auqui H. | firma pendiente | Sección 3.6.3 |
 | Proceso de gestión | Planificación y control de desviaciones | Plan por sprint, plan frente a real | Porras V. | Huamani R. | Porras V. | `coordinacion/TABLERO.md`; Tabla 15 |
 | Proceso de gestión | Retrospectiva y mejora | Plan de mejora CMMI con 19 acciones | Porras V. | Equipo | Porras V. | Sección 3.8 |
 
@@ -476,14 +512,14 @@ La DoD vigente es la de S3-4 (Tablas 8 y 9). La Tabla 13 la verifica contra `v4.
 | 2 | La regla de negocio vive en el dominio o en la configuración normativa (ADR-001) | 0 importaciones de terceros en 86 clases del dominio; 25 pruebas de arquitectura | Cumple |
 | 3 | Pruebas en verde, cobertura ≥ 80 % y 0 hallazgos de Ruff | Cobertura 99,79 % (4 025 + 675 de 4 030 + 680 líneas y ramas); Ruff: 0 errores y 142 archivos formateados | Cumple |
 | 4 | Disponible en la interfaz y en la API con el mismo caso de uso; `openapi` al día | Contrato de 29 rutas verificado en el CI con Python 3.11 | Cumple |
-| 5 | Pruebas funcionales de interfaz con capturas adjuntas en la ficha | 19 de 19 escenarios con 54 capturas (sección 3.6.4) | Cumple |
-| 6 | Análisis estático sin vulnerabilidades críticas (la plantilla pide SonarQube con 0 vulnerabilidades) | SonarCloud **no se ejecutó** (sin organización ni token); bandit: 0 altas, 0 medias, 1 baja (falso positivo); pip-audit: 0; semgrep: 151 hallazgos clasificados; la revisión manual halló 1 hallazgo de severidad alta (H-1) | **No cumple** como la plantilla lo define |
+| 5 | Pruebas funcionales de interfaz con capturas adjuntas en la ficha | 19 de 19 escenarios con 54 capturas (sección 3.6.3) | Cumple |
+| 6 | Análisis estático sin vulnerabilidades críticas (la plantilla pide SonarQube con 0 vulnerabilidades) | SonarCloud: primer análisis del repositorio el 05/11/2026 (Quality Gate aprobado sobre el código nuevo; 129 hallazgos en el código completo, 0 en el backend desplegado; ver la ficha VER de la sección 3.8); bandit: 0 altas, 0 medias, 1 baja (falso positivo); pip-audit: 0; semgrep: 151 hallazgos clasificados; la revisión manual halló 1 hallazgo de severidad alta (H-1) | **No cumple** como la plantilla lo define |
 | 7 | Código revisado por pares y aprobado en el *pull request* | La PR #8 se fusionó con 6 verificaciones en verde, sin revisión formal «Approved»; las PR #6 y #7 se fusionaron con verificaciones en rojo | **No cumple** |
 | 8 | Demostrada en la revisión del sprint y aceptada | Sin actas de revisión con el personal de salud | **No cumple** |
 
 ![Línea de tiempo de la PR #8 en GitHub.](../semana-11/evidencias/github/GH_pr8_conversacion.png)
 
-**Figura 4.** PR #8 (incrementos 3 y 4) en estado «Merged» con 6 verificaciones aprobadas; la línea de tiempo no muestra ninguna revisión «Approved» (captura de GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_pr8_conversacion.png`.
+**Figura 4.** PR #8 (incrementos 3 y 4) en estado «Merged» con 6 verificaciones aprobadas; la línea de tiempo no muestra ninguna revisión «Approved» (captura de GitHub, 30/10/2026).
 
 La DoD mide cuánto código se ejecuta y no la variedad de entradas: con 99,79 % de cobertura, la revisión independiente de los incrementos 3 y 4 todavía halló cinco defectos, uno de seguridad (sección 3.8). Seguridad, accesibilidad y rendimiento no forman parte de la DoD (hallazgo H8 de S11).
 
@@ -515,7 +551,7 @@ PROYECTO ANEMIA JUNÍN
 
 ![WBS del proyecto y tareas del Incremento 1.](../../diagramas/png/31_s34_wbs_proyecto.png)
 
-**Figura 5.** WBS: Proyecto, entregables E1 a E3, incrementos INC-1 a INC-6, épicas, historias y tareas del Incremento 1 (S3-4). Archivo: `../../diagramas/png/31_s34_wbs_proyecto.png`.
+**Figura 5.** WBS: Proyecto, entregables E1 a E3, incrementos INC-1 a INC-6, épicas, historias y tareas del Incremento 1 (S3-4).
 
 **Tabla 14.** Descomposición por incremento con estimación, prioridad y resultado al 30/10/2026 (S3-4, Tablas 10, 17 y 19; S11, Tabla 5a).
 
@@ -527,14 +563,14 @@ PROYECTO ANEMIA JUNÍN
 | INC-4 WhatsApp y barreras | HIST-4.1 a HIST-4.4 | 16 | 3,40 (4.°) | Entregado: `v4.0-Inc4` (envío real sin probar) |
 | INC-5 Modelo predictivo | HIST-5.1 a HIST-5.4 | 34 | 3,35 (5.°) | No implementado |
 | INC-6 Tablero territorial | HIST-6.1 a HIST-6.4 | 15 | 2,75 (6.°) | No implementado |
-| Backlog técnico | BT-01 a BT-03, BT-08, BT-09 | 8 | no priorizado | Parcial (CI y E2E implantados; SonarCloud sin activar) |
+| Backlog técnico | BT-01 a BT-03, BT-08, BT-09 | 8 | no priorizado | Parcial (CI y E2E implantados; SonarCloud con primer análisis el 05/11/2026, aún fuera del CI) |
 | **Total** | | **133** | | **76 SP entregados en los cuatro incrementos (57,1 %)** |
 
 **Priorización valor y riesgo.** El puntaje ponderado combina valor (30 %), reducción de riesgo (25 %), dependencia técnica (20 %), factibilidad (15 %) y validación (10 %). INC-1 lidera porque es prerrequisito de todos los demás; INC-3 puntúa por encima de INC-2, pero se ejecutó después porque requería el pipeline de integración continua y la decisión sobre la base central (nota de S3-4 sobre el calendario). Dentro del INC-1 se construyó primero la clasificación normativa (HIST-1.3) y después el formulario, porque un umbral clínico mal transcrito invalidaría todo lo posterior.
 
 ![Cronograma de los ocho sprints con incrementos e hitos H0 a H7.](../../diagramas/png/33_s34_cronograma_sprints_hitos.png)
 
-**Figura 6.** Cronograma planificado de ocho sprints con incrementos e hitos H0 a H7 (S3-4). Archivo: `../../diagramas/png/33_s34_cronograma_sprints_hitos.png`.
+**Figura 6.** Cronograma planificado de ocho sprints con incrementos e hitos H0 a H7 (S3-4).
 
 **Matriz de control de desviaciones del proyecto**
 
@@ -549,7 +585,7 @@ PROYECTO ANEMIA JUNÍN
 
 ![Hitos H2 a H4: fecha del plan frente a la fecha real.](../semana-11/evidencias/CMMI02_hitos_plan_vs_real.png)
 
-**Figura 7.** Hitos H2 a H4, plan frente a real (elaboración propia a partir de S3-4 y de los commits). Archivo: `../semana-11/evidencias/CMMI02_hitos_plan_vs_real.png`.
+**Figura 7.** Hitos H2 a H4, plan frente a real (elaboración propia a partir de S3-4 y de los commits).
 
 Ningún retraso superó el umbral de una semana que el plan fija para replanificar un hito. Lo que la matriz muestra es otra cosa: **el avance se midió en entrega de software, no en aceptación**. Los hitos H3 y H4 exigían prueba de campo y envío real, que no se hicieron, de modo que el desvío favorable de INC-4 (−10 días) no equivale a un incremento aceptado. Tampoco hay horas reales registradas en ningún incremento (113 h estimadas solo para INC-1), de modo que la estimación no se recalibró.
 
@@ -572,7 +608,7 @@ El PMV (Incremento 1, etiqueta `v1.0-PMV`, 30/09/2026) cubre cinco historias que
 | HU-04 / RF-04 | **Como** personal de salud, **quiero** listar a los niños en seguimiento con filtros, **para** priorizar la atención | **Dado** un conjunto de niños, **cuando** filtra por clasificación o busca por comunidad, **entonces** el listado respeta el filtro | 27 niños; 6 con «Moderada» |
 | HU-05 / RF-05 | **Como** coordinador, **quiero** un reporte del periodo en JSON y CSV, **para** consolidar la información | **Dado** un periodo válido, **cuando** pulsa «Generar», **entonces** se muestran los indicadores y se descarga el CSV en menos de 2 s | 28 registrados; CSV de 43 líneas en 86 ms |
 
-La autenticación con Supabase (ADR-011) no formaba parte del PMV: se incorporó antes del Incremento 3 y tiene su propia ficha de prueba (sección 3.6.4).
+La autenticación con Supabase (ADR-011) no formaba parte del PMV: se incorporó antes del Incremento 3 y tiene su propia ficha de prueba (sección 3.6.3).
 
 **Resultado de la ejecución.** El PMV se midió con el mismo método que los incrementos posteriores, lo que permite ver sus debilidades:
 
@@ -601,86 +637,11 @@ El PMV entregó el valor comprometido (registro único y clasificación probada 
 
 ### 3.6 EJE 6: Evaluación GQM, Arquitectura Hexagonal en Git y Pruebas Funcionales
 
-#### 3.6.1 Estructura de directorios de la arquitectura hexagonal en GitHub
+#### 3.6.1 Evaluación GQM de arquitectura, pruebas y valor
 
-El código del producto está en `pmv_fastapi/app/` (<https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app>). La plantilla de la guía usa nombres de un proyecto Java (`/src/domain|ports|adapters`, JPA); aquí el lenguaje es Python y los puertos son interfaces estructurales (`typing.Protocol`). La Tabla 19 traduce cada carpeta de la plantilla a la del repositorio, con su enlace en la etiqueta `v4.0-Inc4`.
+Las tres metas se formularon con la plantilla de Basili et al. [14] (objeto, propósito, enfoque de calidad, punto de vista y contexto) y se midieron para los cuatro incrementos con los scripts de `herramientas/gqm/`.
 
-```text
-pmv_fastapi/app/
-├── domain/        <-- NÚCLEO (solo biblioteca estándar y módulos del propio dominio)
-│   ├── model/     entidades y reglas puras (16 módulos)
-│   └── service/   reglas clínicas, agenda, alertas, conflictos, puntaje de visitas (11 módulos)
-├── ports/         <-- PUERTOS (Protocol)
-│   ├── inbound/   interfaces de casos de uso (14)
-│   └── outbound/  repositorios, reloj, notificador, proveedor de identidad (8)
-├── application/   casos de uso que implementan los puertos de entrada (12 servicios)
-├── adapters/      <-- INFRAESTRUCTURA
-│   ├── inbound/http/   FastAPI: rutas, esquemas Pydantic, sesión y CSRF
-│   └── outbound/       SQLAlchemy y memoria, WhatsApp Cloud, SMS, simulado, Supabase Auth, relojes
-├── web/           cliente PWA (JavaScript, service worker, cola IndexedDB); fuera del hexágono
-└── main.py        raíz de composición: único módulo que conecta adaptadores con el núcleo
-```
-
-**Tabla 19.** Equivalencia entre la estructura de la plantilla y la del proyecto, con archivos y líneas de código por capa (S10, Tabla 17; análisis AST; el conteo incluye `__init__.py`).
-
-| Plantilla (`/src/...`) | Proyecto (`pmv_fastapi/app/...`) | Contenido real | Archivos / LOC | Enlace en `v4.0-Inc4` |
-| --- | --- | --- | :---: | --- |
-| `domain/model/` | `domain/model/` | Entidades puras: niño, evaluación, agenda, barrera, visita, notificación, sincronización | 17 / 699 | [`domain/model`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/domain/model) |
-| `domain/service/` | `domain/service/` | Reglas clínicas, agenda, alertas, validaciones, conflictos, puntaje de visitas (funciones puras) | 12 / 1 593 | [`domain/service`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/domain/service) |
-| `ports/inbound/` | `ports/inbound/` | 14 interfaces de casos de uso | 15 / 156 | [`ports/inbound`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/ports/inbound) |
-| `ports/outbound/` | `ports/outbound/` | 8 interfaces: repositorios, reloj, notificador, proveedor de identidad | 9 / 143 | [`ports/outbound`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/ports/outbound) |
-| (la plantilla no la contempla) | `application/` | 12 servicios que implementan los puertos de entrada | 13 / 1 227 | [`application`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/application) |
-| `adapters/inbound/` | `adapters/inbound/http/` | FastAPI: rutas, esquemas Pydantic, sesión y CSRF | 5 / 1 437 | [`adapters/inbound`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/adapters/inbound) |
-| `adapters/outbound/` | `adapters/outbound/` | SQLAlchemy y memoria, WhatsApp Cloud, SMS, Supabase Auth, relojes | 12 / 1 359 | [`adapters/outbound`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/adapters/outbound) |
-| (composición) | `main.py` | Conecta cada puerto con su adaptador; versión `4.0.0-inc4` | 1 | [`main.py`](https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/v4.0-Inc4/pmv_fastapi/app/main.py) |
-
-Dos diferencias respecto de la plantilla: se usa SQLAlchemy y no JPA, y no hay Redis; el caché y la cola viven en el navegador (service worker e IndexedDB). La carpeta `application/` se agregó porque separa los casos de uso de las reglas puras del dominio (ADR-001 y ADR-008).
-
-![Estructura hexagonal de pmv_fastapi/app en GitHub, etiqueta v4.0-Inc4.](../semana-10/evidencias/github/GH_arbol_app.png)
-
-**Figura 8.** Carpeta `pmv_fastapi/app/` en GitHub con la etiqueta `v4.0-Inc4` seleccionada: `adapters`, `application`, `domain`, `ports` y `web`, y `main.py` (captura del 30/10/2026). Archivo: `../semana-10/evidencias/github/GH_arbol_app.png`.
-
-![Árbol real de carpetas de la capa hexagonal.](../semana-10/evidencias/arquitectura/S_arbol_hexagonal.png)
-
-**Figura 9.** Árbol real de `pmv_fastapi/app/` generado recorriendo el sistema de archivos. Archivo: `../semana-10/evidencias/arquitectura/S_arbol_hexagonal.png`.
-
-![Importaciones de una entidad del dominio.](../semana-10/evidencias/github/GH_dominio_entidades_imports.png)
-
-**Figura 10.** Importaciones de una entidad del dominio: solo biblioteca estándar y módulos propios (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_dominio_entidades_imports.png`.
-
-![Puerto de salida Notificador en GitHub.](../semana-10/evidencias/github/GH_puerto_notificador.png)
-
-**Figura 11.** Ejemplo de puerto de salida (`Notificador`), implementado por cuatro adaptadores (simulado, WhatsApp Cloud, SMS y respaldo). Archivo: `../semana-10/evidencias/github/GH_puerto_notificador.png`.
-
-![main.py como raíz de composición en GitHub.](../semana-10/evidencias/github/GH_main_composicion.png)
-
-**Figura 12.** `main.py` como única raíz de composición (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_main_composicion.png`.
-
-**Tabla 20.** Matriz de dependencias entre capas (conteo de importaciones; S10, Tabla 18). Ninguna importación prohibida.
-
-| Capa (origen) | stdlib | terceros | dominio | puertos | application | adaptadores |
-| --- | :---: | :---: | :---: | :---: | :---: | :---: |
-| `domain` (model y service) | 63 | **0** | 67 | 0 | 0 | 0 |
-| `ports` (inbound y outbound) | 32 | **0** | 20 | 0 | 0 | 0 |
-| `application` | 14 | **0** | 63 | 48 | 0 | 0 |
-| `adapters.inbound` | 7 | 8 (`fastapi`, `pydantic`) | 12 | 13 | 0 | 1 |
-| `adapters.outbound` | 14 | 7 (`httpx`, `sqlalchemy`) | 24 | 15 | 0 | 4 |
-
-![Matriz de importaciones por capa.](../semana-10/evidencias/arquitectura/S_matriz_importaciones.png)
-
-**Figura 13.** Matriz de importaciones por capa; no hay celdas de violación. Archivo: `../semana-10/evidencias/arquitectura/S_matriz_importaciones.png`.
-
-![25 pruebas de arquitectura aprobadas.](../semana-10/evidencias/terminal/R06_arquitectura.png)
-
-**Figura 14.** Las 25 pruebas de arquitectura (`tests/arquitectura`) validan la regla de dependencia en cada ejecución del CI: todas aprobadas. Archivo: `../semana-10/evidencias/terminal/R06_arquitectura.png`.
-
-Tres hallazgos honestos de la auditoría: (1) la conformidad **ultra estricta** de M1.2 es 80 % porque `application/servicio_sesion.py` implementa el puerto `ProveedorIdentidad` dentro de la capa de aplicación (adenda S9, sección 7); (2) `autenticacion.py` (94 %) y `supabase_auth.py` (97 %) explican por qué la cobertura bajó de 100 % a 99,79 %; (3) el diagrama C4 de componentes del repositorio describe solo el Incremento 1 y no se actualizó.
-
-#### 3.6.2 Evaluación GQM de arquitectura, pruebas y valor
-
-Las tres metas se formularon con la plantilla de Basili et al. (1994) (objeto, propósito, enfoque de calidad, punto de vista y contexto) y se midieron para los cuatro incrementos con los scripts de `herramientas/gqm/`.
-
-**Tabla 21.** Metas, preguntas y métricas GQM (S9, Tablas 8 y 12).
+**Tabla 19.** Metas, preguntas y métricas GQM (S9, Tablas 8 y 12).
 
 | Meta | Pregunta | Métrica | Fórmula | Meta de la guía (Inc. 1 / Inc. 2) |
 | --- | --- | --- | --- | --- |
@@ -692,14 +653,14 @@ Las tres metas se formularon con la plantilla de Basili et al. (1994) (objeto, p
 | **G-03** Evaluar la efectividad del proceso (valor organizacional, punto de vista del usuario y Product Owner simulado) | Q3.1 ¿Qué brechas del AS-IS se resolvieron? | M3.1 Brechas resueltas | (Σ puntajes B1 a B6 ÷ 6) × 100 | ≥ 60 % / ≥ 90 % |
 | | Q3.2 ¿Mejoraron los indicadores de valor? | M3.2 Índice de impacto en valor | promedio de mejoras de V1, V2 y V3 | ≥ 50 % / ≥ 80 % |
 
-**Tabla 22.** Valores GQM por incremento (adenda S9, sección 2). «n/r»: no recalculada.
+**Tabla 20.** Valores GQM por incremento (adenda S9, sección 2). «n/r»: no recalculada.
 
 | Métrica | Inc. 1 `v1.0-PMV` | Inc. 2 `v2.0-Inc2` | Inc. 3 `v3.0-Inc3` | Inc. 4 `v4.0-Inc4` |
 | --- | :---: | :---: | :---: | :---: |
 | M1.1 contaminación del dominio | 0,0 % (0/8 clases) | 0,0 % (0/32) | 0,0 % (0/55) | **0,0 % (0/86)** |
 | M1.2 conformidad hexagonal (estricta) | 40,0 % | 100,0 % | 100,0 % | **100,0 %** |
 | M1.3 violaciones de dependencia | 1 | 0 | 0 | **0** |
-| M2.1 cobertura funcional con capturas | 100 % (5/5 RF) | 100 % (4/4; 9/9 acumulado) | n/r | n/r (19/19 escenarios con captura en S10) |
+| M2.1 cobertura funcional con capturas | 100 % (5/5 RF) | 100 % (4/4; 9/9 acumulado) | 100 % (5/5; 14/14 acumulado) | **100 % (4/4; 18/18 acumulado)** |
 | M2.2 defectos por RF | 1,4 (7/5) | 0,25 (1/4) | n/r (indicativo 0,20) | n/r (indicativo 0,75) |
 | **M3.1 brechas resueltas (principal)** | 25,0 % | 33,3 % | 50,0 % | **75,0 %** |
 | M3.2 índice de impacto en valor (V1, V2, V3) | 57,6 % | 100,0 % | 100,0 % | 100,0 % |
@@ -709,11 +670,11 @@ Las tres metas se formularon con la plantilla de Basili et al. (1994) (objeto, p
 
 ![Evolución de M3.1 y de las pruebas por incremento.](evidencias/GQM_v4_evolucion.png)
 
-**Figura 15.** Evolución de M3.1 frente a la meta acumulada propuesta en S9 (izquierda; no aprobada) y de las pruebas automáticas y la cobertura por incremento (derecha). Elaboración propia con `evidencias/generar_figuras.py`. Archivo: `evidencias/GQM_v4_evolucion.png`.
+**Figura 8.** Evolución de M3.1 frente a la meta acumulada propuesta en S9 (izquierda; no aprobada) y de las pruebas automáticas y la cobertura por incremento (derecha). Elaboración propia con `evidencias/generar_figuras.py`.
 
 La meta acumulada propuesta en S9 (16,7 %, 33,3 %, 50,0 % y 66,7 % hasta INC-4) se alcanza en cada incremento (25,0 %, 33,3 %, 50,0 % y 75,0 %); las metas de la guía (60 % y 90 %) suponían cerrar casi todas las brechas en dos incrementos y no se alcanzaron en su momento.
 
-**Tabla 23.** Puntaje de M3.1 por brecha e incremento (1 = mecanismo completo, operativo y probado; 0,5 = parcial; 0 = no; adenda S9, sección 3).
+**Tabla 21.** Puntaje de M3.1 por brecha e incremento (1 = mecanismo completo, operativo y probado; 0,5 = parcial; 0 = no; adenda S9, sección 3).
 
 | Brecha | Plan | Inc. 1 | Inc. 2 | Inc. 3 | Inc. 4 | Evidencia en `v4.0-Inc4` |
 | --- | --- | :---: | :---: | :---: | :---: | --- |
@@ -727,9 +688,340 @@ La meta acumulada propuesta en S9 (16,7 %, 33,3 %, 50,0 % y 66,7 % hasta INC-4) 
 
 **Sensibilidades.** M3.1 depende de cómo se puntúe lo no probado en el mundo real: si B2, B3 y B4 se puntuaran 0,5 por exigir un envío real y un dispositivo real, M3.1 bajaría a **50,0 %**; si B6 puntuara 0, a 66,7 %; la lectura estricta (solo puntaje 1,0) es 66,7 % (4 de 6). El valor de 75,0 % es la lectura principal de la guía y se informa junto a estas variaciones.
 
-**Lo que GQM no pudo medir.** M2.1 y M2.2 de Inc. 3 e Inc. 4 no se recalcularon: no hay mapa curado de RF para las historias nuevas ni registro de defectos posterior a DEF-09; los cinco defectos de la revisión independiente (tres de ellos de concurrencia o seguridad) se corrigieron sin registrarse como DEF. El p95 de 1 100 ms (una sola corrida, sin control de la versión anterior) supera la meta de 800 ms y es el principal riesgo de rendimiento.
+**Lo que GQM no pudo medir.** M2.1 de Inc. 3 e Inc. 4 se calculó con las fichas del apartado 3.6.3: 100 %, 18 de 18 requisitos con captura aprobada. M2.2 de esos incrementos sigue siendo indicativa (0,20 y 0,75 defectos por requisito): no hay registro de defectos posterior a DEF-09 y los cinco defectos de la revisión independiente (tres de ellos de concurrencia o seguridad) se corrigieron sin registrarse como DEF (ficha GQM de M2.2). El p95 de 1 100 ms (una sola corrida, sin control de la versión anterior) supera la meta de 800 ms y es el principal riesgo de rendimiento.
 
-#### 3.6.3 Estrategia de pruebas
+**Fichas de evaluación GQM con evidencia por métrica**
+
+Cada métrica de la Tabla 19 tiene una ficha con el mismo formato que las fichas de prueba funcional. La ficha da la meta y la pregunta, la fórmula con los datos y el resultado, y dos evidencias:
+
+- **Captura 1:** el software en uso, de cara al dominio: el registro de un niño, la agenda, las alertas, las visitas o la sincronización. Cuando existe, se usa la captura del entorno de producción (`softwareanemia.onrender.com`).
+- **Captura 2:** la ejecución reproducible de la medición, con el comando, la fecha y el resultado.
+
+La Tabla 22 resume la trazabilidad entre cada métrica y su evidencia.
+
+**Tabla 22.** Trazabilidad de cada métrica GQM con su evidencia (valores de `v4.0-Inc4`).
+
+| Meta | Métrica | Valor Inc. 4 | Meta / criterio | Evidencia en el software (dominio) | Evidencia de la medición |
+| --- | --- | :---: | :---: | --- | --- |
+| G-01 | M1.1 Contaminación del dominio | 0,0 % (0/86) | 0 % | Figura 9 | Figura 10 |
+| G-01 | M1.2 Conformidad hexagonal | 100 % (5/5) | 100 % | Figura 11 | Figura 12 |
+| G-01 | M1.3 Violaciones de dependencia | 0 | 0 | Figura 13 | Figura 14 |
+| G-02 | M2.1 Cobertura funcional con capturas | 100 % (18/18) | 100 % | Tabla 23 y fichas 3.6.3 | Figura 15 |
+| G-02 | M2.2 Defectos por requisito | 0,75 (indicativo) | ≤ 0,2 (Inc. 2) | Figura 16 | Figura 17 |
+| G-03 | M3.1 Brechas AS-IS resueltas | 75,0 % (4,5/6) | ≥ 66,7 % (meta acumulada S9) | Figuras 18 a 25 | Figura 26 |
+| G-03 | M3.2 Índice de impacto en valor (V1, V2, V3) | 100 % | ≥ 80 % | Figuras 27 a 29 | Figura 30 |
+| G-03 | V4 Rendimiento p95 (50 usuarios) | 1 100 ms | < 800 ms | Figura 31 | Figura 33 |
+| G-03 | V5 Disponibilidad durante la carga | 100 % (64/64) | ≥ 99,5 % | Figura 32 | Figura 34 |
+
+---
+
+**FICHA DE EVALUACIÓN GQM Y EVIDENCIA VISUAL POR MÉTRICA (M1.1)**
+
+- **META:** G-01 Evaluar el desacoplamiento del dominio (mantenibilidad, punto de vista del arquitecto).
+- **PREGUNTA:** Q1.1 ¿Cuánto del dominio depende de frameworks?
+- **MÉTRICA Y FÓRMULA:** M1.1 Contaminación del dominio = importaciones de terceros en el dominio ÷ clases del dominio × 100.
+- **DATOS Y CÁLCULO:** 86 clases en `app/domain`, 130 importaciones (63 de la biblioteca estándar, 67 internas, **0 externas**). M1.1 = 0 ÷ 86 × 100 = **0,0 %**.
+- **META DE LA GUÍA:** 0 %.
+
+**[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
+
+- **Descripción:** **Figura 9.** Código del modelo de dominio (`app/domain/model/entidades.py`): las entidades del niño y de la evaluación solo importan la biblioteca estándar y otros módulos del dominio, sin FastAPI, SQLAlchemy ni Pydantic.
+
+![Código del dominio sin importaciones de frameworks.](../semana-10/evidencias/github/GH_dominio_entidades_imports.png)
+
+- **Archivo de imagen:** `entregables/semana-10/evidencias/github/GH_dominio_entidades_imports.png`
+
+**[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
+
+- **Descripción:** **Figura 10.** Ejecución de `m11_contaminacion.py` del 06/11/2026 sobre el código actual: 0 importaciones externas en las 86 clases del dominio. El rótulo «v2.0» es la clave interna del script y apunta a `pmv_fastapi/` actual.
+
+![Ejecución de M1.1.](correcciones/img/G01_m11_contaminacion.png)
+
+- **Archivo de imagen:** `entregables/semana-12/correcciones/img/G01_m11_contaminacion.png`
+
+**EVALUACIÓN: CUMPLE | FECHA: 06/11/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+---
+
+**FICHA DE EVALUACIÓN GQM Y EVIDENCIA VISUAL POR MÉTRICA (M1.2)**
+
+- **META:** G-01. **PREGUNTA:** Q1.2 ¿La estructura es hexagonal?
+- **MÉTRICA Y FÓRMULA:** M1.2 Conformidad hexagonal = componentes conformes ÷ 5 × 100. Los 5 componentes son: núcleo de dominio, puertos de entrada, puertos de salida, adaptadores de entrada y adaptadores de salida.
+- **DATOS Y CÁLCULO:** los 5 componentes son conformes: tienen paquete propio y cumplen la dirección de las dependencias. M1.2 = 5 ÷ 5 × 100 = **100 %**.
+- **Sensibilidad:** la lectura ultra estricta da 80 %, porque `ServicioSesion` implementa el puerto `ProveedorIdentidad` dentro de la capa de aplicación.
+- **META DE LA GUÍA:** 100 %.
+
+**[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
+
+- **Descripción:** **Figura 11.** Matriz de importaciones entre capas del análisis AST: ninguna celda roja. El dominio no importa ninguna otra capa y cada adaptador solo depende de su puerto.
+
+![Matriz de importaciones por capa.](../semana-10/evidencias/arquitectura/S_matriz_importaciones.png)
+
+- **Archivo de imagen:** `entregables/semana-10/evidencias/arquitectura/S_matriz_importaciones.png`
+
+**[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
+
+- **Descripción:** **Figura 12.** Ejecución de `m12_conformidad.py` del 06/11/2026: los 5 componentes son CONFORMES (M1.2 = 100 %), con la observación de la lectura ultra estricta.
+
+![Ejecución de M1.2.](correcciones/img/G02_m12_conformidad.png)
+
+- **Archivo de imagen:** `entregables/semana-12/correcciones/img/G02_m12_conformidad.png`
+
+**EVALUACIÓN: CUMPLE (lectura estricta; 80 % en la ultra estricta) | FECHA: 06/11/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+---
+
+**FICHA DE EVALUACIÓN GQM Y EVIDENCIA VISUAL POR MÉTRICA (M1.3)**
+
+- **META:** G-01. **PREGUNTA:** Q1.3 ¿Las dependencias apuntan al núcleo?
+- **MÉTRICA Y FÓRMULA:** M1.3 Violaciones de la regla de dependencia, contadas por AST como aristas que salen del dominio hacia otras capas.
+- **DATOS Y CÁLCULO:** inestabilidad del dominio I = Ce ÷ (Ce + Ca) = 0 ÷ (0 + 41) = **0,00**. Aristas hacia fuera del dominio: **0**.
+- **CRITERIO:** 0 violaciones.
+
+**[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
+
+- **Descripción:** **Figura 13.** Pruebas de arquitectura (`tests/arquitectura/test_dependencias.py`) que hacen cumplir la regla en cada ejecución del CI: si el dominio importara un framework o un adaptador, la prueba fallaría.
+
+![Pruebas de arquitectura que vigilan la regla de dependencia.](../semana-10/evidencias/github/GH_pruebas_arquitectura.png)
+
+- **Archivo de imagen:** `entregables/semana-10/evidencias/github/GH_pruebas_arquitectura.png`
+
+**[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
+
+- **Descripción:** **Figura 14.** Ejecución de `m13_acoplamiento.py` del 06/11/2026: el núcleo de dominio tiene Ce = 0 e I = 0,00, y hay 0 violaciones de la regla de dependencia.
+
+![Ejecución de M1.3.](correcciones/img/G03_m13_acoplamiento.png)
+
+- **Archivo de imagen:** `entregables/semana-12/correcciones/img/G03_m13_acoplamiento.png`
+
+**EVALUACIÓN: CUMPLE | FECHA: 06/11/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+---
+
+**FICHA DE EVALUACIÓN GQM Y EVIDENCIA VISUAL POR MÉTRICA (M2.1)**
+
+- **META:** G-02 Verificar la estabilidad funcional (punto de vista de QA).
+- **PREGUNTA:** Q2.1 ¿Cada requisito tiene evidencia?
+- **MÉTRICA Y FÓRMULA:** M2.1 Cobertura funcional con capturas = requisitos con captura aprobada ÷ requisitos × 100.
+- **DATOS Y CÁLCULO:**
+  - Inc. 1: 5/5. Inc. 2: 4/4. Inc. 3: 5/5. Inc. 4: 4/4.
+  - Acumulado: 18 ÷ 18 × 100 = **100 %**. La ficha AUTH es adicional y no cuenta como requisito del plan.
+- **META DE LA GUÍA:** 100 %.
+
+**Tabla 23.** Requisitos de cada incremento y ficha del apartado 3.6.3 que los evidencia.
+
+| Incremento | Requisitos | Fichas con captura de entrada y de resultado | Resultado |
+| --- | --- | --- | :---: |
+| Inc. 1 (PMV) | RF-01 a RF-05 | RF-01, RF-02, RF-03, RF-04 y RF-05 | 5/5 |
+| Inc. 2 | RF-06 a RF-09 | RF-06, RF-07, RF-08 y RF-09 | 4/4 |
+| Inc. 3 | HIST-3.1 a HIST-3.4, VIS-3.5 | HIST-3.1 (y 3.1b), HIST-3.2, HIST-3.3, HIST-3.4 y VIS-3.5 | 5/5 |
+| Inc. 4 | HIST-4.1 a HIST-4.4 | HIST-4.1, HIST-4.2, HIST-4.3 y HIST-4.4 | 4/4 |
+| **Total** | **18** | 19 fichas de requisitos y 1 de autenticación | **18/18** |
+
+**[ CAPTURA: EJECUCIÓN QUE RESPALDA LAS FICHAS ]**
+
+- **Descripción:** **Figura 15.** Las 28 pruebas E2E en el navegador (Playwright), ejecutadas el 06/11/2026: 28 aprobadas. Automatizan los escenarios de las fichas de los cuatro incrementos (CP-297 a CP-303 de Inc. 3, recordatorios y barreras de Inc. 4, agenda y alertas de Inc. 2).
+  - En una primera corrida, CP-110 (agenda) excedió el tiempo de espera. Pasó 3 de 3 veces aislada y en la corrida completa de la figura. Es la inestabilidad ya registrada en H6.
+
+![Ejecución de las pruebas E2E.](correcciones/img/T02_e2e_playwright.png)
+
+- **Archivo de imagen:** `entregables/semana-12/correcciones/img/T02_e2e_playwright.png`
+
+**EVALUACIÓN: CUMPLE | FECHA: 06/11/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+---
+
+**FICHA DE EVALUACIÓN GQM Y EVIDENCIA VISUAL POR MÉTRICA (M2.2)**
+
+- **META:** G-02. **PREGUNTA:** Q2.2 ¿Cuántos defectos hay?
+- **MÉTRICA Y FÓRMULA:** M2.2 Defectos por requisito = defectos funcionales ÷ requisitos del incremento.
+- **DATOS Y CÁLCULO:**
+  - Inc. 1: 7 ÷ 5 = 1,40. Inc. 2: 1 ÷ 4 = 0,25 (S9).
+  - Inc. 3 y 4, contando los hallazgos de la revisión independiente: Inc. 3, 1 ÷ 5 = **0,20** (duplicado por concurrencia en la sincronización). Inc. 4, 3 ÷ 4 = **0,75** (webhook sin firma, recordatorio duplicado por concurrencia y detalle de barrera demasiado largo).
+- **META DE LA GUÍA:** ≤ 1,0 (Inc. 1) y ≤ 0,2 (Inc. 2).
+- **Lectura:** Inc. 3 está dentro de la última meta de la guía (≤ 0,2) e Inc. 4 la supera.
+
+**[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
+
+- **Descripción:** **Figura 16.** Defectos por requisito e incremento (DEF-01 a DEF-09 de los incrementos 1 y 2), según su tipo y momento de detección. Fuente: registro de defectos `pmv_fastapi/docs/evidencias/registro_defectos*.md`.
+
+![Defectos por requisito.](../semana-09/metricas/graficos/g6_defectos.png)
+
+- **Archivo de imagen:** `entregables/semana-09/metricas/graficos/g6_defectos.png`
+
+**[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
+
+- **Descripción:** **Figura 17.** Pruebas de regresión de los defectos de Inc. 3 e Inc. 4 hallados en la revisión independiente, todas aprobadas: CP-357 (webhook falla cerrado), CP-264b (sincronización concurrente), CP-382b (recordatorios concurrentes), CP-391b, CP-396 y CP-405.
+
+![Regresión de los defectos de Inc. 3 e Inc. 4.](../semana-11/evidencias/CMMI04_regresion_revision_independiente.png)
+
+- **Archivo de imagen:** `entregables/semana-11/evidencias/CMMI04_regresion_revision_independiente.png`
+
+**EVALUACIÓN: CUMPLE EN INC. 3; NO CUMPLE EN INC. 4 (0,75 frente a la última meta de la guía, ≤ 0,2); VALOR INDICATIVO | FECHA: 06/11/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+---
+
+**FICHA DE EVALUACIÓN GQM Y EVIDENCIA VISUAL POR MÉTRICA (M3.1)**
+
+- **META:** G-03 Evaluar la efectividad del proceso (valor organizacional, punto de vista del usuario).
+- **PREGUNTA:** Q3.1 ¿Qué brechas del AS-IS se resolvieron?
+- **MÉTRICA Y FÓRMULA:** M3.1 = (Σ puntajes B1 a B6 ÷ 6) × 100. Puntaje: 1 = mecanismo completo, operativo y probado; 0,5 = parcial; 0 = no.
+- **DATOS Y CÁLCULO:** B1 1,0 + B2 1,0 + B3 1,0 + B4 1,0 + B5 0,0 + B6 0,5 = 4,5. M3.1 = 4,5 ÷ 6 × 100 = **75,0 %**.
+- **META:** meta acumulada propuesta en S9 para INC-4: 66,7 %.
+
+**EVIDENCIA EN EL SOFTWARE POR BRECHA (CAPTURAS DE DOMINIO)**
+
+**[ B1 Triple registro manual → registro único (puntaje 1,0) ]**
+
+- **Descripción:** **Figura 18.** Producción: formulario «Registrar niño y evaluación inicial» con la validación clínica en vista previa antes de guardar (Hb ajustada por altitud y clasificación). Una sola digitación alimenta el expediente, el seguimiento y el reporte.
+
+![B1: registro único en producción.](evidencias/produccion/ROD_01_inc1_registro_clasificacion1.jpg)
+
+- **Descripción:** **Figura 19.** Producción: «Niños en seguimiento» con los registros del dataset DIRESA anonimizado. Es la misma información, sin volver a digitarla.
+
+![B1: seguimiento en producción.](evidencias/produccion/PROD_03_inc3_sincronizacion_seguimiento.jpg)
+
+- **Archivos de imagen:** `entregables/semana-12/evidencias/produccion/ROD_01_inc1_registro_clasificacion1.jpg`, `PROD_03_inc3_sincronizacion_seguimiento.jpg`
+
+**[ B2 Agenda sin recordatorios → agenda normativa y recordatorios (puntaje 1,0) ]**
+
+- **Descripción:** **Figura 20.** Producción: agenda del personal con los controles programados por la norma para cada niño.
+
+![B2: agenda del personal en producción.](evidencias/produccion/PROD_02_inc2_agendas.jpg)
+
+- **Descripción:** **Figura 21.** Recordatorios generados para los controles próximos, con estado SIMULADO: no sale ningún mensaje real hasta que Meta apruebe la plantilla de WhatsApp.
+
+![B2: recordatorios simulados.](../semana-10/evidencias/software/HIST41_inc4_2_recordatorios_simulados_escritorio.png)
+
+- **Archivos de imagen:** `entregables/semana-12/evidencias/produccion/PROD_02_inc2_agendas.jpg`, `entregables/semana-10/evidencias/software/HIST41_inc4_2_recordatorios_simulados_escritorio.png`
+
+**[ B3 Barreras ocultas → registro de barreras y alerta crítica (puntaje 1,0) ]**
+
+- **Descripción:** **Figura 22.** Alertas: la tabla «Barreras críticas» muestra a los niños cuyas barreras de acceso ponen en riesgo su tratamiento, según `REGLAS_BARRERAS_V1`.
+
+![B3: barreras críticas.](../semana-10/evidencias/software/HIST44_inc4_1_alertas_barreras_criticas_escritorio.png)
+
+- **Archivo de imagen:** `entregables/semana-10/evidencias/software/HIST44_inc4_1_alertas_barreras_criticas_escritorio.png`
+
+**[ B4 Visita domiciliaria en papel → visitas priorizadas (puntaje 1,0) ]**
+
+- **Descripción:** **Figura 23.** Producción: «Visitas domiciliarias priorizadas» con puntaje explicable. Los niños con anemia severa y el control más vencido aparecen primero. A la derecha, la solicitud a la API de producción responde 200 OK.
+
+![B4: visitas priorizadas en producción.](evidencias/produccion/PROD_03_inc3_sincronizacion_visitas.jpg)
+
+- **Archivo de imagen:** `entregables/semana-12/evidencias/produccion/PROD_03_inc3_sincronizacion_visitas.jpg`
+
+**[ B5 Riesgo identificado tarde (puntaje 0,0) ]**
+
+- Sin evidencia en el software, porque no se implementó: el modelo de riesgo de abandono es del INC-5. La visita priorizada usa controles ya vencidos y es reactiva. Se informa como brecha abierta.
+
+**[ B6 Conectividad intermitente → registro sin conexión y sincronización (puntaje 0,5) ]**
+
+- **Descripción:** **Figura 24.** Producción, en un celular: sin conexión a internet, el registro de un niño queda «Pendiente de sincronizar» y guardado en el dispositivo.
+
+![B6: registro sin conexión en el celular.](evidencias/produccion/PROD_03_inc3_sincronizacion_celular1.jpg){width=35%}
+
+- **Descripción:** **Figura 25.** Producción, en el mismo celular: al volver la conexión, «De nuevo en línea», el indicador pasa a «Al día» y aparece «Sincronización: 1 aplicado(s)».
+
+![B6: sincronización al reconectar.](evidencias/produccion/PROD_03_inc3_sincronizacion_celular3.jpg){width=35%}
+
+- **Archivos de imagen:** `entregables/semana-12/evidencias/produccion/PROD_03_inc3_sincronizacion_celular1.jpg`, `PROD_03_inc3_sincronizacion_celular3.jpg`
+- **Por qué el puntaje es 0,5:** falta el INC-6 y no hubo prueba en una posta con red intermitente real.
+
+**[ CAPTURA: EJECUCIÓN DE LA MEDICIÓN ]**
+
+- **Descripción:** **Figura 26.** Ejecución de `m31_brechas_v4.py` del 06/11/2026 y el detalle de su archivo de salida.
+  - Puntaje por brecha y M3.1 = 75,0 %.
+  - Rutas de la API presentes para B2, B3, B4 y B6.
+  - Archivos de la cola sin conexión.
+  - «abandono»: 0 ocurrencias, que explica B5 = 0.
+
+![Ejecución de M3.1.](correcciones/img/G04_m31_brechas.png)
+
+- **Archivo de imagen:** `entregables/semana-12/correcciones/img/G04_m31_brechas.png`
+
+**EVALUACIÓN: CUMPLE (75,0 % ≥ 66,7 %; 50,0 % si se exigiera envío real y dispositivo real) | FECHA: 06/11/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+---
+
+**FICHA DE EVALUACIÓN GQM Y EVIDENCIA VISUAL POR MÉTRICA (M3.2)**
+
+- **META:** G-03. **PREGUNTA:** Q3.2 ¿Mejoraron los indicadores de valor para el usuario?
+- **MÉTRICA Y FÓRMULA:** M3.2 = promedio de las mejoras de V1, V2 y V3 frente a la línea base AS-IS.
+  - V1: escrituras manuales por evaluación.
+  - V2: % de niños activos con agenda generada.
+  - V3: F1 de la detección de controles vencidos frente a un oráculo independiente.
+- **DATOS Y CÁLCULO** (muestra B150, 140 niños activos):
+  - V1 = **1 escritura** por evaluación; el AS-IS tenía 3 registros.
+  - V2 = 140 ÷ 140 = **100 %**.
+  - V3: TP 93, FP 0, FN 0, TN 47, F1 = **1,000**; 476 de 476 controles vencidos coinciden.
+  - M3.2 = **100 %**.
+- **META DE LA GUÍA:** ≥ 80 % (Inc. 2).
+
+**[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
+
+- **Descripción:** **Figura 27.** V1: producción, «Reporte del periodo». Cuenta los niños registrados y las evaluaciones del periodo (762 niños y 2 630 evaluaciones) a partir del registro único, sin volver a digitar.
+
+![V1: resultado del registro único en producción.](evidencias/produccion/ROD_01_inc1_registro_clasificacion2.jpg)
+
+- **Descripción:** **Figura 28.** V2: la agenda normativa se genera sola para cada niño activo. Expediente con sus controles cumplidos, pendientes y vencidos.
+
+![V2: agenda generada en el expediente.](../semana-10/evidencias/software/RF06_inc2_1_agenda_expediente_escritorio.png)
+
+- **Descripción:** **Figura 29.** V3: producción, «Alertas de controles vencidos» sobre el dataset DIRESA anonimizado, con prioridad, días de atraso y comunidad.
+
+![V3: alertas de controles vencidos en producción.](evidencias/produccion/PROD_02_inc2_alertas.jpg)
+
+- **Archivos de imagen:** `entregables/semana-12/evidencias/produccion/ROD_01_inc1_registro_clasificacion2.jpg`, `entregables/semana-10/evidencias/software/RF06_inc2_1_agenda_expediente_escritorio.png`, `entregables/semana-12/evidencias/produccion/PROD_02_inc2_alertas.jpg`
+
+**[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
+
+- **Descripción:** **Figura 30.** Resultado de `m32_valor.py`, corrida de la adenda S9 del 30/10/2026 sobre `v4.0-Inc4`. Muestra V1 (1 escritura; 4 vistas que reflejan el registro), V2 (140/140) y V3 (matriz de confusión con F1 = 1,0 y 476/476 controles).
+
+![Resultado de M3.2.](correcciones/img/G05_m32_valor.png)
+
+- **Archivo de imagen:** `entregables/semana-12/correcciones/img/G05_m32_valor.png`
+
+**EVALUACIÓN: CUMPLE | FECHA: 06/11/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+---
+
+**FICHA DE EVALUACIÓN GQM Y EVIDENCIA VISUAL POR MÉTRICA (V4 Y V5)**
+
+- **META:** G-03 (indicadores complementarios de valor).
+- **MÉTRICAS:** V4 p95 agregado con 50 usuarios simultáneos; V5 disponibilidad durante la carga = sondas disponibles ÷ sondas × 100.
+- **DATOS Y CÁLCULO:**
+  - V4: 1 960 solicitudes, 0 fallos, p95 = **1 100 ms** (una corrida).
+  - V5: 64 ÷ 64 × 100 = **100 %**.
+- **META:** V4 < 800 ms; V5 ≥ 99,5 %.
+
+**[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
+
+- **Descripción:** **Figura 31.** Carga con Locust sobre las pantallas de los incrementos 3 y 4 (20 usuarios). La curva p95 queda por debajo del umbral de 800 ms con 20 usuarios. Con 50 usuarios lo supera (Figura 33).
+
+![Carga con Locust.](../semana-10/evidencias/rendimiento/P_locust_B_inc3_inc4_20u.png)
+
+- **Descripción:** **Figura 32.** Producción: `GET /api/salud` responde «ok» y `/openapi.json` declara la versión 4.0.0-inc4.
+
+![Salud y contrato en producción.](evidencias/produccion/PROD_06_salud_openapi.jpg)
+
+- **Archivos de imagen:** `entregables/semana-10/evidencias/rendimiento/P_locust_B_inc3_inc4_20u.png`, `entregables/semana-12/evidencias/produccion/PROD_06_salud_openapi.jpg`
+
+**[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
+
+- **Descripción:** **Figura 33.** Corrida de carga de la adenda v4 (50 usuarios, 60 s): p95 por endpoint y agregado de 1 100 ms.
+
+![Carga de la adenda v4.](../semana-11/evidencias/CMMI05_carga_p95_v4.png)
+
+- **Descripción:** **Figura 34.** Sonda de disponibilidad `GET /api/salud` cada segundo durante la carga: 64 de 64 respuestas, 100 %.
+
+![Disponibilidad durante la carga.](correcciones/img/G06_v5_disponibilidad.png)
+
+- **Archivos de imagen:** `entregables/semana-11/evidencias/CMMI05_carga_p95_v4.png`, `entregables/semana-12/correcciones/img/G06_v5_disponibilidad.png`
+
+**EVALUACIÓN: V4 NO CUMPLE (1 100 ms > 800 ms; acción 16 del plan de mejora) · V5 CUMPLE | FECHA: 06/11/2026 | EVALUADOR: QA Lead (Huamani R.)**
+
+#### 3.6.2 Estrategia de pruebas
 
 **Tabla 24.** Pruebas automáticas del repositorio en `v4.0-Inc4`, re-ejecutadas el 30/10/2026 (adenda S9, sección 4; S10, Tabla 8).
 
@@ -743,22 +1035,22 @@ La meta acumulada propuesta en S9 (16,7 %, 33,3 %, 50,0 % y 66,7 % hasta INC-4) 
 
 ![pytest con cobertura: 660 aprobadas.](../semana-10/evidencias/terminal/R01_pytest_cobertura.png)
 
-**Figura 16.** pytest con cobertura: 660 pruebas aprobadas y 99,79 % de cobertura (S10, 30/10/2026). Archivo: `../semana-10/evidencias/terminal/R01_pytest_cobertura.png`.
+**Figura 35.** pytest con cobertura: 660 pruebas aprobadas y 99,79 % de cobertura (S10, 30/10/2026).
 
 ![28 pruebas E2E aprobadas.](../semana-10/evidencias/terminal/R03_e2e_playwright.png)
 
-**Figura 17.** 28 pruebas E2E con Playwright aprobadas. Archivo: `../semana-10/evidencias/terminal/R03_e2e_playwright.png`.
+**Figura 36.** 28 pruebas E2E con Playwright aprobadas.
 
 ![Ejecución de GitHub Actions en verde.](../semana-10/evidencias/github/GH_actions_ejecucion_verde.png)
 
-**Figura 18.** Ejecución #14 del CI en la rama de los incrementos 3 y 4: `calidad-y-pruebas` (2 min 27 s) e `imagen` (22 s) en verde; `produccion` se omite fuera de `main`. Archivo: `../semana-10/evidencias/github/GH_actions_ejecucion_verde.png`.
+**Figura 37.** Ejecución #14 del CI en la rama de los incrementos 3 y 4: `calidad-y-pruebas` (2 min 27 s) e `imagen` (22 s) en verde; `produccion` se omite fuera de `main`.
 
-**Despliegue en producción.** El trabajo `produccion` publica `main` en Render con Supabase. El 31/10/2026 se verificó la URL pública (<https://softwareanemia.onrender.com>): `GET /api/salud` respondió `{"estado":"ok","fecha_hoy":"2024-06-30","fecha_referencia":"2024-06-30"}` y `GET /openapi.json` declara la versión `4.0.0-inc4` con 29 rutas, igual que el contrato de `v4.0-Inc4`. La aplicación desplegada usa un reloj fijo al corte del dataset (30/06/2024): sus agendas y vencimientos se calculan a esa fecha y no a la real. Las capturas de producción por incremento están marcadas en la sección 3.6.4 y en el Anexo B.
+**Despliegue en producción.** El trabajo `produccion` publica `main` en Render con Supabase. El 31/10/2026 se verificó la URL pública (<https://softwareanemia.onrender.com>): `GET /api/salud` respondió `{"estado":"ok","fecha_hoy":"2024-06-30","fecha_referencia":"2024-06-30"}` y `GET /openapi.json` declara la versión `4.0.0-inc4` con 29 rutas, igual que el contrato de `v4.0-Inc4`. La aplicación desplegada usa un reloj fijo al corte del dataset (30/06/2024): sus agendas y vencimientos se calculan a esa fecha y no a la real. Las capturas tomadas en producción están en las fichas GQM (apartado 3.6.1) y en la ficha VAL de la sección 3.8.
 
 La cobertura alta no garantizó ausencia de defectos: seis de los siete defectos del Incremento 1 y cinco de los incrementos 3 y 4 escaparon a las pruebas, porque estas verificaban casos válidos y no entradas hostiles ni concurrencia. La revisión independiente (commit `d2ab78b`) corrigió cinco defectos: el webhook de WhatsApp aceptaba cuerpos sin firma si faltaba el secreto (alta), el reenvío simultáneo de una operación duplicaba una evaluación (media), dos generaciones simultáneas de recordatorios enviaban el mensaje dos veces (media) y dos defectos de interfaz (baja; la adenda S9 los cuenta como uno). Cada corrección tiene prueba de regresión salvo los dos de interfaz.
 
 
-#### 3.6.4 Fichas de prueba funcional con evidencia fotográfica
+#### 3.6.3 Fichas de prueba funcional con evidencia fotográfica
 
 Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidencia Fotográfica» de la plantilla: encabezado, proyecto, incremento, requerimiento, caso de prueba, dato de entrada, resultado esperado, dos capturas (datos de entrada cargados y confirmación o resultado) y evaluación. Hay 20 fichas: los 19 escenarios de aceptación de los cuatro incrementos y la autenticación. Las capturas son del software en ejecución sobre `v4.0-Inc4` (Playwright con Chromium; escritorio 1366x768; datos sintéticos, `AUTH_MODE=demo`, 30/10/2026), producidas por `entregables/semana-10/metricas/capturar_software.py`; cada escenario incluye aserciones y, si una falla, queda «Rechazado». Excepciones: la captura 1 de RF-05 y de RF-06 y la captura 2 de RF-05 son de S9 sobre `v1.0-PMV` y sobre el hito `v1.5.0-inc2-avance` (el pie de la imagen indica versión y fecha). Los identificadores `CP-RF0X-01` son los de S9; los demás siguen la misma convención. Las vistas móviles (390x844) están en `../semana-10/evidencias/software/`. El evaluador es el QA Lead; la firma manuscrita está pendiente. Cada incremento cierra con el marcador de su captura en producción (<https://softwareanemia.onrender.com>); la aplicación desplegada usa un reloj fijo al 30/06/2024, por lo que sus fechas difieren de las de las capturas locales.
 
@@ -787,7 +1079,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 19.** RF-01, captura 1. Formulario de registro con los datos sintéticos cargados antes de «Guardar registro»; la vista previa ya muestra Hb ajustada 9,1 g/dL y «Anemia moderada».
+- **Descripción:** **Figura 38.** RF-01, captura 1. Formulario de registro con los datos sintéticos cargados antes de «Guardar registro»; la vista previa ya muestra Hb ajustada 9,1 g/dL y «Anemia moderada».
 
 ![RF-01, captura 1.](../semana-10/evidencias/software/RF01_inc1_1_entrada_escritorio.png)
 
@@ -795,7 +1087,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 20.** RF-01, captura 2. Confirmación y expediente creado tras «Guardar registro» (130 ms); el DNI repetido respondió HTTP 409.
+- **Descripción:** **Figura 39.** RF-01, captura 2. Confirmación y expediente creado tras «Guardar registro» (130 ms); el DNI repetido respondió HTTP 409.
 
 ![RF-01, captura 2.](../semana-10/evidencias/software/RF01_inc1_2_resultado_escritorio.png)
 
@@ -818,7 +1110,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 21.** RF-02, captura 1. Expediente del DNI 71000001 recién consultado, con su historial de 2 evaluaciones y el formulario de nuevo control.
+- **Descripción:** **Figura 40.** RF-02, captura 1. Expediente del DNI 71000001 recién consultado, con su historial de 2 evaluaciones y el formulario de nuevo control.
 
 ![RF-02, captura 1.](../semana-10/evidencias/software/RF02_inc1_1_expediente_escritorio.png)
 
@@ -826,7 +1118,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 22.** RF-02, captura 2. Nuevo control agregado: el historial pasa de 2 a 3 evaluaciones (la edición de datos se registró en `RF02_inc1_2_edicion_escritorio.png`).
+- **Descripción:** **Figura 41.** RF-02, captura 2. Nuevo control agregado: el historial pasa de 2 a 3 evaluaciones (la edición de datos se registró en `RF02_inc1_2_edicion_escritorio.png`).
 
 ![RF-02, captura 2.](../semana-10/evidencias/software/RF02_inc1_3_nuevo_control_escritorio.png)
 
@@ -849,7 +1141,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 23.** RF-03, captura 1. Formulario con Hb 11,6 g/dL a 3 720 m: la vista previa muestra Hb ajustada 9,1 g/dL y «Anemia moderada».
+- **Descripción:** **Figura 42.** RF-03, captura 1. Formulario con Hb 11,6 g/dL a 3 720 m: la vista previa muestra Hb ajustada 9,1 g/dL y «Anemia moderada».
 
 ![RF-03, captura 1.](../semana-10/evidencias/software/RF03_inc1_1_vista_previa_escritorio.png)
 
@@ -857,7 +1149,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 24.** RF-03, captura 2. Datos inválidos (DNI «123», Hb 25 g/dL) rechazados con mensajes por campo (HTTP 422); no se guardó nada.
+- **Descripción:** **Figura 43.** RF-03, captura 2. Datos inválidos (DNI «123», Hb 25 g/dL) rechazados con mensajes por campo (HTTP 422); no se guardó nada.
 
 ![RF-03, captura 2.](../semana-10/evidencias/software/RF03_inc1_2_rechazo_escritorio.png)
 
@@ -880,7 +1172,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 25.** RF-04, captura 1. Pestaña «Seguimiento» con el listado completo de niños, sin filtro.
+- **Descripción:** **Figura 44.** RF-04, captura 1. Pestaña «Seguimiento» con el listado completo de niños, sin filtro.
 
 ![RF-04, captura 1.](../semana-10/evidencias/software/RF04_inc1_1_seguimiento_escritorio.png)
 
@@ -888,7 +1180,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 26.** RF-04, captura 2. Filtro por clasificación «Moderada» aplicado: 6 niños de 27.
+- **Descripción:** **Figura 45.** RF-04, captura 2. Filtro por clasificación «Moderada» aplicado: 6 niños de 27.
 
 ![RF-04, captura 2.](../semana-10/evidencias/software/RF04_inc1_2_filtro_moderada_escritorio.png)
 
@@ -911,7 +1203,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 27.** RF-05, captura 1. Pestaña «Reporte» con el periodo cargado antes de pulsar «Generar» (captura de S9, `v1.0-PMV`; el pie de la imagen indica versión y fecha).
+- **Descripción:** **Figura 46.** RF-05, captura 1. Pestaña «Reporte» con el periodo cargado antes de pulsar «Generar» (captura de S9, `v1.0-PMV`; el pie de la imagen indica versión y fecha).
 
 ![RF-05, captura 1.](../semana-09/evidencias_capturas/RF-05/RF05_inc1_paso1_entrada.png)
 
@@ -919,7 +1211,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 28.** RF-05, captura 2. Reporte generado: 15 niños registrados, 15 evaluaciones, 13 evaluados y 77 % con anemia. En `v4.0-Inc4` el mismo flujo dio 28 registrados y un CSV de 43 líneas en 86 ms (`RF05_inc1_1_reporte_escritorio.png`).
+- **Descripción:** **Figura 47.** RF-05, captura 2. Reporte generado: 15 niños registrados, 15 evaluaciones, 13 evaluados y 77 % con anemia. En `v4.0-Inc4` el mismo flujo dio 28 registrados y un CSV de 43 líneas en 86 ms (`RF05_inc1_1_reporte_escritorio.png`).
 
 ![RF-05, captura 2.](../semana-09/evidencias_capturas/RF-05/RF05_inc1_paso2_resultado.png)
 
@@ -927,7 +1219,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Captura en producción (PMV, Incremento 1):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando la pestaña «Registrar niño» con la vista previa de la clasificación (Hb 11,6 g/dL a 3 720 m: Hb ajustada 9,1 g/dL, «Anemia moderada») sin guardar el registro, y la pestaña «Reporte» del periodo>` (pendiente; archivo previsto `evidencias/produccion/PROD_01_inc1_registro_clasificacion.png`; ver `CAPTURAS_PENDIENTES.md`).
+**Captura en producción (PMV, Incremento 1):** el formulario «Registrar niño» con la vista previa de la clasificación en `softwareanemia.onrender.com` está en la Figura 18 y el «Reporte del periodo» en producción, en la Figura 27 (fichas GQM del apartado 3.6.1).
 
 ---
 
@@ -944,7 +1236,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 29.** RF-06, captura 1. Búsqueda del DNI 71000022 en «Seguimiento»: 1 niño con 2 controles vencidos (captura de S9, hito `v1.5.0-inc2-avance`).
+- **Descripción:** **Figura 48.** RF-06, captura 1. Búsqueda del DNI 71000022 en «Seguimiento»: 1 niño con 2 controles vencidos (captura de S9, hito `v1.5.0-inc2-avance`).
 
 ![RF-06, captura 1.](../semana-09/evidencias_capturas/RF-06/RF06_inc2_paso1_entrada.png)
 
@@ -952,7 +1244,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 30.** RF-06, captura 2. Expediente con la agenda de 13 controles (2 cumplidos, 9 pendientes, 2 vencidos) en `v4.0-Inc4`.
+- **Descripción:** **Figura 49.** RF-06, captura 2. Expediente con la agenda de 13 controles (2 cumplidos, 9 pendientes, 2 vencidos) en `v4.0-Inc4`.
 
 ![RF-06, captura 2.](../semana-10/evidencias/software/RF06_inc2_1_agenda_expediente_escritorio.png)
 
@@ -975,7 +1267,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 31.** RF-07, captura 1. Pestaña «Alertas» con los 9 controles vencidos priorizados (7 ALTA, 1 MEDIA, 1 BAJA).
+- **Descripción:** **Figura 50.** RF-07, captura 1. Pestaña «Alertas» con los 9 controles vencidos priorizados (7 ALTA, 1 MEDIA, 1 BAJA).
 
 ![RF-07, captura 1.](../semana-10/evidencias/software/RF07_inc2_1_alertas_escritorio.png)
 
@@ -983,7 +1275,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 32.** RF-07, captura 2. Lista filtrada por prioridad MEDIA.
+- **Descripción:** **Figura 51.** RF-07, captura 2. Lista filtrada por prioridad MEDIA.
 
 ![RF-07, captura 2.](../semana-10/evidencias/software/RF07_inc2_2_filtro_media_escritorio.png)
 
@@ -1006,7 +1298,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 33.** RF-08, captura 1. Pestaña «Agenda» con el rango de la semana cargado.
+- **Descripción:** **Figura 52.** RF-08, captura 1. Pestaña «Agenda» con el rango de la semana cargado.
 
 ![RF-08, captura 1.](../semana-10/evidencias/software/RF08_inc2_1_agenda_semana_escritorio.png)
 
@@ -1014,7 +1306,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 34.** RF-08, captura 2. Agenda de 30 días: 17 controles de 14 niños; el rango mayor de 31 días se rechaza (`RF08_inc2_3_rango_invalido_escritorio.png`).
+- **Descripción:** **Figura 53.** RF-08, captura 2. Agenda de 30 días: 17 controles de 14 niños; el rango mayor de 31 días se rechaza (`RF08_inc2_3_rango_invalido_escritorio.png`).
 
 ![RF-08, captura 2.](../semana-10/evidencias/software/RF08_inc2_2_agenda_30_dias_escritorio.png)
 
@@ -1037,7 +1329,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 35.** RF-09, captura 1. Modal «No asistió» con el motivo cargado antes de confirmar.
+- **Descripción:** **Figura 54.** RF-09, captura 1. Modal «No asistió» con el motivo cargado antes de confirmar.
 
 ![RF-09, captura 1.](../semana-10/evidencias/software/RF09_inc2_1_modal_inasistencia_escritorio.png)
 
@@ -1045,7 +1337,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 36.** RF-09, captura 2. Inasistencia registrada y prioridad actualizada; los vencidos sin registro pasan de 9 a 8.
+- **Descripción:** **Figura 55.** RF-09, captura 2. Inasistencia registrada y prioridad actualizada; los vencidos sin registro pasan de 9 a 8.
 
 ![RF-09, captura 2.](../semana-10/evidencias/software/RF09_inc2_2_inasistencia_registrada_escritorio.png)
 
@@ -1053,7 +1345,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Captura en producción (Incremento 2):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando las pestañas «Agenda» y «Alertas» (controles vencidos priorizados) con el aviso de fecha de referencia 30/06/2024 del reloj fijo del dataset>` (pendiente; archivo previsto `evidencias/produccion/PROD_02_inc2_agenda_alertas.png`; ver `CAPTURAS_PENDIENTES.md`).
+**Captura en producción (Incremento 2):** la «Agenda del personal» y las «Alertas de controles vencidos» en producción, con el aviso de la fecha de referencia 30/06/2024, están en las Figuras 20 y 29 (fichas GQM del apartado 3.6.1).
 
 ---
 
@@ -1070,7 +1362,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 37.** HIST-3.1, captura 1. Aplicación en línea (indicador «Al día») antes de cortar la conexión; los datos se digitan ya sin red.
+- **Descripción:** **Figura 56.** HIST-3.1, captura 1. Aplicación en línea (indicador «Al día») antes de cortar la conexión; los datos se digitan ya sin red.
 
 ![HIST-3.1, captura 1.](../semana-10/evidencias/software/HIST31_inc3_1_en_linea_escritorio.png)
 
@@ -1078,7 +1370,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 38.** HIST-3.1, captura 2. Sin conexión: 2 operaciones pendientes en el dispositivo; el servidor responde 404 para ese DNI.
+- **Descripción:** **Figura 57.** HIST-3.1, captura 2. Sin conexión: 2 operaciones pendientes en el dispositivo; el servidor responde 404 para ese DNI.
 
 ![HIST-3.1, captura 2.](../semana-10/evidencias/software/HIST31_inc3_2_pendientes_sin_conexion_escritorio.png)
 
@@ -1101,7 +1393,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 39.** HIST-3.1b, captura 1. Estado previo: aplicación en línea con el servidor activo, antes de detenerlo.
+- **Descripción:** **Figura 58.** HIST-3.1b, captura 1. Estado previo: aplicación en línea con el servidor activo, antes de detenerlo.
 
 ![HIST-3.1b, captura 1.](../semana-10/evidencias/software/HIST31_inc3_1_en_linea_escritorio.png)
 
@@ -1109,7 +1401,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 40.** HIST-3.1b, captura 2. Recarga con el servidor detenido: la aplicación abre desde el caché con el aviso de «sin conexión» y 30 de 30 filas servidas desde el caché.
+- **Descripción:** **Figura 59.** HIST-3.1b, captura 2. Recarga con el servidor detenido: la aplicación abre desde el caché con el aviso de «sin conexión» y 30 de 30 filas servidas desde el caché.
 
 ![HIST-3.1b, captura 2.](../semana-10/evidencias/software/HIST31_inc3_3_recarga_sin_conexion_escritorio.png)
 
@@ -1117,7 +1409,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-`<captura de pantalla de un teléfono móvil real, con red intermitente, mostrando la cola de pendientes y la sincronización al recuperar la señal>` (pendiente: sin dispositivo real; ver `CAPTURAS_PENDIENTES.md`).
+**Prueba en un celular real (producción).** El mismo flujo se repitió en un celular con la red cortada: el registro quedó «Pendiente de sincronizar» y al volver la conexión pasó a «Al día» con «Sincronización: 1 aplicado(s)» (Figuras 24 y 25, ficha GQM de M3.1, brecha B6). Falta la prueba con red intermitente en una posta.
 
 ---
 
@@ -1134,7 +1426,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 41.** HIST-3.2, captura 1. Pestaña «Sincronización» con las operaciones pendientes, antes de volver la red.
+- **Descripción:** **Figura 60.** HIST-3.2, captura 1. Pestaña «Sincronización» con las operaciones pendientes, antes de volver la red.
 
 ![HIST-3.2, captura 1.](../semana-10/evidencias/software/HIST32_inc3_1_panel_antes_de_sincronizar_escritorio.png)
 
@@ -1142,7 +1434,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 42.** HIST-3.2, captura 2. Red restablecida: operaciones aplicadas, indicador «Al día»; el reenvío se marca DUPLICADA y no duplica datos.
+- **Descripción:** **Figura 61.** HIST-3.2, captura 2. Red restablecida: operaciones aplicadas, indicador «Al día»; el reenvío se marca DUPLICADA y no duplica datos.
 
 ![HIST-3.2, captura 2.](../semana-10/evidencias/software/HIST32_inc3_2_sincronizado_escritorio.png)
 
@@ -1165,7 +1457,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 43.** HIST-3.3, captura 1. Conflicto pendiente en «Sincronización»: el servidor tiene un dato distinto al del dispositivo.
+- **Descripción:** **Figura 62.** HIST-3.3, captura 1. Conflicto pendiente en «Sincronización»: el servidor tiene un dato distinto al del dispositivo.
 
 ![HIST-3.3, captura 1.](../semana-10/evidencias/software/HIST33_inc3_1_conflicto_escritorio.png)
 
@@ -1173,7 +1465,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 44.** HIST-3.3, captura 2. Conflicto resuelto conservando el dato del servidor; aparece «sin conflictos».
+- **Descripción:** **Figura 63.** HIST-3.3, captura 2. Conflicto resuelto conservando el dato del servidor; aparece «sin conflictos».
 
 ![HIST-3.3, captura 2.](../semana-10/evidencias/software/HIST33_inc3_2_conflicto_resuelto_escritorio.png)
 
@@ -1196,7 +1488,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 45.** HIST-3.4, captura 1. Panel con «1 pendiente(s)» y desde cuándo, con el dispositivo sin conexión.
+- **Descripción:** **Figura 64.** HIST-3.4, captura 1. Panel con «1 pendiente(s)» y desde cuándo, con el dispositivo sin conexión.
 
 ![HIST-3.4, captura 1.](../semana-10/evidencias/software/HIST34_inc3_1_panel_pendientes_escritorio.png)
 
@@ -1204,7 +1496,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 46.** HIST-3.4, captura 2. Tras reconectar y sincronizar, el panel queda «al día» sin pendientes.
+- **Descripción:** **Figura 65.** HIST-3.4, captura 2. Tras reconectar y sincronizar, el panel queda «al día» sin pendientes.
 
 ![HIST-3.4, captura 2.](../semana-10/evidencias/software/HIST34_inc3_2_panel_al_dia_escritorio.png)
 
@@ -1227,7 +1519,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 47.** VIS-3.5, captura 1. Pestaña «Visitas»: 18 filas ordenadas por puntaje de 49,5 a 25,0, con desglose por componente.
+- **Descripción:** **Figura 66.** VIS-3.5, captura 1. Pestaña «Visitas»: 18 filas ordenadas por puntaje de 49,5 a 25,0, con desglose por componente.
 
 ![VIS-3.5, captura 1.](../semana-10/evidencias/software/VIS35_inc3_1_visitas_desglose_escritorio.png)
 
@@ -1235,7 +1527,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 48.** VIS-3.5, captura 2. Modal de registro de la visita con el resultado, el suplemento y las observaciones cargados; tras confirmar, el niño sale del primer lugar de la lista.
+- **Descripción:** **Figura 67.** VIS-3.5, captura 2. Modal de registro de la visita con el resultado, el suplemento y las observaciones cargados; tras confirmar, el niño sale del primer lugar de la lista.
 
 ![VIS-3.5, captura 2.](../semana-10/evidencias/software/VIS35_inc3_2_modal_visita_escritorio.png)
 
@@ -1243,7 +1535,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Captura en producción (Incremento 3):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando la pestaña «Sincronización» (indicador «Al día», sin pendientes ni conflictos) y la pestaña «Visitas» con la lista priorizada, el puntaje y su desglose>` (pendiente; archivo previsto `evidencias/produccion/PROD_03_inc3_sincronizacion_visitas.png`; ver `CAPTURAS_PENDIENTES.md`).
+**Captura en producción (Incremento 3):** la sincronización en un celular real (de «Pendiente de sincronizar» a «Al día») y la lista de visitas priorizadas en producción están en las Figuras 24, 25 y 23 (fichas GQM del apartado 3.6.1).
 
 ---
 
@@ -1260,7 +1552,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 49.** HIST-4.1, captura 1. Pestaña «Recordatorios» antes de generar.
+- **Descripción:** **Figura 68.** HIST-4.1, captura 1. Pestaña «Recordatorios» antes de generar.
 
 ![HIST-4.1, captura 1.](../semana-10/evidencias/software/HIST41_inc4_1_recordatorios_antes_escritorio.png)
 
@@ -1268,7 +1560,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 50.** HIST-4.1, captura 2. 24 recordatorios rotulados SIMULADO («no se envió»); repetir la generación no duplica.
+- **Descripción:** **Figura 69.** HIST-4.1, captura 2. 24 recordatorios rotulados SIMULADO («no se envió»); repetir la generación no duplica.
 
 ![HIST-4.1, captura 2.](../semana-10/evidencias/software/HIST41_inc4_2_recordatorios_simulados_escritorio.png)
 
@@ -1276,7 +1568,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-`<captura de pantalla del teléfono del tutor mostrando el recordatorio recibido por WhatsApp o SMS>` (pendiente: el envío real nunca se probó; ver `CAPTURAS_PENDIENTES.md`).
+**Pendiente:** el envío real por WhatsApp o SMS no se ha probado. Depende de que Meta apruebe la plantilla `recordatorio_control`; hasta entonces los recordatorios se registran como SIMULADO (ADR-014).
 
 ---
 
@@ -1293,7 +1585,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 51.** HIST-4.2, captura 1. Modal «Registrar respuesta» del tutor (1 confirmo, 2 no puedo, 3 reprogramar) con la opción cargada.
+- **Descripción:** **Figura 70.** HIST-4.2, captura 1. Modal «Registrar respuesta» del tutor (1 confirmo, 2 no puedo, 3 reprogramar) con la opción cargada.
 
 ![HIST-4.2, captura 1.](../semana-10/evidencias/software/HIST42_inc4_1_modal_respuesta_escritorio.png)
 
@@ -1301,7 +1593,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 52.** HIST-4.2, captura 2. Respuesta «No puede asistir» registrada por el personal. El webhook sin firma o con firma inválida respondió 403 y con firma válida 200, pero en modo simulado el mensaje se ignora (sin canal real que asociar; `HIST42_inc4_3_tras_webhook_escritorio.png`).
+- **Descripción:** **Figura 71.** HIST-4.2, captura 2. Respuesta «No puede asistir» registrada por el personal. El webhook sin firma o con firma inválida respondió 403 y con firma válida 200, pero en modo simulado el mensaje se ignora (sin canal real que asociar; `HIST42_inc4_3_tras_webhook_escritorio.png`).
 
 ![HIST-4.2, captura 2.](../semana-10/evidencias/software/HIST42_inc4_2_respuesta_registrada_escritorio.png)
 
@@ -1324,7 +1616,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 53.** HIST-4.3, captura 1. Modal «Registrar barrera» con el tipo y el detalle cargados.
+- **Descripción:** **Figura 72.** HIST-4.3, captura 1. Modal «Registrar barrera» con el tipo y el detalle cargados.
 
 ![HIST-4.3, captura 1.](../semana-10/evidencias/software/HIST43_inc4_1_modal_barrera_escritorio.png)
 
@@ -1332,7 +1624,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 54.** HIST-4.3, captura 2. Barrera sincronizada y visible en el expediente (antes de reconectar figuraba como pendiente: `HIST43_inc4_2_barrera_pendiente_sin_conexion_escritorio.png`).
+- **Descripción:** **Figura 73.** HIST-4.3, captura 2. Barrera sincronizada y visible en el expediente (antes de reconectar figuraba como pendiente: `HIST43_inc4_2_barrera_pendiente_sin_conexion_escritorio.png`).
 
 ![HIST-4.3, captura 2.](../semana-10/evidencias/software/HIST43_inc4_3_barrera_sincronizada_escritorio.png)
 
@@ -1355,7 +1647,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 55.** HIST-4.4, captura 1. Pestaña «Alertas» con las alertas de barreras críticas.
+- **Descripción:** **Figura 74.** HIST-4.4, captura 1. Pestaña «Alertas» con las alertas de barreras críticas.
 
 ![HIST-4.4, captura 1.](../semana-10/evidencias/software/HIST44_inc4_1_alertas_barreras_criticas_escritorio.png)
 
@@ -1363,7 +1655,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 56.** HIST-4.4, captura 2. Visita priorizada con el componente BARRERA_CRITICA (40,0 puntos) y alerta ALTA.
+- **Descripción:** **Figura 75.** HIST-4.4, captura 2. Visita priorizada con el componente BARRERA_CRITICA (40,0 puntos) y alerta ALTA.
 
 ![HIST-4.4, captura 2.](../semana-10/evidencias/software/HIST44_inc4_2_visita_con_barrera_critica_escritorio.png)
 
@@ -1371,7 +1663,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **EVALUACIÓN: APROBADO | FECHA: 30/10/2026 | EVALUADOR: QA Lead (Huamani R.)**
 
-**Captura en producción (Incremento 4):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando la pestaña «Recordatorios» con los mensajes rotulados SIMULADO (o el estado real del canal, si está configurado) y la pestaña «Alertas» con las barreras críticas>` (pendiente; archivo previsto `evidencias/produccion/PROD_04_inc4_recordatorios_barreras.png`; ver `CAPTURAS_PENDIENTES.md`).
+**Captura en producción (Incremento 4):** pendiente. Los recordatorios en producción siguen en modo SIMULADO hasta que Meta apruebe la plantilla de WhatsApp; la evidencia del flujo es la de esta ficha, tomada sobre `v4.0-Inc4` en local.
 
 ---
 
@@ -1388,7 +1680,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 1: DATOS DE ENTRADA CARGADOS ]**
 
-- **Descripción:** **Figura 57.** AUTH, captura 1. Pantalla de acceso con el correo y la contraseña de prueba cargados antes de «Iniciar sesión» (axe: 0 violaciones).
+- **Descripción:** **Figura 76.** AUTH, captura 1. Pantalla de acceso con el correo y la contraseña de prueba cargados antes de «Iniciar sesión» (axe: 0 violaciones).
 
 ![AUTH, captura 1.](../semana-10/evidencias/usabilidad/U_login_escritorio.png)
 
@@ -1396,7 +1688,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 **[ CAPTURA 2: CONFIRMACIÓN / RESULTADO ]**
 
-- **Descripción:** **Figura 58.** AUTH, captura 2. Acceso en móvil (390x844). No hay captura de la aplicación tras el ingreso: ese resultado se verificó por aserciones (aplicación visible, correo en la cabecera, sin token en `localStorage`, 27 de 27 operaciones no públicas con 401 sin sesión) y la prueba con una cuenta real de Supabase queda como captura en producción.
+- **Descripción:** **Figura 77.** AUTH, captura 2. Acceso en móvil (390x844). No hay captura de la aplicación tras el ingreso: ese resultado se verificó por aserciones (aplicación visible, correo en la cabecera, sin token en `localStorage`, 27 de 27 operaciones no públicas con 401 sin sesión) y la prueba con una cuenta real de Supabase queda como captura en producción.
 
 ![AUTH, captura 2.](../semana-10/evidencias/usabilidad/U_login_movil.png)
 
@@ -1406,11 +1698,82 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 *Nota de la evaluación:* Verificado con Supabase simulado (21 pruebas de integración y 2 E2E en escritorio y móvil); validación parcial: no consta una prueba con una cuenta real de Supabase..
 
-**Captura en producción (autenticación):** `<captura de pantalla en https://softwareanemia.onrender.com mostrando la pantalla de inicio de sesión y la aplicación abierta con una cuenta de Supabase autorizada (ocultar el correo y cualquier token)>` (pendiente; archivo previsto `evidencias/produccion/PROD_05_auth_inicio_sesion.png`; ver `CAPTURAS_PENDIENTES.md`).
+**Captura en producción (autenticación):** la pantalla de inicio de sesión en `softwareanemia.onrender.com` está en la Figura 113 (ficha VAL de la sección 3.8).
 
 
 ---
 
+
+#### 3.6.4 Estructura de directorios de la arquitectura hexagonal en GitHub
+
+Este apartado documenta cómo está organizado el repositorio. La evidencia de que la arquitectura cumple las métricas M1.1 a M1.3 está en las fichas GQM del apartado 3.6.1 (código del dominio, matriz de importaciones y ejecución de las mediciones).
+
+El código del producto está en `pmv_fastapi/app/` (<https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app>). La plantilla de la guía usa nombres de un proyecto Java (`/src/domain|ports|adapters`, JPA); aquí el lenguaje es Python y los puertos son interfaces estructurales (`typing.Protocol`). La Tabla 26 traduce cada carpeta de la plantilla a la del repositorio, con su enlace en la etiqueta `v4.0-Inc4`.
+
+```text
+pmv_fastapi/app/
+├── domain/        <-- NÚCLEO (solo biblioteca estándar y módulos del propio dominio)
+│   ├── model/     entidades y reglas puras (16 módulos)
+│   └── service/   reglas clínicas, agenda, alertas, conflictos, puntaje de visitas (11 módulos)
+├── ports/         <-- PUERTOS (Protocol)
+│   ├── inbound/   interfaces de casos de uso (14)
+│   └── outbound/  repositorios, reloj, notificador, proveedor de identidad (8)
+├── application/   casos de uso que implementan los puertos de entrada (12 servicios)
+├── adapters/      <-- INFRAESTRUCTURA
+│   ├── inbound/http/   FastAPI: rutas, esquemas Pydantic, sesión y CSRF
+│   └── outbound/       SQLAlchemy y memoria, WhatsApp Cloud, SMS, simulado, Supabase Auth, relojes
+├── web/           cliente PWA (JavaScript, service worker, cola IndexedDB); fuera del hexágono
+└── main.py        raíz de composición: único módulo que conecta adaptadores con el núcleo
+```
+
+**Tabla 26.** Equivalencia entre la estructura de la plantilla y la del proyecto, con archivos y líneas de código por capa (S10, Tabla 17; análisis AST; el conteo incluye `__init__.py`).
+
+| Plantilla (`/src/...`) | Proyecto (`pmv_fastapi/app/...`) | Contenido real | Archivos / LOC | Enlace en `v4.0-Inc4` |
+| --- | --- | --- | :---: | --- |
+| `domain/model/` | `domain/model/` | Entidades puras: niño, evaluación, agenda, barrera, visita, notificación, sincronización | 17 / 699 | [`domain/model`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/domain/model) |
+| `domain/service/` | `domain/service/` | Reglas clínicas, agenda, alertas, validaciones, conflictos, puntaje de visitas (funciones puras) | 12 / 1 593 | [`domain/service`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/domain/service) |
+| `ports/inbound/` | `ports/inbound/` | 14 interfaces de casos de uso | 15 / 156 | [`ports/inbound`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/ports/inbound) |
+| `ports/outbound/` | `ports/outbound/` | 8 interfaces: repositorios, reloj, notificador, proveedor de identidad | 9 / 143 | [`ports/outbound`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/ports/outbound) |
+| (la plantilla no la contempla) | `application/` | 12 servicios que implementan los puertos de entrada | 13 / 1 227 | [`application`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/application) |
+| `adapters/inbound/` | `adapters/inbound/http/` | FastAPI: rutas, esquemas Pydantic, sesión y CSRF | 5 / 1 437 | [`adapters/inbound`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/adapters/inbound) |
+| `adapters/outbound/` | `adapters/outbound/` | SQLAlchemy y memoria, WhatsApp Cloud, SMS, Supabase Auth, relojes | 12 / 1 359 | [`adapters/outbound`](https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app/adapters/outbound) |
+| (composición) | `main.py` | Conecta cada puerto con su adaptador; versión `4.0.0-inc4` | 1 | [`main.py`](https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/v4.0-Inc4/pmv_fastapi/app/main.py) |
+
+Dos diferencias respecto de la plantilla: se usa SQLAlchemy y no JPA, y no hay Redis; el caché y la cola viven en el navegador (service worker e IndexedDB). La carpeta `application/` se agregó porque separa los casos de uso de las reglas puras del dominio (ADR-001 y ADR-008).
+
+![Estructura hexagonal de pmv_fastapi/app en GitHub, etiqueta v4.0-Inc4.](../semana-10/evidencias/github/GH_arbol_app.png)
+
+**Figura 78.** Carpeta `pmv_fastapi/app/` en GitHub con la etiqueta `v4.0-Inc4` seleccionada: `adapters`, `application`, `domain`, `ports` y `web`, y `main.py` (captura del 30/10/2026).
+
+![Árbol real de carpetas de la capa hexagonal.](../semana-10/evidencias/arquitectura/S_arbol_hexagonal.png)
+
+**Figura 79.** Árbol real de `pmv_fastapi/app/` generado recorriendo el sistema de archivos.
+
+![Puerto de salida Notificador en GitHub.](../semana-10/evidencias/github/GH_puerto_notificador.png)
+
+**Figura 80.** Ejemplo de puerto de salida (`Notificador`), implementado por cuatro adaptadores (simulado, WhatsApp Cloud, SMS y respaldo).
+
+![main.py como raíz de composición en GitHub.](../semana-10/evidencias/github/GH_main_composicion.png)
+
+**Figura 81.** `main.py` como única raíz de composición (GitHub, `v4.0-Inc4`).
+
+**Tabla 27.** Matriz de dependencias entre capas (conteo de importaciones; S10, Tabla 18). Ninguna importación prohibida.
+
+| Capa (origen) | stdlib | terceros | dominio | puertos | application | adaptadores |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: |
+| `domain` (model y service) | 63 | **0** | 67 | 0 | 0 | 0 |
+| `ports` (inbound y outbound) | 32 | **0** | 20 | 0 | 0 | 0 |
+| `application` | 14 | **0** | 63 | 48 | 0 | 0 |
+| `adapters.inbound` | 7 | 8 (`fastapi`, `pydantic`) | 12 | 13 | 0 | 1 |
+| `adapters.outbound` | 14 | 7 (`httpx`, `sqlalchemy`) | 24 | 15 | 0 | 4 |
+
+![25 pruebas de arquitectura aprobadas.](../semana-10/evidencias/terminal/R06_arquitectura.png)
+
+**Figura 82.** Las 25 pruebas de arquitectura (`tests/arquitectura`) validan la regla de dependencia en cada ejecución del CI: todas aprobadas.
+
+Tres hallazgos honestos de la auditoría: (1) la conformidad **ultra estricta** de M1.2 es 80 % porque `application/servicio_sesion.py` implementa el puerto `ProveedorIdentidad` dentro de la capa de aplicación (adenda S9, sección 7); (2) `autenticacion.py` (94 %) y `supabase_auth.py` (97 %) explican por qué la cobertura bajó de 100 % a 99,79 %; (3) el diagrama C4 de componentes del repositorio describe solo el Incremento 1 y no se actualizó.
+
+---
 
 ### 3.7 EJE 7: Evaluación FURPS+, Psicología de Colores, WCAG 2.1 y OWASP 2025
 
@@ -1418,7 +1781,7 @@ Cada ficha sigue el formato de la «Ficha Modelo de Prueba Funcional con Evidenc
 
 El índice pondera F 30 %, U 15 %, R 15 %, P 15 %, S 10 % y + 15 %. Se calculó con 30 de 35 criterios, medidos por scripts (`entregables/semana-10/metricas/`); cinco no se pudieron medir (lector de pantalla, staging, 500 usuarios, Docker en ejecución y política de contraseñas de Supabase). El índice primario excluye lo no medido y el conservador lo cuenta como 0 %.
 
-**Tabla 26.** Índice FURPS+ por factor (S10, Tabla 5).
+**Tabla 28.** Índice FURPS+ por factor (S10, Tabla 5).
 
 | Factor | Peso | Criterios medidos | % solo medidos | % conservador | Brecha principal |
 | --- | :---: | :---: | :---: | :---: | --- |
@@ -1432,15 +1795,15 @@ El índice pondera F 30 %, U 15 %, R 15 %, P 15 %, S 10 % y + 15 %. Se calculó 
 
 ![Salida del cálculo del índice FURPS+.](../semana-10/evidencias/terminal/FURPS01_calculo_indice.png)
 
-**Figura 59.** Salida de `furps_calculo.py` con el índice primario y el conservador (pie con comando, fecha y commit). Archivo: `../semana-10/evidencias/terminal/FURPS01_calculo_indice.png`.
+**Figura 83.** Salida de `furps_calculo.py` con el índice primario y el conservador (pie con comando, fecha y commit).
 
 La diferencia de 9,24 puntos entre ambos índices cuantifica cuánto de la calidad declarada depende de mediciones que faltan.
 
 #### 3.7.2 Factor U: psicología de colores y accesibilidad WCAG 2.1 AA
 
-Los criterios evaluados son los de las pautas WCAG 2.1, nivel AA (W3C, 2018).
+Los criterios evaluados son los de las pautas WCAG 2.1, nivel AA [17].
 
-**Tabla 27.** Paleta real de la interfaz (`pmv_fastapi/app/web/estilos.css`), significado en salud infantil y contraste medido (S10, Tabla 9).
+**Tabla 29.** Paleta real de la interfaz (`pmv_fastapi/app/web/estilos.css`), significado en salud infantil y contraste medido (S10, Tabla 9).
 
 | Rol | Hexadecimal | Significado | Contraste |
 | --- | --- | --- | --- |
@@ -1454,13 +1817,13 @@ De 54 pares texto y fondo medidos (23 combinaciones únicas), solo el naranja so
 
 ![Paleta real de la interfaz.](../semana-10/evidencias/usabilidad/U_paleta_colores.png)
 
-**Figura 60.** Paleta real con muestras, hexadecimales, contraste y significado. Archivo: `../semana-10/evidencias/usabilidad/U_paleta_colores.png`.
+**Figura 84.** Paleta real con muestras, hexadecimales, contraste y significado.
 
 ![Semáforo de severidad con simulación de daltonismo.](../semana-10/evidencias/usabilidad/U_semaforo_severidad_daltonismo.png)
 
-**Figura 61.** Semáforo de severidad bajo simulación de deuteranopía, protanopía y escala de grises: los tonos moderada y severa se acercan, por eso el texto de cada estado acompaña siempre al color. Archivo: `../semana-10/evidencias/usabilidad/U_semaforo_severidad_daltonismo.png`.
+**Figura 85.** Semáforo de severidad bajo simulación de deuteranopía, protanopía y escala de grises: los tonos moderada y severa se acercan, por eso el texto de cada estado acompaña siempre al color.
 
-**Tabla 28.** Criterios WCAG evaluados con axe-core 4.14.0, Playwright y cálculo propio (S10, Tabla 11).
+**Tabla 30.** Criterios WCAG evaluados con axe-core 4.14.0, Playwright y cálculo propio (S10, Tabla 11).
 
 | Criterio | Resultado medido | Estado |
 | --- | --- | --- |
@@ -1478,17 +1841,17 @@ axe-core halló 22 reglas violadas (52 nodos) en escritorio y 36 (68 nodos) en m
 
 ![Resumen de axe-core por pantalla y vista.](../semana-10/evidencias/usabilidad/U_axe_resumen_pantallas.png)
 
-**Figura 62.** Resumen de axe-core por pantalla y vista (14 pantallas, 4 modales y el inicio de sesión). Archivo: `../semana-10/evidencias/usabilidad/U_axe_resumen_pantallas.png`.
+**Figura 86.** Resumen de axe-core por pantalla y vista (14 pantallas, 4 modales y el inicio de sesión).
 
 ![Foco visible al recorrer las pestañas con Tab.](../semana-10/evidencias/usabilidad/U_teclado_foco_pestana.png)
 
-**Figura 63.** Foco visible al recorrer las pestañas con Tab. Archivo: `../semana-10/evidencias/usabilidad/U_teclado_foco_pestana.png`.
+**Figura 87.** Foco visible al recorrer las pestañas con Tab.
 
 #### 3.7.3 Factores R y P: confiabilidad y rendimiento
 
 Las mediciones son de una máquina virtual con un proceso uvicorn y datos sintéticos; sirven para detectar brechas, no como capacidad de producción.
 
-**Tabla 29.** Confiabilidad y rendimiento medidos (S10, Tablas 14 y 15; adenda S9, nota 4).
+**Tabla 31.** Confiabilidad y rendimiento medidos (S10, Tablas 14 y 15; adenda S9, nota 4).
 
 | Atributo | Meta | Valor medido | Estado |
 | --- | --- | --- | --- |
@@ -1506,23 +1869,23 @@ Las mediciones son de una máquina virtual con un proceso uvicorn y datos sinté
 
 ![Locust con 20 usuarios, Inc. 3 y 4.](../semana-10/evidencias/rendimiento/P_locust_B_inc3_inc4_20u.png)
 
-**Figura 64.** Locust, 20 usuarios, 60 s, incrementos 3 y 4 (sincronización, visitas y recordatorios): p95 de 98 ms. Archivo: `../semana-10/evidencias/rendimiento/P_locust_B_inc3_inc4_20u.png`.
+**Figura 88.** Locust, 20 usuarios, 60 s, incrementos 3 y 4 (sincronización, visitas y recordatorios): p95 de 98 ms.
 
 ![Locust con 100 usuarios, Inc. 1 y 2.](../semana-10/evidencias/rendimiento/P_locust_C_inc1_inc2_100u.png)
 
-**Figura 65.** Locust, 100 usuarios, 60 s, incrementos 1 y 2: p95 de 2 000 ms, por encima del umbral de 800 ms. Archivo: `../semana-10/evidencias/rendimiento/P_locust_C_inc1_inc2_100u.png`.
+**Figura 89.** Locust, 100 usuarios, 60 s, incrementos 1 y 2: p95 de 2 000 ms, por encima del umbral de 800 ms.
 
 ![Prueba de caos con PostgreSQL.](../semana-10/evidencias/terminal/R13_caos_postgres.png)
 
-**Figura 66.** Caos con PostgreSQL 16 temporal: 25 de 26 peticiones respondieron 500 durante la caída y la aplicación se recuperó a los 0,2 s. Archivo: `../semana-10/evidencias/terminal/R13_caos_postgres.png`.
+**Figura 90.** Caos con PostgreSQL 16 temporal: 25 de 26 peticiones respondieron 500 durante la caída y la aplicación se recuperó a los 0,2 s.
 
 La causa probable del aumento del p95 con la carga es un único proceso con una base compartida; no se perfiló el código. La adenda de S9 no pudo repetir `v1.0` en la misma sesión como control, de modo que no se sabe si el aumento de 815 a 1 100 ms viene del código nuevo, de la autenticación o de la máquina. **El p95 es el riesgo de rendimiento abierto del producto** (acción 16 del plan de mejora).
 
 #### 3.7.4 Factor +: auditoría de seguridad OWASP Top 10:2025
 
-La auditoría combinó 30 comprobaciones estáticas (16 cumplen, 13 hallazgos, 1 no medida), 32 pruebas dinámicas contra un servidor local con Supabase simulado (25 cumplen, 7 hallazgos), una prueba de XSS con cuatro cargas en seis pantallas y SAST y SCA con bandit, pip-audit y semgrep. No se ejecutó OWASP ZAP ni se probó un proyecto de Supabase real. La edición 2025 reordenó la lista de la plantilla (SSRF pasó a A01 y apareció A10); se evalúa la lista 2025 (OWASP Foundation, 2025).
+La auditoría combinó 30 comprobaciones estáticas (16 cumplen, 13 hallazgos, 1 no medida), 32 pruebas dinámicas contra un servidor local con Supabase simulado (25 cumplen, 7 hallazgos), una prueba de XSS con cuatro cargas en seis pantallas y SAST y SCA con bandit, pip-audit y semgrep. No se ejecutó OWASP ZAP ni se probó un proyecto de Supabase real. La edición 2025 reordenó la lista de la plantilla (SSRF pasó a A01 y apareció A10); se evalúa la lista 2025 [18].
 
-**Tabla 30.** Estado por categoría OWASP Top 10:2025 en `v4.0-Inc4` (S10, Tabla 21).
+**Tabla 32.** Estado por categoría OWASP Top 10:2025 en `v4.0-Inc4` (S10, Tabla 21).
 
 | Código | Categoría | Estado | Mecanismo implementado | Hallazgo abierto |
 | --- | --- | --- | --- | --- |
@@ -1541,7 +1904,7 @@ La auditoría combinó 30 comprobaciones estáticas (16 cumplen, 13 hallazgos, 1
 
 Resumen: 1 categoría mitigada, 7 parciales y 2 no mitigadas. Las protecciones de sesión y CSRF solo operan con `AUTH_MODE=supabase` (valor por defecto); con `demo` la API es pública, modo que existe solo para pruebas y capturas.
 
-**Tabla 31.** Análisis estático y de dependencias (S10, Tablas 22 y 23).
+**Tabla 33.** Análisis estático y de dependencias (S10, Tablas 22 y 23).
 
 | Herramienta | Resultado | Lectura |
 | --- | --- | --- |
@@ -1551,35 +1914,35 @@ Resumen: 1 categoría mitigada, 7 parciales y 2 no mitigadas. Las protecciones d
 
 ![semgrep: 554 reglas sobre 97 archivos.](../semana-10/evidencias/terminal/O01_semgrep.png)
 
-**Figura 67.** semgrep: 554 reglas sobre 97 archivos, 151 hallazgos clasificados manualmente. Archivo: `../semana-10/evidencias/terminal/O01_semgrep.png`.
+**Figura 91.** semgrep: 554 reglas sobre 97 archivos, 151 hallazgos clasificados manualmente.
 
 ![Pruebas dinámicas de seguridad T01 a T32.](../semana-10/evidencias/terminal/O02_pruebas_http_owasp.png)
 
-**Figura 68.** Pruebas dinámicas T01 a T32 contra el servidor local (sesión, CSRF, cookies, cabeceras, inyección, webhook y errores). Archivo: `../semana-10/evidencias/terminal/O02_pruebas_http_owasp.png`.
+**Figura 92.** Pruebas dinámicas T01 a T32 contra el servidor local (sesión, CSRF, cookies, cabeceras, inyección, webhook y errores).
 
 ![Comprobaciones estáticas E01 a E30.](../semana-10/evidencias/terminal/O04_estatico_owasp.png)
 
-**Figura 69.** Comprobaciones estáticas E01 a E30 con su estado (CUMPLE, HALLAZGO, NO MEDIDO). Archivo: `../semana-10/evidencias/terminal/O04_estatico_owasp.png`.
+**Figura 93.** Comprobaciones estáticas E01 a E30 con su estado (CUMPLE, HALLAZGO, NO MEDIDO).
 
 ![Prueba dinámica de XSS en seis pantallas.](../semana-10/evidencias/terminal/O03_xss_dinamico.png)
 
-**Figura 70.** XSS dinámico: cargas inyectadas en cuatro campos y revisadas en seis pantallas (0 ejecuciones). Archivo: `../semana-10/evidencias/terminal/O03_xss_dinamico.png`.
+**Figura 94.** XSS dinámico: cargas inyectadas en cuatro campos y revisadas en seis pantallas (0 ejecuciones).
 
 ![Webhook de WhatsApp que falla cerrado.](../semana-10/evidencias/github/GH_webhook_falla_cerrado.png)
 
-**Figura 71.** Manejador del webhook que responde 503 sin secreto y 403 con firma ausente o inválida, corregido en la revisión independiente (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_webhook_falla_cerrado.png`.
+**Figura 95.** Manejador del webhook que responde 503 sin secreto y 403 con firma ausente o inválida, corregido en la revisión independiente (GitHub, `v4.0-Inc4`).
 
 ![Sesión en cookies con CSRF en GitHub.](../semana-10/evidencias/github/GH_sesion_cookies_csrf.png)
 
-**Figura 72.** Sesión en cookies `HttpOnly` con protección CSRF (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_sesion_cookies_csrf.png`.
+**Figura 96.** Sesión en cookies `HttpOnly` con protección CSRF (GitHub, `v4.0-Inc4`).
 
 ![Código afectado por el hallazgo H-3 (CSV).](../semana-10/evidencias/github/GH_csv_reporte_hallazgo.png)
 
-**Figura 73.** Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con `=`, `+`, `-` o `@` (GitHub, `v4.0-Inc4`). Archivo: `../semana-10/evidencias/github/GH_csv_reporte_hallazgo.png`.
+**Figura 97.** Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con `=`, `+`, `-` o `@` (GitHub, `v4.0-Inc4`).
 
 **Conteo de vulnerabilidades.** Las herramientas SAST y SCA no confirman ninguna vulnerabilidad alta o crítica, pero la revisión manual y dinámica sí: 1 hallazgo de severidad alta (H-1) y seis de severidad media. **No se afirma ausencia de vulnerabilidades**; el criterio «0 vulnerabilidades críticas o altas» de la plantilla no se cumple.
 
-**Tabla 32.** Hallazgos de seguridad H-1 a H-12 con su acción propuesta (S10, Tabla 24). Ninguna acción está aplicada en el código; las acciones 12 a 18 del plan de mejora CMMI (sección 3.8) las programan.
+**Tabla 34.** Hallazgos de seguridad H-1 a H-12 con su acción propuesta (S10, Tabla 24). Ninguna acción está aplicada en el código; las acciones 12 a 18 del plan de mejora CMMI (sección 3.8) las programan.
 
 | N.° | OWASP | Hallazgo | Severidad | Acción propuesta |
 | --- | --- | --- | --- | --- |
@@ -1603,11 +1966,11 @@ Resumen: 1 categoría mitigada, 7 parciales y 2 no mitigadas. Las protecciones d
 
 ### 3.8 EJE 8: Evaluación de Capacidad del Proceso según CMMI-DEV y Mejora Continua
 
-La evaluación usa la representación continua con niveles de capacidad 0 a 3 por área de práctica (CMMI Institute, 2018) y una regla estricta: **el nivel de un área es el de su práctica más débil**. Nivel 1 (Ejecutado) significa que la práctica se realiza y deja producto, pero sin registro sistemático ni contraste con lo planificado; Nivel 2 (Gestionado), que además está planificada, tiene responsables, se contrasta con lo real y sus productos se revisan con evidencia verificable; Nivel 3 (Definido), que existe un estándar documentado y automatizado que se aplica en todos los incrementos (S11, Tabla 4). La autoevaluación la hizo el propio equipo, sin evaluador externo.
+La evaluación usa la representación continua con niveles de capacidad 0 a 3 por área de práctica [19] y una regla estricta: **el nivel de un área es el de su práctica más débil**. Nivel 1 (Ejecutado) significa que la práctica se realiza y deja producto, pero sin registro sistemático ni contraste con lo planificado; Nivel 2 (Gestionado), que además está planificada, tiene responsables, se contrasta con lo real y sus productos se revisan con evidencia verificable; Nivel 3 (Definido), que existe un estándar documentado y automatizado que se aplica en todos los incrementos (S11, Tabla 4). La autoevaluación la hizo el propio equipo, sin evaluador externo.
 
 **Diagnóstico de nivel de capacidad CMMI (0 a 3)**
 
-**Tabla 33.** Nivel de capacidad por área de práctica al 30/10/2026 (S11, Tabla 6).
+**Tabla 35.** Nivel de capacidad por área de práctica al 30/10/2026 (S11, Tabla 6).
 
 | Área | Nivel S11 | Nivel 30/10 | Evidencia que sostiene el nivel | Qué impide el nivel siguiente |
 | --- | :---: | :---: | --- | --- |
@@ -1615,35 +1978,240 @@ La evaluación usa la representación continua con niveles de capacidad 0 a 3 po
 | PLAN | 2 | **2 (Gestionado)** | WBS, cronograma, hitos H0 a H7 y desviaciones medidas (+2, +5, +4, −10 días); seguimiento en `TABLERO.md` | Sin tablero de GitHub Projects; hitos H3 y H4 sin aceptación; replanificación propuesta en S9 no adoptada |
 | PQA | 1 | **1 (Ejecutado)** | DoD por actividad e historia, puertas automáticas del CI e informe de revisión independiente | PR #8 integrada sin revisión «Approved»; PR #6 y #7 con verificaciones en rojo; sin plantilla de PR; protección de `main` no verificable |
 | CM | 2 | **2 (Gestionado)** | 5 etiquetas (`v1.0-PMV` a `v4.0-Inc4`), ramas `feature/*`, PR integradas, CI en la rama antes de la PR | Sin convención escrita de commits, ramas y etiquetas; la PR #8 entró como un solo commit *squash* que las etiquetas no contienen |
-| VER | 2 | **2 (Gestionado)** | 660 pruebas, 28 E2E, 99,79 % de cobertura, 25 pruebas de arquitectura, Ruff 0, contrato OpenAPI | SonarCloud y *hook* de pre-commit sin activar; 5 defectos escaparon a las pruebas |
+| VER | 2 | **2 (Gestionado)** | 660 pruebas, 28 E2E, 99,79 % de cobertura, 25 pruebas de arquitectura, Ruff 0, contrato OpenAPI | SonarCloud analizado el 05/11/2026 pero fuera del CI; *hook* de pre-commit sin activar; 5 defectos escaparon a las pruebas |
 | VAL | 1 | **1 (Ejecutado)** | 19 de 19 escenarios con captura y ficha | Sin SUS, sin acta de aceptación ni piloto; validaciones con la microred, Meta y dispositivo real pendientes |
 | CAR | no evaluada | **1 (Ejecutado)** | 9 hallazgos con causa raíz; cinco porqués para 6 de ellos; plan de 19 acciones | 1 de 19 acciones cumplida y ninguna con efecto medido |
 
 ![Nivel de capacidad CMMI por área, S11 frente a 30/10/2026.](../semana-11/evidencias/CMMI01_niveles_antes_despues.png)
 
-**Figura 74.** Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez. Archivo: `../semana-11/evidencias/CMMI01_niveles_antes_despues.png`.
+**Figura 98.** Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez.
 
 El perfil es de tres áreas en Nivel 2 (PLAN, CM y VER) y cuatro en Nivel 1 (ESTIM, PQA, VAL y CAR). No se adoptaron los niveles del ejemplo de la plantilla (CM en Nivel 3, ESTIM y CAR en Nivel 2) porque la evidencia no los sostiene: no hay un estándar de configuración documentado y exigible, no hay horas reales para contrastar la estimación y ninguna mejora tiene aún el efecto medido. La ingeniería (VER y CM) está respaldada por automatización y etiquetas; la gestión, la aceptación del usuario y el aseguramiento de calidad siguen dependiendo del criterio individual.
 
 ![Ejecuciones del CI en main: la #16 en verde y las anteriores en rojo.](../semana-11/evidencias/github/GH_actions_run16_main.png)
 
-**Figura 75.** Ejecuciones del flujo «CI y producción» en `main`: la #16 (`c870a7e`, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_actions_run16_main.png`.
+**Figura 99.** Ejecuciones del flujo «CI y producción» en `main`: la #16 (`c870a7e`, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026).
 
 ![El repositorio no tiene tableros de GitHub Projects.](../semana-11/evidencias/github/GH_projects.png)
 
-**Figura 76.** Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `coordinacion/TABLERO.md` (GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_projects.png`.
+**Figura 100.** Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `coordinacion/TABLERO.md` (GitHub, 30/10/2026).
 
 ![La protección de main no es verificable.](../semana-11/evidencias/github/GH_proteccion_main.png)
 
-**Figura 77.** `settings/branches` devuelve 404 para la cuenta que tomó la captura: la protección de `main` no es verificable (GitHub, 30/10/2026). Archivo: `../semana-11/evidencias/github/GH_proteccion_main.png`.
+**Figura 101.** `settings/branches` devuelve 404 para la cuenta que tomó la captura: la protección de `main` no es verificable (GitHub, 30/10/2026).
 
 ![Artefactos de proceso presentes y ausentes en el repositorio.](../semana-11/evidencias/CMMI03_higiene_repositorio.png)
 
-**Figura 78.** Artefactos de proceso en el repositorio: la plantilla de PR, el *hook* de pre-commit, la convención de commits, `CODEOWNERS` y Dependabot no existen; SonarCloud sin organización. Archivo: `../semana-11/evidencias/CMMI03_higiene_repositorio.png`.
+**Figura 102.** Artefactos de proceso en el repositorio: la plantilla de PR, el *hook* de pre-commit, la convención de commits, `CODEOWNERS` y Dependabot no existen; SonarCloud sin organización.
+
+**Evidencias de los productos de trabajo por área de práctica**
+
+El nivel de cada área de la Tabla 35 se sostiene en productos de trabajo del proyecto. La Tabla 36 asocia cada área con sus artefactos (cronograma, estimación, diseño, pruebas, configuración y revisión) y las figuras que siguen los muestran.
+
+El diseño no es un área evaluada en la Tabla 35. Se presenta como **Solución técnica (TS)**, evidencia complementaria de que el diseño se documentó antes de construir. Sus artefactos sostienen a PLAN y VER.
+
+**Tabla 36.** Artefactos del proceso que sostienen el nivel de cada área de práctica.
+
+| Área | Nivel | Artefacto (producto de trabajo) | Evidencia |
+| --- | :---: | --- | --- |
+| ESTIM | 1 | Backlog estimado en puntos de historia (133 SP, *Planning Poker*) y estimación en horas del INC-1 (113 h-persona) | Figuras 103 y 104 |
+| PLAN | 2 | Cronograma de sprints e hitos H0 a H7; seguimiento del plan frente a lo real | Figuras 105 y 106 |
+| TS (complementaria) | — | 14 decisiones de arquitectura (ADR-001 a ADR-014), diagrama C4 de contenedores y modelo hexagonal | Figuras 107 a 109 |
+| VER | 2 | 660 pruebas automatizadas con 99,79 % de cobertura, 28 pruebas E2E, análisis estático Ruff y SonarCloud | Figuras 110 a 112 |
+| VAL | 1 | 20 fichas de prueba funcional con capturas (3.6.3) y ejecución en producción | Figuras 113 y 114 |
+| CM | 2 | Etiquetas por incremento, ramas `feature/*` y *pull requests* | Figuras 115 y 116 |
+| PQA | 1 | Verificaciones automáticas de la PR y revisión independiente con su regresión | Figuras 117 y 118 |
+| CAR | 1 | Hallazgos con causa raíz (Tablas 37 y 38) y nuevo análisis de SonarCloud | Figura 112 y Tabla 37 |
+
+---
+
+**FICHA DE EVIDENCIA CMMI POR ÁREA DE PRÁCTICA (ESTIM — ESTIMACIÓN)**
+
+- **PRÁCTICA EVALUADA:** estimar el tamaño y el esfuerzo del trabajo con un método explícito.
+- **PRODUCTO DE TRABAJO:** Tabla 19 del entregable S3-4 (puntos de historia del backlog completo) y estimación de duraciones por actividad del INC-1.
+- **NIVEL:** 1 (Ejecutado). La estimación existe, pero no se registran horas reales para contrastarla (H1).
+
+**[ CAPTURA 1: ARTEFACTO ]**
+
+- **Descripción:** **Figura 103.** Estimación del backlog en puntos de historia: 21 SP del INC-1 y 133 SP en total, con complejidad e incertidumbre por elemento. Fuente: entregable S3-4, sección 10.2.
+
+![Estimación del backlog en puntos de historia.](correcciones/img/C01_estimacion_sp.png)
+
+- **Archivo de imagen:** `entregables/semana-12/correcciones/img/C01_estimacion_sp.png`
+
+**[ CAPTURA 2: ARTEFACTO ]**
+
+- **Descripción:** **Figura 104.** Diagrama de Gantt del Incremento 1: actividades A01 a A21 con su duración estimada, responsable y dependencias (28 días, igual a la ruta crítica).
+
+![Gantt del Incremento 1.](../../diagramas/png/32_s34_gantt_incremento1.png)
+
+- **Archivo de imagen:** `diagramas/png/32_s34_gantt_incremento1.png`
+
+---
+
+**FICHA DE EVIDENCIA CMMI POR ÁREA DE PRÁCTICA (PLAN — PLANIFICACIÓN)**
+
+- **PRÁCTICA EVALUADA:** planificar el trabajo en un cronograma con hitos y dar seguimiento a las desviaciones.
+- **PRODUCTO DE TRABAJO:** cronograma de sprints e hitos (S3-4) y comparación del plan con las fechas reales (S11).
+- **NIVEL:** 2 (Gestionado). Hay plan, hitos y desviaciones medidas: +5, +4 y −10 días.
+
+**[ CAPTURA 1: ARTEFACTO ]**
+
+- **Descripción:** **Figura 105.** Cronograma de los sprints 1 a 8 y de los hitos H0 a H7, del 01/09 al 21/12/2026.
+
+![Cronograma de sprints e hitos.](../../diagramas/png/33_s34_cronograma_sprints_hitos.png)
+
+- **Archivo de imagen:** `diagramas/png/33_s34_cronograma_sprints_hitos.png`
+
+**[ CAPTURA 2: SEGUIMIENTO ]**
+
+- **Descripción:** **Figura 106.** Hitos del plan frente a la fecha real del commit: H2 (+5 días), H3 (+4 días) y H4 (−10 días, se adelantó la entrega para recuperar el plan original).
+
+![Hitos planificados frente a reales.](../semana-11/evidencias/CMMI02_hitos_plan_vs_real.png)
+
+- **Archivo de imagen:** `entregables/semana-11/evidencias/CMMI02_hitos_plan_vs_real.png`
+
+---
+
+**FICHA DE EVIDENCIA CMMI POR ÁREA DE PRÁCTICA (TS — SOLUCIÓN TÉCNICA / DISEÑO, COMPLEMENTARIA)**
+
+- **PRÁCTICA EVALUADA:** diseñar la solución y documentar las decisiones antes de construir.
+- **PRODUCTO DE TRABAJO:** registro de decisiones de arquitectura (ADR), diagramas C4 y modelo hexagonal.
+- **VALORACIÓN:** las decisiones de cada incremento están registradas: ADR-011 a ADR-014 para los incrementos 3 y 4. Los diagramas C4 y el modelo de datos son del PMV y no se actualizaron. Se registra como hallazgo H10 (Tabla 37).
+
+**[ CAPTURA 1: ARTEFACTO ]**
+
+- **Descripción:** **Figura 107.** Índice de los 14 ADR con su fecha de creación: cada incremento agregó las decisiones que lo justifican, por ejemplo la sincronización sin conexión (ADR-012), la visita priorizada (ADR-013) y los recordatorios y barreras (ADR-014).
+
+![Índice de decisiones de arquitectura.](correcciones/img/C05_adr_indice.png)
+
+- **Archivo de imagen:** `entregables/semana-12/correcciones/img/C05_adr_indice.png`
+
+**[ CAPTURA 2: ARTEFACTO ]**
+
+- **Descripción:** **Figura 108.** Diagrama C4 de contenedores del PMV: PWA, API FastAPI y base PostgreSQL.
+
+![Diagrama C4 de contenedores.](../../pmv_fastapi/docs/diagramas/C4_contenedores.png)
+
+- **Descripción:** **Figura 109.** Modelo hexagonal del Incremento 2: dominio, puertos de entrada y salida, y adaptadores.
+
+![Modelo hexagonal.](../../diagramas/png/72_s9_hexagonal_v20.png)
+
+- **Archivos de imagen:** `pmv_fastapi/docs/diagramas/C4_contenedores.png`, `diagramas/png/72_s9_hexagonal_v20.png`
+
+---
+
+**FICHA DE EVIDENCIA CMMI POR ÁREA DE PRÁCTICA (VER — VERIFICACIÓN / PRUEBAS)**
+
+- **PRÁCTICA EVALUADA:** verificar el producto con pruebas y revisiones definidas, en cada cambio.
+- **PRODUCTO DE TRABAJO:** suites de pruebas unitarias, de integración, de arquitectura y E2E; análisis estático; CI de GitHub Actions.
+- **NIVEL:** 2 (Gestionado). Todas las suites se volvieron a ejecutar el 06/11/2026 con el mismo resultado del 30/10.
+
+**[ CAPTURA 1: EJECUCIÓN ]**
+
+- **Descripción:** **Figura 110.** 660 pruebas unitarias, de integración y de arquitectura aprobadas en 33 s, con 99,79 % de cobertura de líneas y ramas. Solo dos archivos de autenticación quedan por debajo del 100 %.
+
+![Pruebas con cobertura.](correcciones/img/T01_pytest_cobertura.png)
+
+- **Archivo de imagen:** `entregables/semana-12/correcciones/img/T01_pytest_cobertura.png`
+
+**[ CAPTURA 2: EJECUCIÓN ]**
+
+- **Descripción:** **Figura 111.** Análisis estático con Ruff: «All checks passed!» y 142 archivos con el formato correcto.
+
+![Ruff.](correcciones/img/T03_ruff.png)
+
+La ejecución #16 del CI en `main`, en verde, es la Figura 99 de esta sección.
+
+- **Descripción:** **Figura 112.** Primer análisis de SonarCloud del repositorio, del 05/11/2026: Quality Gate aprobado sobre el código nuevo y 129 hallazgos sobre el código completo.
+  - El backend desplegado tiene 0 hallazgos.
+  - Las 63 vulnerabilidades están en herramientas, scripts y el prototipo anterior.
+  - Detalle en `entregables/sonarcloud/2026-11-05/ANALISIS_SONARCLOUD.md`.
+
+![Resumen de SonarCloud.](correcciones/img/C10_sonar_resumen.png)
+
+- **Archivos de imagen:** `entregables/semana-12/correcciones/img/T03_ruff.png`, `entregables/semana-11/evidencias/github/GH_actions_run16_main.png`, `entregables/semana-12/correcciones/img/C10_sonar_resumen.png`
+- Las pruebas E2E (28 aprobadas) están en la Figura 15.
+
+---
+
+**FICHA DE EVIDENCIA CMMI POR ÁREA DE PRÁCTICA (VAL — VALIDACIÓN)**
+
+- **PRÁCTICA EVALUADA:** validar que el producto sirve en su entorno de uso.
+- **PRODUCTO DE TRABAJO:** 20 fichas de prueba funcional con capturas (3.6.3), producto desplegado en producción y video demostrativo.
+- **NIVEL:** 1 (Ejecutado). Falta la aceptación del usuario final: no hay acta, ni SUS, ni piloto en una posta (H3).
+
+**[ CAPTURA 1: EJECUCIÓN EN PRODUCCIÓN ]**
+
+- **Descripción:** **Figura 113.** Producción: inicio de sesión del personal en `softwareanemia.onrender.com`.
+
+![Inicio de sesión en producción.](evidencias/produccion/PROD_05_auth_inicio_sesion.jpg)
+
+- **Archivo de imagen:** `entregables/semana-12/evidencias/produccion/PROD_05_auth_inicio_sesion.jpg`
+
+**[ CAPTURA 2: ENTORNO DE PRODUCCIÓN ]**
+
+- **Descripción:** **Figura 114.** Panel de Render: el servicio `SoftwareAnemia` está en estado «Live» con el commit `9b71b6e` de `main`. El historial muestra los despliegues disparados por el CI («Deploy Hook») tras cada PR integrada.
+
+![Render en estado Live.](evidencias/produccion/PROD_07_render_panel_live.jpg)
+
+- **Archivo de imagen:** `entregables/semana-12/evidencias/produccion/PROD_07_render_panel_live.jpg`
+
+---
+
+**FICHA DE EVIDENCIA CMMI POR ÁREA DE PRÁCTICA (CM — GESTIÓN DE CONFIGURACIÓN)**
+
+- **PRÁCTICA EVALUADA:** identificar versiones y controlar los cambios.
+- **PRODUCTO DE TRABAJO:** etiquetas por incremento, ramas e integración por *pull request*.
+- **NIVEL:** 2 (Gestionado).
+
+**[ CAPTURA 1: ARTEFACTO ]**
+
+- **Descripción:** **Figura 115.** Etiquetas del repositorio: `v1.0-PMV`, `v1.5.0-inc2-avance`, `v2.0-Inc2`, `v3.0-Inc3` y `v4.0-Inc4`.
+
+![Etiquetas del repositorio.](../semana-10/evidencias/github/GH_etiquetas.png)
+
+- **Archivo de imagen:** `entregables/semana-10/evidencias/github/GH_etiquetas.png`
+
+**[ CAPTURA 2: CONTROL DE CAMBIOS ]**
+
+- **Descripción:** **Figura 116.** *Pull requests* cerradas: cada incremento y cada entregable entró a `main` por una PR desde su rama.
+
+![Pull requests cerradas.](../semana-11/evidencias/github/GH_prs_cerradas.png)
+
+- **Archivo de imagen:** `entregables/semana-11/evidencias/github/GH_prs_cerradas.png`
+
+---
+
+**FICHA DE EVIDENCIA CMMI POR ÁREA DE PRÁCTICA (PQA — ASEGURAMIENTO DE LA CALIDAD)**
+
+- **PRÁCTICA EVALUADA:** revisar objetivamente los procesos y productos y dar seguimiento a las no conformidades.
+- **PRODUCTO DE TRABAJO:** verificaciones automáticas de cada PR, informe de revisión independiente y pruebas de regresión de sus hallazgos.
+- **NIVEL:** 1 (Ejecutado). No hay aprobación formal («Approved») registrada en las PR ni plantilla de PR (H2).
+
+**[ CAPTURA 1: ARTEFACTO ]**
+
+- **Descripción:** **Figura 117.** PR #8 (incrementos 3 y 4) con sus verificaciones del CI en verde antes de integrarse.
+
+![Verificaciones de la PR #8.](../semana-11/evidencias/github/GH_pr8_checks.png)
+
+- **Archivo de imagen:** `entregables/semana-11/evidencias/github/GH_pr8_checks.png`
+
+**[ CAPTURA 2: SEGUIMIENTO DE NO CONFORMIDADES ]**
+
+- **Descripción:** **Figura 118.** La revisión independiente encontró cinco defectos. Las pruebas de regresión de los corregidos están aprobadas (seis casos).
+
+![Regresión de la revisión independiente.](../semana-11/evidencias/CMMI04_regresion_revision_independiente.png)
+
+- **Archivo de imagen:** `entregables/semana-11/evidencias/CMMI04_regresion_revision_independiente.png`
+
+Con estas evidencias, ninguna área cambia de nivel respecto de la Tabla 35. Las de Nivel 1 (ESTIM, PQA, VAL y CAR) tienen productos de trabajo, pero les falta el registro sistemático que exige el Nivel 2: horas reales, aprobación registrada de las PR, aceptación del usuario y efecto medido de las mejoras.
+
+La novedad del 05/11/2026 es el primer análisis de SonarCloud. Avanza la acción 3 del plan de mejora, pero aún no se integra al CI.
 
 **Análisis de causa raíz y plan de mejora continua**
 
-**Tabla 34.** Hallazgos de la evaluación con su causa raíz de proceso y estado al 30/10/2026 (S11, Tabla 10).
+**Tabla 37.** Hallazgos de la evaluación con su causa raíz de proceso y estado al 30/10/2026 (S11, Tabla 10).
 
 | ID | Área | Hallazgo | Causa raíz | Estado |
 | --- | --- | --- | --- | --- |
@@ -1656,27 +2224,26 @@ El perfil es de tres áreas en Nivel 2 (PLAN, CM y VER) y cuatro en Nivel 1 (EST
 | H7 | CM, VER | El CI de `main` estuvo en rojo desde el 30/10 (3 causas independientes) | Flujo fusionado sin ejecutarse antes en una rama; versiones sin fijar | Mitigado |
 | H8 | PQA, VER | Seguridad, accesibilidad y rendimiento fuera de la DoD | El CI no tiene una puerta no funcional | Abierto |
 | H9 | CM, VER | El despliegue a producción no verifica el esquema completo ni el estado «Live» | El job `produccion` se escribió con el esquema 2.0 | Abierto |
+| H10 | TS, PLAN | Los diagramas C4 y el modelo de datos son del PMV (01/10/2026). Las decisiones de los incrementos 2 a 4 están en los ADR, pero no en los diagramas. | La DoD exige un ADR por decisión, pero no actualizar los diagramas | Abierto |
 
 La causa raíz se atribuye siempre al último eslabón de los cinco porqués, una condición del proceso y no a las personas. Dos ejemplos:
 
-**Tabla 35.** Cinco porqués de H2 y H6 (S11, Tabla 11).
+**Tabla 38.** Cinco porqués de H2 y H6 (S11, Tabla 11).
 
 | Hallazgo | Porqué 1 | Porqué 2 | Porqué 3 | Porqué 4 | Porqué 5 (causa raíz) |
 | --- | --- | --- | --- | --- | --- |
 | H2: revisiones sin evidencia | No se puede comprobar quién revisó cada cambio | La DoD pide un revisor, pero nada obliga a registrarlo | No hay lista de chequeo en el *pull request* | No existe plantilla de *pull request* | La DoD vive en un documento y no en la herramienta de integración |
 | H6: defectos escapados con alta cobertura | Las pruebas no incluían entradas hostiles ni concurrencia | Se verificaron los casos válidos y los límites esperados | La cobertura de líneas se tomó como indicador suficiente | La DoD no exigía pruebas exploratorias ni revisión independiente | La DoD mide cuánto código se ejecuta y no la variedad de entradas |
 
-![Regresión de la revisión independiente.](../semana-11/evidencias/CMMI04_regresion_revision_independiente.png)
+Las pruebas de regresión de los defectos corregidos tras la revisión independiente están en la Figura 118 (ficha PQA).
 
-**Figura 79.** Pruebas de regresión de la revisión independiente: 6 aprobadas (CP-357, CP-264b, CP-382b, CP-391b, CP-396 y CP-405). Archivo: `../semana-11/evidencias/CMMI04_regresion_revision_independiente.png`.
-
-**Tabla 36.** Plan de mejora continua: acciones con mayor efecto esperado y estado al 30/10/2026 (S11, Tabla 12; 19 acciones en total).
+**Tabla 39.** Plan de mejora continua: acciones con mayor efecto esperado y estado al 30/10/2026 (S11, Tabla 12; 19 acciones en total).
 
 | N.° | Área | Acción de mejora | Métrica de verificación | Responsable | Fecha objetivo | Estado |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | ESTIM | Campo «horas reales» por tarea; tareas de máximo 6 h; recalibrar la velocidad de 20 SP | 100 % de tareas con horas; desviación ≤ ±20 % por historia | Porras V. | 03/11 (recalibración 09/11) | Pendiente |
 | 2 | PQA | Plantilla de PR con la DoD y protección de `main` con revisor obligatorio | 100 % de PR con lista de chequeo y aprobación | Huamani R. | 06/11 | Pendiente |
-| 3 | VER | Activar SonarCloud, pruebas de entradas límite en la DoD y *hook* de pre-commit | Reporte de SonarCloud sin incidencias críticas | Huamani R. | 06/11 | Parcial |
+| 3 | VER | Activar SonarCloud, pruebas de entradas límite en la DoD y *hook* de pre-commit | Reporte de SonarCloud sin incidencias críticas | Huamani R. | 06/11 | Parcial: primer análisis de SonarCloud el 05/11 (129 hallazgos, 0 en el backend desplegado); falta el análisis desde el CI y corregir los críticos del frontend |
 | 5 | VAL | Sesión de aceptación con el personal de salud: acta firmada y SUS con al menos cinco respondientes | SUS ≥ 68; acta por RF | Porras V. | 13/11 | Pendiente |
 | 8 | CM, VER | Corregir los 3 fallos del CI y añadir Python 3.13 a la matriz | CI de `main` en verde | Huamani R. | 30/10 (matriz 13/11) | Cumplida (corrección) |
 | 10 | PQA | Criterios no funcionales en la DoD: cabeceras 6 de 6, 0 vulnerabilidades altas, axe sin críticas, p95 < 800 ms | IC_P ≥ 90 % en la siguiente medición | Huamani R. | 13/11 | Pendiente |
@@ -1712,27 +2279,45 @@ Estado del plan: 19 acciones (7 de S11 y 12 nuevas), **1 cumplida, 4 parciales y
 
 ## REFERENCIAS BIBLIOGRÁFICAS
 
-Lista en orden alfabético (APA 7). Las cinco referencias de la plantilla del curso (Pressman y Maxim, 2021; Sommerville, 2016; O'Regan, 2017; CMMI Institute, 2018; OWASP Foundation, 2025) se copian tal cual, con el enlace o DOI cuando existen.
+Lista numerada en el orden de la primera cita en el texto, según la norma ISO 690:2021 (método numérico). Las cinco referencias de la plantilla del curso son [5], [7], [8], [18] y [19].
 
-- Basili, V. R., Caldiera, G. y Rombach, H. D. (1994). The goal question metric approach. En J. J. Marciniak (Ed.), *Encyclopedia of software engineering* (pp. 528-532). John Wiley & Sons.
-- CMMI Institute. (2018). *CMMI for Development, Version 2.0*. Software Engineering Institute.
-- Cockburn, A. (2005). *Hexagonal architecture*. https://alistair.cockburn.us/hexagonal-architecture/
-- Dirección Regional de Salud Junín. (2024). *Niños menores de 36 meses con diagnóstico de anemia en la Región Junín* [Extracto del HIS, 12 486 diagnósticos del 14/01/2022 al 21/06/2024; conjunto de datos anonimizado en origen]. Dirección Regional de Salud Junín.
-- Grady, R. B. y Caswell, D. L. (1987). *Software metrics: Establishing a company-wide program*. Prentice Hall.
-- IEEE Computer Society. (2014). *Guide to the software engineering body of knowledge (SWEBOK Guide)* (Versión 3.0; P. Bourque y R. E. Fairley, Eds.). IEEE Computer Society.
-- Instituto Nacional de Estadística e Informática. (2026). *ENDES 2025: Indicadores de resultados de los programas presupuestales*. https://proyectos.inei.gob.pe/endes/2025/ppr/Informe_Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2025.pdf
-- ISO/IEC/IEEE. (2017). *Systems and software engineering: Software life cycle processes* (ISO/IEC/IEEE 12207:2017). https://www.iso.org/standard/63712.html
-- Kim, G., Humble, J., Debois, P. y Willis, J. (2016). *The DevOps handbook: How to create world-class agility, reliability, and security in technology organizations*. IT Revolution Press.
-- Larman, C. (2003). *UML y patrones: Una introducción al análisis y diseño orientado a objetos y al proceso unificado* (2.ª ed.). Prentice Hall.
-- Ministerio de Salud del Perú. (2024). *Resolución Ministerial N.° 251-2024/MINSA: Aprueba la NTS N.° 213-MINSA/DGIESP-2024, Norma técnica de salud para el manejo terapéutico y preventivo de la anemia* (modificada por la Resolución Ministerial N.° 429-2024/MINSA). https://www.gob.pe/institucion/minsa/normas-legales/5440166-251-2024-minsa
-- O'Regan, G. (2017). *Concise guide to software engineering: from fundamentals to application methods*. Springer. https://doi.org/10.1007/978-3-319-57750-0
-- OWASP Foundation. (2025). *OWASP Top 10:2025 The Ten Most Critical Web Application Security Risks*. https://owasp.org/Top10/2025/
-- Pressman, R. S. y Maxim, B. R. (2021). *Ingeniería de software: un enfoque práctico* (9.ª ed.). McGraw-Hill.
-- Schwaber, K. y Sutherland, J. (2020). *The Scrum guide*. Scrum.org. https://scrumguides.org/scrum-guide.html
-- Sommerville, I. (2016). *Software engineering* (10.ª ed.). Pearson Educación.
-- Universidad Continental. (2026a). *Guías de trabajo de las semanas 1, 2, 3-4, 9, 10, 11 y 12* [Material del curso]. Procesos de Software (ASUC01702).
-- Universidad Continental. (2026b). *Roles claves del equipo de proyecto* [Material complementario del curso]. Procesos de Software (ASUC01702).
-- World Wide Web Consortium. (2018). *Web content accessibility guidelines (WCAG) 2.1*. https://www.w3.org/TR/WCAG21/
+[1] INSTITUTO NACIONAL DE ESTADÍSTICA E INFORMÁTICA. *ENDES 2025: indicadores de resultados de los programas presupuestales* [en línea]. Lima: INEI, 2026 [consulta: 6 noviembre 2026]. Disponible en: https://proyectos.inei.gob.pe/endes/2025/ppr/Informe_Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2025.pdf
+
+[2] MINISTERIO DE SALUD DEL PERÚ. *Resolución Ministerial N.° 251-2024/MINSA: aprueba la NTS N.° 213-MINSA/DGIESP-2024, Norma técnica de salud para el manejo terapéutico y preventivo de la anemia* (modificada por la Resolución Ministerial N.° 429-2024/MINSA) [en línea]. Lima: MINSA, 2024 [consulta: 6 noviembre 2026]. Disponible en: https://www.gob.pe/institucion/minsa/normas-legales/5440166-251-2024-minsa
+
+[3] DIRECCIÓN REGIONAL DE SALUD JUNÍN. *Niños menores de 36 meses con diagnóstico de anemia en la Región Junín* [conjunto de datos]. Extracto del HIS, 12 486 diagnósticos del 14/01/2022 al 21/06/2024, anonimizado en origen. Huancayo: DIRESA Junín, 2024.
+
+[4] UNIVERSIDAD CONTINENTAL. *Guías de trabajo de las semanas 1, 2, 3-4, 9, 10, 11 y 12. Procesos de Software (ASUC01702)* [material del curso]. Huancayo: Universidad Continental, 2026.
+
+[5] SOMMERVILLE, Ian. *Software engineering*. 10.ª ed. Boston: Pearson, 2016.
+
+[6] IEEE COMPUTER SOCIETY. *Guide to the Software Engineering Body of Knowledge (SWEBOK Guide)*. Versión 3.0. BOURQUE, Pierre y FAIRLEY, Richard E. (eds.). Los Alamitos, CA: IEEE Computer Society, 2014.
+
+[7] PRESSMAN, Roger S. y MAXIM, Bruce R. *Ingeniería de software: un enfoque práctico*. 9.ª ed. Ciudad de México: McGraw-Hill, 2021.
+
+[8] O’REGAN, Gerard. *Concise guide to software engineering: from fundamentals to application methods*. Cham: Springer, 2017. DOI 10.1007/978-3-319-57750-0.
+
+[9] SCHWABER, Ken y SUTHERLAND, Jeff. *The Scrum guide* [en línea]. Scrum.org, 2020 [consulta: 6 noviembre 2026]. Disponible en: https://scrumguides.org/scrum-guide.html
+
+[10] KIM, Gene, HUMBLE, Jez, DEBOIS, Patrick y WILLIS, John. *The DevOps handbook: how to create world-class agility, reliability, and security in technology organizations*. Portland, OR: IT Revolution Press, 2016.
+
+[11] INTERNATIONAL ORGANIZATION FOR STANDARDIZATION. *ISO/IEC/IEEE 12207:2017. Systems and software engineering: software life cycle processes*. Ginebra: ISO, 2017.
+
+[12] UNIVERSIDAD CONTINENTAL. *Roles claves del equipo de proyecto. Procesos de Software (ASUC01702)* [material complementario del curso]. Huancayo: Universidad Continental, 2026.
+
+[13] COCKBURN, Alistair. *Hexagonal architecture* [en línea]. 2005 [consulta: 6 noviembre 2026]. Disponible en: https://alistair.cockburn.us/hexagonal-architecture/
+
+[14] BASILI, Victor R., CALDIERA, Gianluigi y ROMBACH, H. Dieter. The goal question metric approach. En: MARCINIAK, John J. (ed.). *Encyclopedia of software engineering*. Nueva York: John Wiley & Sons, 1994, pp. 528-532.
+
+[15] GRADY, Robert B. y CASWELL, Deborah L. *Software metrics: establishing a company-wide program*. Englewood Cliffs, NJ: Prentice Hall, 1987.
+
+[16] LARMAN, Craig. *UML y patrones: una introducción al análisis y diseño orientado a objetos y al proceso unificado*. 2.ª ed. Madrid: Prentice Hall, 2003.
+
+[17] WORLD WIDE WEB CONSORTIUM. *Web Content Accessibility Guidelines (WCAG) 2.1* [en línea]. W3C, 2018 [consulta: 6 noviembre 2026]. Disponible en: https://www.w3.org/TR/WCAG21/
+
+[18] OWASP FOUNDATION. *OWASP Top 10:2025: the ten most critical web application security risks* [en línea]. 2025 [consulta: 6 noviembre 2026]. Disponible en: https://owasp.org/Top10/2025/
+
+[19] CMMI INSTITUTE. *CMMI for Development, Version 2.0*. Pittsburgh, PA: CMMI Institute, 2018.
 
 ---
 
@@ -1740,8 +2325,7 @@ Lista en orden alfabético (APA 7). Las cinco referencias de la plantilla del cu
 
 ### ANEXO A: Enlace del Video Demostrativo del Software
 
-- **URL del video demostrativo (Drive):** <mark>[pendiente: enlace de Drive]</mark>
-- **Grabación local de respaldo:** `entregables/semana-12/video/demo_anemia_junin_v4.mp4`, generada con Playwright sobre el código de `v4.0-Inc4` y datos sintéticos. Si el archivo no está en la carpeta al entregar el informe, el enlace de Drive es la única copia.
+- **URL del video demostrativo (Drive):** <https://drive.google.com/file/d/1E-ITz7WtqtMzhKQJql7Ssardvqw446mf/view?usp=sharing>
 - **Contenido:** el video no muestra este informe; va directo al software y rotula en pantalla cada parte («PMV · Incremento 1», «Incremento 2», «Incremento 3», «Incremento 4»), con una portada de 15 s y un cierre de calidad y arquitectura (Anexo C). Duración: 5 min 00 s.
 - **Guion ejecutable:** `entregables/semana-12/video/GUION_DEMO.md` (pestaña, datos sintéticos, acción y resultado esperado por escena).
 
@@ -1750,13 +2334,11 @@ Lista en orden alfabético (APA 7). Las cinco referencias de la plantilla del cu
 - **URL del repositorio:** <https://github.com/woshtsu/ProcesosSoftwareAnemia>
 - **Código del producto en la etiqueta evaluada:** <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app>
 - **Producción (Render con Supabase):** <https://softwareanemia.onrender.com/>. Verificada el 31/10/2026: `GET /api/salud` responde `{"estado":"ok","fecha_hoy":"2024-06-30","fecha_referencia":"2024-06-30"}` (reloj fijo del dataset: la aplicación desplegada calcula agendas y vencimientos al 30/06/2024) y `GET /openapi.json` declara la versión `4.0.0-inc4` con 29 rutas, la misma del contrato de `v4.0-Inc4`.
-- **Integración:** la PR #8 (incrementos 3 y 4) está fusionada en `main` con el CI #16 en verde; la PR #9 (documentación) permanece abierta al 30/10/2026.
+- **Integración:** la PR #8 (incrementos 3 y 4) está fusionada en `main` con el CI #16 en verde; las PR de documentación #9, #10 y #11 se fusionaron el 01/11/2026.
 
-`<captura de pantalla en https://softwareanemia.onrender.com/api/salud y en https://softwareanemia.onrender.com/openapi.json mostrando el estado «ok» con la fecha de referencia 30/06/2024 y la versión 4.0.0-inc4 con 29 rutas>` (pendiente; archivo previsto `evidencias/produccion/PROD_06_salud_openapi.png`; ver `CAPTURAS_PENDIENTES.md`).
+La respuesta de `/api/salud` y el contrato `/openapi.json` en producción están en la Figura 32, y el servicio en estado «Live» en Render, en la Figura 114.
 
-`<captura de pantalla del panel de Render con el servicio en estado «Live» y el despliegue de v4.0-Inc4>` (pendiente; archivo previsto `evidencias/produccion/PROD_07_render_panel_live.png`; requiere acceso al panel de Render).
-
-**Tabla 37.** Etiquetas de versión del repositorio (S11, Anexo C y Figura 50).
+**Tabla 40.** Etiquetas de versión del repositorio (S11, Anexo C y Figura 50).
 
 | Etiqueta | Commit | Fecha | Incremento | Contenido | Enlace |
 | --- | --- | --- | --- | --- | --- |
@@ -1768,19 +2350,17 @@ Lista en orden alfabético (APA 7). Las cinco referencias de la plantilla del cu
 
 `v1.0-PMV` apunta a un commit ajeno al historial de `main`; `v3.0-Inc3` y `v4.0-Inc4` apuntan a commits de la rama de los incrementos, que no están en el historial de `main` porque la PR #8 entró como un solo commit *squash* (`c870a7e`).
 
-![Etiquetas del repositorio en GitHub.](../semana-10/evidencias/github/GH_etiquetas.png)
-
-**Figura 80.** Etiquetas del repositorio en GitHub: `v4.0-Inc4`, `v3.0-Inc3`, `v2.0-Inc2`, `v1.5.0-inc2-avance` y `v1.0-PMV`. Archivo: `../semana-10/evidencias/github/GH_etiquetas.png`.
+Las etiquetas del repositorio en GitHub se muestran en la Figura 115 (ficha CM de la sección 3.8).
 
 ![Flujo de CI/CD en la etiqueta v4.0-Inc4.](../semana-10/evidencias/github/GH_ci_workflow.png)
 
-**Figura 81.** Flujo de CI/CD (`.github/workflows/ci.yml`) en `v4.0-Inc4`: tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`) sobre `ubuntu-24.04` y Python 3.11. Archivo: `../semana-10/evidencias/github/GH_ci_workflow.png`.
+**Figura 119.** Flujo de CI/CD (`.github/workflows/ci.yml`) en `v4.0-Inc4`: tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`) sobre `ubuntu-24.04` y Python 3.11.
 
 ### ANEXO C: GUIÓN TÉCNICO Y NARRATIVO DEL VIDEO DE DEMOSTRACIÓN DEL SOFTWARE
 
-**Duración total:** 05 minutos 00 segundos. **Formato:** grabación de pantalla con voz en off del equipo, directamente sobre el software y sin mostrar este informe; un rótulo superpuesto indica qué parte se demuestra (PMV · Incremento 1, Incremento 2, Incremento 3 o Incremento 4). Aplicación local en `v4.0-Inc4` con datos sintéticos, proveedor de identidad simulado (modo demo) y recordatorios simulados; la producción no se usa para grabar, para no escribir datos en ella (sus capturas están en el Anexo B y en 3.6.4). Pasos ejecutables: `entregables/semana-12/video/GUION_DEMO.md`.
+**Duración total:** 05 minutos 00 segundos. **Formato:** grabación de pantalla con voz en off del equipo, directamente sobre el software y sin mostrar este informe; un rótulo superpuesto indica qué parte se demuestra (PMV · Incremento 1, Incremento 2, Incremento 3 o Incremento 4). Aplicación local en `v4.0-Inc4` con datos sintéticos, proveedor de identidad simulado (modo demo) y recordatorios simulados; la producción no se usa para grabar, para no escribir datos en ella (sus capturas están en las fichas GQM del apartado 3.6.1 y en la ficha VAL de la sección 3.8). Pasos ejecutables: `entregables/semana-12/video/GUION_DEMO.md`.
 
-**Tabla 38.** Guion técnico minuto a minuto, por incremento.
+**Tabla 41.** Guion técnico minuto a minuto, por incremento.
 
 | Tiempo | Pantalla mostrada | Locución / explicación técnica | Criterio / RF verificado |
 | :---: | --- | --- | --- |
@@ -1793,31 +2373,31 @@ Lista en orden alfabético (APA 7). Las cinco referencias de la plantilla del cu
 
 ### ANEXO D: Cotejo de referencias
 
-Cada referencia de la lista figura en el texto al menos una vez y cada cita del texto figura en la lista. La columna «Origen» distingue las cinco referencias de la plantilla del curso de las agregadas por el proyecto.
+Cada número de la lista de referencias figura en el texto al menos una vez y cada cita del texto figura en la lista. La columna «Origen» distingue las cinco referencias de la plantilla del curso de las agregadas por el proyecto.
 
-**Tabla 39.** Cotejo de referencias: referencia y secciones donde se cita.
+**Tabla 42.** Cotejo de referencias: número, fuente y secciones donde se cita.
 
-| Referencia | Origen | Secciones donde se cita |
-| --- | --- | --- |
-| Basili, Caldiera y Rombach (1994) | Proyecto | 2.5, 3.6.2 |
-| CMMI Institute (2018) | Plantilla | 2.5, 3.8 |
-| Cockburn (2005) | Proyecto | 2.4 |
-| Dirección Regional de Salud Junín (2024) | Proyecto | 1.2 |
-| Grady y Caswell (1987) | Proyecto | 2.5 |
-| IEEE Computer Society (2014) | Proyecto | 2.2 |
-| INEI (2026) | Proyecto | 1.1 |
-| ISO/IEC/IEEE (2017) | Proyecto | 2.3, 3.3 |
-| Kim et al. (2016) | Proyecto | 2.2 |
-| Larman (2003) | Proyecto | 2.5 |
-| MINSA (2024) | Proyecto | 1.1 |
-| O'Regan (2017) | Plantilla | 2.2, 2.5 |
-| OWASP Foundation (2025) | Plantilla | 2.5, 3.7.4 |
-| Pressman y Maxim (2021) | Plantilla | 2.2 |
-| Schwaber y Sutherland (2020) | Proyecto | 2.2 |
-| Sommerville (2016) | Plantilla | 2.1, 2.2 |
-| Universidad Continental (2026a) | Proyecto | 2.1, 2.2 |
-| Universidad Continental (2026b) | Proyecto | 2.3 |
-| W3C (2018) | Proyecto | 2.5, 3.7.2 |
+| N.° | Fuente | Origen | Secciones donde se cita |
+| :---: | --- | --- | --- |
+| [1] | INEI (2026) | Proyecto | 1.1 |
+| [2] | MINSA (2024) | Proyecto | 1.1 |
+| [3] | DIRESA Junín (2024) | Proyecto | 1.2 |
+| [4] | Universidad Continental (2026), guías | Proyecto | 2.1, 2.2 |
+| [5] | Sommerville (2016) | Plantilla | 2.1, 2.2 |
+| [6] | IEEE Computer Society (2014) | Proyecto | 2.2 |
+| [7] | Pressman y Maxim (2021) | Plantilla | 2.2 |
+| [8] | O’Regan (2017) | Plantilla | 2.2, 2.5 |
+| [9] | Schwaber y Sutherland (2020) | Proyecto | 2.2 |
+| [10] | Kim et al. (2016) | Proyecto | 2.2 |
+| [11] | ISO/IEC/IEEE 12207 (2017) | Proyecto | 2.3, 3.3 |
+| [12] | Universidad Continental (2026), roles | Proyecto | 2.3 |
+| [13] | Cockburn (2005) | Proyecto | 2.4 |
+| [14] | Basili, Caldiera y Rombach (1994) | Proyecto | 2.5, 3.6.1 |
+| [15] | Grady y Caswell (1987) | Proyecto | 2.5 |
+| [16] | Larman (2003) | Proyecto | 2.5 |
+| [17] | W3C (2018) | Proyecto | 2.5, 3.7.2 |
+| [18] | OWASP Foundation (2025) | Plantilla | 2.5, 3.7.4 |
+| [19] | CMMI Institute (2018) | Plantilla | 2.5, 3.8 |
 
 ---
 
@@ -1825,16 +2405,16 @@ Cada referencia de la lista figura en el texto al menos una vez y cada cita del 
 
 **Asignatura:** Procesos de Software (ASUC01702). **Objeto de evaluación:** proceso de software, producto en GitHub (arquitectura hexagonal) y video demostrativo. **Escala:** 0 a 20 puntos. El puntaje lo asigna el docente; la tabla siguiente es la autoevaluación del equipo.
 
-**Tabla 40.** Autoevaluación frente a los cuatro criterios de la rúbrica.
+**Tabla 43.** Autoevaluación frente a los cuatro criterios de la rúbrica.
 
 | Criterio (puntaje máximo) | Evidencia en el informe | Nivel esperado | Riesgo |
 | --- | --- | --- | --- |
 | 1. Evaluación del proceso de software: *tailoring*, WBS, RAE, DoD y CMMI (5,0) | Secciones 3.1 a 3.4 y 3.8: factores y matriz ponderada (4,75 de 5), WBS con 133 SP, matriz RAE, DoD verificada, desviaciones medidas, CMMI en 7 áreas y plan de 19 acciones | Excelente en rigor; Bueno si el docente pondera los niveles de capacidad | CMMI queda en Nivel 1 en 4 de 7 áreas; sin horas reales, sin GitHub Projects y sin actas de revisión |
-| 2. Producto en GitHub y arquitectura hexagonal (6,0) | Sección 3.6.1 y Anexo B: estructura `domain`, `ports`, `adapters` con enlaces a `v4.0-Inc4`, 0 importaciones de terceros en 86 clases, 25 pruebas de arquitectura y 5 etiquetas | Excelente | La ruta es `pmv_fastapi/app/` y no `/src/`; el PMV nació con 40 % de conformidad; `v1.0-PMV` está fuera del historial de `main`; conformidad ultra estricta de 80 % |
-| 3. Pruebas, FURPS+ y seguridad OWASP 2025 (4,0) | Secciones 3.6.3, 3.6.4 y 3.7: 19 de 19 fichas con capturas, FURPS+ 87,7 % (78,4 % conservador), WCAG con 22 de 23 pares de texto, OWASP con 12 hallazgos | Bueno | La rúbrica premia «0 vulnerabilidades» y el informe reporta 1 hallazgo alto y 6 medios; accesibilidad sin lector de pantalla; SonarCloud no ejecutado |
-| 4. Video demostrativo y guion técnico (5,0) | Anexo C y `video/GUION_DEMO.md`: guion de 5:00 minuto a minuto con criterio verificado por escena; Anexo A | Bueno, condicionado a adjuntar el video | El enlace de Drive está pendiente; la grabación usa datos sintéticos, proveedor de identidad simulado y envío simulado; la producción corre con reloj fijo (30/06/2024) y sus capturas por incremento están pendientes |
+| 2. Producto en GitHub y arquitectura hexagonal (6,0) | Sección 3.6.4 y Anexo B: estructura `domain`, `ports`, `adapters` con enlaces a `v4.0-Inc4`, 0 importaciones de terceros en 86 clases, 25 pruebas de arquitectura y 5 etiquetas | Excelente | La ruta es `pmv_fastapi/app/` y no `/src/`; el PMV nació con 40 % de conformidad; `v1.0-PMV` está fuera del historial de `main`; conformidad ultra estricta de 80 % |
+| 3. Pruebas, FURPS+ y seguridad OWASP 2025 (4,0) | Secciones 3.6.2, 3.6.3 y 3.7: 19 de 19 fichas con capturas, FURPS+ 87,7 % (78,4 % conservador), WCAG con 22 de 23 pares de texto, OWASP con 12 hallazgos | Bueno | La rúbrica premia «0 vulnerabilidades» y el informe reporta 1 hallazgo alto y 6 medios; accesibilidad sin lector de pantalla; SonarCloud no ejecutado |
+| 4. Video demostrativo y guion técnico (5,0) | Anexo C y `video/GUION_DEMO.md`: guion de 5:00 minuto a minuto con criterio verificado por escena; Anexo A | Bueno | Video publicado en Drive (Anexo A); la grabación usa datos sintéticos, proveedor de identidad simulado y envío simulado; la producción corre con reloj fijo (30/06/2024) y sus capturas están en las fichas GQM y en la ficha VAL |
 
-**Tabla 41.** Resumen de evaluación en el formato de la plantilla (los puntajes los asigna el docente).
+**Tabla 44.** Resumen de evaluación en el formato de la plantilla (los puntajes los asigna el docente).
 
 | Criterio evaluado | Puntaje máximo | Puntaje obtenido | Observaciones |
 | --- | :---: | :---: | --- |
