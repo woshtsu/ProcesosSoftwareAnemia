@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Informe técnico SCM — Anemia Junín</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+  :root { --azul: #1F3864; --azul2: #2E75B6; --gris: #f2f4f7; --borde: #9aa5b5; }
+  body { font-family: "DejaVu Serif", "Times New Roman", serif; font-size: 10.5pt; color: #111; line-height: 1.45; margin: 0; }
+  h1 { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 15pt; color: var(--azul); margin: 0 0 3mm; }
+  h2 { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 12pt; color: var(--azul); margin: 7mm 0 2mm; border-bottom: 1.5px solid var(--azul2); padding-bottom: 1mm; page-break-after: avoid; }
+  h3 { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 10.5pt; color: var(--azul); margin: 5mm 0 1.5mm; page-break-after: avoid; }
+  p { margin: 1.5mm 0; text-align: justify; }
+  ul { margin: 1mm 0 2mm 5mm; padding-left: 4mm; }
+  li { margin: .6mm 0; }
+  table { border-collapse: collapse; width: 100%; margin: 2mm 0 1mm; font-family: "DejaVu Sans", Arial, sans-serif; font-size: 7.9pt; }
+  tr { page-break-inside: avoid; }
+  th, td { border: .6px solid var(--borde); padding: 1.2mm 1.4mm; vertical-align: top; text-align: left; line-height: 1.3; overflow-wrap: anywhere; }
+  thead th { background: var(--azul); color: #fff; }
+  tbody tr:nth-child(even) td { background: var(--gris); }
+  .cap { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 8.6pt; margin: 3mm 0 1mm; page-break-after: avoid; }
+  .cap b { color: var(--azul); }
+  code, pre { font-family: "DejaVu Sans Mono", monospace; font-size: 7.8pt; }
+  pre { background: #f6f8fa; border: .6px solid #d0d7de; padding: 2mm 3mm; white-space: pre-wrap; page-break-inside: avoid; margin: 2mm 0; }
+  .portada { text-align: center; padding-top: 22mm; page-break-after: always; font-family: "DejaVu Sans", Arial, sans-serif; }
+  .portada .u { font-size: 14pt; font-weight: bold; color: var(--azul); }
+  .portada .t { font-size: 16pt; font-weight: bold; margin: 14mm 0 4mm; color: var(--azul); }
+  .portada .s { font-size: 11pt; margin-bottom: 14mm; }
+  .portada table { width: 82%; margin: 0 auto; font-size: 9.5pt; }
+  .portada td:first-child { font-weight: bold; width: 32%; }
+  .ok { color: #1f7a3a; font-weight: bold; } .pend { color: #b54708; font-weight: bold; } .no { color: #b42318; font-weight: bold; }
+  img { max-width: 100%; border: .6px solid #d0d7de; }
+  .fig { text-align: center; page-break-inside: avoid; margin: 3mm 0; }
+  .nota { font-size: 8.8pt; color: #344054; }
+</style>
+</head>
+<body>
+
+<div class="portada">
+  <div class="u">UNIVERSIDAD CONTINENTAL</div>
+  <div>Facultad de Ingeniería · Ingeniería de Sistemas e Informática</div>
+  <div class="t">INFORME TÉCNICO DE LABORATORIO 13<br>GESTIÓN DE CONFIGURACIÓN DE SOFTWARE (UNIDAD IV)</div>
+  <div class="s">Administración del cambio y gestión de versiones y entregas con la Suite de GitHub<br>aplicadas al proyecto «Anemia Junín»</div>
+  <table>
+    <tbody>
+    <tr><td>Asignatura</td><td>Procesos de Software (ASUC01702) · 2026-20</td></tr>
+    <tr><td>Docente</td><td>Guevara Jimenez, Jorge Alfredo</td></tr>
+    <tr><td>Proyecto</td><td>Sistema para la detección temprana y el seguimiento de la anemia infantil en zonas rurales de Junín (versión <code>v4.0-Inc4</code>)</td></tr>
+    <tr><td>Integrantes</td><td>Porras Veli, Ricardo (76659572) — Leader / Software Architect<br>Auqui Huincho, Tania Tifani (75280128) — Backend, Data, Frontend &amp; Mobile<br>Huamani Rodriguez, Jean Piero (72156889) — Process Analyst &amp; QA Lead</td></tr>
+    <tr><td>Repositorio</td><td>https://github.com/woshtsu/ProcesosSoftwareAnemia</td></tr>
+    <tr><td>Fecha de corte</td><td>06/11/2026</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h1>1. Carátula e integrantes</h1>
+<p>Ver la página anterior. Roles en la gestión de la configuración: el <b>Leader / Software Architect</b> (Porras V.) evalúa y aprueba las solicitudes de cambio y es el propietario del repositorio; la <b>desarrolladora</b> (Auqui H.) implementa los cambios en ramas propias; el <b>QA Lead</b> (Huamani R.) registra las solicitudes, revisa las <i>pull requests</i> y publica las versiones.</p>
+
+<h2>2. Resumen del proyecto y objetivos de la gestión de configuración</h2>
+<p>«Anemia Junín» es una aplicación web progresiva con API FastAPI y arquitectura hexagonal que ayuda al personal de salud a registrar a los niños con anemia, programar sus controles, recibir alertas, trabajar sin conexión y registrar las barreras al tratamiento. Se construyó en cuatro incrementos (<code>v1.0-PMV</code> a <code>v4.0-Inc4</code>, 76 de 133 puntos de historia) y está desplegada en Render con Supabase. Según el plan, la semana 13 abre el Sprint 6, dedicado al Incremento 5 (modelo predictivo).</p>
+<p><b>Objetivos de la gestión de configuración (SCM):</b></p>
+<ul>
+  <li>Que todo cambio entre por una solicitud registrada (RFC en GitHub Issues), con su impacto y su evaluación.</li>
+  <li>Que ningún cambio llegue a la línea base sin <i>pull request</i>, lista de la DoD, integración continua en verde y revisión de un par.</li>
+  <li>Separar la línea base estable (<code>main</code>) de la integración (<code>develop</code>) y del trabajo diario (<code>feature/*</code>), siguiendo GitFlow.</li>
+  <li>Identificar cada incremento con una etiqueta semántica y publicarlo como <i>release</i> con sus notas.</li>
+  <li>Mantener la trazabilidad Cambio → Issue → Rama → PR → Etiqueta → Release → Despliegue.</li>
+</ul>
+<p class="nota">El informe separa lo que ya existía en el repositorio de lo configurado el 06/11/2026 para este laboratorio, y señala lo que queda pendiente.</p>
+
+<h2>3. Eje temático 1: administración del cambio en GitHub</h2>
+
+<h3>3.1 Configuración de plantillas</h3>
+<p>Se crearon las dos plantillas de la guía, con el texto normalizado. En la plantilla de PR, la DoD se adaptó a las herramientas del proyecto (Ruff, <code>pytest --cov</code>, pruebas de arquitectura y SonarCloud). También se crearon las etiquetas del flujo: <code>change-request</code>, <code>pendiente-evaluacion</code>, <code>aprobado</code>, <code>rechazado</code> e <code>implementado</code>.</p>
+<table>
+  <thead><tr><th>Archivo</th><th>Contenido</th><th>Estado</th></tr></thead>
+  <tbody>
+    <tr><td><code>.github/ISSUE_TEMPLATE/change_request.md</code></td><td>Solicitud de Cambio (RFC): módulo afectado, tipo de cambio, justificación, impacto en alcance, esfuerzo y riesgo, y criterios de aceptación Dado-Cuando-Entonces. Etiquetas automáticas: <code>change-request</code> y <code>pendiente-evaluacion</code>.</td><td rowspan="3">En la rama <code>docs/s13-informe</code> (PR #13). Se activan para todo el equipo al integrarse en <code>main</code>.</td></tr>
+    <tr><td><code>.github/PULL_REQUEST_TEMPLATE.md</code></td><td>Resumen, <code>Closes #</code> y la DoD: compila sin advertencias (Ruff), cobertura ≥ 80 %, arquitectura hexagonal, evidencias funcionales y análisis estático (Ruff y SonarCloud).</td></tr>
+    <tr><td><code>CONTRIBUTING.md</code></td><td>Flujo del cambio, GitFlow, formato de commits <code>tipo(ámbito): descripción</code>, etiquetas, <i>releases</i> y protección de ramas.</td></tr>
+  </tbody>
+</table>
+
+<h3>3.2 Matriz de registro y control de solicitudes de cambio (Issues / RFC)</h3>
+<p>Las solicitudes se registraron el 06/11/2026 con la plantilla. Provienen de hallazgos reales: las observaciones del docente a S12, la autoevaluación CMMI (H2, H5 y H10), la auditoría OWASP Top 10:2025 (H-1 a H-3) y el plan del Sprint 6. Antes de esa fecha el proyecto no registraba los cambios en GitHub Issues: los gestionaba en <code>coordinacion/TABLERO.md</code> y en el plan de mejora.</p>
+<div class="cap"><b>Matriz 1.2.</b> Registro controlado de cambios en GitHub Issues (06/11/2026).</div>
+<table>
+  <thead><tr><th>ID Issue</th><th>Título de la solicitud (RFC)</th><th>Origen / causa</th><th>Impacto estimado</th><th>Estado en GitHub</th><th>Aprobador / responsable</th></tr></thead>
+  <tbody>
+    <tr><td><b>#14</b></td><td>Corregir el informe integrador según las observaciones del docente a S12</td><td>Observaciones del docente (ISO 690, GQM, CMMI)</td><td>5 SP / Bajo</td><td>Abierto · <i>pendiente-evaluacion</i>; implementado en PR #13</td><td>Porras V. (aprobador) · Huamani R.</td></tr>
+    <tr><td><b>#15</b></td><td>Adoptar GitFlow, convención de commits y plantillas de cambio y de PR</td><td>CMMI H2 y H5; guía S13</td><td>3 SP / Bajo</td><td>Abierto · <i>pendiente-evaluacion</i>; implementado en PR #13</td><td>Porras V. · Huamani R.</td></tr>
+    <tr><td>#16</td><td>(duplicado de #15)</td><td>Registro duplicado por error</td><td>—</td><td>Cerrado como duplicado</td><td>Huamani R.</td></tr>
+    <tr><td><b>#17</b></td><td>Regenerar los diagramas de arquitectura y de datos por ingeniería inversa (H10)</td><td>CMMI H10</td><td>2 SP / Bajo</td><td>Abierto · <i>pendiente-evaluacion</i>; implementado en PR #13</td><td>Porras V. · Huamani R.</td></tr>
+    <tr><td><b>#18</b></td><td>Roles en el JWT y políticas RLS por establecimiento</td><td>OWASP H-1 (A01, alta)</td><td>5 SP / Alto</td><td>Abierto · <i>pendiente-evaluacion</i></td><td>Porras V. · Auqui H. (20/11)</td></tr>
+    <tr><td><b>#19</b></td><td>Cabeceras de seguridad HTTP y CSV sin fórmulas</td><td>OWASP H-2 y H-3 (media)</td><td>3 SP / Medio</td><td>Abierto · <i>pendiente-evaluacion</i></td><td>Porras V. · Auqui H. (13/11)</td></tr>
+    <tr><td><b>#20</b></td><td>Preparar el dataset versionado del HIS para el Incremento 5 en el Sprint 6</td><td>Desvío del plan: la preparación de datos del Sprint 5 no se hizo</td><td>3 SP / Medio</td><td>Abierto · <i>pendiente-evaluacion</i></td><td>Porras V. (decide trasladar o postergar INC-5)</td></tr>
+  </tbody>
+</table>
+<p>Todas quedan en <i>pendiente-evaluacion</i> porque la aprobación es del Leader / Software Architect y el informe no la da por hecha. Cuando Porras V. cambie cada etiqueta a <code>aprobado</code> o <code>rechazado</code>, la matriz se actualiza. Ninguna se ha rechazado.</p>
+
+<h3>3.3 Auditoría de revisiones de código y reglas de protección de ramas</h3>
+<p>Auditoría de las 13 <i>pull requests</i> del repositorio, con datos de la API de GitHub al 06/11/2026: rama de origen, revisión registrada, resultado del CI en el último commit y quién integró.</p>
+<div class="cap"><b>Matriz 2.2.</b> Auditoría de <i>pull requests</i> y revisiones de código.</div>
+<table>
+  <thead><tr><th>PR</th><th>Rama origen → destino</th><th>Contenido</th><th>Issue vinculado</th><th>Revisor (estado)</th><th>DoD / CI</th><th>Resultado</th></tr></thead>
+  <tbody>
+    <tr><td>#1</td><td>desarrollo-anemia → main</td><td>Estructura del repositorio y coordinación</td><td>—</td><td>Sin revisión registrada</td><td>CI aún no existía</td><td>Merged (woshtsu)</td></tr>
+    <tr><td>#2</td><td>entrega-s5-s7 → main</td><td>PMV v1.0 (Incremento 1)</td><td>—</td><td>Sin revisión registrada</td><td>Pruebas locales: 77 pruebas, 99 %</td><td>Merged (woshtsu)</td></tr>
+    <tr><td>#3</td><td>feature/s6-integrador-final → main</td><td>Informe integrador S6</td><td>—</td><td>—</td><td>—</td><td>Cerrada sin integrar</td></tr>
+    <tr><td>#4</td><td>feature/inc2-agenda-alertas → main</td><td>Incremento 2 al 50 %</td><td>—</td><td>Sin revisión registrada</td><td>Sin ejecución registrada</td><td>Merged (woshtsu)</td></tr>
+    <tr><td>#5</td><td>feature/inc2-agenda-alertas → main</td><td>Incremento 2 completo</td><td>—</td><td>Sin revisión registrada</td><td>Sin ejecución registrada</td><td>Merged (woshtsu)</td></tr>
+    <tr><td>#6, #7</td><td>docs/entrega-s11 → main</td><td>Informe S11 (CMMI)</td><td>—</td><td>Sin revisión registrada</td><td class="no">calidad-y-pruebas: failure</td><td>Merged (woshtsu)</td></tr>
+    <tr><td>#8</td><td>feature/inc3-sin-conexion → main</td><td>Incrementos 3 y 4</td><td>—</td><td>Sin revisión «Approved»; revisión independiente documentada</td><td class="ok">CI verde (calidad e imagen)</td><td>Merged, <i>squash</i> (woshtsu)</td></tr>
+    <tr><td>#9</td><td>docs/s12-integrador → main</td><td>Documentación S9 a S11</td><td>—</td><td class="ok">woshtsu: APPROVED</td><td class="ok">CI verde</td><td>Merged (woshtsu)</td></tr>
+    <tr><td>#10, #11</td><td>docs/s12-informe, docs/s12-integrador → main</td><td>Informe integrador S12</td><td>—</td><td>Sin revisión registrada</td><td class="ok">CI verde</td><td>Merged (woshtsu)</td></tr>
+    <tr><td>#12</td><td>docs/sonarcloud-2026-11-05 → main</td><td>Análisis de SonarCloud</td><td>—</td><td>Sin revisión registrada</td><td class="ok">CI verde; Quality Gate de SonarCloud en rojo</td><td>Merged (woshtsu)</td></tr>
+    <tr><td>#13</td><td>docs/s13-informe → main</td><td>Informe S13, plantillas SCM, PDCA</td><td>#14, #15, #17</td><td class="pend">Pendiente: revisión de Porras V.</td><td class="ok">calidad-y-pruebas e imagen en verde; plantilla DoD usada</td><td class="pend">Abierta</td></tr>
+  </tbody>
+</table>
+<p><b>Lectura.</b> De 12 PR integradas, solo una (#9) tiene revisión «Approved» registrada. Dos (#6 y #7) se integraron con el CI en rojo, y las cuatro primeras son anteriores al CI. Esto confirma el hallazgo H2: la revisión por pares existía en la práctica, pero no quedaba registrada. Desde la PR #13 el cambio se vincula a sus RFC y usa la lista de la DoD.</p>
+
+<p><b>Reglas de protección de ramas: <span class="no">no configuradas</span>.</b> La cuenta del QA Lead tiene permiso de escritura, no de administración: <code>Settings → Branches</code> devuelve 404 y la API responde 403. Las reglas solo puede activarlas el propietario (woshtsu). La configuración que corresponde a la guía es la siguiente, para <code>main</code> y <code>develop</code>:</p>
+<ol>
+  <li><i>Require a pull request before merging</i>, con al menos 1 aprobación.</li>
+  <li><i>Dismiss stale pull request approvals when new commits are pushed</i>.</li>
+  <li><i>Require status checks to pass before merging</i>: el trabajo <code>calidad-y-pruebas</code> del CI.</li>
+</ol>
+<p>Mientras no se activen, se siguen integrando commits directos en <code>main</code>: el 05/11/2026 se subieron dos commits de capturas directamente a <code>main</code>, sin PR,, cuyas ejecuciones del CI (#25 y #26) fallaron.</p>
+
+<h2>4. Eje temático 2: gestión de versiones y entregas en GitHub</h2>
+
+<h3>4.1 Estrategia de ramificación GitFlow y matriz de ramas por historia de usuario</h3>
+<p>El historial muestra que el Incremento 1 sí siguió GitFlow, aunque en local. Cada historia o corrección se trabajó en una rama propia y se integró en <code>develop</code> con un <i>merge</i> explícito. Por ejemplo, <code>225ee46 Merge feature/infra-ci-bd en develop</code> y <code>4f805df Merge fix/def-01-reporte-n-mas-1 en develop</code>. El commit <code>9ce90c3 release: v1.0-PMV</code> cerró la versión, y la PR #2 la llevó a <code>main</code>. Desde el Incremento 2, en cambio, cada incremento fue de una rama <code>feature/*</code> directo a <code>main</code>, sin <code>develop</code> ni <code>release/*</code>. El 06/11/2026 se creó la rama <code>develop</code> en GitHub y la convención quedó escrita en <code>CONTRIBUTING.md</code>, para aplicarla desde el Incremento 5.</p>
+<div class="cap"><b>Matriz 3.1.</b> Trazabilidad de ramas e historias de usuario (ramas y commits reales del historial).</div>
+<table>
+  <thead><tr><th>Historia / Issue</th><th>Rama creada</th><th>Responsable</th><th>Commits semánticos registrados (ejemplos)</th><th>Rama destino</th></tr></thead>
+  <tbody>
+    <tr><td>Habilitadores (T7 a T9)</td><td>feature/infra-ci-bd</td><td>Huamani R.</td><td><code>ci: pipeline de GitHub Actions (lint, pruebas, cobertura)</code><br><code>build: esquema PostgreSQL con restricciones de integridad</code></td><td>develop (local) → main (PR #2)</td></tr>
+    <tr><td>HU-03 / RF-03</td><td>feature/hu03-validacion-nts</td><td>Huamani R.</td><td><code>feat(hu03): reglas clínicas de ajuste por altitud y clasificación</code></td><td>develop → main (PR #2)</td></tr>
+    <tr><td>HU-01, 02, 04 y 05</td><td>feature/hu01-hu05-expediente</td><td>Huamani R.</td><td><code>feat(hu01-hu05): API REST con errores por campo</code><br><code>feat(hu01-hu05): interfaz PWA</code></td><td>develop → main (PR #2)</td></tr>
+    <tr><td>DEF-01 y DEF-02</td><td>fix/def-01-reporte-n-mas-1, fix/def-02-zona-horaria</td><td>Huamani R.</td><td><code>fix(DEF-01): elimina consultas N+1 del reporte (p95 2200 ms → 74 ms)</code></td><td>develop → main (PR #2)</td></tr>
+    <tr><td>HIST-2.1 a 2.4 (RF-06 a 09)</td><td>feature/inc2-agenda-alertas</td><td>Huamani R. y Auqui H.</td><td><code>Inc. 2 avance 50%: agenda normativa y alertas</code><br><code>Inc. 2 completo: agenda del personal y asistencia</code></td><td>main (PR #4 y #5)</td></tr>
+    <tr><td>HIST-3.1 a 3.4, VIS-3.5, HIST-4.1 a 4.4</td><td>feature/inc3-sin-conexion</td><td>Huamani R. y Auqui H.</td><td><code>Inc. 3 completo: registro sin conexión, sincronización…</code><br><code>Inc. 4 completo: recordatorios…, barreras y alertas críticas</code></td><td>main (PR #8, <i>squash</i>)</td></tr>
+    <tr><td>RFC #14, #15 y #17</td><td>docs/s13-informe</td><td>Huamani R.</td><td><code>docs(s13): informe integrador corregido, plantillas de cambio…</code><br><code>docs(s13): cuadro PDCA…</code></td><td>main (PR #13)</td></tr>
+    <tr><td>RFC #18 y #19</td><td>feature/h1-roles-rls, feature/h2-h3-cabeceras-csv (previstas)</td><td>Auqui H.</td><td>—</td><td>develop</td></tr>
+  </tbody>
+</table>
+<p class="nota">Los mensajes de los incrementos 2 a 4 no siguen el formato <code>tipo(ámbito)</code>; el formato del PMV se retomó con <code>CONTRIBUTING.md</code>.</p>
+
+<h3>4.2 Etiquetado semántico y fichas de publicación de releases</h3>
+<p>Las etiquetas existían desde cada entrega. El 06/11/2026 se publicó la <i>release</i> de cada una con notas en tres bloques: novedades (historias), calidad (pruebas y cobertura) y limitaciones. La etiqueta usa <code>vMAYOR.MENOR-IncN</code>; el hito intermedio, <code>v1.5.0-inc2-avance</code>, se marcó como <i>pre-release</i>. Comandos para etiquetar (convención del equipo):</p>
+<pre>git checkout main &amp;&amp; git pull origin main
+git tag -a v4.0-Inc4 -m "Incremento 4: recordatorios y barreras de acceso" e6886e2
+git push origin v4.0-Inc4</pre>
+<table>
+  <thead><tr><th>Ficha</th><th>v1.0-PMV</th><th>v2.0-Inc2</th><th>v3.0-Inc3</th><th>v4.0-Inc4</th></tr></thead>
+  <tbody>
+    <tr><td>Título</td><td>Producto Mínimo Viable (Incremento 1)</td><td>Agenda, alertas y asistencia (Incremento 2)</td><td>Registro sin conexión, sincronización y visitas (Incremento 3)</td><td>Recordatorios por WhatsApp y barreras de acceso (Incremento 4)</td></tr>
+    <tr><td>Commit de la etiqueta</td><td>9ce90c3 (30/09/2026)</td><td>fb26626 (18/10/2026)</td><td>e920820 (30/10/2026)</td><td>e6886e2 (30/10/2026)</td></tr>
+    <tr><td>Novedades</td><td>HU-01 a HU-05 (RF-01 a RF-05)</td><td>HIST-2.1 a 2.4 (RF-06 a RF-09)</td><td>HIST-3.1 a 3.4 y VIS-3.5</td><td>HIST-4.1 a 4.4</td></tr>
+    <tr><td>Calidad</td><td>77 pruebas, 99 %; DEF-01 y DEF-02 corregidos</td><td>326 pruebas y 15 E2E; DEF-09 corregido</td><td>499 pruebas (99,70 %) y 24 E2E</td><td>660 pruebas (99,79 %) y 28 E2E; revisión independiente</td></tr>
+    <tr><td>Artefactos</td><td colspan="4">Código fuente (zip y tar.gz) generado por GitHub en cada <i>release</i>; <code>Dockerfile</code> y <code>docker-compose.yml</code> en la etiqueta; imagen Docker construida por el CI (trabajo <code>imagen</code>), sin publicar en un registro.</td></tr>
+    <tr><td>Publicación</td><td colspan="4">06/11/2026, rama destino <code>main</code>, por Huamani R.</td></tr>
+  </tbody>
+</table>
+<div class="fig"><img src="../img/C11_releases.jpg" alt="Página de Releases del repositorio"></div>
+<div class="cap" style="text-align:center"><b>Figura 1.</b> Página de <i>Releases</i>: las cinco versiones publicadas, con <code>v4.0-Inc4</code> como la última (06/11/2026).</div>
+
+<div class="cap"><b>Matriz 4.2.</b> Registro de versiones y entregas del proyecto.</div>
+<table>
+  <thead><tr><th>Etiqueta</th><th>Nombre del release en GitHub</th><th>Incremento</th><th>Estado del software</th><th>Enlace</th></tr></thead>
+  <tbody>
+    <tr><td>v1.0-PMV</td><td>Release v1.0-PMV: Producto Mínimo Viable (Incremento 1)</td><td>Incremento 1</td><td>Liberado; entorno local y Docker de staging</td><td>github.com/woshtsu/ProcesosSoftwareAnemia/releases/tag/v1.0-PMV</td></tr>
+    <tr><td>v1.5.0-inc2-avance</td><td>Release v1.5.0-inc2-avance: Incremento 2 al 50 % (pre-release)</td><td>Hito del Inc. 2</td><td>Versión de avance</td><td>…/releases/tag/v1.5.0-inc2-avance</td></tr>
+    <tr><td>v2.0-Inc2</td><td>Release v2.0-Inc2: Agenda, alertas y asistencia</td><td>Incremento 2</td><td>Liberado; imagen Docker del CI</td><td>…/releases/tag/v2.0-Inc2</td></tr>
+    <tr><td>v3.0-Inc3</td><td>Release v3.0-Inc3: Registro sin conexión, sincronización y visitas</td><td>Incremento 3</td><td>Liberado; integrado en <code>main</code> por la PR #8</td><td>…/releases/tag/v3.0-Inc3</td></tr>
+    <tr><td>v4.0-Inc4</td><td>Release v4.0-Inc4: Recordatorios por WhatsApp y barreras de acceso</td><td>Incremento 4</td><td>Desplegado en producción (Render con Supabase)</td><td>…/releases/tag/v4.0-Inc4</td></tr>
+  </tbody>
+</table>
+
+<h2>5. Matriz de trazabilidad unificada de configuración</h2>
+<div class="cap"><b>Matriz 5.1.</b> Cambio / requisito → Issue → Rama → PR y revisión → Etiqueta / Release → Artefacto o despliegue.</div>
+<table>
+  <thead><tr><th>Solicitud / requisito</th><th>Issue</th><th>Rama</th><th>PR y revisión</th><th>Etiqueta / Release</th><th>Artefacto / despliegue</th></tr></thead>
+  <tbody>
+    <tr><td>Incremento 1: HU-01 a HU-05</td><td>Sin issue (anterior al registro en Issues)</td><td>feature/hu03-…, feature/hu01-hu05-… → develop</td><td>PR #2 (merged, sin revisión registrada)</td><td>v1.0-PMV</td><td>Docker de staging (<code>docker-compose.yml</code>)</td></tr>
+    <tr><td>Incremento 2: HIST-2.1 a 2.4</td><td>Sin issue</td><td>feature/inc2-agenda-alertas</td><td>PR #4 y #5 (merged)</td><td>v1.5.0-inc2-avance, v2.0-Inc2</td><td>Imagen Docker del CI</td></tr>
+    <tr><td>Incrementos 3 y 4: HIST-3.x, VIS-3.5, HIST-4.x</td><td>Sin issue</td><td>feature/inc3-sin-conexion</td><td>PR #8 (CI verde; revisión independiente)</td><td>v3.0-Inc3, v4.0-Inc4</td><td>Producción en Render (<i>deploy hook</i> del CI)</td></tr>
+    <tr><td>Observaciones del docente a S12</td><td>#14</td><td>docs/s13-informe</td><td>PR #13 (CI verde; revisión pendiente)</td><td>— (documentación)</td><td>Informe S13 (.docx y .pdf)</td></tr>
+    <tr><td>Hallazgos CMMI H2 y H5</td><td>#15</td><td>docs/s13-informe</td><td>PR #13</td><td>—</td><td><code>.github/</code>, <code>CONTRIBUTING.md</code>, rama <code>develop</code></td></tr>
+    <tr><td>Hallazgo CMMI H10</td><td>#17</td><td>docs/s13-informe</td><td>PR #13</td><td>—</td><td><code>generar_diagramas.py</code> y diagramas v4</td></tr>
+    <tr><td>OWASP H-1</td><td>#18</td><td>feature/h1-roles-rls (prevista)</td><td>Pendiente</td><td>Próxima versión de corrección (v4.1)</td><td>—</td></tr>
+    <tr><td>OWASP H-2 y H-3</td><td>#19</td><td>feature/h2-h3-cabeceras-csv (prevista)</td><td>Pendiente</td><td>Próxima versión de corrección (v4.1)</td><td>—</td></tr>
+    <tr><td>Datos del INC-5</td><td>#20</td><td>feature/inc5-datos (prevista)</td><td>Pendiente</td><td>v5.0-Inc5 (hito H6)</td><td>Dataset versionado</td></tr>
+  </tbody>
+</table>
+<p>La trazabilidad es completa desde la rama hasta el despliegue en los cuatro incrementos, pero la parte Cambio → Issue solo existe desde el 06/11/2026. Las versiones previstas para los RFC pendientes son una propuesta según <code>CONTRIBUTING.md</code>.</p>
+
+<h2>6. Conclusiones y lecciones aprendidas</h2>
+<ol>
+  <li><b>La configuración existía; faltaba el registro del cambio.</b> El proyecto ya tenía etiquetas por incremento, ramas por historia, CI y PR para todo lo integrado. Lo que no dejaba evidencia era la decisión: por qué se cambiaba algo y quién lo aprobaba. Las RFC en Issues y la plantilla de PR cubren ese vacío.</li>
+  <li><b>GitFlow se perdió por presión de plazos, no por desconocimiento.</b> El PMV usó <code>develop</code>, <code>feature/*</code> y <code>fix/*</code>. Al acelerar los incrementos 2 a 4 se integró directo a <code>main</code>, y la PR #8 entró como <i>squash</i>, por lo que las etiquetas <code>v3.0-Inc3</code> y <code>v4.0-Inc4</code> quedaron fuera del historial de <code>main</code>. La rama <code>develop</code> y las ramas <code>release/*</code> evitan repetirlo.</li>
+  <li><b>Sin protección de ramas, la DoD es voluntaria.</b> Una sola PR con «Approved», dos integradas con el CI en rojo y commits directos que rompieron el CI muestran que las reglas deben estar en la herramienta. Configurarlas es la acción pendiente de mayor efecto y depende del propietario del repositorio.</li>
+  <li><b>Una <i>release</i> documenta mejor que una etiqueta.</b> Las notas por incremento resumen en un solo lugar alcance, calidad y limitaciones. Falta adjuntar artefactos compilados, por ejemplo publicar la imagen Docker del CI.</li>
+</ol>
+<p><b>Autoevaluación frente a la rúbrica (la nota la asigna el docente):</b></p>
+<table>
+  <thead><tr><th>Criterio</th><th>Nivel esperado</th><th>Qué falta para «Excelente»</th></tr></thead>
+  <tbody>
+    <tr><td>1. Administración del cambio (5,0)</td><td>Bueno</td><td>Reglas de protección de ramas y revisiones «Approved» registradas</td></tr>
+    <tr><td>2. Ramificación y control SCM (5,0)</td><td>Bueno</td><td>Aplicar GitFlow con <code>develop</code> en el Incremento 5; hoy hay commits directos en <code>main</code></td></tr>
+    <tr><td>3. Versiones, tags y releases (5,0)</td><td>Bueno</td><td>Adjuntar artefactos compilados a las <i>releases</i></td></tr>
+    <tr><td>4. Trazabilidad y repositorio (5,0)</td><td>Bueno</td><td>Issues para los incrementos anteriores al 06/11 (no existen) e integrar la PR #13</td></tr>
+  </tbody>
+</table>
+
+<h2>7. Anexos y enlaces directos a la Suite de GitHub</h2>
+<ul>
+  <li>Repositorio oficial: https://github.com/woshtsu/ProcesosSoftwareAnemia</li>
+  <li>Solicitudes de cambio (Issues): https://github.com/woshtsu/ProcesosSoftwareAnemia/issues?q=label%3Achange-request</li>
+  <li><i>Pull requests</i>: https://github.com/woshtsu/ProcesosSoftwareAnemia/pulls?q=is%3Apr</li>
+  <li><i>Releases</i>: https://github.com/woshtsu/ProcesosSoftwareAnemia/releases · Etiquetas: https://github.com/woshtsu/ProcesosSoftwareAnemia/tags</li>
+  <li>Ramas: https://github.com/woshtsu/ProcesosSoftwareAnemia/branches · CI: https://github.com/woshtsu/ProcesosSoftwareAnemia/actions</li>
+  <li>Plantillas y convención: <code>.github/ISSUE_TEMPLATE/change_request.md</code>, <code>.github/PULL_REQUEST_TEMPLATE.md</code>, <code>CONTRIBUTING.md</code></li>
+  <li>Producción: https://softwareanemia.onrender.com</li>
+</ul>
+</body>
+</html>

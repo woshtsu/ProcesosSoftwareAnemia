@@ -2,9 +2,15 @@
 
 Proyecto de la asignatura **Procesos de Software** (ASUC01702, Universidad Continental, ciclo 2026-20).
 
-El problema organizacional: en las zonas rurales de Junín el tamizaje de hemoglobina, el tratamiento con hierro y el seguimiento de niños con anemia se pierden por falta de trazabilidad, baja adherencia, poca proactividad y conectividad limitada. El proyecto diseña el proceso TO-BE, selecciona y adapta un modelo de proceso de software (iterativo-incremental con Scrum y prácticas DevOps) y construye un **PMV** (Incremento 1: registro nominal validado y expediente digital) con arquitectura hexagonal en Python/Flask.
+El problema organizacional: en las zonas rurales de Junín el tamizaje de hemoglobina, el tratamiento con hierro y el seguimiento de niños con anemia se pierden por falta de trazabilidad, baja adherencia, poca proactividad y conectividad limitada. El proyecto diseña el proceso TO-BE, selecciona y adapta un modelo de proceso de software (iterativo-incremental con Scrum y prácticas DevOps) y construye el software en incrementos con arquitectura hexagonal en Python (FastAPI). La versión vigente es **`v4.0-Inc4`** (cuatro incrementos), desplegada en <https://softwareanemia.onrender.com>.
 
 **Equipo:** Porras Veli, Ricardo (Ingeniero de Proceso) · Auqui Huincho, Tania (Ingeniero de Desarrollo y Prototipado) · Huamani Rodriguez, Jean Piero (Ingeniero de Calidad y Mejora del Proceso).
+
+## Versiones y cambios
+
+Cada incremento tiene su etiqueta y su *release* con notas de versión en [Releases](https://github.com/woshtsu/ProcesosSoftwareAnemia/releases): `v1.0-PMV`, `v1.5.0-inc2-avance` (*pre-release*), `v2.0-Inc2`, `v3.0-Inc3` y `v4.0-Inc4`. El detalle técnico está en [`pmv_fastapi/CHANGELOG.md`](pmv_fastapi/CHANGELOG.md).
+
+Los cambios se proponen con la plantilla de *issue* «Solicitud de Cambio (RFC)» y se integran por *pull request* con la plantilla de la DoD. Ramas, mensajes de commit y etiquetas siguen [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 > Todos los datos del software son **sintéticos**. La clasificación de anemia que muestra el sistema es referencial y no reemplaza el criterio del profesional de salud.
 
@@ -76,9 +82,11 @@ Decisiones: [ADR-014](pmv_fastapi/docs/adr/ADR-014-notificador-y-canales.md) y l
 │   ├── semana-02/               + img/
 │   ├── semana-03-04/
 │   ├── semana-05/               PDF Actividad 5 + extracción de texto (entregable .md por crear)
-│   └── semana-06-integrador/    + anexos/
+│   ├── semana-06-integrador/    + anexos/
+│   ├── semana-09/ … semana-12/  evaluación GQM, FURPS+/OWASP, CMMI e informe integrador
+│   └── semana-13/               informe integrador corregido y diagramas por ingeniería inversa
 ├── diagramas/                   src/ (puml, py) · png/ · svg/ · README.md (catálogo)
-├── pmv_fastapi/                 software evaluado: PMV e Incremento 2 (FastAPI, arquitectura hexagonal)
+├── pmv_fastapi/                 software evaluado: incrementos 1 a 4 (FastAPI, arquitectura hexagonal)
 ├── Dataset/                     dataset público de la DIRESA Junín (HIS, anonimizado) y su diccionario
 ├── herramientas/                scripts de medición GQM, análisis del dataset y conversión de documentos
 ├── anemia_junin/                primer prototipo (Flask); histórico
@@ -97,7 +105,11 @@ El detalle de cada ruta está en [`coordinacion/RUTAS.md`](coordinacion/RUTAS.md
 | S3-4 | Actividades, organización, responsabilidades, productos, WBS, priorización, estimación y plan del proyecto | [`guias/S3-4_…`](guias/S3.GU%C3%8DA%20DE%20TRABAJO%20SEMANA%203%20Y%204.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | Revisado; pendientes diagramas y conciliación técnica (T-004, T-007) |
 | S5 | Ejecución de procesos principales del PMV: requisitos, diseño, construcción, pruebas y despliegue | [Guía S5](guias/S5-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%205.md) | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` — **por crear**; base: [PDF Actividad 5](entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf), [extracción](entregables/semana-05/_extraccion_Informe_Actividad5.md) | Por crear (T-005) |
 | S6 | Informe integrador de las Unidades I y II | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) | Propuesta de revisión — por actualizar (T-006) |
-| S9 | Evaluación GQM del proceso y producto: arquitectura hexagonal, pruebas Inc. 1 y 2 con capturas, entrega de valor (Inc. 2 completo `v2.0.0-inc2` y dataset real de la DIRESA Junín) | [Guía S9](guias/S9-PSW-GU%C3%8DA%20DE%20TRABAJO.md) | [`Entregable_Semana9`](entregables/semana-09/Entregable_Semana9_Anemia_Junin.md) · [checklist](entregables/semana-09/CHECKLIST_CUMPLIMIENTO_S9.md) · PDF/DOCX en `exportados/semana-09/` | En revisión (T-011); pendiente que el equipo cree el tag `v2.0-Inc2` (Anexo B) |
+| S9 | Evaluación GQM del proceso y producto: arquitectura hexagonal, pruebas Inc. 1 y 2 con capturas, entrega de valor (Inc. 2 completo `v2.0.0-inc2` y dataset real de la DIRESA Junín) | [Guía S9](guias/S9-PSW-GU%C3%8DA%20DE%20TRABAJO.md) | [`Entregable_Semana9`](entregables/semana-09/Entregable_Semana9_Anemia_Junin.md) · [checklist](entregables/semana-09/CHECKLIST_CUMPLIMIENTO_S9.md) · PDF/DOCX en `exportados/semana-09/` | Entregado |
+| S10 | Evaluación FURPS+, accesibilidad WCAG 2.1 y seguridad OWASP Top 10:2025 | [Guía S10](guias/S10-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%2010.docx.md) | [`Entregable_Semana10`](entregables/semana-10/Entregable_Semana10_Anemia_Junin.md) | Entregado |
+| S11 | Evaluación de capacidad del proceso con CMMI-DEV y plan de mejora | Guía S11 (`guias/S11-PSW-GUÍA DE TRABAJO 11.docx`) | [`Entregable_Semana11`](entregables/semana-11/Entregable_Semana11_Anemia_Junin.md) | Entregado |
+| S12 | Informe académico integrador de la Unidad III y video | [Plantilla S12](guias/S12-PSW-INFORME%20ACAD%C3%89MICO%20INTEGRADOR%20DEL%20PROYECTO%20DE%20ASIGNATURA.docx.md) | [`Informe_Integrador_S12`](entregables/semana-12/Informe_Integrador_S12_Anemia_Junin.md) | Entregado; observaciones del docente atendidas en S13 |
+| S13 | Informe integrador actualizado y corregido según las observaciones de S12 | Observaciones del docente a S12 | [`Informe_Integrador_S13`](entregables/semana-13/Informe_Integrador_S13_Anemia_Junin.md) | Entrega 13/11/2026 |
 
 Las versiones anteriores están en `archivo/versiones-anteriores/`. El historial completo se conserva en git (`git log --follow <ruta>`).
 
