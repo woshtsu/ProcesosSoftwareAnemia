@@ -617,10 +617,18 @@ PROYECTO ANEMIA JUNÍN
 | INC-2 (sprint 3, 29/09-12/10) | 18 SP al hito H2, 12/10 | 10 SP al 16/10 (hito `v1.5.0-inc2-avance`); 18 SP el 17/10 | +5 días (+35,7 % de 14 días) | El sprint absorbió el informe integrador de S6 y la reestructuración hexagonal (ADR-008) sin holgura | Cerrar HIST-2.3 y HIST-2.4; reservar 20 % de capacidad por sprint (acción 7) |
 | INC-3 (sprint 4, 13-26/10) | 21 SP al hito H3, 26/10 | 21 SP más VIS-3.5; `v3.0-Inc3` el 30/10 | +4 días (+28,6 % de 14 días) | Arrastre del atraso de INC-2 y alcance adicional (VIS-3.5) sin estimar; causa probable, sin registro de horas | La replanificación propuesta en S9 no se adoptó; el equipo recuperó el plan |
 | INC-4 (sprint 5, 27/10-09/11) | 16 SP al hito H4, 09/11 | 16 SP; `v4.0-Inc4` el 30/10 | −10 días (−71,4 % de 14 días) | Se adelantó la entrega para recuperar el plan original | Pruebas de campo y envío real quedan pendientes |
+| INC-5 (sprints 6 y 7, 10/11-07/12) | Datos del HIS validados y modelo entrenado al hito H5, 23/11; integración al H6, 07/12 (34 SP) | Al 06/11 no ha iniciado, como prevé el plan. El criterio de datos se cumple (8 540 diagnósticos con seguimiento posible, mínimo 500), pero la limpieza y el versionado que el plan ubicaba en el sprint 5 no se hicieron | 0 días (el sprint empieza el 10/11) | Probable: el sprint 5 se dedicó a adelantar INC-4 y a los informes S11 y S12; sin registro de horas no se puede confirmar | Hacer la limpieza y el versionado en la primera semana del sprint 6, junto con la experimentación |
 
 ![Hitos H2 a H4: fecha del plan frente a la fecha real.](../semana-11/evidencias/CMMI02_hitos_plan_vs_real.png)
 
 **Figura 7.** Hitos H2 a H4, plan frente a real (elaboración propia a partir de S3-4 y de los commits).
+
+**Avance al inicio de la semana 13.** Según el calendario de S3-4, la semana 13 abre el Sprint 6 (10 al 23/11/2026), dedicado al Incremento 5: validación de los datos del HIS, experimentación y entrenamiento del modelo predictivo, con el hito H5 el 23/11. En entrega de software el proyecto está a tiempo: los incrementos 1 a 4 están etiquetados (76 de 133 SP) y el INC-4 se entregó 10 días antes del hito H4. Dos condiciones del plan siguen abiertas:
+
+- La aceptación de los incrementos (H1 a H4), que no tiene acta.
+- La preparación de datos del INC-5 (limpieza y versionado), que llega al Sprint 6 sin hacerse.
+
+El INC-5 suma 34 SP, el mayor de todos, frente a una velocidad observada de 16 a 21 SP por incremento. Por eso el plan lo reparte en los sprints 6 y 7, y la postergación al Sprint 8 que prevé el plan de riesgos de S3-4 sigue disponible si los datos no alcanzan el umbral.
 
 Ningún retraso superó el umbral de una semana que el plan fija para replanificar un hito. Lo que la matriz muestra es otra cosa: **el avance se midió en entrega de software, no en aceptación**. Los hitos H3 y H4 exigían prueba de campo y envío real, que no se hicieron, de modo que el desvío favorable de INC-4 (−10 días) no equivale a un incremento aceptado. Tampoco hay horas reales registradas en ningún incremento (113 h estimadas solo para INC-1), de modo que la estimación no se recalibró.
 

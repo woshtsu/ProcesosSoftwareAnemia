@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cuadro PDCA de mejora — Anemia Junín</title>
+<style>
+  @page { size: A4 landscape; margin: 12mm 11mm 14mm 11mm; }
+  :root { --azul: #1F3864; --azul2: #2E75B6; --gris: #f2f4f7; --borde: #9aa5b5; }
+  body { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 8.4pt; color: #111; margin: 0; }
+  h1 { font-size: 14pt; color: var(--azul); margin: 0 0 2mm; }
+  h2 { font-size: 11pt; color: var(--azul); margin: 5mm 0 2mm; border-bottom: 1.5px solid var(--azul2); padding-bottom: 1mm; }
+  p { margin: 1.2mm 0; line-height: 1.35; }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; font-size: 8.6pt; margin-bottom: 2mm; }
+  .meta div { padding: .6mm 0; }
+  table { border-collapse: collapse; width: 100%; page-break-inside: auto; }
+  tr { page-break-inside: avoid; }
+  th, td { border: 0.6px solid var(--borde); padding: 1.3mm 1.4mm; vertical-align: top; text-align: left; line-height: 1.28; }
+  thead th { background: var(--azul); color: #fff; font-weight: bold; font-size: 7.8pt; }
+  thead th small { font-weight: normal; display: block; opacity: .9; }
+  tbody tr:nth-child(even) td { background: var(--gris); }
+  td.n { text-align: center; font-weight: bold; width: 4mm; }
+  td.dom { font-weight: bold; }
+  table.pdca { table-layout: fixed; }
+  h2 { page-break-after: avoid; }
+  .bloque { page-break-inside: avoid; }
+  td.f { text-align: center; overflow-wrap: normal; white-space: nowrap; font-size: 7.6pt; }
+  td.dom { overflow-wrap: normal; hyphens: auto; }
+  .est { display: inline-block; padding: .4mm 1.6mm; border-radius: 2mm; font-weight: bold; font-size: 7.4pt; color: #fff; margin-top: 1mm; }
+  .Abierto { background: #b42318; } .EnProceso { background: #b54708; } .Verificado { background: #1f7a3a; } .Cerrado { background: #344054; }
+  code { font-family: "DejaVu Sans Mono", monospace; font-size: 7.2pt; overflow-wrap: anywhere; }
+  td { overflow-wrap: anywhere; }
+  .ev { color: #344054; font-size: 7.6pt; display: block; margin-top: .8mm; }
+  .resumen td, .resumen th { font-size: 8.4pt; }
+  .nota { font-size: 7.8pt; color: #344054; }
+  .escala td:first-child { width: 22mm; }
+  .pie { margin-top: 4mm; font-size: 7.6pt; color: #475467; }
+</style>
+</head>
+<body>
+
+<h1>Cuadro de Aplicación del Modelo PDCA para la Evaluación del Proyecto de Software</h1>
+<div class="meta">
+  <div><b>Curso:</b> Procesos de Software (ASUC01702) · Universidad Continental · 2026-20</div>
+  <div><b>Proyecto:</b> «Anemia Junín» — seguimiento de la anemia infantil en zonas rurales de Junín (versión <code>v4.0-Inc4</code>)</div>
+  <div><b>Equipo:</b> Porras Veli, Ricardo (Leader / Software Architect) · Auqui Huincho, Tania Tifani (Backend, Data, Frontend &amp; Mobile) · Huamani Rodriguez, Jean Piero (Process Analyst &amp; QA Lead)</div>
+  <div><b>Docente:</b> Guevara Jimenez, Jorge Alfredo · <b>Fecha de corte:</b> 06/11/2026 · <b>Repositorio:</b> github.com/woshtsu/ProcesosSoftwareAnemia</div>
+</div>
+<p><b>Objetivo.</b> Gestionar y dar seguimiento a los hallazgos identificados en la revisión del proyecto (observaciones del docente a la entrega de la semana 12 y autoevaluación CMMI-DEV), aplicando el ciclo de mejora continua PDCA: <b>Plan</b> (hallazgo), <b>Do</b> (acción), <b>Check</b> (verificación) y <b>Act</b> (estandarización). Cada hallazgo es del proyecto real; el estado sigue la escala del curso y solo se marca «Verificado» cuando existe la evidencia indicada.</p>
+
+<h2>1. Avance del proyecto al inicio de la semana 13</h2>
+<p>El calendario aprobado en S3-4 (Tabla 23 de ese entregable) asigna la semana 13 al <b>Sprint 6 (10 al 23/11/2026), Incremento 5 «Modelo predictivo»</b>: validación de los datos del HIS, experimentación y entrenamiento, con el hito <b>H5</b> el 23/11. Los recordatorios por WhatsApp no se consideran en esta revisión.</p>
+<table class="resumen">
+<thead><tr><th>Sprint (semanas)</th><th>Incremento planificado</th><th>Hito y fecha</th><th>Avance real al 06/11/2026</th><th>Situación</th></tr></thead>
+<tbody>
+<tr><td>1-2 (S3-S6)</td><td>INC-1 PMV, 21 SP</td><td>H1 · 28/09</td><td><code>v1.0-PMV</code> el 30/09</td><td>Entregado (+2 días); sin acta de aceptación</td></tr>
+<tr><td>3 (S7-S8)</td><td>INC-2 Agenda y alertas, 18 SP</td><td>H2 · 12/10</td><td><code>v2.0-Inc2</code> el 17/10</td><td>Entregado (+5 días); sin acta</td></tr>
+<tr><td>4 (S9-S10)</td><td>INC-3 Sin conexión, 21 SP</td><td>H3 · 26/10</td><td><code>v3.0-Inc3</code> el 30/10 (más VIS-3.5)</td><td>Entregado (+4 días); sin prueba de campo</td></tr>
+<tr><td>5 (S11-S12)</td><td>INC-4 Barreras (y recordatorios), 16 SP</td><td>H4 · 09/11</td><td><code>v4.0-Inc4</code> el 30/10; 4 de 4 historias con ficha de prueba</td><td>Entregado (−10 días); sin acta</td></tr>
+<tr><td><b>6 (S13-S14)</b></td><td><b>INC-5 Modelo predictivo (datos y modelo)</b></td><td><b>H5 · 23/11</b></td><td>No iniciado. Datos suficientes (8 540 diagnósticos con seguimiento posible; mínimo del plan: 500). La limpieza y el versionado previstos en el sprint 5 no se hicieron</td><td><b>A tiempo para iniciar; sin holgura en la preparación de datos</b></td></tr>
+<tr><td>7-8 (S15-S18)</td><td>INC-5 (integración) e INC-6 Tablero, 34 + 15 SP</td><td>H6 · 07/12; H7 · 21/12</td><td>No iniciados</td><td>Según plan</td></tr>
+</tbody>
+</table>
+<p><b>Conclusión.</b> El equipo debe estar iniciando el <b>Incremento 5</b>. En entrega de software el proyecto está a tiempo: 76 de 133 SP (57,1 %) en cuatro incrementos y el INC-4 adelantado 10 días. El riesgo para el H5 está en la preparación de datos y en el tamaño del INC-5 (34 SP frente a una velocidad observada de 16 a 21 SP), y la condición que nunca se cumplió es la <b>aceptación</b> de los incrementos. Por eso las acciones PDCA se programan dentro del Sprint 6, sin pasar del 20 % de la capacidad (acción 7 del plan CMMI), y la UAT (dominios 7 y 11) va primero: cierra los hitos H1 a H4 antes de abrir el H5.</p>
+
+<h2>2. Cuadro PDCA por dominio evaluado</h2>
+<table class="pdca">
+<colgroup><col style="width:3%"><col style="width:9%"><col style="width:15%"><col style="width:16%"><col style="width:9%"><col style="width:7.5%"><col style="width:15.5%"><col style="width:15%"><col style="width:10%"></colgroup>
+<thead>
+<tr>
+  <th>N.°</th><th>Dominio evaluado</th>
+  <th>PLAN<small>Hallazgo identificado</small></th>
+  <th>DO<small>Acción a tomar / tomada</small></th>
+  <th>Responsable</th>
+  <th>Fecha de acción</th>
+  <th>CHECK<small>¿Cómo se verificará? · evidencia</small></th>
+  <th>ACT<small>Estandarización o mejora futura</small></th>
+  <th>Fecha de solución · estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="n">1</td><td class="dom">Formato del informe final</td>
+  <td>Observación del docente a S12: citas sin el método numérico de ISO 690; numeración y estructura inconsistentes.</td>
+  <td>Citado numérico ISO 690:2021 por orden de primera aparición ([1] a [21]); renumeración de 120 figuras y 46 tablas; índice automático; tabla de control de cambios al inicio.</td>
+  <td>Líder de Documentación: Huamani R.</td>
+  <td class="f">06/11/2026</td>
+  <td>Lista de cotejo cita-referencia (Anexo D: 21 de 21 citadas, en orden) y validación del .docx.<span class="ev">Informe S13, Tabla 2 y Anexo D</span></td>
+  <td>Plantilla oficial de Word (<code>reference.docx</code>) y conversión automática desde Markdown para todos los entregables.</td>
+  <td class="f">06/11/2026<br><span class="est Verificado">Verificado</span></td>
+</tr>
+<tr>
+  <td class="n">2</td><td class="dom">Evidencias del modelo FURPS+</td>
+  <td>5 de 35 criterios sin medir (lector de pantalla, <i>staging</i>, 500 usuarios, Docker en ejecución, política de contraseñas). Índice 87,7 % (78,4 % conservador), bajo el 90 % de excelencia.</td>
+  <td>Medir los 5 criterios faltantes y repetir la carga con control (p95 &lt; 800 ms); recalcular el índice con <code>furps_calculo.py</code>.</td>
+  <td>Analista de Calidad: Huamani R.</td>
+  <td class="f">20/11/2026</td>
+  <td>Validación de la matriz: 35 de 35 criterios con evidencia y diferencia entre índice primario y conservador igual a 0.<span class="ev">Informe S13, 3.7.1, Tabla 29</span></td>
+  <td>Repositorio de evidencias por atributo (<code>entregables/semana-10/evidencias/</code>) y puerta no funcional en la DoD (acción 10).</td>
+  <td class="f">—<br><span class="est EnProceso">En proceso</span></td>
+</tr>
+<tr>
+  <td class="n">3</td><td class="dom">Evidencias del modelo GQM</td>
+  <td>Observación del docente a S12: evidencias incompletas, sin capturas «de cara al dominio»; la estructura de GitHub aparecía primero.</td>
+  <td>Ficha por métrica (M1.1 a M3.2, V4 y V5) con meta, pregunta, fórmula, datos y dos capturas (medición y software en uso); 3.6 reordenada (GitHub al final).</td>
+  <td>Responsable de Métricas: Huamani R.</td>
+  <td class="f">06/11/2026</td>
+  <td>Auditoría de trazabilidad Goal-Question-Metric: 8 fichas cubren las 9 métricas, cada una con su evidencia.<span class="ev">Informe S13, 3.6.1 y Tabla 23</span></td>
+  <td>Scripts de <code>herramientas/gqm/</code> recalculados al cierre de cada incremento; revisión GQM en cada entrega.</td>
+  <td class="f">06/11/2026<br><span class="est Verificado">Verificado</span></td>
+</tr>
+<tr>
+  <td class="n">4</td><td class="dom">Evidencias del modelo CMMI</td>
+  <td>Observación del docente a S12: faltan evidencias de prácticas (cronograma, diseño, pruebas). Autoevaluación: 4 de 7 áreas en Nivel 1.</td>
+  <td>Ficha de evidencia por área (ESTIM, PLAN, TS, VER, VAL, CM, PQA) con dos capturas del producto de trabajo; análisis de causa raíz de 10 hallazgos.</td>
+  <td>Responsable de Calidad: Huamani R.</td>
+  <td class="f">06/11/2026</td>
+  <td>Verificación de evidencias: cada área de la Tabla 37 tiene artefacto y figura.<span class="ev">Informe S13, 3.8, Tablas 36 a 41</span></td>
+  <td>Evidencias organizadas por área de proceso en el informe; reevaluación al cierre de los sprints 5 (09/11) y 6 (23/11).</td>
+  <td class="f">06/11/2026<br><span class="est Verificado">Verificado</span></td>
+</tr>
+<tr>
+  <td class="n">5</td><td class="dom">Pruebas del Incremento 1</td>
+  <td>6 de 7 defectos del PMV escaparon a las pruebas; 3 capturas de RF-05 y RF-06 aún son de S9 (<code>v1.0-PMV</code>).</td>
+  <td>Re-ejecución de las suites sobre <code>v4.0-Inc4</code> (06/11: 660 pruebas, 99,79 %); pendiente recapturar RF-05/RF-06 y agregar pruebas de entradas límite.</td>
+  <td>Líder QA: Huamani R.</td>
+  <td class="f">13/11/2026</td>
+  <td>Revisión del reporte de pruebas y de las fichas: 5 de 5 RF con capturas de la versión vigente.<span class="ev">Informe S13, 3.6.3 y ficha VER</span></td>
+  <td>Checklist obligatorio de pruebas en la plantilla de PR (<code>.github/PULL_REQUEST_TEMPLATE.md</code>).</td>
+  <td class="f">—<br><span class="est EnProceso">En proceso</span></td>
+</tr>
+<tr>
+  <td class="n">6</td><td class="dom">Pruebas del Incremento 2</td>
+  <td>DEF-09 (agenda del personal) escapó a las pruebas del Inc. 2; los defectos de Inc. 3 y 4 no se registraron como DEF, por lo que M2.2 es indicativa.</td>
+  <td>Corrección de DEF-09 con prueba de regresión; registrar cada defecto como <i>issue</i> RFC de tipo «Corrección de defecto».</td>
+  <td>Equipo QA: Huamani R. y Auqui H.</td>
+  <td class="f">13/11/2026</td>
+  <td>Comparación de cobertura antes y después (Inc. 2: 326 pruebas → Inc. 4: 660 pruebas, 99,79 %) y registro de defectos completo.<span class="ev">Informe S13, Figura 16 y ficha M2.2</span></td>
+  <td>Cobertura mínima de 80 % exigida por el CI y la DoD; defectos trazados en GitHub Issues.</td>
+  <td class="f">—<br><span class="est EnProceso">En proceso</span></td>
+</tr>
+<tr>
+  <td class="n">7</td><td class="dom">Pruebas del Incremento 3 (UAT)</td>
+  <td>No existen pruebas de aceptación con usuarios: sin acta, sin SUS y sin piloto en una posta (hallazgo H3).</td>
+  <td>Sesión de aceptación con el personal de salud: escenarios de los incrementos 3 y 4, acta y SUS con al menos 5 respondientes (acción 5).</td>
+  <td>Product Owner / Analista Funcional: Porras V.</td>
+  <td class="f">13/11/2026</td>
+  <td>Acta de aceptación firmada y SUS ≥ 68.<span class="ev">Formato: <code>entregables/semana-13/pdca/PLANTILLA_ACTA_RETROALIMENTACION.md</code></span></td>
+  <td>UAT como criterio obligatorio de cierre de cada incremento en la DoD.</td>
+  <td class="f">—<br><span class="est Abierto">Abierto</span></td>
+</tr>
+<tr>
+  <td class="n">8</td><td class="dom">Video demo del software completo</td>
+  <td>El video (5:00) muestra los 4 incrementos, pero se grabó en local con datos sintéticos y proveedor de identidad simulado; no muestra el sistema desplegado ni el inicio de sesión real.</td>
+  <td>Regrabar con el guion ejecutable (<code>video/GUION_DEMO.md</code>) sobre producción (softwareanemia.onrender.com), con inicio de sesión real y una escena por historia.</td>
+  <td>Líder de Desarrollo: Auqui H.</td>
+  <td class="f">13/11/2026</td>
+  <td>Lista de funcionalidades verificadas por escena (Anexo C) frente a las 19 historias.<span class="ev">Informe S13, Anexos A y C</span></td>
+  <td>Formato estándar del video: portada, un bloque rotulado por incremento y cierre de calidad.</td>
+  <td class="f">—<br><span class="est EnProceso">En proceso</span></td>
+</tr>
+<tr>
+  <td class="n">9</td><td class="dom">Diseño del póster de exposición</td>
+  <td>El póster de la feria es del Incremento 2: mucho texto, pocos indicadores y sin los incrementos 3 y 4.</td>
+  <td>Rediseñar con infografía e indicadores de <code>v4.0-Inc4</code>: brecha 33,9 %, 1 638 controles vencidos visibles, M3.1 = 75 %, 660 pruebas.</td>
+  <td>Responsable de Presentación: Porras V.</td>
+  <td class="f">20/11/2026</td>
+  <td>Evaluación con la rúbrica de exposición.<span class="ev">Base: <code>entregables/feria/Proyecto_Feria_Anemia_Junin.md</code></span></td>
+  <td>Plantilla institucional de póster con máximo 150 palabras y 3 indicadores.</td>
+  <td class="f">—<br><span class="est Abierto">Abierto</span></td>
+</tr>
+<tr>
+  <td class="n">10</td><td class="dom">Evidencias de código en GitHub</td>
+  <td>README desactualizado (decía Flask), etiquetas sin <i>release</i>, sin convención escrita de commits (H5) ni plantillas de PR (H2).</td>
+  <td>README actualizado; 5 <i>releases</i> con notas; <code>CONTRIBUTING.md</code> (GitFlow, commits, etiquetas); plantillas de RFC y de PR; rama <code>develop</code>; PR #13.</td>
+  <td>Líder Técnico: Porras V. (ejecutó Huamani R.)</td>
+  <td class="f">06/11/2026</td>
+  <td>Auditoría del repositorio: página de Releases, <code>.github/</code> y PR #13 con la plantilla.<span class="ev">Informe S13, ficha CM, Figura 117</span></td>
+  <td>Política de gestión del repositorio en <code>CONTRIBUTING.md</code>; falta proteger <code>main</code> y <code>develop</code> (acción 2).</td>
+  <td class="f">06/11/2026<br><span class="est Verificado">Verificado</span></td>
+</tr>
+<tr>
+  <td class="n">11</td><td class="dom">Acta de retroalimentación con usuarios</td>
+  <td>Las observaciones de los usuarios no están documentadas: solo existe la entrevista de S1; no hay actas de revisión de los incrementos.</td>
+  <td>Formato único de acta creado (06/11); consolidar las observaciones de la sesión UAT y registrarlas como <i>issues</i> RFC.</td>
+  <td>Analista Funcional: Porras V.</td>
+  <td class="f">13/11/2026</td>
+  <td>Revisión de actas y acuerdos registrados con su <i>issue</i>.<span class="ev"><code>entregables/semana-13/pdca/PLANTILLA_ACTA_RETROALIMENTACION.md</code></span></td>
+  <td>Formato único de retroalimentación para toda sesión con usuarios.</td>
+  <td class="f">—<br><span class="est EnProceso">En proceso</span></td>
+</tr>
+<tr>
+  <td class="n">12</td><td class="dom">Reporte de ingeniería inversa</td>
+  <td>Diagramas C4 y modelo de datos del PMV (01/10/2026) desactualizados frente al software (H10): 2 tablas en el diagrama y 8 en el código.</td>
+  <td>Diagramas de componentes y de datos regenerados desde el código de <code>v4.0-Inc4</code> con <code>generar_diagramas.py</code> (SQLAlchemy y <code>ast</code>).</td>
+  <td>Arquitecto de Software: Porras V.</td>
+  <td class="f">06/11/2026</td>
+  <td>Comparación entre diagramas y código fuente (Tabla 38): coinciden por construcción.<span class="ev">Informe S13, ficha TS, Figuras 108 y 109</span></td>
+  <td>Ejecutar el script de ingeniería inversa al cierre de cada sprint.</td>
+  <td class="f">06/11/2026<br><span class="est Verificado">Verificado</span></td>
+</tr>
+</tbody>
+</table>
+
+<h2>3. Registro de seguimiento PDCA</h2>
+<table class="resumen">
+<thead><tr><th>Fecha de revisión</th><th>Responsable de la revisión</th><th>Hallazgos pendientes</th><th>Hallazgos cerrados o verificados</th><th>Observaciones</th></tr></thead>
+<tbody>
+<tr><td>30/10/2026</td><td>Huamani R. (QA Lead)</td><td>12</td><td>0</td><td>Identificación: autoevaluación CMMI (H1 a H10) y revisión de la entrega S12 antes de las observaciones del docente.</td></tr>
+<tr><td>06/11/2026</td><td>Huamani R. (QA Lead) y Porras V. (Líder)</td><td>7 (2 abiertos, 5 en proceso)</td><td>5 verificados (1, 3, 4, 10 y 12)</td><td>Se atendieron las tres observaciones del docente (dominios 1, 3 y 4). Ninguno pasa a «Cerrado»: falta la reevaluación del docente (13/11) y aplicar los estándares en el Incremento 5.</td></tr>
+<tr><td>13/11/2026</td><td>________________________</td><td>______</td><td>______</td><td>Prevista: resultado de la UAT (7 y 11), reevaluación del informe por el docente y avance de la preparación de datos del INC-5.</td></tr>
+<tr><td>23/11/2026</td><td>________________________</td><td>______</td><td>______</td><td>Prevista: cierre del Sprint 6 e hito H5.</td></tr>
+</tbody>
+</table>
+
+<div class="bloque"><h2>4. Escala de seguimiento</h2>
+<table class="escala">
+<tbody>
+<tr><td><span class="est Abierto">Abierto</span></td><td>Se identificó el hallazgo y aún no se inicia la acción correctiva (dominios 7 y 9).</td></tr>
+<tr><td><span class="est EnProceso">En proceso</span></td><td>La acción correctiva está siendo ejecutada (dominios 2, 5, 6, 8 y 11).</td></tr>
+<tr><td><span class="est Verificado">Verificado</span></td><td>La evidencia demuestra que la acción fue realizada (dominios 1, 3, 4, 10 y 12).</td></tr>
+<tr><td><span class="est Cerrado">Cerrado</span></td><td>El hallazgo fue solucionado y la mejora quedó estandarizada. Ninguno al 06/11/2026.</td></tr>
+</tbody>
+</table></div>
+
+<p class="pie">Fuentes: calendario e hitos del entregable S3-4 (Tablas 23 y 25), Informe Académico Integrador S13 (secciones 3.4 y 3.6 a 3.8, anexos), plan de mejora CMMI (Tabla 41) y repositorio. Las fechas posteriores al 06/11/2026 son compromisos del equipo. Marco: ciclo PHVA según Torres Saumeth et al. (2013) y controles de revisión, verificación y validación según Blanco-Llano y Rodríguez-Hernández (2011).</p>
+</body>
+</html>
