@@ -1,0 +1,48 @@
+digraph C {
+graph [rankdir=LR, fontname="DejaVu Sans", label="Componentes de pmv_fastapi/app en v4.0-Inc4 (ingeniería inversa de las importaciones; número = importaciones entre paquetes)", labelloc=t, fontsize=15, compound=true, nodesep=0.4, ranksep=0.7];
+node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=11, fontcolor=white];
+edge [fontname="DejaVu Sans", fontsize=10, color="#404040"];
+subgraph cluster_hex { label="Hexágono (sin frameworks)"; style="rounded,dashed"; color="#1F4E79"; fontsize=12;
+"application" [label="application\ncasos de uso (servicios)\n(13 módulos)", fillcolor="#5B9BD5"];
+"domain.model" [label="domain/model\nentidades y reglas puras\n(17 módulos)", fillcolor="#1F4E79"];
+"domain.service" [label="domain/service\nreglas clínicas, agenda,\nalertas, visitas, conflictos\n(12 módulos)", fillcolor="#1F4E79"];
+"ports.inbound" [label="ports/inbound\ninterfaces de casos de uso\n(15 módulos)", fillcolor="#2E75B6"];
+"ports.outbound" [label="ports/outbound\nrepositorios, reloj,\nnotificador, identidad\n(9 módulos)", fillcolor="#2E75B6"];
+}
+"adapters.inbound.http" [label="adapters/inbound/http\nFastAPI, esquemas, sesión, CSRF\n(4 módulos)", fillcolor="#A5A5A5", fontcolor=black];
+"adapters.outbound.notificaciones" [label="adapters/outbound/notificaciones\nsimulado, WhatsApp Cloud, SMS, respaldo\n(5 módulos)", fillcolor="#A5A5A5", fontcolor=black];
+"adapters.outbound.persistence" [label="adapters/outbound/persistence\nSQLAlchemy (PostgreSQL/SQLite), memoria\n(3 módulos)", fillcolor="#A5A5A5", fontcolor=black];
+"adapters.outbound.reloj_fijo" [label="adapters/outbound/reloj_fijo\n(1 módulo)", fillcolor="#A5A5A5", fontcolor=black];
+"adapters.outbound.reloj_sistema" [label="adapters/outbound/reloj_sistema\n(1 módulo)", fillcolor="#A5A5A5", fontcolor=black];
+"adapters.outbound.supabase_auth" [label="adapters/outbound/supabase_auth\n(1 módulo)", fillcolor="#A5A5A5", fontcolor=black];
+"main" [label="main.py\nraíz de composición\n(1 módulo)", fillcolor="#7F7F7F", fontcolor=black];
+"web" [label="web/ (PWA)\nHTML, CSS, JS, service worker,\ncola IndexedDB", fillcolor="#FFD966", fontcolor=black];
+"web" -> "adapters.inbound.http" [label="HTTPS / JSON", style=dashed];
+"adapters.inbound.http" -> "domain.model" [label="12"];
+"adapters.inbound.http" -> "ports.inbound" [label="13"];
+"adapters.outbound.notificaciones" -> "domain.model" [label="4"];
+"adapters.outbound.notificaciones" -> "ports.outbound" [label="2"];
+"adapters.outbound.persistence" -> "domain.model" [label="18"];
+"adapters.outbound.persistence" -> "ports.outbound" [label="10"];
+"adapters.outbound.reloj_fijo" -> "ports.outbound" [label="1"];
+"adapters.outbound.reloj_sistema" -> "domain.model" [label="1"];
+"adapters.outbound.reloj_sistema" -> "ports.outbound" [label="1"];
+"adapters.outbound.supabase_auth" -> "domain.model" [label="1"];
+"adapters.outbound.supabase_auth" -> "ports.outbound" [label="1"];
+"application" -> "domain.model" [label="32"];
+"application" -> "domain.service" [label="31"];
+"application" -> "ports.inbound" [label="19"];
+"application" -> "ports.outbound" [label="29"];
+"domain.service" -> "domain.model" [label="47"];
+"main" -> "adapters.inbound.http" [label="3"];
+"main" -> "adapters.outbound.notificaciones" [label="1"];
+"main" -> "adapters.outbound.persistence" [label="1"];
+"main" -> "adapters.outbound.reloj_fijo" [label="1"];
+"main" -> "adapters.outbound.reloj_sistema" [label="1"];
+"main" -> "adapters.outbound.supabase_auth" [label="1"];
+"main" -> "application" [label="11"];
+"main" -> "domain.model" [label="1"];
+"main" -> "ports.outbound" [label="1"];
+"ports.inbound" -> "domain.model" [label="12"];
+"ports.outbound" -> "domain.model" [label="8"];
+}
