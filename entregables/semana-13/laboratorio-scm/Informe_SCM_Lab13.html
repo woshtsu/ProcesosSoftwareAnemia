@@ -27,7 +27,7 @@
   .portada .t { font-size: 16pt; font-weight: bold; margin: 14mm 0 4mm; color: var(--azul); }
   .portada .s { font-size: 11pt; margin-bottom: 14mm; }
   .portada table { width: 82%; margin: 0 auto; font-size: 9.5pt; }
-  .portada td:first-child { font-weight: bold; width: 32%; }
+  .portada th { font-weight: bold; width: 32%; background: none; color: #111; }
   .ok { color: #1f7a3a; font-weight: bold; } .pend { color: #b54708; font-weight: bold; } .no { color: #b42318; font-weight: bold; }
   img { max-width: 100%; border: .6px solid #d0d7de; }
   .fig { text-align: center; page-break-inside: avoid; margin: 3mm 0; }
@@ -43,12 +43,12 @@
   <div class="s">Administración del cambio y gestión de versiones y entregas con la Suite de GitHub<br>aplicadas al proyecto «Anemia Junín»</div>
   <table>
     <tbody>
-    <tr><td>Asignatura</td><td>Procesos de Software (ASUC01702) · 2026-20</td></tr>
-    <tr><td>Docente</td><td>Guevara Jimenez, Jorge Alfredo</td></tr>
-    <tr><td>Proyecto</td><td>Sistema para la detección temprana y el seguimiento de la anemia infantil en zonas rurales de Junín (versión <code>v4.0-Inc4</code>)</td></tr>
-    <tr><td>Integrantes</td><td>Porras Veli, Ricardo (76659572) — Leader / Software Architect<br>Auqui Huincho, Tania Tifani (75280128) — Backend, Data, Frontend &amp; Mobile<br>Huamani Rodriguez, Jean Piero (72156889) — Process Analyst &amp; QA Lead</td></tr>
-    <tr><td>Repositorio</td><td>https://github.com/woshtsu/ProcesosSoftwareAnemia</td></tr>
-    <tr><td>Fecha de corte</td><td>06/11/2026</td></tr>
+    <tr><th scope="row">Asignatura</th><td>Procesos de Software (ASUC01702) · 2026-20</td></tr>
+    <tr><th scope="row">Docente</th><td>Guevara Jimenez, Jorge Alfredo</td></tr>
+    <tr><th scope="row">Proyecto</th><td>Sistema para la detección temprana y el seguimiento de la anemia infantil en zonas rurales de Junín (versión <code>v4.0-Inc4</code>)</td></tr>
+    <tr><th scope="row">Integrantes</th><td>Porras Veli, Ricardo (76659572) — Leader / Software Architect<br>Auqui Huincho, Tania Tifani (75280128) — Backend, Data, Frontend &amp; Mobile<br>Huamani Rodriguez, Jean Piero (72156889) — Process Analyst &amp; QA Lead</td></tr>
+    <tr><th scope="row">Repositorio</th><td>https://github.com/woshtsu/ProcesosSoftwareAnemia</td></tr>
+    <tr><th scope="row">Fecha de corte</th><td>06/11/2026</td></tr>
     </tbody>
   </table>
 </div>
@@ -75,7 +75,7 @@
 <table>
   <thead><tr><th>Archivo</th><th>Contenido</th><th>Estado</th></tr></thead>
   <tbody>
-    <tr><td><code>.github/ISSUE_TEMPLATE/change_request.md</code></td><td>Solicitud de Cambio (RFC): módulo afectado, tipo de cambio, justificación, impacto en alcance, esfuerzo y riesgo, y criterios de aceptación Dado-Cuando-Entonces. Etiquetas automáticas: <code>change-request</code> y <code>pendiente-evaluacion</code>.</td><td rowspan="3">En la rama <code>docs/s13-informe</code> (PR #13). Se activan para todo el equipo al integrarse en <code>main</code>.</td></tr>
+    <tr><td><code>.github/ISSUE_TEMPLATE/change_request.md</code></td><td>Solicitud de Cambio (RFC): módulo afectado, tipo de cambio, justificación, impacto en alcance, esfuerzo y riesgo, y criterios de aceptación Dado-Cuando-Entonces. Etiquetas automáticas: <code>change-request</code> y <code>pendiente-evaluacion</code>.</td><td rowspan="3">En <code>main</code> desde el 06/11/2026 (PR #13); activas para todo el equipo.</td></tr>
     <tr><td><code>.github/PULL_REQUEST_TEMPLATE.md</code></td><td>Resumen, <code>Closes #</code> y la DoD: compila sin advertencias (Ruff), cobertura ≥ 80 %, arquitectura hexagonal, evidencias funcionales y análisis estático (Ruff y SonarCloud).</td></tr>
     <tr><td><code>CONTRIBUTING.md</code></td><td>Flujo del cambio, GitFlow, formato de commits <code>tipo(ámbito): descripción</code>, etiquetas, <i>releases</i> y protección de ramas.</td></tr>
   </tbody>
@@ -87,16 +87,16 @@
 <table>
   <thead><tr><th>ID Issue</th><th>Título de la solicitud (RFC)</th><th>Origen / causa</th><th>Impacto estimado</th><th>Estado en GitHub</th><th>Aprobador / responsable</th></tr></thead>
   <tbody>
-    <tr><td><b>#14</b></td><td>Corregir el informe integrador según las observaciones del docente a S12</td><td>Observaciones del docente (ISO 690, GQM, CMMI)</td><td>5 SP / Bajo</td><td>Abierto · <i>pendiente-evaluacion</i>; implementado en PR #13</td><td>Porras V. (aprobador) · Huamani R.</td></tr>
-    <tr><td><b>#15</b></td><td>Adoptar GitFlow, convención de commits y plantillas de cambio y de PR</td><td>CMMI H2 y H5; guía S13</td><td>3 SP / Bajo</td><td>Abierto · <i>pendiente-evaluacion</i>; implementado en PR #13</td><td>Porras V. · Huamani R.</td></tr>
+    <tr><td><b>#14</b></td><td>Corregir el informe integrador según las observaciones del docente a S12</td><td>Observaciones del docente (ISO 690, GQM, CMMI)</td><td>5 SP / Bajo</td><td>Cerrado por la PR #13 (integrada el 06/11); etiqueta aún <i>pendiente-evaluacion</i></td><td>Porras V. (aprobador) · Huamani R.</td></tr>
+    <tr><td><b>#15</b></td><td>Adoptar GitFlow, convención de commits y plantillas de cambio y de PR</td><td>CMMI H2 y H5; guía S13</td><td>3 SP / Bajo</td><td>Cerrado por la PR #13 (integrada el 06/11); etiqueta aún <i>pendiente-evaluacion</i></td><td>Porras V. · Huamani R.</td></tr>
     <tr><td>#16</td><td>(duplicado de #15)</td><td>Registro duplicado por error</td><td>—</td><td>Cerrado como duplicado</td><td>Huamani R.</td></tr>
-    <tr><td><b>#17</b></td><td>Regenerar los diagramas de arquitectura y de datos por ingeniería inversa (H10)</td><td>CMMI H10</td><td>2 SP / Bajo</td><td>Abierto · <i>pendiente-evaluacion</i>; implementado en PR #13</td><td>Porras V. · Huamani R.</td></tr>
+    <tr><td><b>#17</b></td><td>Regenerar los diagramas de arquitectura y de datos por ingeniería inversa (H10)</td><td>CMMI H10</td><td>2 SP / Bajo</td><td>Cerrado por la PR #13 (integrada el 06/11); etiqueta aún <i>pendiente-evaluacion</i></td><td>Porras V. · Huamani R.</td></tr>
     <tr><td><b>#18</b></td><td>Roles en el JWT y políticas RLS por establecimiento</td><td>OWASP H-1 (A01, alta)</td><td>5 SP / Alto</td><td>Abierto · <i>pendiente-evaluacion</i></td><td>Porras V. · Auqui H. (20/11)</td></tr>
     <tr><td><b>#19</b></td><td>Cabeceras de seguridad HTTP y CSV sin fórmulas</td><td>OWASP H-2 y H-3 (media)</td><td>3 SP / Medio</td><td>Abierto · <i>pendiente-evaluacion</i></td><td>Porras V. · Auqui H. (13/11)</td></tr>
     <tr><td><b>#20</b></td><td>Preparar el dataset versionado del HIS para el Incremento 5 en el Sprint 6</td><td>Desvío del plan: la preparación de datos del Sprint 5 no se hizo</td><td>3 SP / Medio</td><td>Abierto · <i>pendiente-evaluacion</i></td><td>Porras V. (decide trasladar o postergar INC-5)</td></tr>
   </tbody>
 </table>
-<p>Todas quedan en <i>pendiente-evaluacion</i> porque la aprobación es del Leader / Software Architect y el informe no la da por hecha. Cuando Porras V. cambie cada etiqueta a <code>aprobado</code> o <code>rechazado</code>, la matriz se actualiza. Ninguna se ha rechazado.</p>
+<p>Las seis siguen con la etiqueta <i>pendiente-evaluacion</i>: el flujo exige que el Leader / Software Architect cambie la etiqueta a <code>aprobado</code> o <code>rechazado</code>, y eso no se registró. Las RFC #14, #15 y #17 se cerraron automáticamente al integrarse la PR #13 sin haber pasado por <code>aprobado</code>, lo que muestra que el control de la evaluación todavía depende de la disciplina del equipo. Ninguna se ha rechazado.</p>
 
 <h3>3.3 Auditoría de revisiones de código y reglas de protección de ramas</h3>
 <p>Auditoría de las 13 <i>pull requests</i> del repositorio, con datos de la API de GitHub al 06/11/2026: rama de origen, revisión registrada, resultado del CI en el último commit y quién integró.</p>
@@ -114,10 +114,10 @@
     <tr><td>#9</td><td>docs/s12-integrador → main</td><td>Documentación S9 a S11</td><td>—</td><td class="ok">woshtsu: APPROVED</td><td class="ok">CI verde</td><td>Merged (woshtsu)</td></tr>
     <tr><td>#10, #11</td><td>docs/s12-informe, docs/s12-integrador → main</td><td>Informe integrador S12</td><td>—</td><td>Sin revisión registrada</td><td class="ok">CI verde</td><td>Merged (woshtsu)</td></tr>
     <tr><td>#12</td><td>docs/sonarcloud-2026-11-05 → main</td><td>Análisis de SonarCloud</td><td>—</td><td>Sin revisión registrada</td><td class="ok">CI verde; Quality Gate de SonarCloud en rojo</td><td>Merged (woshtsu)</td></tr>
-    <tr><td>#13</td><td>docs/s13-informe → main</td><td>Informe S13, plantillas SCM, PDCA</td><td>#14, #15, #17</td><td class="pend">Pendiente: revisión de Porras V.</td><td class="ok">calidad-y-pruebas e imagen en verde; plantilla DoD usada</td><td class="pend">Abierta</td></tr>
+    <tr><td>#13</td><td>docs/s13-informe → main</td><td>Informe S13, plantillas SCM, PDCA</td><td>#14, #15, #17</td><td class="no">Sin revisión «Approved» registrada</td><td>calidad-y-pruebas e imagen en verde; <span class="no">Quality Gate de SonarCloud en rojo</span>; plantilla DoD usada</td><td>Merged, <i>squash</i> (woshtsu, 06/11)</td></tr>
   </tbody>
 </table>
-<p><b>Lectura.</b> De 12 PR integradas, solo una (#9) tiene revisión «Approved» registrada. Dos (#6 y #7) se integraron con el CI en rojo, y las cuatro primeras son anteriores al CI. Esto confirma el hallazgo H2: la revisión por pares existía en la práctica, pero no quedaba registrada. Desde la PR #13 el cambio se vincula a sus RFC y usa la lista de la DoD.</p>
+<p><b>Lectura.</b> De 12 PR integradas (todas menos la #3), solo una (#9) tiene revisión «Approved» registrada. Dos (#6 y #7) se integraron con el CI en rojo, y las cuatro primeras son anteriores al CI. Esto confirma el hallazgo H2: la revisión por pares existía en la práctica, pero no quedaba registrada. La PR #13 es la primera que se vincula a sus RFC (<code>Closes #14, #15, #17</code>) y usa la lista de la DoD. Aun así se integró sin aprobación y con el Quality Gate de SonarCloud en rojo: la plantilla no basta si la rama no está protegida.</p>
 
 <p><b>Reglas de protección de ramas: <span class="no">no configuradas</span>.</b> La cuenta del QA Lead tiene permiso de escritura, no de administración: <code>Settings → Branches</code> devuelve 404 y la API responde 403. Las reglas solo puede activarlas el propietario (woshtsu). La configuración que corresponde a la guía es la siguiente, para <code>main</code> y <code>develop</code>:</p>
 <ol>
@@ -186,7 +186,7 @@ git push origin v4.0-Inc4</pre>
     <tr><td>Incremento 1: HU-01 a HU-05</td><td>Sin issue (anterior al registro en Issues)</td><td>feature/hu03-…, feature/hu01-hu05-… → develop</td><td>PR #2 (merged, sin revisión registrada)</td><td>v1.0-PMV</td><td>Docker de staging (<code>docker-compose.yml</code>)</td></tr>
     <tr><td>Incremento 2: HIST-2.1 a 2.4</td><td>Sin issue</td><td>feature/inc2-agenda-alertas</td><td>PR #4 y #5 (merged)</td><td>v1.5.0-inc2-avance, v2.0-Inc2</td><td>Imagen Docker del CI</td></tr>
     <tr><td>Incrementos 3 y 4: HIST-3.x, VIS-3.5, HIST-4.x</td><td>Sin issue</td><td>feature/inc3-sin-conexion</td><td>PR #8 (CI verde; revisión independiente)</td><td>v3.0-Inc3, v4.0-Inc4</td><td>Producción en Render (<i>deploy hook</i> del CI)</td></tr>
-    <tr><td>Observaciones del docente a S12</td><td>#14</td><td>docs/s13-informe</td><td>PR #13 (CI verde; revisión pendiente)</td><td>— (documentación)</td><td>Informe S13 (.docx y .pdf)</td></tr>
+    <tr><td>Observaciones del docente a S12</td><td>#14</td><td>docs/s13-informe</td><td>PR #13 (CI verde; integrada sin aprobación registrada)</td><td>— (documentación)</td><td>Informe S13 (.docx y .pdf)</td></tr>
     <tr><td>Hallazgos CMMI H2 y H5</td><td>#15</td><td>docs/s13-informe</td><td>PR #13</td><td>—</td><td><code>.github/</code>, <code>CONTRIBUTING.md</code>, rama <code>develop</code></td></tr>
     <tr><td>Hallazgo CMMI H10</td><td>#17</td><td>docs/s13-informe</td><td>PR #13</td><td>—</td><td><code>generar_diagramas.py</code> y diagramas v4</td></tr>
     <tr><td>OWASP H-1</td><td>#18</td><td>feature/h1-roles-rls (prevista)</td><td>Pendiente</td><td>Próxima versión de corrección (v4.1)</td><td>—</td></tr>
@@ -210,7 +210,7 @@ git push origin v4.0-Inc4</pre>
     <tr><td>1. Administración del cambio (5,0)</td><td>Bueno</td><td>Reglas de protección de ramas y revisiones «Approved» registradas</td></tr>
     <tr><td>2. Ramificación y control SCM (5,0)</td><td>Bueno</td><td>Aplicar GitFlow con <code>develop</code> en el Incremento 5; hoy hay commits directos en <code>main</code></td></tr>
     <tr><td>3. Versiones, tags y releases (5,0)</td><td>Bueno</td><td>Adjuntar artefactos compilados a las <i>releases</i></td></tr>
-    <tr><td>4. Trazabilidad y repositorio (5,0)</td><td>Bueno</td><td>Issues para los incrementos anteriores al 06/11 (no existen) e integrar la PR #13</td></tr>
+    <tr><td>4. Trazabilidad y repositorio (5,0)</td><td>Bueno</td><td>Issues para los incrementos anteriores al 06/11 (no existen) y aprobación registrada antes de integrar</td></tr>
   </tbody>
 </table>
 
