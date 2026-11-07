@@ -262,7 +262,6 @@ def test_cp303_conflicto_de_evaluacion_se_resuelve_desde_el_panel(contexto, url_
     hoy = httpx.get(url_base + "/api/salud").json()[
         "fecha_hoy"
     ]  # «hoy» del servidor (Perú), no del equipo que ejecuta la prueba
-    hoy = date.today().isoformat()
     cuerpo = {
         "nino": {
             "dni": "72300003",
