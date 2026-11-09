@@ -12,6 +12,10 @@ from app.domain.model.entidades import Evaluacion, Nino
 
 
 class RepositorioNinos(Protocol):
+    def version_datos(self) -> int:
+        """Versión monótona de los datos (se incrementa en cada escritura de niños, evaluaciones o asistencias)."""
+        ...
+
     def guardar(self, nino: Nino) -> Nino: ...
 
     def guardar_varios(self, ninos: list[Nino]) -> int:

@@ -181,15 +181,18 @@ $("#limpiar").addEventListener("click", () => { form.reset(); borrarBorrador(); 
 /* ---------- HU-04: seguimiento ---------- */
 let temporizadorBusqueda;
 async function cargarSeguimiento() {
-  const p = new URLSearchParams({ estado: $("#filtro-estado").value });
+  const p = new URLSearchParams({ estado: $("#filtro-estado").value, limite: "200" });
   if ($("#buscar").value.trim()) p.set("q", $("#buscar").value.trim());
   if ($("#filtro-clasificacion").value) p.set("clasificacion", $("#filtro-clasificacion").value);
   let filas = [];
   try { filas = await api("/api/ninos?" + p); }
   catch (e) { if (!sinConexion(e)) throw e; toast("Sin conexión: esta lista aún no se consultó en este dispositivo", false); }
   const locales = await ninosLocales($("#buscar").value.trim(), $("#filtro-estado").value, $("#filtro-clasificacion").value);
-  $("#total-seguimiento").textContent = `${filas.length + locales.length} niño(s)`;
-  $("#sin-resultados").hidden = filas.length + locales.length > 0;
+  const total = filas.length + locales.length;
+  $("#total-seguimiento").textContent = filas.length === 200
+    ? `${total} niño(s) · Se muestran las primeras 200; use los filtros para acotar`
+    : `${total} niño(s)`;
+  $("#sin-resultados").hidden = total > 0;
   $("#cuerpo-seguimiento").innerHTML = locales.map((o) => {
     const n = o.datos.nino, ev = o.datos.evaluacion_inicial;
     return `<tr class="click" data-id="local:${o.id_cliente}" data-testid="fila-pendiente">
@@ -605,12 +608,14 @@ $("#insignia-alertas").addEventListener("click", (ev) => { ev.preventDefault(); 
 let secuenciaAlertas = 0;
 async function cargarAlertas() {
   const mia = ++secuenciaAlertas;
-  const p = new URLSearchParams();
+  const p = new URLSearchParams({ limite: "200" });
   if ($("#filtro-alerta-comunidad").value) p.set("comunidad", $("#filtro-alerta-comunidad").value);
   if ($("#filtro-alerta-prioridad").value) p.set("prioridad", $("#filtro-alerta-prioridad").value);
   const [r, filas] = await Promise.all([api("/api/alertas/resumen"), api("/api/alertas/controles-vencidos?" + p)]);
   if (mia !== secuenciaAlertas) return; // llegó una respuesta de un filtro anterior: se descarta
-  $("#total-alertas").textContent = `${filas.length} alerta(s)`;
+  $("#total-alertas").textContent = filas.length === 200
+    ? `${filas.length} alerta(s) · Se muestran las primeras 200; use los filtros para acotar`
+    : `${filas.length} alerta(s)`;
   $("#alertas-resumen").innerHTML = `
     <div class="tarjeta kpi"><strong data-testid="kpi-vencidos">${r.total_vencidos}</strong><span>controles vencidos</span></div>
     <div class="tarjeta kpi"><strong data-testid="kpi-ninos-vencidos">${r.ninos_con_vencidos}</strong><span>niños con controles vencidos</span></div>

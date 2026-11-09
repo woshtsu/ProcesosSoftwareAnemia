@@ -1,13 +1,16 @@
 """Raíz de composición: conecta adaptadores con el núcleo (arquitectura hexagonal)."""
 
 import os
+import threading
+from contextlib import asynccontextmanager
 from datetime import date
 from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.openapi.docs import get_swagger_ui_html
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
+from starlette.types import Scope
 
 from app.adapters.inbound.http.api import registrar_manejadores, router
 from app.adapters.inbound.http.autenticacion import registrar_seguridad
@@ -17,6 +20,7 @@ from app.adapters.outbound.persistence.sqlalchemy_repo import RepositorioSQLAlch
 from app.adapters.outbound.reloj_fijo import RelojFijo
 from app.adapters.outbound.reloj_sistema import RelojSistema
 from app.adapters.outbound.supabase_auth import SupabaseAuth
+from app.application.cache_agendas import CacheAgendas
 from app.application.servicio_agenda import ServicioAgenda
 from app.application.servicio_agenda_personal import ServicioAgendaPersonal
 from app.application.servicio_alertas import ServicioAlertas
@@ -33,6 +37,24 @@ from app.ports.outbound.notificador import Notificador
 
 VERSION = "4.0.0-inc4"
 WEB = Path(__file__).parent / "web"
+
+
+CACHE_LARGO = "public, max-age=86400"
+ESTATICOS_INMUTABLES = {"icono.svg", "manifest.json"}
+
+
+class StaticFilesConCache(StaticFiles):
+    """Las librerías de terceros e iconos se cachean un día; el código propio usa ``no-cache``:
+    el navegador revalida con ETag (304 sin cuerpo), de modo que tras un despliegue nunca
+    mezcla versiones de app.js, auth.js, cola.js y sync.js."""
+
+    async def get_response(self, path: str, scope: Scope) -> Response:
+        response = await super().get_response(path, scope)
+        if response.status_code < 400:
+            ruta = path.replace("\\", "/")
+            largo = ruta.startswith("vendor/") or ruta in ESTATICOS_INMUTABLES
+            response.headers["Cache-Control"] = CACHE_LARGO if largo else "no-cache"
+        return response
 
 
 def crear_app(
@@ -56,6 +78,16 @@ def crear_app(
     repo = RepositorioSQLAlchemy(url)
     repo.crear_esquema()
 
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        if os.getenv("PRECALCULAR_AGENDAS") == "1" and hasattr(app.state, "cache_agendas"):
+            threading.Thread(target=app.state.cache_agendas.obtener_agendas, daemon=True).start()
+        yield
+        if hasattr(app.state, "proveedor_auth") and hasattr(app.state.proveedor_auth, "aclose"):
+            await app.state.proveedor_auth.aclose()
+        if hasattr(app.state, "sesiones") and hasattr(app.state.sesiones, "aclose"):
+            await app.state.sesiones.aclose()
+
     app = FastAPI(
         title="Sistema de Detección Temprana de Anemia Infantil — Junín",
         version=VERSION,
@@ -66,18 +98,21 @@ def crear_app(
         "control por WhatsApp con respaldo por SMS, respuesta del tutor, barreras de acceso y su alerta crítica).",
         docs_url=None,
         redoc_url=None,
+        lifespan=lifespan,
     )
     if reloj is None:
         reloj = RelojFijo(fecha_referencia) if fecha_referencia else RelojSistema()
-    expediente = ServicioExpediente(repo, reloj)
+    cache_agendas = CacheAgendas(repo, reloj)
+    app.state.cache_agendas = cache_agendas
+    expediente = ServicioExpediente(repo, reloj, cache_agendas=cache_agendas)
     app.state.repositorio = repo
     app.state.expediente = app.state.seguimiento = app.state.reporte = expediente
     app.state.agenda = ServicioAgenda(repo, reloj)
-    app.state.alertas = ServicioAlertas(repo, reloj)
-    app.state.agenda_personal = ServicioAgendaPersonal(repo, reloj)
+    app.state.alertas = ServicioAlertas(repo, reloj, cache_agendas=cache_agendas)
+    app.state.agenda_personal = ServicioAgendaPersonal(repo, reloj, cache_agendas=cache_agendas)
     app.state.asistencia = ServicioAsistencia(repo, reloj)
-    app.state.barreras = ServicioBarreras(repo, repo, reloj)
-    app.state.visitas = ServicioVisitas(repo, repo, reloj, repo)
+    app.state.barreras = ServicioBarreras(repo, repo, reloj, cache_agendas=cache_agendas)
+    app.state.visitas = ServicioVisitas(repo, repo, reloj, repo, cache_agendas=cache_agendas)
     app.state.sincronizacion = ServicioSincronizacion(
         repo, repo, repo, expediente, app.state.asistencia, app.state.visitas, reloj, app.state.barreras
     )
@@ -88,9 +123,11 @@ def crear_app(
         reloj,
         app.state.barreras,
         ConfiguracionWebhook(os.getenv("WHATSAPP_VERIFY_TOKEN", ""), os.getenv("WHATSAPP_APP_SECRET", "")),
+        cache_agendas=cache_agendas,
     )
     app.state.contexto = ServicioContexto(reloj, fecha_referencia)
     proveedor = SupabaseAuth(os.getenv("SUPABASE_URL", ""), os.getenv("SUPABASE_PUBLISHABLE_KEY", ""))
+    app.state.proveedor_auth = proveedor
     app.state.sesiones = ServicioSesion(proveedor)
     app.state.auth_mode = modo
     app.state.auth_configurado = proveedor.configurado
@@ -99,11 +136,11 @@ def crear_app(
     registrar_manejadores(app)
     app.include_router(router)
     app.include_router(auth_router)
-    app.mount("/static", StaticFiles(directory=WEB), name="static")
+    app.mount("/static", StaticFilesConCache(directory=WEB), name="static")
 
     @app.get("/", include_in_schema=False)
     def inicio():
-        return FileResponse(WEB / "index.html")
+        return FileResponse(WEB / "index.html", headers={"Cache-Control": "no-cache"})
 
     @app.get("/docs", include_in_schema=False)
     def documentacion():
@@ -117,6 +154,10 @@ def crear_app(
 
     @app.get("/sw.js", include_in_schema=False)
     def service_worker():
-        return FileResponse(WEB / "sw.js", media_type="application/javascript")
+        return FileResponse(
+            WEB / "sw.js",
+            media_type="application/javascript",
+            headers={"Cache-Control": "no-cache"},
+        )
 
     return app

@@ -27,6 +27,17 @@ Comprobación posterior: `select to_regclass('public.recordatorio'), to_regclass
 | `WHATSAPP_IDIOMA` | Código de idioma de la plantilla (por defecto `es`). |
 | `WHATSAPP_API_VERSION` | Versión de la Graph API (por defecto `v21.0`). |
 | `SMS_API_URL`, `SMS_API_TOKEN`, `SMS_REMITENTE` | Respaldo por SMS si WhatsApp falla (POST JSON `{to, from, message}` con `Authorization: Bearer`). Sin `SMS_API_URL` no hay respaldo. |
+| `AUTH_CACHE_TTL_SEGUNDOS` | Tiempo de vida (TTL en segundos) de la caché en memoria de verificación de sesión (`/auth/v1/user`). Por defecto `60`. Fijar en `0` desactiva la caché. Indexada por hash SHA-256 del token, con acotación de tamaño e invalidación en logout. |
+| `CACHE_AGENDAS_TTL_SEGUNDOS` | Tiempo de vida (TTL en segundos) de la instantánea en memoria de los niños activos con su agenda (`CacheAgendas`). Por defecto `300`. Fijar en `0` desactiva la caché. Compartida por alertas, visitas priorizadas, barreras críticas, agenda personal y recordatorios. La caché es por proceso en memoria y asume 1 worker. |
+| `PRECALCULAR_AGENDAS` | Fijar en `1` para lanzar el cálculo de la instantánea en un hilo daemon al arrancar (lifespan), evitando bloquear el arranque y el health check `/api/salud`. Muy recomendado en entornos restringidos como Render free. |
+
+### Optimización y rendimiento
+
+Para mitigar la latencia entre Render y Supabase. Lo ideal es que ambos estén en la misma región (Supabase está en us-east-1; el servicio de Render actual, en Oregon). Además:
+- El motor SQLAlchemy usa para PostgreSQL `pool_size=3`, `max_overflow=2`, `pool_recycle=300` y `pool_pre_ping=True` para reutilizar conexiones activas y evitar caídas por timeout.
+- Instantánea en memoria de agendas de niños activos (`CacheAgendas`): con datasets grandes (ej. DIRESA de 11 686 niños), evita recalcular `generar_agenda` para todos los niños en cada petición de alertas, visitas, barreras, agenda o recordatorios. Usa `threading.Lock` (single-flight) para coalescer peticiones simultáneas, clave de validez `(hoy, version_datos)` e invalidación automática al registrar niños, evaluaciones o asistencias.
+- Precálculo en hilo daemon (`PRECALCULAR_AGENDAS=1`): recomendado en Render free (0.1 CPU, 512 MB, 1 worker) para calentar la caché en segundo plano sin reiniciar el contenedor por timeout en el health check.
+- Tamaño de respuesta acotado: endpoints `GET /api/alertas/controles-vencidos` y `GET /api/ninos` aceptan `limite` (1..1000); el frontend web solicita `limite=200` y avisa si se alcanzó el tope, reduciendo la transferencia de datos y la memoria consumida.
 
 **Plantilla de WhatsApp.** Un mensaje que el sistema envía por iniciativa propia debe usar una plantilla aprobada por Meta (categoría «Utilidad»). Crear `recordatorio_control`, idioma Español, con cuatro variables en el cuerpo, en este orden (nombre del niño, control, establecimiento, fecha sugerida):
 
@@ -115,6 +126,9 @@ El [workflow](../../.github/workflows/ci.yml) ejecuta Ruff, pruebas SQLite/Postg
 | Environment | `SUPABASE_URL` = URL HTTPS del proyecto |
 | Environment | `SUPABASE_PUBLISHABLE_KEY` = clave publicable del proyecto |
 | Environment | `AUTH_COOKIE_SECURE` = `true` |
+| Environment | `AUTH_CACHE_TTL_SEGUNDOS` = `60` (opcional; `0` desactiva la caché) |
+| Environment | `CACHE_AGENDAS_TTL_SEGUNDOS` = `300` (opcional; `0` desactiva la caché) |
+| Environment | `PRECALCULAR_AGENDAS` = `1` (recomendado en Render free) |
 | Auto-Deploy | `Off`; el workflow disparará el hook |
 
 Las rutas Docker son relativas al Root Directory. Elegir región cercana a Supabase y plan según presupuesto. Free se suspende tras 15 minutos sin tráfico y puede tardar aproximadamente un minuto en despertar.

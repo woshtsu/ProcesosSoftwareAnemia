@@ -2,6 +2,23 @@
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/). Los datos incluidos son sintéticos.
 
+## [Sin publicar]
+
+### Agregado
+- **Instantánea en memoria de niños activos y agenda (`CacheAgendas`)**: almacena en memoria la lista de niños activos con su agenda calculada (`list[tuple[Nino, AgendaNino]]`) para el día de referencia del reloj. Compartida por `ServicioAlertas`, `ServicioVisitas`, `ServicioBarreras`, `ServicioAgendaPersonal`, `ServicioRecordatorios` y `ServicioExpediente`. Validez indexada por `(hoy, version_datos)` con versión monótona incrementada en cada escritura del repositorio (`version_datos()`), TTL configurable de seguridad (`CACHE_AGENDAS_TTL_SEGUNDOS`, por defecto 300 s; 0 la desactiva) y cerrojo `threading.Lock` (single-flight) para que peticiones simultáneas esperen al mismo cálculo.
+- **Precálculo al arrancar (`PRECALCULAR_AGENDAS=1`)**: lanza el precálculo de la instantánea en un hilo daemon durante el lifespan de FastAPI, evitando bloquear el arranque y la comprobación de salud (`/api/salud`).
+- **Límite de respuesta en alertas y seguimiento (`limite`)**: parámetro opcional de consulta `limite` (entero 1..1000) en `GET /api/alertas/controles-vencidos` y `GET /api/ninos`, aplicado después de ordenar. En `app/web/app.js`, las pestañas Alertas y Seguimiento solicitan `limite=200` y muestran la nota «Se muestran las primeras 200; use los filtros para acotar» al alcanzar el tope, acotando el tamaño del payload y la memoria consumida.
+- **Caché en memoria de verificación de sesión (`ServicioSesion`)**: almacena en memoria los resultados de verificación de sesión (`/auth/v1/user`) indexados por hash SHA-256 del access token con TTL de 60 segundos por defecto (configurable mediante `AUTH_CACHE_TTL_SEGUNDOS`; 0 la desactiva), tamaño máximo acotado (1000 entradas con desalojo FIFO), respeto del tiempo de expiración real del token si es un JWT (claim `exp`) e invalidación inmediata en logout (`POST /api/auth/logout`).
+- **Cabeceras `Cache-Control` en estáticos**: `/static/vendor/`, `icono.svg` y `manifest.json` se cachean un día (`public, max-age=86400`); el código propio, `index.html` y `sw.js` usan `no-cache` con revalidación por ETag (304), para no mezclar versiones tras un despliegue.
+
+### Cambiado
+- **Puerto `RepositorioNinos` y adaptadores**: método `version_datos() -> int` en `RepositorioNinos` e incremento monótono en cada método de escritura en `RepositorioSQLAlchemy` y `RepositorioEnMemoria`. Puerto de salida `ProveedorAgendasActivos`.
+- **Contrato OpenAPI**: regenerado (`docs/openapi.json`) con soporte de `limite` y validación 422 documentada.
+- **Cliente Supabase Auth (`SupabaseAuth`)**: reutilización de un único `httpx.AsyncClient` perezoso por instancia en lugar de crear un cliente por petición, evitando handshakes TLS redundantes; cierre ordenado en el ciclo de vida (lifespan) de FastAPI.
+- **Consultas de listado en repositorio SQLAlchemy**: retorno inmediato en `_cargar` si no hay niños que cumplan las condiciones (se mantienen 3 consultas por lotes, sin patrón N+1).
+- **Pool de conexiones SQLAlchemy para PostgreSQL**: configuración explícita para Render/Supabase con `pool_size=3`, `max_overflow=2`, `pool_recycle=300` y `pool_pre_ping=True` (conservando la configuración actual para SQLite).
+- **Contenedor Docker (`Dockerfile`)**: comando de arranque con 1 worker, keep-alive de 30 s, proxy headers (`--proxy-headers --forwarded-allow-ips='*'`), soporte dinámico del puerto mediante `PORT` (`${PORT:-8000}`) y comprobación de salud (`HEALTHCHECK`) coherente.
+
 ## [4.0.0-inc4] — Incremento 4: recordatorios por WhatsApp y barreras (HIST-4.1 a HIST-4.4)
 
 ### Agregado

@@ -340,14 +340,20 @@ def registrar(
     return _expediente(nino, svc.fecha_actual())
 
 
-@router.get("/ninos", response_model=list[s.FilaSeguimiento], tags=["HU-04 Seguimiento"])
+@router.get(
+    "/ninos",
+    response_model=list[s.FilaSeguimiento],
+    tags=["HU-04 Seguimiento"],
+    responses={422: {"model": s.RespuestaError}},
+)
 def listar(
     estado: str | None = Query("ACTIVO"),
     q: str | None = None,
     clasificacion: str | None = None,
+    limite: int | None = Query(default=None, ge=1, le=1000),
     svc: ConsultarSeguimiento = Depends(seguimiento_uc),
 ):
-    filas = svc.listar_seguimiento(estado=estado or None, texto=q, clasificacion=clasificacion)
+    filas = svc.listar_seguimiento(estado=estado or None, texto=q, clasificacion=clasificacion, limite=limite)
     return [
         s.FilaSeguimiento(
             id=f["nino"].id,
@@ -729,10 +735,13 @@ def agenda_del_personal(
     responses={422: {"model": s.RespuestaError}},
 )
 def controles_vencidos(
-    comunidad: str | None = None, prioridad: str | None = None, svc: ConsultarControlesVencidos = Depends(alertas_uc)
+    comunidad: str | None = None,
+    prioridad: str | None = None,
+    limite: int | None = Query(default=None, ge=1, le=1000),
+    svc: ConsultarControlesVencidos = Depends(alertas_uc),
 ):
     """Controles vencidos de niños activos, ordenados por prioridad y días de atraso."""
-    return [_alerta(a) for a in svc.listar_controles_vencidos(comunidad=comunidad, prioridad=prioridad)]
+    return [_alerta(a) for a in svc.listar_controles_vencidos(comunidad=comunidad, prioridad=prioridad, limite=limite)]
 
 
 @router.get("/alertas/resumen", response_model=s.ResumenAlertasSalida, tags=["HIST-2.2 Alertas"])

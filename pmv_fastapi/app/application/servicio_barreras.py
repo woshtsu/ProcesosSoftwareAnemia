@@ -17,16 +17,24 @@ from app.domain.service.barreras import (
 )
 from app.domain.service.validaciones import exigir
 from app.ports.inbound.barreras import ConsultarAlertasBarreras, GestionarBarreras
+from app.ports.outbound.cache_agendas import ProveedorAgendasActivos
 from app.ports.outbound.reloj import Reloj
 from app.ports.outbound.repositorio_barreras import RepositorioBarreras
 from app.ports.outbound.repositorio_ninos import RepositorioNinos
 
 
 class ServicioBarreras(GestionarBarreras, ConsultarAlertasBarreras):
-    def __init__(self, repo: RepositorioNinos, barreras: RepositorioBarreras, reloj: Reloj):
+    def __init__(
+        self,
+        repo: RepositorioNinos,
+        barreras: RepositorioBarreras,
+        reloj: Reloj,
+        cache_agendas: ProveedorAgendasActivos | None = None,
+    ):
         self.repo = repo
         self.barreras = barreras
         self.reloj = reloj
+        self.cache_agendas = cache_agendas
 
     def _nino(self, nino_id: str):
         nino = self.repo.obtener(nino_id)
@@ -56,11 +64,16 @@ class ServicioBarreras(GestionarBarreras, ConsultarAlertasBarreras):
         hoy = self.reloj.hoy()
         por_nino = self.barreras.barreras_desde(fecha_limite_consulta(hoy))
         filtro = (comunidad or "").strip().casefold()
+        agendas = (
+            self.cache_agendas.obtener_agendas()
+            if self.cache_agendas is not None
+            else [(n, generar_agenda(n, hoy)) for n in self.repo.listar(estado="ACTIVO")]
+        )
         alertas = []
-        for nino in self.repo.listar(estado="ACTIVO"):
+        for nino, agenda in agendas:
             if nino.id not in por_nino or (filtro and nino.comunidad.casefold() != filtro):
                 continue
-            alerta = evaluar_barreras_nino(nino, generar_agenda(nino, hoy), por_nino[nino.id], hoy)
+            alerta = evaluar_barreras_nino(nino, agenda, por_nino[nino.id], hoy)
             if alerta and (not prioridad or alerta.prioridad == prioridad):
                 alertas.append(alerta)
         return ordenar_alertas_barrera(alertas)

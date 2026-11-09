@@ -527,11 +527,23 @@ class RepositorioSQLAlchemy(
     RepositorioNinos, RepositorioVisitas, RepositorioSincronizacion, RepositorioRecordatorios, RepositorioBarreras
 ):
     def __init__(self, url: str):
-        argumentos = {"check_same_thread": False} if url.startswith("sqlite") else {}
         if url.startswith("sqlite:///") and ":memory:" not in url:
             Path(url.removeprefix("sqlite:///")).parent.mkdir(parents=True, exist_ok=True)
-        self.engine = create_engine(url, connect_args=argumentos, pool_pre_ping=True)
+        if url.startswith("sqlite"):
+            self.engine = create_engine(url, connect_args={"check_same_thread": False}, pool_pre_ping=True)
+        else:
+            self.engine = create_engine(
+                url,
+                pool_size=3,
+                max_overflow=2,
+                pool_recycle=300,
+                pool_pre_ping=True,
+            )
         self.Sesion = sessionmaker(self.engine, expire_on_commit=False)
+        self._version_datos: int = 1
+
+    def version_datos(self) -> int:
+        return self._version_datos
 
     def crear_esquema(self) -> None:
         inspector = inspect(self.engine)
@@ -552,6 +564,7 @@ class RepositorioSQLAlchemy(
             if nino.dni and self.obtener_por_dni(nino.dni):
                 raise RegistroDuplicado(f"Ya existe un niño registrado con DNI {nino.dni}.") from None
             raise
+        self._version_datos += 1
         return nino
 
     def guardar_varios(self, ninos: list[Nino]) -> int:
@@ -562,6 +575,7 @@ class RepositorioSQLAlchemy(
             evaluaciones = [_fila_evaluacion(e) for n in ninos for e in n.evaluaciones]
             if evaluaciones:
                 s.execute(insert(_EVAL), evaluaciones)
+        self._version_datos += 1
         return len(ninos)
 
     def contar_por_origen(self, origen: str) -> int:
@@ -577,18 +591,22 @@ class RepositorioSQLAlchemy(
             s.execute(delete(_VISITA).where(_VISITA.c.nino_id.in_(ids)))
             s.execute(delete(_ASIST).where(_ASIST.c.nino_id.in_(ids)))
             s.execute(delete(_EVAL).where(_EVAL.c.nino_id.in_(ids)))
-            return s.execute(delete(_NINO).where(_NINO.c.origen == str(origen))).rowcount
+            eliminados = s.execute(delete(_NINO).where(_NINO.c.origen == str(origen))).rowcount
+        self._version_datos += 1
+        return eliminados
 
     def actualizar(self, nino: Nino) -> Nino:
         with self.Sesion.begin() as s:
             o = s.get(NinoORM, nino.id)
             for c in CAMPOS_NINO:
                 setattr(o, c, getattr(nino, c))
+        self._version_datos += 1
         return nino
 
     def agregar_evaluacion(self, e: Evaluacion) -> Evaluacion:
         with self.Sesion.begin() as s:
             s.execute(insert(_EVAL).values(**_fila_evaluacion(e)))
+        self._version_datos += 1
         return e
 
     def agregar_asistencia(self, a: AsistenciaControl) -> AsistenciaControl:
@@ -621,12 +639,14 @@ class RepositorioSQLAlchemy(
                     f"El control {a.codigo_control} del {a.fecha_programada.isoformat()} ya tiene una asistencia."
                 ) from None
             raise
+        self._version_datos += 1
         return a
 
     def actualizar_evaluacion(self, e: Evaluacion) -> Evaluacion:
         valores = {c: getattr(e, c) for c in CAMPOS_EVALUACION if c not in ("id", "nino_id", "creado_en")}
         with self.Sesion.begin() as s:
             s.execute(update(_EVAL).where(_EVAL.c.id == e.id).values(**valores, clasificacion=e.clasificacion.value))
+        self._version_datos += 1
         return e
 
     def actualizar_asistencia(self, a: AsistenciaControl) -> AsistenciaControl:
@@ -636,6 +656,7 @@ class RepositorioSQLAlchemy(
                 .where(_ASIST.c.id == a.id)
                 .values(estado=a.estado.value, motivo=a.motivo, registrado_por=a.registrado_por)
             )
+        self._version_datos += 1
         return a
 
     # --- Visitas domiciliarias (VIS-3.5) ----------------------------------------------------------------------------
@@ -920,6 +941,8 @@ class RepositorioSQLAlchemy(
         """
         with self.Sesion() as s:
             filas = s.execute(select(_NINO).where(*condiciones)).all()
+            if not filas:
+                return []
             evaluaciones: dict[str, list[Evaluacion]] = defaultdict(list)
             q_eval = select(_EVAL).join(_NINO, _EVAL.c.nino_id == _NINO.c.id).where(*condiciones)
             for r in s.execute(q_eval):

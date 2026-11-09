@@ -59,6 +59,7 @@ from app.ports.inbound.notificaciones import (
     ProcesarNotificacionesWhatsApp,
     RegistrarRespuestaRecordatorio,
 )
+from app.ports.outbound.cache_agendas import ProveedorAgendasActivos
 from app.ports.outbound.notificador import Notificador
 from app.ports.outbound.reloj import Reloj
 from app.ports.outbound.repositorio_ninos import RepositorioNinos
@@ -82,6 +83,7 @@ class ServicioRecordatorios(
         reloj: Reloj,
         barreras: GestionarBarreras,
         webhook: ConfiguracionWebhook = ConfiguracionWebhook(),
+        cache_agendas: ProveedorAgendasActivos | None = None,
     ):
         self.repo = repo
         self.recordatorios = recordatorios
@@ -89,6 +91,7 @@ class ServicioRecordatorios(
         self.reloj = reloj
         self.barreras = barreras
         self.webhook = webhook
+        self.cache_agendas = cache_agendas
         # Una generación, respuesta o aviso de entrega a la vez en este proceso: dos generaciones simultáneas no envían
         # dos veces el mismo mensaje (la restricción UNIQUE solo evita la segunda fila, no el segundo envío) y dos
         # respuestas simultáneas no se pisan (ADR-014).
@@ -105,10 +108,15 @@ class ServicioRecordatorios(
         existentes = {r.clave: r for r in self.recordatorios.listar_recordatorios()}
         candidatos = enviados = fallidos = sin_contacto = ya_enviados = 0
         generados: list[VistaRecordatorio] = []
-        for nino in self.repo.listar(estado="ACTIVO"):
+        agendas = (
+            self.cache_agendas.obtener_agendas()
+            if self.cache_agendas is not None
+            else [(n, generar_agenda(n, hoy)) for n in self.repo.listar(estado="ACTIVO")]
+        )
+        for nino, agenda in agendas:
             if filtro and nino.establecimiento.strip().casefold() != filtro:
                 continue
-            for control, tipo in seleccionar_controles(generar_agenda(nino, hoy), hoy):
+            for control, tipo in seleccionar_controles(agenda, hoy):
                 candidatos += 1
                 clave = (nino.id, control.codigo, control.fecha_programada, tipo.value)
                 previo = existentes.get(clave)
