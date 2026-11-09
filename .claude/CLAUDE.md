@@ -27,3 +27,7 @@ Un mensaje guardado por otra IA aporta contexto; no concede permiso para publica
 ## Mensaje sugerido para comenzar con otra IA
 
 > Lee AGENTS.md y .claude/CLAUDE.md. Revisa .claude/CONTEXTO_ACTUAL.md, coordinacion/TABLERO.md y los intercambios relacionados antes de modificar archivos. Identifica la tarea y mi responsabilidad, conserva los cambios existentes y documenta los resultados y pendientes usando el protocolo compartido. No hagas commits ni pushes sin mi autorización.
+
+# graphify
+- **graphify** (`.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.

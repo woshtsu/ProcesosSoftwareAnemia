@@ -11,6 +11,7 @@ from app.domain.service.agenda import generar_agenda
 from app.domain.service.agenda_personal import construir_agenda_personal, resolver_rango
 from app.domain.service.validaciones import exigir, validar_rango_agenda
 from app.ports.inbound.agenda_personal import ConsultarAgendaPersonal
+from app.ports.outbound.cache_agendas import ProveedorAgendasActivos
 from app.ports.outbound.reloj import Reloj
 from app.ports.outbound.repositorio_ninos import RepositorioNinos
 
@@ -20,9 +21,15 @@ def _igual(a: str, b: str) -> bool:
 
 
 class ServicioAgendaPersonal(ConsultarAgendaPersonal):
-    def __init__(self, repo: RepositorioNinos, reloj: Reloj):
+    def __init__(
+        self,
+        repo: RepositorioNinos,
+        reloj: Reloj,
+        cache_agendas: ProveedorAgendasActivos | None = None,
+    ):
         self.repo = repo
         self.reloj = reloj
+        self.cache_agendas = cache_agendas
 
     def agenda_personal(
         self,
@@ -34,13 +41,19 @@ class ServicioAgendaPersonal(ConsultarAgendaPersonal):
         hoy = self.reloj.hoy()
         desde, hasta = resolver_rango(desde, hasta, hoy)
         exigir(validar_rango_agenda(desde, hasta))
-        activos = self.repo.listar(estado="ACTIVO")
-        establecimientos = sorted({n.establecimiento for n in activos}, key=str.casefold)
-        del_establecimiento = [n for n in activos if not establecimiento or _igual(n.establecimiento, establecimiento)]
-        comunidades = sorted({n.comunidad for n in del_establecimiento}, key=str.casefold)
-        seleccion = [n for n in del_establecimiento if not comunidad or _igual(n.comunidad, comunidad)]
+        activos_con_agenda = (
+            self.cache_agendas.obtener_agendas()
+            if self.cache_agendas is not None
+            else [(n, generar_agenda(n, hoy)) for n in self.repo.listar(estado="ACTIVO")]
+        )
+        establecimientos = sorted({n.establecimiento for n, _ in activos_con_agenda}, key=str.casefold)
+        del_establecimiento = [
+            (n, ag) for n, ag in activos_con_agenda if not establecimiento or _igual(n.establecimiento, establecimiento)
+        ]
+        comunidades = sorted({n.comunidad for n, _ in del_establecimiento}, key=str.casefold)
+        seleccion = [(n, ag) for n, ag in del_establecimiento if not comunidad or _igual(n.comunidad, comunidad)]
         return construir_agenda_personal(
-            ((n, generar_agenda(n, hoy)) for n in seleccion),
+            seleccion,
             desde,
             hasta,
             hoy,

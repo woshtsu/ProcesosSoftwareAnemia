@@ -27,6 +27,7 @@ from app.domain.service.validaciones import (
 from app.ports.inbound.expediente import GestionarExpediente
 from app.ports.inbound.reportes import GenerarReporte
 from app.ports.inbound.seguimiento import ConsultarSeguimiento
+from app.ports.outbound.cache_agendas import ProveedorAgendasActivos
 from app.ports.outbound.reloj import Reloj
 from app.ports.outbound.repositorio_ninos import RepositorioNinos
 
@@ -34,9 +35,15 @@ CAMPOS_EDITABLES = ("comunidad", "distrito", "establecimiento", "altitud_m", "tu
 
 
 class ServicioExpediente(GestionarExpediente, ConsultarSeguimiento, GenerarReporte):
-    def __init__(self, repo: RepositorioNinos, reloj: Reloj):
+    def __init__(
+        self,
+        repo: RepositorioNinos,
+        reloj: Reloj,
+        cache_agendas: ProveedorAgendasActivos | None = None,
+    ):
         self.repo = repo
         self.reloj = reloj
+        self.cache_agendas = cache_agendas
 
     def fecha_actual(self) -> date:
         return self.reloj.hoy()
@@ -144,26 +151,47 @@ class ServicioExpediente(GestionarExpediente, ConsultarSeguimiento, GenerarRepor
 
     # HU-04 -------------------------------------------------------------
     def listar_seguimiento(
-        self, estado: str | None = "ACTIVO", texto: str | None = None, clasificacion: str | None = None
+        self,
+        estado: str | None = "ACTIVO",
+        texto: str | None = None,
+        clasificacion: str | None = None,
+        limite: int | None = None,
     ) -> list[dict]:
         hoy = self.reloj.hoy()
         filas = []
-        for nino in self.repo.listar(estado=estado, texto=texto):
-            ultima = nino.ultima_evaluacion
-            dias = (hoy - ultima.fecha).days if ultima else None
-            # Estado normativo (Incremento 2): atrasado = tiene al menos un control VENCIDO en su agenda.
-            vencidos = generar_agenda(nino, hoy).resumen.vencidos
-            fila = {
-                "nino": nino,
-                "ultima_evaluacion": ultima,
-                "dias_desde_ultimo_control": dias,
-                "control_atrasado": vencidos > 0,
-                "controles_vencidos": vencidos,
-                "edad_meses": edad_en_meses(nino.fecha_nacimiento, hoy),
-            }
-            if clasificacion and (not ultima or ultima.clasificacion.value != clasificacion):
-                continue
-            filas.append(fila)
+        if estado == "ACTIVO" and not texto and self.cache_agendas is not None:
+            for nino, agenda in self.cache_agendas.obtener_agendas():
+                ultima = nino.ultima_evaluacion
+                dias = (hoy - ultima.fecha).days if ultima else None
+                vencidos = agenda.resumen.vencidos
+                fila = {
+                    "nino": nino,
+                    "ultima_evaluacion": ultima,
+                    "dias_desde_ultimo_control": dias,
+                    "control_atrasado": vencidos > 0,
+                    "controles_vencidos": vencidos,
+                    "edad_meses": edad_en_meses(nino.fecha_nacimiento, hoy),
+                }
+                if clasificacion and (not ultima or ultima.clasificacion.value != clasificacion):
+                    continue
+                filas.append(fila)
+        else:
+            for nino in self.repo.listar(estado=estado, texto=texto):
+                ultima = nino.ultima_evaluacion
+                dias = (hoy - ultima.fecha).days if ultima else None
+                # Estado normativo (Incremento 2): atrasado = tiene al menos un control VENCIDO en su agenda.
+                vencidos = generar_agenda(nino, hoy).resumen.vencidos
+                fila = {
+                    "nino": nino,
+                    "ultima_evaluacion": ultima,
+                    "dias_desde_ultimo_control": dias,
+                    "control_atrasado": vencidos > 0,
+                    "controles_vencidos": vencidos,
+                    "edad_meses": edad_en_meses(nino.fecha_nacimiento, hoy),
+                }
+                if clasificacion and (not ultima or ultima.clasificacion.value != clasificacion):
+                    continue
+                filas.append(fila)
         orden = {Clasificacion.SEVERA: 0, Clasificacion.MODERADA: 1, Clasificacion.LEVE: 2}
         filas.sort(
             key=lambda f: (
@@ -171,7 +199,7 @@ class ServicioExpediente(GestionarExpediente, ConsultarSeguimiento, GenerarRepor
                 -(f["dias_desde_ultimo_control"] or 0),
             )
         )
-        return filas
+        return filas[:limite] if limite is not None else filas
 
     # HU-05 -------------------------------------------------------------
     def reporte_periodo(self, desde: date, hasta: date) -> dict:

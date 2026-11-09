@@ -32,9 +32,14 @@ class RepositorioEnMemoria(
         self._conflictos: dict[str, ConflictoSincronizacion] = {}
         self._recordatorios: dict[str, Recordatorio] = {}
         self._barreras: dict[str, Barrera] = {}
+        self._version_datos: int = 1
+
+    def version_datos(self) -> int:
+        return self._version_datos
 
     def guardar(self, nino: Nino) -> Nino:
         self._ninos[nino.id] = copy.deepcopy(nino)
+        self._version_datos += 1
         return nino
 
     def guardar_varios(self, ninos: list[Nino]) -> int:
@@ -51,6 +56,7 @@ class RepositorioEnMemoria(
             del self._ninos[i]
         self._barreras = {k: b for k, b in self._barreras.items() if b.nino_id not in ids}
         self._recordatorios = {k: r for k, r in self._recordatorios.items() if r.nino_id not in ids}
+        self._version_datos += 1
         return len(ids)
 
     def actualizar(self, nino: Nino) -> Nino:
@@ -58,10 +64,12 @@ class RepositorioEnMemoria(
         self._ninos[nino.id] = copy.deepcopy(nino)
         self._ninos[nino.id].evaluaciones = evaluaciones
         self._ninos[nino.id].asistencias = asistencias
+        self._version_datos += 1
         return nino
 
     def agregar_evaluacion(self, evaluacion: Evaluacion) -> Evaluacion:
         self._ninos[evaluacion.nino_id].evaluaciones.append(copy.deepcopy(evaluacion))
+        self._version_datos += 1
         return evaluacion
 
     def agregar_asistencia(self, asistencia: AsistenciaControl) -> AsistenciaControl:
@@ -75,16 +83,19 @@ class RepositorioEnMemoria(
                 "ya tiene una asistencia."
             )
         existentes.append(copy.deepcopy(asistencia))
+        self._version_datos += 1
         return asistencia
 
     def actualizar_evaluacion(self, evaluacion: Evaluacion) -> Evaluacion:
         existentes = self._ninos[evaluacion.nino_id].evaluaciones
         existentes[:] = [copy.deepcopy(evaluacion) if e.id == evaluacion.id else e for e in existentes]
+        self._version_datos += 1
         return evaluacion
 
     def actualizar_asistencia(self, asistencia: AsistenciaControl) -> AsistenciaControl:
         existentes = self._ninos[asistencia.nino_id].asistencias
         existentes[:] = [copy.deepcopy(asistencia) if a.id == asistencia.id else a for a in existentes]
+        self._version_datos += 1
         return asistencia
 
     def obtener(self, nino_id: str) -> Nino | None:

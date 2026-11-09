@@ -19,6 +19,7 @@ from app.domain.service.visitas import (
     validar_limite,
 )
 from app.ports.inbound.visitas import ConsultarVisitasPriorizadas, GestionarVisitas
+from app.ports.outbound.cache_agendas import ProveedorAgendasActivos
 from app.ports.outbound.reloj import Reloj
 from app.ports.outbound.repositorio_barreras import RepositorioBarreras
 from app.ports.outbound.repositorio_ninos import RepositorioNinos
@@ -32,11 +33,13 @@ class ServicioVisitas(GestionarVisitas, ConsultarVisitasPriorizadas):
         visitas: RepositorioVisitas,
         reloj: Reloj,
         barreras: RepositorioBarreras | None = None,
+        cache_agendas: ProveedorAgendasActivos | None = None,
     ):
         self.repo = repo
         self.visitas = visitas
         self.reloj = reloj
         self.barreras = barreras
+        self.cache_agendas = cache_agendas
 
     def _nino(self, nino_id: str):
         nino = self.repo.obtener(nino_id)
@@ -58,16 +61,20 @@ class ServicioVisitas(GestionarVisitas, ConsultarVisitasPriorizadas):
         exigir(validar_limite(limite))
         hoy = self.reloj.hoy()
         filtro = (establecimiento or "").strip().casefold()
+        agendas = (
+            self.cache_agendas.obtener_agendas()
+            if self.cache_agendas is not None
+            else [(n, generar_agenda(n, hoy)) for n in self.repo.listar(estado="ACTIVO")]
+        )
         candidatos = [
-            n
-            for n in self.repo.listar(estado="ACTIVO")
+            (n, agenda)
+            for n, agenda in agendas
             if en_tratamiento(n) and (not filtro or n.establecimiento.casefold() == filtro)
         ]
-        ultimas = self.visitas.ultimas_visitas({n.id for n in candidatos})
+        ultimas = self.visitas.ultimas_visitas({n.id for n, _ in candidatos})
         con_barreras = self.barreras.barreras_desde(fecha_limite_consulta(hoy)) if self.barreras else {}
         items = []
-        for n in candidatos:
-            agenda = generar_agenda(n, hoy)
+        for n, agenda in candidatos:
             alerta = evaluar_barreras_nino(n, agenda, con_barreras[n.id], hoy) if n.id in con_barreras else None
             items.append(priorizar_nino(n, agenda, ultimas.get(n.id), hoy, alerta_barrera=alerta))
         return ordenar_priorizados(items)[:limite]

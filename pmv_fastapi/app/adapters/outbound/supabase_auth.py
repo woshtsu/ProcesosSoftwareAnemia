@@ -23,6 +23,16 @@ class SupabaseAuth(ProveedorIdentidad):
             and not parsed.fragment
             and public_key
         )
+        self._client: httpx.AsyncClient | None = None
+
+    def _obtener_cliente(self) -> httpx.AsyncClient:
+        if self._client is None or self._client.is_closed:
+            self._client = httpx.AsyncClient(timeout=10, transport=self.transport)
+        return self._client
+
+    async def aclose(self) -> None:
+        if self._client is not None and not self._client.is_closed:
+            await self._client.aclose()
 
     async def _peticion(self, method: str, path: str, token: str = "", **kwargs):
         if not self.configurado:
@@ -31,8 +41,8 @@ class SupabaseAuth(ProveedorIdentidad):
         if token:
             headers["Authorization"] = f"Bearer {token}"
         try:
-            async with httpx.AsyncClient(timeout=10, transport=self.transport) as client:
-                response = await client.request(method, f"{self.url}/auth/v1/{path}", headers=headers, **kwargs)
+            client = self._obtener_cliente()
+            response = await client.request(method, f"{self.url}/auth/v1/{path}", headers=headers, **kwargs)
             if response.status_code in (400, 401, 403, 422):
                 raise SesionInvalida
             if not response.is_success:

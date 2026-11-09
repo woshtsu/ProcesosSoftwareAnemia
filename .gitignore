@@ -18,3 +18,6 @@ Thumbs.db
 # Herramientas binarias descargables (ver herramientas/README.md)
 herramientas/plantuml/*.jar
 herramientas/.venv/
+
+# Grafo de conocimiento local (graphify); cada integrante lo regenera con `graphify update .`
+graphify-out/

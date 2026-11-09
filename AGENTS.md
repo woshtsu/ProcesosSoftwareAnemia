@@ -8,6 +8,22 @@
 4. Identificar la tarea y el rol aplicable. Las definiciones de `.claude/agents/` describen responsabilidades; sus nombres de herramientas y modelos corresponden a Claude y no obligan a usar ese runtime.
 5. Leer `.claude/CLAUDE.md`, `.claude/CONTEXTO_ACTUAL.md` y los intercambios de `.claude/intercambios/` relacionados con la tarea. Esta entrada es compartida por las IA de todos los compañeros.
 
+## Forma de trabajo de las IA (ahorro de tokens y continuidad)
+
+1. **Claude orquesta y revisa; el trabajo pesado lo hace Antigravity CLI (`agy`).** Delegar en `agy` la implementación, refactorizaciones, búsquedas amplias, redacción extensa y ejecución de pruebas, en modo no interactivo y con un encargo autocontenido (archivos, criterio de terminado y qué informar):
+
+   ```bash
+   agy -p "<encargo autocontenido>" --mode accept-edits --sandbox --settings '{"permissions":{"allow":["command(*)"]}}' --print-timeout 0
+   ```
+
+   Sin el `--settings` anterior, `agy -p` no puede pedir permiso para ejecutar comandos (pruebas, ruff) y termina sin hacer nada; `--sandbox` restringe la terminal. El encargo debe prohibir commits y limitar los archivos que se pueden tocar.
+
+   Claude revisa siempre el resultado (diff, pruebas, enlaces) antes de darlo por bueno. Si `agy` no está instalado (`agy --version` falla), responde con error de cuota o se queda sin uso, Claude delega en sus **subagentes con modelos más baratos** (`model: "haiku"` para búsquedas y lecturas, `"sonnet"` para implementación y redacción) y reserva el modelo principal para decisiones de diseño y la revisión final.
+2. **Usar subagentes baratos para ahorrar tokens.** Toda tarea de lectura, búsqueda o mecánica se delega a un subagente de modelo inferior; el contexto principal recibe solo la conclusión, no el volcado de archivos.
+3. **Consultar el grafo de conocimiento de graphify antes de explorar el código.** Leer `graphify-out/GRAPH_REPORT.md` (nodos centrales, comunidades) y usar `graphify query "<pregunta>"`, `graphify path "A" "B"` o `graphify explain "X"` en lugar de leer carpetas completas. Tras cambios de código, actualizarlo con `graphify update .` (sin coste de LLM). `graphify-out/` no se versiona; quien no lo tenga lo genera con `pip install graphifyy` y `graphify update .`.
+4. **Registrar el avance para el siguiente chat.** Mantener [`.claude/AVANCE_SESION.md`](.claude/AVANCE_SESION.md) durante la sesión (no solo al final): tarea y rama, qué se hizo, decisiones, comandos de verificación con su resultado, pendientes y el siguiente paso concreto. Un chat nuevo debe poder continuar leyendo ese archivo, el tablero y el contexto. Al cerrar la tarea, el detalle pasa al informe de `coordinacion/informes/` y el archivo se reinicia dejando el enlace al informe.
+5. **Skills disponibles.** Las skills de `.claude/skills/` (proceso de ingeniería de [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)) y las de documentos (docx, pdf, xlsx, pptx) se usan cuando la tarea coincide: por ejemplo, la de Word/PDF para exportar entregables, la de rendimiento para optimizar el despliegue y la de revisión de código antes de un PR.
+
 ## Estructura que se debe conservar
 
 - `coordinacion/RUTAS.md` es el mapa canónico. Registrar nuevas rutas mediante una solicitud ORQ antes de utilizarlas.

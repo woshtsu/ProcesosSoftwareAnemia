@@ -7,7 +7,7 @@ from app.domain.model.alertas import AlertaControl, ResumenAlertas
 
 class ConsultarControlesVencidos(Protocol):
     def listar_controles_vencidos(
-        self, comunidad: str | None = None, prioridad: str | None = None
+        self, comunidad: str | None = None, prioridad: str | None = None, limite: int | None = None
     ) -> list[AlertaControl]: ...
 
     def resumen_alertas(self) -> ResumenAlertas: ...
