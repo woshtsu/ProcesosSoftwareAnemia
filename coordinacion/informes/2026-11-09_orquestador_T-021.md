@@ -1,7 +1,7 @@
 # Informe T-021 — Rendimiento en Render y forma de trabajo de las IA
 
 - **Responsable humano:** Porras Veli, Ricardo · **Asistente:** Claude (orquestador) con Antigravity CLI (`agy`) como desarrollador
-- **Rama / commit base:** `main` / `e0f8760` · **Fecha:** 09/11/2026 · **Estado:** EN REVISIÓN
+- **Rama / commit base:** `main` / `e0f8760` · **Fecha:** 09/11/2026 · **Estado:** HECHO
 
 ## Diagnóstico (medido)
 
@@ -55,3 +55,10 @@ Revisión de Claude sobre lo entregado por `agy`: se quitó `db/05_indices_rendi
 - Medición local con dataset completo: primer cálculo 2,4 s y luego 0,01-0,3 s por endpoint (antes 6-11 s cada uno). `controles-vencidos` pasa de 23 MB a 131 KB y `ninos` de 4,7 MB a 81 KB.
 - Verificación: 690 pruebas y Ruff conformes. E2E no ejecutadas.
 - Render: `PRECALCULAR_AGENDAS=1` y `CACHE_AGENDAS_TTL_SEGUNDOS=300` cargadas. **El código sigue sin commit**: los 502 continuarán hasta que se publique en `main` (el despliegue es automático).
+
+## Cierre
+
+- PR #22 fusionado en `main` (`e6d8c4c`) con CI en verde; Render lo desplegó automáticamente en `softwareanemia-virginia`.
+- El usuario verificó en producción que los tiempos de respuesta mejoraron y no encontró errores (09/11/2026).
+- `main` integrado en `develop` y URL del README actualizada.
+- Pendiente fuera de la tarea: suspender el servicio antiguo `SoftwareAnemia` (Oregon).
