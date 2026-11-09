@@ -2,7 +2,7 @@
 
 Proyecto de la asignatura **Procesos de Software** (ASUC01702, Universidad Continental, ciclo 2026-20).
 
-El problema organizacional: en las zonas rurales de Junín el tamizaje de hemoglobina, el tratamiento con hierro y el seguimiento de niños con anemia se pierden por falta de trazabilidad, baja adherencia, poca proactividad y conectividad limitada. El proyecto diseña el proceso TO-BE, selecciona y adapta un modelo de proceso de software (iterativo-incremental con Scrum y prácticas DevOps) y construye el software en incrementos con arquitectura hexagonal en Python (FastAPI). La versión vigente es **`v4.0-Inc4`** (cuatro incrementos), desplegada en <https://softwareanemia.onrender.com>.
+El problema organizacional: en las zonas rurales de Junín el tamizaje de hemoglobina, el tratamiento con hierro y el seguimiento de niños con anemia se pierden por falta de trazabilidad, baja adherencia, poca proactividad y conectividad limitada. El proyecto diseña el proceso TO-BE, selecciona y adapta un modelo de proceso de software (iterativo-incremental con Scrum y prácticas DevOps) y construye el software en incrementos con arquitectura hexagonal en Python (FastAPI). La versión vigente es **`v4.0-Inc4`** (cuatro incrementos), desplegada en <https://softwareanemia-virginia.onrender.com> (Render, región Virginia, la misma que la base de Supabase).
 
 **Equipo:** Porras Veli, Ricardo (Ingeniero de Proceso) · Auqui Huincho, Tania (Ingeniero de Desarrollo y Prototipado) · Huamani Rodriguez, Jean Piero (Ingeniero de Calidad y Mejora del Proceso).
 
