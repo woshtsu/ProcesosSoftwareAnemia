@@ -1,9 +1,9 @@
 # Pruebas exploratorias independientes del cierre del Incremento 2 (RF-08 agenda del personal y RF-09 asistencia)
 
 - Fecha de ejecución: 17/10/2026 (hora de Perú). Versión bajo prueba: v2.0.0-inc2, API REST real en `http://127.0.0.1:<puerto>` con SQLite y el reloj real.
-- Método: caja negra por HTTP con `herramientas/gqm/exploratorias_inc2_final.py`; los resultados esperados se derivaron del README de la app, de ADR-010 y de las reglas de la agenda, no del código. Datos 100 % sintéticos.
+- Método: caja negra por HTTP con `.claude/herramientas/gqm/exploratorias_inc2_final.py`; los resultados esperados se derivaron del README de la app, de ADR-010 y de las reglas de la agenda, no del código. Datos 100 % sintéticos.
 - Resumen: **27 casos**: 27 OK, 0 FALLA, 0 OBS (observación: comportamiento no definido o decisión de diseño documentada; no cuenta como defecto).
-- Reproducción: servidor v2.0 con base SQLite nueva (sin `FECHA_REFERENCIA`) y `python herramientas/gqm/exploratorias_inc2_final.py --base <url>`.
+- Reproducción: servidor v2.0 con base SQLite nueva (sin `FECHA_REFERENCIA`) y `python .claude/herramientas/gqm/exploratorias_inc2_final.py --base <url>`.
 
 | ID | Área | Entrada | Esperado | Obtenido | Resultado |
 |---|---|---|---|---|---|

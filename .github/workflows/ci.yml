@@ -3,8 +3,10 @@ name: CI y producción — PMV Anemia Junín
 on:
   push:
     branches: [main, develop, "feature/**"]
+    paths: ["pmv_fastapi/**", ".github/workflows/ci.yml"]
   pull_request:
     branches: [main, develop]
+    paths: ["pmv_fastapi/**", ".github/workflows/ci.yml"]
   workflow_dispatch:
 
 permissions:

@@ -5,7 +5,7 @@
 - **Integrante autor:** <compañero responsable>
 - **Asistente y rol:** <herramienta utilizada y rol aplicable>
 - **Destinatario:** <integrante o rol>
-- **Tarea canónica:** <ID y enlace relativo a coordinacion/TABLERO.md>
+- **Tarea canónica:** <ID y enlace relativo a .claude/coordinacion/TABLERO.md>
 - **Rama / commit de referencia:** <rama> / <hash observado>
 - **Responde a:** <enlace relativo al mensaje anterior, o «No aplica»>
 - **Solicitud formal asociada:** <enlace a ORQ/DEV/DOC/DIAG/INV/CONV, o «No aplica»>

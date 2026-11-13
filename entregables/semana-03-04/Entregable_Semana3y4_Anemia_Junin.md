@@ -175,7 +175,7 @@ Las actividades de las secciones siguientes no son una lista genérica: cada una
 El flujo combina el ciclo de Scrum con el subciclo MLOps y se adapta al contexto de salud rural. Contiene inicio, actividades, decisiones, iteraciones, productos de trabajo, validaciones, entregas, retroalimentación y mejora, tal como exige la guía (Figura 1).
 
 <!-- DIAG-100 pendiente -->
-![Figura 1. Diagrama de actividades del proceso de software del proyecto (ciclo por sprint y subciclo MLOps), con carriles para el equipo, el personal de salud y la automatización (elaboración propia).](../../diagramas/svg/30_s34_flujo_actividades_proceso.svg)
+![Figura 1. Diagrama de actividades del proceso de software del proyecto (ciclo por sprint y subciclo MLOps), con carriles para el equipo, el personal de salud y la automatización (elaboración propia).](../../.claude/diagramas/svg/30_s34_flujo_actividades_proceso.svg)
 
 Descripción textual del flujo de la Figura 1:
 
@@ -331,7 +331,7 @@ El orden de la Tabla 10 es el de la Guía 2 (Tabla «Entregas incrementales de v
 La descomposición sigue la jerarquía que pide la guía: **Proyecto → Entregables → Incrementos → Épicas → Historias de usuario → Tareas** (Figura 2). Las tareas se detallan solo para el incremento prioritario (INC-1); los incrementos posteriores se descomponen en su propio Sprint Planning.
 
 <!-- DIAG-101 pendiente -->
-![Figura 2. Estructura de descomposición del trabajo (WBS) del proyecto: entregables, incrementos, épicas, historias y tareas del Incremento 1 (elaboración propia).](../../diagramas/svg/31_s34_wbs_proyecto.svg)
+![Figura 2. Estructura de descomposición del trabajo (WBS) del proyecto: entregables, incrementos, épicas, historias y tareas del Incremento 1 (elaboración propia).](../../.claude/diagramas/svg/31_s34_wbs_proyecto.svg)
 
 *Tabla 11. Estructura de descomposición del trabajo (niveles 1 a 5)*
 
@@ -600,7 +600,7 @@ El Incremento 1 se ejecuta en dos sprints: el Sprint 1 (01 al 14 de septiembre d
 El trabajo se gestiona en **GitHub Projects** con un tablero Kanban (Backlog → Ready → En progreso → En revisión → Listo) que refleja el proceso definido en la sección 4: una historia solo pasa a «Listo» si cumple la DoD de la Tabla 9. El cronograma de la Tabla 22 se representa en la Figura 3 y el calendario del proyecto en la Figura 4. La herramienta representa el proceso; no lo sustituye.
 
 <!-- DIAG-102 pendiente -->
-![Figura 3. Diagrama de Gantt del Incremento 1 (actividades A01 a A21, del 01 al 28 de septiembre de 2026) con la ruta crítica resaltada (elaboración propia).](../../diagramas/svg/32_s34_gantt_incremento1.svg)
+![Figura 3. Diagrama de Gantt del Incremento 1 (actividades A01 a A21, del 01 al 28 de septiembre de 2026) con la ruta crítica resaltada (elaboración propia).](../../.claude/diagramas/svg/32_s34_gantt_incremento1.svg)
 
 ## 11.3 Calendario del proyecto
 
@@ -618,7 +618,7 @@ El trabajo se gestiona en **GitHub Projects** con un tablero Kanban (Backlog →
 | Sprint 8 | S17-S18 | 08-21 dic 2026 | INC-6 | Tablero territorial completo; producto operativo | H7 |
 
 <!-- DIAG-103 pendiente -->
-![Figura 4. Cronograma de los ocho sprints del proyecto con incrementos e hitos H0 a H7 (elaboración propia).](../../diagramas/svg/33_s34_cronograma_sprints_hitos.svg)
+![Figura 4. Cronograma de los ocho sprints del proyecto con incrementos e hitos H0 a H7 (elaboración propia).](../../.claude/diagramas/svg/33_s34_cronograma_sprints_hitos.svg)
 
 ## 11.4 Ruta crítica del incremento prioritario
 
@@ -639,7 +639,7 @@ Con las duraciones y dependencias de la Tabla 22 (días calendario), la ruta cr�
 A10 y A11 son paralelas y ambas críticas (misma fecha y sin holgura). La ruta crítica muestra que un retraso en la validación y clasificación (A06, A07) o en el expediente (A15) desplaza directamente el hito H1; por eso son las actividades que se revisan primero en el Daily Scrum (Figura 5).
 
 <!-- DIAG-104 pendiente -->
-![Figura 5. Red de actividades del Incremento 1 con la ruta crítica y las holguras (elaboración propia).](../../diagramas/svg/34_s34_red_ruta_critica_inc1.svg)
+![Figura 5. Red de actividades del Incremento 1 con la ruta crítica y las holguras (elaboración propia).](../../.claude/diagramas/svg/34_s34_red_ruta_critica_inc1.svg)
 
 ---
 
@@ -685,7 +685,7 @@ El seguimiento recorre el ciclo que exige la guía, con un mecanismo concreto en
 | Actualización del plan | Actividad «Actualización del plan» (A21 en INC-1) y nuevo Sprint Planning |
 
 <!-- DIAG-105 pendiente -->
-![Figura 6. Burndown del Sprint 1: línea ideal y avance del escenario simulado de seguimiento (elaboración propia).](../../diagramas/svg/35_s34_burndown_sprint1.svg)
+![Figura 6. Burndown del Sprint 1: línea ideal y avance del escenario simulado de seguimiento (elaboración propia).](../../.claude/diagramas/svg/35_s34_burndown_sprint1.svg)
 
 ## 13.2 Matriz de seguimiento
 

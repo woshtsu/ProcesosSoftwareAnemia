@@ -1,6 +1,6 @@
 # Contexto actual para continuar el proyecto
 
-Actualizado: **23/10/2026, America/Lima**. Responsable de esta actualización: Codex, con roles secuenciales de orquestador, desarrollador y conversor. Es una instantánea; consultar siempre el [tablero](../coordinacion/TABLERO.md), el código y `git status` antes de actuar.
+Actualizado: **23/10/2026, America/Lima**. Responsable de esta actualización: Codex, con roles secuenciales de orquestador, desarrollador y conversor. Es una instantánea; consultar siempre el [tablero](coordinacion/TABLERO.md), el código y `git status` antes de actuar.
 
 ## Qué proyecto se está trabajando
 
@@ -10,10 +10,10 @@ Anemia Junín es un proyecto académico de la Universidad Continental para apoya
 
 | Tarea | Qué se hizo | Estado y evidencia |
 | --- | --- | --- |
-| T-013 | Resueltos 88 conflictos del merge de `main` en `feature/inc2-agenda-alertas`, conservando el Incremento 2 completo. `main` avanzó por fast-forward. Se mantuvo una figura 1.5 heredada y se corrigió CP-177 para rutas de Windows. | Commit de integración `f9e8597`, padres `031da6d` y `e24d8bd`. [Informe](../coordinacion/informes/2026-10-23_orquestador_T-013.md). |
-| T-014 | Síntesis de feria con problemática, solución, impacto y tres capturas de S9. PDF A4 de tres páginas, aproximadamente 617 KB, con revisión visual. | [Fuente Markdown](../entregables/feria/Proyecto_Feria_Anemia_Junin.md), [PDF](../exportados/feria/Proyecto_Feria_Anemia_Junin.pdf), [generador](../herramientas/conversion/exportar_feria.py), [informe](../coordinacion/informes/2026-10-23_conversor-entregas_T-014.md). El usuario lo subirá a la feria. |
-| T-015 | Login con Supabase Auth: correo/contraseña, sesión, renovación, cierre, protección de API y auditoría con UUID verificado. | Implementación local verificada; **EN REVISIÓN**, pendiente primera cuenta y prueba remota. [Informe](../coordinacion/informes/2026-10-23_desarrollador_T-015.md), [ADR-011](../pmv_fastapi/docs/adr/ADR-011-supabase-auth.md). |
-| T-016 | Entrada y contexto compartidos, canal de intercambios y plantilla en `.claude/`, enlazados al protocolo existente. | [Entrada](CLAUDE.md), [intercambios](intercambios/README.md), [informe](../coordinacion/informes/2026-10-23_orquestador_T-016.md). |
+| T-013 | Resueltos 88 conflictos del merge de `main` en `feature/inc2-agenda-alertas`, conservando el Incremento 2 completo. `main` avanzó por fast-forward. Se mantuvo una figura 1.5 heredada y se corrigió CP-177 para rutas de Windows. | Commit de integración `f9e8597`, padres `031da6d` y `e24d8bd`. [Informe](coordinacion/informes/2026-10-23_orquestador_T-013.md). |
+| T-014 | Síntesis de feria con problemática, solución, impacto y tres capturas de S9. PDF A4 de tres páginas, aproximadamente 617 KB, con revisión visual. | [Fuente Markdown](../entregables/semana-11/feria/Proyecto_Feria_Anemia_Junin.md), [PDF](../exportados/feria/Proyecto_Feria_Anemia_Junin.pdf), [generador](.claude/herramientas/conversion/exportar_feria.py), [informe](coordinacion/informes/2026-10-23_conversor-entregas_T-014.md). El usuario lo subirá a la feria. |
+| T-015 | Login con Supabase Auth: correo/contraseña, sesión, renovación, cierre, protección de API y auditoría con UUID verificado. | Implementación local verificada; **EN REVISIÓN**, pendiente primera cuenta y prueba remota. [Informe](coordinacion/informes/2026-10-23_desarrollador_T-015.md), [ADR-011](../pmv_fastapi/docs/adr/ADR-011-supabase-auth.md). |
+| T-016 | Entrada y contexto compartidos, canal de intercambios y plantilla en `.claude/`, enlazados al protocolo existente. | [Entrada](CLAUDE.md), [intercambios](intercambios/README.md), [informe](coordinacion/informes/2026-10-23_orquestador_T-016.md). |
 
 Al preparar este resumen, la rama activa es `main`, HEAD es `f9e8597` y la referencia local `origin/main` apunta al mismo commit. Los cambios de feria, Auth y esta documentación aún están en el directorio de trabajo, sin commit. No inferir que el remoto recibió esos archivos: verificar Git al retomar. No se ha hecho push como parte de estas tareas.
 

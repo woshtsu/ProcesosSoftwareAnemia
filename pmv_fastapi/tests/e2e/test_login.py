@@ -72,7 +72,7 @@ def test_login_error_acceso_recarga_y_cierre(servidor_auth, viewport):
             expect(page.locator("#login-enviar")).to_be_enabled()
             expect(page.locator("#aplicacion")).to_be_hidden()
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
-            destino = Path(__file__).resolve().parents[3] / "diagramas/_build/auth"
+            destino = Path(__file__).resolve().parents[3] / ".claude/diagramas/_build/auth"
             destino.mkdir(parents=True, exist_ok=True)
             page.screenshot(path=str(destino / f"login-{viewport['width']}.png"), full_page=True)
             page.fill("#login-email", "enfermeria@example.test")

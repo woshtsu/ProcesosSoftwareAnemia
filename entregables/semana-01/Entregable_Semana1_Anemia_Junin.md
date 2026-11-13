@@ -85,7 +85,7 @@ El problema **no se formula como ausencia de software**. El valor se pierde cuan
 El proceso actual depende del esfuerzo manual del personal y de la comunicación directa entre actores. Es predominantemente **reactivo**: la desviación se detecta cuando el niño ya faltó al control o abandonó el tratamiento. Conforme a la regla de la guía, en este apartado **no se incorpora ninguna solución tecnológica**.
 
 <!-- DIAG-001 pendiente -->
-![Figura 2. Proceso AS-IS por carriles de actor, con las notas de problema asociadas a cada actividad (elaboración propia).](../../diagramas/svg/10_s1_proceso_as_is.svg)
+![Figura 2. Proceso AS-IS por carriles de actor, con las notas de problema asociadas a cada actividad (elaboración propia).](../../.claude/diagramas/svg/10_s1_proceso_as_is.svg)
 
 **Elementos del modelo AS-IS** (exigidos por la Actividad 2):
 
@@ -149,7 +149,7 @@ El proceso mejorado mantiene las decisiones clínicas en manos del profesional e
 | B6 Conectividad intermitente e indicadores tardíos | M6. Registro sin conexión con sincronización diferida e indicadores actualizados | Sistema |
 
 <!-- DIAG-002 pendiente -->
-![Figura 7. Proceso TO-BE por carriles de actor, con el carril Sistema y las mejoras M1-M6 (elaboración propia).](../../diagramas/svg/11_s1_proceso_to_be.svg)
+![Figura 7. Proceso TO-BE por carriles de actor, con el carril Sistema y las mejoras M1-M6 (elaboración propia).](../../.claude/diagramas/svg/11_s1_proceso_to_be.svg)
 
 **Tabla 5.** Elementos del TO-BE exigidos por la Actividad 4 de la guía.
 
@@ -202,7 +202,7 @@ El detalle técnico de estos aportes (esquema normativo integrado en el motor de
 La guía pide construir la cadena **Entrada → Actividad → Resultado → Decisión → Acción → Valor**, bajo la relación *actividad mejorada → mejor resultado → valor organizacional*.
 
 <!-- DIAG-003 pendiente -->
-![Figura 8. Cadena de valor del proceso TO-BE (elaboración propia).](../../diagramas/svg/12_s1_cadena_valor.svg)
+![Figura 8. Cadena de valor del proceso TO-BE (elaboración propia).](../../.claude/diagramas/svg/12_s1_cadena_valor.svg)
 
 **Tabla 7.** Cadena de valor del proceso TO-BE.
 
@@ -429,12 +429,12 @@ Estos diagramas representan la **visión completa** del sistema (incrementos INC
 ## B.1 Diagrama de casos de uso
 
 <!-- DIAG-004 pendiente -->
-![Figura 10. Casos de uso de la visión TO-BE: 5 actores y 11 casos de uso (elaboración propia).](../../diagramas/svg/13_s1_casos_uso_vision.svg)
+![Figura 10. Casos de uso de la visión TO-BE: 5 actores y 11 casos de uso (elaboración propia).](../../.claude/diagramas/svg/13_s1_casos_uso_vision.svg)
 
 ## B.2 Diagrama de clases del dominio
 
 <!-- DIAG-005 pendiente -->
-![Figura 11. Diagrama de clases del dominio de la visión TO-BE (elaboración propia).](../../diagramas/svg/14_s1_clases_dominio_vision.svg)
+![Figura 11. Diagrama de clases del dominio de la visión TO-BE (elaboración propia).](../../.claude/diagramas/svg/14_s1_clases_dominio_vision.svg)
 
 # Anexo C. Entrevista al personal de salud
 

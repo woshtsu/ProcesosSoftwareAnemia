@@ -7,7 +7,7 @@ venv/
 .ruff_cache/
 
 # Artefactos intermedios de generacion de diagramas/documentos (regenerables)
-diagramas/_build/
+.claude/diagramas/_build/
 
 # Temporales de editores / SO
 ~$*
@@ -15,9 +15,9 @@ diagramas/_build/
 .DS_Store
 Thumbs.db
 
-# Herramientas binarias descargables (ver herramientas/README.md)
-herramientas/plantuml/*.jar
-herramientas/.venv/
+# Herramientas binarias descargables (ver .claude/herramientas/README.md)
+.claude/herramientas/plantuml/*.jar
+.claude/herramientas/.venv/
 
 # Grafo de conocimiento local (graphify); cada integrante lo regenera con `graphify update .`
 graphify-out/

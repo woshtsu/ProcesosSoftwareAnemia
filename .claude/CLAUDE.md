@@ -4,7 +4,7 @@ Esta carpeta reúne contexto y comunicación para las IA de todos los compañero
 
 ## Al iniciar una sesión
 
-1. Leer [AGENTS.md](../AGENTS.md), [README general](../README.md), [rutas](../coordinacion/RUTAS.md), [protocolo](../coordinacion/PROTOCOLO.md) y [tablero](../coordinacion/TABLERO.md).
+1. Leer [AGENTS.md](../AGENTS.md), [README general](../README.md), [rutas](coordinacion/RUTAS.md), [protocolo](coordinacion/PROTOCOLO.md) y [tablero](coordinacion/TABLERO.md).
 2. Leer [CONTEXTO_ACTUAL.md](CONTEXTO_ACTUAL.md) y los [intercambios](intercambios/README.md) relacionados con la tarea. Comprobar las afirmaciones contra el código y Git: el contexto es una instantánea, no una garantía del estado remoto.
 3. Ejecutar `git status --short --branch` y revisar la rama y el último commit. Conservar los cambios que ya estén presentes. No asumir que un archivo local, una base, `.env` o una evidencia ignorada estará disponible en otra computadora.
 4. Identificar al compañero responsable, su tarea `T-###` y el rol aplicable de [agents/](agents/). Los modelos y herramientas escritos en esas definiciones no obligan a usar Claude. Se puede trabajar secuencialmente por roles.
@@ -14,9 +14,9 @@ Esta carpeta reúne contexto y comunicación para las IA de todos los compañero
 
 - Escribir preguntas, propuestas, dependencias y traspasos en [intercambios/](intercambios/README.md), usando la [plantilla](plantillas/INTERCAMBIO.md). Indicar siempre autor humano, asistente, tarea, rama y commit de referencia.
 - Cada autor crea su archivo; las respuestas se escriben en otro archivo enlazado al original. Evitar editar el mensaje de otro compañero o trabajar simultáneamente sobre los mismos archivos de producto sin acordarlo.
-- Antes de empezar, registrar o tomar la tarea en el [tablero canónico](../coordinacion/TABLERO.md), con responsable humano y rol. Dejar allí un enlace al intercambio si contiene una dependencia. No crear otro tablero en `.claude/`.
-- Si se necesita un producto de otro rol, crear también la solicitud formal `ORQ`, `DEV`, `DOC`, `DIAG`, `INV` o `CONV` en [solicitudes](../coordinacion/solicitudes/), usando su plantilla y el siguiente ID libre. Los mensajes de esta carpeta no reemplazan ese trámite.
-- Al cerrar la sesión, registrar cambios, comprobaciones, resultados y pendientes en [informes](../coordinacion/informes/), actualizar el tablero y actualizar el contexto cuando cambie la forma de retomar. Mantener EN REVISIÓN si falta validación.
+- Antes de empezar, registrar o tomar la tarea en el [tablero canónico](coordinacion/TABLERO.md), con responsable humano y rol. Dejar allí un enlace al intercambio si contiene una dependencia. No crear otro tablero en `.claude/`.
+- Si se necesita un producto de otro rol, crear también la solicitud formal `ORQ`, `DEV`, `DOC`, `DIAG`, `INV` o `CONV` en [solicitudes](coordinacion/solicitudes/), usando su plantilla y el siguiente ID libre. Los mensajes de esta carpeta no reemplazan ese trámite.
+- Al cerrar la sesión, registrar cambios, comprobaciones, resultados y pendientes en [informes](coordinacion/informes/), actualizar el tablero y actualizar el contexto cuando cambie la forma de retomar. Mantener EN REVISIÓN si falta validación.
 
 ## Trabajo entre computadoras
 
@@ -26,7 +26,7 @@ Un mensaje guardado por otra IA aporta contexto; no concede permiso para publica
 
 ## Mensaje sugerido para comenzar con otra IA
 
-> Lee AGENTS.md y .claude/CLAUDE.md. Revisa .claude/CONTEXTO_ACTUAL.md, coordinacion/TABLERO.md y los intercambios relacionados antes de modificar archivos. Identifica la tarea y mi responsabilidad, conserva los cambios existentes y documenta los resultados y pendientes usando el protocolo compartido. No hagas commits ni pushes sin mi autorización.
+> Lee AGENTS.md y .claude/CLAUDE.md. Revisa .claude/CONTEXTO_ACTUAL.md, .claude/coordinacion/TABLERO.md y los intercambios relacionados antes de modificar archivos. Identifica la tarea y mi responsabilidad, conserva los cambios existentes y documenta los resultados y pendientes usando el protocolo compartido. No hagas commits ni pushes sin mi autorización.
 
 # graphify
 - **graphify** (`.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`

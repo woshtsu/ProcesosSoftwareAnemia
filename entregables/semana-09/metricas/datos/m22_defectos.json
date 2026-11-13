@@ -201,7 +201,7 @@
   "n_rf": 2,
   "tasa_def_por_rf": 0.0,
   "verificacion_exploratoria": {
-   "script": "herramientas/gqm/exploratorias_inc2.py",
+   "script": ".claude/herramientas/gqm/exploratorias_inc2.py",
    "salida_texto": "entregables/semana-09/metricas/salidas/exploratorias_inc2_resultado.txt",
    "casos_totales": 45,
    "estados_todos": {
@@ -263,7 +263,7 @@
    "RF-09": []
   },
   "verificacion_exploratoria_rf08_rf09": {
-   "script": "herramientas/gqm/exploratorias_inc2_final.py",
+   "script": ".claude/herramientas/gqm/exploratorias_inc2_final.py",
    "salida_texto": "entregables/semana-09/metricas/salidas/exploratorias_inc2_final_resultado.txt",
    "casos": 27,
    "estados": {

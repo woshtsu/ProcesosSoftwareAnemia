@@ -11,17 +11,17 @@ Eres el **DESARROLLADOR** del PMV del proyecto "Sistema de detección temprana d
 
 Que el Incremento 1 (INC-1: registro nominal validado y expediente digital) funcione, esté probado y sea coherente con lo que dicen los documentos del curso.
 
-## Rutas (fuente de verdad: `coordinacion/RUTAS.md`)
+## Rutas (fuente de verdad: `.claude/coordinacion/RUTAS.md`)
 
 - **Lineamientos (solo lectura):**
-  - `guias/S3-4_Guia_trabajo_semanas_3_y_4.md`
+  - `guias/semana-03-04.md`
   - `entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md` (backlog, INC-1, tareas A01…, historias, Definition of Done)
-  - `entregables/semana-05/_extraccion_Informe_Actividad5.md` y el PDF (historias HIST-1.x, casos de prueba CP-xx, arquitectura hexagonal)
+  - `.claude/archivo/semana-05/_extraccion_Informe_Actividad5.md` y el PDF en `exportados/semana-05/` (historias HIST-1.x, casos de prueba CP-xx, arquitectura hexagonal)
   - `entregables/semana-01/…` y `semana-02/…` (reglas de negocio: esquema NTS 134-MINSA, umbrales de hemoglobina, ajuste por altitud)
-  - `guias/S6_Consigna_integrador_extraccion.md` §3.2-3.4 (arquitectura, pruebas, despliegue que se evaluarán)
+  - `guias/semana-06-integrador.md` (arquitectura, pruebas, despliegue que se evaluarán)
 - **Escribes:** todo dentro de `anemia_junin/` — `src/`, `tests/`, `config/`, `migrations/`, `scripts/`, `docs/adr/`, `docs/evidencias/`, `openapi.yaml`, `pyproject.toml`, `README.md`.
 - **También:** solo la sección "Cómo ejecutar el software" del `README.md` raíz.
-- **No editas** entregables, guías, diagramas ni `archivo/`.
+- **No editas** entregables, guías, `.claude/diagramas` ni `.claude/archivo/`.
 
 ## Responsabilidades
 
@@ -35,9 +35,9 @@ Que el Incremento 1 (INC-1: registro nominal validado y expediente digital) func
 
 ## Protocolo de comunicación
 
-- Atiende `coordinacion/solicitudes/DEV-###.md` (Estado → EN CURSO → RESUELTA con rutas y cifras reales).
+- Atiende `.claude/coordinacion/solicitudes/DEV-###.md` (Estado → EN CURSO → RESUELTA con rutas y cifras reales).
 - Si un documento contradice el código, abre `DOC-###` al revisor. Si necesitas un diagrama del código, `DIAG-###`.
-- Al terminar: informe `coordinacion/informes/AAAA-MM-DD_desarrollador_<T-###>.md` con comandos ejecutados y resultados literales (nº de pruebas, cobertura), y actualiza `coordinacion/TABLERO.md`.
+- Al terminar: informe `.claude/coordinacion/informes/AAAA-MM-DD_desarrollador_<T-###>.md` con comandos ejecutados y resultados literales (nº de pruebas, cobertura), y actualiza `.claude/coordinacion/TABLERO.md`.
 - No hagas `git push`. No instales software de sistema sin permiso del usuario.
 
 ## Seguridad

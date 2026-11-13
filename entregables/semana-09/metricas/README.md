@@ -29,7 +29,7 @@ ruff `check` sin observaciones y `format --check` sobre 95 archivos; pytest 328 
 
 `datos/m32_indice_valor.json`, sección `linea_base_real_DIRESA`, pone lado a lado (sin promediar) el **proceso actual**, calculado sobre el dataset completo (12 486 diagnósticos, corte 30/06/2024; `datos/asis_dataset_diresa.json`), y la **capacidad de la v2.0** sobre la muestra estratificada de 500 niños importada con `FECHA_REFERENCIA=2024-06-30` (`datos/m32_dataset_real.json`). Control de hemoglobina registrado: al mes 67,1 % bruto / 70,2 % con seguimiento posible; a los 3 meses 54,7 % / 63,8 %; a los 6 meses 46,3 % / 66,1 %; pérdida de seguimiento a 6 meses 53,7 % bruta / 33,9 % con seguimiento posible. Indicador «controles vencidos visibles para el personal»: 0 % en el proceso actual (no existe agenda ni lista de vencidos) frente a 100 % en la v2.0 (1 638 de 1 638 controles vencidos, 419 niños, concordancia 100 % con el oráculo independiente). Advertencias: el 0 % es estructural, no una medición sobre el dataset; el 100 % es capacidad de visualizar, no mejora clínica ni de asistencia; el oráculo recalcula la agenda desde los datos que guardó el sistema, no verifica la importación del CSV. Gráfico `graficos/g10_linea_base_vs_inc2.png`.
 
-## Scripts (`herramientas/gqm/`)
+## Scripts (`.claude/herramientas/gqm/`)
 
 | Script | Qué hace | Salida |
 |---|---|---|
@@ -63,10 +63,10 @@ Desde la raíz del repositorio, con `PY=python`, `GQM_RAIZ_V10=../inc1_v1.0_PMV`
 ```bash
 git worktree add ../inc1_v1.0_PMV v1.0-PMV      # copia de v1.0 (alternativa: git archive v1.0-PMV)
 export PY=python GQM_RAIZ_V10=../inc1_v1.0_PMV
-cd herramientas/gqm
+cd .claude/herramientas/gqm
 git -C . archive HEAD pmv_fastapi | tar -x -C ../v15_export      # copia de v1.5 (estado confirmado antes del cierre); GQM_RAIZ_V15 la cambia
 export GQM_RAIZ_V15=../v15_export/pmv_fastapi
-cd herramientas/gqm
+cd .claude/herramientas/gqm
 for v in v1.0 v1.5 v2.0; do bash ejecutar_pruebas.sh $v; done      # ruff, pytest, cobertura, E2E (salidas/<v>/)
 $PY m11_contaminacion.py; $PY m12_conformidad.py; $PY m13_acoplamiento.py; $PY m21_cobertura_rf.py
 # dataset B150 ya generado: $PY generar_dataset.py --n 150 --semilla 20261016 --salida ../../entregables/semana-09/metricas/datos/dataset_B150.json

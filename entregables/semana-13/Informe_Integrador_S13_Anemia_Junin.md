@@ -383,7 +383,7 @@ Cockburn [13] propone aislar la lógica de aplicación de sus actores externos m
 
 | Modelo | Definición (fuente) | Cómo se usa aquí |
 | --- | --- | --- |
-| **GQM** | Cada **meta** se refina en **preguntas** y cada pregunta en **métricas**; las metas se redactan con objeto, propósito, enfoque de calidad, punto de vista y contexto [14] | 3 metas (arquitectura, pruebas, valor), 6 métricas con script en `herramientas/gqm/`, recalculadas para Inc. 1 a Inc. 4 |
+| **GQM** | Cada **meta** se refina en **preguntas** y cada pregunta en **métricas**; las metas se redactan con objeto, propósito, enfoque de calidad, punto de vista y contexto [14] | 3 metas (arquitectura, pruebas, valor), 6 métricas con script en `.claude/herramientas/gqm/`, recalculadas para Inc. 1 a Inc. 4 |
 | **FURPS+** | Funcionalidad, Usabilidad, Confiabilidad (*Reliability*), Rendimiento (*Performance*) y Soportabilidad, más restricciones de implementación, interfaz, operaciones, empaquetamiento y legales [15], [16] | Índice ponderado F 30 %, U 15 %, R 15 %, P 15 %, S 10 %, + 15 %; variables medidas con scripts |
 | **WCAG 2.1 AA** | Contraste mínimo de 4,5:1 para texto (1.4.3) y 3:1 para componentes (1.4.11); el color no es el único canal (1.4.1); operable por teclado (2.1.1) [17] | Axe-core por pantalla y cálculo propio de contraste (factor U) |
 | **OWASP Top 10:2025** | Diez categorías de riesgo de aplicaciones web, A01 Broken Access Control a A10 Mishandling of Exceptional Conditions [18] | 30 comprobaciones estáticas, 32 dinámicas, SAST y SCA (factor +) |
@@ -440,11 +440,11 @@ El sistema solo distingue «usuario autenticado»: no hay roles por actor ni seg
 
 Resultado: **M3.1 = 4,5 / 6 = 75,0 %**. Cuatro brechas (B1 a B4) tienen mecanismo operativo y probado **en el entorno de pruebas**; ninguna se midió en una posta.
 
-![Proceso AS-IS por carriles de actor.](../../diagramas/png/10_s1_proceso_as_is.png)
+![Proceso AS-IS por carriles de actor.](../../.claude/diagramas/png/10_s1_proceso_as_is.png)
 
 **Figura 2.** Proceso AS-IS por carriles de actor con las notas de problema de cada actividad (S1).
 
-![Proceso TO-BE por carriles de actor con el carril Sistema.](../../diagramas/png/11_s1_proceso_to_be.png)
+![Proceso TO-BE por carriles de actor con el carril Sistema.](../../.claude/diagramas/png/11_s1_proceso_to_be.png)
 
 **Figura 3.** Proceso TO-BE con el carril «Sistema» y las mejoras M1 a M6 (S1). Las decisiones clínicas siguen siendo humanas.
 
@@ -585,7 +585,7 @@ PROYECTO ANEMIA JUNÍN
 └── INC-6 Tablero territorial (15 SP) ........................ no implementado
 ```
 
-![WBS del proyecto y tareas del Incremento 1.](../../diagramas/png/31_s34_wbs_proyecto.png)
+![WBS del proyecto y tareas del Incremento 1.](../../.claude/diagramas/png/31_s34_wbs_proyecto.png)
 
 **Figura 5.** WBS: Proyecto, entregables E1 a E3, incrementos INC-1 a INC-6, épicas, historias y tareas del Incremento 1 (S3-4).
 
@@ -604,7 +604,7 @@ PROYECTO ANEMIA JUNÍN
 
 **Priorización valor y riesgo.** El puntaje ponderado combina valor (30 %), reducción de riesgo (25 %), dependencia técnica (20 %), factibilidad (15 %) y validación (10 %). INC-1 lidera porque es prerrequisito de todos los demás; INC-3 puntúa por encima de INC-2, pero se ejecutó después porque requería el pipeline de integración continua y la decisión sobre la base central (nota de S3-4 sobre el calendario). Dentro del INC-1 se construyó primero la clasificación normativa (HIST-1.3) y después el formulario, porque un umbral clínico mal transcrito invalidaría todo lo posterior.
 
-![Cronograma de los ocho sprints con incrementos e hitos H0 a H7.](../../diagramas/png/33_s34_cronograma_sprints_hitos.png)
+![Cronograma de los ocho sprints con incrementos e hitos H0 a H7.](../../.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png)
 
 **Figura 6.** Cronograma planificado de ocho sprints con incrementos e hitos H0 a H7 (S3-4).
 
@@ -683,7 +683,7 @@ El PMV entregó el valor comprometido (registro único y clasificación probada 
 
 #### 3.6.1 Evaluación GQM de arquitectura, pruebas y valor
 
-Las tres metas se formularon con la plantilla de Basili et al. [14] (objeto, propósito, enfoque de calidad, punto de vista y contexto) y se midieron para los cuatro incrementos con los scripts de `herramientas/gqm/`.
+Las tres metas se formularon con la plantilla de Basili et al. [14] (objeto, propósito, enfoque de calidad, punto de vista y contexto) y se midieron para los cuatro incrementos con los scripts de `.claude/herramientas/gqm/`.
 
 **Tabla 20.** Metas, preguntas y métricas GQM (S9, Tablas 8 y 12).
 
@@ -2089,7 +2089,7 @@ El diseño no es un área evaluada en la Tabla 36. Se presenta como **Solución 
 
 - **Descripción:** **Figura 104.** Diagrama de Gantt del Incremento 1: actividades A01 a A21 con su duración estimada, responsable y dependencias (28 días, igual a la ruta crítica).
 
-![Gantt del Incremento 1.](../../diagramas/png/32_s34_gantt_incremento1.png)
+![Gantt del Incremento 1.](../../.claude/diagramas/png/32_s34_gantt_incremento1.png)
 
 - **Archivo de imagen:** `diagramas/png/32_s34_gantt_incremento1.png`
 
@@ -2105,7 +2105,7 @@ El diseño no es un área evaluada en la Tabla 36. Se presenta como **Solución 
 
 - **Descripción:** **Figura 105.** Cronograma de los sprints 1 a 8 y de los hitos H0 a H7, del 01/09 al 21/12/2026.
 
-![Cronograma de sprints e hitos.](../../diagramas/png/33_s34_cronograma_sprints_hitos.png)
+![Cronograma de sprints e hitos.](../../.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png)
 
 - **Archivo de imagen:** `diagramas/png/33_s34_cronograma_sprints_hitos.png`
 
@@ -2183,7 +2183,7 @@ La ejecución #16 del CI en `main`, en verde, es la Figura 99 de esta sección.
 - **Descripción:** **Figura 112.** Primer análisis de SonarCloud del repositorio, del 05/11/2026: Quality Gate aprobado sobre el código nuevo y 129 hallazgos sobre el código completo.
   - El backend desplegado tiene 0 hallazgos.
   - Las 63 vulnerabilidades están en herramientas, scripts y el prototipo anterior.
-  - Detalle en `entregables/sonarcloud/2026-11-05/ANALISIS_SONARCLOUD.md`.
+  - Detalle en `entregables/semana-12/sonarcloud/ANALISIS_SONARCLOUD.md`.
 
 ![Resumen de SonarCloud.](../semana-12/correcciones/img/C10_sonar_resumen.png)
 

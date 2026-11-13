@@ -44,11 +44,11 @@ Agenda y controles vencidos corresponden a INC-2; operación desconectada y sinc
 | Interfaz | Jinja2, formularios CSRF, mensajes y redirección 303 | templates/ y static/ | Recorrido Chromium y suite web aprobados |
 | Despliegue | Waitress en 127.0.0.1, archivo SQLite y normativa JSON | __main__.py y README | Arranque real, E2E HTTP, navegador y carga local ejecutados |
 
-![Figura 1 Paquetes y dependencias del código del PMV](../../diagramas/svg/40_s5_paquetes_hexagonal.svg)
+![Figura 1 Paquetes y dependencias del código del PMV](../../.claude/diagramas/svg/40_s5_paquetes_hexagonal.svg)
 
-![Figura 2 Entorno local de despliegue del PMV](../../diagramas/svg/07_despliegue.svg)
+![Figura 2 Entorno local de despliegue del PMV](../../.claude/diagramas/svg/07_despliegue.svg)
 
-![Figura 3 Modelo de datos de la migración 001](../../diagramas/svg/08_modelo_datos.svg)
+![Figura 3 Modelo de datos de la migración 001](../../.claude/diagramas/svg/08_modelo_datos.svg)
 
 La raíz de composición bootstrap.crear_app inyecta repositorios, reloj y proveedor normativo. Los adaptadores de entrada llaman a los mismos casos de uso. La unidad de trabajo asegura atomicidad de niño y dosaje inicial. Un rechazo se registra en una transacción posterior al rollback, sin duplicar datos personales en la traza.
 

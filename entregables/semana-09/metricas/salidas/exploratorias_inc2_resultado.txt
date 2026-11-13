@@ -1,6 +1,6 @@
 # Pruebas exploratorias del Incremento 2 (agenda y alertas) - salida cruda, corrida 3 (final)
 # Fecha: 2026-10-16T18:03:58-05:00 (hora de Perú); v1.5.0-inc2-avance con la corrección de DEF-08; servidor uvicorn :8321, SQLite nueva con dataset B150 cargado por API
-# Comando: python herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <sqlite>
+# Comando: python .claude/herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <sqlite>
 # Corridas anteriores: exploratorias_inc2_resultado_corrida1.txt (antes de corregir) y _corrida2.txt
 
 EX-01 [OK] aplica=True total=12 pendientes=12 vencidos=0 primero=2027-04-16

@@ -27,7 +27,7 @@ FECHA_CORTE = date(2024, 6, 30)
 
 RAIZ_PROYECTO = Path(__file__).resolve().parents[2]
 CSV_POR_DEFECTO = (
-    RAIZ_PROYECTO.parent / "Dataset" / "Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv"
+    RAIZ_PROYECTO / "datos" / "Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv"
 )
 CODIFICACION = "latin-1"
 SEPARADOR = ";"

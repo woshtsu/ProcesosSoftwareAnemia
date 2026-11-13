@@ -36,7 +36,7 @@ Procesos de Software (ASUC01702) · 2026-20 · Versión `v2.0.0-inc2` (etiqueta 
 
 El Incremento 1 resolvió el **triple registro manual** con un expediente digital único por niño y la hemoglobina ajustada por altitud y clasificada automáticamente. El Incremento 2 (S3-4, «Agenda automática y alertas») ataca la brecha B2: la agenda de controles se calculaba a mano, de modo que había controles fuera de la ventana normativa y citas olvidadas.
 
-El sistema es **referencial: programa y vigila fechas, no diagnostica ni prescribe**. Los datos de `scripts/cargar_datos_prueba.py` y de las pruebas son **sintéticos**; además se puede cargar el **dataset real anonimizado de la DIRESA Junín** (`Dataset/`, sin DNI ni nombres) para la demostración (ADR-009).
+El sistema es **referencial: programa y vigila fechas, no diagnostica ni prescribe**. Los datos de `scripts/cargar_datos_prueba.py` y de las pruebas son **sintéticos**; además se puede cargar el **dataset real anonimizado de la DIRESA Junín** (`datos/`, sin DNI ni nombres) para la demostración (ADR-009).
 
 ## Incremento 1 (PMV, `v1.0-PMV`)
 
@@ -190,7 +190,7 @@ El conjunto sintético (27 niños) conserva los 14 del Incremento 1 (DNI 7100000
 
 ## Demostración con el dataset real de la DIRESA Junín
 
-El dataset (`Dataset/Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv`, 12 486 filas, fuente HIS, diagnósticos del 14-01-2022 al 21-06-2024) se importa como niños de origen `DATASET_DIRESA_JUNIN`, sin DNI ni nombres (ADR-009). El «hoy» de la demostración es la fecha de corte, **30-06-2024**:
+El dataset (`datos/Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv`, 12 486 filas, fuente HIS, diagnósticos del 14-01-2022 al 21-06-2024) se importa como niños de origen `DATASET_DIRESA_JUNIN`, sin DNI ni nombres (ADR-009). El «hoy» de la demostración es la fecha de corte, **30-06-2024**:
 
 ```bash
 # 1) base de la demo: muestra estratificada de 500 niños (Provincia × severidad HIS, semilla 2026)

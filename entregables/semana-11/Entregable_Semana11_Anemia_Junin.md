@@ -12,7 +12,7 @@
 | **Asignatura** | Procesos de Software (ASUC01702), Universidad Continental, periodo 2026-20, Noveno ciclo |
 | **Proyecto de asignatura** | Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín |
 | **Docente** | Guevara Jimenez, Jorge Alfredo |
-| **Semana y guía** | Semana 11: «Evaluación de proceso y producto de software mediante el modelo CMMI (CMMI-DEV)» (`guias/S11-PSW-GUÍA DE TRABAJO 11.docx`) |
+| **Semana y guía** | Semana 11: «Evaluación de proceso y producto de software mediante el modelo CMMI (CMMI-DEV)» (`guias/semana-11.docx`) |
 | **Fecha** | 30/10/2026 (entrega original) · **Act.** 30/10/2026: v4.0-Inc4 |
 | **Versiones evaluadas** | `v1.0-PMV` (Inc. 1), `v1.5.0-inc2-avance` (50 % del Inc. 2), `v2.0-Inc2` (Inc. 2, `fb26626`), **Act.** `v3.0-Inc3` (Inc. 3, `e920820`) y `v4.0-Inc4` (Inc. 4, `e6886e2`). `main` incorporó la PR #8 como un solo commit *squash* (`c870a7e`), de modo que `e920820` a `e6886e2` (donde apuntan las etiquetas) no están en su historial (Figura 58); el informe S11 original evaluó `main` en `72e7025` |
 | **Código verificado (Act.)** | Rama `docs/s12-integrador`, versión `4.0.0-inc4`: `pmv_fastapi/` y `.github/` no cambian entre `e6886e2` y la punta de la rama (`51ca4fc`), de modo que las mediciones de S10 y de este informe corresponden al mismo código que `main` |

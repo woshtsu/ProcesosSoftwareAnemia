@@ -556,7 +556,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 - **Descripción:** **Figura C2.** Diagrama de Gantt del Incremento 1: actividades A01 a A21 con su duración estimada, responsable y dependencias (28 días, igual a la ruta crítica).
 
-![Gantt del Incremento 1.](../../../diagramas/png/32_s34_gantt_incremento1.png)
+![Gantt del Incremento 1.](../../../.claude/diagramas/png/32_s34_gantt_incremento1.png)
 
 - **Archivo de imagen:** `diagramas/png/32_s34_gantt_incremento1.png`
 
@@ -572,7 +572,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 - **Descripción:** **Figura C3.** Cronograma de los sprints 1 a 8 y de los hitos H0 a H7, del 01/09 al 21/12/2026.
 
-![Cronograma de sprints e hitos.](../../../diagramas/png/33_s34_cronograma_sprints_hitos.png)
+![Cronograma de sprints e hitos.](../../../.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png)
 
 - **Archivo de imagen:** `diagramas/png/33_s34_cronograma_sprints_hitos.png`
 
@@ -608,7 +608,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 - **Descripción:** **Figura C7.** Modelo hexagonal del Incremento 2: dominio, puertos de entrada y salida, y adaptadores.
 
-![Modelo hexagonal.](../../../diagramas/png/72_s9_hexagonal_v20.png)
+![Modelo hexagonal.](../../../.claude/diagramas/png/72_s9_hexagonal_v20.png)
 
 - **Archivos de imagen:** `pmv_fastapi/docs/diagramas/C4_contenedores.png`, `diagramas/png/72_s9_hexagonal_v20.png`
 
@@ -641,7 +641,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 - **Descripción:** **Figura C11.** Primer análisis de SonarCloud del repositorio, del 05/11/2026: Quality Gate aprobado sobre el código nuevo y 129 hallazgos sobre el código completo.
   - El backend desplegado tiene 0 hallazgos.
   - Las 63 vulnerabilidades están en herramientas, scripts y el prototipo anterior.
-  - Detalle en `entregables/sonarcloud/2026-11-05/ANALISIS_SONARCLOUD.md`.
+  - Detalle en `entregables/semana-12/sonarcloud/ANALISIS_SONARCLOUD.md`.
 
 ![Resumen de SonarCloud.](img/C10_sonar_resumen.png)
 
