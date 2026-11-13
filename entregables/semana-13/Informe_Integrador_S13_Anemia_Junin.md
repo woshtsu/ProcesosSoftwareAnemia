@@ -261,7 +261,7 @@ PERIODO ACADÉMICO: 2026-20
 
 ## CONTROL DE CAMBIOS RESPECTO DE LA ENTREGA DE LA SEMANA 12
 
-Esta versión corrige las tres observaciones del docente a la entrega de la semana 12 y agrega lo realizado entre el 30/10 y el 06/11/2026. La Tabla 2 relaciona cada observación con la corrección y con el lugar del informe donde se verifica. Las filas 4 a 7 son actualizaciones del equipo, no observaciones del docente.
+Esta versión corrige las tres observaciones del docente a la entrega de la semana 12 y agrega lo realizado entre el 30/10 y el 06/11/2026. La Tabla 2 relaciona cada observación con la corrección y con el lugar del informe donde se verifica. Las filas 4 a 8 son actualizaciones del equipo, no observaciones del docente.
 
 **Tabla 2.** Observaciones de la semana 12, corrección aplicada y dónde verificarla.
 
@@ -274,6 +274,7 @@ Esta versión corrige las tres observaciones del docente a la entrega de la sema
 | 5 | Equipo: gestión de versiones (guía S13) | Las cinco etiquetas tienen su *release* en GitHub con notas de versión | Ficha CM (Figura 117) y Anexo B (Tabla 42) |
 | 6 | Equipo: hallazgos H2 y H5, sin plantilla de PR ni convención escrita | Plantillas de solicitud de cambio y de PR en `.github/` y convención de ramas, commits y etiquetas en `CONTRIBUTING.md` | Ficha CM, Tablas 36, 39 y 41 y Anexo B |
 | 7 | Equipo: lecturas de la semana 13 | Marco teórico ampliado con las dos lecturas: revisión, verificación y validación, y el ciclo PHVA; seguimiento del plan de mejora al 06/11/2026 | 2.5 y 3.8 (Tabla 41) |
+| 8 | Equipo: video y producción | El video se regrabó el 09/11/2026 sobre producción y el servicio de Render se recreó en la región Virginia, junto a la base de datos | Anexos A y B |
 
 Las pruebas se volvieron a ejecutar el 06/11/2026 sobre `v4.0-Inc4` con el mismo resultado del 30/10: 660 pruebas aprobadas con 99,79 % de cobertura, 28 E2E y Ruff sin observaciones (ficha VER).
 
@@ -1088,7 +1089,7 @@ La Tabla 23 resume la trazabilidad entre cada métrica y su evidencia.
 
 **Figura 37.** Ejecución #14 del CI en la rama de los incrementos 3 y 4: `calidad-y-pruebas` (2 min 27 s) e `imagen` (22 s) en verde; `produccion` se omite fuera de `main`.
 
-**Despliegue en producción.** El trabajo `produccion` publica `main` en Render con Supabase. El 31/10/2026 se verificó la URL pública (<https://softwareanemia.onrender.com>): `GET /api/salud` respondió `{"estado":"ok","fecha_hoy":"2024-06-30","fecha_referencia":"2024-06-30"}` y `GET /openapi.json` declara la versión `4.0.0-inc4` con 29 rutas, igual que el contrato de `v4.0-Inc4`. La aplicación desplegada usa un reloj fijo al corte del dataset (30/06/2024): sus agendas y vencimientos se calculan a esa fecha y no a la real. Las capturas tomadas en producción están en las fichas GQM (apartado 3.6.1) y en la ficha VAL de la sección 3.8.
+**Despliegue en producción.** El trabajo `produccion` publica `main` en Render con Supabase. El 31/10/2026 se verificó la URL pública (<https://softwareanemia.onrender.com>): `GET /api/salud` respondió `{"estado":"ok","fecha_hoy":"2024-06-30","fecha_referencia":"2024-06-30"}` y `GET /openapi.json` declara la versión `4.0.0-inc4` con 29 rutas, igual que el contrato de `v4.0-Inc4`. La aplicación desplegada usa un reloj fijo al corte del dataset (30/06/2024): sus agendas y vencimientos se calculan a esa fecha y no a la real. El 09/11/2026 el servicio se recreó en la región Virginia (<https://softwareanemia-virginia.onrender.com>), junto a la base de Supabase; el 12/11/2026 respondió con la misma versión y las mismas 29 rutas. Las capturas tomadas en producción están en las fichas GQM (apartado 3.6.1) y en la ficha VAL de la sección 3.8.
 
 La cobertura alta no garantizó ausencia de defectos: seis de los siete defectos del Incremento 1 y cinco de los incrementos 3 y 4 escaparon a las pruebas, porque estas verificaban casos válidos y no entradas hostiles ni concurrencia. La revisión independiente (commit `d2ab78b`) corrigió cinco defectos: el webhook de WhatsApp aceptaba cuerpos sin firma si faltaba el secreto (alta), el reenvío simultáneo de una operación duplicaba una evaluación (media), dos generaciones simultáneas de recordatorios enviaban el mensaje dos veces (media) y dos defectos de interfaz (baja; la adenda S9 los cuenta como uno). Cada corrección tiene prueba de regresión salvo los dos de interfaz.
 
@@ -2407,12 +2408,13 @@ Lista numerada en el orden de la primera cita en el texto, según la norma ISO 6
 - **URL del video demostrativo (Drive):** <https://drive.google.com/file/d/1E-ITz7WtqtMzhKQJql7Ssardvqw446mf/view?usp=sharing>
 - **Contenido:** el video no muestra este informe; va directo al software y rotula en pantalla cada parte («PMV · Incremento 1», «Incremento 2», «Incremento 3», «Incremento 4»), con una portada de 15 s y un cierre de calidad y arquitectura (Anexo C). Duración: 5 min 00 s.
 - **Guion ejecutable:** `entregables/semana-12/video/GUION_DEMO.md` (pestaña, datos sintéticos, acción y resultado esperado por escena).
+- **Versión regrabada sobre producción (09/11/2026):** <https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/entregables/semana-12/video/demo_anemia_junin_v4.mp4> (5 min 59 s, 1920 × 1080). Recorre los mismos cuatro bloques en el servicio de producción, con datos sintéticos «DEMO» que se borran después de la grabación. El guion de locución está en `entregables/semana-12/video/GUION_LOCUCION.md`.
 
 ### ANEXO B: Enlace del Repositorio de Código en GitHub
 
 - **URL del repositorio:** <https://github.com/woshtsu/ProcesosSoftwareAnemia>
 - **Código del producto en la etiqueta evaluada:** <https://github.com/woshtsu/ProcesosSoftwareAnemia/tree/v4.0-Inc4/pmv_fastapi/app>
-- **Producción (Render con Supabase):** <https://softwareanemia.onrender.com/>. Verificada el 31/10/2026: `GET /api/salud` responde `{"estado":"ok","fecha_hoy":"2024-06-30","fecha_referencia":"2024-06-30"}` (reloj fijo del dataset: la aplicación desplegada calcula agendas y vencimientos al 30/06/2024) y `GET /openapi.json` declara la versión `4.0.0-inc4` con 29 rutas, la misma del contrato de `v4.0-Inc4`.
+- **Producción (Render con Supabase):** <https://softwareanemia-virginia.onrender.com/> desde el 09/11/2026. El servicio se recreó en la región Virginia, la misma de la base de Supabase, para reducir la latencia; la verificación del 12/11/2026 dio `GET /api/salud` con estado `ok` y `/openapi.json` con la versión `4.0.0-inc4` y 29 rutas. El servicio anterior (<https://softwareanemia.onrender.com/>), en el que se tomaron las capturas de producción de este informe, se verificó el 31/10/2026: `GET /api/salud` responde `{"estado":"ok","fecha_hoy":"2024-06-30","fecha_referencia":"2024-06-30"}` (reloj fijo del dataset: la aplicación desplegada calcula agendas y vencimientos al 30/06/2024) y `GET /openapi.json` declara la versión `4.0.0-inc4` con 29 rutas, la misma del contrato de `v4.0-Inc4`.
 - **Integración:** la PR #8 (incrementos 3 y 4) está fusionada en `main` con el CI #16 en verde; las PR de documentación #9, #10 y #11 se fusionaron el 01/11/2026 y la #12 (análisis de SonarCloud), el 06/11/2026.
 - **Releases:** <https://github.com/woshtsu/ProcesosSoftwareAnemia/releases> (5 *releases* con notas de versión, publicadas el 06/11/2026; Figura 117).
 - **Gestión de cambios:** plantillas `.github/ISSUE_TEMPLATE/change_request.md` y `.github/PULL_REQUEST_TEMPLATE.md`, y convención de ramas, commits y etiquetas en `CONTRIBUTING.md`.
