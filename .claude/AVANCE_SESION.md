@@ -27,3 +27,9 @@ Archivo vivo para continuar el trabajo en un chat nuevo. Actualizarlo durante la
 1. El usuario ejecuta `%TEMP%\limpieza_demo_anemia.sql` en Supabase (cubre los DEMO de ensayos y grabación).
 2. Decidir si se quita el aviso de traducción y se vuelve a grabar, o la compañera recorta la escena 5.
 3. Locución de la compañera, subida a Drive y enlace en el Anexo A del informe S12; cerrar T-022 con informe en `coordinacion/informes/`.
+
+## T-023 — Cierre de la entrega S13 (Huamani R., 13/11/2026)
+
+- Hecho: `exportados/semana-13/` con el informe S13 (DOCX y PDF), el cuadro PDCA y el informe del laboratorio SCM; informe `coordinacion/informes/2026-11-13_documentador_T-023.md`; fila T-023 en el tablero.
+- Hecho directamente, sin delegar en `agy`: no está instalado en este entorno y la tarea es copiar archivos ya generados y redactar el informe de cierre.
+- Siguiente paso: entrega en el aula virtual por el equipo; aprobación de las RFC y protección de ramas por el Leader.
