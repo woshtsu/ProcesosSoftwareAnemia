@@ -21,11 +21,12 @@
 | --- | --- |
 | **Carrera** | Ingeniería de Sistemas e Informática |
 | **Asignatura** | Procesos de Software (ASUC01702), Universidad Continental, periodo 2026-20, Noveno ciclo |
+| **Unidad del sílabo** | Unidad III — Evolución de los procesos y actividades de software |
 | **Proyecto de asignatura** | Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín |
 | **Docente** | Guevara Jimenez, Jorge Alfredo |
 | **Semana y guía** | Semana 10: «Evaluación de la calidad del producto de software mediante el modelo FURPS+» (`guias/semana-10.md`) |
 | **Fecha** | 30/10/2026 (todas las mediciones se ejecutaron ese día) |
-| **Versiones evaluadas** | Los cuatro incrementos: `v1.0-PMV` (Inc. 1, RF-01 a RF-05), `v2.0-Inc2` (Inc. 2, RF-06 a RF-09), `v3.0-Inc3` (Inc. 3, HIST-3.1 a 3.4 y VIS-3.5) y `v4.0-Inc4` (Inc. 4, HIST-4.1 a 4.4). La guía solo pide los incrementos 1 a 3; se agrega el 4 porque el código vigente lo incluye |
+| **Versiones evaluadas** | Los cuatro incrementos: `v1.0-PMV` (Inc. 1, RF-01 a RF-05), `v2.0-Inc2` (Inc. 2, RF-06 a RF-09), `v3.0-Inc3` (Inc. 3, HIST-3.1 a 3.4 y VIS-3.5) y `v4.0-Inc4` (Inc. 4, HIST-4.1 a 4.4). La guía solo pide los incrementos 1 a 3; se agrega el 4 porque el código vigente lo incluye. El alcance de cada incremento es el del backlog del proyecto y no coincide con la lista orientativa de la guía (por ejemplo, mapa en tiempo real, analítica histórica e integración con APIs externas): lo que no tiene equivalente en el backlog no se evaluó |
 | **Código medido** | Rama `docs/s12-integrador`, versión `4.0.0-inc4`. Pruebas y cobertura: commit `e6886e2`; resto de mediciones: commit `ada827f` (difiere de `e6886e2` solo en documentación; `pmv_fastapi/` no cambió). Cada captura de terminal muestra comando, fecha y commit en su pie |
 | **Repositorio** | <https://github.com/woshtsu/ProcesosSoftwareAnemia> (privado) |
 
@@ -36,7 +37,8 @@
 | 1 | Porras Veli, Ricardo | 76659572 | Ingeniero de Proceso | Consolidado FURPS+ (Actividad 5), plan de evolución e integración del informe |
 | 2 | Auqui Huincho, Tania Tifani | 75280128 | Ingeniera de Desarrollo y Prototipado | Factor S (arquitectura hexagonal) y Factor + (OWASP 2025, restricciones técnicas) |
 | 3 | Huamani Rodriguez, Jean Piero | 72156889 | Ingeniero de Calidad y Mejora del Proceso (QA Lead) | Factores F, U, R y P (pruebas de aceptación, accesibilidad, confiabilidad y carga) |
-| 4 | Amaru — Claude, asistente de IA (Anthropic) | — | Asistente de IA: apoyo en desarrollo, pruebas automatizadas, evidencias y documentación técnica, bajo supervisión del equipo | Ejecutó los scripts de medición de `metricas/`, generó las capturas automáticas y redactó el borrador técnico; el equipo revisa y valida |
+
+**Apoyo de IA.** Claude (Anthropic), asistente de IA, apoyó en desarrollo, pruebas automatizadas, evidencias y documentación técnica bajo supervisión del equipo: ejecutó los scripts de medición de `metricas/`, generó las capturas automáticas y redactó el borrador técnico, que el equipo revisa y valida. No es integrante del equipo.
 
 El reparto de responsabilidades es una **propuesta del equipo** basada en los roles de la matriz RAE de S3-4; no hay confirmación formal de los integrantes ni del docente.
 
@@ -79,7 +81,7 @@ Cada criterio pesa lo mismo dentro de su factor. Fórmulas: **ratio** = cumplen 
 | U | U7 | Estados de color con texto asociado (1.4.1, no solo color) | cumplen/total | 482/482 insignias | 100 % | 100,0 % | `salidas/U_estados_con_texto.json` |
 | U | U8 | Lector de pantalla NVDA/TalkBack (4.1.2) | cumplen/total | no medido (sin lector instalado) | 100 % | N/M | `-` |
 | R | R1 | Disponibilidad de /api/salud durante las 3 corridas de carga | mín(100, medido/meta) | 100,0 % (332 sondeos, 0 fallidos) | ≥ 99,5 % | 100,0 % | `salidas/P_resumen.json` |
-| R | R2 | MTTR: kill -9 del servidor y reinicio hasta /api/salud 200 | mín(100, meta/medido) | 0,85 s (datos íntegros: True) | < 5 min | 100,0 % | `salidas/R_mttr_reinicio.json` |
+| R | R2 | MTTR: kill -9 del servidor y reinicio hasta /api/salud 200 | mín(100, meta/medido) | 0,85 s (datos íntegros: sí) | < 5 min | 100,0 % | `salidas/R_mttr_reinicio.json` |
 | R | R3 | Caos PostgreSQL (kill -9): el pool se reconecta sin reiniciar la aplicación | cumplen/total | sí, 0,2 s tras volver la BD | sin reinicio | 100,0 % | `salidas/R_caos_postgres.json` |
 | R | R4 | Caos PostgreSQL: peticiones durante la caída respondidas sin error 500 | cumplen/total | 1/26 (500: 25) | respuesta controlada (503), 0 x 500 | 3,8 % | `salidas/R_caos_postgres.json` |
 | R | R5 | Tasa de error con carga nominal (20 usuarios, 2 corridas) | mín(100, meta/medido) | 0/1887 fallos | ≤ 1 % | 100,0 % | `salidas/P_resumen.json` |
@@ -428,6 +430,8 @@ Medido: {"recordatorios": 24, "todos_simulados": true, "segunda_generacion_dupli
 
 #### HIST-4.2 — Confirmación del tutor (personal y webhook firmado) (Inc. 4)
 
+**Aclaración (15/11/2026, T-026, H-120).** En este escenario el webhook con firma válida responde 200 pero no asocia el mensaje (`ignorados` = 1, `respuestas_registradas` = 0), porque el celular de prueba no corresponde a un recordatorio enviado por un canal real de WhatsApp (comentario de `metricas/capturar_software.py`, línea 625). El registro de respuestas por el webhook firmado lo verifica la prueba de integración `pmv_fastapi/tests/integracion/test_api_inc4.py` de la etiqueta `v4.0-Inc4` (2 respuestas registradas con firma válida). Por eso el estado «Aprobado» se mantiene.
+
 Medido: {"webhook_sin_firma": 403, "webhook_firma_invalida": 403, "webhook_firma_valida": 200, "webhook_respuesta": {"estados_aplicados": 0, "respuestas_registradas": 0, "ignorados": 1}, "verificacion_get": "777"}.
 
 ![Figura 50. HIST-4.2 (Inc. 4). Modal de respuesta del tutor (1 confirmo, 2 no puedo, 3 reprogramar).](evidencias/software/HIST42_inc4_1_modal_respuesta_escritorio.png)
@@ -498,6 +502,8 @@ La paleta sale de las variables `:root` de `pmv_fastapi/app/web/estilos.css` (l�
 | Advertencia / moderada | `#B4530B` (naranja) | Riesgo creciente: anemia moderada, prioridad media, pendiente de sincronizar | 5,02:1 blanco; **4,23:1 sobre `#FDE8D7`** | **Observación**: no llega a 4,5:1 sobre su fondo suave |
 | Alerta / severa | `#B0222B` (rojo) | Acción inmediata: anemia severa, control vencido, prioridad alta, conflicto, errores | 6,75:1 blanco; 5,46:1 sobre `#FBE1E3` | **Conforme** |
 
+**Nota (T-026, H-123).** La Tabla 9 recoge las variables de `estilos.css` (texto e insignias). Las barras del gráfico de hemoglobina usan otros tonos, definidos en `pmv_fastapi/app/web/app.js` (constante `COLOR`, línea 6): leve `#C99200` (en lugar del ámbar `#8A6200`), moderada `#D26A1B` (en lugar del naranja `#B4530B`) y no aplica `#8C99A6`. Su contraste se evalúa por separado en la Tabla 10 (la barra leve, 2,46:1, no cumple).
+
 ![Figura 60. Paleta real de la interfaz con muestras, hexadecimales, contraste y significado.](evidencias/usabilidad/U_paleta_colores.png)
 
 **Figura 60.** Paleta real de la interfaz con muestras, hexadecimales, contraste y significado. Archivo: `evidencias/usabilidad/U_paleta_colores.png`.
@@ -512,14 +518,14 @@ La paleta sale de las variables `:root` de `pmv_fastapi/app/web/estilos.css` (l�
 
 | Componente | Colores | Razón | Estado |
 | --- | --- | --- | --- |
-| borde de campos (--borde) sobre blanco | `#D7E0EA` sobre `#FFFFFF` | 1.33:1 | **No cumple** |
-| borde de boton secundario (#A9C4E2) sobre blanco | `#A9C4E2` sobre `#FFFFFF` | 1.8:1 | **No cumple** |
-| contorno de foco de campos (#9CC3EA) sobre blanco | `#9CC3EA` sobre `#FFFFFF` | 1.84:1 | **No cumple** |
-| barra SIN_ANEMIA del grafico | `#1F7A3D` sobre `#EEF2F6` | 4.77:1 | Cumple |
-| barra LEVE del grafico (#C99200) | `#C99200` sobre `#EEF2F6` | 2.46:1 | **No cumple** |
-| barra MODERADA del grafico (#D26A1B) | `#D26A1B` sobre `#EEF2F6` | 3.21:1 | Cumple |
-| barra SEVERA del grafico | `#B0222B` sobre `#EEF2F6` | 6.0:1 | Cumple |
-| barra NO_APLICA del grafico (#8C99A6) | `#8C99A6` sobre `#EEF2F6` | 2.58:1 | **No cumple** |
+| borde de campos (--borde) sobre blanco | `#D7E0EA` sobre `#FFFFFF` | 1,33:1 | **No cumple** |
+| borde de boton secundario (#A9C4E2) sobre blanco | `#A9C4E2` sobre `#FFFFFF` | 1,8:1 | **No cumple** |
+| contorno de foco de campos (#9CC3EA) sobre blanco | `#9CC3EA` sobre `#FFFFFF` | 1,84:1 | **No cumple** |
+| barra SIN_ANEMIA del grafico | `#1F7A3D` sobre `#EEF2F6` | 4,77:1 | Cumple |
+| barra LEVE del grafico (#C99200) | `#C99200` sobre `#EEF2F6` | 2,46:1 | **No cumple** |
+| barra MODERADA del grafico (#D26A1B) | `#D26A1B` sobre `#EEF2F6` | 3,21:1 | Cumple |
+| barra SEVERA del grafico | `#B0222B` sobre `#EEF2F6` | 6,0:1 | Cumple |
+| barra NO_APLICA del grafico (#8C99A6) | `#8C99A6` sobre `#EEF2F6` | 2,58:1 | **No cumple** |
 
 Propuesta calculada (no aplicada): borde de campos `#8795A5` (3,06:1), contorno de foco `#2E5C8A` (6,97:1), barra LEVE `#8A6200` (4,88:1), barra NO_APLICA `#707E8C` (3,69:1). Hasta corregirlo, las barras del gráfico de Hb se acompañan de etiqueta de texto.
 
@@ -622,7 +628,7 @@ Entorno de medición: una sola máquina virtual, un único proceso uvicorn, SQLi
 | **P** | Latencia REST, 20 usuarios | p95 < 800 ms | Locust 20 usuarios, 60 s; Inc. 1-2 y Inc. 3-4 | p95 29 ms y 98 ms (p50 10 y 9 ms) | **Cumple** |
 | **P** | Latencia REST, 100 usuarios | p95 < 800 ms | Locust 100 usuarios, 60 s, Inc. 1-2 | p95 2000 ms, p50 780 ms, p99 2600 ms | **No cumple** |
 | **P** | Latencia REST, 500 usuarios | p95 < 800 ms (meta de la guía) | No ejecutado (máximo probado: 100 usuarios) | — | **No medido** |
-| **P** | Rendimiento (RPS) | Peticiones por segundo | Locust | 16.16 y 15,84 req/s con 20 usuarios; 49,29 req/s con 100 usuarios (bucle cerrado con espera entre tareas) | Informativo (sin meta) |
+| **P** | Rendimiento (RPS) | Peticiones por segundo | Locust | 16,16 y 15,84 req/s con 20 usuarios; 49,29 req/s con 100 usuarios (bucle cerrado con espera entre tareas) | Informativo (sin meta) |
 | **P** | Memoria | RSS del proceso uvicorn | Muestreo de `/proc` durante la carga | 81.4 a 117,8 MB | Informativo (sin meta) |
 | **P** | Carga de la PWA (cliente) | LCP < 2500 ms en móvil lento | Playwright, 390x844, CPU x4, 1,6 Mbps, 150 ms, 5 repeticiones (`rendimiento_cliente.py`) | Primera carga: LCP 468 ms, 142 kB, 11 recursos. Segunda carga con service worker: LCP 84 ms, 302 B por red | **Cumple** |
 
@@ -630,9 +636,9 @@ Entorno de medición: una sola máquina virtual, un único proceso uvicorn, SQLi
 
 | Corrida | Usuarios | Peticiones | Fallos | p50 (ms) | p95 (ms) | p99 (ms) | RPS | Disponibilidad | RSS (MB) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| A_inc1_inc2_20u | 20 | 953 | 0 (0,0 %) | 10 | 29 | 91 | 16.16 | 100,0 % | 81.4 a 88.1 |
-| B_inc3_inc4_20u | 20 | 934 | 0 (0,0 %) | 9 | 98 | 300 | 15.84 | 100,0 % | 88.1 a 93.6 |
-| C_inc1_inc2_100u | 100 | 2904 | 1 (0,034 %) | 780 | 2000 | 2600 | 49.29 | 100,0 % | 93.6 a 117.8 |
+| A_inc1_inc2_20u | 20 | 953 | 0 (0,0 %) | 10 | 29 | 91 | 16,16 | 100,0 % | 81,4 a 88,1 |
+| B_inc3_inc4_20u | 20 | 934 | 0 (0,0 %) | 9 | 98 | 300 | 15,84 | 100,0 % | 88,1 a 93,6 |
+| C_inc1_inc2_100u | 100 | 2904 | 1 (0,034 %) | 780 | 2000 | 2600 | 49,29 | 100,0 % | 93,6 a 117,8 |
 
 El único fallo de la corrida C es un 409 por DNI duplicado que genera el propio script de carga (no es un error del servidor). Con 100 usuarios el p95 pasa de 29 a 2000 ms y los endpoints más lentos son `POST /api/ninos` (p95 2500 ms), `GET /api/ninos` y `GET /api/reportes/periodo` (2200 ms). La causa probable es un único proceso con una base SQLite compartida; no se perfiló el código. Acción: medir con PostgreSQL y 2 a 4 *workers*, y perfilar el listado antes de optimizar.
 
@@ -995,7 +1001,7 @@ IC_P = Σ (puntaje del factor × peso). El detalle por criterio está en la secc
 | **R — Confiabilidad** | 15 % | 84,0 % (72,0 %) | 12,60 % (10,80 %) | La caída de la BD produce 500 en lugar de 503; sin staging para medir disponibilidad real | R-1 (manejador 503) y R-2 (desplegar en Render y monitorear 7 días) |
 | **P — Rendimiento** | 15 % | 85,0 % (68,0 %) | 12,75 % (10,20 %) | p95 de 2000 ms con 100 usuarios; 500 usuarios sin medir | P-1 (PostgreSQL, varios workers, perfilar el listado) y P-2 (definir la meta realista) |
 | **S — Soportabilidad** | 10 % | 99,0 % (99,0 %) | 9,90 % (9,90 %) | 23 de 669 bloques con CC > 10; 2 archivos fuera del rango A (`sqlalchemy_repo.py` MI 8,3; `memoria.py` 18,1) | Dividir `sqlalchemy_repo.py` por agregado y simplificar `extraer_eventos` y `_contar` |
-| **+ — Seguridad / Restricciones** | 15 % | 66,8 % (44,5 %) | 10,02 % (6,68 %) | 41 de 61 comprobaciones; 1 hallazgo Alta (sin roles); 0 de 6 cabeceras; CSV con fórmulas; sin logs ni alertas de seguridad; 3 criterios no medidos | H-1 a H-12 (sección 5.4): primero H-1, H-2, H-3, H-5 y H-6 |
+| **+ — Seguridad / Restricciones** | 15 % | 66,8 % (44,5 %) | 10,02 % (6,68 %) | 41 de 61 comprobaciones; 1 hallazgo Alta (sin roles); 0 de 6 cabeceras; CSV con fórmulas; sin logs ni alertas de seguridad; 2 criterios no medidos (+5 y +6) | H-1 a H-12 (sección 5.4): primero H-1, H-2, H-3, H-5 y H-6 |
 | **TOTAL** | **100 %** | — | **87,67 % (78,43 %)** | Por debajo de «Excelente (≥ 90 %)» de la guía; brechas en U, R, P y + | Plan de evolución siguiente |
 
 **Sensibilidad.** El índice primario (87,67 %) ignora lo no medido; el conservador (78,43 %) lo cuenta como incumplido. La diferencia (9,24 puntos) cuantifica cuánto de la calidad depende de mediciones que faltan: lector de pantalla, staging, 500 usuarios, Docker en ejecución y política de Supabase.
@@ -1085,20 +1091,20 @@ Reportes crudos en `metricas/salidas/`: `U_axe_por_pantalla.json` (axe, 14 panta
 
 Repositorio (privado): <https://github.com/woshtsu/ProcesosSoftwareAnemia>.
 
-**Tabla 30.** Etiquetas de los incrementos y estado verificado en el clon local (`git tag` no devuelve etiquetas en este clon; las capturas de GitHub las debe tomar el equipo).
+**Tabla 30.** Etiquetas de los incrementos verificadas el 15/11/2026 (T-026) con `git tag` y `git ls-remote --tags origin`. Las cuatro son etiquetas anotadas.
 
-| Incremento | Etiqueta | Commit de referencia | Estado de verificación |
+| Incremento | Etiqueta | Commit al que apunta | Estado de verificación |
 | --- | --- | --- | --- |
-| Inc. 1 — PMV | `v1.0-PMV` | (ver informe S9) | Existe en GitHub según el informe S9; no se verificó en este clon |
-| Inc. 2 | `v2.0-Inc2` | `fb26626` (18/10/2026) | Existe según S9; el commit existe en el clon, la etiqueta no |
-| Inc. 3 | `v3.0-Inc3` | `e920820` | El commit existe en el clon («Inc. 3 completo»); etiqueta no verificada |
-| Inc. 4 | `v4.0-Inc4` | `5c1f1eb`; código medido en `e6886e2` | El commit existe; la adenda S9 indica que la etiqueta está prevista y no existe en el clon local |
+| Inc. 1 — PMV | `v1.0-PMV` | `9ce90c3` (30/09/2026) | Existe en el remoto; creada el 30/09/2026 |
+| Inc. 2 | `v2.0-Inc2` | `fb26626` (18/10/2026) | Existe en el remoto; creada el 18/10/2026 |
+| Inc. 3 | `v3.0-Inc3` | `e920820` («Inc. 3 completo», 30/10/2026) | Existe en el remoto; creada el 30/10/2026 (17:43) |
+| Inc. 4 | `v4.0-Inc4` | `e6886e2` (30/10/2026), el commit de las pruebas y la cobertura medidas | Existe en el remoto; creada el 30/10/2026 (18:11). El commit `5c1f1eb` («Inc. 4 completo») es anterior y forma parte de la etiqueta |
 
 ![Figura 120. Etiquetas de los cuatro incrementos en GitHub (ruta completa: `https://github.com/woshtsu/ProcesosSoftwareAnemia/tags`).](evidencias/github/GH_etiquetas.png)
 
 **Figura 120.** Etiquetas de los cuatro incrementos en GitHub (ruta completa: `https://github.com/woshtsu/ProcesosSoftwareAnemia/tags`). Captura de GitHub en la etiqueta `v4.0-Inc4` (30/10/2026). Archivo: `evidencias/github/GH_etiquetas.png`.
 
-Si `v4.0-Inc4` no se publicó cuando se tomen las capturas, se debe crear sobre el commit `5c1f1eb` o sobre el de las correcciones de CI y registrar el commit elegido; el índice de este informe se midió en `e6886e2`/`ada827f`.
+Corrección (T-026, H-121): la versión anterior de esta tabla afirmaba que las etiquetas no existían en el clon y que `v4.0-Inc4` debía crearse; las etiquetas ya existían en el remoto (fechas de arriba). La etiqueta `v4.0-Inc4` apunta a `e6886e2`; el índice de este informe se midió en `e6886e2` (pruebas y cobertura) y `ada827f` (resto, solo documentación).
 
 ### Anexo D. Limitaciones de la medición
 
@@ -1106,6 +1112,9 @@ Si `v4.0-Inc4` no se publicó cuando se tomen las capturas, se debe crear sobre 
 - Las capturas usan `AUTH_MODE=demo`; las pruebas de seguridad usan Supabase simulado. No se probó Supabase real, TLS del despliegue ni cifrado en reposo.
 - No se ejecutaron: lector de pantalla, SUS, SonarQube, OWASP ZAP, k6, 500 usuarios, staging Render/AWS ni Docker en ejecución.
 - Cada incremento se evaluó con el código de `v4.0-Inc4`; no se restauraron las etiquetas anteriores ni se compararon métricas entre versiones (eso corresponde a la adenda S9 y al informe S12).
+- No se evaluó por separado el criterio WCAG 1.1.1 (texto alternativo de imágenes e íconos): no figura en la Tabla 11 ni se documentó una inspección dedicada; queda pendiente del equipo.
+- El umbral de 0 vulnerabilidades Alta/Crítica no se cumple: el hallazgo H-1 (sin roles ni segmentación, A01) sigue abierto.
+- Este informe evalúa el producto con FURPS+. No incluye una evaluación del proceso de software ni su propuesta de mejora (Unidad III); queda pendiente de decisión del docente y del equipo.
 - La severidad de los hallazgos es estimación del equipo, no puntaje CVSS.
 - Los datos de este informe y de las capturas los generó el asistente de IA con los scripts del repositorio; el equipo debe revisarlos antes de la entrega.
 
