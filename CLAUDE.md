@@ -1,6 +1,6 @@
 ## Forma de trabajo obligatoria (se carga en cada sesión)
 
-Antes de actuar, leer `AGENTS.md` (sección «Forma de trabajo de las IA») y `.claude/AVANCE_SESION.md`.
+Antes de actuar, leer `AGENTS.md` (sección «Forma de trabajo de las IA») y `.claude/AVANCE_SESION.md`. Para revisar entregables, el sílabo resumido está en `.claude/contexto/SILABO_RESUMEN.md` (el PDF no se versiona).
 
 - **Claude orquesta y revisa; `agy` (Antigravity CLI) hace el trabajo pesado.** Toda implementación, refactorización, adaptación de scripts, redacción extensa o búsqueda amplia se delega a `agy` con un encargo autocontenido (archivos, criterio de terminado, prohibido hacer commits):
 
