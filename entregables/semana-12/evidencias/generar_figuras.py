@@ -1,6 +1,6 @@
 """Genera la figura de evolución GQM/pruebas del informe S12.
 
-Fuente de los valores: entregables/semana-09/ADENDA_v4_REFERENCIA_S12.md (secciones 2 y 4) y
+Fuente de los valores: .claude/archivo/semana-09/ADENDA_v4_REFERENCIA_S12.md (secciones 2 y 4) y
 entregables/semana-09/Entregable_Semana9_Anemia_Junin.md (metas acumuladas propuestas, sección 6.4).
 Uso: python generar_figuras.py   (escribe GQM_v4_evolucion.png junto a este archivo)
 """

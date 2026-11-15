@@ -226,7 +226,7 @@
  },
  "advertencia": "V1 de v1.0, v1.5 y v2.0 es idéntico (un registro nominal único desde el Inc. 1). El índice de v1.5 y el de v2.0 son 100 % porque los tres indicadores con línea base alcanzan su máximo en el dataset B150; mide solo los tres indicadores definidos (V1, V2, V3), no el alcance completo del incremento ni el valor clínico. La agenda del personal y la asistencia (RF-08 y RF-09) no tienen un indicador propio en el índice: se verifican con los criterios Dado-Cuando-Entonces (M2.1/V6) y con la sección linea_base_real_DIRESA.",
  "linea_base_real_DIRESA": {
-  "fuente_as_is": "datos/asis_dataset_diresa.json (herramientas/dataset/analisis_asis.py) sobre el dataset completo: 12 486 diagnósticos de anemia en menores de 36 meses, DIRESA Junín, HIS, corte 30/06/2024",
+  "fuente_as_is": "datos/asis_dataset_diresa.json (.claude/herramientas/dataset/analisis_asis.py) sobre el dataset completo: 12 486 diagnósticos de anemia en menores de 36 meses, DIRESA Junín, HIS, corte 30/06/2024",
   "fuente_v2_0": "datos/m32_dataset_real.json: muestra estratificada de 500 niños (Provincia x severidad HIS, semilla 2026) importada a la v2.0 con FECHA_REFERENCIA=2024-06-30",
   "regla_seguimiento_posible": "fecha_dx + plazo + holgura ≤ fecha de corte (plazos {'mes': 30, '3m': 90, '6m': 180}, holgura 30 d)",
   "control_de_hemoglobina_registrado": {

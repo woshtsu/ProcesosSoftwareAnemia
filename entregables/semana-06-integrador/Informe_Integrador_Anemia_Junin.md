@@ -49,7 +49,7 @@ El problema central no termina en detectar un resultado de Hb: la medición debe
 
 #### Procesos AS-IS y TO-BE
 
-![Figura 1 Síntesis del AS-IS y las mejoras por incremento](../../diagramas/svg/01_procesos_as_is_to_be.svg)
+![Figura 1 Síntesis del AS-IS y las mejoras por incremento](../../.claude/diagramas/svg/01_procesos_as_is_to_be.svg)
 
 En el AS-IS la familia acude a la posta, el personal revisa antecedentes, decide si corresponde control o tamizaje y registra resultados. La familia cumple indicaciones en casa y el agente reporta visitas. Gestión consolida datos con demora. El seguimiento y cierre dependen de registros manuales y de la comunicación entre actores. Los diagramas completos por carriles se encuentran en S1, figuras 2 y 7.
 
@@ -66,7 +66,7 @@ La entrada al TO-BE son datos del niño, dosajes, respuestas familiares y visita
 
 #### Cadena de valor e indicadores
 
-![Figura 2 Cadena de valor del proceso objetivo](../../diagramas/svg/12_s1_cadena_valor.svg)
+![Figura 2 Cadena de valor del proceso objetivo](../../.claude/diagramas/svg/12_s1_cadena_valor.svg)
 
 La cadena conecta entrada, actividad, resultado, decisión, acción y valor. En INC-1 se verifica la calidad de la entrada y su conservación en el expediente. Las etapas de agenda, visitas y recuperación de la visión completa aún no tienen evidencia de impacto.
 
@@ -106,7 +106,7 @@ La cadena conecta entrada, actividad, resultado, decisión, acción y valor. En 
 
 Se adopta base iterativa incremental, sprints de dos semanas y DoD técnico de cobertura ≥80 %, pruebas aprobadas y revisión del producto. Scrum organiza el trabajo; pytest, Ruff y scripts reproducibles sostienen la ingeniería. El equipo utiliza un monolito modular para reducir el costo operativo del PMV. La entrega local se distingue del piloto institucional, condicionado a seguridad, operación de campo y validación.
 
-![Figura 3 Aplicación del ciclo de proceso al proyecto](../../diagramas/svg/15_s2_modelo_proceso_aplicado.svg)
+![Figura 3 Aplicación del ciclo de proceso al proyecto](../../.claude/diagramas/svg/15_s2_modelo_proceso_aplicado.svg)
 
 El ciclo identifica entrada, planificación, desarrollo, integración, pruebas, retroalimentación, entrega, medición, mejora y repetición. INC-1 precede a agenda, offline, mensajería, predicción y tablero. El subciclo MLOps futuro exige validación de datos, entrenamiento, evaluación con especialistas, publicación y monitoreo; no forma parte de la entrega actual.
 
@@ -139,7 +139,7 @@ E ejecuta, R revisa y A aprueba. Los nombres mantienen los roles definidos por e
 
 #### WBS estimación y prioridades
 
-![Figura 4 WBS del proyecto y descomposición del primer incremento](../../diagramas/svg/31_s34_wbs_proyecto.svg)
+![Figura 4 WBS del proyecto y descomposición del primer incremento](../../.claude/diagramas/svg/31_s34_wbs_proyecto.svg)
 
 El plan de S3-4 descompone Proyecto, Entregables, Incrementos, Épicas, Historias y Tareas. INC-1 incluye EP-1.T habilitadores, EP-1.B validación, EP-1.A registro/expediente y EP-1.C seguimiento/reporte. Las tareas T01–T16 cubren ADR, migración, calidad, normativa, validadores, clasificador, API, web, expediente, listado, reporte y demostración.
 
@@ -162,7 +162,7 @@ Los puntos no se convierten directamente en horas. No hay registro de horas real
 
 Pesos: valor 30 %, reducción de riesgo 25 %, dependencia 20 %, complejidad inversa 15 % y validación 10 %. El cronograma de ocho sprints termina el 21/12/2026 como propuesta académica. La priorización debe revisarse antes de un piloto rural porque INC-3 resuelve conectividad.
 
-![Figura 5 Gantt planificado del primer incremento](../../diagramas/svg/32_s34_gantt_incremento1.svg)
+![Figura 5 Gantt planificado del primer incremento](../../.claude/diagramas/svg/32_s34_gantt_incremento1.svg)
 
 #### Seguimiento y control de desviaciones
 
@@ -174,7 +174,7 @@ Pesos: valor 30 %, reducción de riesgo 25 %, dependencia 20 %, complejidad inve
 | Despliegue local frente a visión rural | Mantener offline, roles y piloto en backlog explícito | Proceso |
 | Resultados clínicos sin línea base | No calcular impacto hasta definir cohorte y medición | Usuario y Proceso |
 
-![Figura 6 Burndown del escenario simulado de S3-4](../../diagramas/svg/35_s34_burndown_sprint1.svg)
+![Figura 6 Burndown del escenario simulado de S3-4](../../.claude/diagramas/svg/35_s34_burndown_sprint1.svg)
 
 El burndown ilustra el mecanismo de seguimiento solicitado por la guía; su serie es simulada. El avance real se acredita con código y pruebas, pero la velocidad aceptada y las horas consumidas siguen sin registro. El equipo compara plan, ejecución, medición y desviación para asignar acciones correctivas.
 
@@ -210,17 +210,17 @@ Se utiliza la clasificación pedagógica de la consigna, sin afirmar certificaci
 | ADR-002 | Clasificación referencial y configuración versionada | Trazabilidad; versión y advertencias por dosaje |
 | ADR-002 | Formularios CSRF, sin cuentas diferenciadas ni servicios externos | Alcance de seguridad explícito; pruebas CSRF |
 
-![Figura 7 C4 nivel 1 Contexto del PMV](../../diagramas/svg/03_c4_contexto.svg)
+![Figura 7 C4 nivel 1 Contexto del PMV](../../.claude/diagramas/svg/03_c4_contexto.svg)
 
-![Figura 8 C4 nivel 2 Contenedores](../../diagramas/svg/04_c4_contenedores.svg)
+![Figura 8 C4 nivel 2 Contenedores](../../.claude/diagramas/svg/04_c4_contenedores.svg)
 
-![Figura 9 C4 nivel 3 Componentes de la aplicación](../../diagramas/svg/05_c4_componentes.svg)
+![Figura 9 C4 nivel 3 Componentes de la aplicación](../../.claude/diagramas/svg/05_c4_componentes.svg)
 
 UI y API comparten un proceso Flask y los mismos casos de uso. SQLite es almacenamiento embebido y no un servidor HTTP. El script de datos llama a la API mediante el cliente de prueba Flask; no evita las validaciones. Las flechas de C4-3 representan llamadas por puertos y no imports hacia infraestructura.
 
-![Figura 10 Paquetes y dependencias hexagonales](../../diagramas/svg/40_s5_paquetes_hexagonal.svg)
+![Figura 10 Paquetes y dependencias hexagonales](../../.claude/diagramas/svg/40_s5_paquetes_hexagonal.svg)
 
-![Figura 11 Modelo físico de datos](../../diagramas/svg/08_modelo_datos.svg)
+![Figura 11 Modelo físico de datos](../../.claude/diagramas/svg/08_modelo_datos.svg)
 
 El esquema reside en migrations/001_initial.sql: ninos, dosajes, intentos_registro y schema_version. DNI es único; un niño admite cero o más dosajes. Un intento rechazado no necesita FK a un expediente inexistente. La edición no modifica identidad ni dosajes anteriores.
 
@@ -236,7 +236,7 @@ El esquema reside en migrations/001_initial.sql: ninos, dosajes, intentos_regist
 
 OpenAPI se encuentra en anemia_junin/openapi.yaml y sus pruebas verifican rutas y esquemas. La falta de dosaje produce SIN_DOSAJE, no SIN_ANEMIA. Los registros menores de seis meses se conservan, aunque el listado de seguimiento se limita a 6–59 meses. La configuración clínica se describe como implementación referencial pendiente de revisión especializada.
 
-![Figura 12 Secuencia de alta válida e inválida](../../diagramas/svg/09_secuencia_registro.svg)
+![Figura 12 Secuencia de alta válida e inválida](../../.claude/diagramas/svg/09_secuencia_registro.svg)
 
 ### 3.3 Estrategia y ejecución de pruebas
 
@@ -270,7 +270,7 @@ Carga de 20 usuarios, rampa 5/s y 60 s sobre Waitress de 8 hilos y SQLite indepe
 
 ### 3.4 Despliegue y demostración del PMV
 
-![Figura 13 Entorno de demostración local](../../diagramas/svg/07_despliegue.svg)
+![Figura 13 Entorno de demostración local](../../.claude/diagramas/svg/07_despliegue.svg)
 
 El punto de entrada python -m anemia_junin levanta Waitress en 127.0.0.1:8000. Las migraciones se aplican automáticamente. La carga sintética exige una base sin niños. README documenta instalación, configuración, scripts y pruebas. El entorno local satisface la demostración técnica de la guía S5; no constituye un despliegue en la posta.
 
@@ -325,4 +325,4 @@ El siguiente incremento de la línea base es agenda y alertas internas (INC-2). 
 | Defensa | Presentacion_Integrador_Anemia_Junin.md; siete diapositivas derivadas |
 | Aceptación humana | Pendiente de usuario designado y acta |
 
-Fuentes primarias del informe: guías S1, S2, S3-4, S5 y consigna integradora descargadas del aula virtual; entregables semanales; código, ADR y pruebas del repositorio. Las referencias normativas conservadas en config/normativa_v1.json y en S1 describen la procedencia declarada de reglas; este informe no sustituye su validación clínica. Los antecedentes del integrador anterior se conservan en archivo/versiones-anteriores/semana-06-integrador/.
+Fuentes primarias del informe: guías S1, S2, S3-4, S5 y consigna integradora descargadas del aula virtual; entregables semanales; código, ADR y pruebas del repositorio. Las referencias normativas conservadas en config/normativa_v1.json y en S1 describen la procedencia declarada de reglas; este informe no sustituye su validación clínica. Los antecedentes del integrador anterior se conservan en .claude/archivo/versiones-anteriores/semana-06-integrador/.

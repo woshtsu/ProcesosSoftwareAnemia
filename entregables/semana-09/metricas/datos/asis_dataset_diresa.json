@@ -1,5 +1,5 @@
 {
-  "fuente": "Dataset/Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv (DIRESA Junín, HIS)",
+  "fuente": "pmv_fastapi/datos/Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv (DIRESA Junín, HIS)",
   "fecha_corte": "30/06/2024",
   "parametros": {
     "plazos_dias": {

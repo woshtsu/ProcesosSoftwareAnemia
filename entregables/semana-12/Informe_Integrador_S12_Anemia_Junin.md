@@ -231,7 +231,7 @@ PERIODO ACADÉMICO: 2026-20
 - Figura 97. Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con =, +, - o @ (GitHub, v4.0-Inc4).
 - Figura 98. Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez.
 - Figura 99. Ejecuciones del flujo «CI y producción» en main: la #16 (c870a7e, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026).
-- Figura 100. Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en coordinacion/TABLERO.md (GitHub, 30/10/2026).
+- Figura 100. Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en .claude/coordinacion/TABLERO.md (GitHub, 30/10/2026).
 - Figura 101. settings/branches devuelve 404 para la cuenta que tomó la captura: la protección de main no es verificable (GitHub, 30/10/2026).
 - Figura 102. Artefactos de proceso en el repositorio: la plantilla de PR, el hook de pre-commit, la convención de commits, CODEOWNERS y Dependabot no existen; SonarCloud...
 - Figura 103. Estimación del backlog en puntos de historia: 21 SP del INC-1 y 133 SP en total, con complejidad e incertidumbre por elemento. Fuente: entregable S3-4, secci...
@@ -357,7 +357,7 @@ Cockburn [13] propone aislar la lógica de aplicación de sus actores externos m
 
 | Modelo | Definición (fuente) | Cómo se usa aquí |
 | --- | --- | --- |
-| **GQM** | Cada **meta** se refina en **preguntas** y cada pregunta en **métricas**; las metas se redactan con objeto, propósito, enfoque de calidad, punto de vista y contexto [14] | 3 metas (arquitectura, pruebas, valor), 6 métricas con script en `herramientas/gqm/`, recalculadas para Inc. 1 a Inc. 4 |
+| **GQM** | Cada **meta** se refina en **preguntas** y cada pregunta en **métricas**; las metas se redactan con objeto, propósito, enfoque de calidad, punto de vista y contexto [14] | 3 metas (arquitectura, pruebas, valor), 6 métricas con script en `.claude/herramientas/gqm/`, recalculadas para Inc. 1 a Inc. 4 |
 | **FURPS+** | Funcionalidad, Usabilidad, Confiabilidad (*Reliability*), Rendimiento (*Performance*) y Soportabilidad, más restricciones de implementación, interfaz, operaciones, empaquetamiento y legales [15], [16] | Índice ponderado F 30 %, U 15 %, R 15 %, P 15 %, S 10 %, + 15 %; variables medidas con scripts |
 | **WCAG 2.1 AA** | Contraste mínimo de 4,5:1 para texto (1.4.3) y 3:1 para componentes (1.4.11); el color no es el único canal (1.4.1); operable por teclado (2.1.1) [17] | Axe-core por pantalla y cálculo propio de contraste (factor U) |
 | **OWASP Top 10:2025** | Diez categorías de riesgo de aplicaciones web, A01 Broken Access Control a A10 Mishandling of Exceptional Conditions [18] | 30 comprobaciones estáticas, 32 dinámicas, SAST y SCA (factor +) |
@@ -404,11 +404,11 @@ El sistema solo distingue «usuario autenticado»: no hay roles por actor ni seg
 
 Resultado: **M3.1 = 4,5 / 6 = 75,0 %**. Cuatro brechas (B1 a B4) tienen mecanismo operativo y probado **en el entorno de pruebas**; ninguna se midió en una posta.
 
-![Proceso AS-IS por carriles de actor.](../../diagramas/png/10_s1_proceso_as_is.png)
+![Proceso AS-IS por carriles de actor.](../../.claude/diagramas/png/10_s1_proceso_as_is.png)
 
 **Figura 2.** Proceso AS-IS por carriles de actor con las notas de problema de cada actividad (S1).
 
-![Proceso TO-BE por carriles de actor con el carril Sistema.](../../diagramas/png/11_s1_proceso_to_be.png)
+![Proceso TO-BE por carriles de actor con el carril Sistema.](../../.claude/diagramas/png/11_s1_proceso_to_be.png)
 
 **Figura 3.** Proceso TO-BE con el carril «Sistema» y las mejoras M1 a M6 (S1). Las decisiones clínicas siguen siendo humanas.
 
@@ -472,7 +472,7 @@ Se compararon siete enfoques con seis criterios (escala 1 a 5): Cascada 8, Incre
 | Práctica | Planificado | Ejecutado (evidencia) | Brecha |
 | --- | --- | --- | --- |
 | Entrega incremental | 6 incrementos, 133 puntos de historia (SP) | 4 incrementos entregados (INC-1 a INC-4), 76 de 133 SP (57,1 %); cada uno con etiqueta (`v1.0-PMV`, `v2.0-Inc2`, `v3.0-Inc3`, `v4.0-Inc4`) | INC-5 (modelo predictivo) e INC-6 (tablero) sin construir |
-| Scrum | Sprints de 2 semanas, backlog con estimación, revisión con la posta, retrospectiva | Backlog estimado con SP (S3-4); seguimiento en `coordinacion/TABLERO.md` | Sin actas de revisión con el personal de salud; sin tablero de GitHub Projects («No projects found»); sin horas reales registradas |
+| Scrum | Sprints de 2 semanas, backlog con estimación, revisión con la posta, retrospectiva | Backlog estimado con SP (S3-4); seguimiento en `.claude/coordinacion/TABLERO.md` | Sin actas de revisión con el personal de salud; sin tablero de GitHub Projects («No projects found»); sin horas reales registradas |
 | DevOps | Integración continua, pruebas automáticas, despliegue automatizado | GitHub Actions con tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`); 660 pruebas y 28 E2E; despliegue a Render y Supabase desde `main`; producción verificada el 31/10/2026: `/openapi.json` declara `4.0.0-inc4` con 29 rutas | SAST y auditoría de dependencias fuera del CI; protección de `main` no verificable |
 | MLOps | Pipeline de datos, experimentación y monitoreo del modelo | No ejecutado | Depende del INC-5 |
 
@@ -497,7 +497,7 @@ La categorización es la simplificación del curso (sección 2.3), sin afirmar c
 | Proceso de soporte | Gestión de configuración | Repositorio Git con 5 etiquetas y ramas `feature/*` | Auqui H. | no definido en S3-4 | no definido en S3-4 | Etiquetas `v1.0-PMV` a `v4.0-Inc4` (Anexo B) |
 | Proceso de soporte | Aseguramiento de calidad (PQA) | Ruff, informe de revisión independiente, defectos DEF-01 a DEF-09 | Huamani R. | Porras V. | Huamani R. | `registro_defectos*.md`, informe T-020 |
 | Proceso de soporte | Verificación y validación | 19 fichas de prueba con capturas | Huamani R. | Auqui H. | firma pendiente | Sección 3.6.3 |
-| Proceso de gestión | Planificación y control de desviaciones | Plan por sprint, plan frente a real | Porras V. | Huamani R. | Porras V. | `coordinacion/TABLERO.md`; Tabla 15 |
+| Proceso de gestión | Planificación y control de desviaciones | Plan por sprint, plan frente a real | Porras V. | Huamani R. | Porras V. | `.claude/coordinacion/TABLERO.md`; Tabla 15 |
 | Proceso de gestión | Retrospectiva y mejora | Plan de mejora CMMI con 19 acciones | Porras V. | Equipo | Porras V. | Sección 3.8 |
 
 **Definición de terminado (DoD)**
@@ -549,7 +549,7 @@ PROYECTO ANEMIA JUNÍN
 └── INC-6 Tablero territorial (15 SP) ........................ no implementado
 ```
 
-![WBS del proyecto y tareas del Incremento 1.](../../diagramas/png/31_s34_wbs_proyecto.png)
+![WBS del proyecto y tareas del Incremento 1.](../../.claude/diagramas/png/31_s34_wbs_proyecto.png)
 
 **Figura 5.** WBS: Proyecto, entregables E1 a E3, incrementos INC-1 a INC-6, épicas, historias y tareas del Incremento 1 (S3-4).
 
@@ -568,7 +568,7 @@ PROYECTO ANEMIA JUNÍN
 
 **Priorización valor y riesgo.** El puntaje ponderado combina valor (30 %), reducción de riesgo (25 %), dependencia técnica (20 %), factibilidad (15 %) y validación (10 %). INC-1 lidera porque es prerrequisito de todos los demás; INC-3 puntúa por encima de INC-2, pero se ejecutó después porque requería el pipeline de integración continua y la decisión sobre la base central (nota de S3-4 sobre el calendario). Dentro del INC-1 se construyó primero la clasificación normativa (HIST-1.3) y después el formulario, porque un umbral clínico mal transcrito invalidaría todo lo posterior.
 
-![Cronograma de los ocho sprints con incrementos e hitos H0 a H7.](../../diagramas/png/33_s34_cronograma_sprints_hitos.png)
+![Cronograma de los ocho sprints con incrementos e hitos H0 a H7.](../../.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png)
 
 **Figura 6.** Cronograma planificado de ocho sprints con incrementos e hitos H0 a H7 (S3-4).
 
@@ -639,7 +639,7 @@ El PMV entregó el valor comprometido (registro único y clasificación probada 
 
 #### 3.6.1 Evaluación GQM de arquitectura, pruebas y valor
 
-Las tres metas se formularon con la plantilla de Basili et al. [14] (objeto, propósito, enfoque de calidad, punto de vista y contexto) y se midieron para los cuatro incrementos con los scripts de `herramientas/gqm/`.
+Las tres metas se formularon con la plantilla de Basili et al. [14] (objeto, propósito, enfoque de calidad, punto de vista y contexto) y se midieron para los cuatro incrementos con los scripts de `.claude/herramientas/gqm/`.
 
 **Tabla 19.** Metas, preguntas y métricas GQM (S9, Tablas 8 y 12).
 
@@ -1994,7 +1994,7 @@ El perfil es de tres áreas en Nivel 2 (PLAN, CM y VER) y cuatro en Nivel 1 (EST
 
 ![El repositorio no tiene tableros de GitHub Projects.](../semana-11/evidencias/github/GH_projects.png)
 
-**Figura 100.** Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `coordinacion/TABLERO.md` (GitHub, 30/10/2026).
+**Figura 100.** Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `.claude/coordinacion/TABLERO.md` (GitHub, 30/10/2026).
 
 ![La protección de main no es verificable.](../semana-11/evidencias/github/GH_proteccion_main.png)
 
@@ -2043,9 +2043,9 @@ El diseño no es un área evaluada en la Tabla 35. Se presenta como **Solución 
 
 - **Descripción:** **Figura 104.** Diagrama de Gantt del Incremento 1: actividades A01 a A21 con su duración estimada, responsable y dependencias (28 días, igual a la ruta crítica).
 
-![Gantt del Incremento 1.](../../diagramas/png/32_s34_gantt_incremento1.png)
+![Gantt del Incremento 1.](../../.claude/diagramas/png/32_s34_gantt_incremento1.png)
 
-- **Archivo de imagen:** `diagramas/png/32_s34_gantt_incremento1.png`
+- **Archivo de imagen:** `.claude/diagramas/png/32_s34_gantt_incremento1.png`
 
 ---
 
@@ -2059,9 +2059,9 @@ El diseño no es un área evaluada en la Tabla 35. Se presenta como **Solución 
 
 - **Descripción:** **Figura 105.** Cronograma de los sprints 1 a 8 y de los hitos H0 a H7, del 01/09 al 21/12/2026.
 
-![Cronograma de sprints e hitos.](../../diagramas/png/33_s34_cronograma_sprints_hitos.png)
+![Cronograma de sprints e hitos.](../../.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png)
 
-- **Archivo de imagen:** `diagramas/png/33_s34_cronograma_sprints_hitos.png`
+- **Archivo de imagen:** `.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png`
 
 **[ CAPTURA 2: SEGUIMIENTO ]**
 
@@ -2095,9 +2095,9 @@ El diseño no es un área evaluada en la Tabla 35. Se presenta como **Solución 
 
 - **Descripción:** **Figura 109.** Modelo hexagonal del Incremento 2: dominio, puertos de entrada y salida, y adaptadores.
 
-![Modelo hexagonal.](../../diagramas/png/72_s9_hexagonal_v20.png)
+![Modelo hexagonal.](../../.claude/diagramas/png/72_s9_hexagonal_v20.png)
 
-- **Archivos de imagen:** `pmv_fastapi/docs/diagramas/C4_contenedores.png`, `diagramas/png/72_s9_hexagonal_v20.png`
+- **Archivos de imagen:** `pmv_fastapi/docs/diagramas/C4_contenedores.png`, `.claude/diagramas/png/72_s9_hexagonal_v20.png`
 
 ---
 
@@ -2126,7 +2126,7 @@ La ejecución #16 del CI en `main`, en verde, es la Figura 99 de esta sección.
 - **Descripción:** **Figura 112.** Primer análisis de SonarCloud del repositorio, del 05/11/2026: Quality Gate aprobado sobre el código nuevo y 129 hallazgos sobre el código completo.
   - El backend desplegado tiene 0 hallazgos.
   - Las 63 vulnerabilidades están en herramientas, scripts y el prototipo anterior.
-  - Detalle en `entregables/sonarcloud/2026-11-05/ANALISIS_SONARCLOUD.md`.
+  - Detalle en `entregables/semana-12/sonarcloud/ANALISIS_SONARCLOUD.md`.
 
 ![Resumen de SonarCloud.](correcciones/img/C10_sonar_resumen.png)
 

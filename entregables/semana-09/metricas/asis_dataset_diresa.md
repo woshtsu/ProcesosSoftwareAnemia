@@ -1,6 +1,6 @@
 # Línea base AS-IS del seguimiento de anemia (dataset DIRESA Junín)
 
-Generado por `herramientas/dataset/analisis_asis.py` a partir de `Dataset/Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv` (HIS, diagnósticos del 14/01/2022 al 21/06/2024). Fecha de corte usada: 30/06/2024. Datos completos y fórmulas en `datos/asis_dataset_diresa.json`. Los porcentajes llevan un decimal; entre paréntesis, numerador/denominador.
+Generado por `.claude/herramientas/dataset/analisis_asis.py` a partir de `pmv_fastapi/datos/Niños_menores_de_36_meses_con_dx_de_anemia_en_la_Región_ Junín.csv` (HIS, diagnósticos del 14/01/2022 al 21/06/2024). Fecha de corte usada: 30/06/2024. Datos completos y fórmulas en `datos/asis_dataset_diresa.json`. Los porcentajes llevan un decimal; entre paréntesis, numerador/denominador.
 
 ## 1. Perfil del dataset
 

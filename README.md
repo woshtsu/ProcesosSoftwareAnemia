@@ -60,7 +60,7 @@ Decisiones: [ADR-012](pmv_fastapi/docs/adr/ADR-012-sincronizacion-sin-conexion.m
 
 Decisiones: [ADR-014](pmv_fastapi/docs/adr/ADR-014-notificador-y-canales.md) y la actualización de [ADR-013](pmv_fastapi/docs/adr/ADR-013-visita-domiciliaria-priorizada.md). Qué SQL ejecutar y qué variables configurar: [`pmv_fastapi/docs/DESPLIEGUE.md`](pmv_fastapi/docs/DESPLIEGUE.md).
 
-**Datos.** La demo usa una muestra estratificada de 500 niños del dataset público «Niños menores de 36 meses con dx de anemia en la Región Junín» (DIRESA Junín, fuente HIS; carpeta [`Dataset/`](Dataset/)), importada con código seudónimo y sin datos personales, con la fecha de referencia fijada en el corte del dataset (30/06/2024). Los niños registrados desde la aplicación exigen todos sus campos. Detalle en [`pmv_fastapi/README.md`](pmv_fastapi/README.md) y en el ADR-009.
+**Datos.** La demo usa una muestra estratificada de 500 niños del dataset público «Niños menores de 36 meses con dx de anemia en la Región Junín» (DIRESA Junín, fuente HIS; carpeta [`pmv_fastapi/datos/`](pmv_fastapi/datos/)), importada con código seudónimo y sin datos personales, con la fecha de referencia fijada en el corte del dataset (30/06/2024). Los niños registrados desde la aplicación exigen todos sus campos. Detalle en [`pmv_fastapi/README.md`](pmv_fastapi/README.md) y en el ADR-009.
 
 ## Estructura del repositorio
 
@@ -68,72 +68,71 @@ Decisiones: [ADR-014](pmv_fastapi/docs/adr/ADR-014-notificador-y-canales.md) y l
 .
 ├── README.md                    este archivo
 ├── AGENTS.md                    instrucciones de continuidad para agentes
-├── .claude/agents/              definiciones de los subagentes
-├── coordinacion/                canal de comunicación entre agentes
-│   ├── TABLERO.md               tareas, estado y responsable
-│   ├── RUTAS.md                 mapa canónico de rutas (fuente de verdad)
-│   ├── PROTOCOLO.md             reglas de comunicación
-│   ├── plantillas/              SOLICITUD, SOLICITUD_DIAGRAMA, INFORME, CHECKLIST_CUMPLIMIENTO
-│   ├── solicitudes/             <PREFIJO>-###.md (DIAG, DOC, DEV, INV, CONV, ORQ)
-│   └── informes/                informes de salida de cada agente
-├── guias/                       guías y consigna del docente (solo lectura)
-├── entregables/                 versión VIGENTE de cada entregable (.md)
-│   ├── semana-01/               + img/, anexos/Entrevista.md
-│   ├── semana-02/               + img/
-│   ├── semana-03-04/
-│   ├── semana-05/               PDF Actividad 5 + extracción de texto (entregable .md por crear)
-│   ├── semana-06-integrador/    + anexos/
-│   ├── semana-09/ … semana-12/  evaluación GQM, FURPS+/OWASP, CMMI e informe integrador
-│   └── semana-13/               informe integrador corregido y diagramas por ingeniería inversa
-├── diagramas/                   src/ (puml, py) · png/ · svg/ · README.md (catálogo)
-├── pmv_fastapi/                 software evaluado: incrementos 1 a 4 (FastAPI, arquitectura hexagonal)
-├── Dataset/                     dataset público de la DIRESA Junín (HIS, anonimizado) y su diccionario
-├── herramientas/                scripts de medición GQM, análisis del dataset y conversión de documentos
-├── anemia_junin/                primer prototipo (Flask); histórico
-├── exportados/                  PDF/DOCX generados para el aula virtual
-└── archivo/                     histórico: versiones anteriores, PDFs generados, zip, material de revisión
+├── CLAUDE.md                    guía de trabajo con IA
+├── CONTRIBUTING.md              normas de contribución y flujo de trabajo
+├── skills-lock.json             bloqueo de dependencias de skills
+├── .gitignore                   patrones ignorados por Git
+├── .github/                     workflows de CI y plantillas de GitHub
+├── .claude/                     entorno de agentes, coordinación, archivo y herramientas
+│   ├── agents/                  definiciones de los subagentes
+│   ├── coordinacion/            canal de comunicación entre agentes
+│   │   ├── TABLERO.md           tareas, estado y responsable
+│   │   ├── RUTAS.md             mapa canónico de rutas (fuente de verdad)
+│   │   ├── PROTOCOLO.md         reglas de comunicación
+│   │   ├── plantillas/          SOLICITUD, SOLICITUD_DIAGRAMA, INFORME, etc.
+│   │   ├── solicitudes/         <PREFIJO>-###.md (DIAG, DOC, DEV, INV, CONV, ORQ)
+│   │   └── informes/            informes de salida de cada agente
+│   ├── diagramas/               src/ (puml, py) · png/ · svg/ · README.md (catálogo)
+│   ├── herramientas/            scripts de medición GQM, análisis del dataset y conversión
+│   └── archivo/                 histórico, documentos de trabajo y versiones anteriores
+├── guias/                       guías de trabajo del docente por semana (semana-01.md … semana-12.md)
+├── entregables/                 trabajos entregables organizados por semana (.md)
+│   ├── semana-01/ … semana-13/
+├── exportados/                  PDF/DOCX exportados por semana
+├── pmv_fastapi/                 software evaluado: incrementos 1 a 4 (FastAPI) y datos/ (dataset DIRESA)
+└── anemia_junin/                primer prototipo (Flask); histórico
 ```
 
-El detalle de cada ruta está en [`coordinacion/RUTAS.md`](coordinacion/RUTAS.md).
+El detalle de cada ruta está en [`.claude/coordinacion/RUTAS.md`](.claude/coordinacion/RUTAS.md).
 
 ## Entregables por semana
 
 | Semana | Tema (según guía) | Guía | Entregable vigente | Estado |
 | --- | --- | --- | --- | --- |
-| S1 | Enfoque de procesos de la organización: problema, actores, AS-IS, brechas, TO-BE, aporte del software, cadena de valor, indicadores | [`guias/S1_…`](guias/S1.Gu%C3%ADa%20de%20trabajo%20semana%201.md) | [`Entregable_Semana1`](entregables/semana-01/Entregable_Semana1_Anemia_Junin.md) | Revisado; faltan figuras (T-002) |
-| S2 | Selección y justificación del modelo de proceso de software, representación, incrementos, riesgos, herramientas | [`guias/S2_…`](guias/S2.Gu%C3%ADa%20de%20trabajo%20semana%202.md) | [`Entregable_Semana2`](entregables/semana-02/Entregable_Semana2_Anemia_Junin.md) | Revisado; falta figura (T-003) |
-| S3-4 | Actividades, organización, responsabilidades, productos, WBS, priorización, estimación y plan del proyecto | [`guias/S3-4_…`](guias/S3.GU%C3%8DA%20DE%20TRABAJO%20SEMANA%203%20Y%204.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | Revisado; pendientes diagramas y conciliación técnica (T-004, T-007) |
-| S5 | Ejecución de procesos principales del PMV: requisitos, diseño, construcción, pruebas y despliegue | [Guía S5](guias/S5-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%205.md) | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` — **por crear**; base: [PDF Actividad 5](entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf), [extracción](entregables/semana-05/_extraccion_Informe_Actividad5.md) | Por crear (T-005) |
-| S6 | Informe integrador de las Unidades I y II | [Consigna S6](guias/S6.CONSIGNA%20DE%20TRABAJO%20E%20INSTRUMENTO%20DE%20EVALUACI%C3%93N%20INTEGRADOR.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) | Propuesta de revisión — por actualizar (T-006) |
-| S9 | Evaluación GQM del proceso y producto: arquitectura hexagonal, pruebas Inc. 1 y 2 con capturas, entrega de valor (Inc. 2 completo `v2.0.0-inc2` y dataset real de la DIRESA Junín) | [Guía S9](guias/S9-PSW-GU%C3%8DA%20DE%20TRABAJO.md) | [`Entregable_Semana9`](entregables/semana-09/Entregable_Semana9_Anemia_Junin.md) · [checklist](entregables/semana-09/CHECKLIST_CUMPLIMIENTO_S9.md) · PDF/DOCX en `exportados/semana-09/` | Entregado |
-| S10 | Evaluación FURPS+, accesibilidad WCAG 2.1 y seguridad OWASP Top 10:2025 | [Guía S10](guias/S10-PSW-GU%C3%8DA%20DE%20TRABAJO%20SEMANA%2010.docx.md) | [`Entregable_Semana10`](entregables/semana-10/Entregable_Semana10_Anemia_Junin.md) | Entregado |
-| S11 | Evaluación de capacidad del proceso con CMMI-DEV y plan de mejora | Guía S11 (`guias/S11-PSW-GUÍA DE TRABAJO 11.docx`) | [`Entregable_Semana11`](entregables/semana-11/Entregable_Semana11_Anemia_Junin.md) | Entregado |
-| S12 | Informe académico integrador de la Unidad III y video | [Plantilla S12](guias/S12-PSW-INFORME%20ACAD%C3%89MICO%20INTEGRADOR%20DEL%20PROYECTO%20DE%20ASIGNATURA.docx.md) | [`Informe_Integrador_S12`](entregables/semana-12/Informe_Integrador_S12_Anemia_Junin.md) | Entregado; observaciones del docente atendidas en S13 |
+| S1 | Enfoque de procesos de la organización: problema, actores, AS-IS, brechas, TO-BE, aporte del software, cadena de valor, indicadores | [`guias/semana-01.md`](guias/semana-01.md) | [`Entregable_Semana1`](entregables/semana-01/Entregable_Semana1_Anemia_Junin.md) | Revisado; faltan figuras (T-002) |
+| S2 | Selección y justificación del modelo de proceso de software, representación, incrementos, riesgos, herramientas | [`guias/semana-02.md`](guias/semana-02.md) | [`Entregable_Semana2`](entregables/semana-02/Entregable_Semana2_Anemia_Junin.md) | Revisado; falta figura (T-003) |
+| S3-4 | Actividades, organización, responsabilidades, productos, WBS, priorización, estimación y plan del proyecto | [`guias/semana-03-04.md`](guias/semana-03-04.md) | [`Entregable_Semana3y4`](entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md) | Revisado; pendientes diagramas y conciliación técnica (T-004, T-007) |
+| S5 | Ejecución de procesos principales del PMV: requisitos, diseño, construcción, pruebas y despliegue | [Guía S5](guias/semana-05.md) | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` — **por crear**; base: [PDF Actividad 5](exportados/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf), [extracción](.claude/archivo/semana-05/_extraccion_Informe_Actividad5.md) | Por crear (T-005) |
+| S6 | Informe integrador de las Unidades I y II | [Consigna S6](guias/semana-06-integrador.md) | [`Informe_Integrador`](entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md) | Propuesta de revisión — por actualizar (T-006) |
+| S9 | Evaluación GQM del proceso y producto: arquitectura hexagonal, pruebas Inc. 1 y 2 con capturas, entrega de valor (Inc. 2 completo `v2.0.0-inc2` y dataset real de la DIRESA Junín) | [Guía S9](guias/semana-09.md) | [`Entregable_Semana9`](entregables/semana-09/Entregable_Semana9_Anemia_Junin.md) · [checklist](.claude/archivo/semana-09/CHECKLIST_CUMPLIMIENTO_S9.md) · PDF/DOCX en `exportados/semana-09/` | Entregado |
+| S10 | Evaluación FURPS+, accesibilidad WCAG 2.1 y seguridad OWASP Top 10:2025 | [Guía S10](guias/semana-10.md) | [`Entregable_Semana10`](entregables/semana-10/Entregable_Semana10_Anemia_Junin.md) | Entregado |
+| S11 | Evaluación de capacidad del proceso con CMMI-DEV y plan de mejora | Guía S11 (`guias/semana-11.docx`) | [`Entregable_Semana11`](entregables/semana-11/Entregable_Semana11_Anemia_Junin.md) | Entregado |
+| S12 | Informe académico integrador de la Unidad III y video | [Plantilla S12](guias/semana-12.md) | [`Informe_Integrador_S12`](entregables/semana-12/Informe_Integrador_S12_Anemia_Junin.md) | Entregado; observaciones del docente atendidas en S13 |
 | S13 | Informe integrador actualizado y corregido según las observaciones de S12 | Observaciones del docente a S12 | [`Informe_Integrador_S13`](entregables/semana-13/Informe_Integrador_S13_Anemia_Junin.md) | Entrega 13/11/2026 |
 
-Las versiones anteriores están en `archivo/versiones-anteriores/`. El historial completo se conserva en git (`git log --follow <ruta>`).
+Las versiones anteriores están en `.claude/archivo/versiones-anteriores/`. El historial completo se conserva en git (`git log --follow <ruta>`).
 
 ## Agentes y comunicación
 
-Para retomar con la IA de cualquier integrante, comenzar por [`.claude/CLAUDE.md`](.claude/CLAUDE.md) y el [contexto actual](.claude/CONTEXTO_ACTUAL.md). Las preguntas, propuestas y traspasos se pueden escribir en [`.claude/intercambios/`](.claude/intercambios/README.md), con autor y tarea, usando su plantilla. El tablero, las solicitudes formales y los informes siguen en `coordinacion/`. Los archivos se comparten entre equipos mediante Git.
+Para retomar con la IA de cualquier integrante, comenzar por [`.claude/CLAUDE.md`](.claude/CLAUDE.md) y el [contexto actual](.claude/CONTEXTO_ACTUAL.md). Las preguntas, propuestas y traspasos se pueden escribir en [`.claude/intercambios/`](.claude/intercambios/README.md), con autor y tarea, usando su plantilla. El tablero, las solicitudes formales y los informes siguen en `.claude/coordinacion/`. Los archivos se comparten entre equipos mediante Git.
 
 | Agente | Modelo | Rol |
 | --- | --- | --- |
 | `orquestador` | opus | Estructura, rutas, README, tablero, archivo, commits |
 | `revisor-documental` | opus | Cumplimiento estricto al 100 % de cada guía, redacción, checklist de cumplimiento |
-| `diagramador` | opus | Diagramas con PlantUML/Python → PNG + SVG, fuentes en `diagramas/src` |
+| `diagramador` | opus | Diagramas con PlantUML/Python → PNG + SVG, fuentes en `.claude/diagramas/src` |
 | `desarrollador` | opus (Fable 5.1 sin créditos de uso; se usa Opus 5.5) | PMV `anemia_junin/`: código, pruebas, evidencias, README de ejecución |
 | `investigador` | haiku | Investigación y resúmenes con fuentes (solo lectura) |
 | `conversor-entregas` | opus | Conversión .md → PDF/DOCX en `exportados/` |
 
-Definiciones: `.claude/agents/<agente>.md`. La coordinación formal se registra **por archivos** en `coordinacion/`, complementada por los intercambios compartidos de `.claude/`:
+Definiciones: `.claude/agents/<agente>.md`. La coordinación formal se registra **por archivos** en `.claude/coordinacion/`, complementada por los intercambios compartidos de `.claude/`:
 
-1. Las tareas (`T-###`) se registran en [`coordinacion/TABLERO.md`](coordinacion/TABLERO.md).
-2. Un agente que necesita algo de otro crea `coordinacion/solicitudes/<PREFIJO>-###.md` desde la plantilla (p. ej. el revisor pide un diagrama con `DIAG-001.md`). El prefijo indica quién atiende: `ORQ`, `DOC`, `DIAG`, `DEV`, `INV`, `CONV`.
+1. Las tareas (`T-###`) se registran en [`.claude/coordinacion/TABLERO.md`](.claude/coordinacion/TABLERO.md).
+2. Un agente que necesita algo de otro crea `.claude/coordinacion/solicitudes/<PREFIJO>-###.md` desde la plantilla (p. ej. el revisor pide un diagrama con `DIAG-001.md`). El prefijo indica quién atiende: `ORQ`, `DOC`, `DIAG`, `DEV`, `INV`, `CONV`.
 3. El agente destino responde en la misma solicitud (rutas producidas) y la marca `RESUELTA`.
-4. Al terminar, cada agente deja su informe en `coordinacion/informes/AAAA-MM-DD_<agente>_<tarea>.md` y actualiza el tablero.
+4. Al terminar, cada agente deja su informe en `.claude/coordinacion/informes/AAAA-MM-DD_<agente>_<tarea>.md` y actualiza el tablero.
 
-Reglas completas: [`coordinacion/PROTOCOLO.md`](coordinacion/PROTOCOLO.md).
+Reglas completas: [`.claude/coordinacion/PROTOCOLO.md`](.claude/coordinacion/PROTOCOLO.md).
 
 ## Convertir Markdown a PDF / DOCX
 
@@ -148,7 +147,7 @@ pandoc Entregable_Semana1_Anemia_Junin.md -o ../../exportados/semana-01/Entregab
   --pdf-engine=xelatex -V lang=es -V mainfont="Arial" -V geometry:margin=2.5cm --toc
 ```
 
-Para DOCX conviene usar las versiones PNG de los diagramas (`diagramas/png/`), ya que Word no siempre renderiza SVG.
+Para DOCX conviene usar las versiones PNG de los diagramas (`.claude/diagramas/png/`), ya que Word no siempre renderiza SVG.
 
 **Alternativa sin pandoc (Python):**
 
@@ -175,7 +174,7 @@ Abrir `http://127.0.0.1:8000/`. Instrucciones completas y carga de datos sintét
 
 Revisión local T-010 (2026-09-25, Python 3.13.7): **242 pruebas aprobadas, cobertura 96,66 %, Ruff sin hallazgos**. Se detectó además un defecto de entrada numérica fuera de la suite (DEV-101). La evidencia de carga conservada corresponde a la ejecución anterior; no se volvió a ejecutar en esta revisión.
 
-Informe y pendientes priorizados: [revisión del avance](coordinacion/informes/2026-09-25_orquestador_T-010.md). Los porcentajes de los checklists anteriores no certifican que el proyecto esté listo para entregar.
+Informe y pendientes priorizados: [revisión del avance](.claude/coordinacion/informes/2026-09-25_orquestador_T-010.md). Los porcentajes de los checklists anteriores no certifican que el proyecto esté listo para entregar.
 
 ## Herramientas registradas en el equipo anterior (2026-09-25)
 

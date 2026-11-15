@@ -1,9 +1,9 @@
 # Pruebas exploratorias independientes del Incremento 2 (agenda y alertas)
 
 - Fecha de ejecución: 16/10/2026 (hora de Perú). Versión bajo prueba: v1.5.0-inc2-avance, API REST real en `http://127.0.0.1:8321` con SQLite.
-- Método: caja negra por HTTP con `herramientas/gqm/exploratorias_inc2.py`; los resultados esperados se derivaron de ADR-007 y del README, no del código. Datos 100 % sintéticos.
+- Método: caja negra por HTTP con `.claude/herramientas/gqm/exploratorias_inc2.py`; los resultados esperados se derivaron de ADR-007 y del README, no del código. Datos 100 % sintéticos.
 - Resumen: **45 casos**: 43 OK, 0 FALLA, 2 OBS (observación: comportamiento no definido o decisión de diseño documentada; no cuenta como defecto).
-- Reproducción: `python herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <base.sqlite>` sobre una copia de la base de partida.
+- Reproducción: `python .claude/herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <base.sqlite>` sobre una copia de la base de partida.
 
 | ID | Área | Entrada | Esperado | Obtenido | Resultado |
 |---|---|---|---|---|---|
