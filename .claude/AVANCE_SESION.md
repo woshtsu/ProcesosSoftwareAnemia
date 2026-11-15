@@ -59,3 +59,13 @@ Archivo vivo para continuar el trabajo en un chat nuevo. Actualizarlo durante la
 
 - Encargo: `.claude/intercambios/T-026_porras_revision-entregables.md`. Contexto del sílabo: `.claude/contexto/SILABO_RESUMEN.md`.
 - Guías S14 y S16 versionadas en `guias/s14/` y `guias/s16/`; `guias/Sílabo.pdf` queda fuera de Git.
+
+### Avance T-026 (Jean, 15/11/2026)
+
+- Rama `docs/t026-revision` desde develop (250fdf5). Revisión y correcciones terminadas: 117 hallazgos (82 cerrados, 35 pendientes justificados) en `.claude/revision/T-026/HALLAZGOS.md`; checklist en `.claude/revision/T-026/CHECKLIST.md` (requisitos 79,5 %, global 79,7 %, «Revisión al 100 %: no»).
+- S6: develop tenía el borrador del 25/09; se restauró el cierre del 02/10 desde la rama local `feature/s6-integrador-final` (borrada del remoto).
+- Exportados regenerados en Linux con `.claude/revision/T-026/herramientas/ejecutar_exportador.py` (Chrome + `fonts-win.conf`).
+- Hecho directamente por Claude solo la orquestación, la restauración de S6 y las decisiones de revisión; `agy` no está instalado y el resto se delegó en subagentes (haiku para leer, sonnet para corregir).
+- Informe: `.claude/coordinacion/informes/2026-11-15_revisor-documental_T-026.md`.
+- **Siguiente paso:** push de la rama y PR a develop con revisión de Porras V. (woshtsu). Cuando la apruebe: paso final del dominio 4 (capturas de aprobación, PDCA, informe del laboratorio 13 y PDF) en la misma PR y aviso a Porras V. para integrar.
+
