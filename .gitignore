@@ -21,3 +21,6 @@ Thumbs.db
 
 # Grafo de conocimiento local (graphify); cada integrante lo regenera con `graphify update .`
 graphify-out/
+
+# Sílabo en PDF: se usa su resumen en .claude/contexto/SILABO_RESUMEN.md
+guias/*.pdf
