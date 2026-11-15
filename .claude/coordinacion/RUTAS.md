@@ -52,6 +52,7 @@ Si un agente necesita crear una ruta nueva, lo pide al `orquestador` mediante un
 | S10 | `guias/semana-10.md` |
 | S11 | `guias/semana-11.docx` |
 | S12 | `guias/semana-12.md` |
+| S13 | `guias/s13/` (laboratorio de gestión de configuración, cuadro PDCA y lecturas; aún con nombres originales) |
 
 ## Entregables vigentes
 

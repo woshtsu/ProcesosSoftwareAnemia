@@ -43,4 +43,12 @@ Archivo vivo para continuar el trabajo en un chat nuevo. Actualizarlo durante la
 - Rama `chore/reorganizar-por-semanas`, commit WIP subido. `agy` lo dejó a mitad: los movimientos están hechos y falta terminar de corregir rutas y verificar.
 - Traspaso completo: `.claude/intercambios/2026-11-13_orquestador_T-024_reorganizacion.md`.
 - 14/11/2026: rutas y verificación terminadas por Claude (sin commit). Detalle en `.claude/coordinacion/informes/2026-11-14_orquestador_T-024.md`.
-- Siguiente paso: revisión del usuario, commit y PR a `main`; desactivar *Auto-Deploy* en Render (lo hace el usuario).
+- 14/11 noche: integrado en `develop` por la PR #29 (CI verde tras corregir formato de Ruff). Llega a `main` con la release develop → main.
+
+## T-025 — Observaciones del docente a S13: PDCA de gestión de la configuración y laboratorio SCM (Porras V., 14/11/2026)
+
+- Rama `docs/t025-scm-pdca` desde `develop`. Informe: `.claude/coordinacion/informes/2026-11-14_orquestador_T-025.md`.
+- PDCA rehecho (12 dominios del proceso SCM, indicadores antes/después, 21 evidencias) e informe del laboratorio con 43 figuras; PDF en `exportados/semana-13/`.
+- Evidencias: `capturar_evidencias_scm.py`; hallazgos de la tarde conservados en `evidencias/antes_2026-11-14_tarde/` y ramas previas al borrado en `evidencias/limpieza_ramas_antes/`.
+- Acciones en GitHub (cuenta woshtsu): ruleset activo, RFC evaluadas, PR #28 y #29 por develop, 17 ramas borradas con respaldo `archivo/docs-s12-correcciones`, `v4.0.1` y artefactos en 2 releases.
+- Siguiente paso: PR de T-025 a develop y release develop → main; primera PR con aprobación de un par (dominio 4); reanudar Render (dominio 10).
