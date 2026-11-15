@@ -4,15 +4,19 @@ Sistema de detección temprana y seguimiento de anemia infantil en Junín
 
 Universidad Continental · Ingeniería de Sistemas e Informática · Procesos de Software ASUC01702 · Ciclo 2026-20
 
+Unidad del sílabo: Unidad II — Implementación del proceso de software
+
 | Integrante | Responsabilidad | Código |
 | --- | --- | --- |
-| Porras Veli, Ricardo | Proceso y coordinación | [PENDIENTE] |
-| Auqui Huincho, Tania | Desarrollo y prototipado | [PENDIENTE] |
-| Huamani Rodriguez, Jean Piero | Calidad y mejora | [PENDIENTE] |
+| Porras Veli, Ricardo | Proceso y coordinación | 76659572 |
+| Auqui Huincho, Tania | Desarrollo y prototipado | 75280128 |
+| Huamani Rodriguez, Jean Piero | Calidad y mejora | 72156889 |
 
-Docente: [PENDIENTE]. Fecha de entrega: [PENDIENTE]. Corte de verificación técnica: 25 de septiembre de 2026.
+Docente: Guevara Jimenez, Jorge Alfredo. Fecha de entrega: no registrada. Corte de verificación técnica: 25 de septiembre de 2026.
 
 El primer incremento implementa cinco historias de registro nominal y expediente digital. La aplicación funciona con Flask, Jinja2 y SQLite, separa dominio, casos de uso y adaptadores, y permite verificar el flujo en un navegador real. La suite de cierre aprueba 266 casos con cobertura de 96,69 %. Este informe presenta las cinco matrices de la guía S5 y relaciona cada producto de trabajo con su evidencia verificable.
+
+Modelo de proceso: el equipo adoptó el desarrollo iterativo-incremental gestionado con Scrum, con prácticas DevOps para la entrega y MLOps para el componente predictivo de incrementos posteriores. La elección y su justificación comparativa constan en la sección 4 del entregable de la semana 2, y la planificación por incrementos y sprints en el entregable de las semanas 3 y 4 (Tabla 2). Este informe corresponde al primer incremento (INC-1).
 
 La demostración utiliza exclusivamente datos sintéticos. La clasificación de hemoglobina es referencial y no reemplaza el criterio profesional. No se acredita reducción de anemia, despliegue institucional ni aceptación por personal de salud.
 
@@ -72,12 +76,12 @@ El código almacena peso en gramos y Hb en décimas enteras. Los dosajes conserv
 
 | Módulo | Tecnología y rama | Producto | DoD verificado |
 | --- | --- | --- | --- |
-| Dominio y aplicación | Python ≥3.12; avance integrado desde desarrollo-anemia mediante PR #1 | domain/ y application/ | Unitarias y reglas de arquitectura aprobadas |
+| Dominio y aplicación | Python ≥3.12; avance integrado desde la rama de trabajo de la época desarrollo-anemia (ya eliminada del remoto) mediante PR #1 | domain/ y application/ | Unitarias y reglas de arquitectura aprobadas |
 | Web y REST | Flask, Jinja2 y Flask-WTF; misma integración | adapters/inbound/, templates/, openapi.yaml | Validación por campo, CSRF web y contrato probado |
 | Persistencia | SQLite, SQL versionado; misma integración | adapters/outbound/sqlite/ y migrations/ | Restricción de unicidad, transacciones y recuperación verificadas |
 | Calidad y ejecución | pytest, Ruff, Locust y Playwright | tests/, scripts/ y docs/evidencias/ | Evidencias reproducibles de la sesión de cierre |
 
-El repositorio remoto registrado es [ProcesosSoftwareAnemia](https://github.com/woshtsu/ProcesosSoftwareAnemia). La base integrada corresponde a 67f2c01 y el avance principal a b6c6db2. Las correcciones de esta sesión están en el árbol de trabajo; todavía no constituyen un commit/tag de entrega. Para nuevos cambios se propone rama codex/<tema>, revisión y merge por el equipo. No se atribuye aprobación humana a un resultado automático.
+El repositorio remoto registrado es [ProcesosSoftwareAnemia](https://github.com/woshtsu/ProcesosSoftwareAnemia). La base integrada corresponde a 67f2c01 y el avance principal a b6c6db2. Las correcciones de la sesión de cierre quedaron confirmadas el 25 de septiembre de 2026 en el commit 4e7135a; no se creó una etiqueta (tag) de entrega. Para nuevos cambios se propone rama codex/<tema>, revisión y merge por el equipo. No se atribuye aprobación humana a un resultado automático.
 
 DEV-101 se corrigió validando finitud y capturando InvalidOperation de Decimal. Se añadieron 24 regresiones: 12 de dominio, 6 de API y 6 de formulario. Los intentos de alta inválidos preservan la traza de calidad y no crean expedientes. API devuelve 400 y web devuelve 422 conforme a sus contratos existentes.
 
@@ -97,14 +101,28 @@ Entorno de cierre: Windows, Python 3.13.7, SQLite temporal por prueba, pytest 8.
 | EV-06 | Arranque y scripts | Configuración y tratamiento de errores correctos | 7 casos aprobados |
 | EV-07 | E2E HTTP real y smoke | Flujo completo con servidor y cookies | 2 casos aprobados |
 | EV-08 | Navegador Chromium 149 | Alta, consulta, edición, dosaje, rechazo, reporte y móvil | Recorrido aprobado, capturas y navegador.json |
-| EV-09 | Carga Locust, 20 usuarios, 60 s, rampa 5/s | Sin errores y p95 < 2000 ms | Véase tabla de carga del cierre |
+| EV-09 | Carga Locust, 20 usuarios, 60 s, rampa 5/s | Sin errores y p95 < 2000 ms | 1011 solicitudes, 0 fallos, p95 agregado 53 ms; véase «Resultados de carga» |
 | EV-10 | Ruff y cobertura | Sin hallazgos, cobertura ≥80 % | Ruff aprobado; 1315/1360 = 96,69 % |
 
 Los 266 casos corresponden únicamente a pytest; el recorrido Chromium y Locust son ejecuciones adicionales y no se suman como si fueran casos de esa suite. La cobertura mide sentencias ejecutables bajo la configuración del proyecto y no demuestra ausencia total de defectos.
 
 ### Resultados de carga
 
-CARGA_CIERRE
+Ejecución del 25 de septiembre de 2026 con Locust 2.46.6 (registro en `anemia_junin/docs/evidencias/carga_locust_20u_60s.txt`): 20 usuarios (16 de personal de salud y 4 de coordinación), 60 s y rampa de 5 usuarios por segundo. Tiempos en milisegundos.
+
+| Solicitud | Solicitudes | Fallos | Mediana | p95 | Máximo |
+| --- | --- | --- | --- | --- | --- |
+| GET /api/v1/ninos | 16 | 0 | 44 | 77 | 77 |
+| GET /api/v1/ninos?clasificacion | 160 | 0 | 16 | 46 | 70 |
+| GET /api/v1/ninos/{dni} | 193 | 0 | 11 | 41 | 107 |
+| GET /api/v1/reportes/registros | 71 | 0 | 12 | 53 | 60 |
+| GET /ninos (web) | 240 | 0 | 19 | 62 | 113 |
+| GET /ninos/{dni} (web) | 193 | 0 | 12 | 35 | 105 |
+| POST /api/v1/ninos | 84 | 0 | 30 | 54 | 65 |
+| POST /api/v1/ninos/{dni}/dosajes | 54 | 0 | 31 | 56 | 73 |
+| Total agregado | 1011 | 0 (0,00 %) | 17 | 53 | 113 |
+
+El rendimiento agregado fue de 17,04 solicitudes por segundo. El criterio de EV-09 (sin errores y p95 < 2000 ms) se cumple con amplio margen.
 
 Perfil: dos clases de usuarios (personal y coordinación), consultas de listas/expedientes/reportes y escrituras de altas/dosajes, con espera entre 0,5 y 2 segundos. Entorno local Waitress de 8 hilos y base sintética independiente. Los resultados no se extrapolan a una posta ni a una red rural.
 
@@ -147,6 +165,6 @@ La construcción y verificación técnica del alcance están documentadas. La ac
 
 ## 6 Referencias y trazabilidad
 
-Fuente académica primaria: guía de trabajo S5 descargada del aula virtual, actividades 1 a 5 y rúbrica. Fuentes de implementación: código del repositorio, ADR-001/002, openapi.yaml, migrations/001_initial.sql y evidencias de cierre. Planificación: entregable S3-4, tablas 11–24. El PDF anterior de Actividad 5 se conserva como antecedente; sus cifras y rutas no representan esta implementación.
+Fuente académica primaria: guía de trabajo S5 descargada del aula virtual, actividades 1 a 5 y rúbrica. Fuentes de implementación: código del repositorio, ADR-001/002, openapi.yaml, migrations/001_initial.sql, config/normativa_v1.json y evidencias de cierre. Marco normativo del clasificador: NTS N.° 213-MINSA/DGIESP-2024, aprobada por la RM 251-2024-MINSA (que deroga la NTS N.° 134-MINSA/2017/DGIESP) y modificada por la RM 429-2024-MINSA, según `config/normativa_v1.json`; es una transcripción de referencia académica, no certificada para uso clínico. Planificación: entregable S3-4, tablas 11–24. El PDF original de Actividad 5 (`exportados/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf`) se conserva como antecedente histórico de la versión anterior; sus cifras y rutas no representan esta implementación, que se exporta en `exportados/semana-05/Entregable_Semana5_Anemia_Junin.pdf`.
 
 La matriz historia-caso de uso-prueba se encuentra en anemia_junin/docs/trazabilidad.md. La revisión de cada requisito de la guía se conserva en CHECKLIST_CUMPLIMIENTO_S5.md.

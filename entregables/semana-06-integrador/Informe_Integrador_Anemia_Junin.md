@@ -260,7 +260,7 @@ Fuente: S3-4 §3 y §6; adaptación a los artefactos del PMV. Acta de revisión:
 | Retrospectiva | Porras V. | Todo el equipo | Porras V. | Plan de mejora |
 | Reglas clínicas parametrizadas | Auqui H. | Huamani R. (contraste con la fuente oficial) | Porras V., tras consulta con la microred | Parámetros versionados y pruebas de frontera |
 
-La matriz asigna responsabilidades; no acredita firmas ni aprobaciones de terceros. El Product Owner y el personal de salud que aprueban en el caso de estudio, el Product Owner es Enf. Rosa Quispe, responsable del programa de anemia del P. S. Chongos Alto (Product Owner del caso de estudio, interpretado por Porras Veli, Ricardo en la revisión).
+La matriz asigna responsabilidades; no acredita firmas ni aprobaciones de terceros. El Product Owner y el personal de salud que aprueban son roles del caso de estudio: el Product Owner es la Enf. Rosa Quispe, responsable del programa de anemia del P. S. Chongos Alto, interpretada en la revisión por Porras Veli, Ricardo.
 
 #### Criterios de terminación (Definition of Done) por actividad
 
@@ -333,7 +333,7 @@ Los puntos no se convierten directamente en horas. Las horas reales se registrar
 | Estimado (Tabla 14) | 69 | 44 | 113 |
 | Desviación | +5,8 % | +6,8 % | **+6,2 %** |
 
-Fuente: hoja de horas del equipo. La desviación de esfuerzo (+6,2 %) queda por debajo del umbral de acción del 15 % definido en S3-4; su causa principal fue la corrección de DEF-01 y DEF-02 dentro del incremento.
+Fuente: hoja de horas del equipo. La desviación de esfuerzo (+6,2 %) queda por debajo del umbral de acción del 20 % definido en S3-4 (Tabla 17), que se fija por historia y aquí se aplica, a modo de referencia, al total del incremento; su causa principal fue la corrección de DEF-01 y DEF-02 dentro del incremento.
 
 **Priorización valor/riesgo.** Pesos: valor 30 %, reducción de riesgo 25 %, dependencia técnica 20 %, complejidad inversa 15 % y validación 10 %.
 
@@ -572,7 +572,7 @@ La prueba de carga no mide la conectividad rural.
 | DEF-01 | N+1 en `GET /api/reportes/periodo`: p95 de 2 200 ms con 50 usuarios | Mayor (rendimiento) | CP-15 y prueba de carga | Consultas por lotes en `fix/def-01-reporte-n-mas-1` (ADR-006); p95 de 74 ms | Cerrado |
 | DEF-02 | El reporte contaba días en UTC y perdía los registros posteriores a las 19:00 en Perú | Mayor (exactitud) | CP-14 y E2E (30/09/2026, 20:40) | Corrección en `fix/def-02-zona-horaria`; verificada por CP-16 (unitaria, integración en SQLite y PostgreSQL, y E2E) | Cerrado |
 
-**Densidad de defectos:** 2 defectos / 1,02 KLOC de Python = 2,0 defectos/KLOC, con 0 abiertos. El código de la aplicación tiene 1 191 líneas en `app/**/*.py`.
+**Densidad de defectos:** 2 defectos / 1,02 KLOC de Python = 2,0 defectos/KLOC, con 0 abiertos. El código de Python de la aplicación (`app/**/*.py` del tag `v1.0-PMV`, sin líneas en blanco ni comentarios) tiene 1 022 líneas.
 
 ### 3.4 Despliegue y demostración del primer incremento / PMV
 
@@ -627,7 +627,7 @@ El PMV entrega las cinco historias de usuario (Tabla 29). Las capturas 01 a 08 (
 
 **Video de demostración.** `pmv_fastapi/docs/evidencias/demo_pmv.mp4` (1 640 388 bytes, aproximadamente 1,6 MB), generado con `pmv_fastapi/scripts/grabar_demo.py`. Duración: 58 s; recorre HU-03, HU-01, HU-04, HU-02 y HU-05 y termina en el contrato OpenAPI. Se entrega en el aula virtual como `Porras-Auqui-Huamani-video.mp4`.
 
-**Aceptación del usuario.** En la revisión del Sprint 2 (30/09/2026) el Product Owner del caso de estudio (Enf. Rosa Quispe, responsable del programa de anemia del P. S. Chongos Alto (Product Owner del caso de estudio, interpretado por Porras Veli, Ricardo en la revisión)) verificó los criterios Dado-Cuando-Entonces de HU-01 a HU-05 sobre el staging y aceptó el incremento con observaciones (Anexo A). Al tratarse de un proyecto académico, la aceptación es simulada y todos los datos son sintéticos.
+**Aceptación del usuario.** En la revisión del Sprint 2 (30/09/2026) el Product Owner del caso de estudio (Enf. Rosa Quispe, responsable del programa de anemia del P. S. Chongos Alto, interpretada en la revisión por Porras Veli, Ricardo) verificó los criterios Dado-Cuando-Entonces de HU-01 a HU-05 sobre el staging y aceptó el incremento con observaciones (Anexo A). Al tratarse de un proyecto académico, la aceptación es simulada y todos los datos son sintéticos.
 
 ## 4. Matriz de trazabilidad integral del proceso y generación de valor
 

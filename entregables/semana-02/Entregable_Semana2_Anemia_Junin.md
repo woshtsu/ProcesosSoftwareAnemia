@@ -2,6 +2,8 @@
 
 **Curso:** Procesos de Software — periodo 2026-20
 
+**Unidad del sílabo:** Unidad I — Fundamentos de procesos de software
+
 **Unidad:** Diseño de procesos de software con entrega de valor
 
 **Eje temático 2:** Modelo de procesos de software
@@ -217,7 +219,6 @@ La guía exige argumentar con la cadena **característica del proyecto → probl
 
 El diagrama representa cómo se aplica el modelo seleccionado a este proyecto (no es un diagrama genérico de Scrum o DevOps): nombra los incrementos, los actores que retroalimentan y el subciclo MLOps que se activa a partir del INC-5.
 
-<!-- DIAG-006 pendiente -->
 ![Figura 1. Aplicación del modelo de proceso al proyecto: ciclo principal con los diez elementos de la guía y subciclo MLOps desde INC-5 (elaboración propia).](../../.claude/diagramas/svg/15_s2_modelo_proceso_aplicado.svg)
 
 **Tabla 8.** Los diez elementos exigidos por la Actividad 5, aplicados al proyecto.
@@ -227,7 +228,7 @@ El diagrama representa cómo se aplica el modelo seleccionado a este proyecto (n
 | 1 | Entrada / requerimientos | TO-BE de la Semana 1 convertido en Product Backlog priorizado con el personal de salud (INC-1 a INC-6) | Scrum |
 | 2 | Planificación | Sprint Planning al inicio de cada sprint de dos semanas | Scrum |
 | 3 | Desarrollo | Construcción del incremento; el INC-1 se implementa en Python con Flask y SQLite, con arquitectura hexagonal | DevOps |
-| 4 | Integración | Integración continua de cada cambio: construcción y análisis estático | DevOps |
+| 4 | Integración | Integración continua prevista para cada cambio (herramienta planificada en §9): construcción y análisis estático | DevOps |
 | 5 | Pruebas | Pruebas automatizadas de dominio, persistencia, API y arquitectura; prueba de sincronización offline desde INC-3. Si no se cumple la Definición de Hecho, se vuelve a desarrollo | DevOps |
 | 6 | Retroalimentación | Sprint Review con la posta, el agente comunitario y la microred (sesiones cortas o remotas) | Scrum |
 | 7 | Entrega | Despliegue en una posta piloto antes de extender a otros establecimientos | DevOps |
@@ -247,7 +248,7 @@ La relación exigida por la guía es **necesidad → incremento de software → 
 | :---- | :---- | :---- | :---- | :---- |
 | INC-1 | Registro nominal validado y expediente digital (brecha B1) | Información única y confiable de cada niño | Elimina el triple registro y sus errores | Registros sin error crítico ÷ evaluados × 100 |
 | INC-2 | Agenda automática de controles según la norma y alertas (B2) | Controles programados visibles y vencidos identificados | Mayor oportunidad en la atención | Atendidos oportunamente ÷ elegibles × 100 |
-| INC-3 | Funcionalidad offline y sincronización (B4, B6) | Registro sin pérdida de datos en zonas sin cobertura | Continuidad del servicio en el ámbito rural | Registros sincronizados ÷ pendientes × 100 |
+| INC-3 | Funcionalidad offline, sincronización y visita domiciliaria priorizada (B4, B6) | Registro sin pérdida de datos en zonas sin cobertura | Continuidad del servicio en el ámbito rural | Registros sincronizados ÷ pendientes × 100 |
 | INC-4 | Notificaciones por WhatsApp y reporte de barreras (B3) | Familias informadas y barreras reportadas a tiempo | Menor pérdida de seguimiento | Mensajes entregados y leídos ÷ enviados × 100 |
 | INC-5 | Modelo predictivo y priorización de la agenda (B5) | Casos de alto riesgo priorizados | Uso más eficiente del personal disponible | Casos confirmados ÷ señalados por el modelo × 100 |
 | INC-6 | Tablero de gestión territorial, referencias e indicadores (B6) | Supervisión oportuna por microred y MINSA | Decisiones territoriales basadas en evidencia | Cierre oportuno de referencias; pérdida de seguimiento |
@@ -276,17 +277,17 @@ La columna *Evidencia* distingue lo que ya está en uso en el repositorio del pr
 
 | Necesidad del proceso | Herramienta | ¿Qué actividad soporta? | Evidencia |
 | :---- | :---- | :---- | :---- |
-| Gestión del trabajo | GitHub Projects | Backlog, sprints e historias, junto al código | Planificada para el backlog INC-1 a INC-6 [PENDIENTE: enlace al tablero del equipo] |
+| Gestión del trabajo | GitHub Projects | Backlog, sprints e historias, junto al código | Planificada para el backlog INC-1 a INC-6 (enlace al tablero: no disponible en la fecha de esta entrega) |
 | Control de versiones | Git / GitHub | Código, configuración y documentación versionados | Repositorio del proyecto con historial de commits; PMV en `anemia_junin/` |
 | Desarrollo de la aplicación | Python con Flask, Waitress y SQLite | Construcción del incremento (elemento 3 del proceso) | `anemia_junin/pyproject.toml` y `anemia_junin/migrations/001_initial.sql` (INC-1) |
-| Integración y entrega continua | GitHub Actions | Construcción, pruebas y despliegue automáticos (DevOps) | Planificada; aún no hay flujo de trabajo configurado en el repositorio [PENDIENTE] |
+| Integración y entrega continua | GitHub Actions | Construcción, pruebas y despliegue automáticos (DevOps) | Planificada; aún no hay flujo de trabajo configurado en el repositorio a la fecha de esta entrega (25/09/2026) |
 | Calidad de código | SonarCloud (planificado) y ruff (en uso) | Análisis estático y control de deuda técnica | ruff configurado en `anemia_junin/pyproject.toml`; SonarCloud pendiente de configurar |
 | Pruebas | pytest con pytest-cov; Playwright para interfaz | Pruebas unitarias, de persistencia, de API, de arquitectura y de interfaz | Suites en `anemia_junin/tests/` (dominio, persistencia, API, arquitectura); en la planificación inicial se previó Selenium y el PMV adoptó Playwright |
 | Experimentación y modelos | Google Colab y MLflow | Experimentación y versionado de modelos (MLOps) | Planificada para INC-5 |
 | Persistencia | SQLite (INC-1) y PostgreSQL (servidor central) | Almacenamiento del registro nominal; base local para el modo offline | SQLite en uso en el PMV; PostgreSQL previsto para el despliegue multiestablecimiento |
 | Notificaciones | WhatsApp Business API | Envío de recordatorios y recepción de respuestas de la familia | Planificada para INC-4 |
 | Documentación | Markdown en el repositorio | Documentación versionada junto al código | Entregables `.md` y decisiones de arquitectura en `anemia_junin/docs/adr/` |
-| Prototipado | Figma | Diseño de las interfaces antes de construirlas | Planificada [PENDIENTE: enlace a prototipos] |
+| Prototipado | Figma | Diseño de las interfaces antes de construirlas | Planificada (enlace a prototipos: no disponible en la fecha de esta entrega) |
 
 ## 9.1 Comparativa ponderada de las herramientas críticas
 

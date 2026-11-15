@@ -1,6 +1,6 @@
 # Checklist de cumplimiento: Informe Integrador S6 (bloques B y C)
 
-- **Consigna:** `guias/S6.CONSIGNA DE TRABAJO E INSTRUMENTO DE EVALUACIÓN INTEGRADOR.md`, §II.
+- **Consigna:** `guias/semana-06-integrador.md`, §II.
 - **Requisitos:** `.claude/archivo/semana-06-integrador/REQUISITOS_S6.md` (recuperado de la rama `feature/s6-integrador-final`, commit 6547196) (R-06 a R-39 y los criterios C1 a C4 de la rúbrica, R-81 a R-84).
 - **Entregable:** `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md`.
 - **Redactor:** redactor-informe-integrador (tarea S6-03).
