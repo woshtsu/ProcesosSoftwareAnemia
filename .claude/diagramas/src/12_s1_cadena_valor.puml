@@ -2,7 +2,7 @@
 ' Título: Cadena de valor del proceso TO-BE — Semana 1
 ' Solicitud: DIAG-003 (T-002)
 ' Fuentes de verdad: entregables/semana-01/Entregable_Semana1_Anemia_Junin.md §7 (cadena de valor) y §8
-'   (indicadores); archivo/versiones-anteriores/semana-01/..._v4.md §7
+'   (indicadores); .claude/archivo/versiones-anteriores/semana-01/..._v4.md §7
 ' Fecha: 2026-09-25 · Autor: agente diagramador
 ' =============================================================================
 @startuml 12_s1_cadena_valor

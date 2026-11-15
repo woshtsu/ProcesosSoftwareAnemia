@@ -13,10 +13,10 @@ from diagramas import build,PDFDIR,PNGDIR,ROOT
 import pypdfium2 as pdfium
 import json
 
-# Salida: borrador regenerado en diagramas/_build/integrador (no sobrescribe el entregable vigente
+# Salida: borrador regenerado en .claude/diagramas/_build/integrador (no sobrescribe el entregable vigente
 # entregables/semana-06-integrador/, que puede haber sido editado a mano).
 # Los enlaces del .md generado asumen que el archivo se copia a entregables/semana-06-integrador/.
-OUT=ROOT/'diagramas'/'_build'/'integrador'; OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'.claude'/'diagramas'/'_build'/'integrador'; OUT.mkdir(parents=True,exist_ok=True)
 for name,f in [('Arial','arial.ttf'),('Arial-Bold','arialbd.ttf'),('Arial-Italic','ariali.ttf')]:
  pdfmetrics.registerFont(TTFont(name,str(Path('C:/Windows/Fonts')/f)))
 pdfmetrics.registerFontFamily('Arial',normal='Arial',bold='Arial-Bold',italic='Arial-Italic')
@@ -59,12 +59,12 @@ def make(pages,name):
     _,n,cap,mh=block; draw=deepcopy(DIAGRAMS[n]); scale=min(505/draw.width,mh/draw.height)
     draw.scale(scale,scale);draw.width*=scale;draw.height*=scale
     story.append(KeepTogether([draw,para(cap,'caption')]))
-    md += [f'![{cap}](../../diagramas/svg/{n}.svg)','',cap,'']
+    md += [f'![{cap}](../../.claude/diagramas/svg/{n}.svg)','',cap,'']
  doc=SimpleDocTemplate(str(OUT/(name+'.pdf')),pagesize=A4,rightMargin=45,leftMargin=45,topMargin=45,bottomMargin=45,title=pages[0][0],author='Equipo de proyecto Anemia Junín',pageCompression=1)
  doc.build(story,onFirstPage=footer,onLaterPages=footer)
  (OUT/(name+'.md')).write_text('\n'.join(md),encoding='utf-8')
  pdf=pdfium.PdfDocument(str(OUT/(name+'.pdf')))
- qa=ROOT/'diagramas'/'_build'/'qa'/name;qa.mkdir(parents=True,exist_ok=True)
+ qa=ROOT/'.claude'/'diagramas'/'_build'/'qa'/name;qa.mkdir(parents=True,exist_ok=True)
  for i in range(len(pdf)):
   pdf[i].render(scale=1.4).to_pil().save(qa/f'page-{i+1:02}.png')
  print(name,'expected',len(pages),'actual',len(pdf))

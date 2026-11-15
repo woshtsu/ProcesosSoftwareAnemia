@@ -77,5 +77,5 @@ Flechas = dependencias fin→inicio. **Ruta crítica en rojo y trazo grueso**; r
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 5. Red de actividades del Incremento 1 con la ruta crítica y las holguras (elaboración propia).](../../.claude/.claude/diagramas/svg/34_s34_red_ruta_critica_inc1.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 5. Red de actividades del Incremento 1 con la ruta crítica y las holguras (elaboración propia).](../../diagramas/svg/34_s34_red_ruta_critica_inc1.svg)`
 - **Notas:**

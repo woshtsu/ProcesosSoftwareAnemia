@@ -52,7 +52,7 @@
 - 21. Referencias
 - Anexo A. Registro de cambios respecto de la versión anterior
 
-**Índice de tablas y figuras.** Las tablas se numeran de forma correlativa (Tabla 1 a Tabla 38) y las figuras de la Figura 1 a la Figura 6. Las figuras son diagramas en SVG ubicados en `diagramas/svg/`, elaborados por el equipo a partir de los datos exactos de las tablas de este documento.
+**Índice de tablas y figuras.** Las tablas se numeran de forma correlativa (Tabla 1 a Tabla 38) y las figuras de la Figura 1 a la Figura 6. Las figuras son diagramas en SVG ubicados en `.claude/diagramas/svg/`, elaborados por el equipo a partir de los datos exactos de las tablas de este documento.
 
 ---
 

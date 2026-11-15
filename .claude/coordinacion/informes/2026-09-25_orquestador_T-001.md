@@ -19,8 +19,8 @@ Reestructuración del repositorio (antes `Entrega 1/` y `Entrega 2/`) en `guias/
 | movido | `entregables/semana-01/img/image1..11.png` | eran `tmp/revision/s1-imageN.png`, byte-idénticas a las base64 (MD5 verificado) |
 | movido+modificado | `entregables/semana-02/Entregable_Semana2_Anemia_Junin.md` | ex v2 `.docx.md`; 1 imagen base64 → `img/image1.png` |
 | movido | `entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md` | ex v1 |
-| movido | `entregables/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf` | referencia |
-| creado | `entregables/semana-05/_extraccion_Informe_Actividad5.md` | pypdf modo layout, 12 págs. |
+| movido | `exportados/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf` | referencia |
+| creado | `.claude/archivo/semana-05/_extraccion_Informe_Actividad5.md` | pypdf modo layout, 12 págs. |
 | movido+modificado | `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md` | ex `_revision.md`; enlaces a `../../.claude/diagramas/svg/` |
 | movido | `.claude/diagramas/png`, `.claude/diagramas/svg`, `.claude/diagramas/src` | 9 PNG + 9 SVG + 1 puml + generador ReportLab (rutas actualizadas a la nueva estructura) |
 | movido | `.claude/archivo/…` | v3/v4 de S1, v1 de S2, PDFs generados, zip, verificación S2, material de `tmp/revision` |
@@ -36,7 +36,7 @@ Reestructuración del repositorio (antes `Entrega 1/` y `Entrega 2/`) en `guias/
 
 ## Verificación realizada
 
-MD5 de todos los duplicados; comparación línea a línea del texto de S1/S2 antes y después de extraer imágenes; `py_compile` de los generadores; Grep de enlaces `diagramas/` en entregables.
+MD5 de todos los duplicados; comparación línea a línea del texto de S1/S2 antes y después de extraer imágenes; `py_compile` de los generadores; Grep de enlaces `.claude/diagramas/` en entregables.
 
 ## Pendientes y riesgos
 

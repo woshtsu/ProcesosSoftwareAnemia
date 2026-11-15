@@ -26,7 +26,7 @@ Se implementó el Incremento 4 completo, versión `4.0.0-inc4`, sin romper el In
 | creado | `pmv_fastapi/db/04_migracion_v4_0.sql` | Migración 3.0 a 4.0 (repetible) |
 | modificado | `pmv_fastapi/db/{01_esquema_postgresql,02_supabase}.sql`, `docs/openapi.json` | Esquema 4.0, RLS de las tablas nuevas y contrato regenerado (29 rutas) |
 | creado | `pmv_fastapi/docs/adr/ADR-014-notificador-y-canales.md` | Decisión; ADR-013 y el índice actualizados |
-| modificado | `pmv_fastapi/{CHANGELOG,README,.env.example,docker-compose.yml}`, `docs/DESPLIEGUE.md`, `README.md` (raíz), `coordinacion/TABLERO.md` | Documentación, variables de entorno e historias HIST-4.x con criterios Dado-Cuando-Entonces |
+| modificado | `pmv_fastapi/{CHANGELOG,README,.env.example,docker-compose.yml}`, `docs/DESPLIEGUE.md`, `README.md` (raíz), `.claude/coordinacion/TABLERO.md` | Documentación, variables de entorno e historias HIST-4.x con criterios Dado-Cuando-Entonces |
 | creado | `pmv_fastapi/tests/unitarias/{test_barreras,test_recordatorios}.py` | 85 pruebas |
 | creado | `pmv_fastapi/tests/integracion/{test_notificadores,test_api_inc4,test_repositorio_inc4}.py` | 69 pruebas (notificadores con `MockTransport`, API, repositorio con SQLAlchemy y en memoria) |
 | creado | `pmv_fastapi/tests/e2e/test_inc4_notificaciones.py` | 4 E2E |

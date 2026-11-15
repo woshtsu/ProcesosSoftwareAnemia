@@ -23,14 +23,14 @@ Se implementó login por correo y contraseña con Supabase Auth, recuperación/r
 | modificado | `pmv_fastapi/tests/conftest.py` | Demo explícita en pruebas históricas |
 | modificados | `pmv_fastapi/README.md`, `docs/openapi.json`, `docs/adr/README.md` | Inicio local, configuración y contrato actualizado |
 | creado | `pmv_fastapi/docs/adr/ADR-011-supabase-auth.md` | Decisión, fuentes y límites |
-| modificados | `coordinacion/RUTAS.md`, `coordinacion/TABLERO.md` | Registro y continuidad |
+| modificados | `.claude/coordinacion/RUTAS.md`, `.claude/coordinacion/TABLERO.md` | Registro y continuidad |
 
 ## Verificación realizada
 
 - `python -m pytest --cov=app --cov-report=term -q`: **349 pruebas aprobadas**, cobertura **99,50 %** (1 675 sentencias y 308 ramas). Incluye 21 casos nuevos de integración/proveedor; los 328 anteriores siguen aprobados.
 - `python -m pytest tests/e2e/test_login.py -m e2e -q --no-cov`: **2 aprobadas** (1366 × 900 y 390 × 844). Comprueban error de credenciales, ingreso, identidad, recarga y cierre; Supabase simulado.
 - Regresión completa `python -m pytest tests/e2e -m e2e -q --no-cov`: **17 aprobadas** (las 15 anteriores y las 2 de login). La primera ejecución detectó que los servidores de alcance de módulo arrancaban antes del fixture de modo demo; se corrigieron ambos fixtures E2E para pasar `AUTH_MODE=demo` explícitamente al servidor. La ejecución completa posterior pasó en 24,56 s.
-- Capturas temporales `diagramas/_build/auth/login-1366.png` y `login-390.png`: inspección visual sin desbordamientos; no son evidencia de login contra una cuenta remota.
+- Capturas temporales `.claude/diagramas/_build/auth/login-1366.png` y `login-390.png`: inspección visual sin desbordamientos; no son evidencia de login contra una cuenta remota.
 - Ruff: sin hallazgos; formato comprobado y ajustado en los archivos nuevos.
 - `python -m scripts.exportar_openapi --verificar`: contrato al día.
 - `git check-ignore pmv_fastapi/.env`: configuración real excluida del versionado.

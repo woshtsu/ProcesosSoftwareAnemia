@@ -54,5 +54,5 @@ Barras auxiliares (opcionales, en gris claro, debajo): «Validación de datos de
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 4. Cronograma de los ocho sprints del proyecto con incrementos e hitos H0 a H7 (elaboración propia).](../../.claude/.claude/diagramas/svg/33_s34_cronograma_sprints_hitos.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 4. Cronograma de los ocho sprints del proyecto con incrementos e hitos H0 a H7 (elaboración propia).](../../diagramas/svg/33_s34_cronograma_sprints_hitos.svg)`
 - **Notas:**

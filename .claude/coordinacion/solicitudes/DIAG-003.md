@@ -60,5 +60,5 @@ Título: "Cadena de valor del proceso TO-BE: Entrada → Actividad → Resultado
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 8. Cadena de valor del proceso TO-BE (elaboración propia).](../../.claude/.claude/diagramas/svg/12_s1_cadena_valor.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 8. Cadena de valor del proceso TO-BE (elaboración propia).](../../diagramas/svg/12_s1_cadena_valor.svg)`
 - **Notas:**

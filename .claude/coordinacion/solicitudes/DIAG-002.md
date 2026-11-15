@@ -75,5 +75,5 @@ Título: "Proceso TO-BE — Seguimiento de la anemia infantil con apoyo del sist
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 7. Proceso TO-BE por carriles de actor, con el carril Sistema y las mejoras M1-M6 (elaboración propia).](../../.claude/.claude/diagramas/svg/11_s1_proceso_to_be.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 7. Proceso TO-BE por carriles de actor, con el carril Sistema y las mejoras M1-M6 (elaboración propia).](../../diagramas/svg/11_s1_proceso_to_be.svg)`
 - **Notas:**

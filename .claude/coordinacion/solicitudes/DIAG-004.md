@@ -71,5 +71,5 @@ Opcional: rotular cada caso de uso con su incremento (INC-n) en texto pequeño.
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 10. Casos de uso de la visión TO-BE: 5 actores y 11 casos de uso (elaboración propia).](../../.claude/.claude/diagramas/svg/13_s1_casos_uso_vision.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 10. Casos de uso de la visión TO-BE: 5 actores y 11 casos de uso (elaboración propia).](../../diagramas/svg/13_s1_casos_uso_vision.svg)`
 - **Notas:**

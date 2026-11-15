@@ -5,7 +5,7 @@
 ## Cómo tomarlas
 
 1. Iniciar sesión en GitHub con una cuenta con acceso al repositorio y abrir la URL de la fila. Cuando la URL lleva `#Lx-Ly`, GitHub resalta ese rango: la captura debe mostrar la ruta, el selector de rama y los números de línea.
-2. Los números de línea se midieron en la rama `docs/s12-integrador`; `pmv_fastapi/` y `.github/` son idénticos a los de `main` tras la fusión de la PR #8 (`c870a7e`). `coordinacion/TABLERO.md` sí puede diferir entre ramas: comprobar que las filas T-019 y T-020 coincidan y ajustar el rango.
+2. Los números de línea se midieron en la rama `docs/s12-integrador`; `pmv_fastapi/` y `.github/` son idénticos a los de `main` tras la fusión de la PR #8 (`c870a7e`). `.claude/coordinacion/TABLERO.md` sí puede diferir entre ramas: comprobar que las filas T-019 y T-020 coincidan y ajustar el rango.
 3. Guardar cada PNG en `entregables/semana-11/evidencias/github/` con el nombre de la última columna. Optimizar a 256 colores y menos de 300 KB (por ejemplo, con Pillow: `Image.open(p).convert("RGB").quantize(256).save(p, optimize=True)`). No incluir tokens, correos ni datos personales.
 4. Si una página muestra algo distinto de lo esperado (por ejemplo, no existe un tablero de Projects o `main` no tiene reglas de protección), tomar igualmente la captura —la ausencia también es evidencia— y ajustar el texto de la figura y la calificación asociada.
 

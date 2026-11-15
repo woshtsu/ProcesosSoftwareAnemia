@@ -235,7 +235,7 @@ PERIODO ACADÉMICO: 2026-20
 - Figura 97. Código afectado por el hallazgo H-3: el CSV del reporte no neutraliza celdas que empiezan con =, +, - o @ (GitHub, v4.0-Inc4).
 - Figura 98. Nivel de capacidad CMMI por área, informe S11 frente al 30/10/2026: ninguna área cambia de nivel; CAR se evalúa por primera vez.
 - Figura 99. Ejecuciones del flujo «CI y producción» en main: la #16 (c870a7e, PR #8) en verde y las #6, #8, #9 y #10 en rojo (GitHub, 30/10/2026).
-- Figura 100. Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en coordinacion/TABLERO.md (GitHub, 30/10/2026).
+- Figura 100. Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en .claude/coordinacion/TABLERO.md (GitHub, 30/10/2026).
 - Figura 101. settings/branches devuelve 404 para la cuenta que tomó la captura: la protección de main no es verificable (GitHub, 30/10/2026).
 - Figura 102. Artefactos de proceso en el repositorio: la plantilla de PR, el hook de pre-commit, la convención de commits, CODEOWNERS y Dependabot no existen; SonarCloud...
 - Figura 103. Estimación del backlog en puntos de historia: 21 SP del INC-1 y 133 SP en total, con complejidad e incertidumbre por elemento. Fuente: entregable S3-4, secci...
@@ -508,7 +508,7 @@ Se compararon siete enfoques con seis criterios (escala 1 a 5): Cascada 8, Incre
 | Práctica | Planificado | Ejecutado (evidencia) | Brecha |
 | --- | --- | --- | --- |
 | Entrega incremental | 6 incrementos, 133 puntos de historia (SP) | 4 incrementos entregados (INC-1 a INC-4), 76 de 133 SP (57,1 %); cada uno con etiqueta (`v1.0-PMV`, `v2.0-Inc2`, `v3.0-Inc3`, `v4.0-Inc4`) | INC-5 (modelo predictivo) e INC-6 (tablero) sin construir |
-| Scrum | Sprints de 2 semanas, backlog con estimación, revisión con la posta, retrospectiva | Backlog estimado con SP (S3-4); seguimiento en `coordinacion/TABLERO.md` | Sin actas de revisión con el personal de salud; sin tablero de GitHub Projects («No projects found»); sin horas reales registradas |
+| Scrum | Sprints de 2 semanas, backlog con estimación, revisión con la posta, retrospectiva | Backlog estimado con SP (S3-4); seguimiento en `.claude/coordinacion/TABLERO.md` | Sin actas de revisión con el personal de salud; sin tablero de GitHub Projects («No projects found»); sin horas reales registradas |
 | DevOps | Integración continua, pruebas automáticas, despliegue automatizado | GitHub Actions con tres trabajos (`calidad-y-pruebas`, `imagen`, `produccion`); 660 pruebas y 28 E2E; despliegue a Render y Supabase desde `main`; producción verificada el 31/10/2026: `/openapi.json` declara `4.0.0-inc4` con 29 rutas | SAST y auditoría de dependencias fuera del CI; protección de `main` no verificable |
 | MLOps | Pipeline de datos, experimentación y monitoreo del modelo | No ejecutado | Depende del INC-5 |
 
@@ -533,7 +533,7 @@ La categorización es la simplificación del curso (sección 2.3), sin afirmar c
 | Proceso de soporte | Gestión de configuración | Repositorio Git con 5 etiquetas y ramas `feature/*` | Auqui H. | no definido en S3-4 | no definido en S3-4 | Etiquetas `v1.0-PMV` a `v4.0-Inc4` (Anexo B) |
 | Proceso de soporte | Aseguramiento de calidad (PQA) | Ruff, informe de revisión independiente, defectos DEF-01 a DEF-09 | Huamani R. | Porras V. | Huamani R. | `registro_defectos*.md`, informe T-020 |
 | Proceso de soporte | Verificación y validación | 19 fichas de prueba con capturas | Huamani R. | Auqui H. | firma pendiente | Sección 3.6.3 |
-| Proceso de gestión | Planificación y control de desviaciones | Plan por sprint, plan frente a real | Porras V. | Huamani R. | Porras V. | `coordinacion/TABLERO.md`; Tabla 16 |
+| Proceso de gestión | Planificación y control de desviaciones | Plan por sprint, plan frente a real | Porras V. | Huamani R. | Porras V. | `.claude/coordinacion/TABLERO.md`; Tabla 16 |
 | Proceso de gestión | Retrospectiva y mejora | Plan de mejora CMMI con 19 acciones | Porras V. | Equipo | Porras V. | Sección 3.8 |
 
 **Definición de terminado (DoD)**
@@ -2038,7 +2038,7 @@ El perfil es de tres áreas en Nivel 2 (PLAN, CM y VER) y cuatro en Nivel 1 (EST
 
 ![El repositorio no tiene tableros de GitHub Projects.](../semana-11/evidencias/github/GH_projects.png)
 
-**Figura 100.** Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `coordinacion/TABLERO.md` (GitHub, 30/10/2026).
+**Figura 100.** Pestaña Projects: «No projects found»; el seguimiento de PLAN se apoya solo en `.claude/coordinacion/TABLERO.md` (GitHub, 30/10/2026).
 
 ![La protección de main no es verificable.](../semana-11/evidencias/github/GH_proteccion_main.png)
 
@@ -2091,7 +2091,7 @@ El diseño no es un área evaluada en la Tabla 36. Se presenta como **Solución 
 
 ![Gantt del Incremento 1.](../../.claude/diagramas/png/32_s34_gantt_incremento1.png)
 
-- **Archivo de imagen:** `diagramas/png/32_s34_gantt_incremento1.png`
+- **Archivo de imagen:** `.claude/diagramas/png/32_s34_gantt_incremento1.png`
 
 ---
 
@@ -2107,7 +2107,7 @@ El diseño no es un área evaluada en la Tabla 36. Se presenta como **Solución 
 
 ![Cronograma de sprints e hitos.](../../.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png)
 
-- **Archivo de imagen:** `diagramas/png/33_s34_cronograma_sprints_hitos.png`
+- **Archivo de imagen:** `.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png`
 
 **[ CAPTURA 2: SEGUIMIENTO ]**
 

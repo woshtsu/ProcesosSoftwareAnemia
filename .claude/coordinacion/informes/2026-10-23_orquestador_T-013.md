@@ -18,12 +18,12 @@ El cierre autorizado consiste en un commit de merge en feature y un fast-forward
 | Acción | Ruta | Nota |
 | --- | --- | --- |
 | resuelto | 88 rutas del índice Git | Conservado el contenido de feature; no se rebaja a la versión 1.5 |
-| conservado | `diagramas/{src,png,svg}/72_s9_hexagonal_v15.*` | Fuente DOT y derivados PNG/SVG heredados de main |
+| conservado | `.claude/diagramas/{src,png,svg}/72_s9_hexagonal_v15.*` | Fuente DOT y derivados PNG/SVG heredados de main |
 | modificado | `pmv_fastapi/tests/arquitectura/test_dependencias.py` | CP-177 usa `Path.as_posix()` para comparar las rutas también en Windows |
-| modificado | `coordinacion/RUTAS.md`, `diagramas/README.md` | Registro y distinción de la figura heredada |
-| modificado | `coordinacion/TABLERO.md` | T-013 y ORQ-004; las revisiones documentales previas mantienen su estado |
-| creado | `coordinacion/solicitudes/ORQ-004.md` | Alta de rutas mediante la plantilla de solicitud |
-| creado | `coordinacion/informes/2026-10-23_orquestador_T-013.md` | Este informe |
+| modificado | `.claude/coordinacion/RUTAS.md`, `.claude/diagramas/README.md` | Registro y distinción de la figura heredada |
+| modificado | `.claude/coordinacion/TABLERO.md` | T-013 y ORQ-004; las revisiones documentales previas mantienen su estado |
+| creado | `.claude/coordinacion/solicitudes/ORQ-004.md` | Alta de rutas mediante la plantilla de solicitud |
+| creado | `.claude/coordinacion/informes/2026-10-23_orquestador_T-013.md` | Este informe |
 
 ## Verificación realizada
 

@@ -41,7 +41,7 @@
 | Herramientas GQM y conversión (`.claude/herramientas/`) | 34 | 2 | 28 | 4 | 3 | 1 | No |
 | Scripts de evidencias (`entregables/*/metricas/`) | 12 | 0 | 9 | 3 | 1 | 2 | No |
 | Prototipo Flask anterior (`anemia_junin/`) | 12 | 0 | 10 | 2 | 2 | 2 | No (archivado) |
-| Diagramas (`diagramas/src/`) | 1 | 0 | 1 | 0 | 0 | 0 | No |
+| Diagramas (`.claude/diagramas/src/`) | 1 | 0 | 1 | 0 | 0 | 0 | No |
 | **Total** | **129** | **56** | **63** | **10** | **7** | **11** | |
 
 El alcance del análisis también lo distorsiona: son 390 archivos y 75 953 líneas, de las cuales **39 611 (52 %) son JSON de evidencias** y solo 27 596 son Python.

@@ -24,11 +24,11 @@ Principales cambios: portada (universidad, curso, eje, título, integrantes y ro
 | --- | --- | --- |
 | modificado | `entregables/semana-01/Entregable_Semana1_Anemia_Junin.md` | Reestructurado según la guía S1 |
 | modificado | `entregables/semana-02/Entregable_Semana2_Anemia_Junin.md` | Reestructurado según la guía S2 |
-| creado | `entregables/semana-01/CHECKLIST_CUMPLIMIENTO_S1.md` | Nombre indicado por el usuario (RUTAS.md dice `CHECKLIST_cumplimiento.md`: el orquestador debe unificarlo) |
-| creado | `entregables/semana-02/CHECKLIST_CUMPLIMIENTO_S2.md` | Ídem |
-| creado | `coordinacion/solicitudes/DIAG-001.md` a `DIAG-006.md` | Diagramas a rehacer en PlantUML |
-| creado | `coordinacion/solicitudes/INV-001.md` | Vigencia NTS 134 frente a NTS 213-2024 |
-| modificado | `coordinacion/TABLERO.md` | T-002 y T-003 → HECHO; solicitudes registradas |
+| creado | `.claude/archivo/semana-01/CHECKLIST_CUMPLIMIENTO_S1.md` | Nombre indicado por el usuario (RUTAS.md dice `CHECKLIST_cumplimiento.md`: el orquestador debe unificarlo) |
+| creado | `.claude/archivo/semana-02/CHECKLIST_CUMPLIMIENTO_S2.md` | Ídem |
+| creado | `.claude/coordinacion/solicitudes/DIAG-001.md` a `DIAG-006.md` | Diagramas a rehacer en PlantUML |
+| creado | `.claude/coordinacion/solicitudes/INV-001.md` | Vigencia NTS 134 frente a NTS 213-2024 |
+| modificado | `.claude/coordinacion/TABLERO.md` | T-002 y T-003 → HECHO; solicitudes registradas |
 
 No se borró ni movió ningún archivo. Los PNG que dejan de enlazarse (`semana-01/img/image2.png`, `image7.png`, `image9.png`, `image10.png`, `image11.png`; `semana-02/img/image1.png`) siguen en disco como referencia para el diagramador; el orquestador puede archivarlos cuando se resuelvan las solicitudes DIAG.
 
@@ -36,12 +36,12 @@ No se borró ni movió ningún archivo. Los PNG que dejan de enlazarse (`semana-
 
 | ID | Diagrama | Entregable / figura | SVG destino (enlace ya insertado) |
 | --- | --- | --- | --- |
-| DIAG-001 | Proceso AS-IS por carriles | S1, Figura 2 | `diagramas/svg/10_s1_proceso_as_is.svg` |
-| DIAG-002 | Proceso TO-BE con carril Sistema y mejoras M1-M6 | S1, Figura 7 | `diagramas/svg/11_s1_proceso_to_be.svg` |
-| DIAG-003 | Cadena de valor | S1, Figura 8 | `diagramas/svg/12_s1_cadena_valor.svg` |
-| DIAG-004 | Casos de uso de la visión TO-BE (ex Mermaid v4) | S1, Anexo B, Figura 10 | `diagramas/svg/13_s1_casos_uso_vision.svg` |
-| DIAG-005 | Clases del dominio de la visión TO-BE (ex Mermaid v4) | S1, Anexo B, Figura 11 | `diagramas/svg/14_s1_clases_dominio_vision.svg` |
-| DIAG-006 | Modelo de proceso aplicado al proyecto (ex Mermaid v1) | S2, Figura 1 | `diagramas/svg/15_s2_modelo_proceso_aplicado.svg` |
+| DIAG-001 | Proceso AS-IS por carriles | S1, Figura 2 | `.claude/diagramas/svg/10_s1_proceso_as_is.svg` |
+| DIAG-002 | Proceso TO-BE con carril Sistema y mejoras M1-M6 | S1, Figura 7 | `.claude/diagramas/svg/11_s1_proceso_to_be.svg` |
+| DIAG-003 | Cadena de valor | S1, Figura 8 | `.claude/diagramas/svg/12_s1_cadena_valor.svg` |
+| DIAG-004 | Casos de uso de la visión TO-BE (ex Mermaid v4) | S1, Anexo B, Figura 10 | `.claude/diagramas/svg/13_s1_casos_uso_vision.svg` |
+| DIAG-005 | Clases del dominio de la visión TO-BE (ex Mermaid v4) | S1, Anexo B, Figura 11 | `.claude/diagramas/svg/14_s1_clases_dominio_vision.svg` |
+| DIAG-006 | Modelo de proceso aplicado al proyecto (ex Mermaid v1) | S2, Figura 1 | `.claude/diagramas/svg/15_s2_modelo_proceso_aplicado.svg` |
 
 ## Verificación realizada
 
@@ -61,21 +61,21 @@ No se borró ni movió ningún archivo. Los PNG que dejan de enlazarse (`semana-
 
 ## Solicitudes abiertas a otros agentes
 
-- `coordinacion/solicitudes/DIAG-001.md` — AS-IS S1
-- `coordinacion/solicitudes/DIAG-002.md` — TO-BE S1
-- `coordinacion/solicitudes/DIAG-003.md` — Cadena de valor S1
-- `coordinacion/solicitudes/DIAG-004.md` — Casos de uso de la visión TO-BE (S1, anexo)
-- `coordinacion/solicitudes/DIAG-005.md` — Clases del dominio de la visión TO-BE (S1, anexo)
-- `coordinacion/solicitudes/DIAG-006.md` — Modelo de proceso aplicado (S2)
-- `coordinacion/solicitudes/INV-001.md` — Vigencia NTS 134 vs. NTS 213-2024
+- `.claude/coordinacion/solicitudes/DIAG-001.md` — AS-IS S1
+- `.claude/coordinacion/solicitudes/DIAG-002.md` — TO-BE S1
+- `.claude/coordinacion/solicitudes/DIAG-003.md` — Cadena de valor S1
+- `.claude/coordinacion/solicitudes/DIAG-004.md` — Casos de uso de la visión TO-BE (S1, anexo)
+- `.claude/coordinacion/solicitudes/DIAG-005.md` — Clases del dominio de la visión TO-BE (S1, anexo)
+- `.claude/coordinacion/solicitudes/DIAG-006.md` — Modelo de proceso aplicado (S2)
+- `.claude/coordinacion/solicitudes/INV-001.md` — Vigencia NTS 134 vs. NTS 213-2024
 
 ## Nota posterior (2026-09-25): aplicación de INV-001
 
-Se aplicaron al entregable S1 las recomendaciones de `coordinacion/informes/2026-09-25_investigador_INV-001.md`, contrastadas antes con fuentes públicas y con `anemia_junin/config/normativa_v1.json`:
+Se aplicaron al entregable S1 las recomendaciones de `.claude/coordinacion/informes/2026-09-25_investigador_INV-001.md`, contrastadas antes con fuentes públicas y con `anemia_junin/config/normativa_v1.json`:
 
 - **§1:** la NTS N.° 213-MINSA/DGIESP-2024 figura como norma vigente (RM 251-2024-MINSA, modificada por la RM 429-2024-MINSA) y se indica que la RM 251-2024-MINSA derogó la NTS N.° 134-MINSA/2017/DGIESP. Antes se la presentaba como una "actualización".
 - **Anexo A.1:** el esquema de las Tablas A.1 a A.4 se presenta como esquema operativo local compatible con la NTS 213 (inicio del tamizaje a los 6 meses; el corte de Hb ≥ 10,5 g/dL de la Tabla A.3 coincide con el de 6 a 23 meses). Se aclara que el PMV toma los umbrales de la NTS 213 (10,5 g/dL para 6 a 23 meses y 11,0 g/dL para 24 a 59 meses) y no del esquema local. Se retira el `[PENDIENTE: INV-001]`, y se deja constancia de que el calendario de dosajes y suplementación no se contrastó fila por fila con el texto de la norma.
 - **§11 Fuentes:** la NTS 134 queda marcada como derogada y la NTS 213 como vigente.
 - **Checklist S1:** F-09 pasa de PARCIAL a CUMPLE. El resultado global sube de 95,4 % a 96,3 % (50 C / 4 P / 0 NC).
 - **Descartado del informe INV-001:** su afirmación de que la NTS 134 usaba un umbral de "~9,5 g/dL" para 6 a 23 meses es una inferencia sin fuente, y el propio informe reconoce que no tuvo acceso a la NTS 134. No se incorporó ninguna cifra de la NTS 134. Tampoco se incorporaron las fechas exactas de las RM que proponía el informe, porque no pudieron verificarse.
-- **Discrepancia de nombres resuelta:** en `coordinacion/RUTAS.md` el patrón de los checklists pasa a ser `CHECKLIST_CUMPLIMIENTO_S<n>.md`. Queda desalineada la definición `.claude/agents/revisor-documental.md` (línea 24), que sigue diciendo `CHECKLIST_cumplimiento.md`. El revisor no la modifica, así que la unificación corresponde al orquestador.
+- **Discrepancia de nombres resuelta:** en `.claude/coordinacion/RUTAS.md` el patrón de los checklists pasa a ser `CHECKLIST_CUMPLIMIENTO_S<n>.md`. Queda desalineada la definición `.claude/agents/revisor-documental.md` (línea 24), que sigue diciendo `CHECKLIST_cumplimiento.md`. El revisor no la modifica, así que la unificación corresponde al orquestador.

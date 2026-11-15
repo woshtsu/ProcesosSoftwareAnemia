@@ -21,7 +21,7 @@ Que cada entregable cumpla **estrictamente y al 100 %** todos los requerimientos
 | S5 | `guias/semana-05.md` + `exportados/semana-05/Informe_Actividad5_PMV_AnemiaJunin.pdf` y su extracción `.claude/archivo/semana-05/_extraccion_Informe_Actividad5.md` | `entregables/semana-05/Entregable_Semana5_Anemia_Junin.md` (**a crear**) |
 | S6 | `guias/semana-06-integrador.md` | `entregables/semana-06-integrador/Informe_Integrador_Anemia_Junin.md` (+ `anexos/`) |
 
-- **Salida adicional obligatoria:** `entregables/semana-XX/CHECKLIST_cumplimiento.md` (plantilla `.claude/coordinacion/plantillas/CHECKLIST_CUMPLIMIENTO.md`).
+- **Salida adicional obligatoria:** `.claude/archivo/semana-XX/CHECKLIST_CUMPLIMIENTO_S<n>.md` (plantilla `.claude/coordinacion/plantillas/CHECKLIST_CUMPLIMIENTO.md`).
 - **Consulta (solo lectura):** `.claude/archivo/versiones-anteriores/` (para no perder contenido previo), `.claude/archivo/verificaciones/`, `anemia_junin/` (código real del PMV), `.claude/diagramas/`.
 - **Nunca escribes** en `guias/`, `.claude/archivo/`, `anemia_junin/`, `.claude/diagramas/`.
 

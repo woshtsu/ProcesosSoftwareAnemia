@@ -71,5 +71,5 @@ Nota: A10 y A11 son paralelas y ambas críticas (misma fecha, holgura 0).
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 3. Diagrama de Gantt del Incremento 1 (actividades A01 a A21, del 01 al 28 de septiembre de 2026) con la ruta crítica resaltada (elaboración propia).](../../.claude/.claude/diagramas/svg/32_s34_gantt_incremento1.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 3. Diagrama de Gantt del Incremento 1 (actividades A01 a A21, del 01 al 28 de septiembre de 2026) con la ruta crítica resaltada (elaboración propia).](../../diagramas/svg/32_s34_gantt_incremento1.svg)`
 - **Notas:**

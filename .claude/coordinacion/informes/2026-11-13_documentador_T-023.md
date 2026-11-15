@@ -37,7 +37,7 @@ Además:
 
 ### 3. Laboratorio 13: gestión de la configuración
 
-- `entregables/semana-13/laboratorio-scm/Porras-Auqui-Huamani-Informe-SCM-Lab13.pdf`, con las secciones 1 a 7 de la guía.
+- `exportados/semana-13/Porras-Auqui-Huamani-Informe-SCM-Lab13.pdf`, con las secciones 1 a 7 de la guía.
 - Matrices: RFC, auditoría de las PR #1 a #13, ramas por historia, *releases* y trazabilidad unificada.
 - En el repositorio:
   - `.github/ISSUE_TEMPLATE/change_request.md`, `.github/PULL_REQUEST_TEMPLATE.md`, `CONTRIBUTING.md` (GitFlow, commits, etiquetas) y README actualizado.

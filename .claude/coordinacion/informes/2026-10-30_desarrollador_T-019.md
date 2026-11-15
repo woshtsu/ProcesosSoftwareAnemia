@@ -24,7 +24,7 @@ Se implementó el Incremento 3 completo (HIST-3.1 a HIST-3.4 y VIS-3.5), versió
 | creado | `pmv_fastapi/db/03_migracion_v3_0.sql` | Migración 2.0 a 3.0 (repetible) |
 | modificado | `pmv_fastapi/db/{01_esquema_postgresql,02_supabase}.sql`, `pmv_fastapi/pyproject.toml`, `pmv_fastapi/docs/openapi.json` | Esquema 3.0, RLS, versión y contrato regenerado |
 | creado | `pmv_fastapi/docs/adr/ADR-012-sincronizacion-sin-conexion.md`, `ADR-013-visita-domiciliaria-priorizada.md` | Decisiones; índice en `docs/adr/README.md` |
-| modificado | `pmv_fastapi/{CHANGELOG,README}.md`, `pmv_fastapi/docs/DESPLIEGUE.md`, `README.md` (raíz), `coordinacion/TABLERO.md` | Documentación e historias HIST-3.x y VIS-3.5 con criterios Dado-Cuando-Entonces |
+| modificado | `pmv_fastapi/{CHANGELOG,README}.md`, `pmv_fastapi/docs/DESPLIEGUE.md`, `README.md` (raíz), `.claude/coordinacion/TABLERO.md` | Documentación e historias HIST-3.x y VIS-3.5 con criterios Dado-Cuando-Entonces |
 | creado | `pmv_fastapi/tests/unitarias/{test_visitas,test_conflictos,test_sincronizacion}.py` | 97 pruebas |
 | creado | `pmv_fastapi/tests/integracion/{test_api_inc3,test_repositorio_inc3}.py` | 50 pruebas (el repositorio, con SQLAlchemy y en memoria) |
 | creado | `pmv_fastapi/tests/e2e/test_inc3_sin_conexion.py` | 7 E2E con `set_offline` |

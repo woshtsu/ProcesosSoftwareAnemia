@@ -17,7 +17,7 @@ Se trasladó el workflow a la raíz y se adaptaron rutas de ejecución, caché, 
 | creado | `pmv_fastapi/db/02_supabase.sql` | RLS y revocación de grants de Data API |
 | creado | `pmv_fastapi/docs/DESPLIEGUE.md` | SQL inicial, prompt opcional y pasos Render/GitHub |
 | modificado | `pmv_fastapi/README.md` | Enlace de producción |
-| creado/modificado | `coordinacion/solicitudes/ORQ-008.md`, `coordinacion/RUTAS.md`, `coordinacion/TABLERO.md` | Registro de estructura y pendientes |
+| creado/modificado | `.claude/coordinacion/solicitudes/ORQ-008.md`, `.claude/coordinacion/RUTAS.md`, `.claude/coordinacion/TABLERO.md` | Registro de estructura y pendientes |
 
 ## Verificación realizada
 

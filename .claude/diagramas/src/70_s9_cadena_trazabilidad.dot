@@ -1,5 +1,5 @@
 // 70_s9_cadena_trazabilidad.dot — Cadena metodológica de trazabilidad integrada (Semana 9)
-// Fuente: guías/S9-PSW-GUÍA DE TRABAJO.md (cadena); artefactos: S1, S2, S6, S9. Regenerar con el comando del final.
+// Fuente: guias/semana-09.md (cadena); artefactos: S1, S2, S6, S9. Regenerar con el comando del final.
 digraph cadena {
   graph [rankdir=TB, fontname="DejaVu Sans", fontsize=15, labelloc=t, nodesep=0.45, ranksep=0.7, pad=0.3,
          label="Cadena de trazabilidad: del problema organizacional al valor para el usuario", splines=true];

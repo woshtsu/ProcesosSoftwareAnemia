@@ -16,10 +16,10 @@ El documento se reestructuró en las 17 secciones del §23 y se alineó con el P
 | Acción | Ruta | Nota |
 | --- | --- | --- |
 | modificado | `entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md` | Reescritura estructural (portada, índice, 17 secciones + 18-21, anexo de cambios; 38 tablas, 6 figuras) |
-| creado | `entregables/semana-03-04/CHECKLIST_CUMPLIMIENTO_S3-4.md` | 109 requisitos, estado antes/después y evidencia. Nombre según el encargo (RUTAS.md sugiere `CHECKLIST_cumplimiento.md`) |
-| creado | `coordinacion/solicitudes/DIAG-100.md` … `DIAG-105.md` | Diagramas con datos exactos |
-| creado | `coordinacion/solicitudes/DEV-100.md` | 11 discrepancias entre documento y código |
-| modificado | `coordinacion/TABLERO.md` | T-004 → HECHO; solicitudes registradas |
+| creado | `.claude/archivo/semana-03-04/CHECKLIST_CUMPLIMIENTO_S3-4.md` | 109 requisitos, estado antes/después y evidencia. Nombre según el encargo (RUTAS.md sugiere `CHECKLIST_cumplimiento.md`) |
+| creado | `.claude/coordinacion/solicitudes/DIAG-100.md` … `DIAG-105.md` | Diagramas con datos exactos |
+| creado | `.claude/coordinacion/solicitudes/DEV-100.md` | 11 discrepancias entre documento y código |
+| modificado | `.claude/coordinacion/TABLERO.md` | T-004 → HECHO; solicitudes registradas |
 
 ## Verificación realizada
 
@@ -50,10 +50,10 @@ El documento se reestructuró en las 17 secciones del §23 y se alineó con el P
 
 ## Solicitudes abiertas a otros agentes
 
-- `coordinacion/solicitudes/DIAG-100.md` — Diagrama de actividades del proceso → `diagramas/svg/30_s34_flujo_actividades_proceso.svg`
-- `coordinacion/solicitudes/DIAG-101.md` — WBS → `diagramas/svg/31_s34_wbs_proyecto.svg`
-- `coordinacion/solicitudes/DIAG-102.md` — Gantt del INC-1 → `diagramas/svg/32_s34_gantt_incremento1.svg`
-- `coordinacion/solicitudes/DIAG-103.md` — Cronograma de 8 sprints e hitos → `diagramas/svg/33_s34_cronograma_sprints_hitos.svg`
-- `coordinacion/solicitudes/DIAG-104.md` — Red y ruta crítica → `diagramas/svg/34_s34_red_ruta_critica_inc1.svg`
-- `coordinacion/solicitudes/DIAG-105.md` — Burndown del Sprint 1 → `diagramas/svg/35_s34_burndown_sprint1.svg`
-- `coordinacion/solicitudes/DEV-100.md` — Discrepancias documento-código (11 puntos)
+- `.claude/coordinacion/solicitudes/DIAG-100.md` — Diagrama de actividades del proceso → `.claude/diagramas/svg/30_s34_flujo_actividades_proceso.svg`
+- `.claude/coordinacion/solicitudes/DIAG-101.md` — WBS → `.claude/diagramas/svg/31_s34_wbs_proyecto.svg`
+- `.claude/coordinacion/solicitudes/DIAG-102.md` — Gantt del INC-1 → `.claude/diagramas/svg/32_s34_gantt_incremento1.svg`
+- `.claude/coordinacion/solicitudes/DIAG-103.md` — Cronograma de 8 sprints e hitos → `.claude/diagramas/svg/33_s34_cronograma_sprints_hitos.svg`
+- `.claude/coordinacion/solicitudes/DIAG-104.md` — Red y ruta crítica → `.claude/diagramas/svg/34_s34_red_ruta_critica_inc1.svg`
+- `.claude/coordinacion/solicitudes/DIAG-105.md` — Burndown del Sprint 1 → `.claude/diagramas/svg/35_s34_burndown_sprint1.svg`
+- `.claude/coordinacion/solicitudes/DEV-100.md` — Discrepancias documento-código (11 puntos)

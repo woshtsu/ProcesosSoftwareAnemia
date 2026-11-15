@@ -18,9 +18,9 @@ Se creó una entrada compartida en `.claude/` para que los compañeros y sus IA 
 | creado | `.claude/intercambios/README.md` | Reglas para preguntas, propuestas, respuestas y traspasos |
 | creado | `.claude/plantillas/INTERCAMBIO.md` | Mensaje con autor, tarea, rama, commit, alcance y verificación |
 | modificado | `AGENTS.md`, `README.md` | Entrada visible para asistentes e integrantes |
-| modificado | `coordinacion/PROTOCOLO.md` | Canal adicional en `.claude/`, manteniendo las fuentes canónicas |
-| modificado | `coordinacion/RUTAS.md`, `coordinacion/TABLERO.md` | Registro y cierre de T-016 |
-| creado | `coordinacion/solicitudes/ORQ-007.md` | Alta previa de las rutas |
+| modificado | `.claude/coordinacion/PROTOCOLO.md` | Canal adicional en `.claude/`, manteniendo las fuentes canónicas |
+| modificado | `.claude/coordinacion/RUTAS.md`, `.claude/coordinacion/TABLERO.md` | Registro y cierre de T-016 |
+| creado | `.claude/coordinacion/solicitudes/ORQ-007.md` | Alta previa de las rutas |
 
 ## Verificación realizada
 

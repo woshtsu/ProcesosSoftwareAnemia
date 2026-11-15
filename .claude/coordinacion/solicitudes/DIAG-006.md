@@ -68,5 +68,5 @@ Título: "Aplicación del modelo al proyecto — base iterativa-incremental · S
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 1. Aplicación del modelo de proceso al proyecto: ciclo principal con los diez elementos de la guía y subciclo MLOps desde INC-5 (elaboración propia).](../../.claude/.claude/diagramas/svg/15_s2_modelo_proceso_aplicado.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 1. Aplicación del modelo de proceso al proyecto: ciclo principal con los diez elementos de la guía y subciclo MLOps desde INC-5 (elaboración propia).](../../diagramas/svg/15_s2_modelo_proceso_aplicado.svg)`
 - **Notas:**

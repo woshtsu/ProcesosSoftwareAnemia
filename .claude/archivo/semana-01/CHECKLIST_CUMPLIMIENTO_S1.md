@@ -9,7 +9,7 @@
 
 ## Matriz de requisitos
 
-Requisitos R-xx extraídos de la guía (actividades, productos esperados, preguntas, estructura del entregable y criterio clave). Requisitos F-xx de formato exigidos por el protocolo del proyecto (`coordinacion/RUTAS.md`, definición del revisor) y por la solicitud de revisión (portada, índice, numeración, compatibilidad con pandoc).
+Requisitos R-xx extraídos de la guía (actividades, productos esperados, preguntas, estructura del entregable y criterio clave). Requisitos F-xx de formato exigidos por el protocolo del proyecto (`.claude/coordinacion/RUTAS.md`, definición del revisor) y por la solicitud de revisión (portada, índice, numeración, compatibilidad con pandoc).
 
 | ID | Requisito (cita / paráfrasis fiel) | Ubicación en guía | Sección del entregable | Antes | Después | Evidencia / observación |
 | --- | --- | --- | --- | --- | --- | --- |

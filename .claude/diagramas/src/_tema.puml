@@ -3,7 +3,7 @@
 ' Responsable: agente diagramador (T-007) · 2026-09-25
 ' Uso: !include _tema.puml   (en C4: incluir DESPUÉS de la librería C4)
 ' Paleta sobria y accesible (contraste AA sobre fondo blanco), sin sombras.
-' La resolución PNG (dpi) la fija herramientas/diagramas/generar_diagramas.py.
+' La resolución PNG (dpi) la fija .claude/herramientas/diagramas/generar_diagramas.py.
 ' =============================================================================
 ' Motor de disposición: Graphviz (dot) si el generador lo detecta (-DDIAG_LAYOUT=dot);
 ' en otro caso, smetana (motor interno, no requiere Graphviz).

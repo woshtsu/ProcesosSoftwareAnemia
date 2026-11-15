@@ -78,5 +78,5 @@ Nodos, en este orden (texto exacto; entre corchetes, el producto de trabajo como
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 1. Diagrama de actividades del proceso de software del proyecto (ciclo por sprint y subciclo MLOps), con carriles para el equipo, el personal de salud y la automatización (elaboración propia).](../../.claude/.claude/diagramas/svg/30_s34_flujo_actividades_proceso.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 1. Diagrama de actividades del proceso de software del proyecto (ciclo por sprint y subciclo MLOps), con carriles para el equipo, el personal de salud y la automatización (elaboración propia).](../../diagramas/svg/30_s34_flujo_actividades_proceso.svg)`
 - **Notas:**

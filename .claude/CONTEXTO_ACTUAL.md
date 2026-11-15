@@ -11,7 +11,7 @@ Anemia Junín es un proyecto académico de la Universidad Continental para apoya
 | Tarea | Qué se hizo | Estado y evidencia |
 | --- | --- | --- |
 | T-013 | Resueltos 88 conflictos del merge de `main` en `feature/inc2-agenda-alertas`, conservando el Incremento 2 completo. `main` avanzó por fast-forward. Se mantuvo una figura 1.5 heredada y se corrigió CP-177 para rutas de Windows. | Commit de integración `f9e8597`, padres `031da6d` y `e24d8bd`. [Informe](coordinacion/informes/2026-10-23_orquestador_T-013.md). |
-| T-014 | Síntesis de feria con problemática, solución, impacto y tres capturas de S9. PDF A4 de tres páginas, aproximadamente 617 KB, con revisión visual. | [Fuente Markdown](../entregables/semana-11/feria/Proyecto_Feria_Anemia_Junin.md), [PDF](../exportados/feria/Proyecto_Feria_Anemia_Junin.pdf), [generador](.claude/herramientas/conversion/exportar_feria.py), [informe](coordinacion/informes/2026-10-23_conversor-entregas_T-014.md). El usuario lo subirá a la feria. |
+| T-014 | Síntesis de feria con problemática, solución, impacto y tres capturas de S9. PDF A4 de tres páginas, aproximadamente 617 KB, con revisión visual. | [Fuente Markdown](../entregables/semana-11/feria/Proyecto_Feria_Anemia_Junin.md), [PDF](../exportados/feria/Proyecto_Feria_Anemia_Junin.pdf), [generador](herramientas/conversion/exportar_feria.py), [informe](coordinacion/informes/2026-10-23_conversor-entregas_T-014.md). El usuario lo subirá a la feria. |
 | T-015 | Login con Supabase Auth: correo/contraseña, sesión, renovación, cierre, protección de API y auditoría con UUID verificado. | Implementación local verificada; **EN REVISIÓN**, pendiente primera cuenta y prueba remota. [Informe](coordinacion/informes/2026-10-23_desarrollador_T-015.md), [ADR-011](../pmv_fastapi/docs/adr/ADR-011-supabase-auth.md). |
 | T-016 | Entrada y contexto compartidos, canal de intercambios y plantilla en `.claude/`, enlazados al protocolo existente. | [Entrada](CLAUDE.md), [intercambios](intercambios/README.md), [informe](coordinacion/informes/2026-10-23_orquestador_T-016.md). |
 
@@ -67,7 +67,7 @@ $env:PLAYWRIGHT_BROWSERS_PATH = Join-Path (Get-Location) '.venv/browsers'
 .\.venv\Scripts\python.exe -m pytest tests/e2e -m e2e -q --no-cov
 ```
 
-Resultados reproducidos en la sesión T-015 (Windows, Python 3.14.4): **349 pruebas aprobadas, cobertura 99,50 %; 17 E2E aprobadas**; Ruff y contrato OpenAPI conformes. Las 17 E2E incluyen dos escenarios nuevos de login, en escritorio y móvil, con **Supabase simulado**. No presentar estas cifras como ejecución propia de una nueva sesión ni como evidencia de login remoto. Las capturas de S9 son heredadas; las previsualizaciones temporales en `diagramas/_build/` están ignoradas por Git.
+Resultados reproducidos en la sesión T-015 (Windows, Python 3.14.4): **349 pruebas aprobadas, cobertura 99,50 %; 17 E2E aprobadas**; Ruff y contrato OpenAPI conformes. Las 17 E2E incluyen dos escenarios nuevos de login, en escritorio y móvil, con **Supabase simulado**. No presentar estas cifras como ejecución propia de una nueva sesión ni como evidencia de login remoto. Las capturas de S9 son heredadas; las previsualizaciones temporales en `.claude/diagramas/_build/` están ignoradas por Git.
 
 ## Próximos pasos compartidos
 

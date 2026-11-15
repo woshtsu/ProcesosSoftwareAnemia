@@ -78,5 +78,5 @@ Si el árbol resulta muy ancho para A4, se admite orientación horizontal (izqui
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 2. Estructura de descomposición del trabajo (WBS) del proyecto: entregables, incrementos, épicas, historias y tareas del Incremento 1 (elaboración propia).](../../.claude/.claude/diagramas/svg/31_s34_wbs_proyecto.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 2. Estructura de descomposición del trabajo (WBS) del proyecto: entregables, incrementos, épicas, historias y tareas del Incremento 1 (elaboración propia).](../../diagramas/svg/31_s34_wbs_proyecto.svg)`
 - **Notas:**

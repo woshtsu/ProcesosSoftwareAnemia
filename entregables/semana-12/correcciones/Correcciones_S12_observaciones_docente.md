@@ -558,7 +558,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 ![Gantt del Incremento 1.](../../../.claude/diagramas/png/32_s34_gantt_incremento1.png)
 
-- **Archivo de imagen:** `diagramas/png/32_s34_gantt_incremento1.png`
+- **Archivo de imagen:** `.claude/diagramas/png/32_s34_gantt_incremento1.png`
 
 ---
 
@@ -574,7 +574,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 ![Cronograma de sprints e hitos.](../../../.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png)
 
-- **Archivo de imagen:** `diagramas/png/33_s34_cronograma_sprints_hitos.png`
+- **Archivo de imagen:** `.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png`
 
 **[ CAPTURA 2: SEGUIMIENTO ]**
 
@@ -610,7 +610,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 ![Modelo hexagonal.](../../../.claude/diagramas/png/72_s9_hexagonal_v20.png)
 
-- **Archivos de imagen:** `pmv_fastapi/docs/diagramas/C4_contenedores.png`, `diagramas/png/72_s9_hexagonal_v20.png`
+- **Archivos de imagen:** `pmv_fastapi/docs/diagramas/C4_contenedores.png`, `.claude/diagramas/png/72_s9_hexagonal_v20.png`
 
 ---
 

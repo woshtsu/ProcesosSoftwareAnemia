@@ -62,5 +62,5 @@ Subtítulo o nota al pie obligatoria: «Serie real = escenario simulado de la Ac
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 6. Burndown del Sprint 1: línea ideal y avance del escenario simulado de seguimiento (elaboración propia).](../../.claude/.claude/diagramas/svg/35_s34_burndown_sprint1.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 6. Burndown del Sprint 1: línea ideal y avance del escenario simulado de seguimiento (elaboración propia).](../../diagramas/svg/35_s34_burndown_sprint1.svg)`
 - **Notas:**

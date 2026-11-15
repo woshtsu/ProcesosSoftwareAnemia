@@ -67,7 +67,7 @@ Título del diagrama: "Proceso AS-IS — Seguimiento de la anemia infantil en es
 - `.claude/diagramas/png/10_s1_proceso_as_is.png`
 - `.claude/diagramas/svg/10_s1_proceso_as_is.svg`
 
-Enlace ya insertado en el entregable: `![Figura 2. ...](../../.claude/.claude/diagramas/svg/10_s1_proceso_as_is.svg)`.
+Enlace ya insertado en el entregable: `![Figura 2. ...](../../diagramas/svg/10_s1_proceso_as_is.svg)`.
 
 ## Criterios de aceptación
 
@@ -84,5 +84,5 @@ Enlace ya insertado en el entregable: `![Figura 2. ...](../../.claude/.claude/di
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 2. Proceso AS-IS por carriles de actor, con las notas de problema asociadas a cada actividad (elaboración propia).](../../.claude/.claude/diagramas/svg/10_s1_proceso_as_is.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 2. Proceso AS-IS por carriles de actor, con las notas de problema asociadas a cada actividad (elaboración propia).](../../diagramas/svg/10_s1_proceso_as_is.svg)`
 - **Notas:**

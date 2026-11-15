@@ -2,7 +2,7 @@
 ' Título: Proceso TO-BE por carriles con intervención del software — Semana 1
 ' Solicitud: DIAG-002 (T-002)
 ' Fuentes de verdad: entregables/semana-01/Entregable_Semana1_Anemia_Junin.md §4 (brechas B1-B6),
-'   §5 (cambios respecto del AS-IS), §6 (aporte del software); archivo/versiones-anteriores/semana-01/..._v4.md §5
+'   §5 (cambios respecto del AS-IS), §6 (aporte del software); .claude/archivo/versiones-anteriores/semana-01/..._v4.md §5
 ' Fecha: 2026-09-25 · Autor: agente diagramador
 ' =============================================================================
 @startuml 11_s1_proceso_to_be

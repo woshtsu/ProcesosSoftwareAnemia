@@ -22,11 +22,15 @@ Archivo vivo para continuar el trabajo en un chat nuevo. Actualizarlo durante la
 - Ensayos: 1.º falló en RF-09, 2.º en HIST-4.4, 3.º 17/17 OK (5:49).
 - Grabación final (09/11/2026): `entregables/semana-12/video/demo_anemia_junin_v4.mp4`, 5:59, 5,3 MB, 17 pasos verificados. Defecto menor: Edge muestra el aviso «¿Traducir?» en las páginas de GitHub (escena 5).
 
+- PR #25 fusionado en `main` (`1215517`): video, `GUION_LOCUCION.md` y script.
+- Limpieza DEMO ejecutada por el usuario en Supabase; la consulta de comprobación devolvió 0 niños DEMO.
+- Workflow «Mantener activo el servicio de Render» desactivado (`gh workflow disable mantener-activo.yml`) porque el usuario suspende el servicio de Render. Para reactivarlo: `gh workflow enable mantener-activo.yml`.
+
 ## Siguiente paso
 
-1. El usuario ejecuta `%TEMP%\limpieza_demo_anemia.sql` en Supabase (cubre los DEMO de ensayos y grabación).
-2. Decidir si se quita el aviso de traducción y se vuelve a grabar, o la compañera recorta la escena 5.
-3. Locución de la compañera, subida a Drive y enlace en el Anexo A del informe S12; cerrar T-022 con informe en `.claude/coordinacion/informes/`.
+1. Locución de la compañera, subida a Drive y enlace en el Anexo A del informe S12.
+2. Cerrar T-022 con su informe en `.claude/coordinacion/informes/`.
+3. Si el docente pide el software en vivo: reanudar Render y reactivar el workflow.
 
 ## T-023 — Cierre de la entrega S13 (Huamani R., 13/11/2026)
 
@@ -38,4 +42,5 @@ Archivo vivo para continuar el trabajo en un chat nuevo. Actualizarlo durante la
 
 - Rama `chore/reorganizar-por-semanas`, commit WIP subido. `agy` lo dejó a mitad: los movimientos están hechos y falta terminar de corregir rutas y verificar.
 - Traspaso completo: `.claude/intercambios/2026-11-13_orquestador_T-024_reorganizacion.md`.
-- Siguiente paso: relanzar `agy` con `.claude/intercambios/2026-11-13_T-024_encargo_agy.md`, revisar el diff, abrir la PR y desactivar *Auto-Deploy* en Render.
+- 14/11/2026: rutas y verificación terminadas por Claude (sin commit). Detalle en `.claude/coordinacion/informes/2026-11-14_orquestador_T-024.md`.
+- Siguiente paso: revisión del usuario, commit y PR a `main`; desactivar *Auto-Deploy* en Render (lo hace el usuario).

@@ -14,9 +14,9 @@ Se elaboró el informe técnico de la Semana 11 (evaluación CMMI-DEV del proces
 | Acción | Ruta | Nota |
 | --- | --- | --- |
 | creado | `entregables/semana-11/Entregable_Semana11_Anemia_Junin.md` | Entregable vigente |
-| creado | `coordinacion/solicitudes/ORQ-009.md` | Alta de la ruta |
-| creado | `coordinacion/informes/2026-10-30_revisor-documental_T-018.md` | Este informe |
-| modificado | `coordinacion/RUTAS.md`, `coordinacion/TABLERO.md` | Registro de ruta y tarea |
+| creado | `.claude/coordinacion/solicitudes/ORQ-009.md` | Alta de la ruta |
+| creado | `.claude/coordinacion/informes/2026-10-30_revisor-documental_T-018.md` | Este informe |
+| modificado | `.claude/coordinacion/RUTAS.md`, `.claude/coordinacion/TABLERO.md` | Registro de ruta y tarea |
 
 ## Verificación realizada
 

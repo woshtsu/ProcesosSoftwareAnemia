@@ -54,11 +54,11 @@ Comprobación de enlaces Markdown en README y entregables: antes de esta revisi�
 | Acción | Ruta | Propósito |
 | --- | --- | --- |
 | Modificado | `README.md` | Guías actuales, estado real e instrucciones de ejecución. |
-| Modificado | `coordinacion/RUTAS.md` | Guía S5, nombres actuales y entrada de continuidad. |
-| Modificado | `coordinacion/TABLERO.md` | Estados verificados, T-010 y seguimiento de hallazgos. |
+| Modificado | `.claude/coordinacion/RUTAS.md` | Guía S5, nombres actuales y entrada de continuidad. |
+| Modificado | `.claude/coordinacion/TABLERO.md` | Estados verificados, T-010 y seguimiento de hallazgos. |
 | Creado | `AGENTS.md` | Instrucciones persistentes para respetar esta estructura. |
-| Creado | `coordinacion/solicitudes/ORQ-001.md` | Alta de la ruta de instrucciones. |
-| Creado | `coordinacion/solicitudes/DEV-101.md` | Defecto reproducible y criterios de corrección. |
+| Creado | `.claude/coordinacion/solicitudes/ORQ-001.md` | Alta de la ruta de instrucciones. |
+| Creado | `.claude/coordinacion/solicitudes/DEV-101.md` | Defecto reproducible y criterios de corrección. |
 | Creado | Este informe | Evidencia, límites y orden de continuación. |
 
 ## Orden de continuación

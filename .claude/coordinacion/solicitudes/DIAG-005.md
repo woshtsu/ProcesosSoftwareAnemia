@@ -62,5 +62,5 @@ Asociaciones (con rol y multiplicidad):
 - **Fecha de cierre:** AAAA-MM-DD
 - **Resultado:** RESUELTA | RECHAZADA
 - **Rutas producidas:**
-- **Snippet para incrustar en el .md:** `![Figura 11. Diagrama de clases del dominio de la visión TO-BE (elaboración propia).](../../.claude/.claude/diagramas/svg/14_s1_clases_dominio_vision.svg)`
+- **Snippet para incrustar en el .md:** `![Figura 11. Diagrama de clases del dominio de la visión TO-BE (elaboración propia).](../../diagramas/svg/14_s1_clases_dominio_vision.svg)`
 - **Notas:**
