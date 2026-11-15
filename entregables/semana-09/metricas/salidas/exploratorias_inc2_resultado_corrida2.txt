@@ -1,6 +1,6 @@
 # Corrida 2 (con DEF-08 corregido y EX-22/EX-31 ajustados; EX-43 aún con criterio estricto: un 500 por "database is locked" en un PATCH)
 # Fecha: 2026-10-16T18:02:44-05:00 (hora de Perú); v1.5.0-inc2-avance con la corrección de DEF-08; servidor uvicorn :8321, SQLite nueva con dataset B150 cargado por API
-# Comando: python herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <sqlite>
+# Comando: python .claude/herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <sqlite>
 # Corrida 1 (antes de la corrección y de ajustar EX-22/EX-31): exploratorias_inc2_resultado_corrida1.txt
 
 Exception in thread Thread-56 (alt):
@@ -48,7 +48,7 @@ Traceback (most recent call last):
   File "/usr/lib/python3.13/threading.py", line 995, in run
     self._target(*self._args, **self._kwargs)
     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "herramientas/gqm/exploratorias_inc2.py", line 466, in alt
+  File ".claude/herramientas/gqm/exploratorias_inc2.py", line 466, in alt
     res.append(h.patch(f"/api/ninos/{nid}", json={"estado": "ALTA" if (i + k) % 2 else "ACTIVO"}).status_code)
                ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File ".venv/lib/python3.13/site-packages/httpx/_client.py", line 1218, in patch

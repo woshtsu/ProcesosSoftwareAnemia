@@ -1,6 +1,6 @@
 # INFORME TÉCNICO: EVALUACIÓN GQM DE ARQUITECTURA, PRUEBAS Y VALOR AL USUARIO — Semana 9
 
-> **Nota.** Este documento corresponde a la entrega de la semana 9 y conserva sin cambios las métricas de `v1.0-PMV` (Inc. 1) y `v2.0-Inc2` (Inc. 2). Los valores recalculados para la versión actual (Inc. 3 e Inc. 4, `v4.0-Inc4`) están en la [adenda v4.0 de referencia para la semana 12](ADENDA_v4_REFERENCIA_S12.md).
+> **Nota.** Este documento corresponde a la entrega de la semana 9 y conserva sin cambios las métricas de `v1.0-PMV` (Inc. 1) y `v2.0-Inc2` (Inc. 2). Los valores recalculados para la versión actual (Inc. 3 e Inc. 4, `v4.0-Inc4`) están en la [adenda v4.0 de referencia para la semana 12](../../.claude/archivo/semana-09/ADENDA_v4_REFERENCIA_S12.md).
 
 ## 1. CARÁTULA E INTEGRANTES DEL EQUIPO (Noveno Ciclo)
 
@@ -14,7 +14,7 @@ La Tabla 1 identifica el entregable y la Tabla 2 al equipo.
 | **Asignatura** | Procesos de Software (ASUC01702), Universidad Continental, periodo 2026-20, Noveno ciclo |
 | **Proyecto de asignatura** | Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín |
 | **Docente** | Guevara Jimenez, Jorge Alfredo |
-| **Semana y guía** | Semana 9: «Evaluación del proceso y producto de software mediante el modelo GQM» (`guias/S9-PSW-GUÍA DE TRABAJO.md`) |
+| **Semana y guía** | Semana 9: «Evaluación del proceso y producto de software mediante el modelo GQM» (`guias/semana-09.md`) |
 | **Fecha** | 18/10/2026 (actualización por el cierre del Incremento 2; mediciones de v1.0 y del hito v1.5: 16/10/2026; de v2.0: 17/10/2026) |
 | **Versiones del software evaluadas** | `v1.0-PMV` (Incremento 1) y `v2.0.0-inc2` (Incremento 2 completo: HIST-2.1 a HIST-2.4, RF-06 a RF-09). Etiquetas: `v1.0-PMV` (existente), `v1.5.0-inc2-avance` (hito intermedio al 50 % del Incremento 2; rama `feature/inc2-agenda-alertas`, commit `416dfbc`, publicada el 17/10/2026) y `v2.0-Inc2` (Incremento 2 completo; commit `fb26626`, publicada el 18/10/2026) |
 | **Repositorio** | <https://github.com/woshtsu/ProcesosSoftwareAnemia> |
@@ -29,7 +29,7 @@ La Tabla 1 identifica el entregable y la Tabla 2 al equipo.
 
 El reparto de expositores y de responsabilidades es una **propuesta del equipo** basada en los roles de la matriz RAE de S3-4 y S6; no se ha registrado una confirmación formal de los tres integrantes ni del docente.
 
-**Nota sobre los datos.** El informe usa dos clases de datos. (1) **Datos sintéticos de prueba** (conjuntos generados con `pmv_fastapi/scripts/cargar_datos_prueba.py` y `herramientas/gqm/generar_dataset.py`): sostienen las capturas de RF-01 a RF-07 y las mediciones comparables entre versiones (conjunto B150). (2) El **dataset real anonimizado de la DIRESA Junín** (HIS; carpeta `Dataset/`): 12 486 niños menores de 36 meses con diagnóstico de anemia (2022 a 2024). El conjunto completo da la **línea base AS-IS real**; una **muestra estratificada de 500 niños**, importada con un código seudónimo (sin DNI, nombres ni celular) y con la fecha de referencia 30/06/2024, sostiene las capturas de RF-08 y RF-09 y las mediciones sobre datos reales. La clasificación de anemia y la agenda son **referenciales**: el sistema programa y vigila fechas, no diagnostica ni prescribe. No hubo usuarios reales ni piloto en una posta: ninguna cifra de este informe representa aceptación del usuario ni impacto clínico. Las rutas de archivos son relativas a la raíz del repositorio, salvo las de imágenes, que son relativas a `entregables/semana-09/`.
+**Nota sobre los datos.** El informe usa dos clases de datos. (1) **Datos sintéticos de prueba** (conjuntos generados con `pmv_fastapi/scripts/cargar_datos_prueba.py` y `.claude/herramientas/gqm/generar_dataset.py`): sostienen las capturas de RF-01 a RF-07 y las mediciones comparables entre versiones (conjunto B150). (2) El **dataset real anonimizado de la DIRESA Junín** (HIS; carpeta `pmv_fastapi/datos/`): 12 486 niños menores de 36 meses con diagnóstico de anemia (2022 a 2024). El conjunto completo da la **línea base AS-IS real**; una **muestra estratificada de 500 niños**, importada con un código seudónimo (sin DNI, nombres ni celular) y con la fecha de referencia 30/06/2024, sostiene las capturas de RF-08 y RF-09 y las mediciones sobre datos reales. La clasificación de anemia y la agenda son **referenciales**: el sistema programa y vigila fechas, no diagnostica ni prescribe. No hubo usuarios reales ni piloto en una posta: ninguna cifra de este informe representa aceptación del usuario ni impacto clínico. Las rutas de archivos son relativas a la raíz del repositorio, salvo las de imágenes, que son relativas a `entregables/semana-09/`.
 
 **Índice**
 
@@ -98,7 +98,7 @@ El informe se expone dividido en tres pilares. La Tabla 3 resume qué se muestra
 
 **Cadena metodológica.** La Figura 1 muestra la cadena de trazabilidad que pide la guía y el artefacto concreto del proyecto en cada eslabón: las brechas B1 a B6 del problema organizacional (S1 y S6), las mejoras M1 a M6 del proceso TO-BE, el modelo iterativo-incremental con Scrum y DevOps (S2), la arquitectura hexagonal en Git (`app/domain`, `app/ports`, `app/adapters`), las pruebas de los RF-01 a RF-09 (328 pruebas por defecto y 15 E2E en v2.0), el marco GQM (G-01 a G-03, M1.1 a M3.2) y los indicadores de valor V1 a V6.
 
-![Figura 1. Cadena metodológica de trazabilidad integrada, con una nota por eslabón y bandas por pilar (diagrama 70; elaboración propia)](../../diagramas/svg/70_s9_cadena_trazabilidad.svg)
+![Figura 1. Cadena metodológica de trazabilidad integrada, con una nota por eslabón y bandas por pilar (diagrama 70; elaboración propia)](../../.claude/diagramas/svg/70_s9_cadena_trazabilidad.svg)
 
 **Clasificación de la evidencia.** Para no mezclar lo medido con lo supuesto, cada afirmación de este informe pertenece a una de las cuatro clases de la Tabla 4.
 
@@ -106,7 +106,7 @@ El informe se expone dividido en tres pilares. La Tabla 3 resume qué se muestra
 
 | Clase | Qué incluye | Ejemplos |
 | --- | --- | --- |
-| **Reproducida** (v1.0 y hito v1.5: 16/10/2026; v2.0 y dataset: 17/10/2026; contenedor Linux de 2 CPU, Python 3.13, SQLite, Chromium headless) | Resultados que se obtuvieron ejecutando los scripts de `herramientas/gqm/` y `herramientas/dataset/` y guardados en `entregables/semana-09/metricas/` y `evidencias_capturas/` | 328 + 15 pruebas (v2.0), cobertura, M1.1, M1.2, M1.3, M2.x, M3.x, carga, disponibilidad, 45 + 27 exploratorias, 44 capturas, análisis AS-IS del dataset |
+| **Reproducida** (v1.0 y hito v1.5: 16/10/2026; v2.0 y dataset: 17/10/2026; contenedor Linux de 2 CPU, Python 3.13, SQLite, Chromium headless) | Resultados que se obtuvieron ejecutando los scripts de `.claude/herramientas/gqm/` y `.claude/herramientas/dataset/` y guardados en `entregables/semana-09/metricas/` y `evidencias_capturas/` | 328 + 15 pruebas (v2.0), cobertura, M1.1, M1.2, M1.3, M2.x, M3.x, carga, disponibilidad, 45 + 27 exploratorias, 44 capturas, análisis AS-IS del dataset |
 | **Heredada** (S1 a S6 y datos de terceros) | Resultados de entregables previos que aquí no se re-ejecutaron, y el dataset de la DIRESA Junín (dato real de terceros; su análisis sí se reprodujo) | Brechas B1 a B6, matriz de intervención, ADR-001 a ADR-006, HU-01 a HU-05, DEF-01 y DEF-02 (S6), dataset HIS 2022 a 2024 |
 | **Propuesta** | Decisiones o metas que el equipo plantea y que no están aprobadas | Reparto de expositores, ajuste de la meta de M3.1, fechas del plan PDCA, replanificación de sprints |
 | **Pendiente** | Lo que aún no existe o no se ha hecho | SUS con usuarios, piloto en posta, análisis de SonarCloud, validación de la concordancia HIS y sistema con la microred, recordatorios a la familia (INC-4) |
@@ -194,7 +194,7 @@ El punto de vista «Usuario Final / Product Owner» es **simulado** en este caso
 
 La Figura 2 muestra el árbol completo. Las preguntas Q1.1 a Q3.2 son las de la guía; Q1.3 es una pregunta **complementaria** que el equipo añade para cubrir la regla de dependencia (que las dependencias apunten hacia el núcleo), que M1.1 y M1.2 no miden por sí solas.
 
-![Figura 2. Árbol GQM: goals, preguntas y métricas coloreados por pilar (diagrama 71; elaboración propia)](../../diagramas/svg/71_s9_arbol_gqm.svg)
+![Figura 2. Árbol GQM: goals, preguntas y métricas coloreados por pilar (diagrama 71; elaboración propia)](../../.claude/diagramas/svg/71_s9_arbol_gqm.svg)
 
 #### 3.2.1 [Pilar 1 · Arquitectura] Preguntas de G-01
 
@@ -232,7 +232,7 @@ La Tabla 11 lista las preguntas del Pilar 3.
 
 ### 3.3 Actividad 3 — Matriz operativa de métricas e indicadores (nivel M)
 
-La Tabla 12 reproduce la Matriz 3.1 de la guía con la **fórmula explícita**, el **método de extracción real** (script de `herramientas/gqm/` que la calcula), la **fuente de datos real** y las metas de la guía.
+La Tabla 12 reproduce la Matriz 3.1 de la guía con la **fórmula explícita**, el **método de extracción real** (script de `.claude/herramientas/gqm/` que la calcula), la **fuente de datos real** y las metas de la guía.
 
 **Tabla 12.** Matriz 3.1: Definición de métricas GQM.
 
@@ -369,7 +369,7 @@ En v2.0 la aplicación tiene I = 1,00 porque solo `main.py` la ensambla: es lo e
 
 **Vigilancia automática.** Las reglas se verifican en cada `pytest` con las **18 pruebas de arquitectura** de `tests/arquitectura/test_dependencias.py` (18 casos: siete pruebas CP-37 a CP-43, siete casos de dos pruebas del verificador, seis de ellos parametrizados, y cuatro pruebas nuevas de la v2.0), que analizan los `import` por AST: el dominio no importa frameworks ni otras capas; los puertos solo importan dominio, biblioteca estándar y `typing`; la aplicación no importa adaptadores ni frameworks; cada adaptador no importa aplicación ni el otro adaptador; solo `main.py` conoce a la vez aplicación y adaptadores; y no quedan módulos puente en las rutas antiguas. Las cuatro de la v2.0 (CP-176 a CP-179) agregan que la aplicación nunca importa `scripts` ni pruebas, que los módulos nuevos del dominio y de los puertos quedan cubiertos por las reglas, que el importador del dataset no toca la base directamente (entra por el servicio de importación) y que las piezas de lectura y muestreo solo dependen del dominio y de su configuración. Una violación rompe el pipeline de CI. La Figura 6 muestra los módulos reales y el sentido de las dependencias.
 
-![Figura 6. Vista de puertos y adaptadores de v2.0.0-inc2 con los módulos reales; las flechas muestran la dirección de la dependencia hacia el dominio (diagrama 72; elaboración propia)](../../diagramas/svg/72_s9_hexagonal_v20.svg)
+![Figura 6. Vista de puertos y adaptadores de v2.0.0-inc2 con los módulos reales; las flechas muestran la dirección de la dependencia hacia el dominio (diagrama 72; elaboración propia)](../../.claude/diagramas/svg/72_s9_hexagonal_v20.svg)
 
 ### 4.4 Decisiones de arquitectura ADR-007 a ADR-010
 
@@ -864,7 +864,7 @@ Las brechas B1 a B6 son las de S1 y S6 (Tabla 4 del informe integrador de S6) y 
 
 ### 6.2 Línea base AS-IS real y capacidad del sistema (dataset DIRESA Junín)
 
-**Fuente y método.** El equipo obtuvo el dataset de la DIRESA Junín «Niños menores de 36 meses con dx de anemia en la Región Junín» (fuente HIS; 12 486 diagnósticos del 14/01/2022 al 21/06/2024; 9 provincias, 41 microredes y 443 establecimientos; carpeta `Dataset/`). El script `herramientas/dataset/analisis_asis.py` calcula los indicadores de proceso con fecha de corte 30/06/2024 (`metricas/asis_dataset_diresa.md` y `datos/asis_dataset_diresa.json`). Cada indicador se informa de dos maneras: **sobre todos los diagnosticados** (cifra bruta, penalizada porque los diagnósticos recientes aún no cumplían el plazo) y **con seguimiento posible** (solo quienes ya cumplieron el plazo del control más una holgura de 30 días antes del corte). La Tabla 32 resume los resultados y las Figuras 43 a 45 los grafican.
+**Fuente y método.** El equipo obtuvo el dataset de la DIRESA Junín «Niños menores de 36 meses con dx de anemia en la Región Junín» (fuente HIS; 12 486 diagnósticos del 14/01/2022 al 21/06/2024; 9 provincias, 41 microredes y 443 establecimientos; carpeta `pmv_fastapi/datos/`). El script `.claude/herramientas/dataset/analisis_asis.py` calcula los indicadores de proceso con fecha de corte 30/06/2024 (`metricas/asis_dataset_diresa.md` y `datos/asis_dataset_diresa.json`). Cada indicador se informa de dos maneras: **sobre todos los diagnosticados** (cifra bruta, penalizada porque los diagnósticos recientes aún no cumplían el plazo) y **con seguimiento posible** (solo quienes ya cumplieron el plazo del control más una holgura de 30 días antes del corte). La Tabla 32 resume los resultados y las Figuras 43 a 45 los grafican.
 
 **Tabla 32.** Línea base AS-IS real: indicadores de proceso del seguimiento de anemia (dataset DIRESA Junín; corte 30/06/2024).
 
@@ -1163,14 +1163,14 @@ git push origin v1.5.0-inc2-avance
 
 ```powershell
 git switch feature/inc2-agenda-alertas
-git add -A -- pmv_fastapi herramientas entregables/semana-09 exportados/semana-09 diagramas coordinacion README.md Dataset
+git add -A -- pmv_fastapi .claude/herramientas entregables/semana-09 exportados/semana-09 .claude/diagramas .claude/coordinacion README.md pmv_fastapi/datos
 git commit -m "Inc. 2 completo: agenda del personal y asistencia (HIST-2.3, HIST-2.4), dataset DIRESA Junin y evaluacion GQM S9"
 git tag -a v2.0-Inc2 -m "Incremento 2 completo (HIST-2.1 a HIST-2.4)"
 git push origin feature/inc2-agenda-alertas
 git push origin v2.0-Inc2
 ```
 
-La carpeta `Dataset/` (dataset de la DIRESA Junín, ya anonimizado en origen: sin nombres ni DNI utilizables) se versiona junto con el cierre porque la necesitan el importador y el análisis AS-IS (Anexo C). Después, el equipo puede abrir el pull request hacia `main`.
+La carpeta `pmv_fastapi/datos/` (dataset de la DIRESA Junín, ya anonimizado en origen: sin nombres ni DNI utilizables) se versiona junto con el cierre porque la necesitan el importador y el análisis AS-IS (Anexo C). Después, el equipo puede abrir el pull request hacia `main`.
 
 **Lista previa a la exposición (para el equipo).**
 
@@ -1182,13 +1182,13 @@ La carpeta `Dataset/` (dataset de la DIRESA Junín, ya anonimizado en origen: si
 
 ### Anexo C. Reproducibilidad
 
-Todos los scripts están en `herramientas/gqm/` y `herramientas/dataset/` y escriben en `entregables/semana-09/metricas/` (descripción en `metricas/README.md`). Los bloques siguientes son para **bash** (Linux, macOS o WSL en Windows; en PowerShell deben adaptarse las variables de entorno), desde la raíz del repositorio, con Python 3.13 y las dependencias de `pmv_fastapi/requirements*.txt`. Si se ejecutan los E2E, `PLAYWRIGHT_BROWSERS_PATH` debe apuntar al directorio de navegadores de Playwright.
+Todos los scripts están en `.claude/herramientas/gqm/` y `.claude/herramientas/dataset/` y escriben en `entregables/semana-09/metricas/` (descripción en `metricas/README.md`). Los bloques siguientes son para **bash** (Linux, macOS o WSL en Windows; en PowerShell deben adaptarse las variables de entorno), desde la raíz del repositorio, con Python 3.13 y las dependencias de `pmv_fastapi/requirements*.txt`. Si se ejecutan los E2E, `PLAYWRIGHT_BROWSERS_PATH` debe apuntar al directorio de navegadores de Playwright.
 
 ```bash
 git worktree add ../inc1_v1.0_PMV v1.0-PMV      # copia de v1.0 (alternativa: git archive v1.0-PMV)
 export PY=python   # v1.0 y v1.5 se buscan por omisión en ../inc1_v1.0_PMV y ../v15_export/pmv_fastapi; para otra ruta use una ruta ABSOLUTA, p. ej. export GQM_RAIZ_V10="$(cd .. && pwd)/inc1_v1.0_PMV"
 mkdir -p ../v15_export && git archive v1.5.0-inc2-avance pmv_fastapi | tar -x -C ../v15_export    # copia del hito v1.5; GQM_RAIZ_V15=../v15_export/pmv_fastapi
-cd herramientas/gqm
+cd .claude/herramientas/gqm
 for v in v1.0 v1.5 v2.0; do bash ejecutar_pruebas.sh $v; done          # ruff, pytest, cobertura, E2E -> salidas/<v>/
 $PY m11_contaminacion.py     # M1.1 -> datos/m11_contaminacion.json
 $PY m12_conformidad.py       # M1.2 -> datos/m12_conformidad.json
@@ -1204,17 +1204,17 @@ $PY m22_defectos.py; $PY m31_brechas.py; $PY m32_indice_valor.py            # M2
 $PY resumen_gqm.py; $PY graficos_gqm.py                                      # consolidado y gráficos g1 a g6 y g10
 ```
 
-**Dataset de la DIRESA Junín** (requiere la carpeta local `Dataset/` con el CSV del HIS; no se incluye en este informe):
+**Dataset de la DIRESA Junín** (requiere la carpeta local `pmv_fastapi/datos/` con el CSV del HIS; no se incluye en este informe):
 
 ```bash
-python herramientas/dataset/analisis_asis.py                # línea base AS-IS -> metricas/asis_dataset_diresa.md y datos/asis_dataset_diresa.json; gráficos g7 a g9
+python .claude/herramientas/dataset/analisis_asis.py                # línea base AS-IS -> metricas/asis_dataset_diresa.md y datos/asis_dataset_diresa.json; gráficos g7 a g9
 cd pmv_fastapi
 DATABASE_URL=sqlite:///<ruta.db> python -m scripts.importar_dataset_diresa --muestra 500 --semilla 2026 --reiniciar --con-registros-sistema 3 --reporte <ruta.json>   # o --completo
-# servidor con FECHA_REFERENCIA=2024-06-30 y la base importada; luego, desde herramientas/gqm:
+# servidor con FECHA_REFERENCIA=2024-06-30 y la base importada; luego, desde .claude/herramientas/gqm:
 $PY m32_dataset_real.py --base http://127.0.0.1:8404 --reporte-importacion <ruta.json>    # -> datos/m32_dataset_real.json
 ```
 
-Capturas (con los servidores en marcha): `python entregables/semana-09/evidencias_capturas/capturar_evidencias.py` para RF-01 a RF-07 y la regresión, `--modo inc2final` para RF-08, RF-09 y `datos_reales/`, y `--modo indice` para regenerar `INDICE.md` (bash o PowerShell). Diagramas 70 a 72: `dot -Tpng -Gdpi=150` y `dot -Tsvg` sobre `diagramas/src/7X_*.dot` (ver `diagramas/README.md`).
+Capturas (con los servidores en marcha): `python entregables/semana-09/evidencias_capturas/capturar_evidencias.py` para RF-01 a RF-07 y la regresión, `--modo inc2final` para RF-08, RF-09 y `datos_reales/`, y `--modo indice` para regenerar `INDICE.md` (bash o PowerShell). Diagramas 70 a 72: `dot -Tpng -Gdpi=150` y `dot -Tsvg` sobre `.claude/diagramas/src/7X_*.dot` (ver `.claude/diagramas/README.md`).
 
 ### Anexo D. Instrumento SUS
 
@@ -1246,10 +1246,10 @@ La Tabla 43 resume el guion.
 - Universidad Continental (2026). *Procesos de Software, Semana 09, sesión 01: Modelos de evaluación de procesos de software* (presentación de la sesión; material del curso, no incluido en el repositorio).
 - ISO/IEC 25010:2011. *Systems and software engineering: Systems and software Quality Requirements and Evaluation (SQuaRE): System and software quality models*.
 - Ministerio de Salud del Perú. NTS N.° 213-MINSA/DGIESP-2024, aprobada por la RM N.° 251-2024-MINSA (modificada por la RM N.° 429-2024-MINSA).
-- Dirección Regional de Salud (DIRESA) Junín. *Niños menores de 36 meses con diagnóstico de anemia en la Región Junín* (extracto del HIS, 12 486 diagnósticos del 14/01/2022 al 21/06/2024) y su diccionario de datos (carpeta `Dataset/` del repositorio; dataset anonimizado en origen; en el sistema cada registro usa un código seudónimo).
+- Dirección Regional de Salud (DIRESA) Junín. *Niños menores de 36 meses con diagnóstico de anemia en la Región Junín* (extracto del HIS, 12 486 diagnósticos del 14/01/2022 al 21/06/2024) y su diccionario de datos (carpeta `pmv_fastapi/datos/` del repositorio; dataset anonimizado en origen; en el sistema cada registro usa un código seudónimo).
 - Instituto Nacional de Estadística e Informática (INEI) (2014). *Perú: Compendio Estadístico 2014*, cuadro 1.12 «Superficie, población, densidad poblacional y altitud de la capital, según departamento y provincia, 2013», pp. 32-33 (altitud de la capital de cada provincia; <https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Lib1173/cap01/cap01.pdf>).
 - Cockburn, A. (2005). *Hexagonal architecture*. <https://alistair.cockburn.us/hexagonal-architecture/>.
-- Universidad Continental (2026). *Guía de trabajo Semana 9: Evaluación del proceso y producto de software mediante el modelo GQM*, Procesos de Software (ASUC01702) (`guias/S9-PSW-GUÍA DE TRABAJO.md`).
+- Universidad Continental (2026). *Guía de trabajo Semana 9: Evaluación del proceso y producto de software mediante el modelo GQM*, Procesos de Software (ASUC01702) (`guias/semana-09.md`).
 - Entregables previos del proyecto: Entregable Semana 1 (brechas, indicadores, Anexo A), Entregable Semanas 3 y 4 (incrementos, WBS, estimación y calendario) e Informe integrador de S6 (ADR-001 a ADR-006, HU-01 a HU-05, DEF-01 y DEF-02).
 - Registros de decisiones y evidencias del software: `pmv_fastapi/docs/adr/ADR-007-agenda-calculada-en-dominio.md`, `ADR-008-puertos-de-entrada-y-estructura-hexagonal.md`, `ADR-009-origen-de-datos-y-dataset-diresa.md`, `ADR-010-asistencia-a-control-persistida.md`, `pmv_fastapi/docs/evidencias/registro_defectos.md` y `registro_defectos_inc2.md`; evidencias de la importación en `pmv_fastapi/docs/evidencias/inc2/`.
 
@@ -1428,9 +1428,9 @@ La cobertura es la de las **sentencias y ramas de `app/`**; no mide la calidad d
 
 #### G.4 Pruebas exploratorias del Inc. 2: detalle
 
-**Sobre v1.5 (agenda y alertas).** Las 45 pruebas exploratorias (`herramientas/gqm/exploratorias_inc2.py`, informe en `metricas/exploratorias_inc2.md`) se ejecutaron por HTTP contra la API real de v1.5, con resultados esperados derivados de ADR-007 y del README y no del código: 39 casos sobre código nuevo (agenda y alertas: 37 OK y 2 OBS) y 6 sobre código heredado (6 OK). Cubren agenda (9), alta y reactivación (4), identificadores (1), filtros (6), alertas (8), ventana de cumplimiento (6), entradas (3), consistencia (3), niños mayores (1), concurrencia (3) y volumen (1). Las dos observaciones (**OBS**) no son defectos: **EX-17**, un filtro de comunidad escrito en Unicode descompuesto (NFD) no coincide con el valor almacenado en forma compuesta (NFC), y **EX-40**, un niño ACTIVO que superó los 59 meses conserva alertas vencidas (decisión de diseño por documentar). La historia de corridas es: la corrida 1 tuvo 3 fallas, de las cuales EX-22 y EX-31 eran errores de diseño de los casos (corregidos) y EX-42 era un defecto real en código heredado (DEF-08, 10 registros simultáneos con el mismo DNI producían 500); en la corrida 2 apareció EX-43 (un `PATCH` con «database is locked» de SQLite con 8 escritores simultáneos), reclasificado como OBS por ser una limitación del motor de desarrollo (las lecturas de alertas, código nuevo, no fallaron); la corrida 3 (final, tras corregir DEF-08) dio 43 OK, 2 OBS y 0 FALLA.
+**Sobre v1.5 (agenda y alertas).** Las 45 pruebas exploratorias (`.claude/herramientas/gqm/exploratorias_inc2.py`, informe en `metricas/exploratorias_inc2.md`) se ejecutaron por HTTP contra la API real de v1.5, con resultados esperados derivados de ADR-007 y del README y no del código: 39 casos sobre código nuevo (agenda y alertas: 37 OK y 2 OBS) y 6 sobre código heredado (6 OK). Cubren agenda (9), alta y reactivación (4), identificadores (1), filtros (6), alertas (8), ventana de cumplimiento (6), entradas (3), consistencia (3), niños mayores (1), concurrencia (3) y volumen (1). Las dos observaciones (**OBS**) no son defectos: **EX-17**, un filtro de comunidad escrito en Unicode descompuesto (NFD) no coincide con el valor almacenado en forma compuesta (NFC), y **EX-40**, un niño ACTIVO que superó los 59 meses conserva alertas vencidas (decisión de diseño por documentar). La historia de corridas es: la corrida 1 tuvo 3 fallas, de las cuales EX-22 y EX-31 eran errores de diseño de los casos (corregidos) y EX-42 era un defecto real en código heredado (DEF-08, 10 registros simultáneos con el mismo DNI producían 500); en la corrida 2 apareció EX-43 (un `PATCH` con «database is locked» de SQLite con 8 escritores simultáneos), reclasificado como OBS por ser una limitación del motor de desarrollo (las lecturas de alertas, código nuevo, no fallaron); la corrida 3 (final, tras corregir DEF-08) dio 43 OK, 2 OBS y 0 FALLA.
 
-**Sobre v2.0 (agenda del personal y asistencia).** Las 27 pruebas exploratorias del cierre (`herramientas/gqm/exploratorias_inc2_final.py`, informe en `metricas/exploratorias_inc2_final.md`, ejecutadas el 17/10/2026) siguen el mismo método de caja negra por HTTP, con resultados esperados derivados del README, de ADR-010 y de las reglas de la agenda, y datos sintéticos: 12 casos de RF-08 (rangos y fechas inválidas, contenido, filtros con texto especial y rendimiento con 156 niños) y 15 de RF-09 (validación del estado y del motivo de 3 a 200 caracteres, controles inexistentes, fecha futura, duplicados, estados ya cumplidos o cerrados, evaluación vinculada, niño con alta, auditoría por encabezado y concurrencia). Resultado final: 27 OK, 0 FALLA, 0 OBS. Entre ellos, 8 solicitudes simultáneas sobre el mismo control dieron un 201 y siete 409 con una sola asistencia guardada, y 6 escrituras simultáneas mientras 6 hilos leían la agenda y las alertas dieron 6 respuestas 201 y 180 respuestas 200 sin ningún 5xx. La corrida 1 (25 OK y 2 errores de diseño de los casos, corregidos) se conserva en `salidas/exploratorias_inc2_final_resultado_corrida1.txt`. Como las pruebas las diseñó el mismo equipo, no sustituyen la verificación por un tercero.
+**Sobre v2.0 (agenda del personal y asistencia).** Las 27 pruebas exploratorias del cierre (`.claude/herramientas/gqm/exploratorias_inc2_final.py`, informe en `metricas/exploratorias_inc2_final.md`, ejecutadas el 17/10/2026) siguen el mismo método de caja negra por HTTP, con resultados esperados derivados del README, de ADR-010 y de las reglas de la agenda, y datos sintéticos: 12 casos de RF-08 (rangos y fechas inválidas, contenido, filtros con texto especial y rendimiento con 156 niños) y 15 de RF-09 (validación del estado y del motivo de 3 a 200 caracteres, controles inexistentes, fecha futura, duplicados, estados ya cumplidos o cerrados, evaluación vinculada, niño con alta, auditoría por encabezado y concurrencia). Resultado final: 27 OK, 0 FALLA, 0 OBS. Entre ellos, 8 solicitudes simultáneas sobre el mismo control dieron un 201 y siete 409 con una sola asistencia guardada, y 6 escrituras simultáneas mientras 6 hilos leían la agenda y las alertas dieron 6 respuestas 201 y 180 respuestas 200 sin ningún 5xx. La corrida 1 (25 OK y 2 errores de diseño de los casos, corregidos) se conserva en `salidas/exploratorias_inc2_final_resultado_corrida1.txt`. Como las pruebas las diseñó el mismo equipo, no sustituyen la verificación por un tercero.
 
 #### G.5 Reglas de la agenda, la asistencia y la importación (ESQUEMA_AGENDA_V1)
 

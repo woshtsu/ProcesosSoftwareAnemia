@@ -1,6 +1,6 @@
 # Trazabilidad INC-1: historia → caso de uso → pruebas
 
-Fuente de las historias: `entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md` (§8, §20) y `entregables/semana-05/_extraccion_Informe_Actividad5.md` (tabla HIST/HU). Verificado el 2026-09-25 con `242 passed` y 96,66 % de cobertura.
+Fuente de las historias: `entregables/semana-03-04/Entregable_Semana3y4_Anemia_Junin.md` (§8, §20) y `.claude/archivo/semana-05/_extraccion_Informe_Actividad5.md` (tabla HIST/HU). Verificado el 2026-09-25 con `242 passed` y 96,66 % de cobertura.
 
 | Historia | Criterio de aceptación (resumen) | Caso(s) de uso / componente | Pruebas que lo verifican | Estado |
 | --- | --- | --- | --- | --- |

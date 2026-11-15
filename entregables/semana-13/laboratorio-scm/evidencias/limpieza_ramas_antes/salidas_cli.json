@@ -1,0 +1,12 @@
+{
+ "cli_a3_ramas": [
+  {
+   "comando": "git branch -r --format='%(refname:short)' | sed 's#origin/##' | grep -v -e HEAD -e '^origin$' | sort",
+   "salida": "chore/regla-agy-autocargada\nchore/reorganizar-por-semanas\ndesarrollo-anemia\ndevelop\ndocs/entrega-s11\ndocs/s12-correcciones\ndocs/s12-informe\ndocs/s12-integrador\ndocs/s12-v2\ndocs/s13-exportados\ndocs/s13-final\ndocs/s13-informe\ndocs/sonarcloud-2026-11-05\nentrega-s5-s7\nfeature/inc2-agenda-alertas\nfeature/inc3-sin-conexion\nfeature/s6-integrador-final\nfix/s13-informe-scm\nmain"
+  },
+  {
+   "comando": "git rev-list --left-right --count origin/main...origin/develop   # main_adelante  develop_adelante",
+   "salida": "0\t2"
+  }
+ ]
+}

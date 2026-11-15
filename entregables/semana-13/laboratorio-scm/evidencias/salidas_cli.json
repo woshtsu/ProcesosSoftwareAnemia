@@ -1,0 +1,152 @@
+{
+ "cli_a1_rfc_issues": [
+  {
+   "comando": "gh issue list -R woshtsu/ProcesosSoftwareAnemia --label change-request --state all",
+   "salida": "20\tOPEN\t[RFC] Preparar el dataset versionado del HIS para el Incremento 5 en el Sprint 6\tchange-request, aprobado\t2026-11-15T03:58:00Z\n19\tOPEN\t[RFC] Cabeceras de seguridad HTTP y CSV sin fórmulas (hallazgos OWASP H-2 y H-3)\tchange-request, aprobado\t2026-11-15T03:58:08Z\n18\tOPEN\t[RFC] Roles en el JWT y políticas RLS por establecimiento (hallazgo OWASP H-1)\tchange-request, aprobado\t2026-11-15T03:58:13Z\n17\tCLOSED\t[RFC] Regenerar los diagramas de arquitectura y de datos por ingeniería inversa (H10)\tchange-request, implementado\t2026-11-15T04:05:21Z\n16\tCLOSED\t[RFC] Adoptar GitFlow, convención de commits y plantillas de cambio y de pull request\tchange-request, pendiente-evaluacion\t2026-11-06T19:54:05Z\n15\tCLOSED\t[RFC] Adoptar GitFlow, convención de commits y plantillas de cambio y de pull request\tchange-request, implementado\t2026-11-15T04:05:19Z\n14\tCLOSED\t[RFC] Corregir el informe integrador según las observaciones del docente a la entrega S12\tchange-request, implementado\t2026-11-15T04:05:18Z"
+  }
+ ],
+ "cli_a1_plantilla_rfc": [
+  {
+   "comando": "git log -1 --format='%h %ad %s' --date=short origin/main -- .github/ISSUE_TEMPLATE/change_request.md",
+   "salida": "e0f8760 2026-11-06 docs(s13): informe integrador corregido (observaciones S12), plantillas de cambio y diagramas por ingeniería inversa (#13)"
+  },
+  {
+   "comando": "git show origin/main:.github/ISSUE_TEMPLATE/change_request.md | head -n 30",
+   "salida": "---\nname: \"Solicitud de Cambio (RFC)\"\nabout: \"Propuesta formal de modificación de requisitos, corrección o mejora en el proyecto\"\ntitle: \"[RFC] \"\nlabels: \"change-request, pendiente-evaluacion\"\nassignees: \"\"\n---\n\n### 1. DESCRIPCIÓN DEL CAMBIO SOLICITADO\n\n- **Módulo / Componente Afectado:** [Ej. Módulo de Autenticación / API REST de Ingesta]\n- **Tipo de Cambio:** [ ] Corrección de Defecto [ ] Cambio de Requisito [ ] Refactorización [ ] Mejora de Rendimiento\n- **Justificación del Cambio:** [Explicar por qué es necesario el cambio para la organización]\n\n### 2. ANÁLISIS DE IMPACTO TÉCNICO Y OPERATIVO\n\n- **Impacto en el Alcance:** [Indicar si afecta a Historias de Usuario existentes]\n- **Impacto en Tiempo / Esfuerzo:** [Estimación en horas o Puntos de Historia]\n- **Riesgo de Implementación:** [Bajo / Medio / Alto]\n\n### 3. CRITERIOS DE ACEPTACIÓN DEL CAMBIO\n\n- [ ] Dado que... Cuando... Entonces...\n- [ ] Pruebas unitarias actualizadas y aprobadas."
+  }
+ ],
+ "cli_a2_ruleset": [
+  {
+   "comando": "gh api repos/woshtsu/ProcesosSoftwareAnemia/rulesets/26248382 --jq '{name, enforcement, ramas: .conditions.ref_name.include, reglas: [.rules[].type], pull_request: (.rules[] | select(.type == \"pull_request\").parameters | {required_approving_review_count, dismiss_stale_reviews_on_push, allowed_merge_methods}), excepciones: .bypass_actors, actualizado: .updated_at}'",
+   "salida": "{\"actualizado\":\"2026-11-14T22:56:21.227-05:00\",\"enforcement\":\"active\",\"excepciones\":[{\"actor_id\":5,\"actor_type\":\"RepositoryRole\",\"bypass_mode\":\"always\"}],\"name\":\"ownermerge\",\"pull_request\":{\"allowed_merge_methods\":[\"squash\",\"rebase\",\"merge\"],\"dismiss_stale_reviews_on_push\":false,\"required_approving_review_count\":1},\"ramas\":[\"~DEFAULT_BRANCH\",\"refs/heads/develop\"],\"reglas\":[\"deletion\",\"non_fast_forward\",\"pull_request\"]}"
+  },
+  {
+   "comando": "gh api repos/woshtsu/ProcesosSoftwareAnemia/branches/main --jq '{rama: .name, protected}'",
+   "salida": "{\"protected\":true,\"rama\":\"main\"}"
+  }
+ ],
+ "cli_a2_auditoria_pr": [
+  {
+   "comando": "gh pr list -R woshtsu/ProcesosSoftwareAnemia --state merged --limit 30 --json number,headRefName,baseRefName,reviewDecision,mergedAt,body --jq '.[] | [.number, .headRefName + \" -> \" + .baseRefName, (if .reviewDecision == \"\" then \"SIN_REVISION\" else .reviewDecision end), (if (.body|test(\"(?i)(closes|fixes) #[0-9]+\")) then \"vinculada\" else \"-\" end), .mergedAt[:10]] | @tsv'",
+   "salida": "29\tchore/reorganizar-por-semanas -> develop\tREVIEW_REQUIRED\t-\t2026-11-15\n28\tmain -> develop\tREVIEW_REQUIRED\t-\t2026-11-15\n27\tdocs/s13-exportados -> main\tREVIEW_REQUIRED\t-\t2026-11-13\n26\tdocs/s13-final -> main\tREVIEW_REQUIRED\t-\t2026-11-13\n25\tfeat/T-022-video-demo-produccion -> main\tREVIEW_REQUIRED\t-\t2026-11-09\n24\tchore/regla-agy-autocargada -> main\tREVIEW_REQUIRED\t-\t2026-11-13\n23\tdocs/t021-cierre -> main\tREVIEW_REQUIRED\t-\t2026-11-09\n22\thotfix/rendimiento-render -> main\tREVIEW_REQUIRED\t-\t2026-11-09\n21\tfix/s13-informe-scm -> main\tREVIEW_REQUIRED\t-\t2026-11-13\n13\tdocs/s13-informe -> main\tREVIEW_REQUIRED\tvinculada\t2026-11-06\n12\tdocs/sonarcloud-2026-11-05 -> main\tREVIEW_REQUIRED\t-\t2026-11-06\n11\tdocs/s12-integrador -> main\tREVIEW_REQUIRED\t-\t2026-11-01\n10\tdocs/s12-informe -> main\tREVIEW_REQUIRED\t-\t2026-11-01\n9\tdocs/s12-integrador -> main\tAPPROVED\t-\t2026-11-01\n8\tfeature/inc3-sin-conexion -> main\tREVIEW_REQUIRED\t-\t2026-10-30\n7\tdocs/entrega-s11 -> main\tREVIEW_REQUIRED\t-\t2026-10-30\n6\tdocs/entrega-s11 -> main\tREVIEW_REQUIRED\t-\t2026-10-30\n5\tfeature/inc2-agenda-alertas -> main\tREVIEW_REQUIRED\t-\t2026-10-23\n4\tfeature/inc2-agenda-alertas -> main\tREVIEW_REQUIRED\t-\t2026-10-17\n2\tentrega-s5-s7 -> main\tREVIEW_REQUIRED\t-\t2026-10-02\n1\tdesarrollo-anemia -> main\tREVIEW_REQUIRED\t-\t2026-09-26"
+  }
+ ],
+ "cli_a2_plantilla_pr": [
+  {
+   "comando": "git show origin/main:.github/PULL_REQUEST_TEMPLATE.md",
+   "salida": "## DESCRIPCIÓN DEL CAMBIO\n\n- **Resumen:** [Breve descripción de los cambios en el código]\n- **Closes / Fixes Issue:** Closes # [Número del Issue de cambio]\n\n## CHECKLIST DE CRITERIOS DE TERMINACIÓN (Definition of Done - DoD)\n\n- [ ] El código compila localmente sin advertencias ni errores (`ruff check` y `ruff format --check` sin observaciones).\n- [ ] Se incluyeron/actualizaron pruebas unitarias con cobertura >= 80% (`pytest --cov`).\n- [ ] El código cumple con el estándar de Arquitectura Hexagonal (Dominio desacoplado; pruebas de `tests/arquitectura` en verde).\n- [ ] Se adjuntan capturas de pantalla o evidencias de la prueba funcional.\n- [ ] Análisis estático de linter/SonarQube aprobado con 0 vulnerabilidades (Ruff y SonarCloud).\n\n## EVIDENCIAS VISUALES (SI APLICA)\n\n[Adjuntar capturas de pantalla de la ejecución funcional]"
+  }
+ ],
+ "cli_a3_gitflow_pmv": [
+  {
+   "comando": "git log --graph --oneline --decorate=short 9ce90c3 -n 24",
+   "salida": "*   9ce90c3 (tag: v1.0-PMV) release: v1.0-PMV — Incremento 1 (registro nominal y expediente digital)\n|\\  \n| *   0d93d13 Merge docs/arquitectura-evidencias en develop\n| |\\  \n| | * 41a33c2 docs: ADR, contrato OpenAPI, evidencias de pruebas y README de despliegue\n| |/  \n| *   7c500d6 Merge fix/def-02-zona-horaria en develop\n| |\\  \n| | * c117af8 fix(DEF-02): el reporte del periodo usa días calendario de Perú (UTC-5); los registros después de las 19:00 ya no se pierden\n| |/  \n| *   4f805df Merge fix/def-01-reporte-n-mas-1 en develop\n| |\\  \n| | * 179f5e6 fix(DEF-01): elimina consultas N+1 del reporte del periodo (p95 2200 ms -> 74 ms)\n| |/  \n| *   37d755d Merge test/e2e-y-carga en develop\n| |\\  \n| | * 4dd811c test: pruebas E2E con Playwright, prueba de carga con Locust y grabación de la demo\n| |/  \n| *   db9ea96 Merge feature/hu01-hu05-expediente en develop\n| |\\  \n| | * cca1099 feat(hu01-hu05): interfaz PWA (registro, seguimiento, expediente, reporte) y datos sintéticos (T1, T3, T5)\n| | * bf66914 feat(hu01-hu05): API REST con errores por campo en español y pruebas de integración (T2, T5)\n| | * 6585006 feat: adaptadores de persistencia SQLAlchemy y en memoria (T2, T7)\n| | * a16b840 feat(hu01-hu05): casos de uso del expediente, seguimiento y reporte con puertos de salida\n| |/  \n| *   7174bea Merge feature/hu03-validacion-nts en develop\n| |\\  \n| | * 7bc62f4 feat(hu03): entidades del dominio y validación de datos de entrada con pruebas unitarias (T4, T6)\n| | * f535b34 feat(hu03): reglas clínicas de ajuste por altitud y clasificación de anemia\n| |/  \n| * 225ee46 Merge feature/infra-ci-bd en develop\n|/| \n| * 68e607b build: esquema PostgreSQL con restricciones de integridad y entorno Docker de staging (T7)\n| * 8d4cce4 ci: pipeline de GitHub Actions (lint, pruebas, cobertura) y SonarCloud (T8, T9)\n|/  \n* 2c106ed chore: estructura inicial del proyecto y configuración de herramientas"
+  }
+ ],
+ "cli_a3_main_directo": [
+  {
+   "comando": "git log --first-parent --format='%h %ad %s' --date=short origin/main -n 28",
+   "salida": "fb90686 2026-11-13 docs(s13): exportados de la semana 13 e informe de cierre T-023 (#27)\nc41ae8d 2026-11-12 docs(s13): informe integrador final en Word y PDF, video regrabado y producción en Virginia (#26)\n1fc774a 2026-11-12 chore(ia): cargar siempre la regla de delegar en agy (#24)\n3c60dba 2026-11-12 fix(s13): informe SCM con la PR #13 integrada y portada sin errores de SonarCloud (#21)\n1215517 2026-11-09 feat(video): T-022 demo grabada contra producción con ffmpeg y guion de locución (#25)\ncd83129 2026-11-09 docs: cerrar T-021 y apuntar el README al servicio de Virginia (#23)\ne6d8c4c 2026-11-09 perf(pmv): cachear agendas y aligerar respuestas para Render (#22)\ne0f8760 2026-11-06 docs(s13): informe integrador corregido (observaciones S12), plantillas de cambio y diagramas por ingeniería inversa (#13)\nef192d8 2026-11-06 SonarCloud: exportación del 05/11/2026 y análisis para próximas entregas (#12)\n0ef33d0 2026-11-05 Capturas de celular aniadidas\n17e44f2 2026-11-05 Capturas de produccion\n9b71b6e 2026-11-01 Docs/s12 integrador (#11)\n5cd7292 2026-11-01 Docs/s12 informe (#10)\nb2b088f 2026-11-01 Documentación S9 (adenda GQM v4), S10 (FURPS+) y S11 (CMMI-DEV actualizado) + verificación del esquema 4.0 en el despliegue (#9)\nc870a7e 2026-10-30 Incrementos 3 y 4: sin conexión, sincronización, visita priorizada, recordatorios WhatsApp y barreras (v3.0-Inc3, v4.0-Inc4) (#8)\na8df23b 2026-10-30 add guia s12\n43c861f 2026-10-30 add guia S10\n9caa00f 2026-10-30 S11: evaluacion CMMI-DEV del proceso y producto (informe, PDF, anexos y script de exportacion) (#7)\n5e6886f 2026-10-30 S11: evaluacion CMMI-DEV del proceso y producto (informe, PDF, anexos y script de exportacion) (#6)\n72e7025 2026-10-30 Integrar cambios remotos y configurar despliegue a produccion\n5f4c255 2026-10-30 Subiendo a produccion\ne24d8bd 2026-10-17 Feature/inc2 agenda alertas (#4)\n00469c5 2026-10-16 add guia s9\n0c9e302 2026-10-01 PMV v1.0 (FastAPI + PostgreSQL) — Incremento 1 (#2)\n9c02807 2026-09-25 Update project files and deliverables\n4e7135a 2026-09-25 Actualizacion de entregables y artefactos del proyecto\n67f2c01 2026-09-25 Merge pull request #1 from woshtsu/desarrollo-anemia\n4bed403 2026-09-25 Initial commit"
+  }
+ ],
+ "cli_a3_indicadores": [
+  {
+   "comando": "git log --first-parent --format='%ad|%s' --date=short origin/main | awk -F'|' '{pr=($2 ~ /\\(#[0-9]+\\)$/ || $2 ~ /^Merge pull request/); p=($1>=\"2026-11-06\")?\"desde_06-11\":\"antes_06-11\"; t[p]++; if(pr) v[p]++} END{for(p in t) printf \"%s  integraciones_en_main_por_PR: %d/%d\\n\", p, v[p], t[p]}'",
+   "salida": "desde_06-11  integraciones_en_main_por_PR: 9/9\nantes_06-11  integraciones_en_main_por_PR: 9/19"
+  },
+  {
+   "comando": "git log --all --no-merges --format='%ad|%s' --date=short | awk -F'|' '{c=($2 ~ /^(feat|fix|docs|chore|ci|build|test|perf|refactor|style|release)(\\([^)]*\\))?!?: /); p=($1>=\"2026-11-06\")?\"desde_06-11\":\"antes_06-11\"; t[p]++; if(c) v[p]++} END{for(p in t) printf \"%s  commits_convencionales: %d/%d (%.0f %%)\\n\", p, v[p], t[p], 100*v[p]/t[p]}'",
+   "salida": "desde_06-11  commits_convencionales: 9/11 (82 %)\nantes_06-11  commits_convencionales: 13/53 (25 %)"
+  }
+ ],
+ "cli_a3_ramas": [
+  {
+   "comando": "git branch -r --format='%(refname:short)' | sed 's#origin/##' | grep -v -e HEAD -e '^origin$' | sort",
+   "salida": "develop\nmain"
+  },
+  {
+   "comando": "git rev-list --left-right --count origin/main...origin/develop   # main_adelante  develop_adelante",
+   "salida": "0\t2"
+  }
+ ],
+ "cli_a4_runs": [
+  {
+   "comando": "gh run list -R woshtsu/ProcesosSoftwareAnemia --limit 22",
+   "salida": "completed\tsuccess\tchore(T-024): reorganizar el repositorio por semanas (#29)\tCI y producción — PMV Anemia Junín\tdevelop\tpush\t43675516687\t3m1s\t2026-11-15T04:09:33Z\ncompleted\tsuccess\tchore(T-024): reorganizar el repositorio por semanas\tCI y producción — PMV Anemia Junín\tchore/reorganizar-por-semanas\tpull_request\t43675249154\t2m59s\t2026-11-15T04:05:54Z\ncompleted\tfailure\tchore(T-024): reorganizar el repositorio por semanas\tCI y producción — PMV Anemia Junín\tchore/reorganizar-por-semanas\tpull_request\t43675155453\t45s\t2026-11-15T04:04:43Z\ncompleted\tsuccess\tMerge pull request #28 from woshtsu/main\tCI y producción — PMV Anemia Junín\tdevelop\tpush\t43675133539\t3m11s\t2026-11-15T04:04:25Z\ncompleted\tsuccess\tchore(gitflow): sincronizar develop con main\tCI y producción — PMV Anemia Junín\tmain\tpull_request\t43675119592\t2m43s\t2026-11-15T04:04:13Z\ncompleted\tfailure\tdocs(s13): exportados de la semana 13 e informe de cierre T-023 (#27)\tCI y producción — PMV Anemia Junín\tmain\tpush\t43447066462\t3m30s\t2026-11-13T14:53:28Z\ncompleted\tsuccess\tdocs(s13): exportados de la semana 13 e informe de cierre T-023\tCI y producción — PMV Anemia Junín\tdocs/s13-exportados\tpull_request\t43416321575\t2m51s\t2026-11-13T11:20:50Z\ncompleted\tfailure\tdocs(s13): informe integrador final en Word y PDF, video regrabado y …\tCI y producción — PMV Anemia Junín\tmain\tpush\t43363052252\t3m16s\t2026-11-13T04:04:06Z\ncompleted\tsuccess\tdocs(s13): informe integrador final en Word y PDF, video regrabado y producción en Virginia\tCI y producción — PMV Anemia Junín\tdocs/s13-final\tpull_request\t43361896198\t3m5s\t2026-11-13T03:53:18Z\ncompleted\tfailure\tchore(ia): cargar siempre la regla de delegar en agy (#24)\tCI y producción — PMV Anemia Junín\tmain\tpush\t43348757141\t6m47s\t2026-11-13T01:58:19Z\ncompleted\tfailure\tfix(s13): informe SCM con la PR #13 integrada y portada sin errores d…\tCI y producción — PMV Anemia Junín\tmain\tpush\t43348731071\t3m19s\t2026-11-13T01:58:05Z\ncompleted\tfailure\tfeat(video): T-022 demo grabada contra producción con ffmpeg y guion …\tCI y producción — PMV Anemia Junín\tmain\tpush\t42711649752\t3m38s\t2026-11-09T22:24:51Z\ncompleted\tsuccess\tT-022: video demo grabado contra producción y guion de locución\tCI y producción — PMV Anemia Junín\tfeat/T-022-video-demo-produccion\tpull_request\t42711644087\t3m10s\t2026-11-09T22:24:49Z\ncompleted\tsuccess\tchore(ia): cargar siempre la regla de delegar en agy\tCI y producción — PMV Anemia Junín\tchore/regla-agy-autocargada\tpull_request\t42693881275\t2m39s\t2026-11-09T20:32:09Z\ncompleted\tsuccess\tdocs: cerrar T-021 y apuntar el README al servicio de Virginia (#23)\tCI y producción — PMV Anemia Junín\tdevelop\tpush\t42690740415\t3m4s\t2026-11-09T20:12:35Z\ncompleted\tfailure\tdocs: cerrar T-021 y apuntar el README al servicio de Virginia (#23)\tCI y producción — PMV Anemia Junín\tmain\tpush\t42690699785\t3m16s\t2026-11-09T20:12:21Z\ncompleted\tsuccess\tperf(pmv): cachear agendas y aligerar respuestas para Render (#22)\tCI y producción — PMV Anemia Junín\tdevelop\tpush\t42690205063\t3m19s\t2026-11-09T20:09:22Z\ncompleted\tsuccess\tdocs: cerrar T-021 y apuntar el README al servicio de Virginia\tCI y producción — PMV Anemia Junín\tdocs/t021-cierre\tpull_request\t42690134563\t3m1s\t2026-11-09T20:08:56Z\ncompleted\tsuccess\tperf(pmv): cachear agendas y aligerar respuestas para Render (#22)\tCI y producción — PMV Anemia Junín\tmain\tpush\t42689247542\t2m58s\t2026-11-09T20:03:25Z\ncompleted\tsuccess\tperf(pmv): cachear agendas y aligerar respuestas para Render\tCI y producción — PMV Anemia Junín\thotfix/rendimiento-render\tpull_request\t42688730220\t2m35s\t2026-11-09T20:00:15Z\ncompleted\tsuccess\tfix(s13): informe SCM con la PR #13 integrada y portada sin errores de SonarCloud\tCI y producción — PMV Anemia Junín\tfix/s13-informe-scm\tpull_request\t42342192712\t2m38s\t2026-11-07T05:18:53Z\ncompleted\tfailure\tfix(s13): informe SCM con la PR #13 integrada y portada sin errores de SonarCloud\tCI y producción — PMV Anemia Junín\tfix/s13-informe-scm\tpull_request\t42333993878\t2m15s\t2026-11-07T03:26:05Z"
+  }
+ ],
+ "cli_a4_jobs": [
+  {
+   "comando": "gh run view 42299328715 -R woshtsu/ProcesosSoftwareAnemia",
+   "salida": "\n✓ docs/s13-informe CI y producción — PMV Anemia Junín woshtsu/ProcesosSoftwareAnemia#13 · 42299328715\nTriggered via pull_request about 8 days ago\n\nJOBS\n✓ calidad-y-pruebas in 2m51s (ID 128172691734)\n✓ imagen in 24s (ID 128174017007)\n- produccion (ID 128174217624)\n\nANNOTATIONS\n! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/\ncalidad-y-pruebas: .github#2\n\n! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/\nimagen: .github#2\n\n\nARTIFACTS\nreportes-calidad\n\nFor more information about a job, try: gh run view --job=<job-id>\nView this run on GitHub: https://github.com/woshtsu/ProcesosSoftwareAnemia/actions/runs/42299328715"
+  },
+  {
+   "comando": "gh run view 43447066462 -R woshtsu/ProcesosSoftwareAnemia",
+   "salida": "\nX main CI y producción — PMV Anemia Junín woshtsu/ProcesosSoftwareAnemia#28 · 43447066462\nTriggered via push about 1 day ago\n\nJOBS\n✓ calidad-y-pruebas in 2m50s (ID 131959189834)\n✓ imagen in 22s (ID 131960805524)\nX produccion in 11s (ID 131961021471)\n  ✓ Set up job\n  ✓ Run actions/setup-python@v5\n  ✓ Instalar cliente PostgreSQL\n  X Verificar esquema sin modificar producción y solicitar despliegue\n  - Post Run actions/setup-python@v5\n  ✓ Complete job\n\nANNOTATIONS\n! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/\ncalidad-y-pruebas: .github#2\n\n! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/\nimagen: .github#2\n\n! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/\nproduccion: .github#2\n\nX Process completed with exit code 1.\nproduccion: .github#56\n\n\nARTIFACTS\nreportes-calidad\n\nTo see what failed, try: gh run view 43447066462 --log-failed\nView this run on GitHub: https://github.com/woshtsu/ProcesosSoftwareAnemia/actions/runs/43447066462"
+  }
+ ],
+ "cli_a4_ci_triggers": [
+  {
+   "comando": "git show origin/main:.github/workflows/ci.yml | sed -n '1,12p'",
+   "salida": "name: CI y producción — PMV Anemia Junín\n\non:\n  push:\n    branches: [main, develop, \"feature/**\"]\n  pull_request:\n    branches: [main, develop]\n  workflow_dispatch:\n\npermissions:\n  contents: read"
+  },
+  {
+   "comando": "git show origin/main:.github/workflows/ci.yml | grep -nE '^  [a-z-]+:$|needs:|name: (Ruff|Pruebas|Cobertura|Construir|Verificar)'",
+   "salida": "4:  push:\n18:  run:\n22:  calidad-y-pruebas:\n52:      - name: Pruebas unitarias, integración y arquitectura + cobertura (SQLite)\n56:      - name: Pruebas de integración contra PostgreSQL\n63:      - name: Pruebas E2E (Playwright)\n84:  imagen:\n85:    needs: calidad-y-pruebas\n90:      - name: Construir imagen Docker del PMV\n93:  produccion:\n94:    needs: [calidad-y-pruebas, imagen]\n105:      - name: Verificar esquema sin modificar producción y solicitar despliegue"
+  }
+ ],
+ "cli_a5_tags": [
+  {
+   "comando": "git tag -l -n1",
+   "salida": "archivo/docs-s12-correcciones Respaldo de la rama docs/s12-correcciones (sin PR; versiones antiguas de 14 archivos ya actualizados en main) antes de borrarla el 14/11/2026\nv1.0-PMV        PMV / Incremento 1: HU-01 a HU-05, 77 pruebas, cobertura 99 %\nv1.5.0-inc2-avance Avance 50% del Incremento 2 (HIST-2.1 y HIST-2.2)\nv2.0-Inc2       Incremento 2 completo (HIST-2.1 a HIST-2.4)\nv3.0-Inc3       Incremento 3: sin conexion, sincronizacion y visita priorizada\nv4.0-Inc4       Incremento 4: notificaciones por WhatsApp y barreras\nv4.0.1          v4.0.1: hotfix de rendimiento en Render (PR #22): caché de agendas, límite de respuestas y pool de conexiones"
+  },
+  {
+   "comando": "git show v1.0-PMV --no-patch --format='commit %h  %ad  %s' --date=short | tail -n 3",
+   "salida": "\nPMV / Incremento 1: HU-01 a HU-05, 77 pruebas, cobertura 99 %\ncommit 9ce90c3  2026-09-30  release: v1.0-PMV — Incremento 1 (registro nominal y expediente digital)"
+  }
+ ],
+ "cli_a5_releases": [
+  {
+   "comando": "gh release list -R woshtsu/ProcesosSoftwareAnemia",
+   "salida": "Release v4.0.1: rendimiento en Render (hotfix del Incremento 4)\tLatest\tv4.0.1\t2026-11-15T04:05:15Z\nRelease v4.0-Inc4: Recordatorios por WhatsApp y barreras de acceso (Incremento 4)\t\tv4.0-Inc4\t2026-11-06T19:18:44Z\nRelease v3.0-Inc3: Registro sin conexión, sincronización y visitas (Incremento 3)\t\tv3.0-Inc3\t2026-11-06T19:18:28Z\nRelease v2.0-Inc2: Agenda, alertas y asistencia (Incremento 2)\t\tv2.0-Inc2\t2026-11-06T19:17:52Z\nRelease v1.5.0-inc2-avance: Incremento 2 al 50 % (hito intermedio)\tPre-release\tv1.5.0-inc2-avance\t2026-11-06T19:16:54Z\nRelease v1.0-PMV: Producto Mínimo Viable (Incremento 1)\t\tv1.0-PMV\t2026-11-06T19:16:15Z"
+  },
+  {
+   "comando": "gh api repos/woshtsu/ProcesosSoftwareAnemia/releases --jq '.[] | [.tag_name, .published_at[:10], (.assets|length|tostring) + \" adjuntos\", .html_url] | @tsv'",
+   "salida": "v4.0.1\t2026-11-15\t1 adjuntos\thttps://github.com/woshtsu/ProcesosSoftwareAnemia/releases/tag/v4.0.1\nv4.0-Inc4\t2026-11-06\t1 adjuntos\thttps://github.com/woshtsu/ProcesosSoftwareAnemia/releases/tag/v4.0-Inc4\nv3.0-Inc3\t2026-11-06\t0 adjuntos\thttps://github.com/woshtsu/ProcesosSoftwareAnemia/releases/tag/v3.0-Inc3\nv2.0-Inc2\t2026-11-06\t0 adjuntos\thttps://github.com/woshtsu/ProcesosSoftwareAnemia/releases/tag/v2.0-Inc2\nv1.5.0-inc2-avance\t2026-11-06\t0 adjuntos\thttps://github.com/woshtsu/ProcesosSoftwareAnemia/releases/tag/v1.5.0-inc2-avance\nv1.0-PMV\t2026-11-06\t0 adjuntos\thttps://github.com/woshtsu/ProcesosSoftwareAnemia/releases/tag/v1.0-PMV"
+  }
+ ],
+ "cli_m_gitflow_develop": [
+  {
+   "comando": "gh pr list -R woshtsu/ProcesosSoftwareAnemia --state merged --base develop --json number,title,headRefName,mergedAt,reviewDecision --jq '.[] | [.number, .headRefName + \" -> develop\", .title, .mergedAt[:10], (if .reviewDecision == \"\" then \"SIN_REVISION\" else .reviewDecision end)] | @tsv'",
+   "salida": "29\tchore/reorganizar-por-semanas -> develop\tchore(T-024): reorganizar el repositorio por semanas\t2026-11-15\tREVIEW_REQUIRED\n28\tmain -> develop\tchore(gitflow): sincronizar develop con main\t2026-11-15\tREVIEW_REQUIRED"
+  },
+  {
+   "comando": "git log --oneline -4 origin/develop",
+   "salida": "2b6f8ab chore(T-024): reorganizar el repositorio por semanas (#29)\nfb64838 Merge pull request #28 from woshtsu/main\nfb90686 docs(s13): exportados de la semana 13 e informe de cierre T-023 (#27)\nc41ae8d docs(s13): informe integrador final en Word y PDF, video regrabado y producción en Virginia (#26)"
+  },
+  {
+   "comando": "git rev-list --left-right --count origin/main...origin/develop   # main_adelante  develop_adelante",
+   "salida": "0\t2"
+  }
+ ],
+ "cli_m_rfc_evaluadas": [
+  {
+   "comando": "gh issue list -R woshtsu/ProcesosSoftwareAnemia --label change-request --state all --json number,state,labels --jq '.[] | [.number, .state, ([.labels[].name] | join(\",\"))] | @tsv'",
+   "salida": "20\tOPEN\tchange-request,aprobado\n19\tOPEN\tchange-request,aprobado\n18\tOPEN\tchange-request,aprobado\n17\tCLOSED\tchange-request,implementado\n16\tCLOSED\tchange-request,pendiente-evaluacion\n15\tCLOSED\tchange-request,implementado\n14\tCLOSED\tchange-request,implementado"
+  }
+ ],
+ "cli_m_respaldo_y_artefactos": [
+  {
+   "comando": "git ls-remote --heads origin",
+   "salida": "2b6f8ab879987fcdb4083f8bae4331319a2442c9\trefs/heads/develop\nfb906867e85c2a9503562d6f0455c2c0c37a1420\trefs/heads/main"
+  },
+  {
+   "comando": "git for-each-ref refs/tags/archivo --format='%(refname:short)  %(*objectname:short)  %(contents:subject)'",
+   "salida": "archivo/docs-s12-correcciones  b6eec1e  Respaldo de la rama docs/s12-correcciones (sin PR; versiones antiguas de 14 archivos ya actualizados en main) antes de borrarla el 14/11/2026"
+  },
+  {
+   "comando": "gh api repos/woshtsu/ProcesosSoftwareAnemia/releases --jq '.[] | select(.assets|length>0) | [.tag_name, (.assets[] | .name + \" (\" + (.size|tostring) + \" bytes)\")] | @tsv'",
+   "salida": "v4.0.1\treportes-calidad-v4.0.1.zip (24331 bytes)\nv4.0-Inc4\treportes-calidad-v4.0-Inc4.zip (22933 bytes)"
+  }
+ ]
+}

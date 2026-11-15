@@ -218,7 +218,7 @@ La guía exige argumentar con la cadena **característica del proyecto → probl
 El diagrama representa cómo se aplica el modelo seleccionado a este proyecto (no es un diagrama genérico de Scrum o DevOps): nombra los incrementos, los actores que retroalimentan y el subciclo MLOps que se activa a partir del INC-5.
 
 <!-- DIAG-006 pendiente -->
-![Figura 1. Aplicación del modelo de proceso al proyecto: ciclo principal con los diez elementos de la guía y subciclo MLOps desde INC-5 (elaboración propia).](../../diagramas/svg/15_s2_modelo_proceso_aplicado.svg)
+![Figura 1. Aplicación del modelo de proceso al proyecto: ciclo principal con los diez elementos de la guía y subciclo MLOps desde INC-5 (elaboración propia).](../../.claude/diagramas/svg/15_s2_modelo_proceso_aplicado.svg)
 
 **Tabla 8.** Los diez elementos exigidos por la Actividad 5, aplicados al proyecto.
 

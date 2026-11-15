@@ -23,7 +23,7 @@
 | **Asignatura** | Procesos de Software (ASUC01702), Universidad Continental, periodo 2026-20, Noveno ciclo |
 | **Proyecto de asignatura** | Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín |
 | **Docente** | Guevara Jimenez, Jorge Alfredo |
-| **Semana y guía** | Semana 10: «Evaluación de la calidad del producto de software mediante el modelo FURPS+» (`guias/S10-PSW-GUÍA DE TRABAJO SEMANA 10.docx.md`) |
+| **Semana y guía** | Semana 10: «Evaluación de la calidad del producto de software mediante el modelo FURPS+» (`guias/semana-10.md`) |
 | **Fecha** | 30/10/2026 (todas las mediciones se ejecutaron ese día) |
 | **Versiones evaluadas** | Los cuatro incrementos: `v1.0-PMV` (Inc. 1, RF-01 a RF-05), `v2.0-Inc2` (Inc. 2, RF-06 a RF-09), `v3.0-Inc3` (Inc. 3, HIST-3.1 a 3.4 y VIS-3.5) y `v4.0-Inc4` (Inc. 4, HIST-4.1 a 4.4). La guía solo pide los incrementos 1 a 3; se agrega el 4 porque el código vigente lo incluye |
 | **Código medido** | Rama `docs/s12-integrador`, versión `4.0.0-inc4`. Pruebas y cobertura: commit `e6886e2`; resto de mediciones: commit `ada827f` (difiere de `e6886e2` solo en documentación; `pmv_fastapi/` no cambió). Cada captura de terminal muestra comando, fecha y commit en su pie |

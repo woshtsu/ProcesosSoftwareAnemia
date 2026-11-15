@@ -1,6 +1,6 @@
 # Pruebas exploratorias del Incremento 2 (agenda y alertas) - salida cruda
 # Fecha: 2026-10-16T18:00:08-05:00 (hora de Perú); versión v1.5.0-inc2-avance; servidor uvicorn :8321 con SQLite <directorio temporal> y dataset B150 cargado por API
-# Comando: python herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <sqlite>
+# Comando: python .claude/herramientas/gqm/exploratorias_inc2.py --base http://127.0.0.1:8321 --db <sqlite>
 
 EX-01 [OK] aplica=True total=12 pendientes=12 vencidos=0 primero=2027-04-16
 EX-02 [OK] control 6 m: ('CUMPLIDO', '2026-10-16')

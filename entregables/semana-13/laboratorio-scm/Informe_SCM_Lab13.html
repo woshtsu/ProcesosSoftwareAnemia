@@ -7,11 +7,11 @@
   @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
   :root { --azul: #1F3864; --azul2: #2E75B6; --gris: #f2f4f7; --borde: #9aa5b5; }
   body { font-family: "DejaVu Serif", "Times New Roman", serif; font-size: 10.5pt; color: #111; line-height: 1.45; margin: 0; }
-  h1 { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 15pt; color: var(--azul); margin: 0 0 3mm; }
-  h2 { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 12pt; color: var(--azul); margin: 7mm 0 2mm; border-bottom: 1.5px solid var(--azul2); padding-bottom: 1mm; page-break-after: avoid; }
-  h3 { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 10.5pt; color: var(--azul); margin: 5mm 0 1.5mm; page-break-after: avoid; }
+  h1 { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 13.5pt; color: var(--azul); margin: 0 0 3mm; border-bottom: 2px solid var(--azul2); padding-bottom: 1mm; page-break-after: avoid; }
+  h2 { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 11.5pt; color: var(--azul); margin: 6mm 0 2mm; page-break-after: avoid; }
+  h3 { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 10.3pt; color: var(--azul); margin: 4mm 0 1.5mm; page-break-after: avoid; }
   p { margin: 1.5mm 0; text-align: justify; }
-  ul { margin: 1mm 0 2mm 5mm; padding-left: 4mm; }
+  ul, ol { margin: 1mm 0 2mm 5mm; padding-left: 4mm; }
   li { margin: .6mm 0; }
   table { border-collapse: collapse; width: 100%; margin: 2mm 0 1mm; font-family: "DejaVu Sans", Arial, sans-serif; font-size: 7.9pt; }
   tr { page-break-inside: avoid; }
@@ -20,7 +20,7 @@
   tbody tr:nth-child(even) td { background: var(--gris); }
   .cap { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 8.6pt; margin: 3mm 0 1mm; page-break-after: avoid; }
   .cap b { color: var(--azul); }
-  code, pre { font-family: "DejaVu Sans Mono", monospace; font-size: 7.8pt; }
+  code, pre { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: 7.8pt; }
   pre { background: #f6f8fa; border: .6px solid #d0d7de; padding: 2mm 3mm; white-space: pre-wrap; page-break-inside: avoid; margin: 2mm 0; }
   .portada { text-align: center; padding-top: 22mm; page-break-after: always; font-family: "DejaVu Sans", Arial, sans-serif; }
   .portada .u { font-size: 14pt; font-weight: bold; color: var(--azul); }
@@ -29,9 +29,17 @@
   .portada table { width: 82%; margin: 0 auto; font-size: 9.5pt; }
   .portada th { font-weight: bold; width: 32%; background: none; color: #111; }
   .ok { color: #1f7a3a; font-weight: bold; } .pend { color: #b54708; font-weight: bold; } .no { color: #b42318; font-weight: bold; }
-  img { max-width: 100%; border: .6px solid #d0d7de; }
-  .fig { text-align: center; page-break-inside: avoid; margin: 3mm 0; }
+  .fig { text-align: center; page-break-inside: avoid; margin: 3mm 0 4mm; }
+  .fig img { max-width: 100%; max-height: 118mm; border: .6px solid #d0d7de; }
+  .fig .pie { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 8.3pt; text-align: left; margin-top: 1.2mm; color: #222; }
+  .fig .pie b { color: var(--azul); }
+  .oblig { border: 1.4px solid var(--azul2); padding: 2mm; background: #f5f9ff; page-break-inside: avoid; margin: 3mm 0; }
+  .oblig .fig img { max-height: 190mm; }
+  .oblig .etq { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 8pt; font-weight: bold; color: #fff; background: var(--azul2); display: inline-block; padding: .5mm 2mm; margin-bottom: 1.5mm; }
   .nota { font-size: 8.8pt; color: #344054; }
+  .salto { page-break-before: always; }
+  .indice { font-family: "DejaVu Sans", Arial, sans-serif; font-size: 9.5pt; }
+  .indice li { margin: .8mm 0; }
 </style>
 </head>
 <body>
@@ -40,189 +48,318 @@
   <div class="u">UNIVERSIDAD CONTINENTAL</div>
   <div>Facultad de Ingeniería · Ingeniería de Sistemas e Informática</div>
   <div class="t">INFORME TÉCNICO DE LABORATORIO 13<br>GESTIÓN DE CONFIGURACIÓN DE SOFTWARE (UNIDAD IV)</div>
-  <div class="s">Administración del cambio y gestión de versiones y entregas con la Suite de GitHub<br>aplicadas al proyecto «Anemia Junín»</div>
+  <div class="s">Administración del cambio, gestión de versiones y entregas, construcción del sistema<br>y herramientas del proceso con la suite gratuita de GitHub, aplicadas al proyecto «Anemia Junín»</div>
   <table>
     <tbody>
     <tr><th scope="row">Asignatura</th><td>Procesos de Software (ASUC01702) · 2026-20</td></tr>
     <tr><th scope="row">Docente</th><td>Guevara Jimenez, Jorge Alfredo</td></tr>
-    <tr><th scope="row">Proyecto</th><td>Sistema para la detección temprana y el seguimiento de la anemia infantil en zonas rurales de Junín (versión <code>v4.0-Inc4</code>)</td></tr>
+    <tr><th scope="row">Proyecto</th><td>Sistema para la detección temprana y el seguimiento de la anemia infantil en zonas rurales de Junín (versión <code>v4.0.1</code>)</td></tr>
     <tr><th scope="row">Integrantes</th><td>Porras Veli, Ricardo (76659572) — Leader / Software Architect<br>Auqui Huincho, Tania Tifani (75280128) — Backend, Data, Frontend &amp; Mobile<br>Huamani Rodriguez, Jean Piero (72156889) — Process Analyst &amp; QA Lead</td></tr>
     <tr><th scope="row">Repositorio</th><td>https://github.com/woshtsu/ProcesosSoftwareAnemia</td></tr>
-    <tr><th scope="row">Fecha de corte</th><td>06/11/2026</td></tr>
+    <tr><th scope="row">Fecha de corte</th><td>14/11/2026, 23:00 (versión final revisada tras acciones nocturnas de verificación SCM; corte previo al 14/11 tarde)</td></tr>
     </tbody>
   </table>
 </div>
 
-<h1>1. Carátula e integrantes</h1>
-<p>Ver la página anterior. Roles en la gestión de la configuración: el <b>Leader / Software Architect</b> (Porras V.) evalúa y aprueba las solicitudes de cambio y es el propietario del repositorio; la <b>desarrolladora</b> (Auqui H.) implementa los cambios en ramas propias; el <b>QA Lead</b> (Huamani R.) registra las solicitudes, revisa las <i>pull requests</i> y publica las versiones.</p>
+<h1>Contenido</h1>
+<ol class="indice">
+  <li>Introducción, roles y objetivos</li>
+  <li>Ejes temáticos de la Unidad IV y su implementación en GitHub</li>
+  <li>Actividad 1: línea base y registro de cambios (captura obligatoria 1)</li>
+  <li>Actividad 2: control de cambios, protección de ramas y revisión de código (capturas 2 y 3)</li>
+  <li>Actividad 3: estrategia de ramificación GitFlow (captura 4)</li>
+  <li>Actividad 4: integración continua con GitHub Actions (captura 5)</li>
+  <li>Actividad 5: versionamiento semántico y GitHub Releases (captura 6)</li>
+  <li>Matriz de trazabilidad SCM unificada</li>
+  <li>Indicadores del proceso de gestión de la configuración</li>
+  <li>Autoevaluación con la rúbrica</li>
+  <li>Conclusiones y lecciones aprendidas</li>
+  <li>Anexos: correspondencia de evidencias, reproducibilidad y enlaces</li>
+</ol>
+<p class="nota"><b>Cómo leer las evidencias.</b> Hay dos tipos. Las capturas de páginas de GitHub se tomaron del repositorio el 14/11/2026 (tanto en modo público como en sesión del propietario para ajustes de reglas). Las capturas en fondo oscuro son la salida real de comandos <code>git</code> y <code>gh</code> sobre el mismo repositorio, con el comando visible en la primera línea. Ambas se regeneran con el script <code>capturar_evidencias_scm.py</code> (Anexo B), con salidas archivadas en <code>evidencias/salidas_cli.json</code>. Para garantizar la trazabilidad de la mejora continua, cada hallazgo inicial mantiene su captura original de la tarde archivada en <code>evidencias/antes_2026-11-14_tarde/</code>, seguida de la evidencia del estado resultante tras las acciones nocturnas.</p>
 
-<h2>2. Resumen del proyecto y objetivos de la gestión de configuración</h2>
-<p>«Anemia Junín» es una aplicación web progresiva con API FastAPI y arquitectura hexagonal que ayuda al personal de salud a registrar a los niños con anemia, programar sus controles, recibir alertas, trabajar sin conexión y registrar las barreras al tratamiento. Se construyó en cuatro incrementos (<code>v1.0-PMV</code> a <code>v4.0-Inc4</code>, 76 de 133 puntos de historia) y está desplegada en Render con Supabase. Según el plan, la semana 13 abre el Sprint 6, dedicado al Incremento 5 (modelo predictivo).</p>
-<p><b>Objetivos de la gestión de configuración (SCM):</b></p>
+<h1 class="salto">1. Introducción, roles y objetivos</h1>
+<p>«Anemia Junín» es una aplicación web progresiva con API FastAPI y arquitectura hexagonal que ayuda al personal de salud a registrar a los niños con anemia, programar sus controles, recibir alertas, trabajar sin conexión y registrar las barreras al tratamiento. Se construyó en cuatro incrementos y un hotfix de producción (<code>v1.0-PMV</code> a <code>v4.0.1</code>, 76 de 133 puntos de historia) y está desplegada en Render con base de datos en Supabase. La semana 13 abre el Sprint 6, dedicado al Incremento 5 (modelo predictivo).</p>
+<p>Este informe documenta cómo el equipo aplica la gestión de configuración de software (SCM) con la suite gratuita de GitHub: qué existía, qué se configuró en el laboratorio, qué evidencia lo demuestra y qué sigue pendiente. No se presentan como hechas configuraciones que no estén respaldadas por la API o capturas del repositorio.</p>
+<table>
+<thead><tr><th style="width:24%">Rol en la SCM</th><th style="width:22%">Integrante</th><th>Responsabilidades</th></tr></thead>
+<tbody>
+<tr><td>Comité de control de cambios (CCB) y propietario del repositorio</td><td>Porras V. (Leader / Software Architect)</td><td>Evalúa y aprueba las RFC; configura las reglas de rama y excepciones; integra las PR en <code>main</code> y <code>develop</code>.</td></tr>
+<tr><td>Desarrolladora</td><td>Auqui H.</td><td>Implementa los cambios en ramas <code>feature/*</code> y <code>fix/*</code>; abre las PR con la plantilla y subsana observaciones.</td></tr>
+<tr><td>Gestor de configuración y QA</td><td>Huamani R. (Process Analyst &amp; QA Lead)</td><td>Registra las RFC, revisa las PR, mantiene el pipeline, publica las <i>releases</i> y audita la configuración.</td></tr>
+</tbody>
+</table>
+<p><b>Objetivo general.</b> Aplicar las técnicas de SCM y la mejora continua en el proyecto de asignatura utilizando la suite gratuita de GitHub.</p>
+<p><b>Objetivos específicos</b> (de la guía, con el indicador con el que se mide cada uno en la sección 9):</p>
 <ul>
-  <li>Que todo cambio entre por una solicitud registrada (RFC en GitHub Issues), con su impacto y su evaluación.</li>
-  <li>Que ningún cambio llegue a la línea base sin <i>pull request</i>, lista de la DoD, integración continua en verde y revisión de un par.</li>
-  <li>Separar la línea base estable (<code>main</code>) de la integración (<code>develop</code>) y del trabajo diario (<code>feature/*</code>), siguiendo GitFlow.</li>
-  <li>Identificar cada incremento con una etiqueta semántica y publicarlo como <i>release</i> con sus notas.</li>
-  <li>Mantener la trazabilidad Cambio → Issue → Rama → PR → Etiqueta → Release → Despliegue.</li>
+  <li>Estructurar el control de cambios con plantillas y revisión por pares → RFC registradas y evaluadas formalmente; PR con revisión aprobada.</li>
+  <li>Configurar la protección de código y la ramificación GitFlow → ruleset activo en <code>main</code> y <code>develop</code>; PR que pasan por <code>develop</code>.</li>
+  <li>Automatizar la integración continua y auditar la calidad antes de integrar → ejecuciones del pipeline en verde antes de cada <i>merge</i>.</li>
+  <li>Publicar liberaciones con etiquetado SemVer → etiquetas y <i>releases</i> con notas y paquetes de artefactos adjuntos.</li>
 </ul>
-<p class="nota">El informe separa lo que ya existía en el repositorio de lo configurado el 06/11/2026 para este laboratorio, y señala lo que queda pendiente.</p>
 
-<h2>3. Eje temático 1: administración del cambio en GitHub</h2>
-
-<h3>3.1 Configuración de plantillas</h3>
-<p>Se crearon las dos plantillas de la guía, con el texto normalizado. En la plantilla de PR, la DoD se adaptó a las herramientas del proyecto (Ruff, <code>pytest --cov</code>, pruebas de arquitectura y SonarCloud). También se crearon las etiquetas del flujo: <code>change-request</code>, <code>pendiente-evaluacion</code>, <code>aprobado</code>, <code>rechazado</code> e <code>implementado</code>.</p>
+<h1>2. Ejes temáticos de la Unidad IV y su implementación en GitHub</h1>
 <table>
-  <thead><tr><th>Archivo</th><th>Contenido</th><th>Estado</th></tr></thead>
-  <tbody>
-    <tr><td><code>.github/ISSUE_TEMPLATE/change_request.md</code></td><td>Solicitud de Cambio (RFC): módulo afectado, tipo de cambio, justificación, impacto en alcance, esfuerzo y riesgo, y criterios de aceptación Dado-Cuando-Entonces. Etiquetas automáticas: <code>change-request</code> y <code>pendiente-evaluacion</code>.</td><td rowspan="3">En <code>main</code> desde el 06/11/2026 (PR #13); activas para todo el equipo.</td></tr>
-    <tr><td><code>.github/PULL_REQUEST_TEMPLATE.md</code></td><td>Resumen, <code>Closes #</code> y la DoD: compila sin advertencias (Ruff), cobertura ≥ 80 %, arquitectura hexagonal, evidencias funcionales y análisis estático (Ruff y SonarCloud).</td></tr>
-    <tr><td><code>CONTRIBUTING.md</code></td><td>Flujo del cambio, GitFlow, formato de commits <code>tipo(ámbito): descripción</code>, etiquetas, <i>releases</i> y protección de ramas.</td></tr>
-  </tbody>
+<thead><tr><th style="width:22%">Eje temático</th><th style="width:28%">Herramienta de la suite de GitHub</th><th>Elementos de configuración del proyecto</th></tr></thead>
+<tbody>
+<tr><td>1. Administración del cambio</td><td>Issues con plantilla y etiquetas; Pull requests con plantilla; Rulesets</td><td><code>.github/ISSUE_TEMPLATE/change_request.md</code>, <code>.github/PULL_REQUEST_TEMPLATE.md</code>, etiquetas <code>change-request</code>, <code>pendiente-evaluacion</code>, <code>aprobado</code>, <code>rechazado</code>, <code>implementado</code>; ruleset <code>ownermerge</code> activo.</td></tr>
+<tr><td>2. Gestión de versiones y entregas</td><td>Ramas, Tags, Releases, Insights → Network</td><td>Ramas <code>main</code>, <code>develop</code>, <code>feature/*</code>, <code>fix/*</code>, <code>hotfix/*</code>; etiquetas <code>v1.0-PMV</code> a <code>v4.0.1</code> y <code>archivo/*</code>; 6 <i>releases</i>; convención en <code>CONTRIBUTING.md</code>.</td></tr>
+<tr><td>3. Construcción del sistema</td><td>GitHub Actions</td><td><code>.github/workflows/ci.yml</code>: Ruff, pytest con cobertura, pruebas de arquitectura, integración con PostgreSQL y E2E con Playwright; imagen Docker; verificación de esquema y solicitud de despliegue.</td></tr>
+<tr><td>4. Herramientas del proceso</td><td>API de GitHub y CLI <code>gh</code></td><td>Auditoría reproducible del proceso: <code>capturar_evidencias_scm.py</code> (salidas en JSON y capturas contrastadas).</td></tr>
+</tbody>
 </table>
 
-<h3>3.2 Matriz de registro y control de solicitudes de cambio (Issues / RFC)</h3>
-<p>Las solicitudes se registraron el 06/11/2026 con la plantilla. Provienen de hallazgos reales: las observaciones del docente a S12, la autoevaluación CMMI (H2, H5 y H10), la auditoría OWASP Top 10:2025 (H-1 a H-3) y el plan del Sprint 6. Antes de esa fecha el proyecto no registraba los cambios en GitHub Issues: los gestionaba en <code>coordinacion/TABLERO.md</code> y en el plan de mejora.</p>
-<div class="cap"><b>Matriz 1.2.</b> Registro controlado de cambios en GitHub Issues (06/11/2026).</div>
+<h1 class="salto">3. Actividad 1: línea base y registro de cambios</h1>
+<h2>3.1 Paso 1.1: plantilla de solicitud de cambio</h2>
+<p>La plantilla se incorporó a la línea base el 06/11/2026 con la PR #13 (Figura 1). Sigue la estructura de la guía (descripción, análisis de impacto y criterios de aceptación) y la amplía con el impacto en el alcance, criterios Dado-Cuando-Entonces y una sección de evaluación que completa el CCB. Al crear el <i>issue</i>, GitHub le asigna las etiquetas <code>change-request</code> y <code>pendiente-evaluacion</code>. El ciclo de vida de la RFC se controla con etiquetas (Figura 2): <code>pendiente-evaluacion</code> → <code>aprobado</code> o <code>rechazado</code> → <code>implementado</code>.</p>
+<div class="fig"><img src="evidencias/cli_a1_plantilla_rfc.png" alt=""><div class="pie"><b>Figura 1.</b> Commit que incorporó la plantilla a <code>main</code> (PR #13, 06/11/2026) y contenido de <code>.github/ISSUE_TEMPLATE/change_request.md</code> leído desde <code>origin/main</code>.</div></div>
+<div class="fig"><img src="evidencias/web_a1_etiquetas.png" alt="" style="max-height:95mm"><div class="pie"><b>Figura 2.</b> Etiquetas del repositorio: además de las de GitHub, las del flujo de cambio (<code>change-request</code>, <code>pendiente-evaluacion</code>, <code>aprobado</code>, <code>implementado</code>) con su descripción.</div></div>
+
+<h2>3.2 Paso 1.2: registro de cambios en GitHub Issues</h2>
+<div class="oblig"><span class="etq">CAPTURA OBLIGATORIA 1 · actividad1_issue_change_request.png</span>
+<div class="fig" style="margin:0"><img src="evidencias/web_a1_issue_rfc_18.png" alt=""><div class="pie"><b>Figura 3.</b> RFC #18 «Roles en el JWT y políticas RLS por establecimiento» registrada con la plantilla: número asignado, etiquetas <code>change-request</code> y <code>pendiente-evaluacion</code>, módulo afectado, tipo de cambio, justificación (hallazgo OWASP H-1), impacto (5 SP, riesgo alto) y criterios de aceptación.</div></div></div>
+<p>Las RFC no son ejemplos: provienen de hallazgos reales del proyecto (observaciones del docente a S12, autoevaluación CMMI H2, H5 y H10, auditoría OWASP Top 10:2025 y el plan del Sprint 6).</p>
+<p class="cap"><b>Tabla 1.</b> Registro de solicitudes de cambio en GitHub Issues (actualizado al 14/11/2026, 23:00).</p>
 <table>
-  <thead><tr><th>ID Issue</th><th>Título de la solicitud (RFC)</th><th>Origen / causa</th><th>Impacto estimado</th><th>Estado en GitHub</th><th>Aprobador / responsable</th></tr></thead>
-  <tbody>
-    <tr><td><b>#14</b></td><td>Corregir el informe integrador según las observaciones del docente a S12</td><td>Observaciones del docente (ISO 690, GQM, CMMI)</td><td>5 SP / Bajo</td><td>Cerrado por la PR #13 (integrada el 06/11); etiqueta aún <i>pendiente-evaluacion</i></td><td>Porras V. (aprobador) · Huamani R.</td></tr>
-    <tr><td><b>#15</b></td><td>Adoptar GitFlow, convención de commits y plantillas de cambio y de PR</td><td>CMMI H2 y H5; guía S13</td><td>3 SP / Bajo</td><td>Cerrado por la PR #13 (integrada el 06/11); etiqueta aún <i>pendiente-evaluacion</i></td><td>Porras V. · Huamani R.</td></tr>
-    <tr><td>#16</td><td>(duplicado de #15)</td><td>Registro duplicado por error</td><td>—</td><td>Cerrado como duplicado</td><td>Huamani R.</td></tr>
-    <tr><td><b>#17</b></td><td>Regenerar los diagramas de arquitectura y de datos por ingeniería inversa (H10)</td><td>CMMI H10</td><td>2 SP / Bajo</td><td>Cerrado por la PR #13 (integrada el 06/11); etiqueta aún <i>pendiente-evaluacion</i></td><td>Porras V. · Huamani R.</td></tr>
-    <tr><td><b>#18</b></td><td>Roles en el JWT y políticas RLS por establecimiento</td><td>OWASP H-1 (A01, alta)</td><td>5 SP / Alto</td><td>Abierto · <i>pendiente-evaluacion</i></td><td>Porras V. · Auqui H. (20/11)</td></tr>
-    <tr><td><b>#19</b></td><td>Cabeceras de seguridad HTTP y CSV sin fórmulas</td><td>OWASP H-2 y H-3 (media)</td><td>3 SP / Medio</td><td>Abierto · <i>pendiente-evaluacion</i></td><td>Porras V. · Auqui H. (13/11)</td></tr>
-    <tr><td><b>#20</b></td><td>Preparar el dataset versionado del HIS para el Incremento 5 en el Sprint 6</td><td>Desvío del plan: la preparación de datos del Sprint 5 no se hizo</td><td>3 SP / Medio</td><td>Abierto · <i>pendiente-evaluacion</i></td><td>Porras V. (decide trasladar o postergar INC-5)</td></tr>
-  </tbody>
+<thead><tr><th>Issue</th><th>Solicitud de cambio (RFC)</th><th>Origen</th><th>Impacto / riesgo</th><th>Estado en GitHub</th><th>Responsable</th></tr></thead>
+<tbody>
+<tr><td>#14</td><td>Corregir el informe integrador según las observaciones del docente a S12</td><td>Observaciones del docente</td><td>5 SP / Bajo</td><td>Cerrada (<code>implementado</code>)</td><td>Porras V. · Huamani R.</td></tr>
+<tr><td>#15</td><td>Adoptar GitFlow, convención de commits y plantillas de cambio y de PR</td><td>CMMI H2 y H5; guía S13</td><td>3 SP / Bajo</td><td>Cerrada (<code>implementado</code>)</td><td>Porras V. · Huamani R.</td></tr>
+<tr><td>#16</td><td>(duplicado de #15)</td><td>Registro duplicado</td><td>—</td><td>Cerrada como duplicado</td><td>Huamani R.</td></tr>
+<tr><td>#17</td><td>Regenerar los diagramas de arquitectura y de datos por ingeniería inversa</td><td>CMMI H10</td><td>2 SP / Bajo</td><td>Cerrada (<code>implementado</code>)</td><td>Porras V. · Huamani R.</td></tr>
+<tr><td>#18</td><td>Roles en el JWT y políticas RLS por establecimiento</td><td>OWASP H-1 (A01, alta)</td><td>5 SP / Alto</td><td><b>Abierta (<code>aprobado</code>)</b></td><td>Porras V. · Auqui H.</td></tr>
+<tr><td>#19</td><td>Cabeceras de seguridad HTTP y CSV sin fórmulas</td><td>OWASP H-2 y H-3</td><td>3 SP / Medio</td><td><b>Abierta (<code>aprobado</code>)</b></td><td>Porras V. · Auqui H.</td></tr>
+<tr><td>#20</td><td>Preparar el dataset versionado del HIS para el Incremento 5</td><td>Desvío del plan del Sprint 5</td><td>3 SP / Medio</td><td><b>Abierta (<code>aprobado</code>)</b></td><td>Porras V.</td></tr>
+</tbody>
 </table>
-<p>Las seis siguen con la etiqueta <i>pendiente-evaluacion</i>: el flujo exige que el Leader / Software Architect cambie la etiqueta a <code>aprobado</code> o <code>rechazado</code>, y eso no se registró. Las RFC #14, #15 y #17 se cerraron automáticamente al integrarse la PR #13 sin haber pasado por <code>aprobado</code>, lo que muestra que el control de la evaluación todavía depende de la disciplina del equipo. Ninguna se ha rechazado.</p>
+<div class="fig"><img src="evidencias/web_a1_lista_rfc.png" alt="" style="max-height:95mm"><div class="pie"><b>Figura 4.</b> Lista de <i>issues</i> filtrada por <code>label:change-request</code>: las siete RFC, abiertas y cerradas, con sus etiquetas.</div></div>
+<div class="fig"><img src="evidencias/antes_2026-11-14_tarde/cli_a1_rfc_issues.png" alt=""><div class="pie"><b>Figura 5.</b> Solicitudes de cambio consultadas con <code>gh issue list</code> al corte de la tarde (14/11, 13:10): las siete conservaban <code>pendiente-evaluacion</code>, evidenciando la falta de registro de decisiones.</div></div>
+<div class="fig"><img src="evidencias/cli_m_rfc_evaluadas.png" alt=""><div class="pie"><b>Figura 6.</b> Evaluación formal de las RFC tras las acciones nocturnas (14/11, 23:00): #18, #19 y #20 evaluadas con etiqueta <code>aprobado</code> por el Leader; #14, #15 y #17 con <code>implementado</code>; #16 permanece como duplicado cerrado.</div></div>
+<div class="fig"><img src="evidencias/web_m_issue_rfc_18_aprobada.png" alt="" style="max-height:95mm"><div class="pie"><b>Figura 7.</b> RFC #18 en GitHub Issues con la etiqueta <code>aprobado</code> asignada formalmente por el Leader tras el análisis de impacto técnico.</div></div>
+<p><b>Evolución del hallazgo.</b> En la auditoría inicial de la tarde, la evaluación no dejaba rastro: ninguna RFC había pasado a <code>aprobado</code> o <code>rechazado</code>. En la noche del 14/11, el Leader evaluó formalmente el 100 % de las RFC válidas (6 de 6 sin contar el duplicado #16): las tres abiertas (#18, #19 y #20) fueron aprobadas con base en el análisis de impacto para el Sprint 6, y las tres cerradas (#14, #15 y #17) se actualizaron a <code>implementado</code>, dejando constancia de la decisión del CCB (dominio 3 del PDCA).</p>
 
-<h3>3.3 Auditoría de revisiones de código y reglas de protección de ramas</h3>
-<p>Auditoría de las 13 <i>pull requests</i> del repositorio, con datos de la API de GitHub al 06/11/2026: rama de origen, revisión registrada, resultado del CI en el último commit y quién integró.</p>
-<div class="cap"><b>Matriz 2.2.</b> Auditoría de <i>pull requests</i> y revisiones de código.</div>
+<h1 class="salto">4. Actividad 2: control de cambios, protección de ramas y revisión de código</h1>
+<h2>4.1 Paso 2.1: reglas de protección de ramas</h2>
+<p>GitHub ofrece hoy dos mecanismos equivalentes: <i>branch protection rules</i> y <i>rulesets</i>. El propietario configuró el ruleset <code>ownermerge</code> sobre <code>main</code> y <code>develop</code> con las reglas requeridas por la guía: <i>Require a pull request before merging</i> con 1 aprobación obligatoria, bloqueo del borrado de la rama (<i>deletion</i>) y del <i>force push</i> (<i>non-fast-forward</i>). Para evitar que el proyecto quede bloqueado al tener un único administrador que además integra cambios, se configuró una excepción de administración (<i>bypass list</i>) exclusiva para el rol <i>Repository admin</i>.</p>
+<div class="oblig"><span class="etq">CAPTURA OBLIGATORIA 2 · actividad2_branch_protection_rules.png</span>
+<div class="fig" style="margin:0"><img src="evidencias/web_a2_settings_rulesets.png" alt=""><div class="pie"><b>Figura 8.</b> Panel <i>Settings → Rulesets</i> del repositorio (captura del propietario, 14/11, 22:56): ruleset <code>ownermerge</code> activo (<i>Active</i>), con 3 branch rules (<i>deletion</i>, <i>non_fast_forward</i> y <i>pull_request</i> con 1 aprobación requerida), aplicando sobre 2 ramas (<code>main</code> y <code>develop</code>) y excepción (<i>bypass</i>) configurada para el rol <i>Repository admin</i>.</div></div></div>
+<div class="fig"><img src="evidencias/antes_2026-11-14_tarde/cli_a2_ruleset.png" alt=""><div class="pie"><b>Figura 9.</b> Estado del ruleset <code>ownermerge</code> al corte de la tarde (14/11, 13:10): <code>enforcement: disabled</code>, sin excepciones y <code>main</code> figurando como no protegida (<code>protected: false</code>).</div></div>
+<div class="fig"><img src="evidencias/cli_a2_ruleset.png" alt=""><div class="pie"><b>Figura 10.</b> Verificación del ruleset activo mediante la API de GitHub (14/11, 22:56): <code>enforcement: active</code> sobre <code>~DEFAULT_BRANCH</code> y <code>refs/heads/develop</code>, excepción para <code>RepositoryRole</code> (id 5, Repository admin) y confirmación de rama protegida <code>protected: true</code> en <code>main</code>.</div></div>
+<p><b>Situación real y resolución.</b> Durante la tarde el ruleset estaba desactivado porque el administrador no podía aprobar sus propias PR en GitHub, lo que generaba riesgo de bloqueo. En la noche del 14/11, el propietario activó formalmente el ruleset configurando la excepción para <i>Repository admin</i>. Con ello, la línea base queda blindada contra <i>push</i> directos de colaboradores, mientras las excepciones quedan trazadas en la API (dominio 5 del PDCA).</p>
+
+<h2>4.2 Paso 2.2: plantilla de pull request</h2>
+<p>La plantilla (Figura 11) obliga a resumir el cambio, vincular la RFC con <code>Closes #</code> y marcar la Definición de Terminado. La DoD de la guía se adaptó a las herramientas del proyecto: <code>ruff check</code>, <code>pytest --cov</code> con cobertura ≥ 80 %, pruebas de <code>tests/arquitectura</code> para el desacople del dominio hexagonal, evidencias funcionales y análisis estático (Ruff y SonarCloud).</p>
+<div class="fig"><img src="evidencias/web_a2_plantilla_pr.png" alt="" style="max-height:100mm"><div class="pie"><b>Figura 11.</b> <code>.github/PULL_REQUEST_TEMPLATE.md</code> en <code>main</code>.</div></div>
+
+<h2>4.3 Inspección de código y aprobación de la pull request</h2>
+<div class="oblig"><span class="etq">CAPTURA OBLIGATORIA 3 · actividad2_pull_request_code_review.png</span>
+<div class="fig" style="margin:0"><img src="evidencias/web_a2_pr9_aprobada.png" alt=""><div class="pie"><b>Figura 12.</b> PR #9 (<code>docs/s12-integrador</code> → <code>main</code>): revisión aprobada por el Leader (marca verde en <i>Reviewers</i>), 6 checks automatizados y pedido explícito de «Approve» en las notas para el revisor. Es la única PR del repositorio con aprobación registrada formalmente.</div></div></div>
+<div class="fig"><img src="evidencias/web_a2_pr13_conversacion.png" alt=""><div class="pie"><b>Figura 13.</b> PR #13: primera PR que usa la plantilla completa y se vincula a sus RFC (<i>Closes</i> #14, #15 y #17, que aparecen en <i>Development</i>), con la DoD marcada. Se integró <b>sin revisores</b> («No reviews») y con el <i>Quality Gate</i> de SonarCloud en rojo, lo que demuestra que la plantilla sola no basta.</div></div>
+<p>Para medir la revisión por pares se auditaron las PR integradas del repositorio con la API (Figuras 14 y 15).</p>
+<div class="fig"><img src="evidencias/antes_2026-11-14_tarde/cli_a2_auditoria_pr.png" alt=""><div class="pie"><b>Figura 14.</b> Auditoría de las 19 PR integradas al corte de la tarde: solo 1 de 19 con «APPROVED» (PR #9) y solo 1 de 19 vinculada formalmente (PR #13).</div></div>
+<div class="fig"><img src="evidencias/cli_a2_auditoria_pr.png" alt=""><div class="pie"><b>Figura 15.</b> Auditoría ampliada tras incorporar las PR #28 y #29 hacia <code>develop</code>: ambas se integraron con <code>REVIEW_REQUIRED</code> utilizando la excepción de administrador. Se mantiene la transparencia de que ninguna PR posterior al 06/11 cuenta con aprobación formal de un par.</div></div>
+<div class="fig"><img src="evidencias/web_a2_lista_pr.png" alt="" style="max-height:105mm"><div class="pie"><b>Figura 16.</b> Pestaña <i>Pull requests</i> (0 abiertas, 22 cerradas): títulos con formato convencional desde la PR #13 y casillas de la DoD completadas.</div></div>
+<p><b>Lectura honesta.</b> La disciplina de integrar por PR se consolidó plenamente (100 % desde el 06/11), pero la revisión formal por pares sigue siendo el principal desafío organizativo. Las PR #28 y #29 hacia <code>develop</code> fueron integradas mediante la excepción de administrador sin aprobación de un par. El ruleset activo ahora exige 1 aprobación; la meta del Sprint 6 es que ninguna PR se integre sin el «Approve» de Auqui H. o Huamani R. (dominio 4 del PDCA).</p>
+
+<h1 class="salto">5. Actividad 3: estrategia de ramificación GitFlow</h1>
+<h2>5.1 Paso 3.1: ejecución de la ramificación</h2>
+<p>El Incremento 1 se desarrolló con GitFlow: cada historia o defecto en su rama, integrada en <code>develop</code> con un <i>merge</i> explícito y cerrada con <code>release: v1.0-PMV</code> antes de llegar a <code>main</code> por la PR #2. La Figura 17 es el historial real. Los comandos del equipo equivalen a los de la guía:</p>
+<pre>git checkout -b develop &amp;&amp; git push origin develop
+git checkout -b feature/hu03-validacion-nts develop
+git commit -m "feat(hu03): reglas clínicas de ajuste por altitud y clasificación de anemia"
+git push origin feature/hu03-validacion-nts
+git checkout develop &amp;&amp; git merge --no-ff feature/hu03-validacion-nts   # "Merge feature/hu03-validacion-nts en develop"</pre>
+<div class="fig"><img src="evidencias/cli_a3_gitflow_pmv.png" alt=""><div class="pie"><b>Figura 17.</b> <code>git log --graph</code> hasta la etiqueta <code>v1.0-PMV</code>: ramas <code>feature/infra-ci-bd</code>, <code>feature/hu03-validacion-nts</code>, <code>feature/hu01-hu05-expediente</code>, <code>test/e2e-y-carga</code>, <code>fix/def-01-reporte-n-mas-1</code>, <code>fix/def-02-zona-horaria</code> y <code>docs/arquitectura-evidencias</code> integradas en <code>develop</code>, con commits semánticos.</div></div>
+
+<h2>5.2 Red de ramas y commits</h2>
+<div class="oblig"><span class="etq">CAPTURA OBLIGATORIA 4 · actividad3_gitflow_network_graph.png</span>
+<div class="fig" style="margin:0"><img src="evidencias/web_a3_red.png" alt=""><div class="pie"><b>Figura 18.</b> <i>Insights → Network</i>: <code>main</code> como línea base y ramas de trabajo históricas derivándose de ella e integrándose. <i>Nota técnica:</i> el gráfico de red de GitHub se actualiza una vez al día de forma asíncrona en los servidores centrales de GitHub, por lo que todavía muestra las ramas remotas antes de la limpieza nocturna.</div></div></div>
+<div class="fig"><img src="evidencias/antes_2026-11-14_tarde/cli_a3_ramas.png" alt="" style="max-height:105mm"><div class="pie"><b>Figura 19.</b> Ramas remotas al corte de la tarde (14/11, 13:10): 22 ramas activas con prefijos divergentes y <code>develop</code> 5 commits detrás de <code>main</code>.</div></div>
+<div class="fig"><img src="evidencias/cli_m_gitflow_develop.png" alt=""><div class="pie"><b>Figura 20.</b> Reanudación de GitFlow en <code>develop</code> (14/11, noche): PR #28 (sincronización con <code>main</code>) y PR #29 (T-024) integradas en <code>develop</code>. <code>develop</code> queda 0 commits detrás y 2 delante de <code>main</code> (salida <code>0 2</code>).</div></div>
+<div class="fig"><img src="evidencias/cli_m_respaldo_y_artefactos.png" alt=""><div class="pie"><b>Figura 21.</b> Limpieza de ramas remotas y respaldo histórico: se eliminaron 17 ramas remotas ya integradas o cerradas, dejando únicamente <code>main</code> y <code>develop</code> activas. Previo a la eliminación, se creó la etiqueta anotada <code>archivo/docs-s12-correcciones</code> para respaldar los 14 archivos de la rama S12.</div></div>
+<div class="fig"><img src="evidencias/web_m_pr28_sync_develop.png" alt="" style="max-height:95mm"><div class="pie"><b>Figura 22.</b> PR #28 (<code>main</code> → <code>develop</code>): sincronización de <code>develop</code> con <code>main</code> mediante merge commit para restaurar la línea de integración de GitFlow.</div></div>
+<div class="fig"><img src="evidencias/web_m_pr29_t024_develop.png" alt="" style="max-height:95mm"><div class="pie"><b>Figura 23.</b> PR #29 (<code>chore/reorganizar-por-semanas</code> → <code>develop</code>): integración de la reorganización por semanas (T-024) a través de <code>develop</code>.</div></div>
+<p class="cap"><b>Tabla 2.</b> Trazabilidad entre ramas e historias de usuario o cambios (ramas y commits reales actualizados).</p>
 <table>
-  <thead><tr><th>PR</th><th>Rama origen → destino</th><th>Contenido</th><th>Issue vinculado</th><th>Revisor (estado)</th><th>DoD / CI</th><th>Resultado</th></tr></thead>
-  <tbody>
-    <tr><td>#1</td><td>desarrollo-anemia → main</td><td>Estructura del repositorio y coordinación</td><td>—</td><td>Sin revisión registrada</td><td>CI aún no existía</td><td>Merged (woshtsu)</td></tr>
-    <tr><td>#2</td><td>entrega-s5-s7 → main</td><td>PMV v1.0 (Incremento 1)</td><td>—</td><td>Sin revisión registrada</td><td>Pruebas locales: 77 pruebas, 99 %</td><td>Merged (woshtsu)</td></tr>
-    <tr><td>#3</td><td>feature/s6-integrador-final → main</td><td>Informe integrador S6</td><td>—</td><td>—</td><td>—</td><td>Cerrada sin integrar</td></tr>
-    <tr><td>#4</td><td>feature/inc2-agenda-alertas → main</td><td>Incremento 2 al 50 %</td><td>—</td><td>Sin revisión registrada</td><td>Sin ejecución registrada</td><td>Merged (woshtsu)</td></tr>
-    <tr><td>#5</td><td>feature/inc2-agenda-alertas → main</td><td>Incremento 2 completo</td><td>—</td><td>Sin revisión registrada</td><td>Sin ejecución registrada</td><td>Merged (woshtsu)</td></tr>
-    <tr><td>#6, #7</td><td>docs/entrega-s11 → main</td><td>Informe S11 (CMMI)</td><td>—</td><td>Sin revisión registrada</td><td class="no">calidad-y-pruebas: failure</td><td>Merged (woshtsu)</td></tr>
-    <tr><td>#8</td><td>feature/inc3-sin-conexion → main</td><td>Incrementos 3 y 4</td><td>—</td><td>Sin revisión «Approved»; revisión independiente documentada</td><td class="ok">CI verde (calidad e imagen)</td><td>Merged, <i>squash</i> (woshtsu)</td></tr>
-    <tr><td>#9</td><td>docs/s12-integrador → main</td><td>Documentación S9 a S11</td><td>—</td><td class="ok">woshtsu: APPROVED</td><td class="ok">CI verde</td><td>Merged (woshtsu)</td></tr>
-    <tr><td>#10, #11</td><td>docs/s12-informe, docs/s12-integrador → main</td><td>Informe integrador S12</td><td>—</td><td>Sin revisión registrada</td><td class="ok">CI verde</td><td>Merged (woshtsu)</td></tr>
-    <tr><td>#12</td><td>docs/sonarcloud-2026-11-05 → main</td><td>Análisis de SonarCloud</td><td>—</td><td>Sin revisión registrada</td><td class="ok">CI verde; Quality Gate de SonarCloud en rojo</td><td>Merged (woshtsu)</td></tr>
-    <tr><td>#13</td><td>docs/s13-informe → main</td><td>Informe S13, plantillas SCM, PDCA</td><td>#14, #15, #17</td><td class="no">Sin revisión «Approved» registrada</td><td>calidad-y-pruebas e imagen en verde; <span class="no">Quality Gate de SonarCloud en rojo</span>; plantilla DoD usada</td><td>Merged, <i>squash</i> (woshtsu, 06/11)</td></tr>
-  </tbody>
+<thead><tr><th>Historia / cambio</th><th>Rama</th><th>Responsable</th><th>Commits semánticos (ejemplos)</th><th>Destino</th></tr></thead>
+<tbody>
+<tr><td>Habilitadores T7 a T9</td><td><code>feature/infra-ci-bd</code></td><td>Huamani R.</td><td><code>ci: pipeline de GitHub Actions…</code>; <code>build: esquema PostgreSQL…</code></td><td><code>develop</code> → <code>main</code> (PR #2)</td></tr>
+<tr><td>HU-03 / RF-03</td><td><code>feature/hu03-validacion-nts</code></td><td>Huamani R.</td><td><code>feat(hu03): reglas clínicas de ajuste por altitud…</code></td><td><code>develop</code> → <code>main</code> (PR #2)</td></tr>
+<tr><td>HU-01, 02, 04 y 05</td><td><code>feature/hu01-hu05-expediente</code></td><td>Huamani R.</td><td><code>feat(hu01-hu05): API REST con errores por campo…</code></td><td><code>develop</code> → <code>main</code> (PR #2)</td></tr>
+<tr><td>DEF-01 y DEF-02</td><td><code>fix/def-01-reporte-n-mas-1</code>, <code>fix/def-02-zona-horaria</code></td><td>Huamani R.</td><td><code>fix(DEF-01): elimina consultas N+1… (p95 2200 ms → 74 ms)</code></td><td><code>develop</code> → <code>main</code> (PR #2)</td></tr>
+<tr><td>HIST-2.1 a 2.4</td><td><code>feature/inc2-agenda-alertas</code></td><td>Huamani R. y Auqui H.</td><td>«Inc. 2 avance 50%…» (sin formato convencional)</td><td><code>main</code> (PR #4 y #5)</td></tr>
+<tr><td>HIST-3.x, VIS-3.5, HIST-4.x</td><td><code>feature/inc3-sin-conexion</code></td><td>Huamani R. y Auqui H.</td><td>«Inc. 3 completo…», «Inc. 4 completo…»</td><td><code>main</code> (PR #8, <i>squash</i>)</td></tr>
+<tr><td>RFC #14, #15, #17</td><td><code>docs/s13-informe</code></td><td>Huamani R.</td><td><code>docs(s13): informe integrador corregido…</code></td><td><code>main</code> (PR #13)</td></tr>
+<tr><td>Rendimiento en Render</td><td><code>hotfix/rendimiento-render</code></td><td>Porras V.</td><td><code>perf(pmv): cachear agendas y aligerar respuestas…</code></td><td><code>main</code> (PR #22, tag <code>v4.0.1</code>)</td></tr>
+<tr><td>Video de la demo (T-022)</td><td><code>feat/T-022-video-demo-produccion</code></td><td>Porras V.</td><td><code>feat(video): T-022 demo grabada contra producción…</code></td><td><code>main</code> (PR #25)</td></tr>
+<tr><td>Sincronización GitFlow</td><td><code>main</code></td><td>Porras V.</td><td><code>chore(gitflow): sincronizar develop con main (#28)</code></td><td><code>develop</code> (PR #28)</td></tr>
+<tr><td>Reorganización del repositorio (T-024)</td><td><code>chore/reorganizar-por-semanas</code></td><td>Porras V.</td><td><code>chore(T-024): reorganizar el repositorio por semanas (#29)</code></td><td><code>develop</code> (PR #29)</td></tr>
+<tr><td>T-025: Actualización SCM y PDCA</td><td><code>docs/t025-scm-pdca</code></td><td>Huamani R. · Porras V.</td><td><code>docs(t025): actualizar informe SCM y PDCA nocturno</code></td><td><code>develop</code> (prevista 15/11/2026)</td></tr>
+<tr><td>RFC #18 y #19 (aprobadas)</td><td><code>feature/h1-roles-rls</code>, <code>feature/h2-h3-cabeceras-csv</code> (previstas)</td><td>Auqui H.</td><td>—</td><td><code>develop</code></td></tr>
+</tbody>
 </table>
-<p><b>Lectura.</b> De 12 PR integradas (todas menos la #3), solo una (#9) tiene revisión «Approved» registrada. Dos (#6 y #7) se integraron con el CI en rojo, y las cuatro primeras son anteriores al CI. Esto confirma el hallazgo H2: la revisión por pares existía en la práctica, pero no quedaba registrada. La PR #13 es la primera que se vincula a sus RFC (<code>Closes #14, #15, #17</code>) y usa la lista de la DoD. Aun así se integró sin aprobación y con el Quality Gate de SonarCloud en rojo: la plantilla no basta si la rama no está protegida.</p>
 
-<p><b>Reglas de protección de ramas: <span class="no">no configuradas</span>.</b> La cuenta del QA Lead tiene permiso de escritura, no de administración: <code>Settings → Branches</code> devuelve 404 y la API responde 403. Las reglas solo puede activarlas el propietario (woshtsu). La configuración que corresponde a la guía es la siguiente, para <code>main</code> y <code>develop</code>:</p>
-<ol>
-  <li><i>Require a pull request before merging</i>, con al menos 1 aprobación.</li>
-  <li><i>Dismiss stale pull request approvals when new commits are pushed</i>.</li>
-  <li><i>Require status checks to pass before merging</i>: el trabajo <code>calidad-y-pruebas</code> del CI.</li>
-</ol>
-<p>Mientras no se activen, se siguen integrando commits directos en <code>main</code>: el 05/11/2026 se subieron dos commits de capturas directamente a <code>main</code>, sin PR,, cuyas ejecuciones del CI (#25 y #26) fallaron.</p>
+<h2>5.3 Disciplina de integración en la línea base</h2>
+<div class="fig"><img src="evidencias/cli_a3_main_directo.png" alt=""><div class="pie"><b>Figura 24.</b> Historial de primer padre de <code>main</code>: desde el 06/11/2026 cada integración lleva el número de su PR; antes hay commits directos («Capturas de produccion», «Subiendo a produccion», «add guia s12»).</div></div>
+<div class="fig"><img src="evidencias/cli_a3_indicadores.png" alt=""><div class="pie"><b>Figura 25.</b> Indicadores calculados con <code>git log</code>: integraciones en <code>main</code> por PR (9/19 antes del 06/11, 9/9 después) y commits convencionales. La medición oficial del hallazgo es 20/24 (83 %) post-06/11 y 13/60 (22 %) histórico; tras la eliminación de las 17 ramas remotas, <code>git log --all</code> ya no incluye esos commits y arroja 9/11 (82 %) y 13/53 (25 %).</div></div>
+<div class="fig"><img src="evidencias/web_a2_contributing.png" alt="" style="max-height:110mm"><div class="pie"><b>Figura 26.</b> <code>CONTRIBUTING.md</code>: flujo del cambio, ramas de GitFlow, formato de commits <code>tipo(ámbito): descripción</code>, etiquetas y <i>releases</i>.</div></div>
+<p><b>Lectura.</b> GitFlow se aplicó en el PMV, se descuidó temporalmente en los incrementos 2 a 4 por presión de entregas, y fue formalmente retomado el 14/11 (noche): <code>develop</code> se sincronizó con <code>main</code> (PR #28), recibió la reorganización T-024 (PR #29) quedando en <code>0 2</code> delante de <code>main</code>, y se limpiaron 17 ramas remotas respaldando la historia en <code>archivo/docs-s12-correcciones</code>. El Incremento 5 se desarrollará completamente sobre esta base (dominio 7 del PDCA).</p>
 
-<h2>4. Eje temático 2: gestión de versiones y entregas en GitHub</h2>
-
-<h3>4.1 Estrategia de ramificación GitFlow y matriz de ramas por historia de usuario</h3>
-<p>El historial muestra que el Incremento 1 sí siguió GitFlow, aunque en local. Cada historia o corrección se trabajó en una rama propia y se integró en <code>develop</code> con un <i>merge</i> explícito. Por ejemplo, <code>225ee46 Merge feature/infra-ci-bd en develop</code> y <code>4f805df Merge fix/def-01-reporte-n-mas-1 en develop</code>. El commit <code>9ce90c3 release: v1.0-PMV</code> cerró la versión, y la PR #2 la llevó a <code>main</code>. Desde el Incremento 2, en cambio, cada incremento fue de una rama <code>feature/*</code> directo a <code>main</code>, sin <code>develop</code> ni <code>release/*</code>. El 06/11/2026 se creó la rama <code>develop</code> en GitHub y la convención quedó escrita en <code>CONTRIBUTING.md</code>, para aplicarla desde el Incremento 5.</p>
-<div class="cap"><b>Matriz 3.1.</b> Trazabilidad de ramas e historias de usuario (ramas y commits reales del historial).</div>
+<h1 class="salto">6. Actividad 4: integración continua con GitHub Actions</h1>
+<h2>6.1 Paso 4.1: workflow de integración continua</h2>
+<p>El proyecto usa Python, no Node.js, así que el workflow de la guía se adaptó paso por paso (Tabla 3). El pipeline <code>.github/workflows/ci.yml</code> tiene tres trabajos encadenados: <code>calidad-y-pruebas</code> → <code>imagen</code> → <code>produccion</code>. Este último solo corre en <code>main</code>.</p>
+<p class="cap"><b>Tabla 3.</b> Correspondencia entre el workflow de la guía y el del proyecto.</p>
 <table>
-  <thead><tr><th>Historia / Issue</th><th>Rama creada</th><th>Responsable</th><th>Commits semánticos registrados (ejemplos)</th><th>Rama destino</th></tr></thead>
-  <tbody>
-    <tr><td>Habilitadores (T7 a T9)</td><td>feature/infra-ci-bd</td><td>Huamani R.</td><td><code>ci: pipeline de GitHub Actions (lint, pruebas, cobertura)</code><br><code>build: esquema PostgreSQL con restricciones de integridad</code></td><td>develop (local) → main (PR #2)</td></tr>
-    <tr><td>HU-03 / RF-03</td><td>feature/hu03-validacion-nts</td><td>Huamani R.</td><td><code>feat(hu03): reglas clínicas de ajuste por altitud y clasificación</code></td><td>develop → main (PR #2)</td></tr>
-    <tr><td>HU-01, 02, 04 y 05</td><td>feature/hu01-hu05-expediente</td><td>Huamani R.</td><td><code>feat(hu01-hu05): API REST con errores por campo</code><br><code>feat(hu01-hu05): interfaz PWA</code></td><td>develop → main (PR #2)</td></tr>
-    <tr><td>DEF-01 y DEF-02</td><td>fix/def-01-reporte-n-mas-1, fix/def-02-zona-horaria</td><td>Huamani R.</td><td><code>fix(DEF-01): elimina consultas N+1 del reporte (p95 2200 ms → 74 ms)</code></td><td>develop → main (PR #2)</td></tr>
-    <tr><td>HIST-2.1 a 2.4 (RF-06 a 09)</td><td>feature/inc2-agenda-alertas</td><td>Huamani R. y Auqui H.</td><td><code>Inc. 2 avance 50%: agenda normativa y alertas</code><br><code>Inc. 2 completo: agenda del personal y asistencia</code></td><td>main (PR #4 y #5)</td></tr>
-    <tr><td>HIST-3.1 a 3.4, VIS-3.5, HIST-4.1 a 4.4</td><td>feature/inc3-sin-conexion</td><td>Huamani R. y Auqui H.</td><td><code>Inc. 3 completo: registro sin conexión, sincronización…</code><br><code>Inc. 4 completo: recordatorios…, barreras y alertas críticas</code></td><td>main (PR #8, <i>squash</i>)</td></tr>
-    <tr><td>RFC #14, #15 y #17</td><td>docs/s13-informe</td><td>Huamani R.</td><td><code>docs(s13): informe integrador corregido, plantillas de cambio…</code><br><code>docs(s13): cuadro PDCA…</code></td><td>main (PR #13)</td></tr>
-    <tr><td>RFC #18 y #19</td><td>feature/h1-roles-rls, feature/h2-h3-cabeceras-csv (previstas)</td><td>Auqui H.</td><td>—</td><td>develop</td></tr>
-  </tbody>
+<thead><tr><th>Paso de la guía</th><th>Paso en <code>ci.yml</code></th></tr></thead>
+<tbody>
+<tr><td><code>on: pull_request: branches: [develop, main]</code></td><td>Igual, más <code>push</code> a <code>main</code>, <code>develop</code> y <code>feature/**</code>, y <code>workflow_dispatch</code></td></tr>
+<tr><td>Checkout del código</td><td><code>actions/checkout@v4</code></td></tr>
+<tr><td>Configurar entorno (<code>setup-node</code>)</td><td><code>actions/setup-python@v5</code> con Python 3.11</td></tr>
+<tr><td>Instalación de dependencias (<code>npm ci</code>)</td><td><code>pip install -r requirements-dev.txt</code></td></tr>
+<tr><td>Verificación de linter (<code>npm run lint</code>)</td><td><code>ruff check</code> y <code>ruff format --check</code></td></tr>
+<tr><td>Pruebas unitarias (<code>npm test</code>)</td><td>pytest: unitarias, integración y arquitectura con cobertura (SQLite); integración contra PostgreSQL; E2E con Playwright</td></tr>
+<tr><td>—</td><td>Construcción de la imagen Docker del PMV (trabajo <code>imagen</code>)</td></tr>
+<tr><td>—</td><td>Verificación del esquema de producción y solicitud de despliegue a Render (trabajo <code>produccion</code>)</td></tr>
+</tbody>
 </table>
-<p class="nota">Los mensajes de los incrementos 2 a 4 no siguen el formato <code>tipo(ámbito)</code>; el formato del PMV se retomó con <code>CONTRIBUTING.md</code>.</p>
+<div class="fig"><img src="evidencias/cli_a4_ci_triggers.png" alt=""><div class="pie"><b>Figura 27.</b> Disparadores y trabajos de <code>ci.yml</code> en <code>main</code>: dependencias <code>needs</code> entre trabajos y pasos de pruebas, imagen y despliegue.</div></div>
+<div class="fig"><img src="evidencias/web_a4_ci_yml.png" alt="" style="max-height:110mm"><div class="pie"><b>Figura 28.</b> El archivo <code>ci.yml</code> en GitHub.</div></div>
 
-<h3>4.2 Etiquetado semántico y fichas de publicación de releases</h3>
-<p>Las etiquetas existían desde cada entrega. El 06/11/2026 se publicó la <i>release</i> de cada una con notas en tres bloques: novedades (historias), calidad (pruebas y cobertura) y limitaciones. La etiqueta usa <code>vMAYOR.MENOR-IncN</code>; el hito intermedio, <code>v1.5.0-inc2-avance</code>, se marcó como <i>pre-release</i>. Comandos para etiquetar (convención del equipo):</p>
+<h2>6.2 Ejecución del pipeline</h2>
+<div class="oblig"><span class="etq">CAPTURA OBLIGATORIA 5 · actividad4_github_actions_pipeline.png</span>
+<div class="fig" style="margin:0"><img src="evidencias/web_a4_run_pr13.png" alt=""><div class="pie"><b>Figura 29.</b> Ejecución #32 del pipeline, disparada por la PR #13: <code>calidad-y-pruebas</code> (2 min 51 s) e <code>imagen</code> (24 s) en verde; <code>produccion</code> se omite porque no es <code>main</code>. Estado <i>Success</i> y un artefacto (<code>reportes-calidad</code>).</div></div></div>
+<div class="fig"><img src="evidencias/web_a4_actions.png" alt="" style="max-height:110mm"><div class="pie"><b>Figura 30.</b> Pestaña <i>Actions</i>: historial de ejecuciones con su evento (PR o <i>push</i>), rama y estado.</div></div>
+<div class="fig"><img src="evidencias/cli_a4_runs.png" alt=""><div class="pie"><b>Figura 31.</b> <code>gh run list</code>: las ejecuciones de PR terminan en verde; los <i>push</i> a <code>main</code> terminaban en rojo por la suspensión del servicio en Render. Se observan las nuevas ejecuciones de las PR #28 y #29 hacia <code>develop</code>.</div></div>
+<div class="fig"><img src="evidencias/cli_a4_jobs.png" alt=""><div class="pie"><b>Figura 32.</b> Detalle de dos ejecuciones: en la de la PR #13 todo pasa; en la de <code>main</code> del 13/11 fallaba el paso de solicitud de despliegue en Render.</div></div>
+<div class="fig"><img src="evidencias/web_a4_run_produccion_fallida.png" alt="" style="max-height:105mm"><div class="pie"><b>Figura 33.</b> La ejecución fallida en GitHub: <code>calidad-y-pruebas</code> e <code>imagen</code> en verde, <code>produccion</code> en rojo («Process completed with exit code 1»).</div></div>
+<div class="fig"><img src="evidencias/web_m_run_pr29_falla_ruff.png" alt="" style="max-height:95mm"><div class="pie"><b>Figura 34.</b> Primera ejecución de CI en la PR #29 (T-024): fallo en el paso de linter por formato de Ruff en <code>pmv_fastapi/scripts/importador_diresa/config.py</code>.</div></div>
+<div class="fig"><img src="evidencias/web_m_run_pr29_verde.png" alt="" style="max-height:95mm"><div class="pie"><b>Figura 35.</b> Ejecución de CI de la PR #29 en verde tras el commit de corrección de estilo <code>style(T-024)...</code>, previa a la integración en <code>develop</code>.</div></div>
+<p><b>Verificación práctica del CI.</b> Durante la integración de la PR #29 (T-024) se comprobó la eficacia de la compuerta de calidad: la primera ejecución falló en 45 segundos por un desvío de formato de Ruff en el importador de DIRESA (Figura 34). Se corrigió con un commit de estilo y la segunda ejecución pasó en verde (2 min 59 s, Figura 35) antes del <i>merge</i>. El <i>Quality Gate</i> de SonarCloud en la PR #29 marcó observación exclusivamente por duplicación en código nuevo (4,4 % &gt; 3,0 %) derivada de scripts que fueron movidos de carpeta durante la reorganización; el hallazgo quedó documentado en los comentarios de la PR sin comprometer la seguridad ni la cobertura (dominio 9 del PDCA).</p>
+
+<h1 class="salto">7. Actividad 5: versionamiento semántico y GitHub Releases</h1>
+<h2>7.1 Paso 5.1: etiquetado semántico</h2>
+<p>Cada incremento tiene una etiqueta anotada con el formato <code>vMAYOR.MENOR-IncN</code>; el hito intermedio del Incremento 2 usa <code>v1.5.0-inc2-avance</code>. El hotfix de rendimiento en Render fue etiquetado como <code>v4.0.1</code> sobre el commit <code>e6d8c4c</code>. Comandos de la convención del equipo:</p>
 <pre>git checkout main &amp;&amp; git pull origin main
-git tag -a v4.0-Inc4 -m "Incremento 4: recordatorios y barreras de acceso" e6886e2
-git push origin v4.0-Inc4</pre>
-<table>
-  <thead><tr><th>Ficha</th><th>v1.0-PMV</th><th>v2.0-Inc2</th><th>v3.0-Inc3</th><th>v4.0-Inc4</th></tr></thead>
-  <tbody>
-    <tr><td>Título</td><td>Producto Mínimo Viable (Incremento 1)</td><td>Agenda, alertas y asistencia (Incremento 2)</td><td>Registro sin conexión, sincronización y visitas (Incremento 3)</td><td>Recordatorios por WhatsApp y barreras de acceso (Incremento 4)</td></tr>
-    <tr><td>Commit de la etiqueta</td><td>9ce90c3 (30/09/2026)</td><td>fb26626 (18/10/2026)</td><td>e920820 (30/10/2026)</td><td>e6886e2 (30/10/2026)</td></tr>
-    <tr><td>Novedades</td><td>HU-01 a HU-05 (RF-01 a RF-05)</td><td>HIST-2.1 a 2.4 (RF-06 a RF-09)</td><td>HIST-3.1 a 3.4 y VIS-3.5</td><td>HIST-4.1 a 4.4</td></tr>
-    <tr><td>Calidad</td><td>77 pruebas, 99 %; DEF-01 y DEF-02 corregidos</td><td>326 pruebas y 15 E2E; DEF-09 corregido</td><td>499 pruebas (99,70 %) y 24 E2E</td><td>660 pruebas (99,79 %) y 28 E2E; revisión independiente</td></tr>
-    <tr><td>Artefactos</td><td colspan="4">Código fuente (zip y tar.gz) generado por GitHub en cada <i>release</i>; <code>Dockerfile</code> y <code>docker-compose.yml</code> en la etiqueta; imagen Docker construida por el CI (trabajo <code>imagen</code>), sin publicar en un registro.</td></tr>
-    <tr><td>Publicación</td><td colspan="4">06/11/2026, rama destino <code>main</code>, por Huamani R.</td></tr>
-  </tbody>
-</table>
-<div class="fig"><img src="../img/C11_releases.jpg" alt="Página de Releases del repositorio"></div>
-<div class="cap" style="text-align:center"><b>Figura 1.</b> Página de <i>Releases</i>: las cinco versiones publicadas, con <code>v4.0-Inc4</code> como la última (06/11/2026).</div>
+git tag -a v4.0.1 -m "v4.0.1: hotfix de rendimiento en Render (PR #22): caché de agendas, límite de respuestas y pool de conexiones" e6d8c4c
+git push origin v4.0.1</pre>
+<div class="fig"><img src="evidencias/antes_2026-11-14_tarde/cli_a5_tags.png" alt=""><div class="pie"><b>Figura 36.</b> Etiquetas anotadas al corte de la tarde (14/11, 13:10): 5 etiquetas de incrementos, sin etiqueta semántica para el hotfix de la PR #22.</div></div>
+<div class="fig"><img src="evidencias/cli_a5_tags.png" alt=""><div class="pie"><b>Figura 37.</b> Etiquetas anotadas actualizadas (14/11, noche): incorporación de la etiqueta semántica <code>v4.0.1</code> sobre <code>e6d8c4c</code> (PR #22) y la etiqueta <code>archivo/docs-s12-correcciones</code> para resguardo histórico.</div></div>
+<div class="fig"><img src="evidencias/web_a5_tags.png" alt="" style="max-height:95mm"><div class="pie"><b>Figura 38.</b> Página <i>Tags</i> del repositorio con los commits y paquetes de código fuente de cada etiqueta.</div></div>
 
-<div class="cap"><b>Matriz 4.2.</b> Registro de versiones y entregas del proyecto.</div>
+<h2>7.2 Paso 5.2: publicación de las releases</h2>
+<div class="oblig"><span class="etq">CAPTURA OBLIGATORIA 6 · actividad5_github_release_v1_0.png</span>
+<div class="fig" style="margin:0"><img src="evidencias/web_a5_release_v1_0.png" alt=""><div class="pie"><b>Figura 39.</b> <i>Release</i> <code>v1.0-PMV</code> sobre el commit <code>9ce90c3</code>: notas en tres bloques (novedades HU-01 a HU-05, calidad y artefactos) y los paquetes de código fuente (<i>Assets</i>).</div></div></div>
+<div class="fig"><img src="evidencias/antes_2026-11-14_tarde/cli_a5_releases.png" alt=""><div class="pie"><b>Figura 40.</b> Consulta de releases al corte de la tarde (14/11, 13:10): cinco releases publicadas, todas con 0 artefactos adjuntos.</div></div>
+<div class="fig"><img src="evidencias/cli_a5_releases.png" alt=""><div class="pie"><b>Figura 41.</b> Consulta de releases tras acciones nocturnas (14/11, 23:00): seis releases publicadas; <code>v4.0.1</code> y <code>v4.0-Inc4</code> cuentan ahora con 1 artefacto adjunto de reportes de calidad.</div></div>
+<div class="fig"><img src="evidencias/web_m_release_v4_0_1.png" alt="" style="max-height:105mm"><div class="pie"><b>Figura 42.</b> Nueva <i>release</i> <code>v4.0.1</code> (<i>Latest</i>) publicada en GitHub con el artefacto <code>reportes-calidad-v4.0.1.zip</code> adjunto (24 331 bytes; 690 pruebas, 0 fallos, 99,46 % cobertura).</div></div>
+<div class="fig"><img src="evidencias/web_a5_releases.png" alt="" style="max-height:105mm"><div class="pie"><b>Figura 43.</b> Página de <i>Releases</i> del repositorio.</div></div>
+<p class="cap"><b>Tabla 4.</b> Fichas de las <i>releases</i> publicadas en GitHub (actualizada al 14/11/2026, 23:00).</p>
 <table>
-  <thead><tr><th>Etiqueta</th><th>Nombre del release en GitHub</th><th>Incremento</th><th>Estado del software</th><th>Enlace</th></tr></thead>
-  <tbody>
-    <tr><td>v1.0-PMV</td><td>Release v1.0-PMV: Producto Mínimo Viable (Incremento 1)</td><td>Incremento 1</td><td>Liberado; entorno local y Docker de staging</td><td>github.com/woshtsu/ProcesosSoftwareAnemia/releases/tag/v1.0-PMV</td></tr>
-    <tr><td>v1.5.0-inc2-avance</td><td>Release v1.5.0-inc2-avance: Incremento 2 al 50 % (pre-release)</td><td>Hito del Inc. 2</td><td>Versión de avance</td><td>…/releases/tag/v1.5.0-inc2-avance</td></tr>
-    <tr><td>v2.0-Inc2</td><td>Release v2.0-Inc2: Agenda, alertas y asistencia</td><td>Incremento 2</td><td>Liberado; imagen Docker del CI</td><td>…/releases/tag/v2.0-Inc2</td></tr>
-    <tr><td>v3.0-Inc3</td><td>Release v3.0-Inc3: Registro sin conexión, sincronización y visitas</td><td>Incremento 3</td><td>Liberado; integrado en <code>main</code> por la PR #8</td><td>…/releases/tag/v3.0-Inc3</td></tr>
-    <tr><td>v4.0-Inc4</td><td>Release v4.0-Inc4: Recordatorios por WhatsApp y barreras de acceso</td><td>Incremento 4</td><td>Desplegado en producción (Render con Supabase)</td><td>…/releases/tag/v4.0-Inc4</td></tr>
-  </tbody>
+<thead><tr><th>Ficha</th><th><code>v1.0-PMV</code></th><th><code>v2.0-Inc2</code></th><th><code>v3.0-Inc3</code></th><th><code>v4.0-Inc4</code></th><th><code>v4.0.1</code> (Nueva)</th></tr></thead>
+<tbody>
+<tr><td>Título</td><td>Producto Mínimo Viable (Incremento 1)</td><td>Agenda, alertas y asistencia</td><td>Registro sin conexión, sincronización y visitas</td><td>Recordatorios por WhatsApp y barreras de acceso</td><td>Rendimiento en Render (hotfix Inc. 4)</td></tr>
+<tr><td>Commit</td><td><code>9ce90c3</code> (30/09)</td><td><code>fb26626</code> (18/10)</td><td><code>e920820</code> (30/10)</td><td><code>e6886e2</code> (30/10)</td><td><code>e6d8c4c</code> (09/11)</td></tr>
+<tr><td>Novedades</td><td>HU-01 a HU-05</td><td>HIST-2.1 a 2.4</td><td>HIST-3.1 a 3.4 y VIS-3.5</td><td>HIST-4.1 a 4.4</td><td>Hotfix PR #22: caché agendas, límite respuestas</td></tr>
+<tr><td>Calidad</td><td>77 pruebas, 99 %</td><td>326 pruebas y 15 E2E</td><td>499 pruebas (99,70 %), 24 E2E</td><td>660 pruebas (99,88 %), 28 E2E</td><td>690 pruebas, 0 fallos (99,46 % líneas)</td></tr>
+<tr><td>Artefactos</td><td>Código fuente (zip/tar.gz); 0 adjuntos</td><td>Código fuente (zip/tar.gz); 0 adjuntos</td><td>Código fuente (zip/tar.gz); 0 adjuntos</td><td><code>reportes-calidad-v4.0-Inc4.zip</code> (22 933 bytes)</td><td><code>reportes-calidad-v4.0.1.zip</code> (24 331 bytes; coverage + JUnit)</td></tr>
+</tbody>
+</table>
+<p><b>Evolución del hallazgo.</b> En la tarde, las cinco releases carecían de artefactos adjuntos y el hotfix de la PR #22 no tenía versión semántica. En la noche se publicó la release <code>v4.0.1</code> como <i>Latest</i> adjuntando <code>reportes-calidad-v4.0.1.zip</code>, y se adjuntó el paquete de pruebas a <code>v4.0-Inc4</code> (2 de 6 releases con artefactos). Queda pendiente publicar la imagen Docker del PMV en GitHub Container Registry (dominio 11 del PDCA).</p>
+
+<h1 class="salto">8. Matriz de trazabilidad SCM unificada</h1>
+<p class="cap"><b>Tabla 5.</b> Matriz unificada de trazabilidad SCM (Cambio → Issue → Rama → PR y revisión → Etiqueta / Release → Artefacto o despliegue), actualizada al 14/11/2026, 23:00.</p>
+<table>
+<thead><tr><th>ID solicitud de cambio / requisito</th><th>Issue en GitHub</th><th>Rama Git (GitFlow)</th><th>Pull request y code review</th><th>Tag semántico / release</th><th>Artefacto / despliegue</th></tr></thead>
+<tbody>
+<tr><td><b>Requisitos PMV</b> HU-01 a HU-05</td><td>Sin issue (previo a Issues)</td><td><code>feature/hu03-…</code>, <code>feature/hu01-hu05-…</code>, <code>fix/def-0x-…</code> → <code>develop</code></td><td>PR #2 (integrada, sin revisión registrada)</td><td><code>v1.0-PMV</code></td><td>Docker de <i>staging</i> (<code>docker-compose.yml</code>)</td></tr>
+<tr><td><b>Requisitos Inc. 2</b> HIST-2.1 a 2.4</td><td>Sin issue</td><td><code>feature/inc2-agenda-alertas</code></td><td>PR #4 y #5 (sin revisión)</td><td><code>v1.5.0-inc2-avance</code>, <code>v2.0-Inc2</code></td><td>Imagen Docker del CI</td></tr>
+<tr><td><b>Requisitos Inc. 3 y 4</b> HIST-3.x, VIS-3.5, HIST-4.x</td><td>Sin issue</td><td><code>feature/inc3-sin-conexion</code></td><td>PR #8 (CI verde; revisión independiente documentada)</td><td><code>v3.0-Inc3</code>, <code>v4.0-Inc4</code></td><td>Producción en Render (<i>deploy hook</i> del CI)</td></tr>
+<tr><td><b>Observaciones del docente a S12</b></td><td>#14 (<code>implementado</code>)</td><td><code>docs/s13-informe</code></td><td>PR #13 (CI verde; sin aprobación de par)</td><td>— (documentación)</td><td>Informe S13 (DOCX y PDF)</td></tr>
+<tr><td><b>CMMI H2 y H5</b> (GitFlow y plantillas)</td><td>#15 (<code>implementado</code>)</td><td><code>docs/s13-informe</code></td><td>PR #13</td><td>—</td><td><code>.github/</code>, <code>CONTRIBUTING.md</code>, rama <code>develop</code></td></tr>
+<tr><td><b>CMMI H10</b> (ingeniería inversa)</td><td>#17 (<code>implementado</code>)</td><td><code>docs/s13-informe</code></td><td>PR #13</td><td>—</td><td><code>generar_diagramas.py</code> y diagramas v4</td></tr>
+<tr><td><b>Rendimiento en Render</b></td><td>Sin RFC</td><td><code>hotfix/rendimiento-render</code></td><td>PR #22 (CI verde; sin aprobación)</td><td><b><code>v4.0.1</code></b></td><td><code>reportes-calidad-v4.0.1.zip</code> + Render Virginia</td></tr>
+<tr><td><b>Video de la demo</b> (T-022)</td><td>Sin RFC</td><td><code>feat/T-022-video-demo-produccion</code></td><td>PR #25 (CI verde)</td><td>—</td><td><code>entregables/semana-12/video/</code></td></tr>
+<tr><td><b>Sincronización GitFlow</b></td><td>Cambio interno</td><td><code>main</code></td><td>PR #28 a <code>develop</code> (merge commit; excepción admin)</td><td>—</td><td>Línea base <code>develop</code> sincronizada</td></tr>
+<tr><td><b>Reorganización del repositorio</b> (T-024)</td><td>RFC por registrar</td><td><code>chore/reorganizar-por-semanas</code></td><td>PR #29 a <code>develop</code> (CI verde tras corrección Ruff; excepción admin)</td><td>—</td><td>Estructura modular por semanas y filtro <code>paths</code> en develop</td></tr>
+<tr><td><b>T-025: Actualización SCM y PDCA</b></td><td>Observaciones docente S13</td><td><code>docs/t025-scm-pdca</code></td><td>PR a <code>develop</code> (prevista 15/11/2026)</td><td>—</td><td>Informes SCM y PDCA actualizados</td></tr>
+<tr><td><b>OWASP H-1</b></td><td>#18 (<b><code>aprobado</code></b>)</td><td><code>feature/h1-roles-rls</code> (prevista)</td><td class="pend">Pendiente</td><td><code>v4.1</code> (propuesta)</td><td>—</td></tr>
+<tr><td><b>OWASP H-2 y H-3</b></td><td>#19 (<b><code>aprobado</code></b>)</td><td><code>feature/h2-h3-cabeceras-csv</code> (prevista)</td><td class="pend">Pendiente</td><td><code>v4.1</code> (propuesta)</td><td>—</td></tr>
+<tr><td><b>Datos del INC-5</b></td><td>#20 (<b><code>aprobado</code></b>)</td><td><code>feature/inc5-datos</code> (prevista)</td><td class="pend">Pendiente</td><td><code>v5.0-Inc5</code> (hito H6)</td><td>Dataset versionado</td></tr>
+</tbody>
+</table>
+<p>La trazabilidad es completa desde la rama hasta el despliegue. El tramo Cambio → Issue se fortaleció notablemente con la evaluación formal de las RFC #18, #19 y #20 por el Leader. La PR #22 quedó regularizada mediante la release <code>v4.0.1</code>.</p>
+
+<h1>9. Indicadores del proceso de gestión de la configuración</h1>
+<p>Los indicadores se calculan con el script del Anexo B y alimentan el cuadro PDCA de la semana 13, que ahora se centra en este proceso.</p>
+<p class="cap"><b>Tabla 6.</b> Indicadores del proceso SCM (comparativa antes del 06/11, al 14/11 tarde y al 14/11 noche).</p>
+<table>
+<thead><tr><th>Indicador</th><th>Antes del 06/11</th><th>06/11 a 14/11 (tarde)</th><th>Al 14/11 (noche)</th><th>Meta (23/11)</th><th>Figuras</th></tr></thead>
+<tbody>
+<tr><td>Integraciones en <code>main</code> por PR</td><td>9/19 (47 %)</td><td class="ok">9/9 (100 %)</td><td class="ok">9/9 (100 %)</td><td>100 %</td><td>24, 25</td></tr>
+<tr><td>Commits convencionales</td><td>13/60 (22 %)</td><td class="ok">20/24 (83 %)</td><td class="ok">20/24 (83 %)<sup>*</sup></td><td>≥ 95 %</td><td>25</td></tr>
+<tr><td>RFC registradas</td><td>0</td><td class="ok">7</td><td class="ok">7</td><td>1 por cambio</td><td>3, 4</td></tr>
+<tr><td>RFC evaluadas (aprobado o implementado)</td><td>—</td><td class="no">0/7 (0 %)</td><td class="ok">6/6 (100 %)<sup>**</sup></td><td>100 %</td><td>5, 6, 7</td></tr>
+<tr><td>PR vinculadas a su RFC</td><td>0/10</td><td class="pend">1/9 (11 %)</td><td class="pend">1/11 (9 %)</td><td>100 %</td><td>14, 15</td></tr>
+<tr><td>PR con revisión aprobada de un par</td><td>1/10 (10 %)</td><td class="no">0/9 (0 %)</td><td class="no">0/11 (0 %)</td><td>100 %</td><td>12, 14, 15</td></tr>
+<tr><td>Rama <code>main</code> protegida por regla</td><td>No</td><td class="no">No (desactivado)</td><td class="ok"><b>Sí</b> (ruleset activo)</td><td>Sí</td><td>8, 9, 10</td></tr>
+<tr><td>PR integradas a través de <code>develop</code></td><td>0</td><td class="no">0 (5 detrás)</td><td class="ok"><b>2 (#28 y #29)</b></td><td>Todas del Inc-5</td><td>20, 22, 23</td></tr>
+<tr><td>Ejecuciones de <code>main</code> con calidad en verde</td><td>—</td><td class="ok">7/7 (100 %)</td><td class="ok">7/7 (100 %)</td><td>100 %</td><td>31, 32</td></tr>
+<tr><td>Ejecuciones de <code>main</code> con despliegue en verde</td><td>—</td><td class="no">1/7 (14 %)</td><td class="no">1/7 (14 %)</td><td>100 %</td><td>32, 33</td></tr>
+<tr><td><i>Releases</i> con notas / con artefactos</td><td>0 / 0</td><td>5 / <span class="no">0</span></td><td class="ok">6 / <b>2 con artefactos</b></td><td>Artefacto en cada una</td><td>39 a 42</td></tr>
+</tbody>
+</table>
+<p class="nota"><sup>*</sup> 83 % oficial del hallazgo; tras el borrado de 17 ramas remotas <code>git log --all</code> da 82 % (9/11).<br><sup>**</sup> 6 de 6 evaluadas sin contar #16 (duplicado cerrado).</p>
+
+<h1 class="salto">10. Autoevaluación con la rúbrica</h1>
+<p>La nota la asigna el docente. La autoevaluación se basa en las evidencias objetivas contrastadas en este informe.</p>
+<table>
+<thead><tr><th style="width:26%">Criterio (5,0 puntos cada uno)</th><th style="width:13%">Nivel que se considera alcanzado</th><th>Evidencia a favor</th><th>Qué falta para «Excelente»</th></tr></thead>
+<tbody>
+<tr><td>1. Administración del cambio en GitHub</td><td>Bueno</td><td>Plantillas de RFC y PR (Figuras 1 y 11); 7 RFC reales (Tabla 1); 100 % de RFC evaluadas formalmente (Figuras 6 y 7); ruleset <code>ownermerge</code> activo para <code>main</code> y <code>develop</code> con <code>protected: true</code> (Figuras 8 y 10).</td><td>Registrar revisiones «Approved» efectivas de un par en las PR sin utilizar el bypass de administrador.</td></tr>
+<tr><td>2. Estrategia de ramificación y control SCM</td><td>Bueno</td><td>GitFlow documentado en PMV (Figura 17); reanudación en <code>develop</code> con PR #28 y #29 (Figuras 20, 22 y 23); 100 % de integraciones por PR (Figura 24); limpieza de 17 ramas remotas con tag de resguardo (Figura 21).</td><td>Aplicar GitFlow con rigor en todo el Incremento 5: los incrementos 2 a 4 no pasaron por <code>develop</code>.</td></tr>
+<tr><td>3. Versiones, tags y releases</td><td>Bueno</td><td>6 etiquetas anotadas y 6 <i>releases</i> con notas completas (Figuras 37 y 41, Tabla 4); release <code>v4.0.1</code> y <code>v4.0-Inc4</code> con artefactos adjuntos de reportes de calidad (Figura 42).</td><td>Publicar la imagen Docker compilada en GitHub Container Registry en cada release sobre <code>main</code>.</td></tr>
+<tr><td>4. Trazabilidad integrada y repositorio</td><td>Excelente</td><td>Matriz unificada completa de 14 filas (Tabla 5); repositorio con historial trazable; auditoría reproducible mediante script automatizado con salidas en JSON (Anexo B).</td><td>Vincular formalmente con <code>Closes #n</code> toda PR de desarrollo hacia <code>develop</code>.</td></tr>
+</tbody>
 </table>
 
-<h2>5. Matriz de trazabilidad unificada de configuración</h2>
-<div class="cap"><b>Matriz 5.1.</b> Cambio / requisito → Issue → Rama → PR y revisión → Etiqueta / Release → Artefacto o despliegue.</div>
-<table>
-  <thead><tr><th>Solicitud / requisito</th><th>Issue</th><th>Rama</th><th>PR y revisión</th><th>Etiqueta / Release</th><th>Artefacto / despliegue</th></tr></thead>
-  <tbody>
-    <tr><td>Incremento 1: HU-01 a HU-05</td><td>Sin issue (anterior al registro en Issues)</td><td>feature/hu03-…, feature/hu01-hu05-… → develop</td><td>PR #2 (merged, sin revisión registrada)</td><td>v1.0-PMV</td><td>Docker de staging (<code>docker-compose.yml</code>)</td></tr>
-    <tr><td>Incremento 2: HIST-2.1 a 2.4</td><td>Sin issue</td><td>feature/inc2-agenda-alertas</td><td>PR #4 y #5 (merged)</td><td>v1.5.0-inc2-avance, v2.0-Inc2</td><td>Imagen Docker del CI</td></tr>
-    <tr><td>Incrementos 3 y 4: HIST-3.x, VIS-3.5, HIST-4.x</td><td>Sin issue</td><td>feature/inc3-sin-conexion</td><td>PR #8 (CI verde; revisión independiente)</td><td>v3.0-Inc3, v4.0-Inc4</td><td>Producción en Render (<i>deploy hook</i> del CI)</td></tr>
-    <tr><td>Observaciones del docente a S12</td><td>#14</td><td>docs/s13-informe</td><td>PR #13 (CI verde; integrada sin aprobación registrada)</td><td>— (documentación)</td><td>Informe S13 (.docx y .pdf)</td></tr>
-    <tr><td>Hallazgos CMMI H2 y H5</td><td>#15</td><td>docs/s13-informe</td><td>PR #13</td><td>—</td><td><code>.github/</code>, <code>CONTRIBUTING.md</code>, rama <code>develop</code></td></tr>
-    <tr><td>Hallazgo CMMI H10</td><td>#17</td><td>docs/s13-informe</td><td>PR #13</td><td>—</td><td><code>generar_diagramas.py</code> y diagramas v4</td></tr>
-    <tr><td>OWASP H-1</td><td>#18</td><td>feature/h1-roles-rls (prevista)</td><td>Pendiente</td><td>Próxima versión de corrección (v4.1)</td><td>—</td></tr>
-    <tr><td>OWASP H-2 y H-3</td><td>#19</td><td>feature/h2-h3-cabeceras-csv (prevista)</td><td>Pendiente</td><td>Próxima versión de corrección (v4.1)</td><td>—</td></tr>
-    <tr><td>Datos del INC-5</td><td>#20</td><td>feature/inc5-datos (prevista)</td><td>Pendiente</td><td>v5.0-Inc5 (hito H6)</td><td>Dataset versionado</td></tr>
-  </tbody>
-</table>
-<p>La trazabilidad es completa desde la rama hasta el despliegue en los cuatro incrementos, pero la parte Cambio → Issue solo existe desde el 06/11/2026. Las versiones previstas para los RFC pendientes son una propuesta según <code>CONTRIBUTING.md</code>.</p>
-
-<h2>6. Conclusiones y lecciones aprendidas</h2>
-<ol>
-  <li><b>La configuración existía; faltaba el registro del cambio.</b> El proyecto ya tenía etiquetas por incremento, ramas por historia, CI y PR para todo lo integrado. Lo que no dejaba evidencia era la decisión: por qué se cambiaba algo y quién lo aprobaba. Las RFC en Issues y la plantilla de PR cubren ese vacío.</li>
-  <li><b>GitFlow se perdió por presión de plazos, no por desconocimiento.</b> El PMV usó <code>develop</code>, <code>feature/*</code> y <code>fix/*</code>. Al acelerar los incrementos 2 a 4 se integró directo a <code>main</code>, y la PR #8 entró como <i>squash</i>, por lo que las etiquetas <code>v3.0-Inc3</code> y <code>v4.0-Inc4</code> quedaron fuera del historial de <code>main</code>. La rama <code>develop</code> y las ramas <code>release/*</code> evitan repetirlo.</li>
-  <li><b>Sin protección de ramas, la DoD es voluntaria.</b> Una sola PR con «Approved», dos integradas con el CI en rojo y commits directos que rompieron el CI muestran que las reglas deben estar en la herramienta. Configurarlas es la acción pendiente de mayor efecto y depende del propietario del repositorio.</li>
-  <li><b>Una <i>release</i> documenta mejor que una etiqueta.</b> Las notas por incremento resumen en un solo lugar alcance, calidad y limitaciones. Falta adjuntar artefactos compilados, por ejemplo publicar la imagen Docker del CI.</li>
-</ol>
-<p><b>Autoevaluación frente a la rúbrica (la nota la asigna el docente):</b></p>
-<table>
-  <thead><tr><th>Criterio</th><th>Nivel esperado</th><th>Qué falta para «Excelente»</th></tr></thead>
-  <tbody>
-    <tr><td>1. Administración del cambio (5,0)</td><td>Bueno</td><td>Reglas de protección de ramas y revisiones «Approved» registradas</td></tr>
-    <tr><td>2. Ramificación y control SCM (5,0)</td><td>Bueno</td><td>Aplicar GitFlow con <code>develop</code> en el Incremento 5; hoy hay commits directos en <code>main</code></td></tr>
-    <tr><td>3. Versiones, tags y releases (5,0)</td><td>Bueno</td><td>Adjuntar artefactos compilados a las <i>releases</i></td></tr>
-    <tr><td>4. Trazabilidad y repositorio (5,0)</td><td>Bueno</td><td>Issues para los incrementos anteriores al 06/11 (no existen) y aprobación registrada antes de integrar</td></tr>
-  </tbody>
-</table>
-
-<h2>7. Anexos y enlaces directos a la Suite de GitHub</h2>
+<h1>11. Conclusiones y lecciones aprendidas</h1>
 <ul>
-  <li>Repositorio oficial: https://github.com/woshtsu/ProcesosSoftwareAnemia</li>
-  <li>Solicitudes de cambio (Issues): https://github.com/woshtsu/ProcesosSoftwareAnemia/issues?q=label%3Achange-request</li>
-  <li><i>Pull requests</i>: https://github.com/woshtsu/ProcesosSoftwareAnemia/pulls?q=is%3Apr</li>
-  <li><i>Releases</i>: https://github.com/woshtsu/ProcesosSoftwareAnemia/releases · Etiquetas: https://github.com/woshtsu/ProcesosSoftwareAnemia/tags</li>
-  <li>Ramas: https://github.com/woshtsu/ProcesosSoftwareAnemia/branches · CI: https://github.com/woshtsu/ProcesosSoftwareAnemia/actions</li>
-  <li>Plantillas y convención: <code>.github/ISSUE_TEMPLATE/change_request.md</code>, <code>.github/PULL_REQUEST_TEMPLATE.md</code>, <code>CONTRIBUTING.md</code></li>
-  <li>Producción: https://softwareanemia.onrender.com</li>
+  <li><b>La configuración existía; las acciones nocturnas cerraron el registro formal.</b> El ruleset <code>ownermerge</code> fue activado en <code>main</code> y <code>develop</code> con branch protection (<code>protected: true</code>) y excepción trazada para el administrador. Las solicitudes de cambio fueron evaluadas formalmente por el Leader (100 % evaluadas: 3 aprobadas y 3 implementadas).</li>
+  <li><b>GitFlow se reanudó efectivamente sobre <code>develop</code>.</b> Se sincronizó <code>develop</code> con <code>main</code> mediante la PR #28 y se integró la reorganización T-024 mediante la PR #29 a través de <code>develop</code>. Se sanearon 17 ramas remotas, resguardando la historia previa en la etiqueta anotada <code>archivo/docs-s12-correcciones</code>.</li>
+  <li><b>Las compuertas del CI operan con rigor técnico.</b> La PR #29 demostró el filtrado en vivo de un desvío de formato de Ruff, el cual fue subsanado con un commit semántico antes de autorizar la integración.</li>
+  <li><b>Una release cobra valor cuando incluye artefactos verificables.</b> Se publicó <code>v4.0.1</code> regularizando el hotfix de producción y se incorporaron paquetes de reportes de calidad a <code>v4.0.1</code> y <code>v4.0-Inc4</code>.</li>
+  <li><b>La honestidad en la autoevaluación marca el siguiente paso del PDCA.</b> Aunque el ruleset ahora exige 1 aprobación, las PR recientes se integraron por contingencia de administrador; lograr revisiones cruzadas aprobadas por un par sin recurrir al bypass es la meta prioritaria del Sprint 6.</li>
+</ul>
+
+<h1 class="salto">12. Anexos</h1>
+<h2>Anexo A. Correspondencia con las evidencias pedidas por la guía</h2>
+<table>
+<thead><tr><th>Captura de la guía</th><th>Archivo pedido</th><th>Archivo en el repositorio (<code>entregables/semana-13/laboratorio-scm/evidencias/</code>)</th><th>Figura</th></tr></thead>
+<tbody>
+<tr><td>1. Issue de solicitud de cambio</td><td><code>actividad1_issue_change_request.png</code></td><td><code>web_a1_issue_rfc_18.png</code></td><td>3</td></tr>
+<tr><td>2. Branch protection rules</td><td><code>actividad2_branch_protection_rules.png</code></td><td><code>web_a2_settings_rulesets.png</code> (panel Settings del propietario)</td><td>8</td></tr>
+<tr><td>3. Pull request y code review</td><td><code>actividad2_pull_request_code_review.png</code></td><td><code>web_a2_pr9_aprobada.png</code></td><td>12</td></tr>
+<tr><td>4. Network graph de GitFlow</td><td><code>actividad3_gitflow_network_graph.png</code></td><td><code>web_a3_red.png</code></td><td>18</td></tr>
+<tr><td>5. Pipeline de GitHub Actions</td><td><code>actividad4_github_actions_pipeline.png</code></td><td><code>web_a4_run_pr13.png</code></td><td>29</td></tr>
+<tr><td>6. Release v1.0</td><td><code>actividad5_github_release_v1_0.png</code></td><td><code>web_a5_release_v1_0.png</code></td><td>39</td></tr>
+</tbody>
+</table>
+<p>Además de las 6 capturas obligatorias, el informe incluye 37 evidencias complementarias que contrastan el estado antes y después: 43 figuras en total.</p>
+
+<h2>Anexo B. Reproducibilidad de la auditoría</h2>
+<p>Las evidencias se generan con <code>entregables/semana-13/laboratorio-scm/capturar_evidencias_scm.py</code>. El script captura 20 páginas del repositorio con Microsoft Edge sin interfaz (Playwright) y ejecuta 14 grupos de comandos <code>git</code>/<code>gh</code>, cuyas salidas guarda en <code>evidencias/salidas_cli.json</code>. Solo necesita permiso de lectura y no escribe nada en GitHub.</p>
+<pre>pmv_fastapi/.venv/Scripts/python.exe entregables/semana-13/laboratorio-scm/capturar_evidencias_scm.py
+pmv_fastapi/.venv/Scripts/python.exe entregables/semana-13/exportar_pdf_s13.py scm</pre>
+
+<h2>Anexo C. Enlaces directos a la suite de GitHub</h2>
+<ul>
+  <li>Repositorio: https://github.com/woshtsu/ProcesosSoftwareAnemia</li>
+  <li>Solicitudes de cambio: https://github.com/woshtsu/ProcesosSoftwareAnemia/issues?q=label%3Achange-request</li>
+  <li>Pull requests: https://github.com/woshtsu/ProcesosSoftwareAnemia/pulls?q=is%3Apr</li>
+  <li>Integración continua: https://github.com/woshtsu/ProcesosSoftwareAnemia/actions</li>
+  <li>Releases y etiquetas: https://github.com/woshtsu/ProcesosSoftwareAnemia/releases · …/tags</li>
+  <li>Ramas y red: https://github.com/woshtsu/ProcesosSoftwareAnemia/branches · …/network</li>
+  <li>Producción: https://softwareanemia-virginia.onrender.com</li>
 </ul>
 </body>
 </html>

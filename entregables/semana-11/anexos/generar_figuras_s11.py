@@ -161,7 +161,7 @@ def main():
         'echo "ADR en pmv_fastapi/docs/adr: $(ls pmv_fastapi/docs/adr | grep -c ^ADR-)"; '
         'echo "C4_componentes.puml, menciones de agenda/visita/notificador/sincroniz: $(grep -ciE \'agenda|visita|notificador|sincroniz\' pmv_fastapi/docs/diagramas/C4_componentes.puml)"; '
         'echo "registro de defectos, ultimo identificador: $(grep -rhoE \'DEF-[0-9]+\' pmv_fastapi/docs/evidencias/registro_defectos*.md | sort -u | tail -1)"; '
-        'echo "TABLERO.md, coincidencias de \'horas reales\': $(grep -ciE \'horas reales\' coordinacion/TABLERO.md)"'
+        'echo "TABLERO.md, coincidencias de \'horas reales\': $(grep -ciE \'horas reales\' .claude/coordinacion/TABLERO.md)"'
     )
     captura_terminal(
         "CMMI03_higiene_repositorio",
