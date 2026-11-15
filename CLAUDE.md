@@ -1,3 +1,18 @@
+## Forma de trabajo obligatoria (se carga en cada sesión)
+
+Antes de actuar, leer `AGENTS.md` (sección «Forma de trabajo de las IA») y `.claude/AVANCE_SESION.md`.
+
+- **Claude orquesta y revisa; `agy` (Antigravity CLI) hace el trabajo pesado.** Toda implementación, refactorización, adaptación de scripts, redacción extensa o búsqueda amplia se delega a `agy` con un encargo autocontenido (archivos, criterio de terminado, prohibido hacer commits):
+
+  ```bash
+  agy -p "<encargo>" --mode accept-edits --sandbox --settings '{"permissions":{"allow":["command(*)"]}}' --print-timeout 0
+  ```
+
+- Claude **siempre revisa** lo que entrega `agy` (diff, pruebas, mediciones) antes de darlo por bueno.
+- Si `agy` no está instalado, falla o se quedó sin cuota, delegar en subagentes baratos (`haiku` para leer y buscar, `sonnet` para implementar) y decirlo.
+- **Si Claude hace una tarea directamente, debe indicar en su respuesta por qué no la delegó** (p. ej., cambio de una línea, tarea interactiva con el usuario, `agy` no disponible).
+- Registrar el avance en `.claude/AVANCE_SESION.md` durante la sesión.
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
