@@ -51,4 +51,11 @@ Archivo vivo para continuar el trabajo en un chat nuevo. Actualizarlo durante la
 - PDCA rehecho (12 dominios del proceso SCM, indicadores antes/después, 21 evidencias) e informe del laboratorio con 43 figuras; PDF en `exportados/semana-13/`.
 - Evidencias: `capturar_evidencias_scm.py`; hallazgos de la tarde conservados en `evidencias/antes_2026-11-14_tarde/` y ramas previas al borrado en `evidencias/limpieza_ramas_antes/`.
 - Acciones en GitHub (cuenta woshtsu): ruleset activo, RFC evaluadas, PR #28 y #29 por develop, 17 ramas borradas con respaldo `archivo/docs-s12-correcciones`, `v4.0.1` y artefactos en 2 releases.
-- Siguiente paso: PR de T-025 a develop y release develop → main; primera PR con aprobación de un par (dominio 4); reanudar Render (dominio 10).
+- 15/11: PR #30 (T-025 → develop, sin CI por el filtro de rutas) y PR #31 (release develop → main, `c4d2ae6`) integradas con excepción de administrador. Quedan solo `main` y `develop`.
+- **Pendiente despliegue:** Render responde (`/api/salud` ok), pero el trabajo `produccion` del CI de `main` falla al llamar al deploy hook aun con `RENDER_DEPLOY_HOOK_URL` renovado (04:38 UTC); reintento 2 de la ejecución 43677270776 también falló. El paso oculta el error HTTP: revisar en Render el hook y los eventos.
+- Siguiente paso: diagnosticar el hook; primera PR con aprobación de un par (dominio 4).
+
+## T-026 — Revisión integral por un compañero (15/11/2026)
+
+- Encargo: `.claude/intercambios/T-026_porras_revision-entregables.md`. Contexto del sílabo: `.claude/contexto/SILABO_RESUMEN.md`.
+- Guías S14 y S16 versionadas en `guias/s14/` y `guias/s16/`; `guias/Sílabo.pdf` queda fuera de Git.
