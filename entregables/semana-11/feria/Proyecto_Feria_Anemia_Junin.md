@@ -44,14 +44,14 @@ La información centralizada puede reducir la redigitación; la agenda puede fac
 
 **Alertas e inasistencia.** En RF-09, el control del registro DJ-02080 aparece con la marca «Inasistencia registrada» y prioridad media tras registrar la falta. La lista permite concentrar la revisión por comunidad y prioridad.
 
-![Alertas con prioridad elevada por inasistencia registrada, RF-09](../../semana-09/evidencias_capturas/RF-09/RF09_inc2final_paso3b_alerta_prioridad_elevada.png)
+![Alertas, RF-09: registro DJ-02080 con prioridad media y la marca «Inasistencia registrada» tras registrar la falta](../../semana-09/evidencias_capturas/RF-09/RF09_inc2final_paso3b_alerta_prioridad_elevada.png)
 
 ## Verificación del funcionamiento
 
-**328 pruebas automatizadas aprobadas y 100 % de cobertura de código**, reproducidas localmente el 23/10/2026; análisis estático y contrato OpenAPI correctos. La evaluación S9 conserva además 15 pruebas de interfaz aprobadas en su ejecución documentada. Las capturas incluidas provienen de esa evaluación y no de una nueva ejecución.
+**328 pruebas automatizadas aprobadas y 100 % de cobertura de código** de la versión v2.0.0-inc2 (Incremento 2; S9 las midió el 17/10/2026), reproducidas localmente el 23/10/2026 (informe T-013); análisis estático y contrato OpenAPI correctos. La evaluación S9 conserva además 15 pruebas de interfaz aprobadas en su ejecución documentada. Las capturas incluidas provienen de esa evaluación y no de una nueva ejecución.
 
 ## Fuentes y alcance
 
-Elaboración propia a partir del informe S9, secciones 5 y 6.2-6.7, sus capturas y el informe de verificación T-013. Dataset DIRESA Junín (HIS): 12 486 registros de diagnósticos de 2022 a 2024; corte del análisis: 30/06/2024. Capturas: 17/10/2026, muestra anonimizada y registros de prueba. Prototipo académico funcional; no reemplaza el criterio clínico.
+Elaboración propia a partir del informe S9, secciones 5 y 6.2-6.7, sus capturas y el informe de verificación T-013. Dataset DIRESA Junín (HIS): 12 486 registros de diagnósticos de 2022 a 2024; corte del análisis: 30/06/2024. Capturas: 17/10/2026, muestra anonimizada y registros de prueba. Describe la versión v2.0.0-inc2 (Incrementos 1 y 2); no muestra los incrementos 3 y 4, posteriores a la elaboración de esta ficha (23/10/2026). Prototipo académico funcional; no reemplaza el criterio clínico.
 
 [Repositorio y evidencias del proyecto](https://github.com/woshtsu/ProcesosSoftwareAnemia)

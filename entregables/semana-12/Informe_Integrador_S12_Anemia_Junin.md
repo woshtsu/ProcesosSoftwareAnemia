@@ -16,6 +16,7 @@ PROYECTO: Sistema Inteligente para Detección Temprana de Anemia Infantil en Zon
           («Anemia Junín»), versión evaluada v4.0-Inc4
 ASIGNATURA: Procesos de Software (Código: ASUC01702)
 NIVEL / CICLO: Noveno Ciclo (IX Período - Electivo de Especialidad)
+UNIDAD DEL SÍLABO: Unidad III — Evolución de los procesos y actividades de software
 DOCENTE: Guevara Jimenez, Jorge Alfredo
 
 INTEGRANTES DEL EQUIPO DE PROYECTO:
@@ -26,6 +27,7 @@ INTEGRANTES DEL EQUIPO DE PROYECTO:
    automatizadas, evidencias y documentación, bajo supervisión del equipo
 
 PERIODO ACADÉMICO: 2026-20
+FECHA DE ENTREGA: 06/11/2026 (versión corregida); versión inicial integrada el 01/11/2026
 ========================================================================================================
 ```
 
@@ -688,7 +690,7 @@ La meta acumulada propuesta en S9 (16,7 %, 33,3 %, 50,0 % y 66,7 % hasta INC-4) 
 
 **Sensibilidades.** M3.1 depende de cómo se puntúe lo no probado en el mundo real: si B2, B3 y B4 se puntuaran 0,5 por exigir un envío real y un dispositivo real, M3.1 bajaría a **50,0 %**; si B6 puntuara 0, a 66,7 %; la lectura estricta (solo puntaje 1,0) es 66,7 % (4 de 6). El valor de 75,0 % es la lectura principal de la guía y se informa junto a estas variaciones.
 
-**Lo que GQM no pudo medir.** M2.1 de Inc. 3 e Inc. 4 se calculó con las fichas del apartado 3.6.3: 100 %, 18 de 18 requisitos con captura aprobada. M2.2 de esos incrementos sigue siendo indicativa (0,20 y 0,75 defectos por requisito): no hay registro de defectos posterior a DEF-09 y los cinco defectos de la revisión independiente (tres de ellos de concurrencia o seguridad) se corrigieron sin registrarse como DEF (ficha GQM de M2.2). El p95 de 1 100 ms (una sola corrida, sin control de la versión anterior) supera la meta de 800 ms y es el principal riesgo de rendimiento.
+**Lo que GQM no pudo medir.** M2.1 de Inc. 3 e Inc. 4 se calculó con las fichas del apartado 3.6.3: 100 % en cada uno (5 de 5 y 4 de 4 requisitos); el acumulado de Inc. 1 a 4 es 18 de 18 requisitos con captura aprobada. M2.2 de esos incrementos sigue siendo indicativa (0,20 y 0,75 defectos por requisito): no hay registro de defectos posterior a DEF-09 y los cinco defectos de la revisión independiente (tres de ellos de concurrencia o seguridad) se corrigieron sin registrarse como DEF (ficha GQM de M2.2). El p95 de 1 100 ms (una sola corrida, sin control de la versión anterior) supera la meta de 800 ms y es el principal riesgo de rendimiento.
 
 **Fichas de evaluación GQM con evidencia por métrica**
 
@@ -1980,7 +1982,7 @@ La evaluación usa la representación continua con niveles de capacidad 0 a 3 po
 | CM | 2 | **2 (Gestionado)** | 5 etiquetas (`v1.0-PMV` a `v4.0-Inc4`), ramas `feature/*`, PR integradas, CI en la rama antes de la PR | Sin convención escrita de commits, ramas y etiquetas; la PR #8 entró como un solo commit *squash* que las etiquetas no contienen |
 | VER | 2 | **2 (Gestionado)** | 660 pruebas, 28 E2E, 99,79 % de cobertura, 25 pruebas de arquitectura, Ruff 0, contrato OpenAPI | SonarCloud analizado el 05/11/2026 pero fuera del CI; *hook* de pre-commit sin activar; 5 defectos escaparon a las pruebas |
 | VAL | 1 | **1 (Ejecutado)** | 19 de 19 escenarios con captura y ficha | Sin SUS, sin acta de aceptación ni piloto; validaciones con la microred, Meta y dispositivo real pendientes |
-| CAR | no evaluada | **1 (Ejecutado)** | 9 hallazgos con causa raíz; cinco porqués para 6 de ellos; plan de 19 acciones | 1 de 19 acciones cumplida y ninguna con efecto medido |
+| CAR | no evaluada | **1 (Ejecutado)** | 10 hallazgos con causa raíz (H1 a H10, Tabla 37); cinco porqués para 6 de ellos; plan de 19 acciones | 1 de 19 acciones cumplida y ninguna con efecto medido |
 
 ![Nivel de capacidad CMMI por área, S11 frente a 30/10/2026.](../semana-11/evidencias/CMMI01_niveles_antes_despues.png)
 
@@ -2326,7 +2328,7 @@ Lista numerada en el orden de la primera cita en el texto, según la norma ISO 6
 ### ANEXO A: Enlace del Video Demostrativo del Software
 
 - **URL del video demostrativo (Drive):** <https://drive.google.com/file/d/1E-ITz7WtqtMzhKQJql7Ssardvqw446mf/view?usp=sharing>
-- **Contenido:** el video no muestra este informe; va directo al software y rotula en pantalla cada parte («PMV · Incremento 1», «Incremento 2», «Incremento 3», «Incremento 4»), con una portada de 15 s y un cierre de calidad y arquitectura (Anexo C). Duración: 5 min 00 s.
+- **Contenido:** el video no muestra este informe; va directo al software y rotula en pantalla cada parte («PMV · Incremento 1», «Incremento 2», «Incremento 3», «Incremento 4»), con una portada de 15 s y un cierre de calidad y arquitectura (Anexo C). Duración del archivo: 5 min 59 s (el guion apuntaba a 5 min 00 s; el recorte a 4:50-5:10 queda pendiente), sin pista de audio.
 - **Guion ejecutable:** `entregables/semana-12/video/GUION_DEMO.md` (pestaña, datos sintéticos, acción y resultado esperado por escena).
 
 ### ANEXO B: Enlace del Repositorio de Código en GitHub
@@ -2358,7 +2360,7 @@ Las etiquetas del repositorio en GitHub se muestran en la Figura 115 (ficha CM d
 
 ### ANEXO C: GUIÓN TÉCNICO Y NARRATIVO DEL VIDEO DE DEMOSTRACIÓN DEL SOFTWARE
 
-**Duración total:** 05 minutos 00 segundos. **Formato:** grabación de pantalla con voz en off del equipo, directamente sobre el software y sin mostrar este informe; un rótulo superpuesto indica qué parte se demuestra (PMV · Incremento 1, Incremento 2, Incremento 3 o Incremento 4). Aplicación local en `v4.0-Inc4` con datos sintéticos, proveedor de identidad simulado (modo demo) y recordatorios simulados; la producción no se usa para grabar, para no escribir datos en ella (sus capturas están en las fichas GQM del apartado 3.6.1 y en la ficha VAL de la sección 3.8). Pasos ejecutables: `entregables/semana-12/video/GUION_DEMO.md`.
+**Duración total del guion:** 05 minutos 00 segundos; el video del repositorio (`entregables/semana-12/video/demo_anemia_junin_v4.mp4`) dura 5 minutos 59 segundos, 1920x1080. **Formato:** grabación de pantalla directamente sobre el software y sin mostrar este informe; un rótulo superpuesto indica qué parte se demuestra (PMV · Incremento 1, Incremento 2, Incremento 3 o Incremento 4). El video se grabó el 09/11/2026 sobre la producción en `v4.0-Inc4` (`softwareanemia-virginia.onrender.com`), con inicio de sesión real, datos sintéticos «DEMO» (DNI 7999xxxx), que se eliminan de la base después de grabar, y recordatorios simulados. **El video no tiene pista de audio:** la voz en off del equipo sigue el texto de la columna «Locución» y está pendiente de grabar y montar, igual que el recorte a 4:50-5:10 (`entregables/semana-12/video/GUION_LOCUCION.md`). Los DNI, los tiempos y los pasos de la Tabla 41 son los del guion ejecutable (`entregables/semana-12/video/GUION_DEMO.md`, escrito para una grabación local); en la grabación sobre producción se usaron registros «DEMO» equivalentes. Las capturas de producción de la sección 3.6.1 y de la ficha VAL (sección 3.8) siguen siendo la evidencia de cada requisito.
 
 **Tabla 41.** Guion técnico minuto a minuto, por incremento.
 
@@ -2411,8 +2413,8 @@ Cada número de la lista de referencias figura en el texto al menos una vez y ca
 | --- | --- | --- | --- |
 | 1. Evaluación del proceso de software: *tailoring*, WBS, RAE, DoD y CMMI (5,0) | Secciones 3.1 a 3.4 y 3.8: factores y matriz ponderada (4,75 de 5), WBS con 133 SP, matriz RAE, DoD verificada, desviaciones medidas, CMMI en 7 áreas y plan de 19 acciones | Excelente en rigor; Bueno si el docente pondera los niveles de capacidad | CMMI queda en Nivel 1 en 4 de 7 áreas; sin horas reales, sin GitHub Projects y sin actas de revisión |
 | 2. Producto en GitHub y arquitectura hexagonal (6,0) | Sección 3.6.4 y Anexo B: estructura `domain`, `ports`, `adapters` con enlaces a `v4.0-Inc4`, 0 importaciones de terceros en 86 clases, 25 pruebas de arquitectura y 5 etiquetas | Excelente | La ruta es `pmv_fastapi/app/` y no `/src/`; el PMV nació con 40 % de conformidad; `v1.0-PMV` está fuera del historial de `main`; conformidad ultra estricta de 80 % |
-| 3. Pruebas, FURPS+ y seguridad OWASP 2025 (4,0) | Secciones 3.6.2, 3.6.3 y 3.7: 19 de 19 fichas con capturas, FURPS+ 87,7 % (78,4 % conservador), WCAG con 22 de 23 pares de texto, OWASP con 12 hallazgos | Bueno | La rúbrica premia «0 vulnerabilidades» y el informe reporta 1 hallazgo alto y 6 medios; accesibilidad sin lector de pantalla; SonarCloud no ejecutado |
-| 4. Video demostrativo y guion técnico (5,0) | Anexo C y `video/GUION_DEMO.md`: guion de 5:00 minuto a minuto con criterio verificado por escena; Anexo A | Bueno | Video publicado en Drive (Anexo A); la grabación usa datos sintéticos, proveedor de identidad simulado y envío simulado; la producción corre con reloj fijo (30/06/2024) y sus capturas están en las fichas GQM y en la ficha VAL |
+| 3. Pruebas, FURPS+ y seguridad OWASP 2025 (4,0) | Secciones 3.6.2, 3.6.3 y 3.7: 19 de 19 fichas con capturas, FURPS+ 87,7 % (78,4 % conservador), WCAG con 22 de 23 pares de texto, OWASP con 12 hallazgos | Bueno | La rúbrica premia «0 vulnerabilidades» y el informe reporta 1 hallazgo alto y 6 medios; accesibilidad sin lector de pantalla; SonarCloud ejecutado el 05/11/2026 (129 hallazgos, 0 en el backend desplegado), pero aún fuera del CI |
+| 4. Video demostrativo y guion técnico (5,0) | Anexo C y `video/GUION_DEMO.md`: guion de 5:00 minuto a minuto con criterio verificado por escena; Anexo A | Bueno | Video publicado en Drive (Anexo A); la grabación se hizo sobre producción con datos sintéticos «DEMO» y envío de recordatorios simulado; el archivo dura 5:59 (no 5:00) y aún no tiene locución; la producción corre con reloj fijo (30/06/2024) y sus capturas están en las fichas GQM y en la ficha VAL |
 
 **Tabla 44.** Resumen de evaluación en el formato de la plantilla (los puntajes los asigna el docente).
 

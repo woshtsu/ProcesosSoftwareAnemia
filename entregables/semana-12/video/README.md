@@ -1,9 +1,11 @@
 # Video demostrativo — Anemia Junín v4.0.0-inc4
 
-Respaldo **local** de la demostración (≈ 5 min, sin audio): `demo_anemia_junin_v4.mp4` (H.264, 1280x720, ≈ 5,5 MB).
-Es una **grabación local con datos sintéticos** (27 niños de `pmv_fastapi/scripts/cargar_datos_prueba.py`) y **login simulado**
-(proveedor de identidad de prueba, el mismo montaje de `tests/e2e/test_login.py`; correo y clave ficticios). No toca
-producción ni usa datos reales. El video no se versiona (ver `.gitignore`): se sube a Drive.
+Respaldo de la demostración: `demo_anemia_junin_v4.mp4` (5:59, 1920x1080, **sin pista de audio**; el guion apuntaba a 5:00).
+Es la grabación de T-022 del 09/11/2026 **sobre producción** (<https://softwareanemia-virginia.onrender.com>), con datos sintéticos «DEMO»
+(DNI 7999xxxx) que se borran de la base al terminar. La locución (`GUION_LOCUCION.md`) y el recorte a 4:50-5:10 están pendientes del equipo.
+El archivo está versionado en este directorio y la copia para el aula está en Drive (Anexo A del informe). Corrección T-026 (15/11/2026): este párrafo describía antes una grabación local de 1280x720.
+
+El procedimiento siguiente (`grabar_demo.py`) regenera una **variante local** con datos sintéticos y login simulado; no es el archivo del repositorio.
 
 ## Regenerarlo
 

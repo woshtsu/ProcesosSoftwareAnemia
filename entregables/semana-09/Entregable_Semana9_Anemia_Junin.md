@@ -15,6 +15,7 @@ La Tabla 1 identifica el entregable y la Tabla 2 al equipo.
 | **Proyecto de asignatura** | Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín |
 | **Docente** | Guevara Jimenez, Jorge Alfredo |
 | **Semana y guía** | Semana 9: «Evaluación del proceso y producto de software mediante el modelo GQM» (`guias/semana-09.md`) |
+| **Unidad del sílabo** | Unidad III — Evolución de los procesos y actividades de software |
 | **Fecha** | 18/10/2026 (actualización por el cierre del Incremento 2; mediciones de v1.0 y del hito v1.5: 16/10/2026; de v2.0: 17/10/2026) |
 | **Versiones del software evaluadas** | `v1.0-PMV` (Incremento 1) y `v2.0.0-inc2` (Incremento 2 completo: HIST-2.1 a HIST-2.4, RF-06 a RF-09). Etiquetas: `v1.0-PMV` (existente), `v1.5.0-inc2-avance` (hito intermedio al 50 % del Incremento 2; rama `feature/inc2-agenda-alertas`, commit `416dfbc`, publicada el 17/10/2026) y `v2.0-Inc2` (Incremento 2 completo; commit `fb26626`, publicada el 18/10/2026) |
 | **Repositorio** | <https://github.com/woshtsu/ProcesosSoftwareAnemia> |
@@ -29,7 +30,7 @@ La Tabla 1 identifica el entregable y la Tabla 2 al equipo.
 
 El reparto de expositores y de responsabilidades es una **propuesta del equipo** basada en los roles de la matriz RAE de S3-4 y S6; no se ha registrado una confirmación formal de los tres integrantes ni del docente.
 
-**Nota sobre los datos.** El informe usa dos clases de datos. (1) **Datos sintéticos de prueba** (conjuntos generados con `pmv_fastapi/scripts/cargar_datos_prueba.py` y `.claude/herramientas/gqm/generar_dataset.py`): sostienen las capturas de RF-01 a RF-07 y las mediciones comparables entre versiones (conjunto B150). (2) El **dataset real anonimizado de la DIRESA Junín** (HIS; carpeta `pmv_fastapi/datos/`): 12 486 niños menores de 36 meses con diagnóstico de anemia (2022 a 2024). El conjunto completo da la **línea base AS-IS real**; una **muestra estratificada de 500 niños**, importada con un código seudónimo (sin DNI, nombres ni celular) y con la fecha de referencia 30/06/2024, sostiene las capturas de RF-08 y RF-09 y las mediciones sobre datos reales. La clasificación de anemia y la agenda son **referenciales**: el sistema programa y vigila fechas, no diagnostica ni prescribe. No hubo usuarios reales ni piloto en una posta: ninguna cifra de este informe representa aceptación del usuario ni impacto clínico. Las rutas de archivos son relativas a la raíz del repositorio, salvo las de imágenes, que son relativas a `entregables/semana-09/`.
+**Nota sobre los datos.** El informe usa dos clases de datos. (1) **Datos sintéticos de prueba** (conjuntos generados con `pmv_fastapi/scripts/cargar_datos_prueba.py` y `.claude/herramientas/gqm/generar_dataset.py`): sostienen las capturas de RF-01 a RF-07 y las mediciones comparables entre versiones (conjunto B150). (2) El **dataset real anonimizado de la DIRESA Junín** (HIS; carpeta `pmv_fastapi/datos/`): 12 486 diagnósticos de anemia (filas del extracto) en menores de 36 meses (2022 a 2024); el extracto no permite contar niños únicos, porque `num_doc` no es utilizable (Tabla 32), y el importador convierte cada fila en un registro de niño con código seudónimo, de modo que las cifras del sistema con «niños» (500 y 11 686) cuentan registros. El conjunto completo da la **línea base AS-IS real**; una **muestra estratificada de 500 niños**, importada con un código seudónimo (sin DNI, nombres ni celular) y con la fecha de referencia 30/06/2024, sostiene las capturas de RF-08 y RF-09 y las mediciones sobre datos reales. La clasificación de anemia y la agenda son **referenciales**: el sistema programa y vigila fechas, no diagnostica ni prescribe. No hubo usuarios reales ni piloto en una posta: ninguna cifra de este informe representa aceptación del usuario ni impacto clínico. Las rutas de archivos son relativas a la raíz del repositorio, salvo las de imágenes, que son relativas a `entregables/semana-09/`.
 
 **Índice**
 
@@ -94,7 +95,7 @@ El informe se expone dividido en tres pilares. La Tabla 3 resume qué se muestra
 
 ## 2. RESUMEN EJECUTIVO Y OBJETIVOS DE EVALUACIÓN GQM
 
-**Propósito.** Este informe evalúa, con el paradigma GQM (Goal-Question-Metric; Basili, Caldiera y Rombach, 1994), el proceso y el producto del proyecto «Anemia Junín» en tres dimensiones que corresponden a los tres pilares de la guía de la Semana 9: la arquitectura hexagonal del código en GitHub (G-01), la estrategia de pruebas de los Incrementos 1 y 2 con evidencias fotográficas (G-02) y la entrega de valor al usuario final frente a las brechas del proceso AS-IS (G-03). Se comparan la versión `v1.0-PMV` (Incremento 1) y la versión `v2.0.0-inc2`, que completa el Incremento 2 (HIST-2.1 a HIST-2.4; 18 de 18 SP). El hito `v1.5.0-inc2-avance` (50 % del incremento, exigido por el docente) se conserva solo como referencia de trazabilidad. La línea base AS-IS del Pilar 3 se calcula con el dataset real de la DIRESA Junín (12 486 niños con diagnóstico de anemia).
+**Propósito.** Este informe evalúa, con el paradigma GQM (Goal-Question-Metric; Basili, Caldiera y Rombach, 1994), el proceso y el producto del proyecto «Anemia Junín» en tres dimensiones que corresponden a los tres pilares de la guía de la Semana 9: la arquitectura hexagonal del código en GitHub (G-01), la estrategia de pruebas de los Incrementos 1 y 2 con evidencias fotográficas (G-02) y la entrega de valor al usuario final frente a las brechas del proceso AS-IS (G-03). GQM es el modelo de evaluación basado en medición que se aplica a proceso y producto (objetivos, preguntas y métricas con metas); la mejora fundamentada se propone con el ciclo PDCA (§7.3). No se aplica aquí un modelo de capacidad de procesos como CMMI-DEV, que corresponde a la Semana 11. Se comparan la versión `v1.0-PMV` (Incremento 1) y la versión `v2.0.0-inc2`, que completa el Incremento 2 (HIST-2.1 a HIST-2.4; 18 de 18 SP). El hito `v1.5.0-inc2-avance` (50 % del incremento, exigido por el docente) se conserva solo como referencia de trazabilidad. La línea base AS-IS del Pilar 3 se calcula con el dataset real de la DIRESA Junín (12 486 diagnósticos de anemia en menores de 36 meses).
 
 **Cadena metodológica.** La Figura 1 muestra la cadena de trazabilidad que pide la guía y el artefacto concreto del proyecto en cada eslabón: las brechas B1 a B6 del problema organizacional (S1 y S6), las mejoras M1 a M6 del proceso TO-BE, el modelo iterativo-incremental con Scrum y DevOps (S2), la arquitectura hexagonal en Git (`app/domain`, `app/ports`, `app/adapters`), las pruebas de los RF-01 a RF-09 (328 pruebas por defecto y 15 E2E en v2.0), el marco GQM (G-01 a G-03, M1.1 a M3.2) y los indicadores de valor V1 a V6.
 
@@ -367,7 +368,7 @@ Resultado: 5 de 5 componentes conformes, **M1.2 = 100,0 %** con los tres criteri
 
 En v2.0 la aplicación tiene I = 1,00 porque solo `main.py` la ensambla: es lo esperado, pues los adaptadores dependen de los puertos y no de los casos de uso.
 
-**Vigilancia automática.** Las reglas se verifican en cada `pytest` con las **18 pruebas de arquitectura** de `tests/arquitectura/test_dependencias.py` (18 casos: siete pruebas CP-37 a CP-43, siete casos de dos pruebas del verificador, seis de ellos parametrizados, y cuatro pruebas nuevas de la v2.0), que analizan los `import` por AST: el dominio no importa frameworks ni otras capas; los puertos solo importan dominio, biblioteca estándar y `typing`; la aplicación no importa adaptadores ni frameworks; cada adaptador no importa aplicación ni el otro adaptador; solo `main.py` conoce a la vez aplicación y adaptadores; y no quedan módulos puente en las rutas antiguas. Las cuatro de la v2.0 (CP-176 a CP-179) agregan que la aplicación nunca importa `scripts` ni pruebas, que los módulos nuevos del dominio y de los puertos quedan cubiertos por las reglas, que el importador del dataset no toca la base directamente (entra por el servicio de importación) y que las piezas de lectura y muestreo solo dependen del dominio y de su configuración. Una violación rompe el pipeline de CI. La Figura 6 muestra los módulos reales y el sentido de las dependencias.
+**Vigilancia automática.** Las reglas se verifican en cada `pytest` con las **18 pruebas de arquitectura** de `tests/arquitectura/test_dependencias.py` (18 casos: siete pruebas de regla, CP-37 a CP-43; siete del propio verificador, que son los seis casos de una prueba parametrizada más una sobre el prefijo de paquetes; y cuatro pruebas nuevas de la v2.0, CP-176 a CP-179), que analizan los `import` por AST: el dominio no importa frameworks ni otras capas; los puertos solo importan dominio, biblioteca estándar y `typing`; la aplicación no importa adaptadores ni frameworks; cada adaptador no importa aplicación ni el otro adaptador; solo `main.py` conoce a la vez aplicación y adaptadores; y no quedan módulos puente en las rutas antiguas. Las cuatro de la v2.0 (CP-176 a CP-179) agregan que la aplicación nunca importa `scripts` ni pruebas, que los módulos nuevos del dominio y de los puertos quedan cubiertos por las reglas, que el importador del dataset no toca la base directamente (entra por el servicio de importación) y que las piezas de lectura y muestreo solo dependen del dominio y de su configuración. Una violación rompe el pipeline de CI. La Figura 6 muestra los módulos reales y el sentido de las dependencias.
 
 ![Figura 6. Vista de puertos y adaptadores de v2.0.0-inc2 con los módulos reales; las flechas muestran la dirección de la dependencia hacia el dominio (diagrama 72; elaboración propia)](../../.claude/diagramas/svg/72_s9_hexagonal_v20.svg)
 
@@ -896,7 +897,7 @@ La brecha territorial es amplia. Con seguimiento posible, el control a los 6 mes
 | Concepto | Muestra estratificada de 500 niños (semilla 2026) | Dataset completo |
 | --- | --- | --- |
 | Filas leídas | 12 486 | 12 486 |
-| Niños importados | 500 | 11 686 (800 omitidos por no tener ninguna evaluación válida) |
+| Registros de niño importados (uno por fila) | 500 | 11 686 (800 omitidos por no tener ninguna evaluación válida) |
 | Evaluaciones importadas (diagnóstico / 1 mes / 3 meses / 6 meses) | 1 290 (453 / 309 / 286 / 242) | 29 712 (10 577 / 7 584 / 6 174 / 5 377) |
 | Evaluaciones descartadas por falta de hemoglobina (mismo orden) | 47 / 26 / 18 / 15 | 1 909 / 794 / 662 / 405 (y 2 con hemoglobina fuera de rango) |
 | Concordancia de la severidad HIS con la del sistema | 64,1 % (288/449) | 65,8 % (6 916/10 503) |
@@ -1005,7 +1006,7 @@ Todos los p95 están por debajo del umbral de 2 s del criterio de la guía, pero
 
 Con el dataset completo (11 686 niños, SQLite, un usuario) la mediana es de 1,68 s para `GET /api/ninos` (4,5 MiB), 1,58 s para la agenda de la semana, 2,45 s para las alertas (22,2 MiB, sin paginar) y 1,68 s para el resumen; con la muestra de 500 niños todo responde en menos de 0,1 s. Las alertas superan el criterio de 2 s con esa escala: acción 10 del plan PDCA (paginación).
 
-**Disponibilidad (V5).** Una sonda `GET /api/salud` por segundo; disponibilidad = respuestas 200 en menos de 2 s ÷ sondas. Durante las corridas de carga (128 sondas por escenario de dos corridas; 256 en v1.0, que se midió dos veces) y en una sesión de 10 minutos por versión sin carga (600 sondas) fue de **100 %**: 856 de 856 sondas en las tres versiones. La medición cubre solo 10 minutos y una instancia local; no demuestra disponibilidad de producción.
+**Disponibilidad (V5).** Una sonda `GET /api/salud` por segundo; disponibilidad = respuestas 200 en menos de 2 s ÷ sondas. Durante las corridas de carga (128 sondas por escenario de dos corridas; 256 en v1.0, que se midió dos veces) y en una sesión de 10 minutos por versión sin carga (600 sondas) fue de **100 %**: 856 de 856 sondas en cada una de las tres versiones. La medición cubre solo 10 minutos y una instancia local; no demuestra disponibilidad de producción.
 
 ![Figura 49. Tiempo de respuesta p95 por endpoint de v1.0, v1.5 (rombo) y v2.0 con 50 usuarios, 60 s, SQLite y conjunto B150 (gráfico g3; elaboración propia)](metricas/graficos/g3_p95_endpoints.png)
 
@@ -1059,7 +1060,7 @@ La Tabla 40 compara todas las métricas del Inc. 1 (`v1.0-PMV`) con las del Inc.
 | **M3.1 estricta (solo brechas con puntaje 1,0)** | 16,7 % (1/6) | 16,7 % (1/6) | **0,0 %** (0,0 puntos) | Sin mejora: solo B1 está completa. Misma acción |
 | **M3.1 complementaria (brechas comprometidas)** | 100,0 % (B1) | 75,0 % (B1 y B2) | **−25,0 %** (−25,0 puntos) | El denominador crece al comprometerse B2, parcial (0,5). Falta el recordatorio a la familia (INC-4, acción 4) |
 | **Índice de Impacto en Valor (M3.2)** | 57,6 % | 100,0 % | **+73,5 %** (+42,36 puntos) | Mejora por V2 (0 → 100 %) y V3 (72,9 → 100 %); V1 ya era 100 %. No incluye tiempo de respuesta, disponibilidad ni satisfacción |
-| **p95 agregado, mix común (V4)** | 175 ms | 815 ms | **+365,7 %** (+640 ms) | **Regresión** con el mismo mix (610 ms en el hito v1.5), 0 fallos, todos bajo 2 s. La optimización de la acción 1 no la revirtió; causa sin perfilar |
+| **p95 agregado, mix común (V4)** | 175 ms (sesión del 16/10; 155 ms en la repetición del 17/10, que daría +425,8 %) | 815 ms | **+365,7 %** (+640 ms) | **Regresión** con el mismo mix (610 ms en el hito v1.5), 0 fallos, todos bajo 2 s. La optimización de la acción 1 no la revirtió; causa sin perfilar |
 | **Disponibilidad (V5)** | 100 % (856/856) | 100 % (856/856) | **0,0 %** | Sin cambios. Acción: medir en staging con PostgreSQL (acción 6) |
 
 La Figura 50 compara las seis métricas del Inc. 1 y del Inc. 2 con las metas de la guía.
@@ -1120,7 +1121,7 @@ Anexos A a F (los que pide la guía) y Anexo G (detalle complementario movido de
 
 ### Anexo A. Carpeta de capturas `evidencias_capturas/` organizada por RF
 
-La carpeta `entregables/semana-09/evidencias_capturas/` contiene las 44 capturas PNG (32 de las fichas de RF-01 a RF-09, 5 de regresión visual, 4 de arquitectura y 3 de datos reales), 2 archivos CSV descargados por el reporte, los resultados en JSON y el script reproducible. Las capturas de RF-01 a RF-07 usan datos sintéticos; las de RF-08, RF-09 y `datos_reales/` usan la muestra de 500 niños del dataset anonimizado de la DIRESA Junín (más registros de prueba de origen `SISTEMA`). El índice completo con descripción, URL, fecha-hora y resultado observado de cada captura está en [`evidencias_capturas/INDICE.md`](evidencias_capturas/INDICE.md). Cada captura lleva un pie de «Evidencia S9» inyectado por `capturar_evidencias.py`. La Tabla 42 lista los archivos por carpeta.
+La carpeta `entregables/semana-09/evidencias_capturas/` contiene las 45 capturas PNG (32 de las fichas de RF-01 a RF-09, 5 de regresión visual, 5 de arquitectura y 3 de datos reales), 2 archivos CSV descargados por el reporte, los resultados en JSON y el script reproducible. Las capturas de RF-01 a RF-07 usan datos sintéticos; las de RF-08, RF-09 y `datos_reales/` usan la muestra de 500 niños del dataset anonimizado de la DIRESA Junín (más registros de prueba de origen `SISTEMA`). El índice completo con descripción, URL, fecha-hora y resultado observado de cada captura está en [`evidencias_capturas/INDICE.md`](evidencias_capturas/INDICE.md). Cada captura lleva un pie de «Evidencia S9» inyectado por `capturar_evidencias.py`. La Tabla 42 lista los archivos por carpeta.
 
 **Tabla 42.** Archivos de `evidencias_capturas/` por carpeta.
 
@@ -1170,15 +1171,7 @@ git push origin feature/inc2-agenda-alertas
 git push origin v2.0-Inc2
 ```
 
-La carpeta `pmv_fastapi/datos/` (dataset de la DIRESA Junín, ya anonimizado en origen: sin nombres ni DNI utilizables) se versiona junto con el cierre porque la necesitan el importador y el análisis AS-IS (Anexo C). Después, el equipo puede abrir el pull request hacia `main`.
-
-**Lista previa a la exposición (para el equipo).**
-
-1. ~~Publicar la rama y la etiqueta del hito~~: hecho el 17/10/2026.
-2. ~~Capturar en GitHub `app/` de `v1.0-PMV` y `pmv_fastapi/app/` de `v1.5.0-inc2-avance`~~: hecho (Figuras 3 y 4).
-3. ~~Publicar el cierre (commit, etiqueta `v2.0-Inc2` y *push*)~~: hecho el 18/10/2026 (commit `fb26626`).
-4. ~~Capturar en GitHub `tree/v2.0-Inc2/pmv_fastapi/app`~~: hecho (Figura 4).
-5. Abrir el pull request de `feature/inc2-agenda-alertas` hacia `main` cuando el equipo lo revise.
+La carpeta `pmv_fastapi/datos/` (dataset de la DIRESA Junín: sin nombres; su columna `num_doc` viene truncada a seis cifras significativas en notación científica y no sirve como identificador, pero su origen y su posible relación con un documento de identidad no están verificados, y el equipo aún no ha confirmado con la DIRESA las condiciones de uso ni de publicación) se versiona junto con el cierre porque la necesitan el importador y el análisis AS-IS (Anexo C). Después, el equipo puede abrir el pull request hacia `main`.
 
 ### Anexo C. Reproducibilidad
 

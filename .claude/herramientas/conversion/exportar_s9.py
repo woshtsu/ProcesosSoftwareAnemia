@@ -50,16 +50,40 @@ def preparar() -> Path:
     texto = re.sub(r"\.\./\.\./(?:\.claude/)?diagramas/svg/([\w\-]+)\.svg", r"../../.claude/diagramas/png/\1.png", texto)
     texto = re.sub(r"metricas/graficos/([\w\-]+)\.svg", r"metricas/graficos/\1.png", texto)
     # Enlaces relativos a archivos (no imágenes) -> URL del repositorio en GitHub, para que funcionen en DOCX/PDF.
-    base = "https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/feature/inc2-agenda-alertas/"
+    base = "https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/"
 
     def _abs(m: re.Match) -> str:
         destino_rel = (ORIGEN.parent / m.group(2)).resolve().relative_to(RAIZ).as_posix()
         return f"[{m.group(1)}]({base}{destino_rel})"
 
+    # Imágenes dentro de celdas de tabla (Tabla 44, Anexo G.1): pandoc no genera pie de figura para
+    # imágenes en línea, así que se repite el texto alternativo (Figura NN. ...) bajo la imagen.
+    texto = "\n".join(
+        re.sub(r"!\[(Figura [^\]]+)\]\(([^)]+)\)", r"![\1](\2) *\1*", linea) if linea.startswith("|") else linea
+        for linea in texto.split("\n"))
     texto = re.sub(r"(?<!!)\[([^\]]+)\]\((?!https?:|#|mailto:)([^)\s]+)\)", _abs, texto)
     destino = ORIGEN.parent / f"_{NOMBRE}_exportar.md"
     destino.write_text(texto, encoding="utf-8")
     return destino
+
+
+def _metadatos_docx(ruta: Path) -> None:
+    """Fija título y autor en docProps/core.xml (pandoc no los escribe si el .md no tiene encabezado YAML)."""
+    import zipfile
+
+    tmp = ruta.with_suffix(".tmp")
+    with zipfile.ZipFile(ruta) as zin, zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.infolist():
+            datos = zin.read(item.filename)
+            if item.filename == "docProps/core.xml":
+                xml = datos.decode("utf-8")
+                xml = re.sub(r"<dc:title>.*?</dc:title>|<dc:creator>.*?</dc:creator>", "", xml, flags=re.S)
+                xml = xml.replace("</cp:coreProperties>",
+                                  f"<dc:title>{TITULO}</dc:title><dc:creator>Equipo Anemia Junín</dc:creator>"
+                                  "</cp:coreProperties>")
+                datos = xml.encode("utf-8")
+            zout.writestr(item, datos)
+    tmp.replace(ruta)
 
 
 def docx(md: Path) -> Path:
@@ -74,6 +98,7 @@ def docx(md: Path) -> Path:
          "--metadata", f"pagetitle={TITULO}", "--resource-path=."],
         cwd=md.parent, check=True)
     md_docx.unlink()
+    _metadatos_docx(out)
     return out
 
 

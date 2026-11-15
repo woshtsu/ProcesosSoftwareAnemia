@@ -140,7 +140,7 @@ Con `projectBaseDir: pmv_fastapi` y `sonar.sources=app`, el análisis cubriría 
 |---|---|
 | [`exportacion/sonarcloud_informe.html`](exportacion/sonarcloud_informe.html) | Informe navegable (abrir en el navegador). |
 | [`exportacion/sonarcloud_hallazgos.xlsx`](exportacion/sonarcloud_hallazgos.xlsx) | Hojas: Resumen, Hallazgos, Reglas, Guía de reglas, Código, Dependencias, Ubicaciones, Métricas, Análisis y Alcance. |
-| [`exportacion/sonarcloud_completo.json`](exportacion/sonarcloud_completo.json) | Respuesta íntegra de la API (129 hallazgos, reglas, contexto de código, métricas, Quality Gate y SCA). Sin tokens ni credenciales: se revisó antes de versionarla. |
+| [`exportacion/sonarcloud_completo.json`](exportacion/sonarcloud_completo.json) | Respuesta íntegra de la API (129 hallazgos, reglas, contexto de código, métricas, Quality Gate y SCA). Sin tokens ni credenciales: se revisó antes de versionarla. Anonimizada el 15/11/2026 (T-026): los correos de los autores de los commits se sustituyeron por `[correo omitido]`, igual que en el XLSX. |
 
 **Limitaciones de la exportación** (declaradas por la propia herramienta):
 - No incluye hallazgos de otras ramas ni de PR.

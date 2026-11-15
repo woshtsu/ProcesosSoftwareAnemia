@@ -19,14 +19,14 @@
 | --- | --- | --- |
 | 1 | Reemplazar cada cita autor-año del texto por su número entre corchetes, según la Tabla R2. | Parte 1.1 |
 | 1 | Reemplazar toda la lista de «REFERENCIAS BIBLIOGRÁFICAS» y su frase inicial. | Parte 1.2 |
-| 1 | Reemplazar la Tabla 39 del Anexo D (cotejo de referencias). | Parte 1.3 |
-| 2 | En 3.6, **mover** «3.6.1 Estructura de directorios de la arquitectura hexagonal en GitHub» al final del eje: pasa a ser 3.6.5, o al Anexo E si se prefiere. Así el eje empieza por la evaluación GQM. | — |
-| 2 | Renumerar «3.6.2 Evaluación GQM…» como 3.6.1. Después de su Tabla 23 y de los párrafos «Sensibilidades» y «Lo que GQM no pudo medir», **insertar** el subapartado de fichas por métrica. | Parte 2 |
-| 2 | En la Tabla 22, reemplazar la fila M2.1 y actualizar el párrafo «Lo que GQM no pudo medir». | Parte 2.1 |
+| 1 | Reemplazar la Tabla 42 del Anexo D (cotejo de referencias). | Parte 1.3 |
+| 2 | En 3.6, **mover** «3.6.1 Estructura de directorios de la arquitectura hexagonal en GitHub» al final del eje: pasa a ser 3.6.4 (así figura en el informe actual), o al Anexo E si se prefiere. Así el eje empieza por la evaluación GQM. | — |
+| 2 | Renumerar «3.6.2 Evaluación GQM…» como 3.6.1. Después de su Tabla 21 y de los párrafos «Sensibilidades» y «Lo que GQM no pudo medir», **insertar** el subapartado de fichas por métrica. | Parte 2 |
+| 2 | En la Tabla 20, reemplazar la fila M2.1 y actualizar el párrafo «Lo que GQM no pudo medir». | Parte 2.1 |
 | 3 | En 3.8, **insertar** antes de «Análisis de causa raíz y plan de mejora continua» el subapartado de evidencias por área de práctica. | Parte 3 |
-| 3 | En la Tabla 34, agregar el hallazgo H10. En la Tabla 36, actualizar el estado de la acción 3. | Parte 3.3 |
+| 3 | En la Tabla 37, agregar el hallazgo H10. En la Tabla 39, actualizar el estado de la acción 3. | Parte 3.3 |
 
-**Numeración.** Las figuras y tablas nuevas usan números provisionales (Figura G1…, Figura C1…, Tabla G1…). Al pegarlas en el Word hay que continuar la numeración del informe y actualizar los índices de tablas y figuras.
+**Numeración.** Las figuras y tablas de este documento ya usan la numeración del informe actual (`Informe_Integrador_S12_Anemia_Junin.md`). Los números provisionales de la primera versión (Figuras 9 a 34, Figuras 103 a 118 y Tablas G1, G2 y C1) corresponden a las Figuras 9 a 34 (G24 y G25 son las Figuras 33 y 32), a las Figuras 103 a 118 (C10 es la Figura 99) y a las Tablas 22, 23 y 36. La Tabla 39 del Anexo D es hoy la Tabla 42, la Tabla 34 de hallazgos CMMI es la 37, la Tabla 36 del plan de mejora es la 39 y el apartado 3.6.3 de las fichas es el 3.6.3 (corrección T-026, 15/11/2026).
 
 **Origen de las capturas.**
 
@@ -129,11 +129,11 @@ Lista numerada en el orden de la primera cita, según la norma ISO 690:2021. Las
 > - En [5], la editorial queda como «Pearson», que es la de la edición en inglés citada.
 > - El resto de datos son los mismos de la lista APA entregada.
 
-### 1.3 Anexo D: cotejo de referencias (reemplaza a la Tabla 39)
+### 1.3 Anexo D: cotejo de referencias (reemplaza a la Tabla 42)
 
 Cada número de la lista figura en el texto al menos una vez, y cada cita del texto figura en la lista.
 
-**Tabla 39.** Cotejo de referencias: número, fuente y secciones donde se cita.
+**Tabla 42.** Cotejo de referencias: número, fuente y secciones donde se cita.
 
 | N.° | Fuente | Origen | Secciones donde se cita |
 | :---: | --- | --- | --- |
@@ -161,14 +161,14 @@ Cada número de la lista figura en el texto al menos una vez, y cada cita del te
 
 ## PARTE 2. Observación 2: evidencia por cada métrica GQM
 
-### 2.1 Cambios en la Tabla 22 y en el párrafo «Lo que GQM no pudo medir»
+### 2.1 Cambios en la Tabla 20 y en el párrafo «Lo que GQM no pudo medir»
 
-**M2.1 en los incrementos 3 y 4.** Ya puede calcularse: los 9 requisitos de esos incrementos tienen ficha aprobada con capturas en el apartado 3.6.4.
+**M2.1 en los incrementos 3 y 4.** Ya puede calcularse: los 9 requisitos de esos incrementos tienen ficha aprobada con capturas en el apartado 3.6.3.
 
 - Incremento 3: HIST-3.1 (con su variante 3.1b), HIST-3.2, HIST-3.3, HIST-3.4 y VIS-3.5.
 - Incremento 4: HIST-4.1 a HIST-4.4.
 
-**Nueva fila M2.1 de la Tabla 22** (reemplaza a la actual):
+**Nueva fila M2.1 de la Tabla 20** (reemplaza a la actual):
 
 | Métrica | Inc. 1 `v1.0-PMV` | Inc. 2 `v2.0-Inc2` | Inc. 3 `v3.0-Inc3` | Inc. 4 `v4.0-Inc4` |
 | --- | :---: | :---: | :---: | :---: |
@@ -176,32 +176,32 @@ Cada número de la lista figura en el texto al menos una vez, y cada cita del te
 
 **Párrafo «Lo que GQM no pudo medir»** (reemplaza su primera oración):
 
-> M2.1 ya se calculó para los incrementos 3 y 4 con las fichas del apartado 3.6.4: 100 %, 18 de 18 requisitos con captura aprobada. M2.2 de esos incrementos sigue siendo indicativa (0,20 y 0,75 defectos por requisito), porque los hallazgos de la revisión independiente se corrigieron sin registrarse como DEF (Ficha GQM M2.2).
+> M2.1 ya se calculó para los incrementos 3 y 4 con las fichas del apartado 3.6.3: 100 %, 18 de 18 requisitos con captura aprobada. M2.2 de esos incrementos sigue siendo indicativa (0,20 y 0,75 defectos por requisito), porque los hallazgos de la revisión independiente se corrigieron sin registrarse como DEF (Ficha GQM M2.2).
 
-### 2.2 Texto de entrada del subapartado (insertar después de la Tabla 23)
+### 2.2 Texto de entrada del subapartado (insertar después de la Tabla 21)
 
 **Fichas de evaluación GQM con evidencia por métrica**
 
-Cada métrica de la Tabla 21 tiene una ficha con el mismo formato que las fichas de prueba funcional. La ficha da la meta y la pregunta, la fórmula con los datos y el resultado, y dos evidencias:
+Cada métrica de la Tabla 19 tiene una ficha con el mismo formato que las fichas de prueba funcional. La ficha da la meta y la pregunta, la fórmula con los datos y el resultado, y dos evidencias:
 
 - **Captura 1:** el software en uso, de cara al dominio: el registro de un niño, la agenda, las alertas, las visitas o la sincronización. Cuando existe, se usa la captura del entorno de producción (`softwareanemia.onrender.com`).
 - **Captura 2:** la ejecución reproducible de la medición, con el comando, la fecha y el resultado.
 
-La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
+La Tabla 22 resume la trazabilidad entre cada métrica y su evidencia.
 
-**Tabla G1.** Trazabilidad de cada métrica GQM con su evidencia (valores de `v4.0-Inc4`).
+**Tabla 22.** Trazabilidad de cada métrica GQM con su evidencia (valores de `v4.0-Inc4`).
 
 | Meta | Métrica | Valor Inc. 4 | Meta / criterio | Evidencia en el software (dominio) | Evidencia de la medición |
 | --- | --- | :---: | :---: | --- | --- |
-| G-01 | M1.1 Contaminación del dominio | 0,0 % (0/86) | 0 % | Figura G1 | Figura G2 |
-| G-01 | M1.2 Conformidad hexagonal | 100 % (5/5) | 100 % | Figura G3 | Figura G4 |
-| G-01 | M1.3 Violaciones de dependencia | 0 | 0 | Figura G5 | Figura G6 |
-| G-02 | M2.1 Cobertura funcional con capturas | 100 % (18/18) | 100 % | Tabla G2 y fichas 3.6.4 | Figura G7 |
-| G-02 | M2.2 Defectos por requisito | 0,75 (indicativo) | ≤ 0,2 (Inc. 2) | Figura G8 | Figura G9 |
-| G-03 | M3.1 Brechas AS-IS resueltas | 75,0 % (4,5/6) | ≥ 66,7 % (meta acumulada S9) | Figuras G10 a G17 | Figura G18 |
-| G-03 | M3.2 Índice de impacto en valor (V1, V2, V3) | 100 % | ≥ 80 % | Figuras G19 a G21 | Figura G22 |
-| G-03 | V4 Rendimiento p95 (50 usuarios) | 1 100 ms | < 800 ms | Figura G23 | Figura G24 |
-| G-03 | V5 Disponibilidad durante la carga | 100 % (64/64) | ≥ 99,5 % | Figura G25 | Figura G26 |
+| G-01 | M1.1 Contaminación del dominio | 0,0 % (0/86) | 0 % | Figura 9 | Figura 10 |
+| G-01 | M1.2 Conformidad hexagonal | 100 % (5/5) | 100 % | Figura 11 | Figura 12 |
+| G-01 | M1.3 Violaciones de dependencia | 0 | 0 | Figura 13 | Figura 14 |
+| G-02 | M2.1 Cobertura funcional con capturas | 100 % (18/18) | 100 % | Tabla 23 y fichas 3.6.3 | Figura 15 |
+| G-02 | M2.2 Defectos por requisito | 0,75 (indicativo) | ≤ 0,2 (Inc. 2) | Figura 16 | Figura 17 |
+| G-03 | M3.1 Brechas AS-IS resueltas | 75,0 % (4,5/6) | ≥ 66,7 % (meta acumulada S9) | Figuras 18 a 25 | Figura 26 |
+| G-03 | M3.2 Índice de impacto en valor (V1, V2, V3) | 100 % | ≥ 80 % | Figuras 27 a 29 | Figura 30 |
+| G-03 | V4 Rendimiento p95 (50 usuarios) | 1 100 ms | < 800 ms | Figura 31 | Figura 33 |
+| G-03 | V5 Disponibilidad durante la carga | 100 % (64/64) | ≥ 99,5 % | Figura 32 | Figura 34 |
 
 ---
 
@@ -215,7 +215,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
 
-- **Descripción:** **Figura G1.** Código del modelo de dominio (`app/domain/model/entidades.py`): las entidades del niño y de la evaluación solo importan la biblioteca estándar y otros módulos del dominio, sin FastAPI, SQLAlchemy ni Pydantic.
+- **Descripción:** **Figura 9.** Código del modelo de dominio (`app/domain/model/entidades.py`): las entidades del niño y de la evaluación solo importan la biblioteca estándar y otros módulos del dominio, sin FastAPI, SQLAlchemy ni Pydantic.
 
 ![Código del dominio sin importaciones de frameworks.](../../semana-10/evidencias/github/GH_dominio_entidades_imports.png)
 
@@ -223,7 +223,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
 
-- **Descripción:** **Figura G2.** Ejecución de `m11_contaminacion.py` del 06/11/2026 sobre el código actual: 0 importaciones externas en las 86 clases del dominio. El rótulo «v2.0» es la clave interna del script y apunta a `pmv_fastapi/` actual.
+- **Descripción:** **Figura 10.** Ejecución de `m11_contaminacion.py` del 06/11/2026 sobre el código actual: 0 importaciones externas en las 86 clases del dominio. El rótulo «v2.0» es la clave interna del script y apunta a `pmv_fastapi/` actual.
 
 ![Ejecución de M1.1.](img/G01_m11_contaminacion.png)
 
@@ -243,7 +243,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
 
-- **Descripción:** **Figura G3.** Matriz de importaciones entre capas del análisis AST: ninguna celda roja. El dominio no importa ninguna otra capa y cada adaptador solo depende de su puerto.
+- **Descripción:** **Figura 11.** Matriz de importaciones entre capas del análisis AST: ninguna celda roja. El dominio no importa ninguna otra capa y cada adaptador solo depende de su puerto.
 
 ![Matriz de importaciones por capa.](../../semana-10/evidencias/arquitectura/S_matriz_importaciones.png)
 
@@ -251,7 +251,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
 
-- **Descripción:** **Figura G4.** Ejecución de `m12_conformidad.py` del 06/11/2026: los 5 componentes son CONFORMES (M1.2 = 100 %), con la observación de la lectura ultra estricta.
+- **Descripción:** **Figura 12.** Ejecución de `m12_conformidad.py` del 06/11/2026: los 5 componentes son CONFORMES (M1.2 = 100 %), con la observación de la lectura ultra estricta.
 
 ![Ejecución de M1.2.](img/G02_m12_conformidad.png)
 
@@ -270,7 +270,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
 
-- **Descripción:** **Figura G5.** Pruebas de arquitectura (`tests/arquitectura/test_dependencias.py`) que hacen cumplir la regla en cada ejecución del CI: si el dominio importara un framework o un adaptador, la prueba fallaría.
+- **Descripción:** **Figura 13.** Pruebas de arquitectura (`tests/arquitectura/test_dependencias.py`) que hacen cumplir la regla en cada ejecución del CI: si el dominio importara un framework o un adaptador, la prueba fallaría.
 
 ![Pruebas de arquitectura que vigilan la regla de dependencia.](../../semana-10/evidencias/github/GH_pruebas_arquitectura.png)
 
@@ -278,7 +278,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
 
-- **Descripción:** **Figura G6.** Ejecución de `m13_acoplamiento.py` del 06/11/2026: el núcleo de dominio tiene Ce = 0 e I = 0,00, y hay 0 violaciones de la regla de dependencia.
+- **Descripción:** **Figura 14.** Ejecución de `m13_acoplamiento.py` del 06/11/2026: el núcleo de dominio tiene Ce = 0 e I = 0,00, y hay 0 violaciones de la regla de dependencia.
 
 ![Ejecución de M1.3.](img/G03_m13_acoplamiento.png)
 
@@ -298,7 +298,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
   - Acumulado: 18 ÷ 18 × 100 = **100 %**. La ficha AUTH es adicional y no cuenta como requisito del plan.
 - **META DE LA GUÍA:** 100 %.
 
-**Tabla G2.** Requisitos de cada incremento y ficha del apartado 3.6.4 que los evidencia.
+**Tabla 23.** Requisitos de cada incremento y ficha del apartado 3.6.3 que los evidencia.
 
 | Incremento | Requisitos | Fichas con captura de entrada y de resultado | Resultado |
 | --- | --- | --- | :---: |
@@ -310,7 +310,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA: EJECUCIÓN QUE RESPALDA LAS FICHAS ]**
 
-- **Descripción:** **Figura G7.** Las 28 pruebas E2E en el navegador (Playwright), ejecutadas el 06/11/2026: 28 aprobadas. Automatizan los escenarios de las fichas de los cuatro incrementos (CP-297 a CP-303 de Inc. 3, recordatorios y barreras de Inc. 4, agenda y alertas de Inc. 2).
+- **Descripción:** **Figura 15.** Las 28 pruebas E2E en el navegador (Playwright), ejecutadas el 06/11/2026: 28 aprobadas. Automatizan los escenarios de las fichas de los cuatro incrementos (CP-297 a CP-303 de Inc. 3, recordatorios y barreras de Inc. 4, agenda y alertas de Inc. 2).
   - En una primera corrida, CP-110 (agenda) excedió el tiempo de espera. Pasó 3 de 3 veces aislada y en la corrida completa de la figura. Es la inestabilidad ya registrada en H6.
 
 ![Ejecución de las pruebas E2E.](img/T02_e2e_playwright.png)
@@ -333,7 +333,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
 
-- **Descripción:** **Figura G8.** Defectos por requisito e incremento (DEF-01 a DEF-09 de los incrementos 1 y 2), según su tipo y momento de detección. Fuente: registro de defectos `pmv_fastapi/docs/evidencias/registro_defectos*.md`.
+- **Descripción:** **Figura 16.** Defectos por requisito e incremento (DEF-01 a DEF-09 de los incrementos 1 y 2), según su tipo y momento de detección. Fuente: registro de defectos `pmv_fastapi/docs/evidencias/registro_defectos*.md`.
 
 ![Defectos por requisito.](../../semana-09/metricas/graficos/g6_defectos.png)
 
@@ -341,7 +341,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
 
-- **Descripción:** **Figura G9.** Pruebas de regresión de los defectos de Inc. 3 e Inc. 4 hallados en la revisión independiente, todas aprobadas: CP-357 (webhook falla cerrado), CP-264b (sincronización concurrente), CP-382b (recordatorios concurrentes), CP-391b, CP-396 y CP-405.
+- **Descripción:** **Figura 17.** Pruebas de regresión de los defectos de Inc. 3 e Inc. 4 hallados en la revisión independiente, todas aprobadas: CP-357 (webhook falla cerrado), CP-264b (sincronización concurrente), CP-382b (recordatorios concurrentes), CP-391b, CP-396 y CP-405.
 
 ![Regresión de los defectos de Inc. 3 e Inc. 4.](../../semana-11/evidencias/CMMI04_regresion_revision_independiente.png)
 
@@ -363,11 +363,11 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ B1 Triple registro manual → registro único (puntaje 1,0) ]**
 
-- **Descripción:** **Figura G10.** Producción: formulario «Registrar niño y evaluación inicial» con la validación clínica en vista previa antes de guardar (Hb ajustada por altitud y clasificación). Una sola digitación alimenta el expediente, el seguimiento y el reporte.
+- **Descripción:** **Figura 18.** Producción: formulario «Registrar niño y evaluación inicial» con la validación clínica en vista previa antes de guardar (Hb ajustada por altitud y clasificación). Una sola digitación alimenta el expediente, el seguimiento y el reporte.
 
 ![B1: registro único en producción.](../evidencias/produccion/ROD_01_inc1_registro_clasificacion1.jpg)
 
-- **Descripción:** **Figura G11.** Producción: «Niños en seguimiento» con los registros del dataset DIRESA anonimizado. Es la misma información, sin volver a digitarla.
+- **Descripción:** **Figura 19.** Producción: «Niños en seguimiento» con los registros del dataset DIRESA anonimizado. Es la misma información, sin volver a digitarla.
 
 ![B1: seguimiento en producción.](../evidencias/produccion/PROD_03_inc3_sincronizacion_seguimiento.jpg)
 
@@ -375,11 +375,11 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ B2 Agenda sin recordatorios → agenda normativa y recordatorios (puntaje 1,0) ]**
 
-- **Descripción:** **Figura G12.** Producción: agenda del personal con los controles programados por la norma para cada niño.
+- **Descripción:** **Figura 20.** Producción: agenda del personal con los controles programados por la norma para cada niño.
 
 ![B2: agenda del personal en producción.](../evidencias/produccion/PROD_02_inc2_agendas.jpg)
 
-- **Descripción:** **Figura G13.** Recordatorios generados para los controles próximos, con estado SIMULADO: no sale ningún mensaje real hasta que Meta apruebe la plantilla de WhatsApp.
+- **Descripción:** **Figura 21.** Recordatorios generados para los controles próximos, con estado SIMULADO: no sale ningún mensaje real hasta que Meta apruebe la plantilla de WhatsApp.
 
 ![B2: recordatorios simulados.](../../semana-10/evidencias/software/HIST41_inc4_2_recordatorios_simulados_escritorio.png)
 
@@ -387,7 +387,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ B3 Barreras ocultas → registro de barreras y alerta crítica (puntaje 1,0) ]**
 
-- **Descripción:** **Figura G14.** Alertas: la tabla «Barreras críticas» muestra a los niños cuyas barreras de acceso ponen en riesgo su tratamiento, según `REGLAS_BARRERAS_V1`.
+- **Descripción:** **Figura 22.** Alertas: la tabla «Barreras críticas» muestra a los niños cuyas barreras de acceso ponen en riesgo su tratamiento, según `REGLAS_BARRERAS_V1`.
 
 ![B3: barreras críticas.](../../semana-10/evidencias/software/HIST44_inc4_1_alertas_barreras_criticas_escritorio.png)
 
@@ -395,7 +395,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ B4 Visita domiciliaria en papel → visitas priorizadas (puntaje 1,0) ]**
 
-- **Descripción:** **Figura G15.** Producción: «Visitas domiciliarias priorizadas» con puntaje explicable. Los niños con anemia severa y el control más vencido aparecen primero. A la derecha, la solicitud a la API de producción responde 200 OK.
+- **Descripción:** **Figura 23.** Producción: «Visitas domiciliarias priorizadas» con puntaje explicable. Los niños con anemia severa y el control más vencido aparecen primero. A la derecha, la solicitud a la API de producción responde 200 OK.
 
 ![B4: visitas priorizadas en producción.](../evidencias/produccion/PROD_03_inc3_sincronizacion_visitas.jpg)
 
@@ -407,11 +407,11 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ B6 Conectividad intermitente → registro sin conexión y sincronización (puntaje 0,5) ]**
 
-- **Descripción:** **Figura G16.** Producción, en un celular: sin conexión a internet, el registro de un niño queda «Pendiente de sincronizar» y guardado en el dispositivo.
+- **Descripción:** **Figura 24.** Producción, en un celular: sin conexión a internet, el registro de un niño queda «Pendiente de sincronizar» y guardado en el dispositivo.
 
 ![B6: registro sin conexión en el celular.](../evidencias/produccion/PROD_03_inc3_sincronizacion_celular1.jpg){width=35%}
 
-- **Descripción:** **Figura G17.** Producción, en el mismo celular: al volver la conexión, «De nuevo en línea», el indicador pasa a «Al día» y aparece «Sincronización: 1 aplicado(s)».
+- **Descripción:** **Figura 25.** Producción, en el mismo celular: al volver la conexión, «De nuevo en línea», el indicador pasa a «Al día» y aparece «Sincronización: 1 aplicado(s)».
 
 ![B6: sincronización al reconectar.](../evidencias/produccion/PROD_03_inc3_sincronizacion_celular3.jpg){width=35%}
 
@@ -420,7 +420,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA: EJECUCIÓN DE LA MEDICIÓN ]**
 
-- **Descripción:** **Figura G18.** Ejecución de `m31_brechas_v4.py` del 06/11/2026 y el detalle de su archivo de salida.
+- **Descripción:** **Figura 26.** Ejecución de `m31_brechas_v4.py` del 06/11/2026 y el detalle de su archivo de salida.
   - Puntaje por brecha y M3.1 = 75,0 %.
   - Rutas de la API presentes para B2, B3, B4 y B6.
   - Archivos de la cola sin conexión.
@@ -450,15 +450,15 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
 
-- **Descripción:** **Figura G19.** V1: producción, «Reporte del periodo». Cuenta los niños registrados y las evaluaciones del periodo (762 niños y 2 630 evaluaciones) a partir del registro único, sin volver a digitar.
+- **Descripción:** **Figura 27.** V1: producción, «Reporte del periodo». Cuenta los niños registrados y las evaluaciones del periodo (762 niños y 2 630 evaluaciones) a partir del registro único, sin volver a digitar.
 
 ![V1: resultado del registro único en producción.](../evidencias/produccion/ROD_01_inc1_registro_clasificacion2.jpg)
 
-- **Descripción:** **Figura G20.** V2: la agenda normativa se genera sola para cada niño activo. Expediente con sus controles cumplidos, pendientes y vencidos.
+- **Descripción:** **Figura 28.** V2: la agenda normativa se genera sola para cada niño activo. Expediente con sus controles cumplidos, pendientes y vencidos.
 
 ![V2: agenda generada en el expediente.](../../semana-10/evidencias/software/RF06_inc2_1_agenda_expediente_escritorio.png)
 
-- **Descripción:** **Figura G21.** V3: producción, «Alertas de controles vencidos» sobre el dataset DIRESA anonimizado, con prioridad, días de atraso y comunidad.
+- **Descripción:** **Figura 29.** V3: producción, «Alertas de controles vencidos» sobre el dataset DIRESA anonimizado, con prioridad, días de atraso y comunidad.
 
 ![V3: alertas de controles vencidos en producción.](../evidencias/produccion/PROD_02_inc2_alertas.jpg)
 
@@ -466,7 +466,7 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
 
-- **Descripción:** **Figura G22.** Resultado de `m32_valor.py`, corrida de la adenda S9 del 30/10/2026 sobre `v4.0-Inc4`. Muestra V1 (1 escritura; 4 vistas que reflejan el registro), V2 (140/140) y V3 (matriz de confusión con F1 = 1,0 y 476/476 controles).
+- **Descripción:** **Figura 30.** Resultado de `m32_valor.py`, corrida de la adenda S9 del 30/10/2026 sobre `v4.0-Inc4`. Muestra V1 (1 escritura; 4 vistas que reflejan el registro), V2 (140/140) y V3 (matriz de confusión con F1 = 1,0 y 476/476 controles).
 
 ![Resultado de M3.2.](img/G05_m32_valor.png)
 
@@ -487,11 +487,11 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 1: EVIDENCIA EN EL DOMINIO ]**
 
-- **Descripción:** **Figura G23.** Carga con Locust sobre las pantallas de los incrementos 3 y 4 (20 usuarios). La curva p95 queda por debajo del umbral de 800 ms con 20 usuarios. Con 50 usuarios lo supera (Figura G24).
+- **Descripción:** **Figura 31.** Carga con Locust sobre las pantallas de los incrementos 3 y 4 (20 usuarios). La curva p95 queda por debajo del umbral de 800 ms con 20 usuarios. Con 50 usuarios lo supera (Figura 33).
 
 ![Carga con Locust.](../../semana-10/evidencias/rendimiento/P_locust_B_inc3_inc4_20u.png)
 
-- **Descripción:** **Figura G25.** Producción: `GET /api/salud` responde «ok» y `/openapi.json` declara la versión 4.0.0-inc4.
+- **Descripción:** **Figura 32.** Producción: `GET /api/salud` responde «ok» y `/openapi.json` declara la versión 4.0.0-inc4.
 
 ![Salud y contrato en producción.](../evidencias/produccion/PROD_06_salud_openapi.jpg)
 
@@ -499,11 +499,11 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **[ CAPTURA 2: EJECUCIÓN DE LA MEDICIÓN ]**
 
-- **Descripción:** **Figura G24.** Corrida de carga de la adenda v4 (50 usuarios, 60 s): p95 por endpoint y agregado de 1 100 ms.
+- **Descripción:** **Figura 33.** Corrida de carga de la adenda v4 (50 usuarios, 60 s): p95 por endpoint y agregado de 1 100 ms.
 
 ![Carga de la adenda v4.](../../semana-11/evidencias/CMMI05_carga_p95_v4.png)
 
-- **Descripción:** **Figura G26.** Sonda de disponibilidad `GET /api/salud` cada segundo durante la carga: 64 de 64 respuestas, 100 %.
+- **Descripción:** **Figura 34.** Sonda de disponibilidad `GET /api/salud` cada segundo durante la carga: 64 de 64 respuestas, 100 %.
 
 ![Disponibilidad durante la carga.](img/G06_v5_disponibilidad.png)
 
@@ -519,22 +519,22 @@ La Tabla G1 resume la trazabilidad entre cada métrica y su evidencia.
 
 **Evidencias de los productos de trabajo por área de práctica**
 
-El nivel de cada área de la Tabla 33 se sostiene en productos de trabajo del proyecto. La Tabla C1 asocia cada área con sus artefactos (cronograma, estimación, diseño, pruebas, configuración y revisión) y las figuras que siguen los muestran.
+El nivel de cada área de la Tabla 35 se sostiene en productos de trabajo del proyecto. La Tabla 36 asocia cada área con sus artefactos (cronograma, estimación, diseño, pruebas, configuración y revisión) y las figuras que siguen los muestran.
 
-El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución técnica (TS)**, evidencia complementaria de que el diseño se documentó antes de construir. Sus artefactos sostienen a PLAN y VER.
+El diseño no es un área evaluada en la Tabla 35. Se presenta como **Solución técnica (TS)**, evidencia complementaria de que el diseño se documentó antes de construir. Sus artefactos sostienen a PLAN y VER.
 
-**Tabla C1.** Artefactos del proceso que sostienen el nivel de cada área de práctica.
+**Tabla 36.** Artefactos del proceso que sostienen el nivel de cada área de práctica.
 
 | Área | Nivel | Artefacto (producto de trabajo) | Evidencia |
 | --- | :---: | --- | --- |
-| ESTIM | 1 | Backlog estimado en puntos de historia (133 SP, *Planning Poker*) y estimación en horas del INC-1 (113 h-persona) | Figuras C1 y C2 |
-| PLAN | 2 | Cronograma de sprints e hitos H0 a H7; seguimiento del plan frente a lo real | Figuras C3 y C4 |
-| TS (complementaria) | — | 14 decisiones de arquitectura (ADR-001 a ADR-014), diagrama C4 de contenedores y modelo hexagonal | Figuras C5 a C7 |
-| VER | 2 | 660 pruebas automatizadas con 99,79 % de cobertura, 28 pruebas E2E, análisis estático Ruff y SonarCloud | Figuras C8 a C11 |
-| VAL | 1 | 20 fichas de prueba funcional con capturas (3.6.4) y ejecución en producción | Figuras C12 y C13 |
-| CM | 2 | Etiquetas por incremento, ramas `feature/*` y *pull requests* | Figuras C14 y C15 |
-| PQA | 1 | Verificaciones automáticas de la PR y revisión independiente con su regresión | Figuras C16 y C17 |
-| CAR | 1 | Hallazgos con causa raíz (Tablas 34 y 35) y nuevo análisis de SonarCloud | Figura C11 y Tabla 34 |
+| ESTIM | 1 | Backlog estimado en puntos de historia (133 SP, *Planning Poker*) y estimación en horas del INC-1 (113 h-persona) | Figuras 103 y 104 |
+| PLAN | 2 | Cronograma de sprints e hitos H0 a H7; seguimiento del plan frente a lo real | Figuras 105 y 106 |
+| TS (complementaria) | — | 14 decisiones de arquitectura (ADR-001 a ADR-014), diagrama C4 de contenedores y modelo hexagonal | Figuras 107 a 109 |
+| VER | 2 | 660 pruebas automatizadas con 99,79 % de cobertura, 28 pruebas E2E, análisis estático Ruff y SonarCloud | Figuras 110, 111, 99 y 112 |
+| VAL | 1 | 20 fichas de prueba funcional con capturas (3.6.3) y ejecución en producción | Figuras 113 y 114 |
+| CM | 2 | Etiquetas por incremento, ramas `feature/*` y *pull requests* | Figuras 115 y 116 |
+| PQA | 1 | Verificaciones automáticas de la PR y revisión independiente con su regresión | Figuras 117 y 118 |
+| CAR | 1 | Hallazgos con causa raíz (Tablas 37 y 38) y nuevo análisis de SonarCloud | Figura 112 y Tabla 37 |
 
 ---
 
@@ -546,7 +546,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 1: ARTEFACTO ]**
 
-- **Descripción:** **Figura C1.** Estimación del backlog en puntos de historia: 21 SP del INC-1 y 133 SP en total, con complejidad e incertidumbre por elemento. Fuente: entregable S3-4, sección 10.2.
+- **Descripción:** **Figura 103.** Estimación del backlog en puntos de historia: 21 SP del INC-1 y 133 SP en total, con complejidad e incertidumbre por elemento. Fuente: entregable S3-4, sección 10.2.
 
 ![Estimación del backlog en puntos de historia.](img/C01_estimacion_sp.png)
 
@@ -554,7 +554,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 2: ARTEFACTO ]**
 
-- **Descripción:** **Figura C2.** Diagrama de Gantt del Incremento 1: actividades A01 a A21 con su duración estimada, responsable y dependencias (28 días, igual a la ruta crítica).
+- **Descripción:** **Figura 104.** Diagrama de Gantt del Incremento 1: actividades A01 a A21 con su duración estimada, responsable y dependencias (28 días, igual a la ruta crítica).
 
 ![Gantt del Incremento 1.](../../../.claude/diagramas/png/32_s34_gantt_incremento1.png)
 
@@ -570,7 +570,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 1: ARTEFACTO ]**
 
-- **Descripción:** **Figura C3.** Cronograma de los sprints 1 a 8 y de los hitos H0 a H7, del 01/09 al 21/12/2026.
+- **Descripción:** **Figura 105.** Cronograma de los sprints 1 a 8 y de los hitos H0 a H7, del 01/09 al 21/12/2026.
 
 ![Cronograma de sprints e hitos.](../../../.claude/diagramas/png/33_s34_cronograma_sprints_hitos.png)
 
@@ -578,7 +578,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 2: SEGUIMIENTO ]**
 
-- **Descripción:** **Figura C4.** Hitos del plan frente a la fecha real del commit: H2 (+5 días), H3 (+4 días) y H4 (−10 días, se adelantó la entrega para recuperar el plan original).
+- **Descripción:** **Figura 106.** Hitos del plan frente a la fecha real del commit: H2 (+5 días), H3 (+4 días) y H4 (−10 días, se adelantó la entrega para recuperar el plan original).
 
 ![Hitos planificados frente a reales.](../../semana-11/evidencias/CMMI02_hitos_plan_vs_real.png)
 
@@ -594,7 +594,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 1: ARTEFACTO ]**
 
-- **Descripción:** **Figura C5.** Índice de los 14 ADR con su fecha de creación: cada incremento agregó las decisiones que lo justifican, por ejemplo la sincronización sin conexión (ADR-012), la visita priorizada (ADR-013) y los recordatorios y barreras (ADR-014).
+- **Descripción:** **Figura 107.** Índice de los 14 ADR con su fecha de creación: cada incremento agregó las decisiones que lo justifican, por ejemplo la sincronización sin conexión (ADR-012), la visita priorizada (ADR-013) y los recordatorios y barreras (ADR-014).
 
 ![Índice de decisiones de arquitectura.](img/C05_adr_indice.png)
 
@@ -602,11 +602,11 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 2: ARTEFACTO ]**
 
-- **Descripción:** **Figura C6.** Diagrama C4 de contenedores del PMV: PWA, API FastAPI y base PostgreSQL.
+- **Descripción:** **Figura 108.** Diagrama C4 de contenedores del PMV: PWA, API FastAPI y base PostgreSQL.
 
 ![Diagrama C4 de contenedores.](../../../pmv_fastapi/docs/diagramas/C4_contenedores.png)
 
-- **Descripción:** **Figura C7.** Modelo hexagonal del Incremento 2: dominio, puertos de entrada y salida, y adaptadores.
+- **Descripción:** **Figura 109.** Modelo hexagonal del Incremento 2: dominio, puertos de entrada y salida, y adaptadores.
 
 ![Modelo hexagonal.](../../../.claude/diagramas/png/72_s9_hexagonal_v20.png)
 
@@ -622,7 +622,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 1: EJECUCIÓN ]**
 
-- **Descripción:** **Figura C8.** 660 pruebas unitarias, de integración y de arquitectura aprobadas en 33 s, con 99,79 % de cobertura de líneas y ramas. Solo dos archivos de autenticación quedan por debajo del 100 %.
+- **Descripción:** **Figura 110.** 660 pruebas unitarias, de integración y de arquitectura aprobadas en 33 s, con 99,79 % de cobertura de líneas y ramas. Solo dos archivos de autenticación quedan por debajo del 100 %.
 
 ![Pruebas con cobertura.](img/T01_pytest_cobertura.png)
 
@@ -630,15 +630,15 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 2: EJECUCIÓN ]**
 
-- **Descripción:** **Figura C9.** Análisis estático con Ruff: «All checks passed!» y 142 archivos con el formato correcto.
+- **Descripción:** **Figura 111.** Análisis estático con Ruff: «All checks passed!» y 142 archivos con el formato correcto.
 
 ![Ruff.](img/T03_ruff.png)
 
-- **Descripción:** **Figura C10.** Ejecuciones del CI en `main`: la #16 (PR #8, incrementos 3 y 4) en verde; las anteriores (#6, #8, #9 y #10), en rojo. Esas fallas se corrigieron por H7.
+- **Descripción:** **Figura 99.** Ejecuciones del CI en `main`: la #16 (PR #8, incrementos 3 y 4) en verde; las anteriores (#6, #8, #9 y #10), en rojo. Esas fallas se corrigieron por H7.
 
 ![CI en verde.](../../semana-11/evidencias/github/GH_actions_run16_main.png)
 
-- **Descripción:** **Figura C11.** Primer análisis de SonarCloud del repositorio, del 05/11/2026: Quality Gate aprobado sobre el código nuevo y 129 hallazgos sobre el código completo.
+- **Descripción:** **Figura 112.** Primer análisis de SonarCloud del repositorio, del 05/11/2026: Quality Gate aprobado sobre el código nuevo y 129 hallazgos sobre el código completo.
   - El backend desplegado tiene 0 hallazgos.
   - Las 63 vulnerabilidades están en herramientas, scripts y el prototipo anterior.
   - Detalle en `entregables/semana-12/sonarcloud/ANALISIS_SONARCLOUD.md`.
@@ -646,19 +646,19 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 ![Resumen de SonarCloud.](img/C10_sonar_resumen.png)
 
 - **Archivos de imagen:** `entregables/semana-12/correcciones/img/T03_ruff.png`, `entregables/semana-11/evidencias/github/GH_actions_run16_main.png`, `entregables/semana-12/correcciones/img/C10_sonar_resumen.png`
-- Las pruebas E2E (28 aprobadas) están en la Figura G7.
+- Las pruebas E2E (28 aprobadas) están en la Figura 15.
 
 ---
 
 **FICHA DE EVIDENCIA CMMI POR ÁREA DE PRÁCTICA (VAL — VALIDACIÓN)**
 
 - **PRÁCTICA EVALUADA:** validar que el producto sirve en su entorno de uso.
-- **PRODUCTO DE TRABAJO:** 20 fichas de prueba funcional con capturas (3.6.4), producto desplegado en producción y video demostrativo.
+- **PRODUCTO DE TRABAJO:** 20 fichas de prueba funcional con capturas (3.6.3), producto desplegado en producción y video demostrativo.
 - **NIVEL:** 1 (Ejecutado). Falta la aceptación del usuario final: no hay acta, ni SUS, ni piloto en una posta (H3).
 
 **[ CAPTURA 1: EJECUCIÓN EN PRODUCCIÓN ]**
 
-- **Descripción:** **Figura C12.** Producción: inicio de sesión del personal en `softwareanemia.onrender.com`.
+- **Descripción:** **Figura 113.** Producción: inicio de sesión del personal en `softwareanemia.onrender.com`.
 
 ![Inicio de sesión en producción.](../evidencias/produccion/PROD_05_auth_inicio_sesion.jpg)
 
@@ -666,7 +666,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 2: ENTORNO DE PRODUCCIÓN ]**
 
-- **Descripción:** **Figura C13.** Panel de Render: el servicio `SoftwareAnemia` está en estado «Live» con el commit `9b71b6e` de `main`. El historial muestra los despliegues disparados por el CI («Deploy Hook») tras cada PR integrada.
+- **Descripción:** **Figura 114.** Panel de Render: el servicio `SoftwareAnemia` está en estado «Live» con el commit `9b71b6e` de `main`. El historial muestra los despliegues disparados por el CI («Deploy Hook») tras cada PR integrada.
 
 ![Render en estado Live.](../evidencias/produccion/PROD_07_render_panel_live.jpg)
 
@@ -682,7 +682,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 1: ARTEFACTO ]**
 
-- **Descripción:** **Figura C14.** Etiquetas del repositorio: `v1.0-PMV`, `v1.5.0-inc2-avance`, `v2.0-Inc2`, `v3.0-Inc3` y `v4.0-Inc4`.
+- **Descripción:** **Figura 115.** Etiquetas del repositorio: `v1.0-PMV`, `v1.5.0-inc2-avance`, `v2.0-Inc2`, `v3.0-Inc3` y `v4.0-Inc4`.
 
 ![Etiquetas del repositorio.](../../semana-10/evidencias/github/GH_etiquetas.png)
 
@@ -690,7 +690,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 2: CONTROL DE CAMBIOS ]**
 
-- **Descripción:** **Figura C15.** *Pull requests* cerradas: cada incremento y cada entregable entró a `main` por una PR desde su rama.
+- **Descripción:** **Figura 116.** *Pull requests* cerradas: cada incremento y cada entregable entró a `main` por una PR desde su rama.
 
 ![Pull requests cerradas.](../../semana-11/evidencias/github/GH_prs_cerradas.png)
 
@@ -706,7 +706,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 1: ARTEFACTO ]**
 
-- **Descripción:** **Figura C16.** PR #8 (incrementos 3 y 4) con sus verificaciones del CI en verde antes de integrarse.
+- **Descripción:** **Figura 117.** PR #8 (incrementos 3 y 4) con sus verificaciones del CI en verde antes de integrarse.
 
 ![Verificaciones de la PR #8.](../../semana-11/evidencias/github/GH_pr8_checks.png)
 
@@ -714,7 +714,7 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 **[ CAPTURA 2: SEGUIMIENTO DE NO CONFORMIDADES ]**
 
-- **Descripción:** **Figura C17.** La revisión independiente encontró cinco defectos. Las pruebas de regresión de los corregidos están aprobadas (seis casos).
+- **Descripción:** **Figura 118.** La revisión independiente encontró cinco defectos. Las pruebas de regresión de los corregidos están aprobadas (seis casos).
 
 ![Regresión de la revisión independiente.](../../semana-11/evidencias/CMMI04_regresion_revision_independiente.png)
 
@@ -724,19 +724,19 @@ El diseño no es un área evaluada en la Tabla 33. Se presenta como **Solución 
 
 ### 3.2 Párrafo de cierre del subapartado
 
-Con estas evidencias, ninguna área cambia de nivel respecto de la Tabla 33. Las de Nivel 1 (ESTIM, PQA, VAL y CAR) tienen productos de trabajo, pero les falta el registro sistemático que exige el Nivel 2: horas reales, aprobación registrada de las PR, aceptación del usuario y efecto medido de las mejoras.
+Con estas evidencias, ninguna área cambia de nivel respecto de la Tabla 35. Las de Nivel 1 (ESTIM, PQA, VAL y CAR) tienen productos de trabajo, pero les falta el registro sistemático que exige el Nivel 2: horas reales, aprobación registrada de las PR, aceptación del usuario y efecto medido de las mejoras.
 
 La novedad del 05/11/2026 es el primer análisis de SonarCloud. Avanza la acción 3 del plan de mejora, pero aún no se integra al CI.
 
-### 3.3 Cambios en las Tablas 34 y 36
+### 3.3 Cambios en las Tablas 37 y 39
 
-**Nueva fila de la Tabla 34:**
+**Nueva fila de la Tabla 37:**
 
 | ID | Área | Hallazgo | Causa raíz | Estado |
 | --- | --- | --- | --- | --- |
 | H10 | TS, PLAN | Los diagramas C4 y el modelo de datos son del PMV (01/10/2026). Las decisiones de los incrementos 2 a 4 están en los ADR, pero no en los diagramas. | La DoD exige un ADR por decisión, pero no actualizar los diagramas | Abierto |
 
-**Fila de la acción 3 en la Tabla 36** (reemplaza su estado):
+**Fila de la acción 3 en la Tabla 39** (reemplaza su estado):
 
 | N.° | Área | Acción de mejora | Métrica de verificación | Responsable | Fecha objetivo | Estado |
 | --- | --- | --- | --- | --- | --- | --- |
