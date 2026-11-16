@@ -1,7 +1,7 @@
 # T-026 — Checklist final de la revisión integral
 
 - **Revisor:** Jean Piero Huamani Rodriguez (`revisor-documental`), con Claude como asistente · **Fecha:** 15/11/2026 · **Rama:** `docs/t026-revision`
-- **Detalle:** [`HALLAZGOS.md`](HALLAZGOS.md) (117 hallazgos con capturas antes y después), [`requisitos/`](requisitos/) (cotejo `R-xx` por semana) y [`CRITERIOS.md`](CRITERIOS.md) (decisiones D-01 a D-10).
+- **Detalle:** [`HALLAZGOS.md`](HALLAZGOS.md) (118 hallazgos con capturas antes y después), [`requisitos/`](requisitos/) (cotejo `R-xx` por semana) y [`CRITERIOS.md`](CRITERIOS.md) (decisiones D-01 a D-10).
 - **Visto bueno ✅** solo si se cumplen todos los requisitos aplicables y no queda ningún hallazgo abierto. Un pendiente justificado cuenta como abierto.
 - **Verificación independiente:** un verificador que no participó en las correcciones comprobó los 82 hallazgos cerrados contra la fuente y el exportado; encontró 2 fallos (H-065 y H-105), que se corrigieron y se volvieron a comprobar.
 
@@ -19,9 +19,9 @@
 | S11 (incluye feria) | 24/35 → **26/35** | 7 / 10 | H-150 a H-156 | ❌ |
 | S12 | 27/41 → **29/41** | 4 / 9 | H-166, H-170, H-171, H-173 | ❌ |
 | S13 (lab 30, PDCA 5 aplicables, sílabo 2) | 18/37 → **23/37** | 6 / 15 | H-181, H-194, H-195, H-196, H-199, H-200; dominio 4 del PDCA en el paso final | ❌ |
-| Transversales | — | 1 / 2 | H-220 (rúbrica S16 vacía en `guias/`) | ❌ |
+| Transversales | — | 2 / 2 | H-220 (rúbrica S16 vacía en `guias/`), H-223 (PR #35 integrada sin aprobación) | ❌ |
 | S14 y S16 (análisis de brechas, sin entregable) | S14 cubre 15/43 y S16 2/15 | — | Ver [`requisitos/S14-S16.md`](requisitos/S14-S16.md) | n/a |
-| **Total S1-S13** | **237/342 (69,3 %) → 272/342 (79,5 %)** | **35 / 82** | | |
+| **Total S1-S13** | **237/342 (69,3 %) → 272/342 (79,5 %)** | **36 / 82** | | |
 
 ## Por exportado
 
@@ -46,13 +46,13 @@
 - Requisitos de las guías y del sílabo (S1-S13): **79,5 %** (272 de 342; al inicio 69,3 %).
 - Exportados con visto bueno: **10 de 12** (83,3 %).
 - **Global (requisitos + exportados): 79,7 %** (282 de 354).
-- Hallazgos: 117 en total; **82 cerrados** (70,1 %) y **35 pendientes justificados**.
+- Hallazgos: 118 en total; **82 cerrados** (69,5 %) y **36 pendientes justificados**.
 
 ## Qué falta para el 100 %
 
-1. **Paso final del dominio 4** (encargo T-026): aprobación de la PR por Porras V., capturas `web_m_pr_t026_aprobada.png` y `cli_m_pr_t026_aprobada.png`, actualización del PDCA y del informe del laboratorio 13 y regeneración de sus PDF.
+1. **Paso final del dominio 4** (encargo T-026): la PR #35 se integró el 16/11 sin revisión aprobada (H-223); falta la aprobación de la PR de continuación `docs/t026-paso-final` por Porras V., capturas `web_m_pr_t026_aprobada.png` y `cli_m_pr_t026_aprobada.png`, actualización del PDCA y del informe del laboratorio 13 y regeneración de sus PDF.
 2. **Decisiones del Leader:** columna `num_doc` del dataset en `pmv_fastapi/datos/` (H-100), regla `required_status_checks` en el ruleset (H-181), `--cov-fail-under=80` en `ci.yml` (H-199), adjuntos de las releases (H-195), rúbrica S16 vacía en `guias/` (H-220) y, si se quiere, reescribir el historial de Git para retirar los correos y la imagen PROD_05 originales.
 3. **Trabajo del equipo:** mediciones que no se hicieron (S10: WCAG 1.1.1, 500 usuarios, vulnerabilidad Alta abierta; S9: SUS e impacto), recorte y locución del video S12 (H-166), acta H1 y horas reales de S3-4, registro de defectos de S5, captura de GitHub Actions para S6, elementos de S11 (matriz de puertos, convención de commits, PDCA, bibliografía), criterio 4 de la autoevaluación del laboratorio (H-194).
 4. **Confirmaciones del docente:** «proyecto aplicado en la empresa» y extensión de S1, modalidad, NRC/sección de la carátula S12, evaluación del proceso en S10, rúbricas del aula virtual.
 
-**Revisión al 100 %: no.** Todo lo que podía corregirse sin decisión del equipo, del docente o del Leader está corregido y verificado; quedan 35 pendientes justificados y el paso final del dominio 4, que depende de la aprobación de la PR por Porras V.
+**Revisión al 100 %: no.** Todo lo que podía corregirse sin decisión del equipo, del docente o del Leader está corregido y verificado; quedan 36 pendientes justificados y el paso final del dominio 4, que depende de que Porras V. apruebe la PR de continuación `docs/t026-paso-final`.
