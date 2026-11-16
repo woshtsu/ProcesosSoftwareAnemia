@@ -27,6 +27,15 @@
 - **Evidencia después:** ![H-222 después](../capturas/H-222_despues.png)
 - **Estado:** Cerrado
 
+### H-223 · alta · La PR #35 de esta revisión se integró sin revisión aprobada
+- **Archivo y ubicación:** GitHub, PR #35 (`docs/t026-revision` → `develop`), integrada el 16/11/2026 a las 16:25 (hora de Lima) por woshtsu (commit cdf7e04)
+- **Requisito afectado:** encargo T-026, «Paso final» y dominio 4 del PDCA (revisión por pares); guía del laboratorio SCM (protección de ramas con aprobación obligatoria)
+- **Descripción:** la PR tenía revisión pedida a woshtsu, pero se integró sin ninguna revisión «Approved» (la API devuelve 0 revisiones), usando la excepción del ruleset de `develop`. Por eso no existe todavía la evidencia de una PR aprobada por un par que el encargo pide capturar.
+- **Evidencia antes:** ![H-223 antes](../capturas/H-223_antes.png)
+- **Corrección aplicada:** se abre la PR de continuación `docs/t026-paso-final` → `develop` con revisión pedida a Porras V. Cuando la apruebe con «Review changes → Approve», en esa misma PR se suben las capturas de la aprobación, el dominio 4 del PDCA, el informe del laboratorio 13 y sus PDF, y después se integra sin excepción de administrador.
+- **Evidencia después:** — (pendiente de la aprobación)
+- **Estado:** Pendiente justificado: aprobación de la PR de continuación por Porras V.
+
 ### S14 y S16: análisis de brechas (sin entregable que corregir)
 
 El encargo pide listar qué falta, sin crear los entregables. El detalle está en [`requisitos/S14-S16.md`](../requisitos/S14-S16.md): S14 cubre por completo 15 de 43 requisitos (15 en parte, 13 faltan) y S16 cubre 2 de 15 (7 en parte). No se registran como hallazgos porque son trabajo futuro, no defectos.

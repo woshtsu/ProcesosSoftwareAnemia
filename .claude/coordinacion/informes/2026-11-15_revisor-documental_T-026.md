@@ -3,11 +3,11 @@
 - **Agente:** revisor-documental (Jean Piero Huamani Rodriguez, con Claude como asistente)
 - **Fecha:** 2026-11-15
 - **Tareas / solicitudes atendidas:** T-026 (encargo `.claude/intercambios/T-026_porras_revision-entregables.md`)
-- **Estado final:** PARCIAL — EN REVISIÓN: revisión y correcciones terminadas; falta la aprobación de la PR por Porras V. y el «Paso final» del dominio 4 del PDCA.
+- **Estado final:** PARCIAL — EN REVISIÓN: revisión y correcciones integradas en `develop` por la PR #35 (16/11/2026, cdf7e04), pero sin revisión aprobada (H-223). El «Paso final» del dominio 4 se hará en la PR de continuación `docs/t026-paso-final`, cuando Porras V. la apruebe.
 
 ## Resumen
 
-Se cotejaron las guías de S1 a S13 y el sílabo contra los entregables y los exportados, y se analizaron las brechas de S14 y S16. Se registraron 117 hallazgos con capturas antes y después: 82 cerrados y 35 pendientes justificados. El hallazgo principal fue que develop tenía el borrador del integrador S6 del 25/09: el cierre entregado el 02/10 (informe, presentación, figuras 50-68 y exportados) estaba en la rama `feature/s6-integrador-final`, borrada de GitHub en T-025, y se restauró desde la copia local del revisor (H-080 y H-081). Se regeneraron los exportados de S5, S6, S9, S11, la feria, S12 y S13, y se crearon los que faltaban (S5 derivado del `.md`, informe S12). Los requisitos cumplidos pasan del 69,3 % al 79,5 % (global con exportados: 79,7 %). Un verificador independiente comprobó los 82 cerrados; los 2 fallos que encontró se corrigieron.
+Se cotejaron las guías de S1 a S13 y el sílabo contra los entregables y los exportados, y se analizaron las brechas de S14 y S16. Se registraron 118 hallazgos con capturas antes y después: 82 cerrados y 36 pendientes justificados (H-223 se añadió el 16/11 al integrarse la PR #35 sin aprobación). El hallazgo principal fue que develop tenía el borrador del integrador S6 del 25/09: el cierre entregado el 02/10 (informe, presentación, figuras 50-68 y exportados) estaba en la rama `feature/s6-integrador-final`, borrada de GitHub en T-025, y se restauró desde la copia local del revisor (H-080 y H-081). Se regeneraron los exportados de S5, S6, S9, S11, la feria, S12 y S13, y se crearon los que faltaban (S5 derivado del `.md`, informe S12). Los requisitos cumplidos pasan del 69,3 % al 79,5 % (global con exportados: 79,7 %). Un verificador independiente comprobó los 82 cerrados; los 2 fallos que encontró se corrigieron.
 
 ## Archivos creados / modificados / movidos
 
