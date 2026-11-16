@@ -32,9 +32,9 @@
 - **Requisito afectado:** encargo T-026, «Paso final» y dominio 4 del PDCA (revisión por pares); guía del laboratorio SCM (protección de ramas con aprobación obligatoria)
 - **Descripción:** la PR tenía revisión pedida a woshtsu, pero se integró sin ninguna revisión «Approved» (la API devuelve 0 revisiones), usando la excepción del ruleset de `develop`. Por eso no existe todavía la evidencia de una PR aprobada por un par que el encargo pide capturar.
 - **Evidencia antes:** ![H-223 antes](../capturas/H-223_antes.png)
-- **Corrección aplicada:** se abre la PR de continuación `docs/t026-paso-final` → `develop` con revisión pedida a Porras V. Cuando la apruebe con «Review changes → Approve», en esa misma PR se suben las capturas de la aprobación, el dominio 4 del PDCA, el informe del laboratorio 13 y sus PDF, y después se integra sin excepción de administrador.
-- **Evidencia después:** — (pendiente de la aprobación)
-- **Estado:** Pendiente justificado: aprobación de la PR de continuación por Porras V.
+- **Corrección aplicada:** se abrió la PR de continuación #36 (`docs/t026-paso-final` → `develop`) con revisión pedida a Porras V. La aprobó el 16/11/2026 a las 17:13 (hora de Lima) y la integró 7 segundos después con esa aprobación (commit bf1b95e), sin excepción de administrador. Como se integró antes de subir el paso final, las capturas, el dominio 4 del PDCA, el informe del laboratorio 13 y sus PDF van en la PR `docs/t026-dominio4-evidencia`.
+- **Evidencia después:** ![H-223 después](../capturas/H-223_despues.png)
+- **Estado:** Cerrado
 
 ### S14 y S16: análisis de brechas (sin entregable que corregir)
 

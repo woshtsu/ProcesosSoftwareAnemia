@@ -70,4 +70,5 @@ Archivo vivo para continuar el trabajo en un chat nuevo. Actualizarlo durante la
 - **Siguiente paso:** push de la rama y PR a develop con revisión de Porras V. (woshtsu). Cuando la apruebe: paso final del dominio 4 (capturas de aprobación, PDCA, informe del laboratorio 13 y PDF) en la misma PR y aviso a Porras V. para integrar.
 - 16/11/2026: la rama se subió y se abrió la PR #35, con revisión pedida a woshtsu. woshtsu la integró a las 16:25 sin aprobarla (0 revisiones; H-223).
 - **Siguiente paso:** PR de continuación `docs/t026-paso-final` → develop, con revisión de Porras V. Cuando la apruebe con «Review changes → Approve»: capturas, dominio 4 del PDCA, informe del laboratorio 13 y sus PDF en esa misma PR; después la integra él, sin excepción de administrador.
+- 16/11/2026, 17:13: Porras V. aprobó la PR #36 y la integró con esa aprobación (bf1b95e). Paso final del dominio 4 hecho en la PR `docs/t026-dominio4-evidencia`: capturas de la aprobación, PDCA (dominio 4 «Verificado»), informe del laboratorio 13 y PDF. T-026 queda HECHO; el detalle está en `.claude/coordinacion/informes/2026-11-15_revisor-documental_T-026.md`.
 
