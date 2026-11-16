@@ -1,0 +1,48 @@
+@startuml 52_s6_c4_contexto_fastapi
+' Fuente original: pmv_fastapi/docs/diagramas/C4_contexto.puml
+' Adaptada a diagramas/src/ sin includes remotos
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 11
+
+title C4 · Nivel 1 — Diagrama de Contexto del PMV FastAPI
+
+actor "Personal de salud\n(Enfermera/técnica)" as enf #DCE9F7
+actor "Agente comunitario\nde salud" as acs #F0F0F0;line.dashed
+actor "Gestión territorial\n(Microred)" as mic #DCE9F7
+
+rectangle "Sistema de Detección Temprana de Anemia Infantil" as sis #EAF2FB
+note right of sis
+  Registro nominal, validación clínica,
+  seguimiento y reportes.
+  PMV = Incremento 1
+end note
+
+rectangle "HIS / MINSA" as his #FFFFFF;line.dashed
+note right of his
+  Sistema oficial de registro
+  (futuro, INC-1 fuera de alcance)
+end note
+
+rectangle "WhatsApp Business API" as wa #FFFFFF;line.dashed
+note right of wa
+  Recordatorios a familias (INC-4)
+end note
+
+actor "Familia / tutor" as fam #F0F0F0;line.dashed
+
+enf --> sis : "Registra y consulta\nexpedientes (HTTPS)"
+acs -[dashed]-> sis : "Registra visitas\n(INC-3, offline)"
+mic --> sis : "Consulta reportes\ne indicadores (HTTPS)"
+
+sis -[dashed]-> his : "Exporta/consulta\ndatos autorizados\n(API futura)"
+sis -[dashed]-> wa : "Envía recordatorios\n(INC-4, HTTPS)"
+wa -[dashed]-> fam : "Mensajes\nWhatsApp"
+
+note bottom of sis
+  Trazo continuo: entregado en INC-1 (v1.0-PMV). Discontinuo: no entregado.
+  Fuente: elaboración propia (§3.2 del informe).
+end note
+
+@enduml

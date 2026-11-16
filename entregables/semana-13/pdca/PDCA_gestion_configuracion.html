@@ -58,12 +58,12 @@
 </div>
 
 <h2>1. Diagnóstico del proceso de gestión de la configuración (PLAN)</h2>
-<p>El 06/11/2026 el equipo introdujo los controles de la Unidad IV (plantillas de RFC y de PR, <code>CONTRIBUTING.md</code>, rama <code>develop</code>, cinco <i>releases</i>). La auditoría del 14/11 (tarde) identificó brechas que fueron atendidas con acciones correctivas esa misma noche (14/11, noche). La tabla compara el proceso en los tres momentos. Todos los valores salen del repositorio y se reproducen con <code>entregables/semana-13/laboratorio-scm/evidencias/salidas_cli.json</code>.</p>
+<p>El 06/11/2026 el equipo introdujo los controles de la Unidad IV (plantillas de RFC y de PR, <code>CONTRIBUTING.md</code>, rama <code>develop</code>, cinco <i>releases</i>). La auditoría del 14/11 (tarde) identificó brechas que fueron atendidas con acciones correctivas esa misma noche (14/11, noche). La tabla compara el proceso en los tres momentos. Todos los valores salen del repositorio: los del corte de la tarde se reproducen con <code>entregables/semana-13/laboratorio-scm/evidencias/antes_2026-11-14_tarde/salidas_cli.json</code> y los de la noche con <code>entregables/semana-13/laboratorio-scm/evidencias/salidas_cli.json</code>.</p>
 <table>
 <thead><tr><th style="width:23%">Indicador del proceso SCM</th><th>Antes del 06/11/2026</th><th>06/11 al 14/11 (tarde)</th><th>Al 14/11 (noche)</th><th>Meta Sprint 6 (23/11)</th><th style="width:24%">Cómo se mide · evidencia</th></tr></thead>
 <tbody>
 <tr><td>Integraciones en <code>main</code> que entraron por <i>pull request</i></td><td class="num">9 / 19 (47 %)</td><td class="num">9 / 9 (100 %)</td><td class="num"><b>9 / 9 (100 %)</b></td><td class="num">100 %</td><td>Historial de primer padre de <code>main</code> · E-6, E-7</td></tr>
-<tr><td>Commits con formato convencional <code>tipo(ámbito): descripción</code></td><td class="num">13 / 60 (22 %)</td><td class="num">20 / 24 (83 %)</td><td class="num"><b>20 / 24 (83 %)</b><sup>*</sup></td><td class="num">≥ 95 %</td><td><code>git log --all --no-merges</code> · E-7</td></tr>
+<tr><td>Commits con formato convencional <code>tipo(ámbito): descripción</code></td><td class="num">13 / 60 (22 %)</td><td class="num">20 / 24 (83 %)</td><td class="num"><b>9 / 11 (82 %)</b><sup>*</sup></td><td class="num">≥ 95 %</td><td><code>git log --all --no-merges</code> · E-7</td></tr>
 <tr><td>Cambios registrados como solicitud de cambio (RFC) en Issues</td><td class="num">0</td><td class="num">7 RFC (#14 a #20)</td><td class="num"><b>7 RFC (#14 a #20)</b></td><td class="num">1 RFC por cambio</td><td><code>gh issue list --label change-request</code> · E-1, E-2</td></tr>
 <tr><td>RFC evaluadas (etiqueta <code>aprobado</code> o <code>implementado</code>)</td><td class="num">—</td><td class="num">0 / 7 (0 %)</td><td class="num"><b>6 / 6 (100 %)</b><sup>**</sup></td><td class="num">100 %</td><td>Etiquetas de cada RFC · E-1, E-18</td></tr>
 <tr><td>PR integradas vinculadas a su RFC (<code>Closes #n</code>)</td><td class="num">0 / 10</td><td class="num">1 / 9 (11 %)</td><td class="num"><b>1 / 11 (9 %)</b></td><td class="num">100 %</td><td>Cuerpo de cada PR · E-3, E-5, E-19</td></tr>
@@ -75,7 +75,7 @@
 <tr><td><i>Releases</i> con notas / con artefactos adjuntos</td><td class="num">0 / 0</td><td class="num">5 con notas / 0 con artefactos</td><td class="num"><b>6 con notas / 2 con artefactos</b></td><td class="num">Artefacto en cada <i>release</i></td><td>API de releases · E-15, E-20, E-21</td></tr>
 </tbody>
 </table>
-<p class="nota"><sup>*</sup> Medición oficial del hallazgo: 20/24 (83 %) y 13/60 (22 %). Tras la limpieza de 17 ramas remotas, <code>git log --all</code> ya no incluye los commits de esas ramas y la consulta da 9/11 (82 %) y 13/53 (25 %).<br>
+<p class="nota"><sup>*</sup> La columna de la tarde (20/24 y 13/60) es la medición oficial del hallazgo. Tras la limpieza de 17 ramas remotas, <code>git log --all</code> ya no incluye los commits de esas ramas y la salida de la noche da 9/11 (82 %) desde el 06/11 y 13/53 (25 %) antes de esa fecha.<br>
 <sup>**</sup> 6 de 6 evaluadas sin contar la RFC #16 (duplicado cerrado): 3 aprobadas (#18, #19, #20) por el Leader y 3 implementadas (#14, #15, #17).</p>
 <p><b>Lectura.</b> Los controles del 06/11 consolidaron las PR y la convención de commits en <code>main</code>. Las acciones nocturnas del 14/11 cerraron los principales huecos de control formal: el ruleset <code>ownermerge</code> quedó activo para <code>main</code> y <code>develop</code> (con excepción de administrador para contingencias), las 6 RFC válidas fueron evaluadas formalmente (3 aprobadas y 3 implementadas), se sincronizó <code>develop</code> (PR #28) y se integró T-024 (PR #29) por <code>develop</code>, se eliminaron 17 ramas remotas respaldando <code>docs/s12-correcciones</code> en una etiqueta, y se publicó <code>v4.0.1</code> con artefactos adjuntos junto a <code>v4.0-Inc4</code>. El punto pendiente clave sigue siendo la <b>revisión por pares</b>: las PR #28 y #29 se integraron usando la excepción de administrador sin aprobación formal de un par (0 de 11 post-06/11); el ruleset ahora lo exige como política del repositorio.</p>
 
@@ -127,7 +127,7 @@
 </tr>
 <tr>
   <td class="n">4</td><td class="dom">Revisión de código por pares</td>
-  <td>Solo 1 de 21 PR integradas tiene «Approved» (PR #9); ninguna posterior al 06/11. Las PR #28 y #29 se integraron con la excepción de administrador sin aprobación de par.<span class="ev">E-3, E-5, E-19</span></td>
+  <td>Solo 1 de 19 PR integradas al corte de la tarde tiene «Approved» (PR #9); ninguna posterior al 06/11 (en la auditoría de la noche, 1 de 21). Las PR #28 y #29 se integraron con la excepción de administrador sin aprobación de par.<span class="ev">E-3, E-5, E-19</span></td>
   <td>Asignar revisor cruzado obligatorio en cada PR: Huamani R. revisa las de Porras V. y Auqui H.; Porras V. revisa las de Huamani R., usando «Approve» en <i>Files changed</i>.</td>
   <td>Huamani R. (QA Lead)</td>
   <td class="f">17/11/2026</td>
@@ -178,7 +178,7 @@
 <tr>
   <td class="n">9</td><td class="dom">Construcción del sistema e integración continua</td>
   <td>El pipeline valida calidad, pero PR #6 y #7 se integraron con CI rojo; PR #29 falló inicialmente por Ruff y SonarCloud marcó duplicación (4,4 %).<span class="ev">E-11, E-12, E-13</span></td>
-  <td>En PR #29 se corrigió formato Ruff en <code>importador_diresa/config.py</code> (commit <code>style(T-024)</code>) pasando a verde antes de integrar. Se actualizan dependencias Node.js a versión 24.</td>
+  <td>En PR #29 se corrigió formato Ruff en <code>importador_diresa/config.py</code> (commit <code>style(T-024)</code>) pasando a verde antes de integrar. Los avisos de «Node.js 20 está obsoleto» del CI se refieren al entorno de ejecución de GitHub Actions (forzado a Node.js 24), no al proyecto, que usa Python.</td>
   <td>Auqui H.</td>
   <td class="f">14/11/2026</td>
   <td>Ejecución de PR #29 verde antes del merge (run 43675249154); ejecuciones de <code>main</code> con calidad verde 7/7 (E-12).</td>
@@ -198,7 +198,7 @@
 <tr>
   <td class="n">11</td><td class="dom">Gestión de versiones y entregas</td>
   <td>Al corte de la tarde había 5 releases con 0 artefactos adjuntos y el hotfix de la PR #22 (<code>e6d8c4c</code>) no tenía versión semántica.<span class="ev">E-14, E-15</span></td>
-  <td>Publicada release <code>v4.0.1</code> (hotfix de PR #22) con <code>reportes-calidad-v4.0.1.zip</code> (690 pruebas, 99,46 % cobertura); adjuntado <code>reportes-calidad-v4.0-Inc4.zip</code> (660 pruebas, 99,88 %) a <code>v4.0-Inc4</code>. Falta publicar imagen Docker.</td>
+  <td>Publicada release <code>v4.0.1</code> (hotfix de PR #22) con <code>reportes-calidad-v4.0.1.zip</code> (690 pruebas, 99,46 % cobertura); adjuntado <code>reportes-calidad-v4.0-Inc4.zip</code> (660 pruebas, 99,88 % de líneas; 99,79 % con ramas) a <code>v4.0-Inc4</code>. Falta publicar imagen Docker.</td>
   <td>Huamani R. (QA Lead)</td>
   <td class="f">14/11/2026</td>
   <td>API de releases muestra 6 releases, 2 con artefactos adjuntos (E-20, E-21); <code>gh release list</code> muestra <code>v4.0.1</code> Latest.</td>
@@ -243,6 +243,7 @@
 <tr><td><span class="est Cerrado">Cerrado</span></td><td>Hallazgo solucionado y estandarizado en una regla o flujo automático. Ninguno al 14/11/2026 (noche): los estándares requieren un ciclo completo con aprobación de pares y despliegue sin bypass.</td></tr>
 </tbody>
 </table>
+<p class="nota">Adaptación declarada: los cuatro estados y su significado son los de la guía (Abierto, En proceso, Verificado, Cerrado). El equipo precisó las descripciones: «Abierto» incluye la acción que aún no completó un ciclo formal, «Verificado» exige evidencia contrastada del repositorio y «Cerrado» exige además que la mejora quede estandarizada en una regla o flujo automático.</p>
 </div>
 
 <h2 class="salto">Anexo. Evidencias del repositorio en la suite de GitHub</h2>

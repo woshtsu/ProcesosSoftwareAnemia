@@ -13,6 +13,7 @@
 | **Proyecto de asignatura** | Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín |
 | **Docente** | Guevara Jimenez, Jorge Alfredo |
 | **Semana y guía** | Semana 11: «Evaluación de proceso y producto de software mediante el modelo CMMI (CMMI-DEV)» (`guias/semana-11.docx`) |
+| **Unidad del sílabo** | Unidad III — Evolución de los procesos y actividades de software |
 | **Fecha** | 30/10/2026 (entrega original) · **Act.** 30/10/2026: v4.0-Inc4 |
 | **Versiones evaluadas** | `v1.0-PMV` (Inc. 1), `v1.5.0-inc2-avance` (50 % del Inc. 2), `v2.0-Inc2` (Inc. 2, `fb26626`), **Act.** `v3.0-Inc3` (Inc. 3, `e920820`) y `v4.0-Inc4` (Inc. 4, `e6886e2`). `main` incorporó la PR #8 como un solo commit *squash* (`c870a7e`), de modo que `e920820` a `e6886e2` (donde apuntan las etiquetas) no están en su historial (Figura 58); el informe S11 original evaluó `main` en `72e7025` |
 | **Código verificado (Act.)** | Rama `docs/s12-integrador`, versión `4.0.0-inc4`: `pmv_fastapi/` y `.github/` no cambian entre `e6886e2` y la punta de la rama (`51ca4fc`), de modo que las mediciones de S10 y de este informe corresponden al mismo código que `main` |
@@ -26,7 +27,8 @@
 | 1 | Porras Veli, Ricardo | 76659572 | Ingeniero de Proceso |
 | 2 | Auqui Huincho, Tania Tifani | 75280128 | Ingeniera de Desarrollo y Prototipado |
 | 3 | Huamani Rodriguez, Jean Piero | 72156889 | Ingeniero de Calidad y Mejora del Proceso (QA Lead) |
-| 4 | Amaru — Claude, asistente de IA (Anthropic) | — | Asistente de IA: apoyo en desarrollo, pruebas automatizadas, evidencias y documentación técnica, bajo supervisión del equipo |
+
+**Asistencia de IA (declarada).** Amaru — Claude, asistente de IA (Anthropic), apoyó el desarrollo, las pruebas automatizadas, las evidencias y la documentación técnica, bajo supervisión del equipo. No es integrante del equipo ni figura en la tabla de integrantes.
 
 **Índice**
 
@@ -174,7 +176,7 @@ Cada producto se contrastó con su ubicación real en el repositorio. La columna
 | 9 | Configuración | Artefacto de despliegue (imagen Docker) | `pmv_fastapi/Dockerfile`, `docker-compose.yml`, job `imagen` de `.github/workflows/ci.yml` | Imagen que se construye sin errores | Pendiente de verificación | **Aprobado**: el job `imagen` terminó en verde en 22 s en la ejecución #14 de la rama, que construyó la imagen con `docker build` (Figura 49) |
 | 10 | Despliegue | Servicio en producción y guía de despliegue | `pmv_fastapi/docs/DESPLIEGUE.md`; <https://softwareanemia.onrender.com/api/salud> | Servicio accesible y prueba de humo superada | Aprobado | **Aprobado con observaciones**: la prueba de humo (HTTP 200 en 22,5 s) fue del 30/10 sobre la versión anterior y no se repitió con `v4.0-Inc4`; el job `produccion` en `main` verifica solo tablas del esquema 2.0 (L131 a L135, Figura 62; la rama de trabajo ya añade las del 4.0) y no certifica el estado Live, aunque la ejecución #16 solicitó el despliegue a Render (Figura 57); el equipo ejecutó las migraciones 3.0 y 4.0 en Supabase el 30/10 (sin captura) |
 | 11 | Aseguramiento de calidad | Plantilla de revisión de *pull request* y lista de chequeo | No existe (`.github/` contiene solo `workflows/`; Figuras 53 y 61) | Lista de chequeo derivada de la DoD aplicada a cada integración | Pendiente | **Pendiente** |
-| 12 | Aseguramiento de calidad | **Act.** Informe de revisión independiente de Inc. 3 e Inc. 4 | `.claude/coordinacion/informes/2026-10-30_desarrollador_T-020.md`, sección «Revisión independiente» | Hallazgos con severidad, corrección y verificación posterior | — | **Aprobado con observaciones**: 5 correcciones con 3 pruebas de regresión (Figura 47); 2 sin prueba específica; 3 observaciones aceptadas sin corregir |
+| 12 | Aseguramiento de calidad | **Act.** Informe de revisión independiente de Inc. 3 e Inc. 4 | `.claude/coordinacion/informes/2026-10-30_desarrollador_T-020.md`, sección «Revisión independiente» | Hallazgos con severidad, corrección y verificación posterior | — | **Aprobado con observaciones**: 5 correcciones: 3 con pruebas de regresión específicas (CP-357, CP-391b, CP-396, CP-264b y CP-382b) y 2 sin prueba específica; la ejecución de la Figura 47 suma CP-405, que recorre el flujo del defecto 4 (6 pruebas aprobadas); 3 observaciones aceptadas sin corregir |
 | 13 | Calidad del producto | **Act.** Evaluación FURPS+ y auditoría OWASP 2025 (S10) | `entregables/semana-10/Entregable_Semana10_Anemia_Junin.md`, `metricas/` | Mediciones reproducibles con script y salida cruda | — | **Aprobado**: IC_P 87,67 % (conservador 78,43 %), por debajo del 90 % de la guía; 12 hallazgos sin corregir (H-1 a H-12 de S10) |
 | 14 | Medición | **Act.** Métricas GQM v3 y v4 (adenda S9) | `.claude/archivo/semana-09/ADENDA_v4_REFERENCIA_S12.md` | Métricas con fórmula, fuente y comando | — | **Aprobado con observaciones**: M2.1 y M2.2 de Inc. 3 e Inc. 4 no recalculadas; p95 de una sola corrida (Figura 72) |
 | 15 | Datos | **Act.** Migraciones SQL 3.0 y 4.0 | `pmv_fastapi/db/03_migracion_v3_0.sql`, `db/04_migracion_v4_0.sql`, `db/02_supabase.sql` | Migración repetible con esquema equivalente a la instalación limpia | — | **Aprobado con observaciones**: verificadas en un PostgreSQL 16 temporal (informes T-019 y T-020, sin captura propia); ejecutadas en Supabase por el equipo el 30/10 (sin captura), sin que el CI de `main` las verificara (Figura 62) |
@@ -222,7 +224,7 @@ La **validación** se sustenta en las capturas del software en ejecución con Ch
 | RF-08 | Agenda del personal | 15 (8 / 4 / 3) | 100 % | 40 a 133 ms | VERIFICADO Y VALIDADO |
 | RF-09 | Registro de asistencia a control | 26 (19 / 5 / 2) | 100 % | 54 a 92 ms | VERIFICADO Y VALIDADO |
 
-Una misma prueba puede respaldar más de un RF, por lo que la suma de la tabla supera el total de pruebas; la columna E2E suma 16 de las 17 existentes en v2.0 porque las 2 de inicio de sesión no corresponden a un RF. Los conteos y los criterios proceden de `entregables/semana-09/metricas/datos/m21_cobertura_rf.json` (versión v2.0). «Verificado y validado» significa criterio Dado-Cuando-Entonces cumplido por ejecución automatizada con captura de resultado; **no implica aceptación firmada por un usuario**, que sigue pendiente (hallazgo H3).
+Una misma prueba puede respaldar más de un RF, por lo que la suma de la tabla supera el total de pruebas; la columna E2E suma 16 porque una misma prueba E2E respalda a más de un RF: las E2E distintas de v2.0 son 15 (S9; `m21_cobertura_rf.json`), y las 17 de la Tabla 8 son esas 15 más las 2 de inicio de sesión, posteriores a v2.0 y que no corresponden a un RF. Los conteos y los criterios proceden de `entregables/semana-09/metricas/datos/m21_cobertura_rf.json` (versión v2.0). «Verificado y validado» significa criterio Dado-Cuando-Entonces cumplido por ejecución automatizada con captura de resultado; **no implica aceptación firmada por un usuario**, que sigue pendiente (hallazgo H3).
 
 **Tabla 9a.** **Act.** Verificación y validación de Inc. 3, Inc. 4 y autenticación (las historias no tienen número RF). Valores medidos por el script de aceptación de S10 el 30/10/2026 (`entregables/semana-10/metricas/salidas/F_resultados_aceptacion.json`). Los archivos de prueba compartidos se indican con su total.
 
@@ -663,7 +665,7 @@ La validación funcional se realizó con ejecuciones automatizadas y datos sint�
 | Prueba en un dispositivo real con red intermitente y despliegue en la posta piloto | Posta piloto | Los E2E simulan la desconexión; H3 exige prueba de campo | 19 |
 | Aprobación de la plantilla `recordatorio_control`, credenciales, `WHATSAPP_APP_SECRET` (obligatorio: sin él el webhook responde 503) y registro del webhook | Meta | El envío real nunca se probó; solo el modo simulado y `httpx.MockTransport` | 19 |
 | Consentimiento de la familia para que el celular del tutor viaje a Meta o al proveedor SMS | Familias y personal | El software no lo gestiona; los niños del dataset DIRESA no tienen celular («sin contacto») | 19 |
-| Primera cuenta real, desactivar el registro público, política de contraseñas y MFA; ejecutar `db/03`, `db/04` y `db/02_supabase.sql` | Equipo y panel de Supabase | El login solo se probó con Supabase simulado; las migraciones no se ejecutaron en Supabase | 9, 19 |
+| Primera cuenta real, desactivar el registro público, política de contraseñas y MFA; evidencia de la ejecución de `db/03`, `db/04` y `db/02_supabase.sql` en Supabase | Equipo y panel de Supabase | El login solo se probó con Supabase simulado; el equipo declara haber ejecutado las migraciones el 30/10, pero sin captura ni registro en el repositorio | 9, 19 |
 | SUS y acta de aceptación | Personal de salud, Product Owner | Sin sesión de aceptación reservada | 5 |
 
 ### 6.4 Evidencias de verificación (Act.)
@@ -704,7 +706,7 @@ Las capturas de terminal de S10 muestran comando, fecha y commit en su pie y se 
 | 4 | Baja (interfaz) | El detalle de una barrera de una visita no lograda (hasta 500 caracteres) superaba el máximo de 200 y el servidor la rechazaba | La interfaz recorta a 200 | Ninguna específica (el flujo lo recorre CP-405) | DEF-13 |
 | 5 | Baja (interfaz) | DNI y celular de las tablas «Barreras críticas» y «Visitas» sin `esc()` | Pasan por `esc()` | Ninguna | DEF-14 |
 
-Con 5 defectos en 9 historias (Inc. 3: 5; Inc. 4: 4) la densidad es de 0,56 por historia, por encima de la meta M2.2 de la guía (≤ 0,2 para Inc. 2); la adenda S9 contó cuatro hallazgos (agrupa los dos de interfaz) y los atribuyó 1 a Inc. 3 y 3 a Inc. 4 (0,20 y 0,75), cifras indicativas. Quedan además en el código DNI, sexo, altitud y celular del tutor del expediente sin `esc()` (`app.js`, líneas 264, 267, 269 y 271 en la Figura 64, más la 634 fuera de ella), con lo que H-10 de S10 sigue parcialmente abierto.
+Con 5 defectos en 9 historias (Inc. 3: 5; Inc. 4: 4) la densidad es de 0,56 por historia, por encima de la meta M2.2 de la guía de S9 (≤ 0,2 para Inc. 2); la adenda S9 contó cuatro hallazgos (agrupa los dos de interfaz) y los atribuyó 1 a Inc. 3 y 3 a Inc. 4 (0,20 y 0,75), cifras indicativas. Quedan además en el código DNI, sexo, altitud y celular del tutor del expediente sin `esc()` (`app.js`, líneas 264, 267, 269 y 271 en la Figura 64, más la 634 fuera de ella), con lo que H-10 de S10 sigue parcialmente abierto.
 
 ![Figura 47. Pruebas de regresión de la revisión independiente: 6 aprobadas (CP-357, CP-264b, CP-382b, CP-391b, CP-396 y CP-405).](evidencias/CMMI04_regresion_revision_independiente.png)
 
@@ -764,7 +766,7 @@ Las figuras 54 a 66 son capturas de páginas de GitHub tomadas por el equipo el 
 
 ![Figura 58. Historial de main el 30/10/2026: la PR #8 figura como un solo commit squash (c870a7e).](evidencias/github/GH_commits_main.png)
 
-**Figura 58.** Historial de `main` el 30/10/2026: `c870a7e` («Incrementos 3 y 4 … (#8)») es un solo commit *squash* (autor Huamani1569, Verified, 3 de 3 checks); le siguen `a8df23b` («add guia s12») y `43c861f` («add guia S10»), directos y con 0 de 3 checks, y las fusiones #7 (`9caa00f`) y #6 (`5e6886f`). Los commits `e920820` a `e6886e2` no figuran: las etiquetas `v3.0-Inc3` y `v4.0-Inc4` apuntan a la rama. Captura de GitHub (30/10/2026). Archivo: `evidencias/github/GH_commits_main.png`.
+**Figura 58.** Historial de `main` el 30/10/2026: `c870a7e` («Incrementos 3 y 4 … (#8)») es un solo commit *squash* (autor Huamani1569, Verified, 3 de 3 checks); le siguen `a8df23b` («add guia s12») y `43c861f` («add guia S10»), directos y con 0 de 3 checks, y las integraciones por *squash* de las PR #7 (`9caa00f`) y #6 (`5e6886f`), commits de un solo padre cuyo asunto termina en «(#7)» y «(#6)». Los commits `e920820` a `e6886e2` no figuran: las etiquetas `v3.0-Inc3` y `v4.0-Inc4` apuntan a la rama. Captura de GitHub (30/10/2026). Archivo: `evidencias/github/GH_commits_main.png`.
 
 ![Figura 59. Pull requests cerradas: 8 (7 fusionadas y la #3 cerrada sin fusionar).](evidencias/github/GH_prs_cerradas.png)
 

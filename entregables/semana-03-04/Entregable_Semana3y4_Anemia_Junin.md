@@ -6,6 +6,8 @@
 
 **Unidad I:** Diseño de procesos de software con entrega de valor
 
+**Unidad del sílabo:** Unidad I — Fundamentos de procesos de software
+
 **Ejes temáticos 3 y 4:** Actividades del proceso de software · Planificación y seguimiento de proyectos
 
 # Entregable de las Semanas 3 y 4: Actividades, planificación y seguimiento del proceso de software
@@ -174,7 +176,6 @@ Las actividades de las secciones siguientes no son una lista genérica: cada una
 
 El flujo combina el ciclo de Scrum con el subciclo MLOps y se adapta al contexto de salud rural. Contiene inicio, actividades, decisiones, iteraciones, productos de trabajo, validaciones, entregas, retroalimentación y mejora, tal como exige la guía (Figura 1).
 
-<!-- DIAG-100 pendiente -->
 ![Figura 1. Diagrama de actividades del proceso de software del proyecto (ciclo por sprint y subciclo MLOps), con carriles para el equipo, el personal de salud y la automatización (elaboración propia).](../../.claude/diagramas/svg/30_s34_flujo_actividades_proceso.svg)
 
 Descripción textual del flujo de la Figura 1:
@@ -330,7 +331,6 @@ El orden de la Tabla 10 es el de la Guía 2 (Tabla «Entregas incrementales de v
 
 La descomposición sigue la jerarquía que pide la guía: **Proyecto → Entregables → Incrementos → Épicas → Historias de usuario → Tareas** (Figura 2). Las tareas se detallan solo para el incremento prioritario (INC-1); los incrementos posteriores se descomponen en su propio Sprint Planning.
 
-<!-- DIAG-101 pendiente -->
 ![Figura 2. Estructura de descomposición del trabajo (WBS) del proyecto: entregables, incrementos, épicas, historias y tareas del Incremento 1 (elaboración propia).](../../.claude/diagramas/svg/31_s34_wbs_proyecto.svg)
 
 *Tabla 11. Estructura de descomposición del trabajo (niveles 1 a 5)*
@@ -383,18 +383,18 @@ Los elementos siguientes estaban previstos en la versión anterior del plan como
 | :---- | :---- | :---- | :---- |
 | BT-01 | Pipeline de integración continua en GitHub Actions (ruff, pytest, cobertura) | No existe flujo en el repositorio; verificación local | Sprint 3 |
 | BT-02 | Análisis estático con SonarCloud | No configurado; se usa ruff | Sprint 3 |
-| BT-03 | Pruebas extremo a extremo con navegador (Playwright) y resultados de carga documentados | La versión confirmada tenía `tests/e2e` y `tests/carga` vacías; T-008 añade un flujo E2E HTTP sin navegador y un escenario de Locust | E2E con navegador en el Sprint 3 (requerido por el integrador S6, §3.3) |
-| BT-04 | README de ejecución del PMV | Existe punto de entrada (`python -m anemia_junin`), pero no `anemia_junin/README.md` | Tarea T-008 del desarrollador |
+| BT-03 | Pruebas extremo a extremo con navegador (Playwright) y resultados de carga documentados | La versión confirmada tenía `tests/e2e` y `tests/carga` vacías; la tarea de verificación del PMV añadió un flujo E2E HTTP sin navegador y un escenario de Locust (commit `b6c6db2`) | E2E con navegador en el Sprint 3 (requerido por el integrador S6, §3.3) |
+| BT-04 | README de ejecución del PMV | Existe punto de entrada (`python -m anemia_junin`), pero no `anemia_junin/README.md` en la versión confirmada | Incorporado en la tarea de verificación del PMV (commit `b6c6db2`) |
 | BT-05 | Base central PostgreSQL y base local con sincronización | Solo SQLite local | INC-3 (Sprint 4) |
 | BT-06 | Cuentas de usuario y roles diferenciados | Sin autenticación (ADR-002) | INC-2 / INC-6 |
 | BT-07 | Despliegue en la posta piloto | Solo demostración local con datos sintéticos | INC-3, cuando exista modo sin conexión |
 | BT-08 | Medición del tiempo de registro por niño | No instrumentado | Sprint 3, antes de la prueba de aceptación con usuarios |
-| BT-09 | Marcado de bandas de altitud no verificadas y advertencia al usarlas | Ausente en la versión confirmada; T-008 lo incorpora (`"verificada": false` en ≥ 4000 msnm y advertencia en el clasificador) | Cerrar al confirmar T-008 |
+| BT-09 | Marcado de bandas de altitud no verificadas y advertencia al usarlas | Ausente en la versión confirmada; la tarea de verificación del PMV lo incorpora (`"verificada": false` en ≥ 4000 msnm y advertencia en el clasificador) | Cerrado al confirmarse en el commit `b6c6db2` |
 | BT-10 | Prototipo de interfaz en Figma | No evidenciado; las pantallas se construyeron directamente en Jinja2 | Opcional, INC-2 |
 
 ## 8.4 Definición técnica del software (base para el desarrollo)
 
-Esta subsección fija la solución técnica que implementa el Incremento 1 y que deben respetar los incrementos siguientes. Proviene del código del repositorio `anemia_junin/` (versión 0.1.0) y de sus ADR, en el estado del árbol de trabajo del 25 de septiembre de 2026, que incluye los ajustes de la tarea de verificación del PMV (T-008) todavía no confirmados en git.
+Esta subsección fija la solución técnica que implementa el Incremento 1 y que deben respetar los incrementos siguientes. Proviene del código del repositorio `anemia_junin/` (versión 0.1.0) y de sus ADR, en el estado del árbol de trabajo del 25 de septiembre de 2026, que incluía los ajustes de la tarea de verificación del PMV todavía no confirmados en git en el momento de redactar; esos ajustes quedaron confirmados el mismo día en el commit `b6c6db2` y las correcciones del cierre en el commit `4e7135a`.
 
 **Tipo de sistema.** Aplicación web monolítica modular con arquitectura hexagonal, que expone la misma lógica mediante una interfaz web (HTML renderizado en el servidor) y una API REST JSON. En el PMV se ejecuta en local con datos sintéticos y muestra el aviso «Demostración académica con datos sintéticos».
 
@@ -444,7 +444,7 @@ Las reglas de dependencia (el dominio y la aplicación no importan Flask, `sqlit
 
 **Modelo de datos.** Tablas `ninos` (DNI único como texto, peso en gramos, altitud, cuidador, teléfono opcional), `dosajes` (historial inmutable; hemoglobina observada, ajuste y hemoglobina ajustada en décimas de g/dL; edad en meses; clasificación; versión normativa; advertencias), `intentos_registro` (traza de auditoría sin datos personales de los intentos rechazados) y `schema_version`.
 
-**Configuración normativa.** Los umbrales por grupo de edad (6-23 y 24-59 meses) y la tabla de ajuste por altitud (bandas de 500 m entre 0 y 4999 msnm) residen en `config/normativa_v1.json`, no en el código. El archivo declara como fuente la NTS N.° 213-MINSA/DGIESP-2024 y la RM 429-2024-MINSA; el informe de la Actividad 5 indica que esa norma reemplaza a la NTS N.° 134-MINSA/2017 citada en las guías del curso. `[PENDIENTE: verificación documental de la cadena normativa y de los valores transcritos → INV-001]`. Cada dosaje guarda la versión normativa aplicada, de modo que un cambio de norma no altera el historial.
+**Configuración normativa.** Los umbrales por grupo de edad (6-23 y 24-59 meses) y la tabla de ajuste por altitud (bandas de 500 m entre 0 y 4999 msnm) residen en `config/normativa_v1.json`, no en el código. El archivo declara como fuente la NTS N.° 213-MINSA/DGIESP-2024, aprobada por la RM 251-2024-MINSA (que deroga la NTS N.° 134-MINSA/2017/DGIESP citada en las guías del curso) y modificada por la RM 429-2024-MINSA. La cadena normativa fue verificada en la investigación documental del 25 de septiembre de 2026 (`.claude/coordinacion/informes/2026-09-25_investigador_INV-001.md`); la transcripción de los umbrales y de la tabla de altitud sigue siendo de referencia académica y no está certificada para uso clínico, como lo declara el propio archivo. Cada dosaje guarda la versión normativa aplicada, de modo que un cambio de norma no altera el historial.
 
 **Decisiones de datos relevantes (ADR-002).** Hemoglobina como entero en décimas de g/dL y peso en gramos, para evitar errores de redondeo en los valores frontera; menores de 6 meses y hemoglobina ajustada negativa se clasifican como NO_EVALUABLE con advertencia; SIN_DOSAJE es distinto de SIN_ANEMIA; la creación del niño y de su dosaje inicial es atómica; solo son editables peso, distrito, altitud, cuidador y teléfono.
 
@@ -599,7 +599,6 @@ El Incremento 1 se ejecuta en dos sprints: el Sprint 1 (01 al 14 de septiembre d
 
 El trabajo se gestiona en **GitHub Projects** con un tablero Kanban (Backlog → Ready → En progreso → En revisión → Listo) que refleja el proceso definido en la sección 4: una historia solo pasa a «Listo» si cumple la DoD de la Tabla 9. El cronograma de la Tabla 22 se representa en la Figura 3 y el calendario del proyecto en la Figura 4. La herramienta representa el proceso; no lo sustituye.
 
-<!-- DIAG-102 pendiente -->
 ![Figura 3. Diagrama de Gantt del Incremento 1 (actividades A01 a A21, del 01 al 28 de septiembre de 2026) con la ruta crítica resaltada (elaboración propia).](../../.claude/diagramas/svg/32_s34_gantt_incremento1.svg)
 
 ## 11.3 Calendario del proyecto
@@ -617,7 +616,6 @@ El trabajo se gestiona en **GitHub Projects** con un tablero Kanban (Backlog →
 | Sprint 7 | S15-S16 | 24 nov-07 dic 2026 | INC-5 (integración) + INC-6 | Integración modelo-agenda, inicio del tablero | H6 |
 | Sprint 8 | S17-S18 | 08-21 dic 2026 | INC-6 | Tablero territorial completo; producto operativo | H7 |
 
-<!-- DIAG-103 pendiente -->
 ![Figura 4. Cronograma de los ocho sprints del proyecto con incrementos e hitos H0 a H7 (elaboración propia).](../../.claude/diagramas/svg/33_s34_cronograma_sprints_hitos.svg)
 
 ## 11.4 Ruta crítica del incremento prioritario
@@ -638,7 +636,6 @@ Con las duraciones y dependencias de la Tabla 22 (días calendario), la ruta cr�
 
 A10 y A11 son paralelas y ambas críticas (misma fecha y sin holgura). La ruta crítica muestra que un retraso en la validación y clasificación (A06, A07) o en el expediente (A15) desplaza directamente el hito H1; por eso son las actividades que se revisan primero en el Daily Scrum (Figura 5).
 
-<!-- DIAG-104 pendiente -->
 ![Figura 5. Red de actividades del Incremento 1 con la ruta crítica y las holguras (elaboración propia).](../../.claude/diagramas/svg/34_s34_red_ruta_critica_inc1.svg)
 
 ---
@@ -652,7 +649,7 @@ A10 y A11 son paralelas y ambas críticas (misma fecha y sin holgura). La ruta c
 | Hito | Condición para alcanzarlo | Entregable | Fecha planificada | Evidencia |
 | :---- | :---- | :---- | :---- | :---- |
 | H0 | Arquitectura base definida, esquema de datos y entorno de calidad operativos | ADR-001/002, migración 001, `pyproject.toml` | 05-sep-2026 | ADR aceptados; primera ejecución de pytest en verde |
-| H1 | INC-1 (PMV) aceptado por la posta: registro, dosajes clasificados, expediente, listado y reporte funcionando | Aplicación ejecutable, API REST documentada, suites de pruebas | 28-sep-2026 | Acta de aceptación `[PENDIENTE]`; reporte de pruebas y cobertura `[PENDIENTE: T-008]`; capturas del flujo |
+| H1 | INC-1 (PMV) aceptado por la posta: registro, dosajes clasificados, expediente, listado y reporte funcionando | Aplicación ejecutable, API REST documentada, suites de pruebas | 28-sep-2026 | Acta de aceptación `[PENDIENTE]`; reporte de pruebas y cobertura del cierre del 25-sep-2026: 266 pruebas aprobadas y 96,69 % de cobertura (`anemia_junin/docs/evidencias/pytest_cierre.txt`); capturas del flujo en `anemia_junin/docs/evidencias/cierre/` |
 | H2 | INC-2 aceptado y pipeline de integración continua operativo | Agenda automática; flujo de GitHub Actions | 12-oct-2026 | Acta de revisión; ejecución del pipeline en verde |
 | H3 | INC-3 aceptado: sin pérdida de datos en prueba de campo; despliegue en la posta piloto | Módulo sin conexión en la posta | 26-oct-2026 | Reporte de prueba sin conexión en campo |
 | H4 | INC-4 aceptado: notificaciones enviadas y barreras registradas | Módulo de notificaciones | 09-nov-2026 | Métricas de entrega de mensajes |
@@ -684,7 +681,6 @@ El seguimiento recorre el ciclo que exige la guía, con un mecanismo concreto en
 | Acción correctiva | Decisión registrada en la matriz de control (Tabla 33) |
 | Actualización del plan | Actividad «Actualización del plan» (A21 en INC-1) y nuevo Sprint Planning |
 
-<!-- DIAG-105 pendiente -->
 ![Figura 6. Burndown del Sprint 1: línea ideal y avance del escenario simulado de seguimiento (elaboración propia).](../../.claude/diagramas/svg/35_s34_burndown_sprint1.svg)
 
 ## 13.2 Matriz de seguimiento
@@ -705,9 +701,9 @@ Los valores «reales» de la Tabla 27 corresponden al **escenario simulado** de 
 
 | Elemento | Planificado para INC-1 | Verificable en el repositorio | Observación |
 | :---- | :---- | :---- | :---- |
-| Historias | 5 (HIST-1.1 a HIST-1.5) | 5 casos de uso implementados y enlazados a su historia en el código | Ejecución y aceptación `[PENDIENTE: T-008 y acta H1]` |
+| Historias | 5 (HIST-1.1 a HIST-1.5) | 5 casos de uso implementados y enlazados a su historia en el código | Ejecución verificada en el cierre del 25-sep-2026 (`pytest_cierre.txt`); aceptación `[PENDIENTE: acta H1]` |
 | API REST | 7 operaciones | 7 operaciones en `/api/v1`, documentadas en `openapi.yaml` | — |
-| Pruebas | Dominio, persistencia, API, arquitectura, E2E y carga | Versión confirmada: 154 funciones de prueba en 5 archivos, E2E y carga vacías. Árbol de trabajo con T-008: 218 funciones en 10 archivos (dominio 108, API 47, web 30, persistencia 17, arquitectura 8, arranque y scripts 6, E2E 2) más un escenario de Locust | Conteo estático; resultado de ejecución y cobertura `[PENDIENTE: T-008]` |
+| Pruebas | Dominio, persistencia, API, arquitectura, E2E y carga | Versión confirmada: 154 funciones de prueba en 5 archivos, E2E y carga vacías. Árbol de trabajo con la tarea de verificación del PMV: 218 funciones en 10 archivos (dominio 108, API 47, web 30, persistencia 17, arquitectura 8, arranque y scripts 6, E2E 2) más un escenario de Locust | Conteo estático. Resultado del cierre del 25-sep-2026: 266 pruebas aprobadas y 96,69 % de cobertura (`anemia_junin/docs/evidencias/pytest_cierre.txt`) |
 | Integración continua | Previsto en la versión anterior para el Sprint 1 | No existe flujo de CI | Replanificado como BT-01 (Sprint 3) |
 | Horas reales | 113 horas-persona | No registradas en el repositorio | `[PENDIENTE: registro de horas del equipo]` |
 
@@ -823,7 +819,7 @@ Diaria (Daily Scrum y burndown), por sprint (revisión, retrospectiva y matriz d
 | :---- | :---- | :---- | :---- | :---- | :---- |
 | A05/A07 retrasadas 1 día (escenario simulado) | Discrepancia entre la NTS 134-2017 y la norma de 2024 | A05 excede su holgura y retrasa 1 día la ruta crítica; riesgo sobre HIST-1.1 | Externalizar la norma en JSON versionado, consultar a la microred y compensar con trabajo en pareja en A09 | Porras V. | A07 termina el 10-sep; revisión del Sprint 1 sin cambios (14-sep) |
 | Integración continua no implementada en INC-1 (desviación real) | Se priorizó el alcance funcional del PMV | La verificación depende de ejecuciones locales | Replanificar como BT-01 con criterio de terminación propio | Auqui H. | Sprint 3 (hasta el 12-oct-2026) |
-| Pruebas E2E y de carga ausentes en la versión confirmada del PMV (desviación real) | Alcance del Sprint 2 limitado a pruebas de dominio, persistencia y API | El integrador (S6, §3.3) exige evidencia de UI/E2E y carga | Incorporar E2E HTTP y carga en la verificación del PMV (T-008) y la E2E con navegador como BT-03 | Huamani R. | Sprint 3 |
+| Pruebas E2E y de carga ausentes en la versión confirmada del PMV (desviación real) | Alcance del Sprint 2 limitado a pruebas de dominio, persistencia y API | El integrador (S6, §3.3) exige evidencia de UI/E2E y carga | Incorporar E2E HTTP y carga en la verificación del PMV (tarea de verificación del PMV, commit `b6c6db2`) y la E2E con navegador como BT-03 | Huamani R. | Sprint 3 |
 | INC-3 requiere un sprint adicional (riesgo) | Conflictos de sincronización más complejos de lo estimado | Retrasa INC-4 dos semanas | Extender el Sprint 4 o ejecutar INC-4 en paralelo con la segunda parte de INC-3 | Porras V. | Decisión en el Sprint 4, semana 2 |
 | API de WhatsApp no aprobada (riesgo) | Aprobación de Meta excede 6 semanas | INC-4 no se completa en el Sprint 5 | Entregar INC-4 con SMS; WhatsApp cuando se apruebe | Auqui H. | Sprint 5 continúa con SMS |
 | Datos del HIS insuficientes (riesgo) | Menos de 500 registros utilizables | INC-5 sin calidad suficiente | Posponer INC-5 al Sprint 8 y usar los datos generados por INC-1 | Porras V. | Evaluación en el Sprint 6, semana 1 |
@@ -1000,7 +996,7 @@ El incremento se acepta cuando cada historia cumple sus criterios (formato Dado�
 1. Dado un dato fuera de rango o mal formado (incluida la hemoglobina fuera de 2,0-25,0 g/dL o con más de un decimal), cuando se procesa, entonces se rechaza (400) con un mensaje por campo y no se guarda nada.
 2. Dado un dosaje válido de un niño de 6 a 59 meses, cuando se clasifica, entonces la hemoglobina ajustada es la observada menos el ajuste tabulado por altitud, y la clasificación (SEVERA, MODERADA, LEVE o SIN_ANEMIA) aplica los umbrales de su grupo de edad (6-23 o 24-59 meses) leídos de `config/normativa_v1.json`.
 3. Dado un niño menor de 6 meses o una hemoglobina ajustada negativa, entonces la clasificación es NO_EVALUABLE con una advertencia explícita.
-4. Dado un dosaje a una altitud cuya banda de ajuste está marcada como no verificada en el archivo normativo (≥ 4000 msnm), entonces la clasificación se acompaña de una advertencia de que es solo referencial (incorporado en T-008).
+4. Dado un dosaje a una altitud cuya banda de ajuste está marcada como no verificada en el archivo normativo (≥ 4000 msnm), entonces la clasificación se acompaña de una advertencia de que es solo referencial (incorporado en la tarea de verificación del PMV).
 5. Dado un archivo normativo ausente o inválido, cuando se inicia la aplicación, entonces esta no arranca.
 
 **HIST-1.4 (HU-04) Listado en seguimiento**
@@ -1048,7 +1044,8 @@ El personal de la posta deja de depender del registro manual para los nuevos ing
 - Equipo del proyecto. (2026). *Entregable Semana 1* y *Entregable Semana 2* del Sistema de detección temprana de anemia infantil en zonas rurales de Junín.
 - Equipo del proyecto. (2026). *Repositorio del PMV `anemia_junin`* (código fuente, ADR-001, ADR-002, `openapi.yaml`, `config/normativa_v1.json`).
 - Ministerio de Salud del Perú. (2017). *NTS N.° 134-MINSA/2017/DGIESP: Norma técnica de salud para el manejo terapéutico y preventivo de la anemia en niños, adolescentes, mujeres gestantes y puérperas*. https://bvs.minsa.gob.pe/local/MINSA/4190.pdf
-- Ministerio de Salud del Perú. (2024). *NTS N.° 213-MINSA/DGIESP-2024 y Resolución Ministerial N.° 429-2024-MINSA*. https://www.gob.pe/institucion/minsa/normas-legales/5670414-429-2024-minsa `[PENDIENTE: verificar título oficial y relación con la NTS 134 → INV-001]`
+- Ministerio de Salud del Perú. (2024). *Resolución Ministerial N.° 251-2024-MINSA* (aprueba la NTS N.° 213-MINSA/DGIESP-2024 y deroga la NTS N.° 134-MINSA/2017/DGIESP). https://www.gob.pe/institucion/minsa/normas-legales/5440166-251-2024-minsa
+- Ministerio de Salud del Perú. (2024). *Resolución Ministerial N.° 429-2024-MINSA* (modifica la NTS N.° 213-MINSA/DGIESP-2024). https://www.gob.pe/institucion/minsa/normas-legales/5670414-429-2024-minsa
 - Schwaber, K. y Sutherland, J. (2020). *The Scrum Guide*. Scrum.org.
 - Kim, G., Humble, J., Debois, P. y Willis, J. (2016). *The DevOps Handbook*. IT Revolution Press.
 
@@ -1066,4 +1063,9 @@ El personal de la posta deja de depender del registro manual para los nuevos ing
 - Matriz de responsabilidades convertida en matriz RAE, con las filas que exige la guía.
 - Matrices de seguimiento e indicadores completadas con las filas exigidas (actividades, incrementos; tiempo de ciclo y de entrega).
 - Corrección de la dependencia de WhatsApp Business, atribuida por error a INC-5 (corresponde a INC-4), y de la fecha de inicio del calendario (01-sep-2026).
-- Diagramas ASCII y notas de marcador sustituidos por figuras numeradas en SVG (solicitudes DIAG-100 a DIAG-105); tablas numeradas; portada, índice y referencias.
+- Diagramas ASCII y notas de marcador sustituidos por figuras numeradas en SVG (seis figuras); tablas numeradas; portada, índice y referencias.
+- 15/11/2026 · T-026 · H-040: cadena normativa completa (RM 251-2024-MINSA, NTS 213, RM 429-2024-MINSA) en §8.4 y en las referencias.
+- 15/11/2026 · T-026 · H-041: resultados del cierre del 25-sep-2026 (266 pruebas, 96,69 %) sustituyen marcadores pendientes en las Tablas 25 y 28.
+- 15/11/2026 · T-026 · H-042: retirados comentarios internos y códigos de coordinación (T-008, INV-001, DIAG-100 a DIAG-105).
+- 15/11/2026 · T-026 · H-043: referencia a los commits `b6c6db2` y `4e7135a` en §8.4 y en el backlog técnico (BT-03, BT-04, BT-09).
+- 15/11/2026 · T-026 · H-044: línea «Unidad del sílabo» en la carátula.
