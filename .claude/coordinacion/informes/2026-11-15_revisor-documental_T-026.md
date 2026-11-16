@@ -3,11 +3,11 @@
 - **Agente:** revisor-documental (Jean Piero Huamani Rodriguez, con Claude como asistente)
 - **Fecha:** 2026-11-15
 - **Tareas / solicitudes atendidas:** T-026 (encargo `.claude/intercambios/T-026_porras_revision-entregables.md`)
-- **Estado final:** PARCIAL — EN REVISIÓN: revisión y correcciones integradas en `develop` por la PR #35 (16/11/2026, cdf7e04), pero sin revisión aprobada (H-223). El «Paso final» del dominio 4 se hará en la PR de continuación `docs/t026-paso-final`, cuando Porras V. la apruebe.
+- **Estado final:** HECHO — revisión integrada en `develop` (PR #35, 16/11, sin aprobación: H-223) y paso final del dominio 4 hecho: la PR #36 fue aprobada por Porras V. (16/11, 17:13) e integrada con esa aprobación; evidencias, PDCA, informe del laboratorio 13 y PDF en la PR `docs/t026-dominio4-evidencia`. Quedan 35 pendientes justificados del equipo, el docente o el Leader (ver `CHECKLIST.md`).
 
 ## Resumen
 
-Se cotejaron las guías de S1 a S13 y el sílabo contra los entregables y los exportados, y se analizaron las brechas de S14 y S16. Se registraron 118 hallazgos con capturas antes y después: 82 cerrados y 36 pendientes justificados (H-223 se añadió el 16/11 al integrarse la PR #35 sin aprobación). El hallazgo principal fue que develop tenía el borrador del integrador S6 del 25/09: el cierre entregado el 02/10 (informe, presentación, figuras 50-68 y exportados) estaba en la rama `feature/s6-integrador-final`, borrada de GitHub en T-025, y se restauró desde la copia local del revisor (H-080 y H-081). Se regeneraron los exportados de S5, S6, S9, S11, la feria, S12 y S13, y se crearon los que faltaban (S5 derivado del `.md`, informe S12). Los requisitos cumplidos pasan del 69,3 % al 79,5 % (global con exportados: 79,7 %). Un verificador independiente comprobó los 82 cerrados; los 2 fallos que encontró se corrigieron.
+Se cotejaron las guías de S1 a S13 y el sílabo contra los entregables y los exportados, y se analizaron las brechas de S14 y S16. Se registraron 118 hallazgos con capturas antes y después: 83 cerrados y 35 pendientes justificados (H-223 se añadió el 16/11 al integrarse la PR #35 sin aprobación y se cerró con la aprobación de la PR #36). El hallazgo principal fue que develop tenía el borrador del integrador S6 del 25/09: el cierre entregado el 02/10 (informe, presentación, figuras 50-68 y exportados) estaba en la rama `feature/s6-integrador-final`, borrada de GitHub en T-025, y se restauró desde la copia local del revisor (H-080 y H-081). Se regeneraron los exportados de S5, S6, S9, S11, la feria, S12 y S13, y se crearon los que faltaban (S5 derivado del `.md`, informe S12). Los requisitos cumplidos pasan del 69,3 % al 79,5 % (global con exportados: 80,2 %, con los 12 exportados con visto bueno). Un verificador independiente comprobó los 82 cerrados; los 2 fallos que encontró se corrigieron.
 
 ## Archivos creados / modificados / movidos
 
@@ -38,7 +38,7 @@ Se cotejaron las guías de S1 a S13 y el sílabo contra los entregables y los ex
 
 ## Pendientes y riesgos
 
-- **Paso final del dominio 4:** al aprobar Porras V. la PR, capturar la aprobación, actualizar PDCA (dominio 4 «Verificado», indicador, seguimiento, E-n) e informe del laboratorio (4.3, sección 9, autoevaluación, conclusión, Anexo A) y regenerar sus PDF.
+- **Paso final del dominio 4: hecho** (16/11/2026). Capturas `web_m_pr_t026_aprobada.png` y `cli_m_pr_t026_aprobada.png`; PDCA con el dominio 4 «Verificado» (E-22, E-23) y fila de seguimiento del 16/11; informe del laboratorio con las Figuras 15a y 15b, nota en la Tabla 6, autoevaluación (el criterio 1 se mantiene en «Bueno»: una sola aprobación aún no es la norma), conclusión y Anexo A (45 figuras); PDF regenerados.
 - **Leader:** H-100 (columna `num_doc` del dataset en `pmv_fastapi/datos/`, posible identificador parcial), H-181 (status checks en el ruleset), H-199 (`--cov-fail-under`), H-195 (adjuntos de releases), H-220 (rúbrica S16 vacía). Los correos y la imagen originales siguen en el historial de Git: reescribirlo es decisión del Leader.
 - **Equipo y docente:** los demás pendientes justificados de `CHECKLIST.md` (mediciones de S10, SUS de S9, video S12, actas y horas de S3-4, etc.).
 - **Rama local `feature/s6-integrador-final`:** solo existe en la copia del revisor; ya no hace falta para S6, pero conviene no borrarla hasta integrar esta PR.

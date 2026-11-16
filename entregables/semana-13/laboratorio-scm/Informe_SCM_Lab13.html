@@ -158,8 +158,10 @@
 <p>Para medir la revisión por pares se auditaron las PR integradas del repositorio con la API (Figuras 14 y 15).</p>
 <div class="fig"><img src="evidencias/antes_2026-11-14_tarde/cli_a2_auditoria_pr.png" alt=""><div class="pie"><b>Figura 14.</b> Auditoría de las 19 PR integradas al corte de la tarde: solo 1 de 19 con «APPROVED» (PR #9) y solo 1 de 19 vinculada formalmente (PR #13).</div></div>
 <div class="fig"><img src="evidencias/cli_a2_auditoria_pr.png" alt=""><div class="pie"><b>Figura 15.</b> Auditoría ampliada tras incorporar las PR #28 y #29 hacia <code>develop</code>: ambas se integraron con <code>REVIEW_REQUIRED</code> utilizando la excepción de administrador. Se mantiene la transparencia de que ninguna PR posterior al 06/11 cuenta con aprobación formal de un par.</div></div>
+<div class="fig"><img src="evidencias/web_m_pr_t026_aprobada.png" alt=""><div class="pie"><b>Figura 15a.</b> PR #36 (<code>docs/t026-paso-final</code> → <code>develop</code>, 16/11/2026): revisión «Approved» de Porras V. (marca en <i>Reviewers</i>) e integración en <code>develop</code> con esa aprobación, sin excepción de administrador. Es la primera aprobación de un par desde que el ruleset está activo, junto a la de la PR #9 (Figura 12).</div></div>
+<div class="fig"><img src="evidencias/cli_m_pr_t026_aprobada.png" alt=""><div class="pie"><b>Figura 15b.</b> Consulta de la API de GitHub sobre las revisiones de la PR #36: estado <code>APPROVED</code> de <code>woshtsu</code> (16/11/2026, 17:13) y fusión a continuación (commit <code>bf1b95e</code>).</div></div>
 <div class="fig"><img src="evidencias/web_a2_lista_pr.png" alt="" style="max-height:105mm"><div class="pie"><b>Figura 16.</b> Pestaña <i>Pull requests</i> (0 abiertas, 22 cerradas): títulos con formato convencional desde la PR #13 y casillas de la DoD completadas.</div></div>
-<p><b>Lectura honesta.</b> La disciplina de integrar por PR se consolidó plenamente (100 % desde el 06/11), pero la revisión formal por pares sigue siendo el principal desafío organizativo. Las PR #28 y #29 hacia <code>develop</code> fueron integradas mediante la excepción de administrador sin aprobación de un par. El ruleset activo ahora exige 1 aprobación; la meta del Sprint 6 es que ninguna PR se integre sin el «Approve» de Auqui H. o Huamani R. (dominio 4 del PDCA).</p>
+<p><b>Lectura honesta.</b> La disciplina de integrar por PR se consolidó plenamente (100 % desde el 06/11), pero la revisión formal por pares sigue siendo el principal desafío organizativo. Las PR #28 y #29 hacia <code>develop</code> fueron integradas mediante la excepción de administrador sin aprobación de un par. El ruleset activo ahora exige 1 aprobación; la meta del Sprint 6 es que ninguna PR se integre sin el «Approve» de Auqui H. o Huamani R. (dominio 4 del PDCA). <b>Seguimiento al 16/11/2026:</b> la PR #36 de la revisión T-026 obtuvo la aprobación de Porras V. antes de integrarse (Figuras 15a y 15b), y el dominio 4 del PDCA pasa a «Verificado». La PR #35 de la misma tarea todavía se integró con la excepción de administrador, por lo que la práctica aún no es sistemática.</p>
 
 <h1 class="salto">5. Actividad 3: estrategia de ramificación GitFlow</h1>
 <h2>5.1 Paso 3.1: ejecución de la ramificación</h2>
@@ -301,7 +303,7 @@ git push origin v4.0.1</pre>
 <tr><td>RFC registradas</td><td>0</td><td class="ok">7</td><td class="ok">7</td><td>1 por cambio</td><td>3, 4</td></tr>
 <tr><td>RFC evaluadas (aprobado o implementado)</td><td>—</td><td class="no">0/7 (0 %)</td><td class="ok">6/6 (100 %)<sup>**</sup></td><td>100 %</td><td>5, 6, 7</td></tr>
 <tr><td>PR vinculadas a su RFC</td><td>0/10</td><td class="pend">1/9 (11 %)</td><td class="pend">1/11 (9 %)</td><td>100 %</td><td>14, 15</td></tr>
-<tr><td>PR con revisión aprobada de un par</td><td>1/10 (10 %)</td><td class="no">0/9 (0 %)</td><td class="no">0/11 (0 %)</td><td>100 %</td><td>12, 14, 15</td></tr>
+<tr><td>PR con revisión aprobada de un par</td><td>1/10 (10 %)</td><td class="no">0/9 (0 %)</td><td class="no">0/11 (0 %)<sup>***</sup></td><td>100 %</td><td>12, 14, 15</td></tr>
 <tr><td>Rama <code>main</code> protegida por regla</td><td>No</td><td class="no">No (desactivado)</td><td class="ok"><b>Sí</b> (ruleset activo)</td><td>Sí</td><td>8, 9, 10</td></tr>
 <tr><td>PR integradas a través de <code>develop</code></td><td>0</td><td class="no">0 (5 detrás)</td><td class="ok"><b>2 (#28 y #29)</b></td><td>Todas del Inc-5</td><td>20, 22, 23</td></tr>
 <tr><td>Ejecuciones de <code>main</code> con calidad en verde</td><td>—</td><td class="ok">7/7 (100 %)</td><td class="ok">7/7 (100 %)</td><td>100 %</td><td>31, 32</td></tr>
@@ -309,14 +311,14 @@ git push origin v4.0.1</pre>
 <tr><td><i>Releases</i> con notas / con artefactos</td><td>0 / 0</td><td>5 / <span class="no">0</span></td><td class="ok">6 / <b>2 con artefactos</b></td><td>Artefacto en cada una</td><td>39 a 42</td></tr>
 </tbody>
 </table>
-<p class="nota"><sup>*</sup> La columna de la tarde (20/24 y 13/60) es la medición oficial del hallazgo. Tras el borrado de 17 ramas remotas, <code>git log --all</code> ya no incluye sus commits y la salida final de la noche (<code>evidencias/salidas_cli.json</code>) da 9/11 (82 %) desde el 06/11 y 13/53 (25 %) antes de esa fecha.<br><sup>**</sup> 6 de 6 evaluadas sin contar #16 (duplicado cerrado).</p>
+<p class="nota"><sup>*</sup> La columna de la tarde (20/24 y 13/60) es la medición oficial del hallazgo. Tras el borrado de 17 ramas remotas, <code>git log --all</code> ya no incluye sus commits y la salida final de la noche (<code>evidencias/salidas_cli.json</code>) da 9/11 (82 %) desde el 06/11 y 13/53 (25 %) antes de esa fecha.<br><sup>**</sup> 6 de 6 evaluadas sin contar #16 (duplicado cerrado).<br><sup>***</sup> Seguimiento al 16/11/2026: la PR #36 recibió la primera revisión «Approved» de un par con el ruleset activo (Figuras 15a y 15b); la PR #35 se integró sin aprobación.</p>
 
 <h1 class="salto">10. Autoevaluación con la rúbrica</h1>
 <p>La nota la asigna el docente. La autoevaluación se basa en las evidencias objetivas contrastadas en este informe.</p>
 <table>
 <thead><tr><th style="width:26%">Criterio (5,0 puntos cada uno)</th><th style="width:13%">Nivel que se considera alcanzado</th><th>Evidencia a favor</th><th>Qué falta para «Excelente»</th></tr></thead>
 <tbody>
-<tr><td>1. Administración del cambio en GitHub</td><td>Bueno</td><td>Plantillas de RFC y PR (Figuras 1 y 11); 7 RFC reales (Tabla 1); 100 % de RFC evaluadas formalmente (Figuras 6 y 7); ruleset <code>ownermerge</code> activo para <code>main</code> y <code>develop</code> con <code>protected: true</code> (Figuras 8 y 10).</td><td>Registrar revisiones «Approved» efectivas de un par en las PR sin utilizar el bypass de administrador.</td></tr>
+<tr><td>1. Administración del cambio en GitHub</td><td>Bueno</td><td>Plantillas de RFC y PR (Figuras 1 y 11); 7 RFC reales (Tabla 1); 100 % de RFC evaluadas formalmente (Figuras 6 y 7); ruleset <code>ownermerge</code> activo para <code>main</code> y <code>develop</code> con <code>protected: true</code> (Figuras 8 y 10); primera aprobación de un par con el ruleset activo en la PR #36 (Figuras 15a y 15b, 16/11/2026).</td><td>Que la aprobación de un par sea la norma en todas las PR: la PR #35 aún se integró con la excepción de administrador. Por eso el nivel se mantiene en «Bueno».</td></tr>
 <tr><td>2. Estrategia de ramificación y control SCM</td><td>Bueno</td><td>GitFlow documentado en PMV (Figura 17); reanudación en <code>develop</code> con PR #28 y #29 (Figuras 20, 22 y 23); 100 % de integraciones por PR (Figura 24); limpieza de 17 ramas remotas con tag de resguardo (Figura 21).</td><td>Aplicar GitFlow con rigor en todo el Incremento 5: los incrementos 2 a 4 no pasaron por <code>develop</code>.</td></tr>
 <tr><td>3. Versiones, tags y releases</td><td>Bueno</td><td>6 etiquetas anotadas y 6 <i>releases</i> con notas completas (Figuras 37 y 41, Tabla 4); release <code>v4.0.1</code> y <code>v4.0-Inc4</code> con artefactos adjuntos de reportes de calidad (Figura 42).</td><td>Publicar la imagen Docker compilada en GitHub Container Registry en cada release sobre <code>main</code>.</td></tr>
 <tr><td>4. Trazabilidad integrada y repositorio</td><td>Excelente</td><td>Matriz unificada completa de 14 filas (Tabla 5); repositorio con historial trazable; auditoría reproducible mediante script automatizado con salidas en JSON (Anexo B).</td><td>Vincular formalmente con <code>Closes #n</code> toda PR de desarrollo hacia <code>develop</code>.</td></tr>
@@ -329,7 +331,7 @@ git push origin v4.0.1</pre>
   <li><b>GitFlow se reanudó efectivamente sobre <code>develop</code>.</b> Se sincronizó <code>develop</code> con <code>main</code> mediante la PR #28 y se integró la reorganización T-024 mediante la PR #29 a través de <code>develop</code>. Se sanearon 17 ramas remotas, resguardando la historia previa en la etiqueta anotada <code>archivo/docs-s12-correcciones</code>.</li>
   <li><b>Las compuertas del CI operan con rigor técnico.</b> La PR #29 demostró el filtrado en vivo de un desvío de formato de Ruff, el cual fue subsanado con un commit semántico antes de autorizar la integración.</li>
   <li><b>Una release cobra valor cuando incluye artefactos verificables.</b> Se publicó <code>v4.0.1</code> regularizando el hotfix de producción y se incorporaron paquetes de reportes de calidad a <code>v4.0.1</code> y <code>v4.0-Inc4</code>.</li>
-  <li><b>La honestidad en la autoevaluación marca el siguiente paso del PDCA.</b> Aunque el ruleset ahora exige 1 aprobación, las PR recientes se integraron por contingencia de administrador; lograr revisiones cruzadas aprobadas por un par sin recurrir al bypass es la meta prioritaria del Sprint 6.</li>
+  <li><b>La honestidad en la autoevaluación marca el siguiente paso del PDCA.</b> Aunque el ruleset ahora exige 1 aprobación, las PR recientes se integraron por contingencia de administrador; lograr revisiones cruzadas aprobadas por un par sin recurrir al bypass es la meta prioritaria del Sprint 6. El 16/11/2026 la PR #36 obtuvo la primera aprobación de un par con el ruleset activo (Figuras 15a y 15b), lo que verifica el dominio 4 del PDCA; falta que sea la práctica habitual.</li>
 </ul>
 
 <h1 class="salto">12. Anexos</h1>
@@ -339,13 +341,13 @@ git push origin v4.0.1</pre>
 <tbody>
 <tr><td>1. Issue de solicitud de cambio</td><td><code>actividad1_issue_change_request.png</code></td><td><code>web_a1_issue_rfc_18.png</code></td><td>3</td></tr>
 <tr><td>2. Branch protection rules</td><td><code>actividad2_branch_protection_rules.png</code></td><td><code>web_a2_settings_rulesets.png</code> (panel Settings del propietario)</td><td>8</td></tr>
-<tr><td>3. Pull request y code review</td><td><code>actividad2_pull_request_code_review.png</code></td><td><code>web_a2_pr9_aprobada.png</code></td><td>12</td></tr>
+<tr><td>3. Pull request y code review</td><td><code>actividad2_pull_request_code_review.png</code></td><td><code>web_a2_pr9_aprobada.png</code> y, con el ruleset activo, <code>web_m_pr_t026_aprobada.png</code></td><td>12 y 15a</td></tr>
 <tr><td>4. Network graph de GitFlow</td><td><code>actividad3_gitflow_network_graph.png</code></td><td><code>web_a3_red.png</code></td><td>18</td></tr>
 <tr><td>5. Pipeline de GitHub Actions</td><td><code>actividad4_github_actions_pipeline.png</code></td><td><code>web_a4_run_pr13.png</code></td><td>29</td></tr>
 <tr><td>6. Release v1.0</td><td><code>actividad5_github_release_v1_0.png</code></td><td><code>web_a5_release_v1_0.png</code></td><td>39</td></tr>
 </tbody>
 </table>
-<p>Además de las 6 capturas obligatorias, el informe incluye 37 evidencias complementarias que contrastan el estado antes y después: 43 figuras en total.</p>
+<p>Además de las 6 capturas obligatorias, el informe incluye 39 evidencias complementarias que contrastan el estado antes y después: 45 figuras en total (Figuras 1 a 43, más 15a y 15b).</p>
 
 <h2>Anexo B. Reproducibilidad de la auditoría</h2>
 <p>Las evidencias se generan con <code>entregables/semana-13/laboratorio-scm/capturar_evidencias_scm.py</code>. El script captura 26 páginas del repositorio con Microsoft Edge sin interfaz (Playwright; el panel <i>Settings → Rulesets</i> de la Figura 8 lo capturó el propietario a mano) y ejecuta 17 grupos de comandos <code>git</code>/<code>gh</code>, cuyas salidas guarda en <code>evidencias/salidas_cli.json</code>. Solo necesita permiso de lectura y no escribe nada en GitHub.</p>

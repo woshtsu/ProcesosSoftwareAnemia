@@ -3,7 +3,7 @@
 - **Revisor:** Jean Piero Huamani Rodriguez (rol `revisor-documental`), con Claude como asistente · **Fecha:** 15/11/2026 · **Rama:** `docs/t026-revision` (desde `develop` 250fdf5)
 - **Encargo:** [`.claude/intercambios/T-026_porras_revision-entregables.md`](../../intercambios/T-026_porras_revision-entregables.md) · **Criterios y decisiones:** [`CRITERIOS.md`](CRITERIOS.md) · **Checklist:** [`CHECKLIST.md`](CHECKLIST.md)
 - **Requisitos `R-xx` y cotejo por semana:** [`requisitos/`](requisitos/) · **Capturas:** [`capturas/`](capturas/) (`H-###_antes.png` y `H-###_despues.png`)
-- **Totales:** 118 hallazgos: 82 cerrados y 36 pendientes justificados. Los candidatos que no eran defectos figuran como «Candidatos descartados» al final de cada semana, con su motivo.
+- **Totales:** 118 hallazgos: 83 cerrados y 35 pendientes justificados. Los candidatos que no eran defectos figuran como «Candidatos descartados» al final de cada semana, con su motivo.
 - **IDs por bloques:** S1 H-001…, S2 H-020…, S3-4 H-040…, S5 H-060…, S6 H-080…, S9 H-100…, S10 H-120…, S11 H-140…, S12 H-160…, S13 H-180…, transversales H-220…. Los huecos de numeración son intencionados.
 - **Estados:** `Cerrado` = corregido en la fuente, exportado regenerado si correspondía y verificado con captura después. `Pendiente justificado` = necesita decisión o trabajo del equipo, del docente o del Leader; no cuenta como cumplido.
 
@@ -128,7 +128,7 @@
 | [H-220](#h-220) | Transversal | alta | La rúbrica de la evaluación final (S16) está vacía en el repositorio | Pendiente |
 | [H-221](#h-221) | Transversal | baja | RUTAS.md apuntaba a rutas de S6 que no existían y no registraba la carpeta de la revisión | Cerrado |
 | [H-222](#h-222) | Transversal | media | El índice de exportados no decía de qué fuente sale cada archivo | Cerrado |
-| [H-223](#h-223) | Transversal | alta | La PR #35 de esta revisión se integró sin revisión aprobada | Pendiente |
+| [H-223](#h-223) | Transversal | alta | La PR #35 de esta revisión se integró sin revisión aprobada | Cerrado |
 
 
 ## S01
@@ -1357,9 +1357,9 @@ Política especial de S6: los exportados del 02/10 se generaron con herramientas
 - **Requisito afectado:** encargo T-026, «Paso final» y dominio 4 del PDCA (revisión por pares); guía del laboratorio SCM (protección de ramas con aprobación obligatoria)
 - **Descripción:** la PR tenía revisión pedida a woshtsu, pero se integró sin ninguna revisión «Approved» (la API devuelve 0 revisiones), usando la excepción del ruleset de `develop`. Por eso no existe todavía la evidencia de una PR aprobada por un par que el encargo pide capturar.
 - **Evidencia antes:** ![H-223 antes](capturas/H-223_antes.png)
-- **Corrección aplicada:** se abre la PR de continuación `docs/t026-paso-final` → `develop` con revisión pedida a Porras V. Cuando la apruebe con «Review changes → Approve», en esa misma PR se suben las capturas de la aprobación, el dominio 4 del PDCA, el informe del laboratorio 13 y sus PDF, y después se integra sin excepción de administrador.
-- **Evidencia después:** — (pendiente de la aprobación)
-- **Estado:** Pendiente justificado: aprobación de la PR de continuación por Porras V.
+- **Corrección aplicada:** se abrió la PR de continuación #36 (`docs/t026-paso-final` → `develop`) con revisión pedida a Porras V. La aprobó el 16/11/2026 a las 17:13 (hora de Lima) y la integró 7 segundos después con esa aprobación (commit bf1b95e), sin excepción de administrador. Como se integró antes de subir el paso final, las capturas, el dominio 4 del PDCA, el informe del laboratorio 13 y sus PDF van en la PR `docs/t026-dominio4-evidencia`.
+- **Evidencia después:** ![H-223 después](capturas/H-223_despues.png)
+- **Estado:** Cerrado
 
 ### S14 y S16: análisis de brechas (sin entregable que corregir)
 
