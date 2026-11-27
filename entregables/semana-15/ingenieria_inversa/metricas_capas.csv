@@ -1,0 +1,6 @@
+capa,archivos,total,codigo,comentarios,blanco,clases,funciones,metodos,complejidad_media,complejidad_max
+domain,30,2818,2018,287,513,86,92,9,4.83,17
+ports,26,473,240,72,161,29,0,87,1.0,1
+application,14,1647,1394,85,168,14,8,86,3.97,16
+adapters,18,3385,2740,133,512,74,98,114,2.57,12
+main,2,163,136,9,18,1,5,1,4.0,10

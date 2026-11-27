@@ -72,3 +72,31 @@ Archivo vivo para continuar el trabajo en un chat nuevo. Actualizarlo durante la
 - **Siguiente paso:** PR de continuación `docs/t026-paso-final` → develop, con revisión de Porras V. Cuando la apruebe con «Review changes → Approve»: capturas, dominio 4 del PDCA, informe del laboratorio 13 y sus PDF en esa misma PR; después la integra él, sin excepción de administrador.
 - 16/11/2026, 17:13: Porras V. aprobó la PR #36 y la integró con esa aprobación (bf1b95e). Paso final del dominio 4 hecho en la PR `docs/t026-dominio4-evidencia`: capturas de la aprobación, PDCA (dominio 4 «Verificado»), informe del laboratorio 13 y PDF. T-026 queda HECHO; el detalle está en `.claude/coordinacion/informes/2026-11-15_revisor-documental_T-026.md`.
 
+## T-027 — Informe Final de la Unidad IV (26/11/2026)
+
+- Rama `docs/s15-informe-unidad-iv`. Sin commits ni pushes.
+- Hecho: Creación del informe final de la Unidad IV en `entregables/semana-15/Informe_Unidad_IV_Anemia_Junin.md` (256 153 caracteres, 2 859 líneas, 38 304 palabras, ~76,6 páginas) estructurado exactamente según la plantilla de la guía S14 (`guias/s14/PSW-INFORME ACADÉMICO INTEGRADOR DEL PROYECTO DE ASIGNATURA.md`):
+  1. Carátula oficial: Universidad Continental, NRC 30173, Asignatura ASUC01702, IX Ciclo, 3 créditos, Docente Ing. Jorge Alfredo Guevara Jimenez, integrantes y roles RAE completos, fecha 26/11/2026.
+  2. Front matter: Tabla 1 (Reparto de roles), Índices dinámicos actualizados (General, Tablas 1..48, Figuras 1..134), Tabla 2 (Control de cambios respecto a S13 con 9 observaciones resueltas), Resumen Ejecutivo / Abstract bilingüe con cobertura de la Unidad IV.
+  3. Sección 1 (Introducción): 1.1 con los 7 antecedentes del estado del arte verificados en bases de datos científicas (Nunkesser, Heeager, Chaabane, Marandi, Cuadros, Santos, Westgard) con DOIs y aportes específicos, más contexto del proyecto y secuencia de entregables S1..S15 (Tabla 3); 1.2 Diagnóstico AS-IS y justificación (Tabla 4, Fig. 1); 1.3 Objetivos alineados al sílabo (resultado de aprendizaje de asignatura y 4 específicos de Unidades I–IV, más matriz de objetivos del proyecto con Unidad IV SCM, Tabla 5).
+  4. Sección 2 (Marco Teórico): 2.1 a 2.5 consolidados de S13; 2.6 nuevo sobre SCM, GitFlow y SemVer respaldado en 5 referencias reales (Sommerville, ISO/IEC/IEEE 828:2012, Chacon & Straub, Driessen, Preston-Werner).
+  5. Sección 3 (Desarrollo por Unidades):
+     - 3.1 Unidad I: 3.1.1 AS-IS vs TO-BE (Tabla 7, Fig. 2 y 3); 3.1.2 Brechas B1–B6 e indicadores de valor (Tablas 8 y 9); 3.1.3 Factores y Selección del modelo (Tablas 10 y 11); 3.1.4 Planificación, WBS, priorización y control de desviaciones (Fig. 4, 5, 6; Tablas 12 y 13).
+     - 3.2 Unidad II: 3.2.1 Categorización de procesos (Tabla 14); 3.2.2 Sastrería (Tailoring), ciclo híbrido y DoD (Tablas 15 y 16, Fig. 7); 3.2.3 Arquitectura Hexagonal en GitHub (Tablas 17 y 18, Fig. 8 a 12); 3.2.4 PMV e Incrementos 1 al 4 (Tablas 19, 20, 21).
+     - 3.3 Unidad III: 3.3.1 Evaluación GQM, estrategia de pruebas y fichas funcionales F01 a F30 con capturas (Tablas 22 a 28, Fig. 13 a 82); 3.3.2 Auditoría FURPS+, psicología del color, WCAG 2.1 AA y OWASP Top 10:2025 (Tablas 29 a 35, Fig. 83 a 96); 3.3.3 Capacidad CMMI-DEV niveles 0 a 3 (Tablas 36 a 38, Fig. 97 a 119); 3.3.4 Plan de mejora CAR y 5 porqués (Tablas 39 a 41).
+     - 3.4 Unidad IV: 3.4.1 Administración del cambio en GitHub (RFC #14 a #20, ruleset ownermerge, code review verificado con PR #36 y #37, Fig. 120 a 124, Tabla 42); 3.4.2 Gestión de versiones (GitFlow, tags semánticos v1.0 a v4.0.1, catálogo de GitHub Releases, Fig. 125 a 128, Tablas 43 y 44); 3.4.3 Automatización CI/CD con filtro de rutas (Fig. 129, 130, 134); 3.4.4 Mejora continua SCM con ciclo PDCA de 12 dominios, matriz unificada de trazabilidad SCM (Tabla 45), tabla de indicadores antes/después (Tabla 46) y cuadro PDCA (Tabla 47). Incluye las 6 capturas obligatorias del laboratorio SCM con rutas relativas funcionales.
+  6. Sección 4 (Conclusiones): 5 conclusiones (Unidades I a IV + producto).
+  7. Sección 5 (Recomendaciones): 6 recomendaciones concretas derivadas de los pendientes del PDCA y de T-026.
+  8. Referencias Bibliográficas: 32 referencias en formato ISO 690:2021 numérico, ordenadas por estricta primera aparición [1..32] con correspondencia recíproca al 100% con las citas del texto.
+  9. Anexos: ANEXO A (Repositorio GitHub actualizado con v4.0.1, main/develop, ruleset); ANEXO B (Video demostrativo `Porras-Auqui-Huamani-video-unidad-IV.mp4` y marcador `[ENLACE_VIDEO_POR_PUBLICAR]`); ANEXO C (Guión técnico con marcador `<!-- GUION_VIDEO_UNIDAD_IV -->`); ANEXO D (Tabla 48: Cotejo exhaustivo de las 32 referencias). Sin rúbrica S12 al final.
+- Verificación exhaustiva aprobada (`scratch/verify_final.py`):
+  - 48 tablas estrictamente correlativas del 1 al 48 sin duplicados ni vacíos.
+  - 134 figuras estrictamente correlativas del 1 al 134 sin duplicados ni vacíos.
+  - 134 imágenes verificadas en disco (rutas relativas existentes desde `entregables/semana-15/`).
+  - 32 citas en texto y 32 referencias bibliográficas en recíproco 100%.
+  - 6 capturas obligatorias de la guía de laboratorio SCM presentes.
+- Siguiente paso:
+  1. Completar la grabación y locución del video demostrativo de la Unidad IV y publicar el enlace en el Anexo B.
+  2. Completar el guión técnico en el Anexo C (`<!-- GUION_VIDEO_UNIDAD_IV -->`).
+  3. Exportar el informe a formato PDF y DOCX en `exportados/semana-15/`.
+

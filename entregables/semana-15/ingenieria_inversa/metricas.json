@@ -1,0 +1,366 @@
+{
+  "carpeta": "pmv_fastapi/app",
+  "archivos": 90,
+  "totales": {
+    "total": 8486,
+    "codigo": 6528,
+    "comentarios": 586,
+    "blanco": 1372,
+    "clases": 204,
+    "funciones": 203,
+    "metodos": 297
+  },
+  "funciones_y_metodos": 500,
+  "complejidad_media": 3.03,
+  "complejidad_max": 17,
+  "funciones_complejidad_mayor_10": 28,
+  "top10": [
+    {
+      "archivo": "pmv_fastapi/app/domain/service/notificaciones.py",
+      "capa": "domain",
+      "clase": "",
+      "funcion": "extraer_eventos",
+      "linea": 252,
+      "lineas": 24,
+      "complejidad": 17
+    },
+    {
+      "archivo": "pmv_fastapi/app/domain/service/notificaciones.py",
+      "capa": "domain",
+      "clase": "",
+      "funcion": "_contar",
+      "linea": 294,
+      "lineas": 13,
+      "complejidad": 17
+    },
+    {
+      "archivo": "pmv_fastapi/app/application/servicio_expediente.py",
+      "capa": "application",
+      "clase": "ServicioExpediente",
+      "funcion": "actualizar_datos",
+      "linea": 113,
+      "lineas": 32,
+      "complejidad": 16
+    },
+    {
+      "archivo": "pmv_fastapi/app/domain/service/barreras.py",
+      "capa": "domain",
+      "clase": "",
+      "funcion": "validar_datos_barrera",
+      "linea": 71,
+      "lineas": 27,
+      "complejidad": 16
+    },
+    {
+      "archivo": "pmv_fastapi/app/application/servicio_expediente.py",
+      "capa": "application",
+      "clase": "ServicioExpediente",
+      "funcion": "listar_seguimiento",
+      "linea": 153,
+      "lineas": 50,
+      "complejidad": 15
+    },
+    {
+      "archivo": "pmv_fastapi/app/domain/service/asistencia.py",
+      "capa": "domain",
+      "clase": "",
+      "funcion": "localizar_control_registrable",
+      "linea": 44,
+      "lineas": 21,
+      "complejidad": 15
+    },
+    {
+      "archivo": "pmv_fastapi/app/application/servicio_recordatorios.py",
+      "capa": "application",
+      "clase": "ServicioRecordatorios",
+      "funcion": "_generar",
+      "linea": 105,
+      "lineas": 34,
+      "complejidad": 14
+    },
+    {
+      "archivo": "pmv_fastapi/app/application/servicio_sincronizacion.py",
+      "capa": "application",
+      "clase": "ServicioSincronizacion",
+      "funcion": "_aplicar_cliente",
+      "linea": 320,
+      "lineas": 31,
+      "complejidad": 14
+    },
+    {
+      "archivo": "pmv_fastapi/app/domain/service/agenda.py",
+      "capa": "domain",
+      "clase": "",
+      "funcion": "_resumir",
+      "linea": 283,
+      "lineas": 12,
+      "complejidad": 14
+    },
+    {
+      "archivo": "pmv_fastapi/app/domain/service/visitas.py",
+      "capa": "domain",
+      "clase": "",
+      "funcion": "validar_datos_visita",
+      "linea": 81,
+      "lineas": 28,
+      "complejidad": 14
+    }
+  ],
+  "por_capa": [
+    {
+      "capa": "domain",
+      "archivos": 30,
+      "total": 2818,
+      "codigo": 2018,
+      "comentarios": 287,
+      "blanco": 513,
+      "clases": 86,
+      "funciones": 92,
+      "metodos": 9,
+      "complejidad_media": 4.83,
+      "complejidad_max": 17
+    },
+    {
+      "capa": "ports",
+      "archivos": 26,
+      "total": 473,
+      "codigo": 240,
+      "comentarios": 72,
+      "blanco": 161,
+      "clases": 29,
+      "funciones": 0,
+      "metodos": 87,
+      "complejidad_media": 1.0,
+      "complejidad_max": 1
+    },
+    {
+      "capa": "application",
+      "archivos": 14,
+      "total": 1647,
+      "codigo": 1394,
+      "comentarios": 85,
+      "blanco": 168,
+      "clases": 14,
+      "funciones": 8,
+      "metodos": 86,
+      "complejidad_media": 3.97,
+      "complejidad_max": 16
+    },
+    {
+      "capa": "adapters",
+      "archivos": 18,
+      "total": 3385,
+      "codigo": 2740,
+      "comentarios": 133,
+      "blanco": 512,
+      "clases": 74,
+      "funciones": 98,
+      "metodos": 114,
+      "complejidad_media": 2.57,
+      "complejidad_max": 12
+    },
+    {
+      "capa": "main",
+      "archivos": 2,
+      "total": 163,
+      "codigo": 136,
+      "comentarios": 9,
+      "blanco": 18,
+      "clases": 1,
+      "funciones": 5,
+      "metodos": 1,
+      "complejidad_media": 4.0,
+      "complejidad_max": 10
+    }
+  ],
+  "matriz_capas": {
+    "domain": {
+      "domain": 0,
+      "ports": 0,
+      "application": 0,
+      "adapters": 0,
+      "main": 0
+    },
+    "ports": {
+      "domain": 22,
+      "ports": 0,
+      "application": 0,
+      "adapters": 0,
+      "main": 0
+    },
+    "application": {
+      "domain": 66,
+      "ports": 57,
+      "application": 0,
+      "adapters": 0,
+      "main": 0
+    },
+    "adapters": {
+      "domain": 36,
+      "ports": 28,
+      "application": 0,
+      "adapters": 0,
+      "main": 0
+    },
+    "main": {
+      "domain": 1,
+      "ports": 1,
+      "application": 12,
+      "adapters": 8,
+      "main": 0
+    }
+  },
+  "terceros_por_capa": {
+    "adapters": {
+      "fastapi": 6,
+      "httpx": 4,
+      "sqlalchemy": 3,
+      "pydantic": 2
+    },
+    "main": {
+      "fastapi": 4,
+      "starlette": 1
+    }
+  },
+  "violaciones_hexagonales": [],
+  "num_violaciones": 0,
+  "aristas_paquetes": {
+    "adapters.inbound.http -> domain.model": 12,
+    "adapters.inbound.http -> ports.inbound": 13,
+    "adapters.outbound.notificaciones -> domain.model": 4,
+    "adapters.outbound.notificaciones -> ports.outbound": 2,
+    "adapters.outbound.persistence -> domain.model": 18,
+    "adapters.outbound.persistence -> ports.outbound": 10,
+    "adapters.outbound.reloj_fijo -> ports.outbound": 1,
+    "adapters.outbound.reloj_sistema -> domain.model": 1,
+    "adapters.outbound.reloj_sistema -> ports.outbound": 1,
+    "adapters.outbound.supabase_auth -> domain.model": 1,
+    "adapters.outbound.supabase_auth -> ports.outbound": 1,
+    "application -> domain.model": 34,
+    "application -> domain.service": 32,
+    "application -> ports.inbound": 19,
+    "application -> ports.outbound": 38,
+    "domain.service -> domain.model": 47,
+    "main -> adapters.inbound.http": 3,
+    "main -> adapters.outbound.notificaciones": 1,
+    "main -> adapters.outbound.persistence": 1,
+    "main -> adapters.outbound.reloj_fijo": 1,
+    "main -> adapters.outbound.reloj_sistema": 1,
+    "main -> adapters.outbound.supabase_auth": 1,
+    "main -> application": 12,
+    "main -> domain.model": 1,
+    "main -> ports.outbound": 1,
+    "ports.inbound -> domain.model": 12,
+    "ports.outbound -> domain.model": 10
+  },
+  "paquetes": {
+    "adapters.inbound.http": 4,
+    "adapters.outbound.notificaciones": 5,
+    "adapters.outbound.persistence": 3,
+    "adapters.outbound.reloj_fijo": 1,
+    "adapters.outbound.reloj_sistema": 1,
+    "adapters.outbound.supabase_auth": 1,
+    "application": 14,
+    "domain.model": 17,
+    "domain.service": 12,
+    "main": 1,
+    "ports.inbound": 15,
+    "ports.outbound": 10
+  },
+  "clases_top_metodos": [
+    {
+      "archivo": "pmv_fastapi/app/adapters/outbound/persistence/sqlalchemy_repo.py",
+      "capa": "adapters",
+      "clase": "RepositorioSQLAlchemy",
+      "bases": "RepositorioNinos;RepositorioVisitas;RepositorioSincronizacion;RepositorioRecordatorios;RepositorioBarreras",
+      "metodos": 48,
+      "atributos": 3,
+      "lineas": 475
+    },
+    {
+      "archivo": "pmv_fastapi/app/adapters/outbound/persistence/memoria.py",
+      "capa": "adapters",
+      "clase": "RepositorioEnMemoria",
+      "bases": "RepositorioNinos;RepositorioVisitas;RepositorioSincronizacion;RepositorioRecordatorios;RepositorioBarreras",
+      "metodos": 42,
+      "atributos": 7,
+      "lineas": 263
+    },
+    {
+      "archivo": "pmv_fastapi/app/application/servicio_sincronizacion.py",
+      "capa": "application",
+      "clase": "ServicioSincronizacion",
+      "bases": "SincronizarOperaciones;GestionarConflictos",
+      "metodos": 20,
+      "atributos": 9,
+      "lineas": 308
+    },
+    {
+      "archivo": "pmv_fastapi/app/ports/outbound/repositorio_ninos.py",
+      "capa": "ports",
+      "clase": "RepositorioNinos",
+      "bases": "Protocol",
+      "metodos": 16,
+      "atributos": 0,
+      "lineas": 46
+    },
+    {
+      "archivo": "pmv_fastapi/app/application/servicio_recordatorios.py",
+      "capa": "application",
+      "clase": "ServicioRecordatorios",
+      "bases": "GenerarRecordatorios;ConsultarRecordatorios;RegistrarRespuestaRecordatorio;ProcesarNotificacionesWhatsApp",
+      "metodos": 13,
+      "atributos": 8,
+      "lineas": 208
+    },
+    {
+      "archivo": "pmv_fastapi/app/application/servicio_expediente.py",
+      "capa": "application",
+      "clase": "ServicioExpediente",
+      "bases": "GestionarExpediente;ConsultarSeguimiento;GenerarReporte",
+      "metodos": 11,
+      "atributos": 3,
+      "lineas": 211
+    },
+    {
+      "archivo": "pmv_fastapi/app/adapters/outbound/supabase_auth.py",
+      "capa": "adapters",
+      "clase": "SupabaseAuth",
+      "bases": "ProveedorIdentidad",
+      "metodos": 10,
+      "atributos": 5,
+      "lineas": 85
+    },
+    {
+      "archivo": "pmv_fastapi/app/ports/outbound/repositorio_sincronizacion.py",
+      "capa": "ports",
+      "clase": "RepositorioSincronizacion",
+      "bases": "Protocol",
+      "metodos": 10,
+      "atributos": 0,
+      "lineas": 28
+    },
+    {
+      "archivo": "pmv_fastapi/app/application/servicio_sesion.py",
+      "capa": "application",
+      "clase": "ServicioSesion",
+      "bases": "GestionarSesiones",
+      "metodos": 7,
+      "atributos": 4,
+      "lineas": 64
+    },
+    {
+      "archivo": "pmv_fastapi/app/ports/inbound/expediente.py",
+      "capa": "ports",
+      "clase": "GestionarExpediente",
+      "bases": "Protocol",
+      "metodos": 7,
+      "atributos": 0,
+      "lineas": 16
+    }
+  ],
+  "imagenes": [
+    "img/dependencias_paquetes.svg"
+  ],
+  "graphviz_disponible": false
+}
