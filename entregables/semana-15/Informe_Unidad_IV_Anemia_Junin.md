@@ -2823,6 +2823,12 @@ El repositorio del proyecto contiene el código fuente, la historia completa de 
   - `main`: Línea base oficial de producción protegida por el ruleset `ownermerge`.
   - `develop`: Línea base de integración continua activa.
 * **Etiqueta Consolidada de Evaluación:** `v4.0.1` (Hotfix de rendimiento y arquitectura hexagonal probada).
+* **Documentos complementarios (PDF en GitHub):**
+  - Informe de ingeniería inversa del software (Anexo F): <https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/exportados/semana-15/Porras-Auqui-Huamani-informe-ingenieria-inversa.pdf>
+  - Vinculación con el VIII Congreso Internacional de Ingeniería y Arquitectura (sección 3.4.5 y Anexo E): <https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/exportados/semana-15/anexos/Anexo-A4-Vinculacion-VIII-Congreso.pdf>
+  - Arquitectura del software (hexagonal y C4): <https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/exportados/semana-15/anexos/Anexo-A1-Arquitectura-del-software.pdf>
+  - Conexión con la base de datos (SQLAlchemy y PostgreSQL/Supabase): <https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/exportados/semana-15/anexos/Anexo-A2-Conexion-con-la-base-de-datos.pdf>
+  - Despliegue en producción (Docker, CI/CD y Render): <https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/exportados/semana-15/anexos/Anexo-A3-Despliegue.pdf>
 
 ![Etiquetas semánticas y releases en GitHub.](../semana-13/img/C11_releases.jpg)
 
@@ -2843,7 +2849,8 @@ El repositorio del proyecto contiene el código fuente, la historia completa de 
 ### ANEXO B: Enlace del Video Demostrativo del Software en Ejecución
 
 * **Archivo de Video:** `Porras-Auqui-Huamani-video-unidad-IV.mp4`
-* **Entrega:** se sube al aula virtual junto con este informe. Copia en el repositorio: <https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/entregables/semana-15/video/Porras-Auqui-Huamani-video-unidad-IV.mp4>.
+* **URL del video (Google Drive):** <https://drive.google.com/drive/folders/1dJCWy13CQq6d3bLTRy0zw0bePgdTTKhG?usp=sharing>
+* **Entrega:** también se sube al aula virtual junto con este informe.
 * **Duración:** 4 min 35 s; guion y tiempos en el Anexo C.
 * **Entorno de Demostración:** Despliegue en producción <https://softwareanemia-virginia.onrender.com> sobre base de datos Supabase PostgreSQL.
 
