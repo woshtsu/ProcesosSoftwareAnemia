@@ -101,7 +101,10 @@ def pdf(md: Path) -> Path:
 
     out = SALIDA / f"{NOMBRE}.pdf"
     with sync_playwright() as p:
-        nav = p.chromium.launch()
+        try:
+            nav = p.chromium.launch()
+        except Exception:  # sin Chromium de Playwright: usar Microsoft Edge instalado
+            nav = p.chromium.launch(channel="msedge")
         pag = nav.new_page()
         pag.goto(html.as_uri())
         pag.wait_for_load_state("networkidle")

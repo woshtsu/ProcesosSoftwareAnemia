@@ -1,0 +1,126 @@
+{
+ "duracion_total_s": 274.9,
+ "escenas": [
+  {
+   "parte": "Portada",
+   "inicio_s": 0.0,
+   "duracion_s": 8.3
+  },
+  {
+   "parte": "Software · PMV · validación y registro con ajuste por altitud",
+   "inicio_s": 8.3,
+   "duracion_s": 27.0
+  },
+  {
+   "parte": "Software · Incremento 2 · agenda normativa del niño",
+   "inicio_s": 35.3,
+   "duracion_s": 11.0
+  },
+  {
+   "parte": "Software · Incremento 3 · registro sin conexión",
+   "inicio_s": 46.3,
+   "duracion_s": 17.0
+  },
+  {
+   "parte": "Software · Incremento 4 · alerta por barreras críticas",
+   "inicio_s": 63.3,
+   "duracion_s": 20.0
+  },
+  {
+   "parte": "3.4.1 Administración del cambio",
+   "leyenda": "Solicitudes de cambio (RFC) registradas en GitHub Issues con la plantilla change_request.md y su etiqueta de evaluación.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/issues?q=label%3Achange-request",
+   "inicio_s": 99.3,
+   "duracion_s": 9.4
+  },
+  {
+   "parte": "3.4.1 Administración del cambio",
+   "leyenda": "RFC #18: módulo afectado, impacto, riesgo y criterios de aceptación; el Leader la evaluó con la etiqueta «aprobado».",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/issues/18",
+   "inicio_s": 110.9,
+   "duracion_s": 14.9
+  },
+  {
+   "parte": "3.4.1 Administración del cambio",
+   "leyenda": "Plantilla de solicitud de cambio versionada en .github/ISSUE_TEMPLATE/change_request.md.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/.github/ISSUE_TEMPLATE/change_request.md",
+   "inicio_s": 127.2,
+   "duracion_s": 8.4
+  },
+  {
+   "parte": "3.4.1 Revisión por pares",
+   "leyenda": "PR #36: plantilla con Definición de Terminado, vínculo al cambio y revisión «Approved» de un par antes de integrar en develop.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/pull/36",
+   "inicio_s": 137.9,
+   "duracion_s": 17.0
+  },
+  {
+   "parte": "3.4.1 Revisión por pares",
+   "leyenda": "Historial de pull requests: todo cambio entra por PR; desde el ruleset, develop y main exigen 1 aprobación.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/pulls?q=is%3Apr",
+   "inicio_s": 157.8,
+   "duracion_s": 9.6
+  },
+  {
+   "parte": "3.4.2 Gestión de versiones · GitFlow",
+   "leyenda": "Solo quedan main (producción) y develop (integración); 17 ramas integradas se limpiaron con una etiqueta de respaldo.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/branches/all",
+   "inicio_s": 169.1,
+   "duracion_s": 8.4
+  },
+  {
+   "parte": "3.4.2 Gestión de versiones · GitFlow",
+   "leyenda": "PR #31: release de develop a main, después de integrar T-024 (#29) y T-025 (#30) en develop.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/pull/31",
+   "inicio_s": 179.8,
+   "duracion_s": 11.8
+  },
+  {
+   "parte": "3.4.2 Gestión de versiones · SemVer",
+   "leyenda": "Etiquetas semánticas por incremento: v1.0-PMV, v2.0-Inc2, v3.0-Inc3, v4.0-Inc4 y el parche v4.0.1.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/tags",
+   "inicio_s": 193.2,
+   "duracion_s": 8.5
+  },
+  {
+   "parte": "3.4.2 GitHub Releases",
+   "leyenda": "Release v4.0.1 (PATCH): notas de versión y artefacto reportes-calidad con 690 pruebas y 99,46 % de cobertura.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/releases/tag/v4.0.1",
+   "inicio_s": 203.2,
+   "duracion_s": 15.0
+  },
+  {
+   "parte": "3.4.3 Construcción del sistema · CI/CD",
+   "leyenda": "GitHub Actions: cada PR ejecuta Ruff, pruebas unitarias, de integración, de arquitectura y E2E, y construye la imagen Docker.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/actions",
+   "inicio_s": 220.3,
+   "duracion_s": 9.5
+  },
+  {
+   "parte": "3.4.3 Construcción del sistema · CI/CD",
+   "leyenda": "PR #29: el pipeline detectó un error de formato (Ruff) y bloqueó el cambio hasta corregirlo…",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/actions/runs/43675155453",
+   "inicio_s": 231.5,
+   "duracion_s": 8.3
+  },
+  {
+   "parte": "3.4.3 Construcción del sistema · CI/CD",
+   "leyenda": "…y tras la corrección pasó en verde: calidad-y-pruebas e imagen; producción solo se ejecuta en main.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/actions/runs/43675249154",
+   "inicio_s": 241.3,
+   "duracion_s": 8.3
+  },
+  {
+   "parte": "3.4.3 Construcción del sistema · CI/CD",
+   "leyenda": "ci.yml: disparadores con filtro de rutas (solo cambios del software) y trabajos encadenados hasta el despliegue en Render.",
+   "url": "https://github.com/woshtsu/ProcesosSoftwareAnemia/blob/main/.github/workflows/ci.yml",
+   "inicio_s": 251.1,
+   "duracion_s": 12.8
+  },
+  {
+   "parte": "Cierre: trazabilidad",
+   "inicio_s": 266.5,
+   "duracion_s": 8.4
+  }
+ ]
+}
