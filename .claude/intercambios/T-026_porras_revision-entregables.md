@@ -56,14 +56,37 @@ Hacer una revisión independiente de todos los entregables del curso contra sus 
 
 - No tocar `pmv_fastapi/` salvo que un hallazgo lo exija; en ese caso, pedirlo primero al Leader.
 - Sin contraseñas, tokens, `.env` ni datos personales en capturas o textos.
-- Publicar por PR `docs/t026-revision → develop`. La rama `develop` está protegida y exige 1 aprobación: **pide la revisión a Porras V. y no integres con excepción de administrador**. Así se cierra el dominio 4 del PDCA (revisión por pares).
+- Publicar por PR `docs/t026-revision → develop`. La rama `develop` está protegida y exige 1 aprobación: **pide la revisión a Porras V. y no integres con excepción de administrador**. Así se cierra el dominio 4 del PDCA (revisión por pares); ver «Paso final» más abajo.
+
+## Paso final: evidencia de la revisión por pares (dominio 4 del PDCA)
+
+Esta PR será la primera del proyecto aprobada por un par desde que el ruleset está activo. Por eso es la evidencia que falta en el dominio 4. Cuando Porras V. apruebe la PR (estado «Approved»), **antes de que la integre**:
+
+1. **Capturas.** Toma dos y guárdalas en `entregables/semana-13/laboratorio-scm/evidencias/`:
+   - `web_m_pr_t026_aprobada.png`: la PR con «Approved» en *Reviewers* y el ruleset aplicado.
+   - `cli_m_pr_t026_aprobada.png`: la salida de `gh pr view <número> --json reviewDecision,reviews`.
+   - Puedes agregar la PR al script `capturar_evidencias_scm.py` y ejecutarlo con `--filtro pr_t026`.
+2. **PDCA.** Actualiza `entregables/semana-13/pdca/PDCA_gestion_configuracion.html`:
+   - El dominio 4 pasa de «Abierto» a «Verificado», con la fecha y el número de la PR.
+   - El indicador «PR con revisión aprobada» muestra el valor nuevo.
+   - Agrega una fila al registro de seguimiento y la evidencia nueva al anexo, numerada E-n.
+3. **Informe del laboratorio.** Actualiza `entregables/semana-13/laboratorio-scm/Informe_SCM_Lab13.html`:
+   - En la sección 4.3, agrega la figura nueva junto a la de la PR #9.
+   - Actualiza los indicadores (sección 9).
+   - En la autoevaluación, el criterio 1 solo puede subir a «Excelente» si la evidencia lo justifica.
+   - Actualiza la conclusión sobre revisión por pares y el total de figuras del Anexo A.
+4. **PDF.** Regenera ambos con `pmv_fastapi/.venv/Scripts/python.exe entregables/semana-13/exportar_pdf_s13.py` y revísalos.
+5. **Publicar.** Sube esos cambios a la misma rama de la PR. La aprobación se mantiene, porque el ruleset no descarta aprobaciones anteriores. Avísale a Porras V. para que integre.
+
+Si Porras V. pide cambios en lugar de aprobar, corrige, vuelve a pedir revisión y haz este paso cuando la PR esté aprobada.
 - Al cerrar: informe `.claude/coordinacion/informes/AAAA-MM-DD_revisor-documental_T-026.md`, tablero y `.claude/AVANCE_SESION.md`.
 
 ## Terminado
 
 1. `HALLAZGOS.md` completo y con capturas antes y después de cada hallazgo.
 2. Fuentes y exportados corregidos y coherentes entre sí.
-3. Un checklist final en la respuesta del chat y en `.claude/revision/T-026/CHECKLIST.md`, con:
+3. Paso final del dominio 4 hecho: PR aprobada por un par, evidencia capturada y PDCA, informe del laboratorio y PDF de S13 actualizados.
+4. Un checklist final en la respuesta del chat y en `.claude/revision/T-026/CHECKLIST.md`, con:
    - Una fila por semana y por exportado.
    - Requisitos cumplidos/total, hallazgos abiertos/cerrados y visto bueno (✅ o ❌).
    - Porcentaje global.

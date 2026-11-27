@@ -1973,7 +1973,7 @@
           "effort": "2min",
           "debt": "2min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "confusing",
             "design"
@@ -2116,7 +2116,7 @@
           "effort": "30min",
           "debt": "30min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -2175,7 +2175,7 @@
           "message": "Using HTTP protocol is insecure. Use HTTPS instead.",
           "effort": "30min",
           "debt": "30min",
-          "author": "tania.tj2005@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -2233,7 +2233,7 @@
           "message": "Using HTTP protocol is insecure. Use HTTPS instead.",
           "effort": "30min",
           "debt": "30min",
-          "author": "tania.tj2005@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -2291,7 +2291,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -2350,7 +2350,7 @@
           "message": "Headings must have content and the content must be accessible by a screen reader.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "accessibility"
           ],
@@ -2410,7 +2410,7 @@
           "message": "Associate a valid label to this input field.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "accessibility",
             "wcag2-a"
@@ -2467,7 +2467,7 @@
           "message": "Associate a valid label to this input field.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "accessibility",
             "wcag2-a"
@@ -2524,7 +2524,7 @@
           "message": "Associate a valid label to this input field.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "accessibility",
             "wcag2-a"
@@ -2581,7 +2581,7 @@
           "message": "Associate a valid label to this input field.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "accessibility",
             "wcag2-a"
@@ -2638,7 +2638,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -2697,7 +2697,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -2756,7 +2756,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -2815,7 +2815,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -2874,7 +2874,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -2933,7 +2933,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -2992,7 +2992,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3051,7 +3051,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3110,7 +3110,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3169,7 +3169,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3228,7 +3228,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3287,7 +3287,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3346,7 +3346,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3405,7 +3405,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3464,7 +3464,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3523,7 +3523,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3582,7 +3582,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3641,7 +3641,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3700,7 +3700,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3759,7 +3759,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3818,7 +3818,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3877,7 +3877,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3936,7 +3936,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -3995,7 +3995,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4054,7 +4054,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4113,7 +4113,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4172,7 +4172,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4231,7 +4231,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4290,7 +4290,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4349,7 +4349,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4408,7 +4408,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4467,7 +4467,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4526,7 +4526,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4585,7 +4585,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4644,7 +4644,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4703,7 +4703,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4762,7 +4762,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4821,7 +4821,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4880,7 +4880,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4939,7 +4939,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -4998,7 +4998,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -5057,7 +5057,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -5116,7 +5116,7 @@
           "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "async",
             "es2017",
@@ -5175,7 +5175,7 @@
           "message": "Do not perform equality checks with floating point values.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "data-science",
             "numpy",
@@ -5234,7 +5234,7 @@
           "message": "Do not perform equality checks with floating point values.",
           "effort": "5min",
           "debt": "5min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "data-science",
             "numpy",
@@ -5294,7 +5294,7 @@
           "effort": "20min",
           "debt": "20min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "performance",
             "regex"
@@ -5351,7 +5351,7 @@
           "message": "Simplify this regular expression to reduce its runtime, as it has super-linear performance due to backtracking.",
           "effort": "20min",
           "debt": "20min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "performance",
             "regex"
@@ -5408,7 +5408,7 @@
           "message": "Simplify this regular expression to reduce its runtime, as it has super-linear performance due to backtracking.",
           "effort": "20min",
           "debt": "20min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "performance",
             "regex"
@@ -5465,7 +5465,7 @@
           "message": "Simplify this regular expression to reduce its runtime, as it has super-linear performance due to backtracking.",
           "effort": "20min",
           "debt": "20min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "performance",
             "regex"
@@ -5523,7 +5523,7 @@
           "effort": "5min",
           "debt": "5min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "datetime"
           ],
@@ -5587,7 +5587,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -5645,7 +5645,7 @@
           "message": "Using dependencies without locking resolved versions is security-sensitive.",
           "effort": "1h",
           "debt": "1h",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [],
           "transitions": [
             "accept",
@@ -5700,7 +5700,7 @@
           "message": "Omitting \"--only-binary :all:\" can lead to the execution of setup scripts. Make sure it is safe here.",
           "effort": "1h",
           "debt": "1h",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -5832,7 +5832,7 @@
           "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in sonda_salud.sondear()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -5937,7 +5937,7 @@
           "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in m32_valor.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -5997,7 +5997,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -6160,7 +6160,7 @@
           "message": "Connection String Injection via faulty LLM-supplied CLI arguments in m32_valor.cuenta()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -6265,7 +6265,7 @@
           "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in m32_dataset_real.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -6325,7 +6325,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -6383,7 +6383,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -6441,7 +6441,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -6544,7 +6544,7 @@
           "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in exploratorias_inc2_final.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -6649,7 +6649,7 @@
           "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in exploratorias_inc2.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -6784,7 +6784,7 @@
           "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in cargar_dataset_api.cargar()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -6844,7 +6844,7 @@
           "message": "\"password\" detected here, review this potentially hard-coded credential.",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "former-hotspot",
@@ -6902,7 +6902,7 @@
           "message": "\"password\" detected here, review this potentially hard-coded credential.",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "former-hotspot",
@@ -6960,7 +6960,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -7018,7 +7018,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -7076,7 +7076,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -7474,7 +7474,7 @@
           "effort": "30min",
           "debt": "30min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -7534,7 +7534,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "tania.tj2005@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -7592,7 +7592,7 @@
           "message": "Make sure that using this pseudorandom number generator is safe here.",
           "effort": "10min",
           "debt": "10min",
-          "author": "tania.tj2005@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cryptography",
             "cwe",
@@ -7755,7 +7755,7 @@
           "message": "Connection String Injection via faulty LLM-supplied CLI arguments in cargar_datos_sinteticos.cargar()",
           "effort": "30min",
           "debt": "30min",
-          "author": "tania.tj2005@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -7807,7 +7807,7 @@
           "message": "Dependency versions are not predictable if the lock file (uv.lock, poetry.lock, pdm.lock, pylock.toml or a fully pinned requirements.txt) is missing.",
           "effort": "5min",
           "debt": "5min",
-          "author": "tania.tj2005@gmail.com",
+          "author": "[correo omitido]",
           "tags": [],
           "transitions": [
             "accept",
@@ -7862,7 +7862,7 @@
           "effort": "1h",
           "debt": "1h",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -7920,7 +7920,7 @@
           "effort": "30min",
           "debt": "30min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "former-hotspot",
@@ -7979,7 +7979,7 @@
           "effort": "1h",
           "debt": "1h",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [],
           "transitions": [
             "accept",
@@ -8035,7 +8035,7 @@
           "effort": "1h",
           "debt": "1h",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -8093,7 +8093,7 @@
           "effort": "30min",
           "debt": "30min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "former-hotspot",
@@ -8151,7 +8151,7 @@
           "message": "Provide a compare function to avoid sorting elements alphabetically.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "bad-practice",
             "type-dependent"
@@ -8208,7 +8208,7 @@
           "message": "Provide a compare function to avoid sorting elements alphabetically.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "bad-practice",
             "type-dependent"
@@ -8294,7 +8294,7 @@
           "message": "This function expects 1 argument, but 2 were provided.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -8379,7 +8379,7 @@
           "message": "This function expects 1 argument, but 2 were provided.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -8464,7 +8464,7 @@
           "message": "This function expects 1 argument, but 2 were provided.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -8549,7 +8549,7 @@
           "message": "This function expects 1 argument, but 2 were provided.",
           "effort": "10min",
           "debt": "10min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -8605,7 +8605,7 @@
           "message": "Use '[[' instead of '[' for conditional tests. The '[[' construct is safer and more feature-rich.",
           "effort": "2min",
           "debt": "2min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "bash",
             "best-practices",
@@ -8664,7 +8664,7 @@
           "message": "Use '[[' instead of '[' for conditional tests. The '[[' construct is safer and more feature-rich.",
           "effort": "2min",
           "debt": "2min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "bash",
             "best-practices",
@@ -8723,7 +8723,7 @@
           "message": "Use '[[' instead of '[' for conditional tests. The '[[' construct is safer and more feature-rich.",
           "effort": "2min",
           "debt": "2min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "bash",
             "best-practices",
@@ -8807,7 +8807,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in importar_dataset_diresa.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -8981,7 +8981,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in lector.leer_filas()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -9125,7 +9125,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in grabar_demo.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -9219,7 +9219,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in exportar_openapi.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -9313,7 +9313,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in exportar_openapi.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -9417,7 +9417,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in sonda_salud.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -9551,7 +9551,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in sonda_salud.sondear()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -9655,7 +9655,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in oraculo_agenda.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -9873,7 +9873,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in oraculo_agenda.cargar_dataset()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -9977,7 +9977,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in m32_valor.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -10091,7 +10091,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in m32_dataset_real.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -10195,7 +10195,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in m32_dataset_real.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -10299,7 +10299,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in generar_dataset.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -10358,7 +10358,7 @@
           "message": "Make sure publicly writable directories are used safely here.",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "former-hotspot"
@@ -10752,7 +10752,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in comun.fusionar_json()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -11148,7 +11148,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in comun.fusionar_json()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -11252,7 +11252,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in cargar_dataset_api.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -11366,7 +11366,7 @@
           "message": "Path Traversal via faulty LLM-supplied CLI arguments in cargar_dataset_api.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -11510,7 +11510,7 @@
           "message": "Command Argument Injection via faulty LLM-supplied CLI arguments in generar_diagramas.generadores_python()",
           "effort": "30min",
           "debt": "30min",
-          "author": "tania.tj2005@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -11635,7 +11635,7 @@
           "message": "Command Argument Injection via command-line argument in ejecutar.main()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -11694,7 +11694,7 @@
           "message": "Make sure publicly writable directories are used safely here.",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "former-hotspot"
@@ -11751,7 +11751,7 @@
           "message": "Make sure publicly writable directories are used safely here.",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "former-hotspot"
@@ -11864,7 +11864,7 @@
           "effort": "30min",
           "debt": "30min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -11924,7 +11924,7 @@
           "message": "Make sure disabling CSRF protection is safe here.",
           "effort": "5min",
           "debt": "5min",
-          "author": "tania.tj2005@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "django",
@@ -11984,7 +11984,7 @@
           "effort": "30min",
           "debt": "30min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "former-hotspot"
@@ -12041,7 +12041,7 @@
           "message": "Make sure this PostgreSQL password gets changed and removed from the code.",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "secret"
@@ -12153,7 +12153,7 @@
           "message": "Path Traversal via file content in comun.fusionar_json()",
           "effort": "30min",
           "debt": "30min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -12256,7 +12256,7 @@
           "message": "Path Traversal via file content in exportar_s9.pdf()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -12369,7 +12369,7 @@
           "message": "Path Traversal via file content in exportar_s9.docx()",
           "effort": "30min",
           "debt": "30min",
-          "author": "113321163+woshtsu@users.noreply.github.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe"
           ],
@@ -12427,7 +12427,7 @@
           "message": "Add password protection to this database.",
           "effort": "45min",
           "debt": "45min",
-          "author": "72156889@continental.edu.pe",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "secret"
@@ -12520,7 +12520,7 @@
           "effort": "30min",
           "debt": "30min",
           "assignee": "woshtsu-kFoGx@github",
-          "author": "ricardoporrasveli@gmail.com",
+          "author": "[correo omitido]",
           "tags": [
             "cwe",
             "sql"
@@ -13555,7 +13555,7 @@
       "effort": "2min",
       "debt": "2min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "confusing",
         "design"
@@ -13698,7 +13698,7 @@
       "effort": "30min",
       "debt": "30min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -13757,7 +13757,7 @@
       "message": "Using HTTP protocol is insecure. Use HTTPS instead.",
       "effort": "30min",
       "debt": "30min",
-      "author": "tania.tj2005@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -13815,7 +13815,7 @@
       "message": "Using HTTP protocol is insecure. Use HTTPS instead.",
       "effort": "30min",
       "debt": "30min",
-      "author": "tania.tj2005@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -13873,7 +13873,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -13932,7 +13932,7 @@
       "message": "Headings must have content and the content must be accessible by a screen reader.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "accessibility"
       ],
@@ -13992,7 +13992,7 @@
       "message": "Associate a valid label to this input field.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "accessibility",
         "wcag2-a"
@@ -14049,7 +14049,7 @@
       "message": "Associate a valid label to this input field.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "accessibility",
         "wcag2-a"
@@ -14106,7 +14106,7 @@
       "message": "Associate a valid label to this input field.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "accessibility",
         "wcag2-a"
@@ -14163,7 +14163,7 @@
       "message": "Associate a valid label to this input field.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "accessibility",
         "wcag2-a"
@@ -14220,7 +14220,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14279,7 +14279,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14338,7 +14338,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14397,7 +14397,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14456,7 +14456,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14515,7 +14515,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14574,7 +14574,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14633,7 +14633,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14692,7 +14692,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14751,7 +14751,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14810,7 +14810,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14869,7 +14869,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14928,7 +14928,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -14987,7 +14987,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15046,7 +15046,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15105,7 +15105,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15164,7 +15164,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15223,7 +15223,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15282,7 +15282,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15341,7 +15341,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15400,7 +15400,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15459,7 +15459,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15518,7 +15518,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15577,7 +15577,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15636,7 +15636,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15695,7 +15695,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15754,7 +15754,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15813,7 +15813,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15872,7 +15872,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15931,7 +15931,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -15990,7 +15990,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16049,7 +16049,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16108,7 +16108,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16167,7 +16167,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16226,7 +16226,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16285,7 +16285,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16344,7 +16344,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16403,7 +16403,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16462,7 +16462,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16521,7 +16521,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16580,7 +16580,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16639,7 +16639,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16698,7 +16698,7 @@
       "message": "Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "async",
         "es2017",
@@ -16757,7 +16757,7 @@
       "message": "Do not perform equality checks with floating point values.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "data-science",
         "numpy",
@@ -16816,7 +16816,7 @@
       "message": "Do not perform equality checks with floating point values.",
       "effort": "5min",
       "debt": "5min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "data-science",
         "numpy",
@@ -16876,7 +16876,7 @@
       "effort": "20min",
       "debt": "20min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "performance",
         "regex"
@@ -16933,7 +16933,7 @@
       "message": "Simplify this regular expression to reduce its runtime, as it has super-linear performance due to backtracking.",
       "effort": "20min",
       "debt": "20min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "performance",
         "regex"
@@ -16990,7 +16990,7 @@
       "message": "Simplify this regular expression to reduce its runtime, as it has super-linear performance due to backtracking.",
       "effort": "20min",
       "debt": "20min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "performance",
         "regex"
@@ -17047,7 +17047,7 @@
       "message": "Simplify this regular expression to reduce its runtime, as it has super-linear performance due to backtracking.",
       "effort": "20min",
       "debt": "20min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "performance",
         "regex"
@@ -17105,7 +17105,7 @@
       "effort": "5min",
       "debt": "5min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "datetime"
       ],
@@ -17169,7 +17169,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -17227,7 +17227,7 @@
       "message": "Using dependencies without locking resolved versions is security-sensitive.",
       "effort": "1h",
       "debt": "1h",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [],
       "transitions": [
         "accept",
@@ -17282,7 +17282,7 @@
       "message": "Omitting \"--only-binary :all:\" can lead to the execution of setup scripts. Make sure it is safe here.",
       "effort": "1h",
       "debt": "1h",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -17414,7 +17414,7 @@
       "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in sonda_salud.sondear()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -17519,7 +17519,7 @@
       "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in m32_valor.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -17579,7 +17579,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -17742,7 +17742,7 @@
       "message": "Connection String Injection via faulty LLM-supplied CLI arguments in m32_valor.cuenta()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -17847,7 +17847,7 @@
       "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in m32_dataset_real.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -17907,7 +17907,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -17965,7 +17965,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -18023,7 +18023,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -18126,7 +18126,7 @@
       "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in exploratorias_inc2_final.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -18231,7 +18231,7 @@
       "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in exploratorias_inc2.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -18366,7 +18366,7 @@
       "message": "Server-Side Request Forgery via faulty LLM-supplied CLI arguments in cargar_dataset_api.cargar()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -18426,7 +18426,7 @@
       "message": "\"password\" detected here, review this potentially hard-coded credential.",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "former-hotspot",
@@ -18484,7 +18484,7 @@
       "message": "\"password\" detected here, review this potentially hard-coded credential.",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "former-hotspot",
@@ -18542,7 +18542,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -18600,7 +18600,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -18658,7 +18658,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -19056,7 +19056,7 @@
       "effort": "30min",
       "debt": "30min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -19116,7 +19116,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "tania.tj2005@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -19174,7 +19174,7 @@
       "message": "Make sure that using this pseudorandom number generator is safe here.",
       "effort": "10min",
       "debt": "10min",
-      "author": "tania.tj2005@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cryptography",
         "cwe",
@@ -19337,7 +19337,7 @@
       "message": "Connection String Injection via faulty LLM-supplied CLI arguments in cargar_datos_sinteticos.cargar()",
       "effort": "30min",
       "debt": "30min",
-      "author": "tania.tj2005@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -19389,7 +19389,7 @@
       "message": "Dependency versions are not predictable if the lock file (uv.lock, poetry.lock, pdm.lock, pylock.toml or a fully pinned requirements.txt) is missing.",
       "effort": "5min",
       "debt": "5min",
-      "author": "tania.tj2005@gmail.com",
+      "author": "[correo omitido]",
       "tags": [],
       "transitions": [
         "accept",
@@ -19444,7 +19444,7 @@
       "effort": "1h",
       "debt": "1h",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -19502,7 +19502,7 @@
       "effort": "30min",
       "debt": "30min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "former-hotspot",
@@ -19561,7 +19561,7 @@
       "effort": "1h",
       "debt": "1h",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [],
       "transitions": [
         "accept",
@@ -19617,7 +19617,7 @@
       "effort": "1h",
       "debt": "1h",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -19675,7 +19675,7 @@
       "effort": "30min",
       "debt": "30min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "former-hotspot",
@@ -19733,7 +19733,7 @@
       "message": "Provide a compare function to avoid sorting elements alphabetically.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "bad-practice",
         "type-dependent"
@@ -19790,7 +19790,7 @@
       "message": "Provide a compare function to avoid sorting elements alphabetically.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "bad-practice",
         "type-dependent"
@@ -19876,7 +19876,7 @@
       "message": "This function expects 1 argument, but 2 were provided.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -19961,7 +19961,7 @@
       "message": "This function expects 1 argument, but 2 were provided.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -20046,7 +20046,7 @@
       "message": "This function expects 1 argument, but 2 were provided.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -20131,7 +20131,7 @@
       "message": "This function expects 1 argument, but 2 were provided.",
       "effort": "10min",
       "debt": "10min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -20187,7 +20187,7 @@
       "message": "Use '[[' instead of '[' for conditional tests. The '[[' construct is safer and more feature-rich.",
       "effort": "2min",
       "debt": "2min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "bash",
         "best-practices",
@@ -20246,7 +20246,7 @@
       "message": "Use '[[' instead of '[' for conditional tests. The '[[' construct is safer and more feature-rich.",
       "effort": "2min",
       "debt": "2min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "bash",
         "best-practices",
@@ -20305,7 +20305,7 @@
       "message": "Use '[[' instead of '[' for conditional tests. The '[[' construct is safer and more feature-rich.",
       "effort": "2min",
       "debt": "2min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "bash",
         "best-practices",
@@ -20389,7 +20389,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in importar_dataset_diresa.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -20563,7 +20563,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in lector.leer_filas()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -20707,7 +20707,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in grabar_demo.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -20801,7 +20801,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in exportar_openapi.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -20895,7 +20895,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in exportar_openapi.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -20999,7 +20999,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in sonda_salud.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -21133,7 +21133,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in sonda_salud.sondear()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -21237,7 +21237,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in oraculo_agenda.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -21455,7 +21455,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in oraculo_agenda.cargar_dataset()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -21559,7 +21559,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in m32_valor.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -21673,7 +21673,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in m32_dataset_real.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -21777,7 +21777,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in m32_dataset_real.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -21881,7 +21881,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in generar_dataset.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -21940,7 +21940,7 @@
       "message": "Make sure publicly writable directories are used safely here.",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "former-hotspot"
@@ -22334,7 +22334,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in comun.fusionar_json()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -22730,7 +22730,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in comun.fusionar_json()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -22834,7 +22834,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in cargar_dataset_api.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -22948,7 +22948,7 @@
       "message": "Path Traversal via faulty LLM-supplied CLI arguments in cargar_dataset_api.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -23092,7 +23092,7 @@
       "message": "Command Argument Injection via faulty LLM-supplied CLI arguments in generar_diagramas.generadores_python()",
       "effort": "30min",
       "debt": "30min",
-      "author": "tania.tj2005@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -23217,7 +23217,7 @@
       "message": "Command Argument Injection via command-line argument in ejecutar.main()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -23276,7 +23276,7 @@
       "message": "Make sure publicly writable directories are used safely here.",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "former-hotspot"
@@ -23333,7 +23333,7 @@
       "message": "Make sure publicly writable directories are used safely here.",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "former-hotspot"
@@ -23446,7 +23446,7 @@
       "effort": "30min",
       "debt": "30min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -23506,7 +23506,7 @@
       "message": "Make sure disabling CSRF protection is safe here.",
       "effort": "5min",
       "debt": "5min",
-      "author": "tania.tj2005@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "django",
@@ -23566,7 +23566,7 @@
       "effort": "30min",
       "debt": "30min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "former-hotspot"
@@ -23623,7 +23623,7 @@
       "message": "Make sure this PostgreSQL password gets changed and removed from the code.",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "secret"
@@ -23735,7 +23735,7 @@
       "message": "Path Traversal via file content in comun.fusionar_json()",
       "effort": "30min",
       "debt": "30min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -23838,7 +23838,7 @@
       "message": "Path Traversal via file content in exportar_s9.pdf()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -23951,7 +23951,7 @@
       "message": "Path Traversal via file content in exportar_s9.docx()",
       "effort": "30min",
       "debt": "30min",
-      "author": "113321163+woshtsu@users.noreply.github.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe"
       ],
@@ -24009,7 +24009,7 @@
       "message": "Add password protection to this database.",
       "effort": "45min",
       "debt": "45min",
-      "author": "72156889@continental.edu.pe",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "secret"
@@ -24102,7 +24102,7 @@
       "effort": "30min",
       "debt": "30min",
       "assignee": "woshtsu-kFoGx@github",
-      "author": "ricardoporrasveli@gmail.com",
+      "author": "[correo omitido]",
       "tags": [
         "cwe",
         "sql"

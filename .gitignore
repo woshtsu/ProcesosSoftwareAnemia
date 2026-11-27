@@ -24,3 +24,6 @@ graphify-out/
 
 # Sílabo en PDF: se usa su resumen en .claude/contexto/SILABO_RESUMEN.md
 guias/*.pdf
+
+# Copia del video para subir al aula (el original está en entregables/semana-15/video/)
+exportados/semana-15/*.mp4

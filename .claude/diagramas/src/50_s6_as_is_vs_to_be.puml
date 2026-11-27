@@ -1,0 +1,57 @@
+@startuml 50_s6_as_is_vs_to_be
+' Fuentes: Informe_Integrador Tabla 4 (brechas B1-B6) y Tabla 5 (mejoras M1-M6 e incrementos)
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 12
+skinparam wrapWidth 260
+skinparam nodesep 30
+skinparam ranksep 40
+
+title Proceso actual (AS-IS reactivo) frente al propuesto (TO-BE preventivo)
+
+package "TO-BE preventivo: mejoras e incrementos (Tabla 5)" #E6F2FF {
+  rectangle "M1: Registro nominal único,\nvalidado y deduplicado\n[INC-1, entregado en v1.0-PMV]" as M1 #A5D6A7
+  rectangle "M2: Plan y agenda de controles\nsegún la norma\n[INC-2]" as M2 #B3E5FC
+  rectangle "M3: Recordatorio con confirmación\no reporte de barrera\n[INC-4]" as M3 #B3E5FC
+  rectangle "M4: Visita priorizada y\nformulario estructurado\n[INC-3]" as M4 #B3E5FC
+  rectangle "M5: Riesgo de abandono explicable\n(decide el profesional)\n[INC-5]" as M5 #B3E5FC
+  rectangle "M6: Captura local con sincronización\ne indicadores oportunos\n[INC-3 e INC-6]" as M6 #B3E5FC
+}
+
+package "AS-IS reactivo: brechas (Tabla 4)" #FFE6CC {
+  rectangle "B1: Triple registro manual\n(historia, tarjeta y HIS)" as B1 #FFB3B3
+  rectangle "B2: Agenda de controles\ncalculada a mano" as B2 #FFB3B3
+  rectangle "B3: Barreras del hogar ocultas\nhasta el abandono" as B3 #FFB3B3
+  rectangle "B4: Visita domiciliaria\nen papel, sin conexión" as B4 #FFB3B3
+  rectangle "B5: Riesgo detectado\ncuando el abandono ya ocurrió" as B5 #FFB3B3
+  rectangle "B6: Cobertura intermitente\ny consolidación tardía" as B6 #FFB3B3
+}
+
+B1 -left-> M1
+B2 -left-> M2
+B3 -left-> M3
+B4 -left-> M4
+B5 -left-> M5
+B6 -left-> M6
+
+B1 -[hidden]down-> B2
+B2 -[hidden]down-> B3
+B3 -[hidden]down-> B4
+B4 -[hidden]down-> B5
+B5 -[hidden]down-> B6
+M1 -[hidden]down-> M2
+M2 -[hidden]down-> M3
+M3 -[hidden]down-> M4
+M4 -[hidden]down-> M5
+M5 -[hidden]down-> M6
+
+rectangle "Indicador de valor ya medible (datos sintéticos): 3 registros por evaluación pasan a 1 expediente digital único" as VALOR #C8E6C9
+M6 -[hidden]down-> VALOR
+
+note bottom of VALOR
+  Fuente: Informe integrador, Tablas 4 y 5; S1 §3 a §7.
+  Solo M1 está entregada; M6 es parcial (reporte del periodo, sin cola sin conexión).
+end note
+
+@enduml

@@ -2,6 +2,8 @@
 
 **Curso:** Procesos de Software — periodo 2026-20
 
+**Unidad del sílabo:** Unidad I — Fundamentos de procesos de software
+
 **Unidad:** Diseño de procesos de software con entrega de valor
 
 **Eje temático 1:** Enfoque de procesos de la organización
@@ -84,7 +86,6 @@ El problema **no se formula como ausencia de software**. El valor se pierde cuan
 
 El proceso actual depende del esfuerzo manual del personal y de la comunicación directa entre actores. Es predominantemente **reactivo**: la desviación se detecta cuando el niño ya faltó al control o abandonó el tratamiento. Conforme a la regla de la guía, en este apartado **no se incorpora ninguna solución tecnológica**.
 
-<!-- DIAG-001 pendiente -->
 ![Figura 2. Proceso AS-IS por carriles de actor, con las notas de problema asociadas a cada actividad (elaboración propia).](../../.claude/diagramas/svg/10_s1_proceso_as_is.svg)
 
 **Elementos del modelo AS-IS** (exigidos por la Actividad 2):
@@ -148,7 +149,6 @@ El proceso mejorado mantiene las decisiones clínicas en manos del profesional e
 | B5 Sin anticipación del riesgo | M5. Estimación del riesgo de abandono (score 0-100, explicable) que ordena la agenda | Sistema; decide el profesional |
 | B6 Conectividad intermitente e indicadores tardíos | M6. Registro sin conexión con sincronización diferida e indicadores actualizados | Sistema |
 
-<!-- DIAG-002 pendiente -->
 ![Figura 7. Proceso TO-BE por carriles de actor, con el carril Sistema y las mejoras M1-M6 (elaboración propia).](../../.claude/diagramas/svg/11_s1_proceso_to_be.svg)
 
 **Tabla 5.** Elementos del TO-BE exigidos por la Actividad 4 de la guía.
@@ -201,7 +201,6 @@ El detalle técnico de estos aportes (esquema normativo integrado en el motor de
 
 La guía pide construir la cadena **Entrada → Actividad → Resultado → Decisión → Acción → Valor**, bajo la relación *actividad mejorada → mejor resultado → valor organizacional*.
 
-<!-- DIAG-003 pendiente -->
 ![Figura 8. Cadena de valor del proceso TO-BE (elaboración propia).](../../.claude/diagramas/svg/12_s1_cadena_valor.svg)
 
 **Tabla 7.** Cadena de valor del proceso TO-BE.
@@ -252,7 +251,7 @@ Se definen catorce indicadores en las cuatro categorías que exige la guía (mí
 
 ## 9.1 ¿Qué problema del proceso organizacional se pretende resolver?
 
-La discontinuidad, la demora y la coordinación poco confiable en la prevención, medición, registro, seguimiento y recuperación de la anemia infantil en las zonas rurales de Junín. Según la entrevista, el proceso depende de un triple registro manual que genera errores de digitación, duplicidad y demoras; los agentes comunitarios visitan cada semana a las familias sin herramientas digitales, y las barreras de adherencia permanecen ocultas hasta que el niño ya abandonó el tratamiento. El problema no es la ausencia de software, sino la pérdida de oportunidades preventivas cuando un dosaje o una indicación no se convierte en seguimiento y acción oportunos.
+La discontinuidad, la demora y la coordinación poco confiable en la prevención, medición, registro, seguimiento y recuperación de la anemia infantil en las zonas rurales de Junín. Según la entrevista, el proceso depende de un triple registro (historia clínica, tarjeta de control y sistema de información) y los agentes comunitarios visitan cada semana a las familias; según el diagnóstico del equipo, ese triple registro manual genera errores de digitación, duplicidad y demoras, las visitas se realizan sin herramientas digitales y las barreras de adherencia permanecen ocultas hasta que el niño ya abandonó el tratamiento. El problema no es la ausencia de software, sino la pérdida de oportunidades preventivas cuando un dosaje o una indicación no se convierte en seguimiento y acción oportunos.
 
 ## 9.2 ¿Qué actividad del AS-IS genera mayor pérdida de valor?
 
@@ -297,7 +296,7 @@ El criterio clave de la guía exige justificar el proceso con la cadena **proble
 
 | Resultado de la Semana 1 | Uso en la Semana 2 |
 | :---- | :---- |
-| Mejoras M1-M6 del TO-BE | Se convierten en los seis incrementos INC-1 a INC-6 (registro nominal, agenda, offline, WhatsApp, modelo predictivo, tablero) |
+| Mejoras M1-M6 del TO-BE | Se agrupan en los seis incrementos INC-1 a INC-6 (registro nominal, agenda, offline, WhatsApp, modelo predictivo, tablero): M1 en INC-1; M2 en INC-2; M3 en INC-4; M4 (visita priorizada) y la parte sin conexión de M6 en INC-3; M5 en INC-5; los indicadores de M6 en INC-6 (Tabla 9 de la Semana 2) |
 | Componente predictivo con variables aún no validadas | Característica de alta incertidumbre y experimentación que condiciona el modelo de proceso (MLOps) |
 | Conectividad intermitente (B6) | Riesgo tecnológico que exige probar la sincronización en cada entrega (DevOps) |
 | Necesidad de validación del personal de salud | Retroalimentación frecuente con el usuario (Scrum) |
@@ -428,12 +427,10 @@ Estos diagramas representan la **visión completa** del sistema (incrementos INC
 
 ## B.1 Diagrama de casos de uso
 
-<!-- DIAG-004 pendiente -->
 ![Figura 10. Casos de uso de la visión TO-BE: 5 actores y 11 casos de uso (elaboración propia).](../../.claude/diagramas/svg/13_s1_casos_uso_vision.svg)
 
 ## B.2 Diagrama de clases del dominio
 
-<!-- DIAG-005 pendiente -->
 ![Figura 11. Diagrama de clases del dominio de la visión TO-BE (elaboración propia).](../../.claude/diagramas/svg/14_s1_clases_dominio_vision.svg)
 
 # Anexo C. Entrevista al personal de salud

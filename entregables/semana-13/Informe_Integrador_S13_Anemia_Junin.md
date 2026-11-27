@@ -10,7 +10,7 @@
                                    INFORME ACADÉMICO FINAL
               "DISEÑO, ADAPTACIÓN, EVALUACIÓN E IMPLEMENTACIÓN DEL PROCESO DE
                 SOFTWARE CON ENTREGA DE VALOR APLICADO AL PROYECTO DE ASIGNATURA"
-                 Versión actualizada y corregida (semana 13, Unidad III)
+                 Versión actualizada y corregida (semana 13, Unidad IV)
 
 --------------------------------------------------------------------------------------------------------
 PROYECTO: Sistema Inteligente para Detección Temprana de Anemia Infantil en Zonas Rurales de Junín
@@ -261,7 +261,7 @@ PERIODO ACADÉMICO: 2026-20
 
 ## CONTROL DE CAMBIOS RESPECTO DE LA ENTREGA DE LA SEMANA 12
 
-Esta versión corrige las tres observaciones del docente a la entrega de la semana 12 y agrega lo realizado entre el 30/10 y el 06/11/2026. La Tabla 2 relaciona cada observación con la corrección y con el lugar del informe donde se verifica. Las filas 4 a 8 son actualizaciones del equipo, no observaciones del docente.
+Esta versión corrige las tres observaciones del docente a la entrega de la semana 12 y agrega lo realizado entre el 30/10 y el 06/11/2026. La Tabla 2 relaciona cada observación con la corrección y con el lugar del informe donde se verifica. Las filas 4 a 8 son actualizaciones del equipo; las filas 9 a 11 son correcciones de la revisión T-026 (15/11/2026). Ninguna es observación del docente.
 
 **Tabla 2.** Observaciones de la semana 12, corrección aplicada y dónde verificarla.
 
@@ -275,6 +275,9 @@ Esta versión corrige las tres observaciones del docente a la entrega de la sema
 | 6 | Equipo: hallazgos H2 y H5, sin plantilla de PR ni convención escrita | Plantillas de solicitud de cambio y de PR en `.github/` y convención de ramas, commits y etiquetas en `CONTRIBUTING.md` | Ficha CM, Tablas 36, 39 y 41 y Anexo B |
 | 7 | Equipo: lecturas de la semana 13 | Marco teórico ampliado con las dos lecturas: revisión, verificación y validación, y el ciclo PHVA; seguimiento del plan de mejora al 06/11/2026 | 2.5 y 3.8 (Tabla 41) |
 | 8 | Equipo: video y producción | El video se regrabó el 09/11/2026 sobre producción y el servicio de Render se recreó en la región Virginia, junto a la base de datos | Anexos A y B |
+| 9 | Revisión T-026, 15/11/2026, H-183: unidad de la portada | La portada decía «Unidad III»; la semana 13 corresponde a la Unidad IV del sílabo | Portada |
+| 10 | Revisión T-026, 15/11/2026, H-184: estado de SonarCloud | Se precisó que el análisis del 05/11 fue el automático de SonarCloud y que el paso del CI existe en ci.yml desde el 30/10, sin ejecución comprobada | Ficha VER (3.8), plan de mejora y autoevaluación |
+| 11 | Revisión T-026, 15/11/2026, H-190: ramas release/* | Se aclaró que la convención prevé ramas release/*, pero no se creó ninguna | Ficha CM (3.8) |
 
 Las pruebas se volvieron a ejecutar el 06/11/2026 sobre `v4.0-Inc4` con el mismo resultado del 30/10: 660 pruebas aprobadas con 99,79 % de cobertura, 28 E2E y Ruff sin observaciones (ficha VER).
 
@@ -599,7 +602,7 @@ PROYECTO ANEMIA JUNÍN
 | INC-4 WhatsApp y barreras | HIST-4.1 a HIST-4.4 | 16 | 3,40 (4.°) | Entregado: `v4.0-Inc4` (envío real sin probar) |
 | INC-5 Modelo predictivo | HIST-5.1 a HIST-5.4 | 34 | 3,35 (5.°) | No implementado |
 | INC-6 Tablero territorial | HIST-6.1 a HIST-6.4 | 15 | 2,75 (6.°) | No implementado |
-| Backlog técnico | BT-01 a BT-03, BT-08, BT-09 | 8 | no priorizado | Parcial (CI y E2E implantados; SonarCloud con primer análisis el 05/11/2026, aún fuera del CI) |
+| Backlog técnico | BT-01 a BT-03, BT-08, BT-09 | 8 | no priorizado | Parcial (CI y E2E implantados; SonarCloud con primer análisis automático el 05/11/2026, sin ejecución comprobada desde el CI) |
 | **Total** | | **133** | | **76 SP entregados en los cuatro incrementos (57,1 %)** |
 
 **Priorización valor y riesgo.** El puntaje ponderado combina valor (30 %), reducción de riesgo (25 %), dependencia técnica (20 %), factibilidad (15 %) y validación (10 %). INC-1 lidera porque es prerrequisito de todos los demás; INC-3 puntúa por encima de INC-2, pero se ejecutó después porque requería el pipeline de integración continua y la decisión sobre la base central (nota de S3-4 sobre el calendario). Dentro del INC-1 se construyó primero la clasificación normativa (HIST-1.3) y después el formulario, porque un umbral clínico mal transcrito invalidaría todo lo posterior.
@@ -2022,7 +2025,7 @@ La evaluación usa la representación continua con niveles de capacidad 0 a 3 po
 | PLAN | 2 | **2 (Gestionado)** | WBS, cronograma, hitos H0 a H7 y desviaciones medidas (+2, +5, +4, −10 días); seguimiento en `TABLERO.md` | Sin tablero de GitHub Projects; hitos H3 y H4 sin aceptación; replanificación propuesta en S9 no adoptada |
 | PQA | 1 | **1 (Ejecutado)** | DoD por actividad e historia, puertas automáticas del CI e informe de revisión independiente | PR #8 integrada sin revisión «Approved»; PR #6 y #7 con verificaciones en rojo; plantilla de PR incorporada el 06/11/2026, aún sin uso sostenido; protección de `main` no verificable |
 | CM | 2 | **2 (Gestionado)** | 5 etiquetas (`v1.0-PMV` a `v4.0-Inc4`) con su *release*, ramas `feature/*`, PR integradas, CI en la rama antes de la PR | Convención escrita (`CONTRIBUTING.md`) y rama `develop` desde el 06/11/2026, aún no aplicadas en un incremento completo; la PR #8 entró como un solo commit *squash* que las etiquetas no contienen |
-| VER | 2 | **2 (Gestionado)** | 660 pruebas, 28 E2E, 99,79 % de cobertura, 25 pruebas de arquitectura, Ruff 0, contrato OpenAPI | SonarCloud analizado el 05/11/2026 pero fuera del CI; *hook* de pre-commit sin activar; 5 defectos escaparon a las pruebas |
+| VER | 2 | **2 (Gestionado)** | 660 pruebas, 28 E2E, 99,79 % de cobertura, 25 pruebas de arquitectura, Ruff 0, contrato OpenAPI | SonarCloud analizado el 05/11/2026 (análisis automático), sin ejecución comprobada desde el CI; *hook* de pre-commit sin activar; 5 defectos escaparon a las pruebas |
 | VAL | 1 | **1 (Ejecutado)** | 19 de 19 escenarios con captura y ficha | Sin SUS, sin acta de aceptación ni piloto; validaciones con la microred, Meta y dispositivo real pendientes |
 | CAR | no evaluada | **1 (Ejecutado)** | 9 hallazgos con causa raíz; cinco porqués para 6 de ellos; plan de 19 acciones | 1 de 19 acciones cumplida y ninguna con efecto medido |
 
@@ -2245,7 +2248,7 @@ La ejecución #16 del CI en `main`, en verde, es la Figura 99 de esta sección.
 ![Releases del repositorio.](img/C11_releases.jpg)
 
 - **Archivo de imagen:** `entregables/semana-13/img/C11_releases.jpg`
-- Las solicitudes de cambio se registran con la plantilla `.github/ISSUE_TEMPLATE/change_request.md` y las PR con `.github/PULL_REQUEST_TEMPLATE.md`, que incluye la lista de la DoD. Las ramas siguen GitFlow (`main`, `develop`, `feature/*`, `release/*`, `hotfix/*`) y los commits el formato `tipo(ámbito): descripción` (`CONTRIBUTING.md`).
+- Las solicitudes de cambio se registran con la plantilla `.github/ISSUE_TEMPLATE/change_request.md` y las PR con `.github/PULL_REQUEST_TEMPLATE.md`, que incluye la lista de la DoD. Las ramas siguen la convención GitFlow (`main`, `develop`, `feature/*`, `release/*`, `hotfix/*`; hasta el 13/11 no se creó ninguna rama release/*) y los commits el formato `tipo(ámbito): descripción` (`CONTRIBUTING.md`).
 
 ---
 
@@ -2273,7 +2276,7 @@ La ejecución #16 del CI en `main`, en verde, es la Figura 99 de esta sección.
 
 Con estas evidencias, ninguna área cambia de nivel respecto de la Tabla 36. Las de Nivel 1 (ESTIM, PQA, VAL y CAR) tienen productos de trabajo, pero les falta el registro sistemático que exige el Nivel 2: horas reales, aprobación registrada de las PR, aceptación del usuario y efecto medido de las mejoras.
 
-La novedad del 05/11/2026 es el primer análisis de SonarCloud. Avanza la acción 3 del plan de mejora, pero aún no se integra al CI.
+La novedad del 05/11/2026 es el primer análisis de SonarCloud. Avanza la acción 3 del plan de mejora. Fue un análisis automático de SonarCloud, sin la cobertura del CI: el paso «Análisis SonarCloud» existe en ci.yml desde el 30/10/2026, condicionado al secreto SONAR_TOKEN, pero este informe no registra que se haya ejecutado.
 
 **Análisis de causa raíz y plan de mejora continua**
 
@@ -2309,7 +2312,7 @@ Las pruebas de regresión de los defectos corregidos tras la revisión independi
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | ESTIM | Campo «horas reales» por tarea; tareas de máximo 6 h; recalibrar la velocidad de 20 SP | 100 % de tareas con horas; desviación ≤ ±20 % por historia | Porras V. | 03/11 (recalibración 09/11) | Pendiente |
 | 2 | PQA | Plantilla de PR con la DoD y protección de `main` con revisor obligatorio | 100 % de PR con lista de chequeo y aprobación | Huamani R. | 06/11 | Parcial: plantillas de PR y de solicitud de cambio el 06/11; falta proteger `main` |
-| 3 | VER | Activar SonarCloud, pruebas de entradas límite en la DoD y *hook* de pre-commit | Reporte de SonarCloud sin incidencias críticas | Huamani R. | 06/11 | Parcial: primer análisis de SonarCloud el 05/11 (129 hallazgos, 0 en el backend desplegado); falta el análisis desde el CI y corregir los críticos del frontend |
+| 3 | VER | Activar SonarCloud, pruebas de entradas límite en la DoD y *hook* de pre-commit | Reporte de SonarCloud sin incidencias críticas | Huamani R. | 06/11 | Parcial: primer análisis de SonarCloud el 05/11 (129 hallazgos, 0 en el backend desplegado); falta comprobar el análisis desde el CI (el paso existe en ci.yml, condicionado a SONAR_TOKEN) y corregir los críticos del frontend |
 | 5 | VAL | Sesión de aceptación con el personal de salud: acta firmada y SUS con al menos cinco respondientes | SUS ≥ 68; acta por RF | Porras V. | 13/11 | Pendiente |
 | 8 | CM, VER | Corregir los 3 fallos del CI y añadir Python 3.13 a la matriz | CI de `main` en verde | Huamani R. | 30/10 (matriz 13/11) | Cumplida (corrección) |
 | 10 | PQA | Criterios no funcionales en la DoD: cabeceras 6 de 6, 0 vulnerabilidades altas, axe sin críticas, p95 < 800 ms | IC_P ≥ 90 % en la siguiente medición | Huamani R. | 13/11 | Pendiente |
@@ -2323,7 +2326,7 @@ Estado del plan al 30/10/2026: 19 acciones (7 de S11 y 12 nuevas), 1 cumplida, 4
 **Seguimiento al 06/11/2026 (ciclo PHVA).** El plan de la Tabla 41 es la fase «planificar» y las acciones ejecutadas son la fase «hacer». La verificación del 06/11/2026 da este resultado:
 
 - **Acción 2 (PQA):** pasa a parcial. Hay plantilla de PR con la DoD, plantilla de solicitud de cambio y convención escrita. Falta proteger `main` con revisor obligatorio, configuración que solo puede hacer el propietario del repositorio.
-- **Acción 3 (VER):** sigue parcial. SonarCloud se analizó el 05/11, pero aún no se ejecuta desde el CI.
+- **Acción 3 (VER):** sigue parcial. SonarCloud se analizó el 05/11 de forma automática; el paso del CI existe en ci.yml, pero su ejecución no está comprobada.
 - **Acción 1 (ESTIM):** vencida el 03/11 sin cumplirse. La recalibración de la velocidad prevista para el 09/11 depende de ella.
 - **Hallazgos fuera del plan:** H5 y H10 quedan mitigados (Tabla 39).
 
@@ -2496,7 +2499,7 @@ Cada número de la lista de referencias figura en el texto al menos una vez y ca
 | --- | --- | --- | --- |
 | 1. Evaluación del proceso de software: *tailoring*, WBS, RAE, DoD y CMMI (5,0) | Secciones 3.1 a 3.4 y 3.8: factores y matriz ponderada (4,75 de 5), WBS con 133 SP, matriz RAE, DoD verificada, desviaciones medidas, CMMI en 7 áreas y plan de 19 acciones | Excelente en rigor; Bueno si el docente pondera los niveles de capacidad | CMMI queda en Nivel 1 en 4 de 7 áreas; sin horas reales, sin GitHub Projects y sin actas de revisión |
 | 2. Producto en GitHub y arquitectura hexagonal (6,0) | Sección 3.6.4 y Anexo B: estructura `domain`, `ports`, `adapters` con enlaces a `v4.0-Inc4`, 0 importaciones de terceros en 86 clases, 25 pruebas de arquitectura, 5 etiquetas con su *release* y plantillas de cambio | Excelente | La ruta es `pmv_fastapi/app/` y no `/src/`; el PMV nació con 40 % de conformidad; `v1.0-PMV` está fuera del historial de `main`; conformidad ultra estricta de 80 % |
-| 3. Pruebas, FURPS+ y seguridad OWASP 2025 (4,0) | Secciones 3.6.2, 3.6.3 y 3.7: 19 de 19 fichas con capturas, FURPS+ 87,7 % (78,4 % conservador), WCAG con 22 de 23 pares de texto, OWASP con 12 hallazgos | Bueno | La rúbrica premia «0 vulnerabilidades» y el informe reporta 1 hallazgo alto y 6 medios; accesibilidad sin lector de pantalla; SonarCloud no ejecutado |
+| 3. Pruebas, FURPS+ y seguridad OWASP 2025 (4,0) | Secciones 3.6.2, 3.6.3 y 3.7: 19 de 19 fichas con capturas, FURPS+ 87,7 % (78,4 % conservador), WCAG con 22 de 23 pares de texto, OWASP con 12 hallazgos | Bueno | La rúbrica premia «0 vulnerabilidades» y el informe reporta 1 hallazgo alto y 6 medios; accesibilidad sin lector de pantalla; SonarCloud analizado solo de forma automática, sin ejecución comprobada desde el CI |
 | 4. Video demostrativo y guion técnico (5,0) | Anexo C y `video/GUION_DEMO.md`: guion de 5:00 minuto a minuto con criterio verificado por escena; Anexo A | Bueno | Video publicado en Drive (Anexo A); la grabación usa datos sintéticos, proveedor de identidad simulado y envío simulado; la producción corre con reloj fijo (30/06/2024) y sus capturas están en las fichas GQM y en la ficha VAL |
 
 **Tabla 46.** Resumen de evaluación en el formato de la plantilla (los puntajes los asigna el docente).

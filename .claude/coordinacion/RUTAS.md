@@ -128,14 +128,14 @@ Checklists de cumplimiento archivados: `.claude/archivo/semana-XX/CHECKLIST_CUMP
 
 ## Rutas de cierre autorizadas mediante ORQ-002
 
-- `entregables/semana-06-integrador/Presentacion_Integrador_Anemia_Junin.md`: contenido y guion de siete diapositivas.
-- `exportados/semana-06-integrador/Presentacion_Integrador_Anemia_Junin.pptx` y `.pdf`: presentación.
+- `entregables/semana-06-integrador/presentacion/Presentacion_Integrador.md` (y `GUION_EXPOSICION.md`, `generar_presentacion.py`): contenido, guion y generador de las siete diapositivas (restaurados en T-026, H-081).
+- `exportados/semana-06-integrador/`: informe integrador (`.pdf`, `.docx`) y presentación (`.pptx`, `.pdf`) del cierre del 02/10 (restaurados en T-026, H-081).
 - `.claude/herramientas/conversion/`: generadores reproducibles de documentos y presentación.
 - `.claude/diagramas/_build/cierre/`: borradores y verificaciones visuales regenerables.
 - `anemia_junin/docs/evidencias/cierre/`: capturas y mediciones de la sesión actual.
 - `anemia_junin/scripts/verificar_navegador.py`: prueba de aceptación técnica en Chromium con capturas.
 - `.claude/archivo/versiones-anteriores/semana-06-integrador/`: integrador anterior a la conciliación del cierre.
-- `exportados/LEEME_ENTREGA.md`: índice del paquete y campos pendientes del equipo.
+- `exportados/README.md`: índice de los exportados por semana (el `LEEME_ENTREGA.md` previsto no llegó a crearse; T-026, H-221).
 
 ## Rutas de la Semana 9 (ORQ-003)
 
@@ -166,3 +166,14 @@ Figura heredada del avance 1.5, conservada al resolver el merge (ORQ-004): `.cla
 | Exportado PDF | `exportados/semana-11/Entregable_Semana11_Anemia_Junin.pdf` |
 | Generador del PDF (Markdown → HTML → Chrome/Edge) | `.claude/herramientas/conversion/exportar_s11.py` |
 | Reportes exportados del anexo (Ruff, cobertura y pruebas del 30/10/2026) | `entregables/semana-11/anexos/ruff.txt` y `entregables/semana-11/anexos/cobertura_y_pruebas.txt` |
+
+## Rutas de la revisión integral T-026 (encargo del Leader, `.claude/intercambios/T-026_porras_revision-entregables.md`)
+
+| Contenido | Ruta |
+| --- | --- |
+| Hallazgos, criterios y checklist de la revisión | `.claude/revision/T-026/` (`HALLAZGOS.md`, `CRITERIOS.md`, `CHECKLIST.md`) |
+| Requisitos `R-xx` y cotejo por semana | `.claude/revision/T-026/requisitos/` |
+| Capturas antes y después (`H-###_antes.png`, `H-###_despues.png`) | `.claude/revision/T-026/capturas/` |
+| Herramientas de captura y exportación en Linux | `.claude/revision/T-026/herramientas/` |
+| Exportador genérico Markdown → PDF/DOCX | `.claude/herramientas/conversion/exportar_md.py` |
+| Requisitos e inspección del cierre S6 (recuperados de `feature/s6-integrador-final`) | `.claude/archivo/semana-06-integrador/` |
